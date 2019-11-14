@@ -54,11 +54,13 @@
               </li>
 
 
-              <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'vendor_description_management') ? 'active' : '' }}">
+              <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_description_management'
+                || \Request::route()->getName() === 'vendor_descriptionadd_management')) ? 'active' : '' }}">
                 <a href="{{url(route('vendor_description_management',$cate->category->slug))}}">Description</a>
               </li>
 
-              <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'vendor_style_management') ? 'active' : '' }}">
+              <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_style_management'
+                || \Request::route()->getName() === 'vendor_styleadd_management')) ? 'active' : '' }}">
                 <a href="{{url(route('vendor_style_management',$cate->category->slug))}}">Styles</a>
               </li>
 
@@ -72,7 +74,9 @@
                 <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_event_management') ? 'active' : '' }}">
                    <a href="{{url(route('get_vendor_event_management',$cate->category->slug))}}">Event Type & Games</a>
               </li>
-              <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'vendor_packages_management') ? 'active' : '' }}">
+              <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_packages_management'
+                || \Request::route()->getName() === 'vendor_packagesadd_management'
+                || \Request::route()->getName() === 'vendor_packagesedit_management')) ? 'active' : '' }}">
                    <a href="{{url(route('vendor_packages_management',$cate->category->slug))}}">Packages</a>
               </li>
           </ul>
