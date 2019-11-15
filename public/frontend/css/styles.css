@@ -350,8 +350,13 @@ img {
 }
 
 .dropdown-menu {
-    border-radius: 0;
-    min-width: 100px;
+    padding: 0;
+    overflow: hidden;
+    /*border-radius: 0;
+    min-width: 100px;*/
+}
+.dropdown-divider{
+    margin: 0px;
 }
 
 p {
@@ -739,7 +744,36 @@ nav#tool-nav #menus-list li a:hover {
     width: 100%;
     z-index: 2
 }
+#profileDropdown {
+    display: inline-flex;
+    align-items: center;
+    color: #fff;
+}
+#profileDropdown p {
+    font-size: 17px;
+    color: #fff;
+    font-weight: 400;
+    display: inline-block;
+    margin-bottom: 0;
+    padding:0px 4px;
+}
+#profileDropdown:hover{
+    color: #eda208;
+}
+#profileDropdown:hover p{
+   color: #eda208; 
+}
+#profileDropdown > a > span {
+    margin-right: 9px;
+    display: inline-block;
+    width: 15px;
+}
 
+.dropdown-menu a {
+    padding: 11px 13px;
+    display: block;
+    color: #333 !important;
+}
 #calender-toggle {
     width: 49px;
     background: #b58ec3;
@@ -844,16 +878,16 @@ nav#tool-nav #menus-list li a:hover {
     background: #fff;
 }
 
-.head-links li a {
+.head-links > li > a {
     font-size: 17px;
     color: #fff;
     font-weight: 400;
     display: inline-block;
 }
 
-.head-links li a:hover,
-.head-links li a:focus,
-.head-links li.active a {
+.head-links > li > a:hover,
+.head-links > li > a:focus,
+.head-links > li.active > a {
     color: #eda208;
 }
 

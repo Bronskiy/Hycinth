@@ -11,6 +11,10 @@ use App\Category;
 use Auth;
 class ManagementController extends VendorController
 {
+
+  public $Invalid =[
+       '_token'
+  ];
    
 public $restrictions =[
                 'imageGallery',
@@ -43,10 +47,108 @@ public $restrictions =[
    {
 
       $category = $this->getData($slug);
-      return view('vendors.management.about')
-   	  ->with('slug',$slug)
-   	  ->with('title',$category->label.'::About');
+      $infomations = \App\VendorCategoryMetaData::where('category_id',$category->category_id)
+                       ->where('user_id',Auth::user()->id)
+                       ->where('type','basic_information')
+                       ->get();
+      return view('vendors.management.basicInfo.index')
+      ->with('slug',$slug)
+      ->with('infomations',$infomations)
+      ->with('title',$category->label.' :: Basic Information ');
    }
+   #-----------------------------------------------------------------
+   #    addAbout
+   #-----------------------------------------------------------------
+  
+   public function addAbout(Request $request,$slug)
+   {
+
+      $category = $this->getData($slug);
+
+
+        $info =[
+           'business_name' => $this->getAllValueWithMeta('business_name','basic_information',$category->category_id),
+           'address' => $this->getAllValueWithMeta('address','basic_information',$category->category_id),
+           'website' => $this->getAllValueWithMeta('website','basic_information',$category->category_id),
+           'phone_number' => $this->getAllValueWithMeta('phone_number','basic_information',$category->category_id),
+           'company' => $this->getAllValueWithMeta('company','basic_information',$category->category_id),
+           'travel_distaince' => $this->getAllValueWithMeta('travel_distaince','basic_information',$category->category_id),
+           'min_price' => $this->getAllValueWithMeta('min_price','basic_information',$category->category_id),
+      ];
+       
+       if(!empty($request->test)){
+          return $info;
+       }
+      return view('vendors.management.basicInfo.add',$info)
+      ->with('slug',$slug)
+   	   
+   	  ->with('title',$category->label.' :: Basic Information ');
+   }
+
+
+
+      #-----------------------------------------------------------------
+   #    addAbout
+   #-----------------------------------------------------------------
+  
+   public function storeAbout(Request $request,$slug)
+   {
+
+     $this->validate($request,[
+            'business_name' => 'required',
+            'address' => 'required',
+            'website' => 'required',
+            'phone_number' => 'required',
+            'company' => 'required',
+            'travel_distaince' => 'required',
+            'min_price' => 'required'
+     ]);
+
+
+        $category = $this->getData($slug);
+ 
+        $this->saveCategoryMetaData('business_name',$request->type,$request->business_name,$category->category_id);
+        $this->saveCategoryMetaData('address',$request->type,$request->address,$category->category_id);
+        $this->saveCategoryMetaData('website',$request->type,$request->website,$category->category_id);
+        $this->saveCategoryMetaData('phone_number',$request->type,$request->phone_number,$category->category_id);
+        $this->saveCategoryMetaData('company',$request->type,$request->company,$category->category_id);
+        $this->saveCategoryMetaData('travel_distaince',$request->type,$request->travel_distaince,$category->category_id);
+        $this->saveCategoryMetaData('min_price',$request->type,$request->min_price,$category->category_id);
+
+       return redirect()->route('vendor_category_management',$slug)->with('messages','Basic Information is saved.');     
+   }
+
+   #-----------------------------------------------------------------
+   #    images
+   #-----------------------------------------------------------------
+  
+public function saveCategoryMetaData($key,$type,$value,$category_id)
+{
+    $v = VendorCategoryMetaData::where('category_id',$category_id)
+                                      ->where('user_id',Auth::user()->id)
+                                      ->where('type',$type)
+                                      ->where('key',$key);
+                                       
+    $metaData = $v->count() > 0 ? $v->first() : new VendorCategoryMetaData;
+
+    
+
+       $metaData->user_id = Auth::user()->id;
+       $metaData->category_id = $category_id;
+       $metaData->type = $type;
+       $metaData->key = $key;
+       $metaData->keyValue = $value;
+       $metaData->save();
+
+
+  return 1;
+
+}
+
+
+
+
+
 
    #-----------------------------------------------------------------
    #    images
@@ -57,7 +159,7 @@ public $restrictions =[
 
  
    	  $category = $this->getData($slug);
-   	  $images = VendorCategoryMetaData::where('category_id',$category->id)
+   	  $images = VendorCategoryMetaData::where('category_id',$category->category_id)
    	                                  ->where('user_id',Auth::user()->id)
    	                                  ->where('type','imageGallery')
    	                                  ->paginate(12);
@@ -148,8 +250,8 @@ public function upload(Request $request)
 
 public function videos($slug)
 {
-	  $category = $this->getData($slug);
-   	 $videos = VendorCategoryMetaData::where('category_id',$category->id)
+	   $category = $this->getData($slug);
+   	 $videos = VendorCategoryMetaData::where('category_id',$category->category_id)
    	                                  ->where('user_id',Auth::user()->id)
    	                                  ->where('type','videoGallery')
    	                                  ->paginate(8);
@@ -206,7 +308,7 @@ public function saveVideos(Request $request,$slug)
                            $d->key = 'video';
                            $d->keyValue = json_encode($data);
                            $d->user_id = Auth::user()->id;
-                           $d->category_id = $category->id;
+                           $d->category_id = $category->category_id;
                            $d->type = 'videoGallery';
                            $d->save();
 
@@ -226,7 +328,9 @@ public function delete($slug,$id)
 {
 	 $category = $this->getData($slug);
      
-     $v = VendorCategoryMetaData::where('id',$id)->where('user_id',Auth::user()->id)->whereIn('type',$this->restrictions)->first();
+     $v = VendorCategoryMetaData::where('id',$id)
+     ->where('user_id',Auth::user()->id)
+     ->whereIn('type',$this->restrictions)->first();
 
      if(empty($v)){
          return redirect()->back()->with('error_message','Something wrong!');
@@ -259,7 +363,7 @@ public function faqs($slug)
 {
   
        $category = $this->getData($slug);
-       $faqs =\App\FAQs::where('category_id',$category->id)->where('user_id',Auth::user()->id)->paginate(10);
+       $faqs =\App\FAQs::where('category_id',$category->category_id)->where('user_id',Auth::user()->id)->paginate(10);
       return view('vendors.management.faqs.index')
       ->with('slug',$slug)
       ->with('faqs',$faqs)
@@ -312,7 +416,7 @@ public function faqsStore(Request $request, $slug)
                            $d->answer = trim($request->answer);
                           
                            $d->user_id = Auth::user()->id;
-                           $d->category_id = $category->id;
+                           $d->category_id = $category->category_id;
                            $d->status = 1;
                            $d->save();
 
@@ -326,7 +430,7 @@ public function faqsEdit(Request $request,$slug,$id)
   
        $category = $this->getData($slug);
 
-        $faqs =\App\FAQs::where('category_id',$category->id)->where('user_id',Auth::user()->id)->where('id',$id);
+        $faqs =\App\FAQs::where('category_id',$category->category_id)->where('user_id',Auth::user()->id)->where('id',$id);
 
 
         if($faqs->count() == 0){
@@ -357,7 +461,7 @@ public function faqsUpdate(Request $request,$slug,$id)
       ]);
         $category = $this->getData($slug);
     
-        $faqs =\App\FAQs::where('category_id',$category->id)->where('user_id',Auth::user()->id)->where('id',$id);
+        $faqs =\App\FAQs::where('category_id',$category->category_id)->where('user_id',Auth::user()->id)->where('id',$id);
 
 
         if($faqs->count() == 0){
@@ -389,7 +493,7 @@ public function faqsDelete(Request $request,$slug,$id)
   
        
         $category = $this->getData($slug);
-        $faqs =\App\FAQs::where('category_id',$category->id)->where('user_id',Auth::user()->id)->where('id',$id);
+        $faqs =\App\FAQs::where('category_id',$category->category_id)->where('user_id',Auth::user()->id)->where('id',$id);
 
 
         if($faqs->count() == 0){
@@ -415,7 +519,7 @@ public function amenity($slug)
        
        $category = $this->getData($slug);
         
-       $category = Category::with('CategoryAmenity','CategoryAmenity.Amenity')->where('id',$category->id)->first();
+       $category = Category::with('CategoryAmenity','CategoryAmenity.Amenity')->where('id',$category->category_id)->first();
  
        return view('vendors.management.amenities.index')
               ->with('category',$category)->with('title',$category->label.' Management :: Amenities');
@@ -464,11 +568,11 @@ public function amenityAssign($slug)
 
           $status =0;
           $CategoryVaritant = \App\CategoryVariation::where('type','amenity')
-                                                   ->where('category_id',$category->id)
+                                                    ->where('category_id',$category->category_id)
                                                      ->whereIn('variant_id',$request->amenity);
 
                  $vv = \App\VendorAmenity::where('user_id',Auth::user()->id)
-                                   ->where('category_id',$category->id)
+                                   ->where('category_id',$category->category_id)
                                   ->whereNotIn('amenity_id',$request->amenity)
                                    ->delete();
 
@@ -501,7 +605,11 @@ public function amenityAssign($slug)
           if($CategoryVaritant->count() == 0){
                  return response()->json(['status' => 2 , 'msg' => 'Something Wrong!']);
           }else{
-                 return response()->json(['status' => 1 , 'redirect_links' => url(route('get_vendor_amenity_management'))]);
+                 return response()->json(['status' => 1 ,
+                  'redirect_links' => url(route('get_vendor_amenity_management',$slug)),
+                  'msg' => 'The Event Type is saved'
+
+               ]);
           }
  
           
@@ -523,7 +631,7 @@ public function event($slug)
        
        $category = $this->getData($slug);
         
-      $category = Category::with('CategoryEvent','CategoryEvent.Event')->where('id',$category->id)->first();
+       $category = Category::with('CategoryEvent','CategoryEvent.Event')->where('id',$category->category_id)->first();
  
        return view('vendors.management.events.index')
               ->with('category',$category)
@@ -557,12 +665,12 @@ public function event($slug)
 
           $status =0;
           $CategoryVaritant = \App\CategoryVariation::where('type','event')
-                                                   ->where('category_id',$category->id)
+                                                   ->where('category_id',$category->category_id)
                                                     ->whereIn('variant_id',$request->event_type);
 
-            $vv = \App\VendorEventGame::where('user_id',Auth::user()->id)
-                                     ->where('category_id',$category->id)
-                                     ->whereNotIn('event_id',$request->event_type)
+             $vv = \App\VendorEventGame::where('user_id',Auth::user()->id)
+                                     ->where('category_id',$category->category_id)
+                                      ->whereNotIn('event_id',$request->event_type)
                                       ->delete();
             
 
@@ -586,7 +694,10 @@ public function event($slug)
           if($CategoryVaritant->count() == 0){
                  return response()->json(['status' => 2 , 'msg' => 'Something Wrong!']);
           }else{
-                 return response()->json(['status' => 1 , 'redirect_links' => url(route('get_vendor_event_management',$slug))]);
+                 return response()->json(['status' => 1 ,
+                  'redirect_links' => url(route('get_vendor_event_management',$slug)),
+                  'msg' => 'The Event Type is saved'
+                ]);
           }
  
           
@@ -606,10 +717,13 @@ public function services($slug)
 {
       $category = $this->getData($slug);
         
-      
+      $cate = \App\Category::find($category->category_id);
+
+
  
        return view('vendors.management.services.index')
               ->with('category',$category)
+              ->with('cate',$cate)
               ->with('title',$category->label.' Management :: Services');
 }
 
@@ -696,7 +810,7 @@ public function servicesAssignAjax(Request $request,$slug)
       $category = $this->getData($slug);
 
       return view('vendors.management.description.index',[
-        'description' => $this->getAllValueWithMeta('description','description',$category->id)
+        'description' => $this->getAllValueWithMeta('description','description',$category->category_id)
       ])
       ->with('slug',$slug)
       ->with('category',$category)
@@ -712,7 +826,7 @@ public function servicesAssignAjax(Request $request,$slug)
       $category = $this->getData($slug);
 
       return view('vendors.management.description.add',[
-        'description' => $this->getAllValueWithMeta('description','description',$category->id)
+        'description' => $this->getAllValueWithMeta('description','description',$category->category_id)
       ])
       ->with('slug',$slug)
       ->with('category',$category)
@@ -726,7 +840,7 @@ public function servicesAssignAjax(Request $request,$slug)
 
 public function getAllValueWithMeta($key,$type,$category_id)
     {
-       $chk = \App\VendorCategoryMetaData::where('key',$key)->where('type',$type)->where('category_id',$category_id)->first();
+       $chk = \App\VendorCategoryMetaData::where('user_id',Auth::user()->id)->where('key',$key)->where('type',$type)->where('category_id',$category_id)->first();
 
        if(!empty($chk)){
         return $chk->keyValue;
@@ -735,6 +849,7 @@ public function getAllValueWithMeta($key,$type,$category_id)
         $c->key = $key;
         $c->keyValue = '';
         $c->type = $type;
+        $c->user_id = Auth::user()->id;
         $c->category_id = $category_id;
         $c->save();
         return $c->keyValue;
@@ -752,7 +867,8 @@ public function descriptionStore(Request $request,$slug)
 
    $chk = \App\VendorCategoryMetaData::where('key',$request->type)
                                      ->where('type',$request->type)
-                                     ->where('category_id',$category->id);
+                                     ->where('user_id',Auth::user()->id)
+                                     ->where('category_id',$category->category_id);
     if($chk->count() > 0){
 
         $c= $chk->first();
@@ -778,7 +894,7 @@ public function descriptionStore(Request $request,$slug)
       $category = $this->getData($slug);
 
       return view('vendors.management.styles.index',[
-        'styles' => $this->getAllValueWithMeta('styles','styles',$category->id)
+        'styles' => $this->getAllValueWithMeta('styles','styles',$category->category_id)
       ])
       ->with('slug',$slug)
       ->with('category',$category)
@@ -794,7 +910,7 @@ public function descriptionStore(Request $request,$slug)
       $category = $this->getData($slug);
 
       return view('vendors.management.styles.add',[
-        'styles' => $this->getAllValueWithMeta('styles','styles',$category->id)
+        'styles' => $this->getAllValueWithMeta('styles','styles',$category->category_id)
       ])
       ->with('slug',$slug)
       ->with('category',$category)
@@ -813,7 +929,8 @@ public function styleStore(Request $request,$slug)
 
    $chk = \App\VendorCategoryMetaData::where('key',$request->type)
                                      ->where('type',$request->type)
-                                     ->where('category_id',$category->id);
+                                     ->where('user_id',Auth::user()->id)
+                                     ->where('category_id',$category->category_id);
     if($chk->count() > 0){
 
         $c= $chk->first();
@@ -841,16 +958,74 @@ public function seasons($slug)
        
        $category = $this->getData($slug);
         
-      $category = Category::with('CategoryEvent','CategoryEvent.Event')->where('id',$category->id)->first();
+      $seasons = \App\Season::where('status',1)->get();
  
-       return view('vendors.management.events.index')
+       return view('vendors.management.seasons.index')
               ->with('category',$category)
-              ->with('title',$category->label.' Management :: Events')
+              ->with('seasons',$seasons)
+              ->with('title',$category->label.' Management :: Seasons')
               ;
 }
 
 
+#-----------------------------------------------------------------
+#  assignCategory
+#-----------------------------------------------------------------
 
+
+   public function seasonAssignAjax(Request $request,$slug)
+   {
+      
+        $v= \Validator::make($request->all(),[
+            'seasons' => 'required'
+        ]);
+ 
+        if($v->fails()){
+           return response()->json(['status' => 0 , 'errors' => $v->errors()]);
+         }else{
+
+           $category = $this->getData($slug);
+
+           $status =0;
+          
+
+                 $vv = \App\VendorCategoryMetaData::where('user_id',Auth::user()->id)
+                                   ->where('category_id',$category->category_id)
+                                   ->where('type','seasons')
+                                   ->where('key','season')
+                                   ->where('user_id',Auth::user()->id)
+                                   ->whereNotIn('keyValue',$request->seasons)
+                                   ->delete();
+
+                       
+ 
+
+                
+            
+
+          foreach ($request->seasons as $key => $season) {
+   
+
+                  $v = new \App\VendorCategoryMetaData;
+                  $v->category_id = $category->category_id;
+                  $v->user_id = Auth::user()->id;
+                  $v->type = 'seasons';
+                  $v->key = 'season';
+                  $v->keyValue = $season;
+                  $v->parent = 0;
+                  $v->save();
+ 
+          }
+
+                 $msg = 'Seasons is assigned to '.$category->label;
+                 return response()->json(['status' => 1 , 'redirect_links' => url(route('get_vendor_season_management',$slug)),'msg' => $msg]);
+           
+ 
+          
+
+        } 
+        
+   }
 
 
 

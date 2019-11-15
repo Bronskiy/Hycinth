@@ -11,15 +11,15 @@
                <form id="assignCategory">
               <div class="row ">
                  
-                 @foreach($category->categoryEvent as $cate)
+                 @foreach($seasons as $s)
 
 
                   <div class="col-lg-6">
                    <div class="vendor-category">
                       <div class="category-checkboxes category-title">
-                      <input type="checkbox" name="event_type[]" value="{{$cate->Event->id}}" id="category-{{$cate->Event->id}}"
-                      {{events(\Auth::user()->id,$category->id,$cate->Event->id)}}>
-                           <label for="category-{{$cate->Event->id}}">{{$cate->Event->name}}  </label>
+                      <input type="checkbox" name="seasons[]" value="{{$s->id}}" id="category-{{$s->id}}"
+                       {{activeCategoryMetaData(Auth::user()->id,$category->id,$s->id,'seasons')}}>
+                           <label for="category-{{$s->id}}">{{$s->name}}  </label>
  
                     </div>
                     
@@ -85,17 +85,17 @@ function erorrMessage(errors) {
 
       var txt ="";
       $.each(errors, function( index, value ) {
-        txt += ErrorMsg('error',value);
-          //  txt +='<li>'+ value +'</li>';
+        txt += ErrorMsg('danger',value);
+           
       });
-     /// txt +='</ul>';
+      
 
       return txt;
 }
 
   function assignCategory($this) {
       $.ajax({
-               url : "<?= url(route('vendor_event_management',$category->slug)) ?>",
+               url : "<?= url(route('vendor_season_management',$category->slug)) ?>",
                data : $this.serialize(),
                type: 'POST',  // http method
                dataTYPE:'JSON',
@@ -123,7 +123,7 @@ function erorrMessage(errors) {
                              $this.find('button').removeAttr('disabled');
                             $("body").find('.loadingDiv').hide();
                            
-                      }else if(parseInt(data.status) == 2){
+                      }else if(parseInt(data.status) == 0){
                           
                             $this.find('.errorMessages').html(erorrMessage(data.errors));
                             $this.find('button').removeAttr('disabled');

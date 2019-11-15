@@ -12,6 +12,8 @@ class VendorPackageController extends Controller
 {
     public function packages($slug) {
        $category = $this->getData($slug);
+
+
        $packages = VendorPackage::where(['category_id' => $category->id, 'user_id'=> Auth::User()->id])->paginate(10);
       return view('vendors.management.packages.index')
       ->with('slug', $slug)
@@ -35,7 +37,9 @@ class VendorPackageController extends Controller
            'amount' => 'required|regex:/^\d+(\.\d{1,2})?$/'
       ]);
 
-       $category = $this->getData($slug);
+      $category = $this->getData($slug);
+
+
        
        $request['category_id'] = $category->id;
        $request['user_id'] = Auth::User()->id;
@@ -73,7 +77,7 @@ public function packagesUpdate(Request $request, $slug, $id) {
 
         $category = $this->getData($slug);
     
-	    $package = VendorPackage::find($id);
+	      $package = VendorPackage::find($id);
 
         if(!$package) {
           return redirect()->route('vendor_packages_management', $slug)->with('messages','Something Wrong.');

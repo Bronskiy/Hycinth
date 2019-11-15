@@ -13,11 +13,11 @@
                  
                  
                    
-                    @if($category->subcategory->count() > 0)
+                    @if($cate->subcategory->count() > 0)
                       
                             
-                          <input type="hidden" name="category_id" value="{{$category->id}}">
-                          @foreach($category->subcategory as $sub)
+                          <input type="hidden" name="category_id" value="{{$category->category_id}}">
+                          @foreach($cate->subcategory as $sub)
                          <div class="col-lg-6">
 
                               <div class="category-checkboxes">

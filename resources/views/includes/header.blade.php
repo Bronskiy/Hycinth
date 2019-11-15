@@ -45,21 +45,38 @@
                </a>
             </li>
             <li>
-               <div class="header-btns">
+               <li>
                   @if(Auth::check())
-                  <div class="dropdown">
-                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</a>
-                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="/{{Auth::user()->role}}">Profile</a>
-                        <a class="dropdown-item" href="/logout">Logout</a>
-                     </div>
-                  </div>
-                  @else
-                  <a href="{{url('/login')}}" class="cstm-btn solid-btn">Login</a>
-                  <a href="{{url('/register')}}" class="cstm-btn">Sign Up</a>
-                  @endif
+                     <!-- <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                           <a class="dropdown-item" href="/{{Auth::user()->role}}">Profile</a>
+                           <a class="dropdown-item" href="/logout">Logout</a>
+                        </div>
+                     </div> -->
+                     <div class="nav-item nav-profile dropdown">
+              <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                <span class="nav-profile-img">
+                  <i class="fas fa-user-circle"></i>
+                </span>
+                <div class="nav-profile-text">
+                  <p class="user-name-text">{{Auth::user()->name}}</p>
+                </div>
+              </a>
+              <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
+                <a class="dropdown-item" href="/{{Auth::user()->role}}"><span><i class="far fa-user"></i></span> Profile</a>
+                   <a class="dropdown-item" href="/logout"><span><i class="fas fa-sign-out-alt"></i></span> Logout</a>
                </div>
-            </li>
+            </div>
+                  </li>
+                  <li>
+                     @else
+                     <div class="header-btns">
+                     <a href="{{url('/login')}}" class="cstm-btn solid-btn">Login</a>
+                     <a href="{{url('/register')}}" class="cstm-btn">Sign Up</a>
+                     </div>
+                     @endif               
+                </li>
             <!-- <li>
                <div class="dropdown">
                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" 

@@ -135,7 +135,7 @@ function login($this) {
 
                         setTimeout(function () {
                                  $this.find('.messages').html('');
-                        },8000);
+                        },3000);
                          
                       }else{
 
@@ -145,7 +145,7 @@ function login($this) {
 
                         setTimeout(function () {
                                  $this.find('.messages').html('');
-                        },8000);
+                        },3000);
                          
                       }
                     

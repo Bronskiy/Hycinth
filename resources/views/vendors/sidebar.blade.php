@@ -9,16 +9,16 @@
         </a>
         <h4>Vendor Dashboard</h4>
       </div>
-      <div class="heading">
+      <a href="javascript:void(0);" class="heading vendor-user-pro">
         <figure class="user_img">
         <img src="<?= userProfileImage(Auth::User()->id) ?>" alt="">
     </figure>
         <div class="info">
-          <h3><a href="#">{{ Auth::User()->name }}</a></h3>
+          <h4>{{ Auth::User()->name }}</h4>
           <p>Vendor</p>
         </div>
-      </div>
-
+      </a>
+       <h3 class="sidebar-heading">Navigation</h3>
       <ul class="categories">
         <li class="<?= ActiveMenu([],'opend') ?>"><a href="#"> <i class="fa fa-home fa-fw" aria-hidden="true"></i> About us</a>
           <ul class="side-nav-dropdown">
@@ -74,6 +74,14 @@
                 <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_event_management') ? 'active' : '' }}">
                    <a href="{{url(route('get_vendor_event_management',$cate->category->slug))}}">Event Type & Games</a>
               </li>
+
+
+              </li>
+                <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_season_management') ? 'active' : '' }}">
+                   <a href="{{url(route('get_vendor_season_management',$cate->category->slug))}}">Seasons</a>
+              </li>
+
+
               <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_packages_management'
                 || \Request::route()->getName() === 'vendor_packagesadd_management'
                 || \Request::route()->getName() === 'vendor_packagesedit_management')) ? 'active' : '' }}">

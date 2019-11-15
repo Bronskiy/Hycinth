@@ -2,17 +2,6 @@
 
 @section('content')
 
-
-
-
-
-
-
-
-
-
-
-
 <section class="log-sign-banner" style="background:url('/frontend/images/banner-bg.png');">
     <div class="container">
         <div class="page-title text-center">
@@ -36,6 +25,7 @@
                         </div>
                         <div class="col-lg-6">
                             <form class="signUp-form" id="loginForm" method="POST" action="{{ url(route('ajax_login')) }}">
+                              <div class="messages"></div>
 
                                 @csrf
 
@@ -85,7 +75,7 @@
 
                                              <img  class="pl-3 loading hide" src="{{url('/images/small-loader.gif')}}" style="display: none;" />                                            
 
-                                            <div class="messages"></div>
+                                            
                                            
                                         </div>
                             </form>

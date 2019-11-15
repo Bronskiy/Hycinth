@@ -19,6 +19,9 @@ $(document).ready(function(){
       "games[]": { 
           chrequired: true,
       },
+      "seasons[]": { 
+          chrequired: true,
+      },
       valueToBeTested: {
           required: true,
       }

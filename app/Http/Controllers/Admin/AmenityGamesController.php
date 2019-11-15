@@ -44,7 +44,7 @@ class AmenityGamesController extends Controller
 	public function store(Request $request)
 	{
 		 $this->validate($request, [
-	                 'name' => 'required|max:10|unique:	amenities',
+	                 'name' => 'required|max:10',
 	                 'description' => 'required'
 	                 
 		 ],[
@@ -87,18 +87,25 @@ class AmenityGamesController extends Controller
 
 	public function update(Request $request,$slug)
 	{
-	     $event= Amenity::where('slug', $slug)->first();
-		 $this->validate($request,[
-	                 'name' => 'required|max:10|unique:	amenities,name,'.$event->id,
-	                 'description' => 'required'
+	     $amenity = Amenity::where('slug', $slug)->first();
+	     // $validatedData = $request->validate([
+      //       'name' => ['required', 'string', 'max:10', 'unique:amenities'],
+      //       'description' => ['required', 'string', 'max:10'],
+      //   ]);
+	     
+		 // $this->validate($request,[
+	  //                'name' => 'required|max:10|unique: amenities,name,'.$amenity->id,
+	  //                'description' => 'required'
 	                 
-		 ], [
-	        'name.unique' => 'This amenity type is already exists.'
-		 ]);
+		 // ], [
+	  //       'name.unique' => 'This amenity type is already exists.'
+		 // ]);
 
-		 $event->update($request->all());
-		 $event->save();
+
+		 $amenity->update($request->all());
+
 		 $route = $request->type == 'amenity' ? 'list_amenities' : 'list_games';
+		 
 		 return redirect()->route($route)->with('flash_message', Str::ucfirst($request->type).' Type has been updated successfully!');
 	}
 

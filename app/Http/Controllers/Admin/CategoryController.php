@@ -10,8 +10,9 @@ use App\CategoryVaritant;
 use App\Event;
 use App\Amenity;
 use App\CategoryVariation;
-class CategoryController extends AdminController
-{
+use App\Season;
+
+class CategoryController extends AdminController {
 
      
 
@@ -35,8 +36,8 @@ class CategoryController extends AdminController
     public function index()
     {
         $category = Category::with([
-          'subCategory' => function($t){ $t->orderBy('sorting','ASC'); },
-          'subCategory.childCategory'  => function($t){ $t->orderBy('sorting','ASC'); } 
+          'subCategory' => function($t){ $t->orderBy('sorting', 'ASC'); },
+          'subCategory.childCategory'  => function($t){ $t->orderBy('sorting', 'ASC'); } 
         ])
         ->where('parent',0)
         ->orderBy('sorting','ASC')
@@ -44,14 +45,8 @@ class CategoryController extends AdminController
         return view('admin.category.index1')
         ->with('addLink','create_category')
         ->with('title','Manager Category & SubCategory')
-        ->with('category',$category);
+        ->with('category', $category);
     }
-
-
-
-
-
-   
 
     # category create function
 
@@ -300,6 +295,7 @@ class CategoryController extends AdminController
   public function category_variations(Request $request, $slug) {
     $category = Category::FindBySlugOrFail($slug);
     $events = Event::all();
+    $seasons = Season::all();
     $amenities = Amenity::where('type', 'amenity')->get();
     $games = Amenity::where('type', 'game')->get();
     $category_variation = CategoryVariation::where('category_id', $category->id)->get();
@@ -308,6 +304,7 @@ class CategoryController extends AdminController
     ->with('addLink',route('list_category'))
     ->with('title', 'Add Category Variatants')
     ->with('category', $category)
+    ->with('seasons', $seasons)
     ->with('events', $events)
     ->with('amenities', $amenities)
     ->with('category_variation', $category_variation)
@@ -346,6 +343,17 @@ class CategoryController extends AdminController
           'category_id' => $category->id,
           'variant_id' => $value,
           'type' => 'game'
+        ]);        
+      }
+    }
+
+    if(!empty($request->seasons) && count($request->seasons)) {
+      CategoryVariation::where(['category_id' => $category->id, 'type'=> 'seasons'])->delete();
+      foreach ($request->seasons as $key => $value) {
+        CategoryVariation::create([
+          'category_id' => $category->id,
+          'variant_id' => $value,
+          'type' => 'seasons'
         ]);        
       }
     }

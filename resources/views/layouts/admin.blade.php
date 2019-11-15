@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Datta Able Free Bootstrap 4 Admin Template</title>
+    <title>Envisiun Admin Panel</title>
     <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 11]>
@@ -26,14 +26,17 @@
     <!-- vendor css -->
     <link rel="stylesheet" type="text/css" href="{{url('/css/nestable.css')}}"> 
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-<link href="/bootstrap-fileinput-master/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
- 
-<link href="/bootstrap-fileinput-master/themes/explorer-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" href="{{url('/AdminFILE/dist/css/jquery-ui.css')}}">
+    <link href="/bootstrap-fileinput-master/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
+    <link href="/bootstrap-fileinput-master/themes/explorer-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{{url('/AdminFILE/dist/css/jquery-ui.css')}}">
     <link rel="stylesheet" href="{{url('/admin-assets/css/style.css')}}">
 
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
+
+<script src="{{url('/AdminFILE/plugins/jquery/jquery.min.js')}}"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="{{url('/bootstrap-fileinput-master/js/fileinput.js')}}" type="text/javascript"></script>
 
 </head>
 
@@ -62,8 +65,7 @@
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
 <!-- <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script> -->
 
-<script src="{{url('/AdminFILE/plugins/jquery/jquery.min.js')}}"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
 
 <script src="{{url('/admin-assets/js/vendor-all.min.js')}}"></script>
 <script src="{{url('/admin-assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
@@ -72,7 +74,6 @@
 <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.0/jquery.validate.js"></script>
 <script src="{{url('/admin-assets/js/validations/customValidation.js')}}"></script>
-
 @yield('scripts')
 
 </body>

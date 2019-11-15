@@ -32,6 +32,8 @@
                             </div>
                             <div class="col-lg-6">
                             <form class="signUp-form" action="{{url(route('ajax_register'))}}" method="POST"  id="registerForm">
+                              <div class="messages">
+                                        </div>
                               @csrf
                                <div class="row">
                                    <div class="col-lg-12">                          
@@ -83,8 +85,7 @@
                                         <!-- <a routerLink="/login" class="cstm-btn">Login</a> -->
                                         <img  class="pl-3 loading hide" src="{{url('/images/small-loader.gif')}}" style="display: none;" />
 
-                                        <div class="messages">
-                                        </div>
+                                        
                                     </div>
                                     
                             </form>

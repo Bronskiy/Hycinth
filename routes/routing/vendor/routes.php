@@ -20,7 +20,16 @@ Route::group(['middleware' => ['VendorAuth'],'prefix' => 'vendor'], function(){
 		#-------------------------------------------------------------------------------------------
 		#  vendor_category_management
 		#-------------------------------------------------------------------------------------------
-		Route::get('/category/{slug}/basic/information', 'Vendor\ManagementController@about')->name('vendor_category_management'); 
+        Route::get('/category/{slug}/basic/information', 'Vendor\ManagementController@about')->name('vendor_category_management');
+        Route::get('/category/{slug}/basic/information/add', 'Vendor\ManagementController@addAbout')->name('vendor_basic_category_management');
+		Route::post('/category/{slug}/basic/information/add', 'Vendor\ManagementController@storeAbout')->name('vendor_basic_category_management');
+
+
+
+
+        #-------------------------------------------------------------------------------------------
+        #  vendor_category_management
+        #------------------------------------------------------------------------------------------- 
 
 
 		Route::get('/category/{slug}/gallery/images', 'Vendor\ManagementController@images')->name('vendor_category__image_management');
@@ -71,7 +80,7 @@ Route::group(['middleware' => ['VendorAuth'],'prefix' => 'vendor'], function(){
                 #-------------------------------------------------------------------------------------------
 
 
-        Route::get('/category/{slug}/season', 'Vendor\ManagementController@season')->name('get_vendor_season_management');
+        Route::get('/category/{slug}/season', 'Vendor\ManagementController@seasons')->name('get_vendor_season_management');
         Route::post('/ajax/category/{slug}/season', 'Vendor\ManagementController@seasonAssignAjax')->name('vendor_season_management');
 
 

@@ -7,6 +7,15 @@ function checkcarttatal()
 }
 
 
+function activeCategoryMetaData($user_id,$category_id,$val,$type)
+{
+            $c= \App\VendorCategoryMetaData::where('user_id',$user_id)
+                                   ->where('category_id',$category_id)
+                                   ->where('type',$type)
+                                   ->where('keyValue',$val)
+                                   ->count();
+            return $c > 0 ? 'checked' : '';                       
+}
 
 
 

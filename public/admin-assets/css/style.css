@@ -1680,12 +1680,13 @@ p.text-muted {
   padding: 0;
   position: relative;
   top: 0;
-  background: transparent;
+  background: #fff;
   color: #3f4d67;
   width: calc(100% - 264px);
   margin-left: 264px;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+   box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
 }
 .pcoded-header .m-header {
   display: none;
@@ -10693,7 +10694,31 @@ ul{
 .b-brand .b-bg {
     background: transparent;
 }
-label.error {
+.error {
     display: block;
     color: #c22;
+}
+.krajee-default.file-preview-frame{
+    float: none;
+    width: 100%;
+    display: block;
+    margin: 0;
+}
+.krajee-default.file-preview-frame .kv-file-content{
+  width: 100%;
+}
+.file-preview-image {
+    color: #008000;
+    height: 100% !important;
+    object-fit: cover;
+    width: 100% !important;
+}
+.kv-file-zoom.btn.btn-sm.btn-kv.btn-default.btn-outline-secondary {
+    display: none;
+}
+.file-drop-zone-title {
+    color: #aaa;
+    font-size: 1.6em;
+    padding: 105px 10px;
+    cursor: default;
 }

@@ -90,4 +90,28 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
 		Route::get('/vendors/ajax_getVendors','Admin\VendorController@ajax_getVendors')->name('ajax_getVendors');
 
 
+		#----------------------------------------------------------------
+		#  Venue Management
+		#----------------------------------------------------------------
+		Route::get('/venues','Admin\VenueController@index')->name('admin.venues.list');
+		Route::get('/venues/create','Admin\VenueController@showCreate')->name('admin.venues.showCreate');
+		Route::post('/venues/create','Admin\VenueController@create')->name('admin.venues.create');
+		Route::get('/venues/ajax_getVenues','Admin\VenueController@ajax_getVenues')->name('admin.venues.ajax_getVenues');
+		Route::get('/venues/{slug}','Admin\VenueController@showEdit')->name('admin.venues.showEdit');
+		Route::post('/venues/{slug}','Admin\VenueController@update')->name('admin.venues.update');
+		Route::get('/venues/status/{slug}','Admin\VenueController@venueStatus')->name('admin.venues.status');
+
+		#----------------------------------------------------------------
+		#  Style Management
+		#----------------------------------------------------------------
+		Route::get('/styles','Admin\StyleController@index')->name('admin.styles.list');
+		Route::get('/styles/create','Admin\StyleController@showCreate')->name('admin.styles.showCreate');
+		Route::post('/styles/create','Admin\StyleController@create')->name('admin.styles.create');
+		Route::get('/styles/ajax_getStyles','Admin\StyleController@ajax_getStyles')->name('admin.styles.ajax_getStyles');
+		Route::get('/styles/{slug}','Admin\StyleController@showEdit')->name('admin.styles.showEdit');
+		Route::post('/styles/{slug}','Admin\StyleController@update')->name('admin.styles.update');
+		Route::get('/styles/status/{slug}','Admin\StyleController@styleStatus')->name('admin.styles.status');
+
+
+
 });

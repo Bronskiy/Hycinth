@@ -85,7 +85,7 @@ function erorrMessage(errors) {
 
       var txt ="";
       $.each(errors, function( index, value ) {
-        txt += ErrorMsg('error',value);
+        txt += ErrorMsg('danger',value);
           //  txt +='<li>'+ value +'</li>';
       });
      /// txt +='</ul>';
@@ -123,7 +123,7 @@ function erorrMessage(errors) {
                              $this.find('button').removeAttr('disabled');
                             $("body").find('.loadingDiv').hide();
                            
-                      }else if(parseInt(data.status) == 2){
+                      }else if(parseInt(data.status) == 0){
                           
                             $this.find('.errorMessages').html(erorrMessage(data.errors));
                             $this.find('button').removeAttr('disabled');
