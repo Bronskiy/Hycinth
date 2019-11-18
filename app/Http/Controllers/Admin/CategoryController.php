@@ -54,9 +54,9 @@ class CategoryController extends AdminController {
     {
     	$categories = Category::where('parent',0)->where('status',1)->get();
        return view('admin.category.create')
-    	->with('addLink',route('list_category'))
-    	->with('category',$categories)
-    	->with('title','Categories');
+    	->with('addLink', route('list_category'))
+    	->with('category', $categories)
+    	->with('title', 'Categories');
     }
 
 
@@ -122,6 +122,7 @@ class CategoryController extends AdminController {
 
        $c=new Category;
        $c->label = trim($request->label);
+       $c->color = trim($request->color);
        $c->parent = trim($request->parent);
        $c->subparent = trim($request->subparent);
        $c->image = $request->hasFile('image') ? uploadFileWithAjax($this->path,$request->file('image')) : '';
@@ -204,6 +205,7 @@ class CategoryController extends AdminController {
 
        $c=Category::where('slug',$slug)->first();
        $c->label = trim($request->label);
+       $c->color = trim($request->color);
        $c->parent = trim($request->parent);
        $c->subparent = trim($request->subparent);
        $c->image = $request->hasFile('image') ? uploadFileWithAjax($this->path,$request->file('image')) : $categories->image;

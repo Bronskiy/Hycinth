@@ -73,4 +73,5 @@
 @endsection
 
 @section('scripts')
+<script src="{{url('/admin-assets/js/validations/valueValidation.js')}}"></script>
 @endsection

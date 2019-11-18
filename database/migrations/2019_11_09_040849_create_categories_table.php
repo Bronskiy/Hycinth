@@ -19,6 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->string('label');
             $table->integer('subparent');
             $table->integer('sorting');
+            $table->integer('color');            
             $table->string('slug');
             $table->integer('status');
             $table->timestamps();

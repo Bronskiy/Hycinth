@@ -1,40 +1,145 @@
- 
-
-
 @extends('vendors.management.layout')
 @section('vendorContents')
 
 <div class="container-fluid">
+  <div class="page_head-card">
+    <div class="page-info">
+            <div class="page-header-title">
+                <h3 class="m-b-10">{{$title}}</h3>
+            </div>
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('vendor_dashboard') }}"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                <li class="breadcrumb-item"><a href="{{ route($addLink, $slug) }}">List</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Edit</a></li>
+            </ul>
+        </div>
+  </div>
+@include('vendors.errors')
     <div class="row">
-       <div class="col-lg-8 offset-lg-2">
+       <div class="col-lg-12">
           <div class="card vendor-dash-card">
             <div class="card-header"><h3>{{$title}}</h3></div>
                 <div class="card-body">
 
-<!-- 
-<h3>   <a href="{{url(route('vendor_faqsadd_management',$slug))}}"><i class="fa fa-plus"></i></a></h3> -->
- 
-
-     <div class="col-md-12"> 
+     
           <form method="post">
-			@csrf
+      @csrf
           {{textbox($errors,'Title*','title', $package->title)}}
-          {{textbox($errors,'Amount*','amount', $package->amount)}}
           {{textarea($errors,'Description*','description', $package->description)}}
+          {{textarea($errors,'Do You Have Menus*','menus', $package->menus)}}
 
-          <div class="form-group label-floating is-focused">
-            <label class="control-label">Status*</label>
-            <input type="radio" name="status" value="1" {{ $package->status === 1 ? 'checked' : '' }}> Active
-           <input type="radio" name="status" value="0" {{$package->status === 0 ? 'checked' : ''}}> Inactive
+          <div class="row">
+
+            <div class="col-md-3">
+              <div class="form-group">
+           <div class="radio">
+            <label><input type="radio" name="price_type" value="per_person" {{ $package->price_type === 'per_person' ? 'checked' : '' }}>Price Per Person</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" name="price_type" value="fix" {{ $package->price_type === 'fix' ? 'checked' : '' }}>Fix Price</label>
+          </div>
+          </div>
+            </div>
+
+            <div class="col-md-3">
+               <div class="form-group">
+            <label for="min_person">Minimum Persom</label>
+            <input type="number" value="{{$package->min_person}}" class="form-control" id="min_person" name="min_person" placeholder="Minimum Person" />
+            @if ($errors->has('min_person'))
+                <div class="error">{{ $errors->first('min_person') }}</div>
+            @endif
+          </div>
+            </div>
+            <div class="col-md-3">
+               <div class="form-group">
+            <label for="max_person">Maximum Person</label>
+            <input type="number" value="{{$package->max_person}}" class="form-control" id="max_person" name="max_person" placeholder="Maximum Person" />
+            @if ($errors->has('max_person'))
+                <div class="error">{{ $errors->first('max_person') }}</div>
+            @endif
+          </div>
+            </div>
+             <div class="col-md-3">
+               <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" value="{{$package->price}}" class="form-control" id="price" name="price" placeholder="Price">
+            @if ($errors->has('price'))
+                <div class="error">{{ $errors->first('price') }}</div>
+            @endif
+          </div>
+            </div>
           </div>
 
+          <div class="form-group">
+            <label for="no_of_hours">Number Of Hours</label>
+            <input type="number" value="{{$package->no_of_hours}}" class="form-control" id="no_of_hours" name="no_of_hours" placeholder="Number Of Hours">
+            @if ($errors->has('no_of_hours'))
+                <div class="error">{{ $errors->first('no_of_hours') }}</div>
+            @endif
+            </div>
 
-           
+            <div class="form-group">
+            <label for="no_of_days">Number Of Days</label>
+            <input type="number" class="form-control" value="{{$package->no_of_days}}" id="no_of_days" name="no_of_days" placeholder="Number Of Days">
+            @if ($errors->has('no_of_days'))
+                <div class="error">{{ $errors->first('no_of_days') }}</div>
+            @endif
+            </div>
+
+
+
+<div class="form-group">
+  <div class="row">
+            <div class="col-lg-12">
+            <label for="no_of_hours">Do You Have Amenities</label>
+</div>
+            @foreach($category->categoryAmenity as $cate)
+                  <div class="col-lg-6">
+                   <div class="vendor-category">
+                      <div class="category-checkboxes category-title">
+                      <input type="checkbox" name="amenity[]" value="{{$cate->Amenity->id}}" id="amenity_{{$cate->Amenity->id}}" {{activePackageMetaData(\Auth::User()->id, $category->id, $cate->Amenity->id, 'amenities', $package->id)}}>
+                           <label for="amenity_{{$cate->Amenity->id}}">{{$cate->Amenity->name}}  </label>
+ 
+                    </div>
+                   </div>
+                  </div>       
+                 @endforeach
+               </div>
+               </div>
+
+
+<div class="form-group">
+  <div class="row">
+            <div class="col-lg-12">
+            <label for="no_of_hours">Do You Have Event and Games</label>
+</div>
+            @foreach($category->categoryEvent as $cate)
+                  <div class="col-lg-6">
+                   <div class="vendor-category">
+                      <div class="category-checkboxes category-title">
+                      <input type="checkbox" name="event_type[]" value="{{$cate->Event->id}}" id="event_{{$cate->Event->id}}" {{activePackageMetaData(\Auth::User()->id, $category->id, $cate->Event->id, 'events', $package->id)}}>
+                           <label for="event_{{$cate->Event->id}}">{{$cate->Event->name}}  </label>
+ 
+                    </div>
+                    </div>
+                  </div>
+                 @endforeach
+               </div>
+</div>
+
+               <div class="form-group">
+           <div class="radio">
+            <label><input type="radio" name="status" value="1" {{ $package->status === 1 ? 'checked' : '' }}>Active</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" name="status" value="0" {{ $package->status === 0 ? 'checked' : '' }}>Inactive</label>
+          </div>
+          </div>
 
             <button class="cstm-btn">Save</button>
       </form>                 
 
-    </div>
+   
     </div>
    </div>
   </div>
@@ -46,6 +151,17 @@
 
 @section('scripts')
 <script type="text/javascript">
-  CKEDITOR.replace('description');
+  var options = {
+        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+        filebrowserWindowWidth  : 800,
+        filebrowserWindowHeight : 500,
+        uiColor: '#eda208',
+        removePlugins: 'save, newpage',
+        allowedContent:true,
+        fillEmptyBlocks:true,
+        extraAllowedContent:'div, a, span, section, img'
+      };
+  CKEDITOR.replace('description', options);
+  CKEDITOR.replace('menus', options);
 </script>
 @endsection

@@ -30,7 +30,7 @@
 
 <div class="col-md-12">
 
-  <form role="form" method="post" enctype="multipart/form-data">
+  <form role="form" method="post" id="venueForm" enctype="multipart/form-data">
                 <div class="card-body">
                    @csrf
                   
@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" id="btnVanue" class="btn btn-primary">Submit</button>
                 </div>
  </form>
 
@@ -71,4 +71,5 @@
 @endsection
 
 @section('scripts')
+<script src="{{url('/admin-assets/js/validations/valueValidation.js')}}"></script>
 @endsection

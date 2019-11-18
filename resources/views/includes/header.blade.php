@@ -64,7 +64,7 @@
                 </div>
               </a>
               <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown">
-                <a class="dropdown-item" href="/{{Auth::user()->role}}"><span><i class="far fa-user"></i></span> Profile</a>
+                <a class="dropdown-item" href="{{url(route(Auth::user()->role.'_dashboard'))}}"><span><i class="far fa-user"></i></span> Profile</a>
                    <a class="dropdown-item" href="/logout"><span><i class="fas fa-sign-out-alt"></i></span> Logout</a>
                </div>
             </div>

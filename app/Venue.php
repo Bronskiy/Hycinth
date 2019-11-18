@@ -8,7 +8,7 @@ use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
 class Venue extends Model
 {
-     use Sluggable;
+    use Sluggable;
     use SluggableScopeHelpers;
     
 

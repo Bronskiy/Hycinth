@@ -73,6 +73,7 @@
 @endsection
 
 @section('scripts')
+<script src="{{url('/admin-assets/js/validations/valueValidation.js')}}"></script>
 <!-- <script type="text/javascript">
   $(document).ready(function(){
    // Add Department Form

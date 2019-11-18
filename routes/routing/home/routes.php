@@ -26,6 +26,6 @@ Route::post('/ajax/login', 'HomeController@userLogin')->name('ajax_login');
 
 
 
-
+Route::get('/detail-page', 'Home\Services\ServiceDetailController@index')->name('service_deatil_page');
 
  

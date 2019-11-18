@@ -2,21 +2,23 @@
 @section('vendorContents')
 
 <div class="container-fluid">
-  <div class="page_head-card">
+
+    <div class="page_head-card">
     <div class="page-info">
             <div class="page-header-title">
-                <h3 class="m-b-10">Add images</h3>
+                <h3 class="m-b-10">{{$title}}</h3>
             </div>
             <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-                <li class="breadcrumb-item"><a href="javascript:">Basic Componants</a></li>
-                <li class="breadcrumb-item"><a href="javascript:">Button</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('vendor_dashboard') }}"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">List</a></li>
             </ul>
         </div>
         <div class="side-btns-wrap">
-          <a href="{{url(route('vendor_category_add_image_management',$category->slug))}}" class="btn btn-primary">Add New </a>
+          <a href="{{url(route($addLink, $slug))}}" class="add_btn"><i class="fa fa-plus"></i></a>
         </div>
   </div>
+@include('vendors.errors')
+ 
     <div class="row">
        <div class="col-lg-12">
           <div class="card vendor-dash-card">

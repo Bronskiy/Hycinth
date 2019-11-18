@@ -29,7 +29,7 @@ class LoginController extends Controller
            // return Auth::user();
             if(Auth::user()->email_verified_at){
 
-             return redirect()->intended('vendor');
+             return redirect()->intended('vendors');
             }else{
               Auth::logout();
               return redirect('/login')->with('messages','Your Account is nor verified yet.');

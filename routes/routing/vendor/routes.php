@@ -3,9 +3,9 @@
 
  
 
-Route::group(['middleware' => ['VendorAuth'],'prefix' => 'vendor'], function(){
+Route::group(['middleware' => ['VendorAuth'],'prefix' => 'vendors'], function(){
 
-
+require __DIR__.'/ajax.php';
 		Route::get('/', 'Vendor\VendorController@index')->name('vendor_dashboard'); 
 		Route::get('/settings', 'Vendor\VendorController@vendor_profile')->name('vendor_profile'); 
 		Route::post('/settings', 'Vendor\VendorController@vendorProfile')->name('vendor_profile');
@@ -63,10 +63,7 @@ Route::group(['middleware' => ['VendorAuth'],'prefix' => 'vendor'], function(){
         Route::post('/category/{slug}/faqs/edit/{id}', 'Vendor\ManagementController@faqsUpdate')->name('vendor_faqsedit_management');
 
 
-
-
-
-                #-------------------------------------------------------------------------------------------
+        #-------------------------------------------------------------------------------------------
 		#  vendor amitiies asso=ign
 		#-------------------------------------------------------------------------------------------
 
@@ -75,14 +72,13 @@ Route::group(['middleware' => ['VendorAuth'],'prefix' => 'vendor'], function(){
         Route::post('/ajax/category/{slug}/amenity', 'Vendor\ManagementController@amenityAssignAjax')->name('vendor_amenity_management');
 
 
-                #-------------------------------------------------------------------------------------------
-                #  vendor amitiies asso=ign
-                #-------------------------------------------------------------------------------------------
+        #-------------------------------------------------------------------------------------------
+        #  vendor amitiies asso=ign
+        #-------------------------------------------------------------------------------------------
 
 
         Route::get('/category/{slug}/season', 'Vendor\ManagementController@seasons')->name('get_vendor_season_management');
         Route::post('/ajax/category/{slug}/season', 'Vendor\ManagementController@seasonAssignAjax')->name('vendor_season_management');
-
 
 
         #-------------------------------------------------------------------------------------------
@@ -121,8 +117,10 @@ Route::group(['middleware' => ['VendorAuth'],'prefix' => 'vendor'], function(){
 
 
         Route::get('/category/{slug}/style', 'Vendor\ManagementController@style')->name('vendor_style_management');
-        Route::get('/category/{slug}/style/add', 'Vendor\ManagementController@styleAdd')->name('vendor_styleadd_management');
-        Route::post('/category/{slug}/style/add', 'Vendor\ManagementController@styleStore')->name('vendor_styleadd_management');
+        Route::post('/category/{slug}/style', 'Vendor\ManagementController@styleStore')->name('vendor_styleStore_management');
+        // Route::post('/category/{slug}/style', 'Vendor\ManagementController@styleAdd')->name('vendor_styleAdd_management');
+        // Route::get('/category/{slug}/style/add', 'Vendor\ManagementController@styleAdd')->name('vendor_styleadd_management');
+        // Route::post('/category/{slug}/style/add', 'Vendor\ManagementController@styleStore')->name('vendor_styleadd_management');
 
 
 
@@ -134,8 +132,14 @@ Route::group(['middleware' => ['VendorAuth'],'prefix' => 'vendor'], function(){
 
         Route::get('/category/{slug}/packages/add', 'Vendor\VendorPackageController@packagesAdd')->name('vendor_packagesadd_management');  
         Route::post('/category/{slug}/packages/add', 'Vendor\VendorPackageController@packagesStore')->name('vendor_packagesadd_management'); 
-        Route::get('/category/{slug}/faqs/delete/{id}', 'Vendor\VendorPackageController@packagesDelete')->name('vendor_packages_delete_management');  
+        Route::get('/category/{slug}/packages/delete/{id}', 'Vendor\VendorPackageController@packagesDelete')->name('vendor_packages_delete_management');  
         Route::get('/category/{slug}/packages/edit/{id}', 'Vendor\VendorPackageController@packagesEdit')->name('vendor_packagesedit_management');  
         Route::post('/category/{slug}/packages/edit/{id}', 'Vendor\VendorPackageController@packagesUpdate')->name('vendor_packagesedit_management');
+        Route::post('/category/{slug}/packages/addOns/{id}', 'Vendor\VendorPackageController@addOnsCreate')->name('vendor_packagesAddOns_management');
+        Route::get('/category/{slug}/packages/addOns/delete/{id}', 'Vendor\VendorPackageController@addOnsDelete')->name('vendor_packagesAddOns_delete_management');
+
+
+
+
 
 });

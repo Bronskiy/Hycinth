@@ -31,7 +31,7 @@
 
 <div class="col-md-12">
 
-  <form role="form" method="post" action="{{url(route('update_amenity', $amenity->slug))}}" enctype="multipart/form-data">
+  <form role="form" method="post" id="eventForm" action="{{url(route('update_amenity', $amenity->slug))}}" enctype="multipart/form-data">
                 <div class="card-body">
 
 
@@ -54,7 +54,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" id="eventFormSbt" class="btn btn-primary">Submit</button>
                 </div>
  </form>
 
@@ -87,10 +87,7 @@
 
 
 @section('scripts')
-
- 
-
-
+<script src="{{url('/admin-assets/js/validations/eventValidation.js')}}"></script>
 @endsection
 
 

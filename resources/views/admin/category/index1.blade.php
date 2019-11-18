@@ -56,7 +56,7 @@
                                        <li><a href="{{url(route('category_variations', $cate->slug))}}" class=" action-btn btn pull-right btn-success"><i class="fa fa-plus"></i></a></li>
                                         <li><a href="{{url(route('edit_category',$cate->slug))}}" class=" action-btn btn pull-right btn-primary"><i class="fas fa-pencil-alt"></i></a> </li>
 
-                                        <li><a href="{{url(route('delete_category',$cate->id))}}" class=" action-btn btn pull-right btn-danger"><i class="fa fa-trash"></i></a></li>
+                                        <li><a href="{{url(route('delete_category', $cate->id))}}" class=" action-btn btn pull-right btn-danger"><i class="fas fa-toggle-on"></i></a></li>
                                       </ul>
 
                                     </div>

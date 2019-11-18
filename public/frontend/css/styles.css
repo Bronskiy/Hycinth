@@ -2,6 +2,17 @@
 
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900&display=swap');
 /*********************/
+/* Google Material icons */
+@import "http://fonts.googleapis.com/icon?family=Material+Icons";
+
+/* Propeller css */
+@import "dist/css/propeller.min.css";
+
+/* Bootstrap datetimepicker */
+@import "datetimepicker/css/bootstrap-datetimepicker.css";
+
+/* Propeller datetimepicker */
+@import "datetimepicker/css/pmd-datetimepicker.css";
 /* reset css starts here */
 
 a {
@@ -3725,4 +3736,69 @@ label.error {
 }
 #event-slider-1 {
     display: none;
+}
+/*vendor detail css*/
+.vendor-detail-header .sec-card{
+    position: relative;
+    z-index: 11;
+}
+.vendor-detail-header .head-logo {
+    max-width: 70px;
+    display: inline-block;
+    margin-right: 10px;
+}
+.vendor-detail-header .page-header {
+    display: flex;
+    flex-wrap: wrap;
+}
+.heading-details h2 {
+    margin-bottom: 9px;
+}
+.location-icon{
+    margin-right: 10px;
+}
+.deatil-navigation-wrap {
+    display: block;
+    margin-top: 30px;
+}
+.detail-navigation {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.detail-navigation > li {
+    padding: 10px 20px;
+}
+.detail-navigation > li:first-child{
+    padding-left: 0;
+}
+.detail-navigation > li:last-child{
+    padding-right: 0;
+}
+.detail-navigation > li > a{
+    font-size: 16px;
+}
+.flexslider{
+    margin: 0px;
+}
+.summary-details{
+    display: block;
+    margin-bottom: 30px;
+}
+.summary-details h2 {
+    margin-bottom: 20px;
+}
+.summary-details p{
+  line-height: 1.5;
+}
+.side-form-wrap {
+    padding: 20px 10px;
+    text-align: center;
+    background: #e6e6e6;
+    border-radius: 10px;
+}
+.form-heading {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
 }

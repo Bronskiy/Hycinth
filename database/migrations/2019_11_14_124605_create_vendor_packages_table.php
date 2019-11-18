@@ -16,11 +16,18 @@ class CreateVendorPackagesTable extends Migration
         Schema::create('vendor_packages', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->string('slug');
             $table->LongText('description');
-            $table->boolean('status');
             $table->integer('category_id');
             $table->integer('user_id');
-            $table->integer('amount');            
+            $table->integer('price');
+            $table->integer('no_of_hours');
+            $table->integer('no_of_days');
+            $table->LongText('menus');
+            $table->string('price_type');
+            $table->integer('min_person');
+            $table->integer('max_person');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

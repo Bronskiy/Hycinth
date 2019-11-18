@@ -8,6 +8,7 @@ use App\Http\Controllers\Vendor\VendorController;
 use App\VendorCategory;
 use App\VendorCategoryMetaData;
 use App\Category;
+use App\Style;
 use Auth;
 class ManagementController extends VendorController
 {
@@ -33,7 +34,7 @@ public $restrictions =[
                            ->where('vendor_categories.user_id',Auth::user()->id);
 
 
-      return $category->count() > 0 ? $category->first() : redirect()->route('vendor_dashboard')->with('messages','Please check your url, Its wrong!');
+      return $category->count() > 0 ? $category->first() : redirect()->route('vendor_dashboard')->with('error_message','Please check your url, Its wrong!');
 
    	   
    }
@@ -47,13 +48,22 @@ public $restrictions =[
    {
 
       $category = $this->getData($slug);
-      $infomations = \App\VendorCategoryMetaData::where('category_id',$category->category_id)
-                       ->where('user_id',Auth::user()->id)
-                       ->where('type','basic_information')
-                       ->get();
-      return view('vendors.management.basicInfo.index')
-      ->with('slug',$slug)
-      ->with('infomations',$infomations)
+       
+
+
+       $info =[
+           'business_name' => $this->getAllValueWithMeta('business_name','basic_information',$category->category_id),
+           'address' => $this->getAllValueWithMeta('address','basic_information',$category->category_id),
+           'website' => $this->getAllValueWithMeta('website','basic_information',$category->category_id),
+           'phone_number' => $this->getAllValueWithMeta('phone_number','basic_information',$category->category_id),
+           'company' => $this->getAllValueWithMeta('company','basic_information',$category->category_id),
+           'travel_distaince' => $this->getAllValueWithMeta('travel_distaince','basic_information',$category->category_id),
+           'min_price' => $this->getAllValueWithMeta('min_price','basic_information',$category->category_id),
+      ];
+
+      return view('vendors.management.basicInfo.index',$info)
+      ->with('slug', $slug)
+      ->with('addLink', 'vendor_basic_category_management')
       ->with('title',$category->label.' :: Basic Information ');
    }
    #-----------------------------------------------------------------
@@ -66,7 +76,7 @@ public $restrictions =[
       $category = $this->getData($slug);
 
 
-        $info =[
+         $info =[
            'business_name' => $this->getAllValueWithMeta('business_name','basic_information',$category->category_id),
            'address' => $this->getAllValueWithMeta('address','basic_information',$category->category_id),
            'website' => $this->getAllValueWithMeta('website','basic_information',$category->category_id),
@@ -80,9 +90,9 @@ public $restrictions =[
           return $info;
        }
       return view('vendors.management.basicInfo.add',$info)
-      ->with('slug',$slug)
-   	   
-   	  ->with('title',$category->label.' :: Basic Information ');
+      ->with('slug', $slug)   	   
+      ->with('title',$category->label.' :: Basic Information ')
+   	  ->with('addLink', 'vendor_category_management');
    }
 
 
@@ -167,6 +177,7 @@ public function saveCategoryMetaData($key,$type,$value,$category_id)
    	  ->with('slug',$slug)
    	  ->with('category',$category)
    	  ->with('images',$images)
+      ->with('addLink', 'vendor_category_add_image_management')
    	  ->with('title',$category->label.' Management :: About');
    }
 
@@ -181,7 +192,7 @@ public function saveCategoryMetaData($key,$type,$value,$category_id)
       return view('vendors.management.images.add')
       ->with('slug',$slug)
       ->with('category',$category)
-      
+      ->with('addLink', 'vendor_category__image_management')
       ->with('title',$category->label.' Management :: About');
    }
 
@@ -259,6 +270,7 @@ public function videos($slug)
    	  ->with('slug',$slug)
    	  ->with('category',$category)
    	  ->with('videos',$videos)
+      ->with('addLink', 'vendor_category_videos_add_management')
    	  ->with('title',$category->label.' Management :: About');
 }
 
@@ -278,7 +290,7 @@ public function addVideos($slug)
       return view('vendors.management.videos.add')
    	  ->with('slug',$slug)
    	  ->with('category',$category)
-   	   
+   	  ->with('addLink', 'vendor_category_videos_management')
    	  ->with('title',$category->label.' Management :: About');
 }
 
@@ -368,6 +380,7 @@ public function faqs($slug)
       ->with('slug',$slug)
       ->with('faqs',$faqs)
       ->with('category',$category)
+      ->with('addLink', 'vendor_faqsadd_management')
        ->with('title',$category->label.' Management :: FAQs');
 }
 
@@ -380,14 +393,14 @@ public function faqs($slug)
 
 
 
-public function faqsAdd(Request $request,$slug){
+public function faqsAdd(Request $request, $slug) {
   
        $category = $this->getData($slug);
       
       return view('vendors.management.faqs.add')
-      ->with('slug',$slug)
-       
+      ->with('slug',$slug)       
       ->with('category',$category)
+      ->with('addLink', 'vendor_faqs_management')
       ->with('title',$category->label.' Management :: About');
 }
 
@@ -441,6 +454,7 @@ public function faqsEdit(Request $request,$slug,$id)
             ->with('slug',$slug)
             ->with('faqs',$faqs->first())
             ->with('category',$category)
+            ->with('addLink', 'vendor_faqs_management')
             ->with('title',$category->label.' Management :: Edit');
 }
 
@@ -602,9 +616,9 @@ public function amenityAssign($slug)
 
           }
 
-          if($CategoryVaritant->count() == 0){
+          if($CategoryVaritant->count() == 0) {
                  return response()->json(['status' => 2 , 'msg' => 'Something Wrong!']);
-          }else{
+          } else {
                  return response()->json(['status' => 1 ,
                   'redirect_links' => url(route('get_vendor_amenity_management',$slug)),
                   'msg' => 'The Event Type is saved'
@@ -814,12 +828,12 @@ public function servicesAssignAjax(Request $request,$slug)
       ])
       ->with('slug',$slug)
       ->with('category',$category)
+      ->with('addLink', 'vendor_descriptionadd_management')
       ->with('title',$category->label.' Management :: About');
   }
 #------------------------------------------------------------------------------------------
 #description
 #------------------------------------------------------------------------------------------
-
 
     public function descriptionAdd(Request $request,$slug)
   {
@@ -830,8 +844,69 @@ public function servicesAssignAjax(Request $request,$slug)
       ])
       ->with('slug',$slug)
       ->with('category',$category)
+      ->with('addLink', 'vendor_description_management')
       ->with('title',$category->label.' Management :: About');
   }
+
+
+#------------------------------------------------------------------------------------------
+#prohibtion
+#------------------------------------------------------------------------------------------
+
+  public function prohibtion(Request $request,$slug)
+  {
+      $category = $this->getData($slug);
+
+      return view('vendors.management.prohibtion.index',[
+        'prohibtion' => $this->getAllValueWithMeta('prohibtion','prohibtion',$category->category_id)
+      ])
+      ->with('slug',$slug)
+      ->with('category',$category)
+      ->with('addLink', 'vendor_add_prohibtion_management')
+      ->with('title',$category->label.' Management :: Prohibtion & Restrictions');
+  }
+#------------------------------------------------------------------------------------------
+#description
+#------------------------------------------------------------------------------------------
+
+    public function prohibtionAdd(Request $request,$slug)
+  {
+      $category = $this->getData($slug);
+
+      return view('vendors.management.prohibtion.add',[
+        'prohibtion' => $this->getAllValueWithMeta('prohibtion','prohibtion',$category->category_id)
+      ])
+      ->with('slug',$slug)
+      ->with('category',$category)
+      ->with('addLink', 'vendor_prohibtion_management')
+      ->with('title',$category->label.' Management :: Prohibtion & Restrictions');
+  }
+#------------------------------------------------------------------------------------------
+#description
+#------------------------------------------------------------------------------------------
+
+
+public function prohibtionStore(Request $request,$slug)
+{
+
+   $category = $this->getData($slug);
+
+   $chk = \App\VendorCategoryMetaData::where('key',$request->type)
+                                     ->where('type',$request->type)
+                                     ->where('user_id',Auth::user()->id)
+                                     ->where('category_id',$category->category_id);
+    if($chk->count() > 0){
+
+        $c= $chk->first();
+        $c->keyValue =$request->prohibtion;
+        $c->save();
+
+    }
+
+
+    return redirect()->route('vendor_prohibtion_management',$slug)->with('messages','Prohibtion & Restrictions is saved successfully.');
+                                     
+}
 
 #------------------------------------------------------------------------------------------
 #description
@@ -878,7 +953,7 @@ public function descriptionStore(Request $request,$slug)
     }
 
 
-    return redirect()->route('vendor_description_management',$slug)->with('messages','saved');
+    return redirect()->route('vendor_description_management',$slug)->with('messages','Description is saved successfully.');
                                      
 }
 
@@ -891,15 +966,19 @@ public function descriptionStore(Request $request,$slug)
 
   public function style(Request $request,$slug)
   {
+
+      $styles = Style::where('status', 1)->get();
       $category = $this->getData($slug);
 
       return view('vendors.management.styles.index',[
-        'styles' => $this->getAllValueWithMeta('styles','styles',$category->category_id)
+        'styles' => $this->getAllValueWithMeta('styles','styles', $category->category_id)
       ])
-      ->with('slug',$slug)
-      ->with('category',$category)
-      ->with('title',$category->label.' Management :: About');
+      ->with('slug', $slug)
+      ->with('category', $category)
+      ->with('styles', $styles)
+      ->with('title', $category->label.' Management :: Styles');
   }
+  
 #------------------------------------------------------------------------------------------
 #description
 #------------------------------------------------------------------------------------------
@@ -914,7 +993,7 @@ public function descriptionStore(Request $request,$slug)
       ])
       ->with('slug',$slug)
       ->with('category',$category)
-      ->with('title',$category->label.' Management :: About');
+      ->with('title',$category->label.' Management :: Styles');
   }
 #------------------------------------------------------------------------------------------
 #description
@@ -922,25 +1001,33 @@ public function descriptionStore(Request $request,$slug)
 
 
 
-public function styleStore(Request $request,$slug)
+public function styleStore(Request $request, $slug)
 {
 
    $category = $this->getData($slug);
+ 
+    
+  $user = Auth::User();
 
-   $chk = \App\VendorCategoryMetaData::where('key',$request->type)
-                                     ->where('type',$request->type)
-                                     ->where('user_id',Auth::user()->id)
-                                     ->where('category_id',$category->category_id);
-    if($chk->count() > 0){
+  VendorCategoryMetaData::where(['user_id' => $user->id, 'category_id' => $category->category_id, 'type' => 'styles', 'key'=>'style'])->delete();       
 
-        $c= $chk->first();
-        $c->keyValue =$request->styles;
-        $c->save();
-
-    }
-
-
-    return redirect()->route('vendor_style_management',$slug)->with('messages','saved');
+  if(!empty($request->styles) && count($request->styles)) {
+    foreach ($request->styles as $key => $style) {
+            if($style) {
+              VendorCategoryMetaData::create([
+              'category_id' => $category->category_id,
+              'type' => 'styles',
+              'user_id' => $user->id,
+              'key' => 'style',
+              'keyValue' => $style,
+              'parent' => 0
+            ]);
+            }            
+          }
+  }
+          
+          
+    return redirect()->route('vendor_style_management', $slug)->with('flash_message', 'Style has been saved successfully!');
                                      
 }
 
@@ -953,12 +1040,11 @@ public function styleStore(Request $request,$slug)
 
 
 
-public function seasons($slug)
-{
+public function seasons($slug) {
        
-       $category = $this->getData($slug);
+   $category = $this->getData($slug);
         
-      $seasons = \App\Season::where('status',1)->get();
+   $seasons = $category->CategorySeasons;
  
        return view('vendors.management.seasons.index')
               ->with('category',$category)
@@ -975,6 +1061,7 @@ public function seasons($slug)
 
    public function seasonAssignAjax(Request $request,$slug)
    {
+        $user = Auth::User();
       
         $v= \Validator::make($request->all(),[
             'seasons' => 'required'
@@ -986,43 +1073,25 @@ public function seasons($slug)
 
            $category = $this->getData($slug);
 
-           $status =0;
-          
-
-                 $vv = \App\VendorCategoryMetaData::where('user_id',Auth::user()->id)
-                                   ->where('category_id',$category->category_id)
-                                   ->where('type','seasons')
-                                   ->where('key','season')
-                                   ->where('user_id',Auth::user()->id)
-                                   ->whereNotIn('keyValue',$request->seasons)
-                                   ->delete();
-
-                       
+           $status = 0;          
  
-
-                
-            
+           VendorCategoryMetaData::where(['user_id' => $user->id, 'category_id' => $category->category_id, 'type' => 'seasons', 'key'=>'season'])->delete();       
 
           foreach ($request->seasons as $key => $season) {
-   
-
-                  $v = new \App\VendorCategoryMetaData;
-                  $v->category_id = $category->category_id;
-                  $v->user_id = Auth::user()->id;
-                  $v->type = 'seasons';
-                  $v->key = 'season';
-                  $v->keyValue = $season;
-                  $v->parent = 0;
-                  $v->save();
- 
+            VendorCategoryMetaData::create([
+              'category_id' => $category->category_id,
+              'type' => 'seasons',
+              'user_id' => $user->id,
+              'key' => 'season',
+              'keyValue' => $season,
+              'parent' => 0
+            ]);
+    
           }
 
                  $msg = 'Seasons is assigned to '.$category->label;
                  return response()->json(['status' => 1 , 'redirect_links' => url(route('get_vendor_season_management',$slug)),'msg' => $msg]);
            
- 
-          
-
         } 
         
    }

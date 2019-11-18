@@ -3,23 +3,46 @@
 
 
 <div class="container-fluid">
+
+ <div class="page_head-card">
+    <div class="page-info">
+            <div class="page-header-title">
+                <h3 class="m-b-10">{{$title}}</h3>
+            </div>
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('vendor_dashboard') }}"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Seasons</a></li>
+            </ul>
+        </div>
+        <div class="side-btns-wrap">
+         
+        </div>
+  </div>
+
+@include('vendors.errors')
+
+
+
+
+
+
+
     <div class="row">
        <div class="col-lg-12">
           <div class="card vendor-dash-card">
-       <div class="card-header">{{$title}}</div>
+       <div class="card-header"><h3>{{$title}}</h3></div>
            <div class="card-body">
                <form id="assignCategory">
               <div class="row ">
                  
                  @foreach($seasons as $s)
 
-
                   <div class="col-lg-6">
                    <div class="vendor-category">
                       <div class="category-checkboxes category-title">
-                      <input type="checkbox" name="seasons[]" value="{{$s->id}}" id="category-{{$s->id}}"
-                       {{activeCategoryMetaData(Auth::user()->id,$category->id,$s->id,'seasons')}}>
-                           <label for="category-{{$s->id}}">{{$s->name}}  </label>
+                      <input type="checkbox" name="seasons[]" value="{{$s->season->id}}" id="category-{{$s->season->id}}"
+                       {{activeCategoryMetaData(Auth::User()->id,$category->category_id, $s->season->id, 'seasons')}}>
+                           <label for="category-{{$s->season->id}}">{{$s->season->name}}  </label>
  
                     </div>
                     

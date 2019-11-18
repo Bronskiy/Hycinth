@@ -32,7 +32,7 @@
 
 <div class="col-md-12">
 
-  <form role="form" method="post" enctype="multipart/form-data">
+  <form role="form" method="post" id="categoryForm" enctype="multipart/form-data">
                 <div class="card-body">
 
                    @csrf
@@ -127,6 +127,11 @@
 
 </div>
 
+<div class="col-md-6"> 
+  <div class="form-group label-floating is-empty"><label class="control-label">Color*</label>
+<input type="color" value="{{$category->color}}" name="color" id="get" style="width: 46px; margin-left: -2px;" onchange="fetch()">
+    <input type="text" readonly value="{{$category->color}}" class="form-control valid" name="color" id="color"></div>
+</div>
 
  <div class="col-md-6"> {{textbox($errors,'Meta Title*','meta_title',$category->meta_title)}}</div>
   <div class="col-md-6">{{textbox($errors,'Meta Tags*','meta_tag',$category->meta_tag)}}</div>
@@ -140,7 +145,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" id="categoryFormSbt" class="btn btn-primary">Submit</button>
                 </div>
  </form>
 
@@ -175,11 +180,16 @@
 
 
 @section('scripts')
-
+<script src="{{url('/admin-assets/js/validations/categoryValidation.js')}}"></script>
 
 <script type="text/javascript">
 
- 
+   function fetch() {
+  var get=document.getElementById("get").value;
+  let color = document.getElementById("color");
+  color.value = get;
+  color.focus();
+} 
 
   $('#parent').on('change',function(){
 

@@ -13,7 +13,7 @@ class Category extends Model
     
 
     protected $fillable = [
-        'label', 'slug', 'meta_title', 'meta_tag', 'meta_description',
+        'label', 'slug', 'meta_title', 'meta_tag', 'meta_description', 'color'
     ];
     /**
      * Return the sluggable configuration array for this model.
@@ -98,6 +98,11 @@ class Category extends Model
       public function CategoryEvent()
     {
         return $this->hasMany('App\CategoryVariation','category_id')->where('type','event');
+    }
+
+      public function CategorySeasons()
+    {
+        return $this->hasMany('App\CategoryVariation','category_id')->where('type','seasons');
     }
 
 

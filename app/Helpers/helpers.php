@@ -7,7 +7,19 @@ function checkcarttatal()
 }
 
 
-function activeCategoryMetaData($user_id,$category_id,$val,$type)
+
+function ActiveRouteMenu($slug,$routes=[],$classes,$var=0)
+{
+
+  $routeName = \Request::route()->getName();
+
+  $varr = Request::route('slug') === $slug && $var == 1 ? $classes : '';
+
+  return Request::route('slug') === $slug && in_array($routeName, $routes) ? $classes : $varr;
+}
+
+
+function activeCategoryMetaData($user_id, $category_id, $val, $type)
 {
             $c= \App\VendorCategoryMetaData::where('user_id',$user_id)
                                    ->where('category_id',$category_id)
@@ -17,6 +29,14 @@ function activeCategoryMetaData($user_id,$category_id,$val,$type)
             return $c > 0 ? 'checked' : '';                       
 }
 
+
+function activePackageMetaData($user_id, $category_id, $val, $type, $package_id)
+{
+      $c= \App\PackageMetaData::where(['user_id'=> $user_id, 'package_id' => $package_id ,'category_id'=> $category_id, 'type'=> $type, 'key_value'=> $val])
+        ->count();
+
+      return $c > 0 ? 'checked' : '';                       
+}
 
 
 function actionWithSlug($slug,$return){

@@ -31,7 +31,7 @@
 
                   <div class="col-md-12">
 
-                    <form role="form" method="post" enctype="multipart/form-data">
+                    <form role="form" method="post" id="categoryForm" enctype="multipart/form-data">
                                   <div class="card-body">
 <div class="row">
                                          @csrf
@@ -100,41 +100,25 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div class="col-md-6"> 
+  <div class="form-group label-floating is-empty"><label class="control-label">Color*</label>
+<input type="color" value="#eda208" name="color" id="get" style="width: 46px; margin-left: -2px;" onchange="fetch()">
+    <input type="text" readonly value="#eda208" class="form-control valid" name="color" id="color"></div>
+</div>
 
 <div class="col-md-6">   {{textbox($errors,'Meta Title*','meta_title')}}</div>
   <div class="col-md-6">  {{textbox($errors,'Meta Tags*','meta_tag')}}</div>
   <div class="col-md-12">  {{textarea($errors,'Meta description*','meta_description')}}</div>
 
      </div>                                 
-                                  </div>
-                                  <!-- /.card-body -->
-
-                                  <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                  </div>
-                   </form>
-
-
-                  </div>
-
- 
-              
+      </div>
+      <!-- /.card-body -->
+            <div class="card-footer">
+              <button type="submit" id="categoryFormSbt" class="btn btn-primary">Submit</button>
             </div>
+         </form>
+        </div>
+  </div>
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
@@ -152,11 +136,16 @@
 
 
 @section('scripts')
-
+<script src="{{url('/admin-assets/js/validations/categoryValidation.js')}}"></script>
 
 <script type="text/javascript">
 
- 
+  function fetch() {
+  var get=document.getElementById("get").value;
+  let color = document.getElementById("color");
+  color.value = get;
+  color.focus();
+} 
 
   $('#parent').on('change',function(){
 
@@ -195,14 +184,5 @@
      }});
 
   }
-
-
-
-
 </script>
-
-
 @endsection
-
-
- 

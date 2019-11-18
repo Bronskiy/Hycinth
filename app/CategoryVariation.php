@@ -28,6 +28,13 @@ class CategoryVariation extends Model
     }
 
 
+      # category variants CategoryMaterials
+    public function season()
+    {
+        return $this->belongsTo('App\Season','variant_id');
+    }
+
+
 
 
 

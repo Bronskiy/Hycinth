@@ -2,21 +2,26 @@
 @section('vendorContents')
 
 <div class="container-fluid">
-  <div class="page_head-card">
+ 
+
+
+ <div class="page_head-card">
     <div class="page-info">
             <div class="page-header-title">
                 <h3 class="m-b-10">{{$title}}</h3>
             </div>
             <ul class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-                <li class="breadcrumb-item"><a href="javascript:">Basic Componants</a></li>
-                <li class="breadcrumb-item"><a href="javascript:">Button</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('vendor_dashboard') }}"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                <li class="breadcrumb-item"><a href="{{ route($addLink, $slug) }}">List</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Add</a></li>
             </ul>
         </div>
-        <!-- <div class="side-btns-wrap">
-          <a href="{{url(route('vendor_category_add_image_management',$category->slug))}}" class="btn btn-primary">Add New </a>
-        </div> -->
   </div>
+
+
+@include('vendors.errors')
+
+
 
     <div class="row">
        <div class="col-lg-12">
@@ -32,8 +37,105 @@
           <form method="post">
 			@csrf
           {{textbox($errors,'Title*','title')}}
-			    {{textbox($errors,'Amount*','amount')}}
-			    {{textarea($errors,'Description*','description')}}
+          {{textarea($errors,'Description*','description')}}
+			    {{textarea($errors,'Do You Have Menus*','menus')}}
+
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+           <div class="radio">
+            <label><input type="radio" name="price_type" value="per_person" checked>Price Per Person</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" name="price_type" value="fix" >Fix Price</label>
+          </div>
+          </div>
+            </div>
+            <div class="col-md-3">
+               <div class="form-group">
+            <label for="min_person">Minimum Person</label>
+            <input type="number" class="form-control" id="min_person" name="min_person" placeholder="Minimum Person">
+            @if ($errors->has('min_person'))
+                <div class="error">{{ $errors->first('min_person') }}</div>
+            @endif
+          </div>
+            </div>
+            <div class="col-md-3">
+               <div class="form-group">
+            <label for="max_person">Maximum Person</label>
+            <input type="number" class="form-control" id="max_person" name="max_person" placeholder="Maximum Person">
+            @if ($errors->has('max_person'))
+                <div class="error">{{ $errors->first('max_person') }}</div>
+            @endif
+          </div>
+            </div>
+             <div class="col-md-3">
+               <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" class="form-control" id="price" name="price" placeholder="Price">
+            @if ($errors->has('price'))
+                <div class="error">{{ $errors->first('price') }}</div>
+            @endif
+          </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="no_of_hours">Number Of Hours</label>
+            <input type="number" class="form-control" id="no_of_hours" name="no_of_hours" placeholder="Number Of Hours">
+            @if ($errors->has('no_of_hours'))
+                <div class="error">{{ $errors->first('no_of_hours') }}</div>
+            @endif
+            </div>
+
+          <div class="form-group">
+            <label for="no_of_days">Number Of Days</label>
+            <input type="number" class="form-control" id="no_of_days" name="no_of_days" placeholder="Number Of Days">
+            @if ($errors->has('no_of_days'))
+                <div class="error">{{ $errors->first('no_of_days') }}</div>
+            @endif
+            </div>
+
+
+
+<div class="form-group">
+         <div class="row">
+            <div class="col-lg-12">
+            <label for="no_of_hours">Do You Have Amenities</label>
+            </div>
+            @foreach($category->categoryAmenity as $cate)
+                  <div class="col-lg-6">
+                   <div class="vendor-category">
+                      <div class="category-checkboxes category-title">
+                      <input type="checkbox" name="amenity[]" value="{{$cate->Amenity->id}}" id="amenity_{{$cate->Amenity->id}}">
+                           <label for="amenity_{{$cate->Amenity->id}}">{{$cate->Amenity->name}}  </label> 
+                    </div>
+                   </div>
+                  </div>       
+                 @endforeach
+               </div>
+             </div>
+
+<div class="form-group">
+  <div class="row">
+            <div class="col-lg-12">
+            <label for="no_of_hours">Do You Have Event and Games</label>
+          </div>
+
+            @foreach($category->categoryEvent as $cate)
+                  <div class="col-lg-6">
+                   <div class="vendor-category">
+                      <div class="category-checkboxes category-title">
+                      <input type="checkbox" name="event_type[]" value="{{$cate->Event->id}}" id="event_{{$cate->Event->id}}">
+                           <label for="event_{{$cate->Event->id}}">{{$cate->Event->name}}</label>
+ 
+                    </div>
+                    </div>
+                  </div>
+                 @endforeach
+               </div>
+             </div>
+
             <button class="cstm-btn">Save</button>
       </form>                 
 
@@ -49,6 +151,17 @@
 
 @section('scripts')
 <script type="text/javascript">
-  CKEDITOR.replace('description');
+  var options = {
+        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+        filebrowserWindowWidth  : 800,
+        filebrowserWindowHeight : 500,
+        uiColor: '#eda208',
+        removePlugins: 'save, newpage',
+        allowedContent:true,
+        fillEmptyBlocks:true,
+        extraAllowedContent:'div, a, span, section, img'
+      };
+  CKEDITOR.replace('description', options);
+  CKEDITOR.replace('menus', options);
 </script>
 @endsection

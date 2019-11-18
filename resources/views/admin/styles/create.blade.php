@@ -30,7 +30,7 @@
 
 <div class="col-md-12">
 
-  <form role="form" method="post" enctype="multipart/form-data">
+  <form role="form" method="post" id="venueForm" enctype="multipart/form-data">
                 <div class="card-body">
                    @csrf
                   
@@ -39,7 +39,7 @@
 
                   <div class="form-group">
                     <label>Image</label>
-                    <input type="file" name="image">
+                    <input required type="file" id="image" name="image" accept="image/png, image/jpeg">
                     @if ($errors->has('image'))
                         <div class="error">{{ $errors->first('image') }}</div>
                     @endif
@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" id="btnVanue" class="btn btn-primary">Submit</button>
                 </div>
  </form>
 
@@ -71,4 +71,10 @@
 @endsection
 
 @section('scripts')
+<script src="{{url('/admin-assets/js/validations/valueValidation.js')}}"></script>
+<script type="text/javascript">
+  $('#image').on('change', function(){
+    $(this).parent().find('label').css('display', 'none');
+  });
+</script>
 @endsection

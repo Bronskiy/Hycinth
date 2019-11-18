@@ -1,15 +1,35 @@
 @extends('vendors.management.layout')
 @section('vendorContents')
-
 <div class="container-fluid">
+
+
+<div class="page_head-card">
+    <div class="page-info">
+            <div class="page-header-title">
+                <h3 class="m-b-10">{{$title}}</h3>
+            </div>
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('vendor_dashboard') }}"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">List</a></li>
+            </ul>
+        </div>
+        <div class="side-btns-wrap">
+          <a href="{{url(route($addLink, $slug))}}" class="add_btn"><i class="fa fa-plus"></i></a>
+        </div>
+  </div>
+@include('vendors.errors')
+
     <div class="row">
        <div class="col-lg-12">
           <div class="card vendor-dash-card">
-       <div class="card-header"><h3>Add a video 
-        <a href="{{url(route('vendor_category_videos_add_management',$category->slug))}}" class="btn btn-primary">Add New</a></h3></div>
+       <div class="card-header"><h3>Videos </h3></div>
            <div class="card-body">
 
 <div class="row">
+
+  @if(count($videos) == 0)
+      <p class="nodata">No Data</p>
+  @endif
  
     @foreach($videos as $img)
  

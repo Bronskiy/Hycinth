@@ -28,7 +28,7 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="{{url('/bootstrap-fileinput-master/js/fileinput.js')}}" type="text/javascript"></script>
-
+<script src="https://yauzer.com/js/validate.min.js"></script>
 </head>
 <body>
 
@@ -62,7 +62,7 @@
                   <li><a href="#"><i class="fa fa-envelope"></i> My inbox</a></li>
                   <li><a href="#"><i class="fa fa-question-circle"></i> Help</a></li>
                   <li role="separator" class="divider"></li>
-                  <li><a href="#"><i class="fa fa-power-off"></i> Log out</a></li>
+                  <li><a href="{{url('/logout')}}"><i class="fa fa-power-off"></i> Log out</a></li>
                 </ul>
               </li>            
             </ul>
@@ -74,9 +74,7 @@
 
 
                                          @include('vendors.sidebar')
-                                      
-                                 
-                                         @include('vendors.errors')
+                                        
                                          @yield('vendorContents')
                                     
 
@@ -87,8 +85,8 @@
 
 </section>
 
-    
-   <script src="https://cdn.ckeditor.com/4.13.0/standard/ckeditor.js"></script>
+    <script src="//cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
    
 @yield('scripts')
 
