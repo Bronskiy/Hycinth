@@ -7,6 +7,22 @@ function checkcarttatal()
 }
 
 
+function getAllValueWithMeta($key, $type)
+    {
+       $chk = \App\Models\Admin\PageMetaTag::where(['key'=> $key, 'type'=> $type])->first();
+
+       if(!empty($chk)){
+        return $chk->keyValue;
+       } else {
+        $c =new \App\Models\Admin\PageMetaTag;
+        $c->key = $key;
+        $c->keyValue = '';
+        $c->type = $type;
+        $c->save();
+       }
+     }
+
+
 
 function ActiveRouteMenu($slug,$routes=[],$classes,$var=0)
 {
@@ -27,6 +43,18 @@ function activeCategoryMetaData($user_id, $category_id, $val, $type)
                                    ->where('keyValue',$val)
                                    ->count();
             return $c > 0 ? 'checked' : '';                       
+}
+
+
+
+function getBasicInfo($user_id, $category_id,$type,$key)
+{
+            $c= \App\VendorCategoryMetaData::where('user_id',$user_id)
+                                   ->where('category_id',$category_id)
+                                   ->where('type',$type)
+                                   ->where('key',$key);
+                                   $cc= $c->first();
+            return $c->count() > 0 ? $cc->keyValue : '1';                       
 }
 
 

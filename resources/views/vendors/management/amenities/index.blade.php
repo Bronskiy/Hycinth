@@ -26,7 +26,7 @@
            <div class="card-body">
                <form id="assignCategory">
               <div class="row ">
-                 
+                @if($category->categoryAmenity->count() > 0) 
                  @foreach($category->categoryAmenity as $cate)
 
 
@@ -36,23 +36,23 @@
                       <input type="checkbox" name="amenity[]" value="{{$cate->Amenity->id}}" id="category-{{$cate->Amenity->id}}"
                       {{amenities(\Auth::user()->id,$category->id,$cate->Amenity->id)}}>
                            <label for="category-{{$cate->Amenity->id}}">{{$cate->Amenity->name}}  </label>
- 
                     </div>
-                    
                    </div>
-
                   </div>
  
-                        
                  @endforeach
 
-
-
                  <div class="col-md-12">
-                      @csrf <button class="cstm-btn">Assign</button>
-
+                      @csrf <button class="cstm-btn" id="assignCategoryBtn">Assign</button>
                       <div class="errorMessages"></div>
                  </div>
+
+                  @else
+                   <div class="col-md-12">
+                    <div class="alert alert-warning" role="alert">Amenities are not assigned to this Category.</div>
+                  </div>
+
+                 @endif
                  </div>
                 </form>
 
@@ -80,7 +80,7 @@
 
 
 @section('scripts')
-
+<script src="{{url('/js/validations/amenityValidation.js')}}"></script>
 
 <script type="text/javascript">
 

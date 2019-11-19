@@ -44,7 +44,7 @@
   <div class="col-md-6">{{select3($errors,'SubParent','subparent','label','0',$subparent,$category->subparent)}}</div>
   <div class="col-md-6">{{textbox($errors,'Name*','label',$category->label)}}</div>
          
-<div class="col-md-6">
+<div class="col-md-6" style="display: none">
 
                        
 
@@ -60,72 +60,8 @@
                         </div>
 </div>
  
-<div class="col-md-6">
-                {{choosefilemultiple($errors,'Image','image')}}
 
-
-                          <script type="text/javascript">
-                                     $('#image').fileinput({
-                                              browseClass: "btn btn-primary btn-block",
-                                             
-                                              
-                                              showCaption: false,
-                                              showRemove: false,
-                                              showUpload: false,
-                                              initialPreview: [
-                                                 <?php if($category->image != ""): ?>
-                                                        "<img src='{{url('/'.$category->image)}}'>",
-                                                 <?php endif; ?>
-                                              ],
-                                              initialPreviewConfig: [
-
-                                                <?php if($category->image != ""): ?>
-                                                        {
-                                                          'caption' : 'product_image',
-                                                          'url' : '<?= url(route('delete_category_image',$category->id)) ?>',
-                                                          'key'     : 'image'
-                                                        },
-                                               <?php endif; ?>
-
-                                              ]
-                                });
-                   </script>
-</div>
-<div class="col-md-6">
-
-
-                     {{choosefilemultiple($errors,'Thumbnail Image','thumbnail_image')}}
-
-
-                          <script type="text/javascript">
-                                     $('#thumbnail_image').fileinput({
-                                              browseClass: "btn btn-primary btn-block",
-                                             
-                                              
-                                              showCaption: false,
-                                              showRemove: false,
-                                              showUpload: false,
-                                              initialPreview: [
-                                                 <?php if($category->thumbnail_image != ""): ?>
-                                                        "<img src='{{url('/'.$category->thumbnail_image)}}'>",
-                                                 <?php endif; ?>
-                                              ],
-                                              initialPreviewConfig: [
-
-                                                <?php if($category->thumbnail_image != ""): ?>
-                                                        {
-                                                          'caption' : 'product_image',
-                                                          'url' : '<?= url(route('delete_category_image',$category->id)) ?>',
-                                                          'key'     : 'thumbnail_image'
-                                                        },
-                                               <?php endif; ?>
-
-                                              ]
-                                });
-                   </script>
-
-
-</div>
+ 
 
 <div class="col-md-6"> 
   <div class="form-group label-floating is-empty"><label class="control-label">Color*</label>
@@ -137,7 +73,15 @@
   <div class="col-md-6">{{textbox($errors,'Meta Tags*','meta_tag',$category->meta_tag)}}</div>
  <div class="col-md-12"> {{textarea($errors,'Meta description*','meta_description',$category->meta_description)}}</div>
 
+<div class="col-md-12">
 
+                          <?php if($category->image != ""): ?>
+                                    <img src="{{url('/'.$category->image)}}" width="50"> 
+                             <?php endif; ?>
+                {{choosefilemultiple($errors,'Image','image')}}
+
+
+ </div>
 
 </div>
                                 

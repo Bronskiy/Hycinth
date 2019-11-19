@@ -35,11 +35,11 @@
  
 
      <div class="col-md-12"> 
-          <form method="post">
+          <form method="post" id="prohibtionForm">
 			@csrf
 			    <input type="hidden" name="type" value="prohibtion">
 			    {{textarea($errors,'Prohibtion & Restrictions','prohibtion',$prohibtion)}}
-            <button class="cstm-btn">Save</button>
+            <button class="cstm-btn" id="prohibtionFormBtn">Save</button>
       </form>                 
 
     </div>
@@ -53,7 +53,19 @@
 @endsection
 
 @section('scripts')
+<script src="{{url('/js/validations/prohibtionValidation.js')}}"></script>
+
 <script type="text/javascript">
-  CKEDITOR.replace('prohibtion');
+  var options = {
+        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+        filebrowserWindowWidth  : 800,
+        filebrowserWindowHeight : 500,
+        uiColor: '#eda208',
+        removePlugins: 'save, newpage',
+        allowedContent:true,
+        fillEmptyBlocks:true,
+        extraAllowedContent:'div, a, span, section, img'
+      };
+  CKEDITOR.replace('prohibtion', options);
 </script>
 @endsection

@@ -27,20 +27,16 @@
            <div class="card-body">
                <form id="assignCategory">
               <div class="row ">
-                 
-                 
-                   
                     @if($cate->subcategory->count() > 0)
-                      
-                            
                           <input type="hidden" name="category_id" value="{{$category->category_id}}">
                           @foreach($cate->subcategory as $sub)
                          <div class="col-lg-6">
-
+                             <div class="vendor-category">
                               <div class="category-checkboxes">
                                   <input type="checkbox" name="services[]" value="{{$sub->id}}" id="subcategory-{{$sub->id}}" {{categories(Auth::user()->id,$sub->id)}}>
                                   <label for="subcategory-{{$sub->id}}">{{$sub->label}}</label>
                                </div>
+                             </div>
 
                          </div>
 
@@ -48,28 +44,18 @@
 
                     @endif
 
-
                     </div>
-                   
                   
-
                    </div>
-
                   </div>
-
-
                  
-<input type="hidden" name="url" value="{{url(route('get_vendor_services_management',$category->slug))}}">
-
-
+                  <input type="hidden" name="url" value="{{url(route('get_vendor_services_management',$category->slug))}}">
                  <div class="col-md-12">
-                      @csrf <button class="cstm-btn">Assign</button>
-
+                      @csrf <button class="cstm-btn" id="assignCategoryBtn">Assign</button>
                       <div class="errorMessages"></div>
                  </div>
                  </div>
                 </form>
-
            </div>
         </div>
      </div>
@@ -77,24 +63,10 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 @endsection
 
-
 @section('scripts')
-
+<script src="{{url('/js/validations/serviceValidation.js')}}"></script>
 
 <script type="text/javascript">
 

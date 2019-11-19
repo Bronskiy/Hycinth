@@ -34,6 +34,7 @@
            <div class="card-body">
                <form id="assignCategory">
               <div class="row ">
+                 @if($seasons->count() > 0)
                  
                  @foreach($seasons as $s)
 
@@ -55,11 +56,19 @@
 
 
 
+
                  <div class="col-md-12">
-                      @csrf <button class="cstm-btn">Assign</button>
+                      @csrf <button class="cstm-btn" id="assignCategoryBtn">Assign</button>
 
                       <div class="errorMessages"></div>
                  </div>
+                 @else
+                   <div class="col-md-12">
+                    <div class="alert alert-warning" role="alert">Seasons are not assigned to this Category.</div>
+                  </div>
+
+                 @endif
+
                  </div>
                 </form>
 
@@ -87,7 +96,7 @@
 
 
 @section('scripts')
-
+<script src="{{url('/js/validations/seasonValidation.js')}}"></script>
 
 <script type="text/javascript">
 

@@ -85,8 +85,10 @@
 
 </section>
 
-    <script src="//cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
-    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.0/jquery.validate.js"></script>
+<script src="//cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script src="{{url('/admin-assets/js/validations/customValidation.js')}}"></script>
    
 @yield('scripts')
 
@@ -177,6 +179,24 @@ $(function () {
     .find("i:last-child")
     .toggleClass("fa-minus fa-plus");
 });
+
+
+
+// sidebar
+(function($) {
+  $(document).ready(function() {
+    $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      $(this).parent().siblings().removeClass('open');
+      $(this).parent().toggleClass('open');
+    });
+  });
+})(jQuery);
+
+
+
+
     </script>
 </body>
 </html>

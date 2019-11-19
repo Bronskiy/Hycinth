@@ -82,7 +82,7 @@
             <a href="#" class="nav-link <?= ActiveMenu(['list_amenities', 'list_games', 'create_amenities_type', 'edit_amenity'],'active') ?>">
               <i class="nav-icon fa fa-pie-chart"></i>
               <p>
-                Amenities/Games Types
+                Amenities/Games Typess
                 <i class="right fa fa-angle-left"></i>
               </p>
             </a>
@@ -99,7 +99,16 @@
                   </li>
             </ul>
           </li>
-
+  <li class="nav-item ">
+            <a href="#" class="nav-link <?= ActiveMenu(['admin_settings'],'active') ?>">
+              <i class="nav-icon fa fa-pie-chart"></i>
+              <p>
+              General Settings
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            
+    </li>
 
           
           <li class="nav-item has-treeview <?= ActiveMenu(['admin_settings'],'menu-open') ?>">
@@ -111,6 +120,11 @@
               </p>
             </a>
             <ul class="nav nav-treeview  <?= ActiveMenu(['admin_settings'],'show') ?>">
+                  
+
+
+
+
                   <li class="nav-item <?= ActiveMenu(['admin_settings'],'active') ?>">
                     <a href="{{ route('admin_settings') }}" class="nav-link <?= ActiveMenu(['admin_settings'],'active') ?>">
                        <i class="fa fa-caret-right nav-icon"></i>

@@ -12,7 +12,8 @@ require __DIR__.'/ajax.php';
 		Route::get('/settings/password', 'Vendor\VendorController@password')->name('vendor_password'); 
 		Route::post('/settings/password', 'Vendor\VendorController@changePassword')->name('vendor_password'); 
 		
-		Route::get('/category/assign', 'Vendor\CategoryController@assign')->name('vendor_category_assign');    
+        Route::get('/category/assign', 'Vendor\CategoryController@assign')->name('vendor_category_assign');    
+		Route::get('/category/assign/new', 'Vendor\CategoryController@assign2')->name('vendor_category_assign2');    
 		Route::post('/category/assign', 'Vendor\CategoryController@assignCategory')->name('vendorAssignCategory'); 
 
 
@@ -23,7 +24,8 @@ require __DIR__.'/ajax.php';
         Route::get('/category/{slug}/basic/information', 'Vendor\ManagementController@about')->name('vendor_category_management');
         Route::get('/category/{slug}/basic/information/add', 'Vendor\ManagementController@addAbout')->name('vendor_basic_category_management');
 		Route::post('/category/{slug}/basic/information/add', 'Vendor\ManagementController@storeAbout')->name('vendor_basic_category_management');
-
+        
+        Route::post('/ajax/category/{slug}/basic/information/cover-photo','Vendor\ManagementController@MetaImage')->name('meta_image');
 
 
 
@@ -137,6 +139,43 @@ require __DIR__.'/ajax.php';
         Route::post('/category/{slug}/packages/edit/{id}', 'Vendor\VendorPackageController@packagesUpdate')->name('vendor_packagesedit_management');
         Route::post('/category/{slug}/packages/addOns/{id}', 'Vendor\VendorPackageController@addOnsCreate')->name('vendor_packagesAddOns_management');
         Route::get('/category/{slug}/packages/addOns/delete/{id}', 'Vendor\VendorPackageController@addOnsDelete')->name('vendor_packagesAddOns_delete_management');
+
+
+
+        #-----------------------------------------------------------------------------------
+        #  vendor De;as and Discount
+        #-----------------------------------------------------------------------------------
+
+         Route::get('/category/{slug}/deals', 'Vendor\DealController@index')->name('vendor_deals_management');
+
+         Route::get('/category/{slug}/deals/add', 'Vendor\DealController@add')->name('vendor_add_deals_management');
+         Route::post('/category/{slug}/deals/add', 'Vendor\DealController@store')->name('vendor_add_deals_management');
+
+
+
+         Route::get('/category/{slug}/deals/edit/{id}', 'Vendor\DealController@edit')->name('vendor_edit_deals_management');
+         Route::post('/category/{slug}/deals/edit/{id}', 'Vendor\DealController@update')->name('vendor_edit_deals_management');
+
+
+
+         Route::get('/category/{slug}/deals/delete/{id}', 'Vendor\DealController@delete')->name('vendor_delete_deals_management');
+
+
+           
+
+
+
+        #-----------------------------------------------------------------------------------
+        #  Prohibtion & Restrictions
+        #-----------------------------------------------------------------------------------
+
+
+        Route::get('/category/{slug}/prohibtion/restrictions', 'Vendor\ManagementController@prohibtion')->name('vendor_prohibtion_management');
+
+
+        Route::get('/category/{slug}/prohibtion/restrictions/add', 'Vendor\ManagementController@prohibtionAdd')->name('vendor_add_prohibtion_management');
+        
+       Route::post('/category/{slug}/prohibtion/restrictions/add', 'Vendor\ManagementController@prohibtionStore')->name('vendor_add_prohibtion_management');
 
 
 

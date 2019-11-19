@@ -30,14 +30,14 @@
             </div>
                  <div class="card-body">
                   
-                     <form method="post"  enctype="multipart/form-data">
+                     <form method="post" id="dealForm" enctype="multipart/form-data">
                           @csrf
                           <div class="row">
                           <div class="col-lg-6">
-                             {{textbox($errors,'Title*','title',$deal->title)}}
+                             {{textbox($errors,'Title*','title', $deal->title)}}
                            </div>
                           <div class="col-lg-6">
-                          {{datebox($errors,'Expiry Date','expiry_date',$deal->expiry_date)}}
+                          {{datebox($errors,'Expiry Date','expiry_date', $deal->expiry_date)}}
                         </div>
                             <div class="col-lg-6">
                              {{textarea($errors,'Description*','description',$deal->description)}}
@@ -54,7 +54,7 @@
                            </div>
                            </div>
                         </div>
-                         <div class="form-group"><button class="cstm-btn">Save</button></div>
+                         <div class="form-group"><button id="dealFormBtn" class="cstm-btn">Save</button></div>
                    </form>                 
                  
                 </div>
@@ -67,38 +67,5 @@
 @endsection
 
 @section('scripts')
-<script type="text/javascript">
-$('form').validate({
-      onfocusout: function (valueToBeTested) {
-        $(valueToBeTested).valid();
-      },
-
-      highlight: function(element) {
-        $('element').removeClass("error");
-      },
-
-      rules: {
-        
-        "title": {
-            required: true,
-            character_with_space: true
-            
-        },
-         "description": {
-            required: true,
-            character_with_space: true
-           
-        },
-        'message_text': {
-            required: true
-             
-        },
-        valueToBeTested: {
-            required: true
-        }
-
-      },
-});
-
-</script>
+<script src="{{url('/js/validations/dealValidation.js')}}"></script>
 @endsection

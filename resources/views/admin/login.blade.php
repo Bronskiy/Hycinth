@@ -49,7 +49,7 @@
 
 
 
-      <form action="{{ url('admin/login') }}" method="post">
+      <form action="{{ url('admin/login') }}" id="loginForm" method="post">
        @if(Session::has('messages'))
 
             <div class="errorBox">
@@ -59,17 +59,15 @@
        @endif
         @csrf
        
-        {{textbox($errors,'Email','email')}}
-        {{password($errors,'Password','password')}}
+        {{textbox($errors, 'Email', 'email')}}
+        {{password($errors, 'Password', 'password')}}
      
         <div class="row">
           <div class="col-md-12 text-center">        
           
-            <button type="submit" class="cstm-btn">Sign In</button>
+            <button type="submit" id="loginFormBtn" class="cstm-btn">Sign In</button>
 
-                           <label class="errorCapcha" for="g-recaptcha-response">
-                              
-                            </label>
+                           <label class="errorCapcha" for="g-recaptcha-response"></label>
             </div>
         
         <div class="col-md-12 text-center"> 
@@ -83,20 +81,16 @@
         
         </div>
       </form>
-
-      
-   
-
-      
     </div>
     
   </div>
 </div>  
+
 <!-- /.login-box -->
-
-
- 
- 
+<script src="{{url('/AdminFILE/plugins/jquery/jquery.min.js')}}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.0/jquery.validate.js"></script>
+ <script src="{{url('/admin-assets/js/validations/customValidation.js')}}"></script>
+<script src="{{url('/admin-assets/js/validations/loginValidation.js')}}"></script>
 
 </body>
 </html>

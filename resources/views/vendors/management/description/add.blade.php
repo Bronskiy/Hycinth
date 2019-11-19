@@ -21,11 +21,6 @@
 @include('vendors.errors')
 
 
-
-
-
-
-
     <div class="row">
        <div class="col-lg-12">
           <div class="card vendor-dash-card">
@@ -35,11 +30,11 @@
  
 
      <div class="col-md-12"> 
-          <form method="post">
+          <form method="post" id="descriptionForm">
 			@csrf
 			    <input type="hidden" name="type" value="description">
-			    {{textarea($errors,'Description*','description',$description)}}
-            <button class="cstm-btn">Save</button>
+			    {{textarea($errors,'Description*','description', $description)}}
+            <button class="cstm-btn" id="descriptionFormBtn">Save</button>
       </form>                 
 
     </div>
@@ -53,6 +48,8 @@
 @endsection
 
 @section('scripts')
+<script src="{{url('/js/validations/descriptionValidation.js')}}"></script>
+
 <script type="text/javascript">
   var options = {
         filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',

@@ -8,6 +8,7 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+  sudo kill -9 `sudo lsof -t -i:9001`
 */
 
 

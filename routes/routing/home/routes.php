@@ -23,9 +23,11 @@ Route::post('/ajax/register', 'HomeController@userRegister')->name('ajax_registe
 Route::post('/ajax/login', 'HomeController@userLogin')->name('ajax_login');
 
 
-
-
-
-Route::get('/detail-page', 'Home\Services\ServiceDetailController@index')->name('service_deatil_page');
+#------------------------------------------------------------------------------------------
+#  Vendor Listing Page
+#------------------------------------------------------------------------------------------
+ Route::get('/vendor-listing', 'Home\Services\VendorListingController@index')->name('home_vendor_listing_page');
+ Route::get('/detail-page', 'Home\Services\ServiceDetailController@index')->name('service_deatil_page');
+ Route::get('/listing/{cateSlug}/{vendorSlug}', 'Home\Services\ServiceDetailController@index')->name('vendor_detail_page');
 
  

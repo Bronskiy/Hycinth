@@ -22,7 +22,7 @@
                 <div class="card-body">
 
      
-          <form method="post">
+          <form method="post" id="packageForm">
       @csrf
           {{textbox($errors,'Title*','title', $package->title)}}
           {{textarea($errors,'Description*','description', $package->description)}}
@@ -62,7 +62,7 @@
              <div class="col-md-3">
                <div class="form-group">
             <label for="price">Price</label>
-            <input type="number" value="{{$package->price}}" class="form-control" id="price" name="price" placeholder="Price">
+            <input type="text" value="{{$package->price}}" class="form-control" id="price" name="price" placeholder="Price">
             @if ($errors->has('price'))
                 <div class="error">{{ $errors->first('price') }}</div>
             @endif
@@ -136,7 +136,7 @@
           </div>
           </div>
 
-            <button class="cstm-btn">Save</button>
+            <button id="packageFormBtn" class="cstm-btn">Save</button>
       </form>                 
 
    
@@ -150,6 +150,8 @@
 @endsection
 
 @section('scripts')
+<script src="{{url('/js/validations/packageValidation.js')}}"></script>
+
 <script type="text/javascript">
   var options = {
         filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',

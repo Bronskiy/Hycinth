@@ -4,7 +4,7 @@ Route::get('/admin/login', 'Admin\AdminController@index')->name('admin_login');
 Route::post('/admin/login', 'Admin\AdminController@check')->name('post_admin_login');
 
 Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
-       
+       require __DIR__.'/ajax.php';
 
 		Route::get('/','Admin\AdminController@dashboard')->name('admin_dashboard');
 		Route::get('/profile/settings','Admin\AdminController@profile')->name('admin_settings');
@@ -112,6 +112,17 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
 		Route::post('/styles/{slug}','Admin\StyleController@update')->name('admin.styles.update');
 		Route::get('/styles/status/{slug}','Admin\StyleController@styleStatus')->name('admin.styles.status');
 
+        
 
 
+        #------------------------------------------------------------------------------------
+        #  General Settings
+        #------------------------------------------------------------------------------------
+
+
+        Route::get('/settings/general', 'Admin\GeneralSettingController@index')->name('list_general_settings');
+        Route::post('/settings/general', 'Admin\GeneralSettingController@typeStore')->name('list_general_settings');
+        Route::get('/settings/general/edit/{id}', 'Admin\GeneralSettingController@add')->name('add_general_settings');
+         Route::post('/settings/general/edit/{id}', 'Admin\GeneralSettingController@store')->name('add_general_settings');
+        Route::get('/settings/general/ajax', 'Admin\GeneralSettingController@ajaxData')->name('list_general_ajax_settings');
 });

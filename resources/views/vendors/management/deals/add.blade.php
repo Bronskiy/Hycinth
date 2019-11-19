@@ -29,7 +29,7 @@
               <h3>{{$title}} </h3>
             </div>
                  <div class="card-body">  
-                     <form method="post"  enctype="multipart/form-data">
+                     <form method="post" id="dealForm" enctype="multipart/form-data">
                           @csrf
                          <div class="row"> 
                            <div class="col-lg-6">
@@ -45,7 +45,11 @@
                             {{textarea($errors,'Default Message Text*','message_text')}}
                            </div>
                            <div class="col-lg-6">
-                            {{choosefile($errors,'Picture For This Deal*','image')}}
+                            <!-- {{choosefile($errors, 'Picture For This Deal*', 'image')}} -->
+
+                            <div class="form-group">
+                              <label class="label-file">Picture For This Deal*</label>
+                               <input type="file" required class="form-control" name="image">
                            </div>
                          </div>
                          
@@ -95,42 +99,5 @@
 @endsection
 
 @section('scripts')
-<script type="text/javascript">
-$('form').validate({
-      onfocusout: function (valueToBeTested) {
-        $(valueToBeTested).valid();
-      },
-
-      highlight: function(element) {
-        $('element').removeClass("error");
-      },
-
-      rules: {
-        
-        "title": {
-            required: true,
-            character_with_space: true
-            
-        },
-         "description": {
-            required: true,
-            character_with_space: true
-           
-        },
-        'message_text': {
-            required: true
-             
-        },
-        'image': {
-            required: true
-         },
-         
-        valueToBeTested: {
-            required: true
-        }
-
-      },
-});
-
-</script>
+<script src="{{url('/js/validations/dealValidation.js')}}"></script>
 @endsection

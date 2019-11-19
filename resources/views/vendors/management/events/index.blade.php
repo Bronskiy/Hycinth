@@ -29,7 +29,7 @@
            <div class="card-body">
                <form id="assignCategory">
               <div class="row ">
-                 
+                 @if($category->categoryEvent->count() > 0)
                  @foreach($category->categoryEvent as $cate)
 
 
@@ -52,10 +52,19 @@
 
 
                  <div class="col-md-12">
-                      @csrf <button class="cstm-btn">Assign</button>
+                      @csrf <button class="cstm-btn" id="assignCategoryBtn">Assign</button>
 
                       <div class="errorMessages"></div>
                  </div>
+
+
+
+                 @else
+                   <div class="col-md-12">
+                    <div class="alert alert-warning" role="alert">Events & Games are not assigned to this Category.</div>
+                  </div>
+
+                 @endif
                  </div>
                 </form>
 
@@ -83,7 +92,7 @@
 
 
 @section('scripts')
-
+<script src="{{url('/js/validations/eventValidation.js')}}"></script>
 
 <script type="text/javascript">
 

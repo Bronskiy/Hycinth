@@ -37,7 +37,7 @@
                    @csrf
                   
                    {{textbox($errors,'Event Type*','name')}}
-                   {{textarea($errors,'Description','description')}}
+                   {{textarea($errors,'Description*','description')}}
 
                 </div>
 

@@ -51,7 +51,7 @@ public $restrictions =[
        
 
 
-       $info =[
+    $info =[
            'business_name' => $this->getAllValueWithMeta('business_name','basic_information',$category->category_id),
            'address' => $this->getAllValueWithMeta('address','basic_information',$category->category_id),
            'website' => $this->getAllValueWithMeta('website','basic_information',$category->category_id),
@@ -59,6 +59,8 @@ public $restrictions =[
            'company' => $this->getAllValueWithMeta('company','basic_information',$category->category_id),
            'travel_distaince' => $this->getAllValueWithMeta('travel_distaince','basic_information',$category->category_id),
            'min_price' => $this->getAllValueWithMeta('min_price','basic_information',$category->category_id),
+           'cover_photo' => $this->getAllValueWithMeta('cover_photo','basic_information',$category->category_id),
+           'short_description' => $this->getAllValueWithMeta('short_description','basic_information',$category->category_id),
       ];
 
       return view('vendors.management.basicInfo.index',$info)
@@ -84,6 +86,8 @@ public $restrictions =[
            'company' => $this->getAllValueWithMeta('company','basic_information',$category->category_id),
            'travel_distaince' => $this->getAllValueWithMeta('travel_distaince','basic_information',$category->category_id),
            'min_price' => $this->getAllValueWithMeta('min_price','basic_information',$category->category_id),
+           'cover_photo' => $this->getAllValueWithMeta('cover_photo','basic_information',$category->category_id),
+           'short_description' => $this->getAllValueWithMeta('short_description','basic_information',$category->category_id),
       ];
        
        if(!empty($request->test)){
@@ -111,19 +115,51 @@ public $restrictions =[
             'phone_number' => 'required',
             'company' => 'required',
             'travel_distaince' => 'required',
-            'min_price' => 'required'
+            'min_price' => 'required',
+            'short_description' => 'required',
+            'cover_photo' => 'image',
      ]);
 
 
         $category = $this->getData($slug);
+
+
+        $VendorCategory = VendorCategory::where('category_id',$category->category_id)
+        ->where('user_id',Auth::user()->id);
+
+        
+
+        if($VendorCategory->count() > 0){
+          $vCate = $VendorCategory->first();
+          $vCate->title = trim($request->business_name);
+          $vCate->save();
+        }
+
  
-        $this->saveCategoryMetaData('business_name',$request->type,$request->business_name,$category->category_id);
-        $this->saveCategoryMetaData('address',$request->type,$request->address,$category->category_id);
-        $this->saveCategoryMetaData('website',$request->type,$request->website,$category->category_id);
-        $this->saveCategoryMetaData('phone_number',$request->type,$request->phone_number,$category->category_id);
-        $this->saveCategoryMetaData('company',$request->type,$request->company,$category->category_id);
-        $this->saveCategoryMetaData('travel_distaince',$request->type,$request->travel_distaince,$category->category_id);
-        $this->saveCategoryMetaData('min_price',$request->type,$request->min_price,$category->category_id);
+          $this->saveCategoryMetaData('business_name',$request->type,$request->business_name,$category->category_id);
+          $this->saveCategoryMetaData('short_description',$request->type,$request->short_description,$category->category_id);
+          $this->saveCategoryMetaData('address',$request->type,$request->address,$category->category_id);
+          $this->saveCategoryMetaData('website',$request->type,$request->website,$category->category_id);
+          $this->saveCategoryMetaData('phone_number',$request->type,$request->phone_number,$category->category_id);
+          $this->saveCategoryMetaData('company',$request->type,$request->company,$category->category_id);
+          $this->saveCategoryMetaData('travel_distaince',$request->type,$request->travel_distaince,$category->category_id);
+          $this->saveCategoryMetaData('min_price',$request->type,$request->min_price,$category->category_id);
+
+
+
+       if($request->hasFile('cover_photo') && $this->DeleteMetaImages('cover_photo',$category->category_id,$request->type)){
+            $image = uploadFileWithAjax('images/vendors/settings/',$request->file('cover_photo'));
+         
+
+         $this->saveCategoryMetaData('cover_photo',$request->type,$image,$category->category_id);
+
+
+       }
+
+
+
+
+
 
        return redirect()->route('vendor_category_management',$slug)->with('messages','Basic Information is saved.');     
    }
@@ -375,10 +411,11 @@ public function faqs($slug)
 {
   
        $category = $this->getData($slug);
-       $faqs =\App\FAQs::where('category_id',$category->category_id)->where('user_id',Auth::user()->id)->paginate(10);
+       $faqs =\App\FAQs::where('category_id',$category->category_id)->where('user_id',Auth::user()->id);
       return view('vendors.management.faqs.index')
       ->with('slug',$slug)
-      ->with('faqs',$faqs)
+      ->with('faqs',$faqs->paginate(10))
+      ->with('faqCount',$faqs->count())
       ->with('category',$category)
       ->with('addLink', 'vendor_faqsadd_management')
        ->with('title',$category->label.' Management :: FAQs');
@@ -488,7 +525,7 @@ public function faqsUpdate(Request $request,$slug,$id)
                            $d->answer = trim($request->answer);
                           
                            $d->user_id = Auth::user()->id;
-                           $d->category_id = $category->id;
+                           $d->category_id = $category->category_id;
                            $d->status = 1;
                            $d->save();
 
@@ -967,7 +1004,7 @@ public function descriptionStore(Request $request,$slug)
   public function style(Request $request,$slug)
   {
 
-      $styles = Style::where('status', 1)->get();
+      $styles = Style::where('status', 1);
       $category = $this->getData($slug);
 
       return view('vendors.management.styles.index',[
@@ -1099,6 +1136,104 @@ public function seasons($slug) {
 
 
 
+#-----------------------------------------------------------------
+#  assignCategory
+#-----------------------------------------------------------------
 
 
+    public function MetaImage(Request $request,$slug)
+    {
+        $col = $request->meta;
+         if($request->hasFile($col)){
+
+                  # save images
+            $imageLink = array();
+            $delink = array();
+
+               $category = $this->getData($slug);
+
+                        # upload image one by one
+                                $image_name = uploadFileWithAjax('images/vendors/settings/',$request->$col);
+
+                                 $this->DeleteMetaImages($request->meta);
+                        
+                                 $parent = !empty($request->parent) ? $request->parent : 0;
+                                 $this->saveCategoryMetaData($request->meta,$request->type,$image_name,$category->category_id);
+                    
+                                 $del = array(
+                                      'caption' => 'product_image',
+                                      'url'     => '', // url(route('delete_meta_image')),
+                                      'key'     => $request->meta
+                                );
+                                array_push($imageLink, url($image_name));
+
+                                array_push($delink, $del);
+              
+
+              $json = array(
+                            'initialPreview' => $imageLink,
+                            'initialPreviewAsData' => true,
+                            'initialPreviewConfig' => $delink,
+             );
+
+             return response()->json($json); 
+               
+         }
+
+
+
+ }
+
+
+
+    public function updateMeta($key,$value,$type,$parent=0)
+    {
+      
+           $chk = \App\VendorCategoryMetaData::where('parent',$parent)->where('key',$key)->where('type',$type)->first();
+ 
+
+             if(!empty($chk)){
+               $chk->key = $key;
+               $chk->keyValue = $value;
+               $chk->type = $type;
+               $chk->parent = $parent;
+               $c->user_id = Auth::user()->id;
+               $chk->save();
+             }else{
+              $c =new \App\VendorCategoryMetaData;
+              $c->key = $key;
+              $c->keyValue = $value;
+              $c->type = $type;
+              $c->user_id = Auth::user()->id;
+              $c->parent = $parent;
+              $c->save();
+             }
+    }
+
+
+ public function DeleteMetaImages($key,$category_id,$type)
+ {
+    $m = VendorCategoryMetaData::where('key',$key)
+    ->where('user_id',Auth::user()->id)
+    ->where('category_id',$category_id)
+    ->where('type',$type)
+    ->first();
+
+    if(!empty($m)){
+
+              $file_path =  public_path().'/'.$m->keyValue;
+        if (file_exists( $file_path ) && $m->keyValue != "") {
+
+                    unlink($file_path); 
+
+               } 
+               $m->keyValue = '';
+               $m->save();
+
+    }
+    return 1;
+
+
+
+ }
 }

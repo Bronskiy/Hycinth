@@ -296,10 +296,10 @@ class CategoryController extends AdminController {
 
   public function category_variations(Request $request, $slug) {
     $category = Category::FindBySlugOrFail($slug);
-    $events = Event::all();
-    $seasons = Season::all();
-    $amenities = Amenity::where('type', 'amenity')->get();
-    $games = Amenity::where('type', 'game')->get();
+    $events = Event::where('status', 1)->get();
+    $seasons = Season::where('status', 1)->get();
+    $amenities = Amenity::where('type', 'amenity')->where('status', 1)->get();
+    $games = Amenity::where('type', 'game')->where('status', 1)->get();
     $category_variation = CategoryVariation::where('category_id', $category->id)->get();
 
     return view('admin.category.variations')

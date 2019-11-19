@@ -29,7 +29,7 @@
      
 
 <div class="col-md-12">
-  <form method="post">
+  <form method="post" id="videoForm">
    {{textbox($errors,'Title','title')}}
    {{textbox($errors,'Video Link (please paste here youtube video link)','video_link')}}
 @csrf
@@ -47,3 +47,7 @@
 </div>
 </div>
 </div>
+
+@section('scripts')
+<script src="{{url('/js/validations/videoValidation.js')}}"></script>
+@endsection

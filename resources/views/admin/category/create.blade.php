@@ -45,7 +45,7 @@
         {{textbox($errors,'Name*','label')}}
       </div>
 
-            <div class="col-md-6">
+            <div class="col-md-6" style="display: none">
                    <div class="form-group" >
 
                           <label>Featured | Not</label>
@@ -57,47 +57,8 @@
                   </div>
                    
             </div>
-            <div class="col-md-6">
-                      <div class="form-group ">
-
-                        <label>Image</label>
-                      <div class=" file-loading">
-                          <input id="input-20" type="file" name="image">
-                      </div>
-                      <script>
-                       
-                          $("#input-20").fileinput({
-                              browseClass: "btn btn-primary btn-block",
-                              showCaption: false,
-                              showRemove: false,
-                              showUpload: false
-                          });
-                       
-                      </script>
-
-                      </div>
-            </div>
-<div class="col-md-6">
-  <div class="form-group ">
-
-  <label>Thumbnail Image</label>
-<div class=" file-loading">
-    <input id="input-21" type="file" name="thumbnail_image">
-</div>
-<script>
+           
  
-    $("#input-21").fileinput({
-        browseClass: "btn btn-primary btn-block",
-        showCaption: false,
-        showRemove: false,
-        showUpload: false
-    });
- 
-</script>
-
-</div>
-
-</div>
 
 
 <div class="col-md-6"> 
@@ -109,7 +70,9 @@
 <div class="col-md-6">   {{textbox($errors,'Meta Title*','meta_title')}}</div>
   <div class="col-md-6">  {{textbox($errors,'Meta Tags*','meta_tag')}}</div>
   <div class="col-md-12">  {{textarea($errors,'Meta description*','meta_description')}}</div>
-
+ <div class="col-md-12">
+                     {{choosefilemultiple($errors,'Category Icon','image')}}
+            </div>
      </div>                                 
       </div>
       <!-- /.card-body -->

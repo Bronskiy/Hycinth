@@ -32,7 +32,7 @@ class CategoryController extends Controller
           	return redirect()->route('vendor_dashboard');
        }
 
-   	   $category = Category::where('status',1)->orderBy('sorting','ASC')->get();
+   	   $category = Category::where('status',1)->where('parent',0)->orderBy('sorting','ASC')->get();
 
 
    	   return view('vendors.category.assign')
@@ -40,6 +40,25 @@ class CategoryController extends Controller
    }
 
 
+
+#-----------------------------------------------------------------
+#  assign
+#-----------------------------------------------------------------
+
+
+   public function assign2()
+   {
+
+        
+
+      $category = Category::where('categories.status',1)
+       ->where('categories.parent',0)
+       ->orderBy('categories.sorting','ASC')->get();
+
+
+       return view('vendors.category.assign')
+              ->with('category',$category);
+   }
 
 
 #-----------------------------------------------------------------

@@ -39,14 +39,14 @@ class DealController extends Controller
    {
    	  $category = $this->getData($slug);
        $deals = DiscountDeal::where('category_id',$category->category_id)
-                           ->where('user_id',Auth::user()->id)
-                           ->paginate(12);
+                           ->where('user_id',Auth::user()->id);
 
 
  
        return view('vendors.management.deals.index')
               ->with('category',$category)
-              ->with('deals',$deals)
+              ->with('deals',$deals->paginate(12))
+              ->with('dealCount',$deals->count())
               ->with('slug',$slug)
               ->with('title',$category->label.' Management :: Deals & Discount');
    }

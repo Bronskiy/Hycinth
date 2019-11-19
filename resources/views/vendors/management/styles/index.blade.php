@@ -20,45 +20,33 @@
        <div class="col-lg-12">
           <div class="card vendor-dash-card">
             <div class="card-header"><h3>{{$title}}</h3></div>
-            
                 <div class="card-body">
-
   <form id="assignCategory" method="POST">
               <div class="row ">
-                 
-                 @foreach($styles as $s)
-
+                 @if($styles->count() > 0)
+                 @foreach($styles->get() as $s)
                   <div class="col-lg-6">
                    <div class="vendor-category">
                       <div class="category-checkboxes category-title">
                       <input type="checkbox" name="styles[]" value="{{$s->id}}" id="category-{{$s->id}}"
                        {{activeCategoryMetaData(Auth::User()->id,$category->category_id, $s->id, 'styles')}}>
                            <label for="category-{{$s->id}}">{{$s->title}}  </label>
- 
-                    </div>
-                    
+                    </div>                    
                    </div>
-
                   </div>
- 
-                        
                  @endforeach
-
-
-
                  <div class="col-md-12">
-                      @csrf <button class="cstm-btn">Assign</button>
-
+                      @csrf <button class="cstm-btn" id="assignCategoryBtn">Assign</button>
                       <div class="errorMessages"></div>
                  </div>
+                   @else
+                   <div class="col-md-12">
+                    <div class="alert alert-warning" role="alert">Styles are not assigned to this Category.</div>
+                  </div>
+                 @endif
                  </div>
                 </form>
-
- 
-
      <div class="col-md-12"> 
-          
-
     </div>
     </div>
    </div>
@@ -70,7 +58,5 @@
 @endsection
 
 @section('scripts')
-<script type="text/javascript">
-  CKEDITOR.replace('answer');
-</script>
+<script src="{{url('/js/validations/styleValidation.js')}}"></script>
 @endsection

@@ -15,7 +15,7 @@
             </ul>
         </div>
         <div class="side-btns-wrap">
-        <a href="{{url(route($addLink, $slug))}}" class="add_btn"><i class="fa fa-plus"></i></a>
+        <a href="{{url(route($addLink, $slug))}}" class="add_btn"><i class="fa fa-pencil-alt"></i></a>
         </div>
   </div>
   
@@ -24,13 +24,10 @@
     <div class="row">
        <div class="col-lg-12">
           <div class="card vendor-dash-card">
-            <div class="card-header"><h3>{{$title}} </h3></div>
+            <div class="card-header"><h3>{{$title}}</h3></div>
         <div class="card-body">
 
- 
- 
-
-		     <div class="col-md-12"> 
+        <div class="col-md-12"> 
 		     	<table class="table">
 		         <tr>
                   <th>Business Name</th>
@@ -38,7 +35,7 @@
                 </tr>
 
                 <tr>
-                  <th>Max Travel Distance</th>
+                  <th>Max Travel Distance (In Miles)</th>
                   <td>{{$travel_distaince}}</td>
                 </tr>
                 <tr>
@@ -62,8 +59,13 @@
                 </tr>
 
                  <tr>
-                	<th>Address</th>
-                	<td><?= $address?></td>
+                  <th>Address</th>
+                  <td><?= $address?></td>
+                </tr>
+
+                <tr>
+                	<th>Add New Service/Business</th>
+                	<td><a href="{{ route('vendor_category_assign2') }}" class="add_btn"><i class="fa fa-plus"></i></a></td>
                 </tr>
 
          </table>

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-   // Add Department Form
+   //  Form
 	$('#categoryForm').validate({
     onfocusout: function (valueToBeTested) {
       $(valueToBeTested).valid();
@@ -32,7 +32,7 @@ $(document).ready(function(){
     },
     });   
   
-    // Add Department Submitting Form 
+    //  Submitting Form 
     $('#categoryFormSbt').click(function()
     {
       if($('#categoryForm').valid())

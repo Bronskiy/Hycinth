@@ -12,13 +12,17 @@
               <div class="row ">
                  
                  @foreach($category as $cate)
+
+                  <?php $vendorCategory = \App\VendorCategory::where('category_id',$cate->id)
+                  ->where('user_id',Auth::user()->id)->count(); ?>
+@if($vendorCategory == 0)
                   <div class="col-lg-6">
                    <div class="vendor-category">
                       <div class="category-checkboxes category-title">
                       <input type="checkbox" name="category[]" value="{{$cate->id}}" id="category-{{$cate->id}}">
                            <label for="category-{{$cate->id}}">{{$cate->label}} ({{$cate->subcategory->count()}})</label>
 
-                            @if($cate->subcategory->count() > 0)
+                           <!--  @if($cate->subcategory->count() > 0)
                       <div class="subcategory-of-category">
 
                           @foreach($cate->subcategory as $sub)
@@ -32,7 +36,7 @@
                           @endforeach
 
                      </div>
-                    @endif
+                    @endif -->
 
 
                     </div>
@@ -44,7 +48,7 @@
                   </div>
 
 
-                        
+         @endif               
                  @endforeach
 
 

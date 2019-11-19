@@ -32,6 +32,14 @@
             </div>
                 <div class="card-body">
 
+                  @if($dealCount == 0)
+
+                   <div class="col-md-12">
+                    <div class="alert alert-warning" role="alert">Deals & Discount are not assigned to this Category.</div>
+                  </div>
+
+                  @endif
+
            @foreach($deals as $d)
                <div class="col-md-12"> 
                    <div class="row deals">
@@ -54,6 +62,8 @@
                </div>
 
           @endforeach
+
+          {{$deals->links()}}
         </div>
        </div>
       </div>

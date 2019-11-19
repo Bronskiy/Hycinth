@@ -15,7 +15,7 @@
             </ul>
         </div>
         <div class="side-btns-wrap">
-          <a href="{{url(route($addLink, $slug))}}" class="add_btn"><i class="fa fa-plus"></i></a>
+          <a href="{{url(route($addLink, $slug))}}" class="add_btn"><i class="fa {{$prohibtion == ""?'fa-plus':'fa-pencil-alt'}}"></i></a>
         </div>
   </div>
 

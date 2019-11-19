@@ -26,6 +26,13 @@
            <div class="card-body">
 
   <div id="faq-accordion" class="faq-accordion">
+
+
+    @if($faqCount == 0)
+                <div class="col-md-12">
+                    <div class="alert alert-warning" role="alert">FAQs has not been added yet.</div>
+                  </div>
+    @endif
 @foreach($faqs as $k => $f)
   <div class="acrdn-card">
     <div class="acrdn-header" id="headingOne">

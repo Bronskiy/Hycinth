@@ -431,6 +431,11 @@ ul {
     padding: 6px 25px;
     padding-right: 55px;
 }
+textarea.form-control {
+    height: auto;
+    resize: none;
+    padding-right: 20px;
+}
 
 .form-control:focus {
     border-color: #36496c;
@@ -3791,14 +3796,77 @@ label.error {
 .summary-details p{
   line-height: 1.5;
 }
+.main-detail aside{
+    position: sticky;
+    top: 10px;
+}
 .side-form-wrap {
     padding: 20px 10px;
-    text-align: center;
+    text-align: left;
     background: #e6e6e6;
     border-radius: 10px;
+
 }
 .form-heading {
     font-size: 22px;
     font-weight: 600;
     margin-bottom: 20px;
+    display: block;
+    text-align: center;
+}
+.custom-control-label::before{
+    background-color: #6e6e6e;
+}
+.custom-radio .custom-control-input:checked~.custom-control-label::before {
+    background-color: #04173b;
+}
+form label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+.custom-control-label{
+   font-weight: 300;
+    color: #333;
+}
+.pannel-card{
+  display: block;
+      padding: 22px;
+    margin: 20px 0px;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
+    background-color: #fff;
+}
+.card-heading h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    display: block;
+    text-align: center;
+}
+.faq-question {
+    margin-bottom: 17px;
+    font-weight: 600;
+}
+.faq-block {
+    display: block;
+    margin-bottom: 30px;
+}
+.feature-icon {
+    width: 50px;
+    margin-right: 10px;
+    display: inline-block;
+    font-size: 40px;
+}
+.feature-wrap {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+#map{
+    margin-top: 20px;
+}
+#map iframe{
+    height: 260px;
+    width: 100%;
 }

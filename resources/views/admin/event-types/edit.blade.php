@@ -38,7 +38,7 @@
                    @csrf
                   
                    {{textbox($errors,'Event Type*','name',$events->name)}}
-                   {{textarea($errors,'Description','description',$events->description)}}
+                   {{textarea($errors,'Description*','description',$events->description)}}
                     
                 </div>
                 <!-- /.card-body -->

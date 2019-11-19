@@ -29,22 +29,23 @@
             <li><a href="#">ipsum dolor sit</a></li>
           </ul>
         </li> -->
+       
 
-   @if(Auth::User()->services->count() > 0) 
+  <!--  @if(Auth::User()->services->count() > 0) 
        @foreach(Auth::User()->services as $cate)
        <li class="{{ ActiveRouteMenu($cate->category->slug,[],'opend active',1)}}" ><a style="background: {{$cate->category->color}};" href="javascript:void();"> 
          <i class="fa fa-support fa-fw"></i> {{$cate->category->label}}</a>
           <ul class="side-nav-dropdown" style="display: {{ ActiveRouteMenu($cate->category->slug,[],'block', 1)}}">
                <li role="presentation" class="<?= ActiveRouteMenu($cate->category->slug, ['vendor_category_management', 'vendor_basic_category_management'], 'active')?>">
-                <a style="color: <?= ActiveRouteMenu($cate->category->slug, ['vendor_category_management', 'vendor_basic_category_management'], $cate->category->color)?>;" href="{{url(route('vendor_category_management',$cate->category->slug))}}">Basic Information</a>
+                <a style="color: <?= ActiveRouteMenu($cate->category->slug, ['vendor_category_management', 'vendor_basic_category_management'], $cate->category->color)?>;" href="{{url(route('vendor_category_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Basic Information</a>
               </li>
               <li role="presentation" class="<?= ActiveRouteMenu($cate->category->slug,['vendor_category__image_management','vendor_category_add_image_management'],'active')?>">
-                <a style="color: <?= ActiveRouteMenu($cate->category->slug,['vendor_category__image_management','vendor_category_add_image_management'], $cate->category->color)?>;" href="{{url(route('vendor_category__image_management', $cate->category->slug))}}">Photo Gallery</a>
+                <a style="color: <?= ActiveRouteMenu($cate->category->slug,['vendor_category__image_management','vendor_category_add_image_management'], $cate->category->color)?>;" href="{{url(route('vendor_category__image_management', $cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Photo Gallery</a>
               </li>
               <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_category_videos_management'
                 || \Request::route()->getName() === 'vendor_category_videos_add_management')) ? 'active' : '' }}">
                 <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_category_videos_management'
-                || \Request::route()->getName() === 'vendor_category_videos_add_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_category_videos_management',$cate->category->slug))}}">Video Gallery</a>
+                || \Request::route()->getName() === 'vendor_category_videos_add_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_category_videos_management',$cate->category->slug))}}"> <span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Video Gallery</a>
               </li>
 
                <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_faqs_management'
@@ -52,37 +53,37 @@
                 || \Request::route()->getName() === 'vendor_faqsedit_management')) ? 'active' : '' }}">
                 <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_faqs_management'
                 || \Request::route()->getName() === 'vendor_faqsadd_management'
-                || \Request::route()->getName() === 'vendor_faqsedit_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_faqs_management',$cate->category->slug))}}">FAQs</a>
+                || \Request::route()->getName() === 'vendor_faqsedit_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_faqs_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> FAQs</a>
               </li>
 
 
               <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_description_management'
                 || \Request::route()->getName() === 'vendor_descriptionadd_management')) ? 'active' : '' }}">
                 <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_description_management'
-                || \Request::route()->getName() === 'vendor_descriptionadd_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_description_management',$cate->category->slug))}}">Description</a>
+                || \Request::route()->getName() === 'vendor_descriptionadd_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_description_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Description</a>
               </li>
 
               <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_style_management'
                 || \Request::route()->getName() === 'vendor_styleadd_management')) ? 'active' : '' }}">
                 <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_style_management'
-                || \Request::route()->getName() === 'vendor_styleadd_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_style_management',$cate->category->slug))}}">Styles</a>
+                || \Request::route()->getName() === 'vendor_styleadd_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_style_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Styles</a>
               </li>
 
                <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_services_management') ? 'active' : '' }}">
-                   <a style="color: {{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_services_management') ? $cate->category->color : '' }}" href="{{url(route('get_vendor_services_management',$cate->category->slug))}}">Services</a>
+                   <a style="color: {{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_services_management') ? $cate->category->color : '' }}" href="{{url(route('get_vendor_services_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Services</a>
               </li>
 
                 <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_amenity_management') ? 'active' : '' }}">
-                   <a style="color: {{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_amenity_management') ? $cate->category->color : '' }}" href="{{url(route('get_vendor_amenity_management',$cate->category->slug))}}">Amenites</a>
+                   <a style="color: {{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_amenity_management') ? $cate->category->color : '' }}" href="{{url(route('get_vendor_amenity_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Amenites</a>
               </li>
                 <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_event_management') ? 'active' : '' }}">
-                   <a style="color: {{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_event_management') ? $cate->category->color : '' }}" href="{{url(route('get_vendor_event_management',$cate->category->slug))}}">Event Type & Games</a>
+                   <a style="color: {{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_event_management') ? $cate->category->color : '' }}" href="{{url(route('get_vendor_event_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Event Type & Games</a>
               </li>
 
 
               </li>
                 <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_season_management') ? 'active' : '' }}">
-                   <a style="color: {{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_season_management') ? $cate->category->color : '' }}" href="{{url(route('get_vendor_season_management',$cate->category->slug))}}">Seasons</a>
+                   <a style="color: {{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_season_management') ? $cate->category->color : '' }}" href="{{url(route('get_vendor_season_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Seasons</a>
               </li>
 
 
@@ -91,7 +92,7 @@
                 || \Request::route()->getName() === 'vendor_packagesedit_management')) ? 'active' : '' }}">
                    <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_packages_management'
                 || \Request::route()->getName() === 'vendor_packagesadd_management'
-                || \Request::route()->getName() === 'vendor_packagesedit_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_packages_management',$cate->category->slug))}}">Packages</a>
+                || \Request::route()->getName() === 'vendor_packagesedit_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_packages_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Packages</a>
               </li>
 
               <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_deals_management'
@@ -99,11 +100,11 @@
                 || \Request::route()->getName() === 'vendor_edit_deals_management')) ? 'active' : '' }}">
                    <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_deals_management'
                 || \Request::route()->getName() === 'vendor_add_deals_management'
-                || \Request::route()->getName() === 'vendor_edit_deals_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_deals_management',$cate->category->slug))}}">Deal & Discounts</a>
+                || \Request::route()->getName() === 'vendor_edit_deals_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_deals_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Deal & Discounts</a>
               </li>
 
                <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_prohibtion_management')) ? 'active' : '' }}">
-                   <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_prohibtion_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_prohibtion_management',$cate->category->slug))}}">Prohibtion & Restrictions</a>
+                   <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_prohibtion_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_prohibtion_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Prohibtion & Restrictions</a>
               </li>
           </ul>
         </li>
@@ -112,15 +113,15 @@
 
       @endforeach
 
-    @endif
+    @endif -->
 
 
 
         
-        <li class="<?= ActiveMenu(['vendor_profile', 'vendor_password'],'opend active') ?>"><a href="#"> <i class="fa fa-envelope fa-fw"></i>Settings</a>
-          <ul class="side-nav-dropdown" style="display: <?= ActiveMenu(['vendor_profile', 'vendor_password'],'block') ?>;">
+        <!-- <li class="<?= ActiveMenu(['vendor_profile', 'vendor_password'],'opend active') ?>"><a href="#"> <i class="fa fa-envelope fa-fw"></i>Settings</a>
+          <ul class="side-nav-dropdown {{ ActiveRouteMenu($cate->category->slug,[], 'open', 1)}}" style="display: <?= ActiveMenu(['vendor_profile', 'vendor_password'],'block') ?>;">
            
-                        <li class="<?= ActiveMenu(['vendor_profile'],'active') ?>">
+                        <li class="<?= ActiveMenu(['vendor_profile'], 'active') ?>">
                             <a href="{{url(route('vendor_profile'))}}">
                            
                             Profile Settings </a>
@@ -133,14 +134,132 @@
                             Password Settings </a>
                         </li>
           </ul>
-        </li>
+        </li> -->
          
         
          
         <!-- <li><a href="{{url('/logout')}}"> <i class="fa fa-power-off"></i>Logout</a></li> -->
       </ul>
+
+
+      <!-- sidebar-dropdowns -->
+      <nav class="vendor-side-navigation">
+
+    <ul class="category-menus">    
+            <li class="dropdown open"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-support fa-fw"></i> My Businesses</a>
+        <ul class="dropdown-menu">      
+       @if(Auth::User()->services->count() > 0) 
+       @foreach(Auth::User()->services as $cate)  
+          <li class="dropdown dropdown-submenu {{ ActiveRouteMenu($cate->category->slug,[],'open', 1)}}"><a style="background: {{$cate->category->color}};" href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-support fa-fw"></i> {{$cate->category->label}}</a>
+            <ul class="dropdown-menu">
+              <!-- <li><a href="#">Dropdown Submenu Link 4.1</a></li> -->
+              <li role="presentation" class="<?= ActiveRouteMenu($cate->category->slug, ['vendor_category_management', 'vendor_basic_category_management'], 'active')?>">
+                <a style="color: <?= ActiveRouteMenu($cate->category->slug, ['vendor_category_management', 'vendor_basic_category_management'], $cate->category->color)?>; " href="{{url(route('vendor_category_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Basic Information</a>
+              </li>
+              <li role="presentation" class="<?= ActiveRouteMenu($cate->category->slug,['vendor_category__image_management','vendor_category_add_image_management'],'active')?>">
+                <a style="color: <?= ActiveRouteMenu($cate->category->slug,['vendor_category__image_management','vendor_category_add_image_management'], $cate->category->color)?>;" href="{{url(route('vendor_category__image_management', $cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Photo Gallery</a>
+              </li>
+              <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_category_videos_management'
+                || \Request::route()->getName() === 'vendor_category_videos_add_management')) ? 'active' : '' }}">
+                <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_category_videos_management'
+                || \Request::route()->getName() === 'vendor_category_videos_add_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_category_videos_management',$cate->category->slug))}}"> <span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Video Gallery</a>
+              </li>
+
+               <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_faqs_management'
+                || \Request::route()->getName() === 'vendor_faqsadd_management'
+                || \Request::route()->getName() === 'vendor_faqsedit_management')) ? 'active' : '' }}">
+                <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_faqs_management'
+                || \Request::route()->getName() === 'vendor_faqsadd_management'
+                || \Request::route()->getName() === 'vendor_faqsedit_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_faqs_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> FAQs</a>
+              </li>
+
+
+              <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_description_management'
+                || \Request::route()->getName() === 'vendor_descriptionadd_management')) ? 'active' : '' }}">
+                <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_description_management'
+                || \Request::route()->getName() === 'vendor_descriptionadd_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_description_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Description</a>
+              </li>
+
+              <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_style_management'
+                || \Request::route()->getName() === 'vendor_styleadd_management')) ? 'active' : '' }}">
+                <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_style_management'
+                || \Request::route()->getName() === 'vendor_styleadd_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_style_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Styles</a>
+              </li>
+
+               <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_services_management') ? 'active' : '' }}">
+                   <a style="color: {{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_services_management') ? $cate->category->color : '' }}" href="{{url(route('get_vendor_services_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Services</a>
+              </li>
+
+                <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_amenity_management') ? 'active' : '' }}">
+                   <a style="color: {{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_amenity_management') ? $cate->category->color : '' }}" href="{{url(route('get_vendor_amenity_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Amenites</a>
+              </li>
+                <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_event_management') ? 'active' : '' }}">
+                   <a style="color: {{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_event_management') ? $cate->category->color : '' }}" href="{{url(route('get_vendor_event_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Event Type & Games</a>
+              </li>
+
+
+              </li>
+                <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_season_management') ? 'active' : '' }}">
+                   <a style="color: {{ (Request::route('slug') === $cate->category->slug && \Request::route()->getName() === 'get_vendor_season_management') ? $cate->category->color : '' }}" href="{{url(route('get_vendor_season_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Seasons</a>
+              </li>
+
+
+              <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_packages_management'
+                || \Request::route()->getName() === 'vendor_packagesadd_management'
+                || \Request::route()->getName() === 'vendor_packagesedit_management')) ? 'active' : '' }}">
+                   <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_packages_management'
+                || \Request::route()->getName() === 'vendor_packagesadd_management'
+                || \Request::route()->getName() === 'vendor_packagesedit_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_packages_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Packages</a>
+              </li>
+
+              <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_deals_management'
+                || \Request::route()->getName() === 'vendor_add_deals_management'
+                || \Request::route()->getName() === 'vendor_edit_deals_management')) ? 'active' : '' }}">
+                   <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_deals_management'
+                || \Request::route()->getName() === 'vendor_add_deals_management'
+                || \Request::route()->getName() === 'vendor_edit_deals_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_deals_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Deal & Discounts</a>
+              </li>
+
+               <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_prohibtion_management')) ? 'active' : '' }}">
+                   <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_prohibtion_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_prohibtion_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Prohibtion & Restrictions</a>
+              </li>
+
+            </ul>
+      </li>
+      @endforeach
+      @endif
+        </ul>
+      </li>
+
+
+
+    </ul>
+    <ul class="category-menus"> 
+    <li class="dropdown <?= ActiveMenu(['vendor_profile', 'vendor_password'],'open') ?>"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-support fa-fw"></i> Settings</a>
+        <ul class="dropdown-menu">
+          <li class="<?= ActiveMenu(['vendor_profile'], 'active') ?>">
+                            <a href="{{url(route('vendor_profile'))}}">
+                           
+                            Profile Settings </a>
+                        </li>
+
+
+                         <li class="<?= ActiveMenu(['vendor_password'],'active') ?>">
+                            <a href="{{url(route('vendor_password'))}}">
+                            
+                            Password Settings </a>
+                        </li>
+        </ul>
+      </li>
+    </ul>
+
+</nav>
+      <!-- ============================ -->
+
+
     </aside>
-    
+
+
 
 
 

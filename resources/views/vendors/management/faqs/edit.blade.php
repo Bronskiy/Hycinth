@@ -32,11 +32,11 @@
  
 
      <div class="col-md-12"> 
-          <form method="post">
+          <form method="post" id="faqForm">
 			@csrf
 			    {{textbox($errors,'Question*','question',$faqs->question)}}
                 {{textarea($errors,'Answer*','answer',$faqs->answer)}}
-            <button class="cstm-btn">Save</button>
+            <button id="faqFormBtn" class="cstm-btn">Save</button>
       </form>                 
 
     </div>
@@ -50,6 +50,7 @@
 @endsection
 
 @section('scripts')
+<script src="{{url('/js/validations/faqValidation.js')}}"></script>
 <script type="text/javascript">
   var options = {
         filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
