@@ -123,6 +123,9 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
         Route::get('/settings/general', 'Admin\GeneralSettingController@index')->name('list_general_settings');
         Route::post('/settings/general', 'Admin\GeneralSettingController@typeStore')->name('list_general_settings');
         Route::get('/settings/general/edit/{id}', 'Admin\GeneralSettingController@add')->name('add_general_settings');
-         Route::post('/settings/general/edit/{id}', 'Admin\GeneralSettingController@store')->name('add_general_settings');
+        Route::post('/settings/general/edit/{id}', 'Admin\GeneralSettingController@store')->name('add_general_settings');
         Route::get('/settings/general/ajax', 'Admin\GeneralSettingController@ajaxData')->name('list_general_ajax_settings');
+
+
+        Route::get('/ajax/settings/general/upload', 'Admin\GeneralSettingController@MetaImage')->name('meta_images');
 });

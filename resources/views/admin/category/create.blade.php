@@ -71,7 +71,15 @@
   <div class="col-md-6">  {{textbox($errors,'Meta Tags*','meta_tag')}}</div>
   <div class="col-md-12">  {{textarea($errors,'Meta description*','meta_description')}}</div>
  <div class="col-md-12">
-                     {{choosefilemultiple($errors,'Category Icon','image')}}
+                     <!-- {{choosefilemultiple($errors,'Category Icon','image')}} -->
+                    
+         <img src="" id="image_src" style="width: 100px; height: 100px; display: none"/>
+
+                     <div class="form-group">
+            <label class="label-file">Image*</label>
+            <input type="file" accept="image/*" required id="cat_image" onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="image">
+           </div>
+
             </div>
      </div>                                 
       </div>
@@ -100,6 +108,7 @@
 
 @section('scripts')
 <script src="{{url('/admin-assets/js/validations/categoryValidation.js')}}"></script>
+<script src="{{url('/js/validations/imageShow.js')}}"></script>
 
 <script type="text/javascript">
 

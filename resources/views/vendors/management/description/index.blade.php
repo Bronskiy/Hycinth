@@ -34,7 +34,9 @@
 
      <div class="col-md-12"> 
       @if($description == "")  
-           <p>Not added yet.</p>
+          <div class="col-md-12">
+                    <div class="alert alert-warning" role="alert">No Description is added to this business.</div>
+                  </div>
       @endif
         <?= $description ?>      
 

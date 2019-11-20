@@ -137,6 +137,9 @@ class EventController extends Controller
 		->editColumn('status',function($t){
 		return $t->status == 1 ? 'Active' : 'In-Active';
 		})
+		->editColumn('description',function($t){
+		return str_limit($t->description, 50);
+		})
 
 		->make(true);
 	}

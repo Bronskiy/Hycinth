@@ -6,10 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;      
+use App\Traits\GeneralSettingTrait;
 use App\User;
+
 class HomeController extends Controller
 {
     use RegistersUsers;
+    use GeneralSettingTrait;
 
     /**
      * Create a new controller instance.
@@ -32,9 +35,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('home');
+    public function index() {
+      $slug = 'homepage';
+      return view('home', $this->getArrayValue($slug));
     }
 
 
@@ -174,7 +177,7 @@ public function login($request)
 
 
 
-            }else{
+            } else {
 
               Auth::logout();
              
@@ -185,7 +188,7 @@ public function login($request)
                 ];
             }
 
-        }else{
+        } else {
           
                $arr = [
                     'status' => 2,

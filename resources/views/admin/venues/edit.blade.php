@@ -35,17 +35,17 @@
                    @csrf
                   
                    {{textbox($errors,'Title*','title', $venue->title)}}
-                   {{textarea($errors,'Description','description', $venue->description)}}
+                   {{textarea($errors,'Description*','description', $venue->description)}}
 
                   <div class="form-group">
                     <label>Image</label>
-                    <input type="file" name="image">
+                    <input type="file" name="image" id="selImage" accept="image/*" onchange="ValidateSingleInput(this, 'image_src')">
                     @if ($errors->has('image'))
                         <div class="error">{{ $errors->first('image') }}</div>
                     @endif
                   </div>
 
-                  <img src="{{ url('/uploads').'/'.$venue->image }}" />
+                  <img id="image_src" style="width: 100px; height: 100px;" src="{{ url('/uploads').'/'.$venue->image }}" />
                   
                 </div>
 
@@ -74,6 +74,7 @@
 
 @section('scripts')
 <script src="{{url('/admin-assets/js/validations/valueValidation.js')}}"></script>
+<script src="{{url('/js/validations/imageShow.js')}}"></script>
 <!-- <script type="text/javascript">
   $(document).ready(function(){
    // Add Department Form

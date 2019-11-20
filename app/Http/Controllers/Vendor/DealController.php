@@ -37,7 +37,7 @@ class DealController extends Controller
   
    public function index($slug)
    {
-   	  $category = $this->getData($slug);
+   	    $category = $this->getData($slug);
        $deals = DiscountDeal::where('category_id',$category->category_id)
                            ->where('user_id',Auth::user()->id);
 
@@ -92,6 +92,7 @@ class DealController extends Controller
       $d->description = trim($request->description);
       $d->expiry_date = trim($request->expiry_date);
       $d->message_text = trim($request->message_text);
+      $d->vendor_category_id = $this->getVendorCategoryID($category->category_id);
       $d->image = $request->hasFile('image') ? uploadFileWithAjax($this->path,$request->file('image')) : '';
       $d->title = trim($request->title);
       $d->save();
@@ -161,6 +162,7 @@ class DealController extends Controller
       $d->message_text = trim($request->message_text);
       $d->image = $request->hasFile('image') ? uploadFileWithAjax($this->path,$request->file('image')) : $d->image;
       $d->title = trim($request->title);
+      $d->vendor_category_id = $this->getVendorCategoryID($category->category_id);
       $d->save();
 
       return redirect()->route('vendor_deals_management',$slug)->with('messages','Deal & Discount updated successfully.');
@@ -169,6 +171,16 @@ class DealController extends Controller
 
    }
 
+
+
+public function getVendorCategoryID($category_id)
+{
+        $VendorCategory = \App\VendorCategory::where('user_id',Auth::user()->id)
+       ->where('category_id',$category_id);
+       $vendor = $VendorCategory->first();
+       return $vendor_category_id = $VendorCategory->count() > 0 ? $vendor->id : 0;
+
+}
    #-----------------------------------------------------------------
    #    update
    #-----------------------------------------------------------------

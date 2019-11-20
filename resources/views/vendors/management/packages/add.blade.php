@@ -97,7 +97,7 @@
             </div>
 
 
-
+@if(count($category->categoryAmenity))
 <div class="form-group">
          <div class="row">
             <div class="col-lg-12">
@@ -115,7 +115,8 @@
                  @endforeach
                </div>
              </div>
-
+      @endif
+@if(count($category->categoryEvent))
 <div class="form-group">
   <div class="row">
             <div class="col-lg-12">
@@ -135,7 +136,7 @@
                  @endforeach
                </div>
              </div>
-
+@endif
             <button id="packageFormBtn" class="cstm-btn">Save</button>
       </form>
    

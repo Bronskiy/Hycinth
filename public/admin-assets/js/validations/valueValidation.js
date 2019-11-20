@@ -17,7 +17,7 @@ $(document).ready(function(){
       },
       "description": {
           required: true,
-          maxlength: 50,
+          maxlength: 500,
       },
       valueToBeTested: {
           required: true,

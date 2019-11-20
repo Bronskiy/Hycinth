@@ -62,7 +62,6 @@ class VendorPackageController extends Controller
 
                'no_of_hours' => 'required',
                'no_of_days' => 'required',
-               'menus' => 'required',
                'price_type' => 'required',
                'min_person' => 'required',
                'max_person' => 'required'
@@ -148,7 +147,6 @@ public function packagesUpdate(Request $request, $slug, $id) {
 
            'no_of_hours' => 'required',
            'no_of_days' => 'required',
-           'menus' => 'required',
            'price_type' => 'required',
            'min_person' => 'required',
            'max_person' => 'required'

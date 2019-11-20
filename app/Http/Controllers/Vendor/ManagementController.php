@@ -184,6 +184,7 @@ public function saveCategoryMetaData($key,$type,$value,$category_id)
        $metaData->type = $type;
        $metaData->key = $key;
        $metaData->keyValue = $value;
+       $metaData->vendor_category_id = $this->getVendorCategoryID($category_id);
        $metaData->save();
 
 
@@ -259,6 +260,7 @@ public function upload(Request $request)
                            $d->keyValue = $image_name;
                            $d->user_id = Auth::user()->id;
                            $d->category_id = $request->category_id;
+                           $d->vendor_category_id = $this->getVendorCategoryID($request->category_id);
                            $d->type = 'imageGallery';
                            $d->save();
                                    
@@ -357,6 +359,7 @@ public function saveVideos(Request $request,$slug)
                            $d->keyValue = json_encode($data);
                            $d->user_id = Auth::user()->id;
                            $d->category_id = $category->category_id;
+                           $d->vendor_category_id = $this->getVendorCategoryID($category->category_id);
                            $d->type = 'videoGallery';
                            $d->save();
 
@@ -438,7 +441,7 @@ public function faqsAdd(Request $request, $slug) {
       ->with('slug',$slug)       
       ->with('category',$category)
       ->with('addLink', 'vendor_faqs_management')
-      ->with('title',$category->label.' Management :: About');
+      ->with('title',$category->label.' Management :: FAQs');
 }
 
 
@@ -467,6 +470,7 @@ public function faqsStore(Request $request, $slug)
                           
                            $d->user_id = Auth::user()->id;
                            $d->category_id = $category->category_id;
+                           $d->vendor_category_id = $this->getVendorCategoryID($category->category_id);
                            $d->status = 1;
                            $d->save();
 
@@ -526,6 +530,7 @@ public function faqsUpdate(Request $request,$slug,$id)
                           
                            $d->user_id = Auth::user()->id;
                            $d->category_id = $category->category_id;
+                           $d->vendor_category_id = $this->getVendorCategoryID($category->category_id);
                            $d->status = 1;
                            $d->save();
 
@@ -936,6 +941,7 @@ public function prohibtionStore(Request $request,$slug)
 
         $c= $chk->first();
         $c->keyValue =$request->prohibtion;
+        $c->vendor_category_id = $this->getVendorCategoryID($category->category_id);
         $c->save();
 
     }
@@ -954,6 +960,9 @@ public function getAllValueWithMeta($key,$type,$category_id)
     {
        $chk = \App\VendorCategoryMetaData::where('user_id',Auth::user()->id)->where('key',$key)->where('type',$type)->where('category_id',$category_id)->first();
 
+      
+
+
        if(!empty($chk)){
         return $chk->keyValue;
        }else{
@@ -963,9 +972,21 @@ public function getAllValueWithMeta($key,$type,$category_id)
         $c->type = $type;
         $c->user_id = Auth::user()->id;
         $c->category_id = $category_id;
+        $c->vendor_category_id = $this->getVendorCategoryID($category_id);
         $c->save();
         return $c->keyValue;
        }
+}
+
+
+
+public function getVendorCategoryID($category_id)
+{
+        $VendorCategory = \App\VendorCategory::where('user_id',Auth::user()->id)
+       ->where('category_id',$category_id);
+       $vendor = $VendorCategory->first();
+       return $vendor_category_id = $VendorCategory->count() > 0 ? $vendor->id : 0;
+
 }
 #------------------------------------------------------------------------------------------
 #description
@@ -985,6 +1006,7 @@ public function descriptionStore(Request $request,$slug)
 
         $c= $chk->first();
         $c->keyValue =$request->description;
+        $c->vendor_category_id = $this->getVendorCategoryID($category->category_id);
         $c->save();
 
     }
@@ -1008,7 +1030,7 @@ public function descriptionStore(Request $request,$slug)
       $category = $this->getData($slug);
 
       return view('vendors.management.styles.index',[
-        'styles' => $this->getAllValueWithMeta('styles','styles', $category->category_id)
+        'styles' => $this->getAllValueWithMeta('style','styles', $category->category_id)
       ])
       ->with('slug', $slug)
       ->with('category', $category)
@@ -1026,7 +1048,7 @@ public function descriptionStore(Request $request,$slug)
       $category = $this->getData($slug);
 
       return view('vendors.management.styles.add',[
-        'styles' => $this->getAllValueWithMeta('styles','styles',$category->category_id)
+        'styles' => $this->getAllValueWithMeta('style','styles',$category->category_id)
       ])
       ->with('slug',$slug)
       ->with('category',$category)
@@ -1057,6 +1079,7 @@ public function styleStore(Request $request, $slug)
               'user_id' => $user->id,
               'key' => 'style',
               'keyValue' => $style,
+              'vendor_category_id' => $this->getVendorCategoryID($category->category_id),
               'parent' => 0
             ]);
             }            
@@ -1081,7 +1104,7 @@ public function seasons($slug) {
        
    $category = $this->getData($slug);
         
-   $seasons = $category->CategorySeasons;
+  $seasons = $category->CategorySeasons;
  
        return view('vendors.management.seasons.index')
               ->with('category',$category)
@@ -1121,6 +1144,7 @@ public function seasons($slug) {
               'user_id' => $user->id,
               'key' => 'season',
               'keyValue' => $season,
+              'vendor_category_id' => $this->getVendorCategoryID($category->category_id),
               'parent' => 0
             ]);
     
@@ -1189,25 +1213,27 @@ public function seasons($slug) {
     public function updateMeta($key,$value,$type,$parent=0)
     {
       
-           $chk = \App\VendorCategoryMetaData::where('parent',$parent)->where('key',$key)->where('type',$type)->first();
+           // $chk = \App\VendorCategoryMetaData::where('parent',$parent)->where('key',$key)->where('type',$type)->first();
  
 
-             if(!empty($chk)){
-               $chk->key = $key;
-               $chk->keyValue = $value;
-               $chk->type = $type;
-               $chk->parent = $parent;
-               $c->user_id = Auth::user()->id;
-               $chk->save();
-             }else{
-              $c =new \App\VendorCategoryMetaData;
-              $c->key = $key;
-              $c->keyValue = $value;
-              $c->type = $type;
-              $c->user_id = Auth::user()->id;
-              $c->parent = $parent;
-              $c->save();
-             }
+           //   if(!empty($chk)){
+           //     $chk->key = $key;
+           //     $chk->keyValue = $value;
+           //     $chk->type = $type;
+           //     $chk->parent = $parent;
+           //     $chk->vendor_category_id = $this->getVendorCategoryID($category->category_id);
+           //     $chk->user_id = Auth::user()->id;
+           //     $chk->save();
+           //   }else{
+           //    $c =new \App\VendorCategoryMetaData;
+           //    $c->key = $key;
+           //    $c->keyValue = $value;
+           //    $c->type = $type;
+           //    $c->user_id = Auth::user()->id;
+           //    $c->parent = $parent;
+           //    $c->vendor_category_id = $this->getVendorCategoryID($category->category_id);
+           //    $c->save();
+           //   }
     }
 
 

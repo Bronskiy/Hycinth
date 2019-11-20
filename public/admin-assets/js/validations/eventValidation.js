@@ -13,11 +13,11 @@ $(document).ready(function(){
       "name": { 
           required: true,
           alphanumeric: true,
-          maxlength: 20,
+          maxlength: 30,
       },
       "description": { 
           required: true,
-          maxlength: 50,
+          maxlength: 500,
       },
       valueToBeTested: {
           required: true,

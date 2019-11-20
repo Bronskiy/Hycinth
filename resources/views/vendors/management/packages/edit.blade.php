@@ -87,7 +87,7 @@
             </div>
 
 
-
+ @if(count($category->categoryAmenity))
 <div class="form-group">
   <div class="row">
             <div class="col-lg-12">
@@ -106,8 +106,9 @@
                  @endforeach
                </div>
                </div>
+        @endif
 
-
+ @if(count($category->categoryEvent))
 <div class="form-group">
   <div class="row">
             <div class="col-lg-12">
@@ -126,7 +127,7 @@
                  @endforeach
                </div>
 </div>
-
+@endif
                <div class="form-group">
            <div class="radio">
             <label><input type="radio" name="status" value="1" {{ $package->status === 1 ? 'checked' : '' }}>Active</label>

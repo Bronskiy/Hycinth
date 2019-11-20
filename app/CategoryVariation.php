@@ -15,8 +15,16 @@ class CategoryVariation extends Model
      # category variants CategoryMaterials
     public function Amenity()
     {
-        return $this->belongsTo('App\Amenity','variant_id');
+        return $this->belongsTo('App\Amenity','variant_id')->where('type','amenity');
     }
+
+
+     # category variants CategoryMaterials
+    public function Games()
+    {
+        return $this->belongsTo('App\Amenity','variant_id')->where('type','game');
+    }
+
 
 
 

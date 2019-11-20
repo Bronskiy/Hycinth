@@ -35,7 +35,7 @@
                    @csrf
                   
                    {{textbox($errors,'Season Name*','name')}}
-                   {{textarea($errors,'Season Description','description')}}
+                   {{textarea($errors,'Season Description*','description')}}
 
                 </div>
 

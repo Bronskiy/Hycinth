@@ -1,25 +1,24 @@
 @extends('layouts.home')
 @section('content')
-<section class="main-banner" style="background:url('/frontend/images/banner-bg.png');">
-        <div class="container">
-            <div class="banner-content">
-                <h1 class="banner-heading">Vendor Details</h1>
-            </div>
+<section class="log-sign-banner" style="background:url('/frontend/images/banner-bg.png');">
+    <div class="container">
+        <div class="page-title text-center">
+            <h1>{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','business_name')}}</h1>
         </div>
-    </section>
+    </div>    
+</section>
 
     <section class="vendor-detail-header">
-    	<div class="container">
+    	<div class="container lr-container">
 		 <div class="sec-card">
 		<div class="page-head">
-			<div class="container">
 				<div class="row">
 					<div class="col-lg-8">
 						<div class="page-header">
 							<figure class="head-logo"><img src="/frontend/images/vendor-03.png"></figure>
 							<div class="heading-details">
-								<h2> Lorem ipsum dolor sit amet consectetur</h2>
-								<p class="address-line"><span class="location-icon"><i class="fas fa-map-marker-alt"></i></span>8762 Newbridge Rd. New City, NY 10956</p>
+		  <h2>{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','business_name')}}</h2>
+								<p class="address-line"><span class="location-icon"><i class="fas fa-map-marker-alt"></i></span><?= getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','address')?></p>
 							</div>
 						</div>
 					</div>
@@ -29,43 +28,100 @@
 							<a href="javascript:void(0);" class="cstm-btn"><span class="btn-icon"><i class="fas fa-heart"></i></span> Save</a>
 						</div>
 					</div>
-					<div class="col-lg-12">
-						<div class="deatil-navigation-wrap">	
-							<ul class="detail-navigation">
-								<li><a href="javascript:void(0);">Photos</a></li>
-								<li><a href="javascript:void(0);">About</a></li>
-								<li><a href="javascript:void(0);">Reviews</a></li>
-								<li><a href="javascript:void(0);">FAQs</a></li>
-								<li><a href="javascript:void(0);">Real Weddings</a></li>
-								<li><a href="javascript:void(0);">Deals</a></li>
-								<li><a href="javascript:void(0);">Network</a></li>
-							</ul>		
-	                     </div>
-					</div>
+				
 			    </div>
-			</div>
+			
 		</div>
+
+                     <div class="deatil-navigation-wrap">			
+							<ul class="detail-navigation">
+								<li><a href="#" data-scroll="image-gallery">Photos</a></li>
+					
+								<li><a href="#faq-sec" data-scroll="faq-sec">FAQs</a></li>
+								<li><a href="#venue-sec" data-scroll="venue-sec">Venue</a></li>                              
+								<li><a href="#description-sec" data-scroll="description-sec">Description</a></li>
+								<li><a href="#AmenitiesGames-sec" data-scroll="AmenitiesGames-sec">Amenities and Games</a></li>
+								<li><a href="#deals-sec" data-scroll="deals-sec">Deals</a></li>	
+								<li><a href="#review-sec" data-scroll="review-sec">Reviews</a></li>
+							</ul>                    
+		              </div>
+								
 	</div>
 		</div>
 	</section>
 
+		
+			
+
 	<div class="main-detail">
-		<div class="container">
+		<div class="container lr-container">
 		  <div class="row">
 			<div class="col-lg-8">
-				<div class="product-gallery-wrap">
+				<div class="product-gallery-wrap" id="image-gallery">
+					<div class="product-gallery-sec">
+						<div class="pannel-card mt-0">		
+							<div class="product-gallery-content">
 					<ul class="nav nav-tabs" id="galleryTab" role="tablist">
 						  <li class="nav-item">
-						    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Photos</a>
+						    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><span class="tab-icon"><i class="fas fa-camera-retro"></i></span> Photos</a>
 						  </li>
 						  <li class="nav-item">
-						    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Videos</a>
+						    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><span class="tab-icon"><i class="fas fa-video"></i></span>  Videos</a>
 						  </li>
 						</ul>
 						<div class="tab-content" id="galleryTabContent">
-						  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+						  <div class="tab-pane fade  show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 						  	<!-- Photo gallery sec -->
-						  	 <div id="slider" class="flexslider">
+						  	 <div id="Photo-slider" class="flexslider">
+						          <ul class="slides">
+						          	@if($vendor->ImageGallery->count() > 0)
+						          	@foreach($vendor->ImageGallery as $img)
+						            <li>
+						              <img src="{{url($img->keyValue)}}" />
+						            </li>
+						            @endforeach
+						            @endif
+						           <!--  <li>
+						              <img src="/frontend/images/menu-vendor.png" />
+						            </li>
+						            <li>
+						              <img src="/frontend/images/menu-vendor.png" />
+						            </li>
+						            <li>
+						              <img src="/frontend/images/menu-vendor.png" />
+						            </li>
+						            <li>
+						              <img src="/frontend/images/menu-vendor.png" />
+						            </li>
+						            <li>
+						              <img src="/frontend/images/menu-vendor.png" />
+						            </li>
+						            <li>
+						              <img src="/frontend/images/menu-vendor.png" />
+						            </li>
+						            <li>
+						              <img src="/frontend/images/menu-vendor.png" />
+						            </li> -->
+						          </ul>
+						        </div>
+						        <div id="Photo-carousel" class="flexslider">
+						          <ul class="slides">
+						          		@if($vendor->ImageGallery->count() > 0)
+						          	@foreach($vendor->ImageGallery as $img)
+						            <li>
+						              <img src="{{url($img->keyValue)}}" />
+						            </li>
+						            @endforeach
+						            @endif
+						             
+						          </ul>
+						        </div>
+						  	<!-- END here -->
+
+						  </div>
+						  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+						  	<!-- 	Video slider -->
+						  	<div id="Video-slider" class="flexslider">
 						          <ul class="slides">
 						            <li>
 						              <img src="/frontend/images/menu-vendor.png" />
@@ -93,7 +149,7 @@
 						            </li>
 						          </ul>
 						        </div>
-						        <div id="carousel" class="flexslider">
+						        <div id="Video-carousel" class="flexslider">
 						          <ul class="slides">
 						            <li>
 						              <img src="/frontend/images/menu-vendor.png" />
@@ -122,109 +178,44 @@
 						          </ul>
 						        </div>
 						  	<!-- END here -->
-
 						  </div>
-						  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">profile...</div>
 						</div>
 				</div>
+			</div>
+		</div>
+	</div>
 				
 
-
-<!-- 				<div class="other-detail-wrap">
-					<div id="detail-accordion">
-
-  <div class="card">
-    <div class="card-header">
-      <a class="card-link" data-toggle="collapse" href="#collapseOne">
-        Lorem ipsum dolor sit amet
-      </a>
-    </div>
-    <div id="collapseOne" class="collapse show" data-parent="#detail-accordion">
-      <div class="card-body">
-        Lorem ipsum dolor sit amet
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
-      <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
-        Lorem ipsum dolor sit amet
-      </a>
-    </div>
-    <div id="collapseTwo" class="collapse" data-parent="#detail-accordion">
-      <div class="card-body">
-       Lorem ipsum dolor sit amet
-      </div>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-header">
-      <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
-        Collapsible Group Item #3
-      </a>
-    </div>
-    <div id="collapseThree" class="collapse" data-parent="#detail-accordion">
-      <div class="card-body">
-        Lorem ipsum..
-      </div>
-    </div>
-  </div>
-
-</div>
-				</div> -->
-<!-- Overall reating detail -->
-
-<!-- ================================ -->
-				<!--Testimonial Page starts here-->
-<!-- <section class="testimonial">
-   <div class="container" data-aos="fade-left" data-aos-duration="3000">
-      <div class="sec-heading text-center">
-         <h2>what people are saying about us</h2>
-      </div>
-      <div class="test owl-carousel owl-theme owl-loaded owl-drag">
-         <div class="item">
-            <div class="wrap">
-               <figure>
-                  <img class="commas" src="/frontend/images/commas.png" alt="" />
-                  <img src="/frontend/images/test.png" alt="" />
-               </figure>
-               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-               <p class="name">John Smith</p>
-            </div>
-         </div>
-         <div class="item">
-            <div class="wrap">
-               <figure>
-                  <img class="commas" src="/frontend/images/commas.png" alt="" />
-                  <img src="/frontend/images/test.png" alt="" />
-               </figure>
-               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-               <p class="name">John Smith</p>
-            </div>
-         </div>
-         <div class="item">
-            <div class="wrap">
-               <figure>
-                  <img class="commas" src="/frontend/images/commas.png" alt="" />
-                  <img src="/frontend/images/test.png" alt="" />
-               </figure>
-               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-               <p class="name">John Smith</p>
-            </div>
-         </div>
-      </div>
-   </div>
-</section> -->
-
-<div class="faq-sec">
+<div class="faq-sec" id="faq-sec">
 	<div class="pannel-card">
 		<div class="card-heading">
 			<h3>FAQ</h3>			
 		</div>		
 		<div class="faq-content">
-			<div class="faq-block">
+
+
+				@if($vendor->faqs->count() > 0)
+				   @foreach($vendor->faqs as $faq)
+
+						  <div class="faq-block">
+								<h4 class="faq-question"> <span class="que-count">Q:</span>{{$faq->question}}</h4>
+								<div class="faq-ans detail-listing">
+									 
+									 <div class="faq_ans"><span class="ans-count">A:</span><?= $faq->answer ?></div>
+								</div>
+							</div>
+						            
+				  @endforeach
+				@endif
+
+
+			<!-- <div class="faq-block">
+				<h4 class="faq-question">Quisque pulvinar ligula tortor, nec vulputate sapien imperdiet et?</h4>
+				<div class="faq-ans">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et tellus nec magna maximus vestibulum at a libero. Vestibulum sed justo mi. Donec gravida odio vitae erat auctor ornare. Nunc sollicitudin mi quis quam commodo, sit amet dapibus nulla tristique.</p>
+				</div>
+			</div> -->
+			<!-- <div class="faq-block">
 				<h4 class="faq-question">Quisque pulvinar ligula tortor, nec vulputate sapien imperdiet et?</h4>
 				<div class="faq-ans">
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et tellus nec magna maximus vestibulum at a libero. Vestibulum sed justo mi. Donec gravida odio vitae erat auctor ornare. Nunc sollicitudin mi quis quam commodo, sit amet dapibus nulla tristique.</p>
@@ -241,65 +232,91 @@
 				<div class="faq-ans">
 					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et tellus nec magna maximus vestibulum at a libero. Vestibulum sed justo mi. Donec gravida odio vitae erat auctor ornare. Nunc sollicitudin mi quis quam commodo, sit amet dapibus nulla tristique.</p>
 				</div>
-			</div>
-			<div class="faq-block">
-				<h4 class="faq-question">Quisque pulvinar ligula tortor, nec vulputate sapien imperdiet et?</h4>
-				<div class="faq-ans">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et tellus nec magna maximus vestibulum at a libero. Vestibulum sed justo mi. Donec gravida odio vitae erat auctor ornare. Nunc sollicitudin mi quis quam commodo, sit amet dapibus nulla tristique.</p>
-				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </div>
 <!-- End here -->
-<div class="venue-card">
+<div class="venue-card" id="venue-sec">
 	<div class="pannel-card">
 		<div class="card-heading">
 			<h3>Venue details</h3>			
 		</div>		
 		<div class="venue-content">
 			<div class="row">
-				<div class="col-lg-6">
+				<div class="col-lg-12">
 					<div class="feature-wrap">
-						<span class="feature-icon">
-							<i class="fas fa-boxes"></i>
-						</span>
+						
 						<div class="feature-detail">
-							<h4>Style:</h4>
-							<p>Hotel/Resort, Ballrooms, Outdoor</p>
+							<h4><span class="feature-icon">
+							<i class="fas fa-clipboard-list"></i>
+				</span> Services:</h4>
+							 <ul class="detail-listing">
+							 	@foreach($services as $k => $service)
+
+                                    <li>{{$service->category->label}}</li>
+
+                                    
+							 	@endforeach
+							 </ul>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-6">
+
+ 
+				<div class="col-lg-12">
 					<div class="feature-wrap">
-						<span class="feature-icon">
-							<i class="fas fa-boxes"></i>
-						</span>
+						
+					 
 						<div class="feature-detail">
-							<h4>Style:</h4>
-							<p>Hotel/Resort, Ballrooms, Outdoor</p>
+							<h4><span class="feature-icon">
+							<i class="fas fa-sun"></i>
+				                      </span> Styles:</h4>
+							 <ul class="detail-listing">
+							 	@foreach($services as $k => $service)
+
+                                    <li>{{$service->category->label}}</li>
+
+                                    
+							 	@endforeach
+							 </ul>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-6">
-					<div class="feature-wrap">
-						<span class="feature-icon">
-							<i class="fas fa-boxes"></i>
-						</span>
-						<div class="feature-detail">
-							<h4>Style:</h4>
-							<p>Hotel/Resort, Ballrooms, Outdoor</p>
+				<div class="col-lg-12">
+					<div class="feature-wrap">						
+						 
+							<div class="feature-detail">
+							<h4><span class="feature-icon">
+							<i class="fas fa-calendar-check"></i>
+				                      </span> Events:</h4>
+							 <ul class="detail-listing">
+							 	@foreach($services as $k => $service)
+
+                                    <li>{{$service->category->label}}</li>
+
+                                    
+							 	@endforeach
+							 </ul>
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-6">
+				
+				<div class="col-lg-12">
 					<div class="feature-wrap">
-						<span class="feature-icon">
-							<i class="fas fa-boxes"></i>
-						</span>
+						
 						<div class="feature-detail">
-							<h4>Style:</h4>
-							<p>Hotel/Resort, Ballrooms, Outdoor</p>
+							<h4><span class="feature-icon">
+							<i class="fas fa-poo-storm"></i>
+				                      </span> Seasons:</h4>
+							 <ul class="detail-listing">
+							 	@foreach($services as $k => $service)
+
+                                    <li>{{$service->category->label}}</li>
+
+                                    
+							 	@endforeach
+							 </ul>
 						</div>
 					</div>
 				</div>
@@ -313,26 +330,117 @@
 	</div>
 </div>
 
-   <div class="summary-card">
+   <div class="summary-card" id="description-sec">
 	<div class="pannel-card">
 		<div class="card-heading">
-			<h3>Lorem ipsum</h3>			
+			<h3>Description</h3>			
 		</div>		
-		<div class="venue-content">
-          <div class="summary-details">
-					<h4 class="faq-question">Lorem ipsum dolor sit amet</h4>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eu pulvinar enim, nec feugiat nibh. Etiam mattis condimentum velit. Donec sodales non tortor vitae condimentum. Fusce eleifend sapien ut lorem imperdiet interdum. Aliquam semper dui a diam porttitor, a volutpat nisi pretium. Phasellus et dolor quis ante suscipit mattis eu vitae felis. Mauris malesuada mauris turpis, nec lacinia magna venenatis nec. Curabitur massa orci, rhoncus vitae ultrices sed, tempus vitae elit. Fusce vel lacus ut nunc ultrices varius. Fusce ut mauris felis. Proin felis leo, malesuada ac facilisis non, malesuada et nibh. Etiam ligula purus, vestibulum ac feugiat ac, gravida ac turpis. Pellentesque fringilla massa id pharetra porttitor.</p>
+		<div class="summary-details-content">
+                 <div class="summary-details detail-listing">
+					 
+                     
+                         <?= ($vendor->description->count() > 0) ? $vendor->description->keyValue : 'No Description' ?>
+                     
 				</div>
 			</div>
 		</div>
 	</div>
 
+
+<!-- 	End -->
+
+  <div class="Amenities-card" id="AmenitiesGames-sec">
+	<div class="pannel-card">
+		<div class="card-heading">
+			<h3>Amenities and Games</h3>			
+		</div>		
+		<div class="Amenities-content">
+           <div class="row">
+           	<div class="col-lg-6">
+           		<h4 class="faq-question">Amenities</h4>
+           		  <ul class="detail-listing"> 
+
+           		  @if($amenities->count() > 0)          		  	 
+
+                     @foreach($amenities->get() as $amen)
+                          <li>{{$amen->amenity->name}}</li>
+                     @endforeach
+           		  @endif
+           		  	 
+           		  </ul>
+           	</div>
+
+           	<div class="col-lg-6">
+           		<h4 class="faq-question">Games</h4>
+           		  <ul class="detail-listing"> 
+
+           		   @if($events->count() > 0)          		  	 
+
+                     @foreach($events->get() as $event)
+                          <li>{{$event->Event->name}}</li>
+                     @endforeach
+
+           		  @endif          		  	 
+           		  	    
+
+           		  </ul>
+           	</div>
+
+           </div>
+      </div>
+   </div>
+</div>
 <!-- ====================== -->
+ <div class="Deals-card" id="deals-sec">
+	<div class="pannel-card">
+		<div class="card-heading">
+			<h3>Deals and Discount</h3>			
+		</div>		
+		<div class="Deals-content">
+
+
+			    @if($vendor->DealsDiscount->count() > 0)
+
+			    @foreach($vendor->DealsDiscount as $deal)
+                  <div class="detail-in-breif">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="left-content">
+                                            <img src="{{url($deal->image)}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-12">
+                                        <div class="right-content">
+                                            <p>{{$deal->title}}</p>
+                                           
+                                
+                                            <hr>
+                                            <p class="detail">
+                                               <?= $deal->description ?> 
+                                            </p>
+                                            <a href="javascript:void(0);" class="cstm-btn solid-btn detail-btn">Get Deal</a>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                   @endforeach
+
+                    @endif
+                     
+                    
+			</div>
+		</div>
+
+    <!--  ============================= -->
+
+	</div>
+<!-- ============================ -->
 					
 				</div>
 			<div class="col-lg-4">
 				 <aside>
 				 	<div class="side-form-wrap">
+				 		<span class="side-form-icon"><i class="fas fa-envelope-open-text"></i></span>
 				 		<form class="side-form">
 				 			<h3 class="form-heading">Vendor Message</h3>
 				 			<div class="form-group">
@@ -380,6 +488,211 @@
 			</div>
 		</div>
 	</div>
+
+
 	</div>
+
+	     <!-- Packages section here -->
+      <div class="package-card" id="package-sec">
+      	<div class="container lr-container">
+	<div class="pannel-card1">
+		<div class="card-heading">
+			<h3>Packages</h3>			
+		</div>		
+		<div class="packages-content">
+
+     <div class="packages-wrap">
+    <div class="row"> 
+  <div class="col-lg-4">
+
+<div class="package-card">
+  <div class="inn-card">
+    <div class="title">
+    	<h3 class="price-table-heading">Title Lorem ipsum</h3>
+      <div class="icon">
+        <i class="fas fa-hand-holding-usd"></i>
+      </div>
+      <span class="pkg-amount">250</span>
+    </div>
+    <div class="content">
+      
+      <div class="pricing-category">
+      <div class="pkg-summary">
+       <label>Decription</label> 
+      <p class="card-text"></p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue tristique tincidunt.</p><p></p>
+      </div>
+  </div>
+
+      <!-- rk package details start -->
+<div class="pricing-category">
+
+      <div class="row">
+        <div class="col-md-12">
+      <label for="no_of_hours">Amenities</label>
+                <ul class="pkg-listing-grp">  
+       <li class="pkg-listing"><span class="fa-li"><i class="fas fa-check"></i></span>Bride dressing area</li>
+     </ul>
+     <!-- <div class="vendor-category">
+      <div class="category-checkboxes category-title">
+        Bride dressing area
+      </div>
+     </div> -->
+                  <ul class="pkg-listing-grp">  
+       <li class="pkg-listing"><span class="fa-li"><i class="fas fa-check"></i></span>Ceremony arch</li>
+     </ul>
+         </div>
+<div class="col-md-12">
+  <label for="no_of_hours">Games</label>
+             
+        <ul class="pkg-listing-grp">  
+       <li class="pkg-listing"><span class="fa-li"><i class="fas fa-check"></i></span>Wedding</li>
+     </ul>
+        <ul class="pkg-listing-grp">  
+       <li class="pkg-listing"><span class="fa-li"><i class="fas fa-check"></i></span>Reception</li>
+     </ul>
+             </div>
+</div>
+</div>
+      
+ <div class="pricing-category">
+<table class="pricing-inn-table">
+  <tbody><tr>
+      <th><label>Price</label></th>
+      <td>$250</td>
+  </tr>
+   <tr>
+   <th><label>Number Of Hours</label></th>
+    <td>5</td>
+  </tr>
+     <tr>
+   <th><label>Number Of Days</label></th>
+    <td>2</td>
+  </tr>
+  
+    <tr>
+      <th><label>Price Type</label></th>
+     <td>Price Per Person</td>
+   </tr>
+
+ <tr>
+  <th><label>Minimum Person</label></th>
+     <td>1</td>
+   </tr>
+<tr>
+<th><label>Maximum Person</label></th>
+<td>400</td>
+</tr>
+<tr>
+  <th>
+<label>Status</label></th>
+<td>Active</td>
+</tr>
+</tbody></table>
+</div>
+
+     <div class="pkg-footer text-center">
+      <ul class="acrdn-action-btns single-row">
+          <li><a href="http://49.249.236.30:6633/vendors/category/event-planner/packages/edit/2" class="action_btn dark-btn"><i class="fas fa-pencil-alt"></i></a></li>
+          <li>          
+            <a href="javascript:void(0);" class="action_btn btn-primary" id="addOns" onclick="openModel()" data-toggle="modal" data-target="#Addons"><i class="fas fa-plus"></i></a>
+          </li>
+          <li><a href="http://49.249.236.30:6633/vendors/category/event-planner/packages/delete/2" class="action_btn danger-btn"><i class="fas fa-trash-alt"></i></a></li>   
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div> 
+
+
+
+
+  </div>
+  </div> 
+</div>
+</div>
+</div>
+</div>
+</div>
+						<!--Testimonial Page starts here-->
+<section class="testimonial" id="review-sec">
+   <div class="container lr-container" data-aos="fade-left" data-aos-duration="3000">
+      <div class="sec-heading text-center">
+         <h2>what people are saying about us</h2>
+      </div>
+      <div class="test owl-carousel owl-theme owl-loaded owl-drag">
+         <div class="item">
+            <div class="wrap">
+               <figure>
+                  <img class="commas" src="/frontend/images/commas.png" alt="" />
+                  <img src="/frontend/images/test.png" alt="" />
+               </figure>
+               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+               <p class="name">John Smith</p>
+            </div>
+         </div>
+         <div class="item">
+            <div class="wrap">
+               <figure>
+                  <img class="commas" src="/frontend/images/commas.png" alt="" />
+                  <img src="/frontend/images/test.png" alt="" />
+               </figure>
+               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+               <p class="name">John Smith</p>
+            </div>
+         </div>
+         <div class="item">
+            <div class="wrap">
+               <figure>
+                  <img class="commas" src="/frontend/images/commas.png" alt="" />
+                  <img src="/frontend/images/test.png" alt="" />
+               </figure>
+               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
+               <p class="name">John Smith</p>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
 	
+@endsection
+
+@section('scripts')
+
+<script>
+	/*----------------------------------------------   
+ -Simple Scroll To Anchor
+ -----------------------------------------------  */  	
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+setTimeout(()=>{
+$('.test').owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: true,
+    autoplay: true,
+    responsive: {
+        0: {
+            items: 1
+        },
+        600: {
+            items: 1
+        },
+        1000: {
+            items: 1
+        }
+    }
+});
+},0);
+
+</script>
 @endsection

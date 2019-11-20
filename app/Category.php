@@ -102,7 +102,7 @@ class Category extends Model
 
       public function CategorySeasons()
     {
-        return $this->hasMany('App\CategoryVariation','category_id')->where('type','seasons');
+        return $this->hasMany('App\CategoryVariation','category_id','category_id')->where('type','seasons');
     }
 
 

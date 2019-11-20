@@ -149,6 +149,8 @@ class AmenityGamesController extends Controller
 			return  $this->Actions($t);
 		})->editColumn('status', function($t){
 			return $t->status == 1 ? 'Active' : 'In-Active';
+		})->editColumn('description',function($t){
+		return str_limit($t->description, 50);
 		})->make(true);
 	}
 
@@ -162,6 +164,8 @@ class AmenityGamesController extends Controller
 			return  $this->Actions($t);
 		})->editColumn('status', function($t){
 			return $t->status == 1 ? 'Active' : 'In-Active';
+		})->editColumn('description',function($t){
+		return str_limit($t->description, 50);
 		})->make(true);
 	}
 	

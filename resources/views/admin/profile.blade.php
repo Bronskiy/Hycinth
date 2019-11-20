@@ -33,14 +33,17 @@
 
 <div class="col-md-6">
 <h3>Profile Image</h3>
-  <form role="form" action="{{url(route('post_admin_settings'))}}" method="post" enctype="multipart/form-data">
+  <form role="form" id="profileForm" action="{{url(route('post_admin_settings'))}}" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                   @csrf
                    <div class="profile-image">
-                         <input type="file" name="image" class="form-control" required="">
-                         @if(\Auth::user()->image !="")
-                         <img src="<?= \Auth::user()->image ?>">
-                         @endif
+                         <input type="file" name="image" accept="image/*" onchange="ValidateSingleInput(this, 'image_src')" id="selImage" class="form-control" required>
+                         
+                         <img id="image_src" style="width: 100px; height: 100px;" src="{{ Auth::User()->profile_image ? asset('').'/'.Auth::User()->profile_image : asset('/images/user.jpg') }}">
+
+                          @if ($errors->has('image'))
+                              <div class="error">{{ $errors->first('image') }}</div>
+                          @endif
 
                    </div>
                  
@@ -51,7 +54,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Change Profile Image</button>
+                  <button type="submit" id="profileFormBtn" class="btn btn-primary">Change Profile Image</button>
                 </div>
  </form>
 
@@ -61,7 +64,7 @@
 
 <div class="col-md-6">
 <h3>Password Settings</h3>
-  <form role="form" action="{{url(route('post_admin_password_settings'))}}" method="post" enctype="multipart/form-data">
+  <form role="form" id="passwordForm" action="{{url(route('post_admin_password_settings'))}}" method="post" enctype="multipart/form-data">
                 <div class="card-body">
 
 
@@ -71,15 +74,12 @@
                    {{password($errors,'New Password*','password')}}
                    {{password($errors,'Confirm Password*','password_confirmation')}}  
                    
-
-                    
-
                   
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Change Password</button>
+                  <button type="submit" id="passwordFormBtn" class="btn btn-primary">Change Password</button>
                 </div>
  </form>
 
@@ -107,3 +107,14 @@
  
      
 @endsection
+
+@section('scripts')
+<script src="{{url('/admin-assets/js/validations/profileValidation.js')}}"></script>
+<script src="{{url('/js/validations/imageShow.js')}}"></script>
+<script type="text/javascript">
+  $('#selImage').on('change', function () {
+    $(this).parent().find('label').css('display', 'none');
+  });
+</script>
+@endsection
+

@@ -28,7 +28,9 @@
 <div class="row">
 
   @if(count($videos) == 0)
-      <p class="nodata">No Data</p>
+      <div class="col-md-12">
+                    <div class="alert alert-warning" role="alert">No Videos.</div>
+                  </div>
   @endif
  
     @foreach($videos as $img)

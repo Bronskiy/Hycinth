@@ -54,7 +54,7 @@
 
 
                  <div class="col-md-12">
-                      @csrf <button class="cstm-btn">Assign</button>
+                      @csrf <button class="cstm-btn" id="assignCategoryBtn">Assign</button>
 
                       <div class="errorMessages"></div>
                  </div>
@@ -85,7 +85,7 @@
 
 
 @section('scripts')
-
+<script src="{{url('/js/validations/selCategoryValidation.js')}}"></script>
 
 <script type="text/javascript">
 
@@ -106,7 +106,7 @@ function erorrMessage(errors) {
 
       var txt ="";
       $.each(errors, function( index, value ) {
-        txt += ErrorMsg('error',value);
+        txt += ErrorMsg('danger',value);
           //  txt +='<li>'+ value +'</li>';
       });
      /// txt +='</ul>';
@@ -131,7 +131,7 @@ function erorrMessage(errors) {
                     if(parseInt(data.status) == 1){
                            $this[0].reset();
                             
-                           $this.find('.errorMessages').html(ErrorMsg('success',data.msg));
+                           $this.find('.errorMessages').html(ErrorMsg('success','Business is Assigned.'));
                            
                            window.location.href = data.redirect_links;
                            return true;

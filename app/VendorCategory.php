@@ -33,7 +33,12 @@ class VendorCategory extends Model
        return $this->hasMany('App\VendorCategory','parent');
     }
 
+   
 
+    public function faqs()
+    {
+       return $this->hasMany('App\FAQs','vendor_category_id','id');
+    }
 
 
 
@@ -47,8 +52,55 @@ class VendorCategory extends Model
 
     public function basicInfo()
     {
-       return $this->hasMany('App\VendorCategoryMetaData','category_id','category_id')->where('type','basic_information');
+       return $this->hasMany('App\VendorCategoryMetaData','vendor_category_id','id')
+                   ->where('type','basic_information');
     }
+
+
+
+
+    public function ImageGallery()
+    {
+       return $this->hasMany('App\VendorCategoryMetaData','vendor_category_id','id')
+                   ->where('type','imageGallery');
+    }
+
+
+
+    public function VideoGallery()
+    {
+       return $this->hasMany('App\VendorCategoryMetaData','vendor_category_id','id')
+                   ->where('type','videoGallery');
+    }
+
+
+    public function styles()
+    {
+       return $this->hasMany('App\VendorCategoryMetaData','vendor_category_id','id')
+                   ->where('type','styles');
+    }
+
+
+     public function seasons()
+    {
+       return $this->hasMany('App\VendorCategoryMetaData','vendor_category_id','id')
+                   ->where('type','seasons');
+    }
+
+
+    public function description()
+    {
+       return $this->hasOne('App\VendorCategoryMetaData','vendor_category_id','id')
+                   ->where('type','description');
+    }
+
+
+
+    public function DealsDiscount()
+    {
+       return $this->hasMany('App\Models\Vendors\DiscountDeal','vendor_category_id','id');
+    }
+
 
 
 

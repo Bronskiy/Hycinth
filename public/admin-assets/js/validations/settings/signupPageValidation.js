@@ -12,17 +12,33 @@ $(document).ready(function(){
     rules: {
       "signup_title": { 
           required: true,
-          alphanumeric: true,
-          maxlength: 30,
+          maxlength: 100,
       },
       "heading": { 
           required: true,
-          alphanumeric: true,
-          maxlength: 30,
+          maxlength: 100,
       },
       "description": { 
           required: true,
           maxlength: 500,
+      },
+      "section1_title": {
+        required: true,
+        maxlength: 100,
+      },
+      "section1_tagline": {
+        required: true,
+        maxlength: 100,
+      },
+      "section1_video": {
+        required: true,
+      },
+      "section1_video_poster": {
+        required: true,
+      },
+      "section2_title": {
+        required: true,
+        maxlength: 100,
       },
       valueToBeTested: {
           required: true,

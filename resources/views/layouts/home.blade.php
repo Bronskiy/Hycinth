@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="{{url('/frontend/css/styles.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('/frontend/css/responsive.css')}}">
 </head>
-<body>
+<body class="{{\Request::route()->getName() === 'vendor_detail_page' ? 'gray-bg' : ''}}">
 	 
 @if(\Request::route()->getName() =="homepage" || \Request::route()->getName() =="homepage2")
 @include('includes.header')
@@ -47,24 +47,47 @@
         //Photos flex slider 
 $(window).load(function() {
   // The slider being synced must be initialized first
-  $('#carousel').flexslider({
+  $('#Photo-carousel').flexslider({
+    animation: "slide",
+    controlNav: false,
+    animationLoop: false,
+    slideshow: false,
+    itemWidth: 165,
+    itemMargin: 5,
+    maxItems: 6,
+    asNavFor: '#Photo-slider'
+  });
+ 
+  $('#Photo-slider').flexslider({
+    animation: "slide",
+    controlNav: false,
+    animationLoop: false,
+    slideshow: false,
+    sync: "#Photo-carousel"
+  });
+
+
+  // The slider being synced must be initialized first
+  $('#Video-carousel').flexslider({
     animation: "slide",
     controlNav: false,
     animationLoop: false,
     slideshow: false,
     itemWidth: 210,
     itemMargin: 5,
-    asNavFor: '#slider'
+    asNavFor: '#Video-slider'
   });
  
-  $('#slider').flexslider({
+  $('#Video-slider').flexslider({
     animation: "slide",
     controlNav: false,
     animationLoop: false,
     slideshow: false,
-    sync: "#carousel"
+    sync: "#Video-carousel"
   });
+
 });
+
   
             $(function () {
                 $('#datetimepicker1').datetimepicker();

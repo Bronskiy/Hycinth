@@ -20,7 +20,7 @@ $(document).ready(function(){
       },
       "meta_tag": { 
           required: true,
-          maxlength: 50,
+          maxlength: 100,
       },
       "meta_description": { 
           required: true,

@@ -39,44 +39,48 @@
           <h5 class="card-title">Login</h5>
            {{textbox($errors, 'Title*', 'login_title', $login_title)}}
            {{textbox($errors, 'Heading*', 'heading', $heading)}}
-            <div class="col-md-12">
 
-                          {{choosefilemultiple($errors,'Logo','login_banner')}}
+           <div class="form-group">
+            <label class="label-file">Login Banner*</label>
+            <input type="file" accept="image/*" onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="login_banner">
+          </div>
+
+         <img id="image_src" style="width: 100px; height: 100px;" 
+         src="{{ url('/uploads').'/'.$login_banner }}">
+        </div>
+
+        <div class="card-body">
+          <h5 class="card-title">Section 1</h5>
+           {{textbox($errors, 'Section 1 Title*', 'section1_title', $section1_title)}}
+           <div class="form-group">
+            <label class="label-file">Section1 Description*</label>
+            <input type="text" class="form-control" value="{{$section1_tagline}}" name="section1_tagline">
+          </div>
+
+           <div class="form-group">
+            <label class="label-file">Section1 Video Poster*</label>
+            <input type="file" accept="image/*" onchange="ValidateSingleInput(this, 'section1_video_poster_src')" class="form-control" name="section1_video_poster">
+          </div>
+
+         <img id="section1_video_poster_src" style="width: 100px; height: 100px;" 
+         src="{{ url('/uploads').'/'.$section1_video_poster }}">
+
+         <div class="form-group">
+            <label class="label-file">Section1 Video*</label>
+            <input type="file" class="form-control" name="section1_video">
+           </div>
+
+           <video width="320" height="240" controls>
+            <source src="{{ url('/uploads').'/'.$section1_video }}" type="video/mp4">
+            <source src="{{ url('/uploads').'/'.$section1_video }}" type="video/ogg">
+          </video>
 
 
-                          <script type="text/javascript">
-                                     $('#logo').fileinput({
-                                             'theme': 'explorer-fas',
-                                              headers: {
-                                                   'X-CSRF-TOKEN': $('input[name=_token]').val()
-                                              },
-                                             'uploadUrl': '{{url(route("meta_images"))}}?meta=login_banner&type={{Request::route("id")}}',
-                                              overwriteInitial: false,
-                                               previewFileIcon: '<i class="fas fa-file"></i>',
-                                              initialPreviewAsData: true,
-                                              initialPreview: [
-                                                 <?php  if($login_banner != ""): ?>
+        </div>
 
-                                                        '<?= url($login_banner) ?>',
-
-                                                 <?php endif; ?>
-                                              ],
-                                              initialPreviewConfig: [
-
-                                                 <?php if($login_banner != ""): ?>
-                                                        {
-                                                          'caption' : 'product_image',
-                                                           'url' : '',
-                                                           'key'     : 'login_banner'
-                                                        },
-                                                 <?php endif; ?>
-
-                                              ]
-                                });
-                          </script>
-                       </div>
-
-           {{textarea($errors, 'Description*', 'description', $description)}}
+        <div class="card-body">
+          <h5 class="card-title">Section 2</h5>
+           {{textbox($errors, 'Section 2 Title*', 'section2_title', $section2_title)}}
         </div>
       </div>
 
@@ -110,4 +114,5 @@
 
 @section('scripts')
 <script src="{{url('/admin-assets/js/validations/settings/loginPageValidation.js')}}"></script>
+<script src="{{url('/js/validations/imageShow.js')}}"></script>
 @endsection

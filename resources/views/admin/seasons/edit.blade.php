@@ -37,7 +37,7 @@
                    @csrf
                   
                    {{textbox($errors,'Season Name*','name',$seasons->name)}}
-                   {{textarea($errors,'Description','description',$seasons->description)}}
+                   {{textarea($errors,'Description*','description',$seasons->description)}}
                     
                 </div>
                 <!-- /.card-body -->

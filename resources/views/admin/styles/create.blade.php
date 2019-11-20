@@ -35,7 +35,7 @@
                    @csrf
                   
                    {{textbox($errors,'Title*','title')}}
-                   {{textarea($errors,'Description','description')}}
+                   {{textarea($errors,'Description*','description')}}
 
                   <div class="form-group">
                     <label>Image</label>

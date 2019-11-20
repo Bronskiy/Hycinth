@@ -63,10 +63,7 @@
                   <td><?= $address?></td>
                 </tr>
 
-                <tr>
-                	<th>Add New Service/Business</th>
-                	<td><a href="{{ route('vendor_category_assign2') }}" class="add_btn"><i class="fa fa-plus"></i></a></td>
-                </tr>
+                 
 
          </table>
 

@@ -42,58 +42,18 @@
           <h5 class="card-title">Slider</h5>
            {{textbox($errors,'Slider Title*','slider_title',$slider_title)}}
            {{textbox($errors,'Slider Tagline*','slider_tagline',$slider_tagline)}}
-           {{textbox($errors,'Slider Video Url*','slider_video_url',$slider_video_url)}}
+           <div class="form-group">
+            <label class="label-file">Slider Video Url*</label>
+            <input type="file" class="form-control" name="slider_video_url">
+           </div>
+
+           <video width="320" height="240" controls>
+            <source src="{{ url('/uploads').'/'.$slider_video_url }}" type="video/mp4">
+            <source src="{{ url('/uploads').'/'.$slider_video_url }}" type="video/ogg">
+          </video>
+
            {{textbox($errors,'Slider Button Title*','slider_button_title',$slider_button_title)}}
            {{textbox($errors,'Slider Button Url*','slider_button_url',$slider_button_url)}}
-
-
-
-
-
-
-                     <!--     <div class="col-md-12">
-
-                          {{choosefilemultiple($errors,'Logo','slider_video_url')}}
-
-
-                          <script type="text/javascript">
-                                     $('#logo').fileinput({
-                                             'theme': 'explorer-fas',
-                                              headers: {
-                                                   'X-CSRF-TOKEN': $('input[name=_token]').val()
-                                              },
-                                             'uploadUrl': '{{url(route("meta_images"))}}?meta=slider_video_url&type={{Request::route("id")}}',
-                                              overwriteInitial: false,
-                                              initialPreviewAsData: true,
-                                              initialPreview: [
-                                                 <?php  if($slider_video_url != ""): ?>
-
-                                                        '<?= url($slider_video_url) ?>',
-
-                                                 <?php endif; ?>
-                                              ],
-                                              initialPreviewConfig: [
-
-                                                 <?php if($slider_video_url != ""): ?>
-                                                        {
-                                                          'caption' : 'product_image',
-                                                           'url' : '',
-                                                           'key'     : 'slider_video_url'
-                                                        },
-                                                 <?php endif; ?>
-
-                                              ]
-                                });
-                          </script>
-                       </div>
-
-
- -->
-
-
-
-
-
 
 
         </div>
@@ -112,6 +72,14 @@
         <h5 class="card-title">Section 2</h5>
          {{textbox($errors,'Section2 Title*', 'section2_title', $section2_title)}}
          {{textbox($errors,'Section2 Tagline*', 'section2_tagline', $section2_tagline)}}
+
+         <div class="form-group">
+          <label class="label-file">Section2 Image*</label>
+          <input type="file" accept="image/*" onchange="ValidateSingleInput(this, 'section2_image_src')" class="form-control" name="section2_image">
+         </div>
+
+         <img id="section2_image_src" src="{{ url('/uploads').'/'.$section2_image }}" style="width: 100px;" />
+
          {{textbox($errors,'Section2 Image Tagline*', 'section2_image_tagline', $section2_image_tagline)}}
 
       </div>
@@ -121,7 +89,27 @@
       <div class="card-body">
         <h5 class="card-title">Section 3</h5>
          {{textbox($errors,'Section3 Title*', 'section3_title', $section3_title)}}
-         {{textbox($errors,'Section3 Tagline*', 'section3_tagline', $section3_tagline)}}
+
+         <div class="form-group">
+          <label class="label-file">Section3 Tagline*</label>
+          <input type="text" value="{{$section3_tagline}}" id="section3_tagline" class="form-control" name="section3_tagline">
+         </div>
+
+         <div class="form-group">
+          <label class="label-file">Section3 Video Poster*</label>
+          <input type="file" accept="image/*" onchange="ValidateSingleInput(this, 'video_poster_src')" class="form-control" name="section3_video_poster">
+         </div>
+
+         <img src="{{ url('/uploads').'/'.$section3_video_poster }}" id="video_poster_src" style="width: 100px;" />
+
+          <div class="form-group">
+          <label class="label-file">Section3 Video*</label>
+          <input type="file" class="form-control" name="section3_video">
+         </div>    
+         <video width="320" height="240" controls>
+            <source src="{{ url('/uploads').'/'.$section3_video }}" type="video/mp4">
+            <source src="{{ url('/uploads').'/'.$section3_video }}" type="video/ogg">
+          </video>     
       </div>
     </div>
 
@@ -135,6 +123,12 @@
          {{textbox($errors,'Section4 Tagline2*', 'section4_tagline2', $section4_tagline2)}}
          {{textbox($errors,'Section4 Button Title*', 'section4_button_title', $section4_button_title)}}
          {{textbox($errors,'Section4 Button Url*', 'section4_button_url', $section4_button_url)}}
+         <div class="form-group">
+          <label class="label-file">Section4 Image*</label>
+          <input type="file" accept="image/*" onchange="ValidateSingleInput(this, 'section4_image_src')" class="form-control" name="section4_image">
+         </div>
+
+         <img src="{{ url('/uploads').'/'.$section4_image }}" id="section4_image_src" style="width: 100px;" />
       </div>
     </div>
 
@@ -175,4 +169,5 @@
 
 @section('scripts')
 <script src="{{url('/admin-assets/js/validations/settings/homePageValidation.js')}}"></script>
+<script src="{{url('/js/validations/imageShow.js')}}"></script>
 @endsection

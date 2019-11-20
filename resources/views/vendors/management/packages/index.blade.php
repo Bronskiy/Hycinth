@@ -45,16 +45,21 @@
        <label>Decription</label> 
       <p class="card-text">{!! $f->description !!}</p>
       </div>
+      @if(!empty($f->menus))
       <div class="pkg-summary">      
       <label>Menus</label> 
        <p class="card-text">{!! $f->menus !!}</p>
-    </div>
+      </div>
+      @endif
   </div>
 
       <!-- rk package details start -->
+      @if(count($category->categoryAmenity) || count($category->categoryEvent))
+
      <div class="pricing-category">
 
       <div class="row">
+        @if(count($category->categoryAmenity))
         <div class="col-md-6">
       <label for="no_of_hours">Amenities</label>
       @foreach($category->categoryAmenity as $cate)
@@ -70,6 +75,8 @@
      @endif
    @endforeach
  </div>
+ @endif
+ @if(count($category->categoryEvent))
 <div class="col-md-6">
   <label for="no_of_hours">Game And Events</label>
 @foreach($category->categoryEvent as $cate)
@@ -85,9 +92,11 @@
         @endif
      @endforeach
 </div>
+ @endif
 </div>
 </div>
-      
+@endif
+ @if(count($f->package_addons))
 <div class="pricing-category">
   <label for="no_of_hours">Add Ons</label>
      @foreach($f->package_addons as $pcd)
@@ -104,6 +113,7 @@
      </div>
    @endforeach
  </div>
+ @endif
  <div class="pricing-category">
 <table class="pricing-inn-table">
   <tr>

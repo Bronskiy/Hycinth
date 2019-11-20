@@ -136,7 +136,7 @@ public function changeProfileImage(Request $request)
 
 
     $this->validate($request,[
-         'image' => 'required|image'
+         'image' => ['required','image','mimes:jpeg,png,jpg,gif,svg','max:2048']
     ]);
     $path = 'images/admin/';
      $u = User::find(Auth::user()->id);
@@ -144,7 +144,7 @@ public function changeProfileImage(Request $request)
 
      $u->save();
     
-     return redirect()->back()->with('flash_message',"Your Profile image has been changed"); 
+     return redirect()->back()->with('flash_message', "Your Profile image has been changed"); 
 }
 
 

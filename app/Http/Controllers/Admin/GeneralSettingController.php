@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\PageMetaTag;
 use App\Traits\GeneralSettingTrait;
+
 class GeneralSettingController extends Controller
 {
    
@@ -29,8 +30,7 @@ use GeneralSettingTrait;
  }
 
 
- public function typeStore(Request $request)
- {
+ public function typeStore(Request $request) {
  	 $ch = PageMetaTag::where('type', $request->type)->first();
  	 if(!empty($ch)) {
  	 	return redirect()->route('list_general_settings')->with('error_flash_message', 'Aleady Exists!');
@@ -107,7 +107,7 @@ use GeneralSettingTrait;
 
 
 	public function add($slug) {
-     $title = PageMetaTag::where('type', $slug)->first(); 
+     $title = PageMetaTag::where('type', $slug)->first();
      return view('admin.settings.general.'.$slug, $this->getArrayValue($slug))
      ->with('title', $title->title)
      ->with('addLink','list_general_settings');
@@ -129,7 +129,7 @@ use GeneralSettingTrait;
           foreach ($request->all() as $key => $value) {
             if(!in_array($key, $this->ignors)):
           	//if($key != "_token" && $key != "homePage_banner"):
-          	     $this->updateMeta($key,$value,$type);
+          	     $this->updateMeta($key, $value, $type, $request);
 
              endif;
           }
@@ -140,26 +140,31 @@ use GeneralSettingTrait;
     }
 
 
-    public function updateMeta($key,$value,$type,$parent=0)
-    {
-    	
-    	     $chk = PageMetaTag::where('parent',$parent)->where('key',$key)->where('type',$type)->first();
- 
+    public function updateMeta($key, $value, $type, $request, $parent = 0) {
+    	 $chk = PageMetaTag::where(['parent'=> $parent, 'key'=> $key, 'type'=> $type])->first();
 
-      		 if(!empty($chk)){
-      			 	 $chk->key = $key;
-      			 	 $chk->keyValue = $value;
-                     $chk->type = $type;
-      			 	 $chk->parent = $parent;
-      			 	 $chk->save();
-      			 }else{
-      			 	$c =new PageMetaTag;
-      			 	$c->key = $key;
-      			 	$c->keyValue = $value;
-                    $c->type = $type;
-      			 	$c->parent = $parent;
-      			 	$c->save();
-      			 }
+  		 if(!empty($chk)) {
+  			 $chk->key = $key;
+         $file_path = public_path().'/uploads/'.$chk->keyValue;
+			 } else {
+  			 	$chk = new PageMetaTag;
+          $file_path = $type;
+			 }
+
+      if ($request->hasFile($key)) {
+          $file = $request->file($key);
+          $value = time().'.'.$file->getClientOriginalExtension();
+          $destinationPath = public_path('/uploads');
+          if (file_exists($file_path)) {
+            @unlink($file_path);
+          }
+          $file->move($destinationPath, $value);
+      }
+
+       $chk->keyValue = $value;
+       $chk->type = $type;
+       $chk->parent = $parent;
+       $chk->save();
     }
 
 	/*__________________________________________________________________________________________

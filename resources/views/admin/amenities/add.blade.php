@@ -36,7 +36,7 @@
                    @csrf
 
                    {{textbox($errors,'Amenity Type*','name')}}
-                   {{textarea($errors,'Description','description')}}
+                   {{textarea($errors,'Description*','description')}}
 
 
                     <div class="custom-control custom-radio">

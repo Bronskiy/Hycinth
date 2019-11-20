@@ -38,7 +38,7 @@
                    @csrf
                   
                    {{textbox($errors,'Amenity Type*','name', $amenity->name)}}
-                   {{textarea($errors,'Description','description', $amenity->description)}}
+                   {{textarea($errors,'Description*','description', $amenity->description)}}
 
                           <div class="custom-control custom-radio">
                             <input type="radio" class="custom-control-input" name="type" id="ame-1" value="amenity" {{ $amenity->type == 'amenity' ? 'checked' : '' }}>

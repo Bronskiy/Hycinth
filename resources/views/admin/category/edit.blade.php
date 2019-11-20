@@ -76,10 +76,14 @@
 <div class="col-md-12">
 
                           <?php if($category->image != ""): ?>
-                                    <img src="{{url('/'.$category->image)}}" width="50"> 
+                                    <img src="{{url('/'.$category->image)}}" id="image_src" width="50"> 
                              <?php endif; ?>
-                {{choosefilemultiple($errors,'Image','image')}}
+                <!-- {{choosefilemultiple($errors,'Image','image')}} -->
 
+                <div class="form-group">
+            <label class="label-file">Image*</label>
+            <input type="file" accept="image/*" id="cat_image" onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="image">
+           </div>
 
  </div>
 
@@ -125,6 +129,7 @@
 
 @section('scripts')
 <script src="{{url('/admin-assets/js/validations/categoryValidation.js')}}"></script>
+<script src="{{url('/js/validations/imageShow.js')}}"></script>
 
 <script type="text/javascript">
 

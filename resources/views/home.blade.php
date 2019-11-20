@@ -3,13 +3,13 @@
 <!-- side toggle calender sec starts here -->
 <!-- side toggle calender sec starts here -->
 <!-- banner section starts here here -->
-<section class="main-banner home-main-banner" style="background:url('/frontend/images/banner-bg.png');">
+<section class="main-banner home-main-banner" style="background:url({{$slider_video_url ? url('/uploads').'/'.$slider_video_url : '/frontend/images/banner-bg.png'}});">
    <div class="container">
-      <video src='/frontend/videos/background-vdo.mp4' autoplay muted loop></video>
+      <video src="{{$slider_video_url ? url('/uploads').'/'.$slider_video_url : '/frontend/videos/background-vdo.mp4'}}" autoplay muted loop></video>
       <div class="banner-content">
-         <h1>Lorem ipsum Dolor</h1>
-         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-         <a href="javascript:void(0);" class="cstm-btn solid-btn">Explore more</a>
+         <h1>{{$slider_title}}</h1>
+         <p>{{$slider_tagline}}</p>
+         <a href="{{$slider_button_url}}" class="cstm-btn solid-btn">{{$slider_button_title}}</a>
       </div>
    </div>
 </section>
@@ -327,7 +327,7 @@
                      </div>
                   </div>
                   <div class="btn-wrap text-center">
-                     <a href="javascript:void(0);" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
+                     <a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
                   </div>
                </form>
             </div>
@@ -367,7 +367,7 @@
                      </div>
                   </div>
                   <div class="btn-wrap text-center">
-                     <a href="javascript:void(0);" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
+                     <a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
                   </div>
                </form>
             </div>
@@ -407,7 +407,7 @@
                      </div>
                   </div>
                   <div class="btn-wrap text-center">
-                     <a href="javascript:void(0);" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
+                     <a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
                   </div>
                </form>
             </div>
@@ -826,7 +826,7 @@
                      </div>
                   </div>
                   <div class="btn-wrap text-center">
-                     <a href="javascript:void(0);" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
+                     <a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
                   </div>
                </form>
             </div>
@@ -866,7 +866,7 @@
                      </div>
                   </div>
                   <div class="btn-wrap text-center">
-                     <a href="javascript:void(0);" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
+                     <a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
                   </div>
                </form>
             </div>
@@ -906,7 +906,7 @@
                      </div>
                   </div>
                   <div class="btn-wrap text-center">
-                     <a href="javascript:void(0);" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
+                     <a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
                   </div>
                </form>
             </div>
@@ -946,7 +946,7 @@
                      </div>
                   </div>
                   <div class="btn-wrap text-center">
-                     <a href="javascript:void(0);" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
+                     <a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
                   </div>
                </form>
             </div>
@@ -986,7 +986,7 @@
                      </div>
                   </div>
                   <div class="btn-wrap text-center">
-                     <a href="javascript:void(0);" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
+                     <a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
                   </div>
                </form>
             </div>
@@ -1026,7 +1026,7 @@
                      </div>
                   </div>
                   <div class="btn-wrap text-center">
-                     <a href="javascript:void(0);" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
+                     <a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
                   </div>
                </form>
             </div>
@@ -1066,7 +1066,7 @@
                      </div>
                   </div>
                   <div class="btn-wrap text-center">
-                     <a href="javascript:void(0);" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
+                     <a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
                   </div>
                </form>
             </div>
@@ -1266,7 +1266,7 @@
                      </div>
                   </div>
                   <div class="btn-wrap text-center">
-                     <a href="javascript:void(0);" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
+                     <a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
                   </div>
                </form>
             </div>
@@ -1306,7 +1306,7 @@
                      </div>
                   </div>
                   <div class="btn-wrap text-center">
-                     <a href="javascript:void(0);" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
+                     <a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
                   </div>
                </form>
             </div>
@@ -1346,7 +1346,7 @@
                      </div>
                   </div>
                   <div class="btn-wrap text-center">
-                     <a href="javascript:void(0);" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
+                     <a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
                   </div>
                </form>
             </div>
@@ -1386,7 +1386,7 @@
                      </div>
                   </div>
                   <div class="btn-wrap text-center">
-                     <a href="javascript:void(0);" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
+                     <a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
                   </div>
                </form>
             </div>
@@ -1426,7 +1426,7 @@
                      </div>
                   </div>
                   <div class="btn-wrap text-center">
-                     <a href="javascript:void(0);" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
+                     <a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
                   </div>
                </form>
             </div>
@@ -1466,7 +1466,7 @@
                      </div>
                   </div>
                   <div class="btn-wrap text-center">
-                     <a href="javascript:void(0);" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
+                     <a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
                   </div>
                </form>
             </div>
@@ -1506,7 +1506,7 @@
                      </div>
                   </div>
                   <div class="btn-wrap text-center">
-                     <a href="javascript:void(0);" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
+                     <a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
                   </div>
                </form>
             </div>
@@ -1546,7 +1546,7 @@
                      </div>
                   </div>
                   <div class="btn-wrap text-center">
-                     <a href="javascript:void(0);" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
+                     <a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
                   </div>
                </form>
             </div>
@@ -1559,8 +1559,8 @@
 <section class="home-event-types" style="background:url('/frontend/images/event-back.png');">
    <div class="container">
       <div class="sec-heading text-center">
-         <h4>Popular</h4>
-         <h2>events</h2>
+         <h4>{{ $section1_title }}</h4>
+         <h2>{{ $section1_tagline }}</h2>
       </div>
       <!--Row One-->
       <div class="event-slider owl-carousel owl-theme owl-loaded owl-drag" id="event-slider-1">
@@ -1873,16 +1873,16 @@
 <!--Popular event ends here-->
 <!-- Plan togather section starts here -->
 <section class="plan-togather-sec">
-   <div class="budget-plan-banner" style="background: url('/frontend/images/budget-plan-bg.png');">
+   <div class="budget-plan-banner" style="background: url({{ $section2_image ? url('/uploads').'/'.$section2_image : '/frontend/images/budget-plan-bg.png' }});">
       <div class="container">
          <div class="sec-heading text-center">
-            <h4>On a Budget?</h4>
-            <h2>let’s plan together</h2>
+            <h4>{{ $section2_title }}</h4>
+            <h2>{{ $section2_tagline }}</h2>
          </div>
          <div class="budget-btn-wrap text-center">
             <a href="javascript:void(0);" class="budget-btn">
                <span class="bdgt-icon"><img src="/frontend/images/budget-plan-icon.png"></span>
-               <h3>Let’s Budget</h3>
+               <h3>{{$section2_image_tagline}}</h3>
                <span class="down-indi-arrow">
                <img src="/frontend/images/down-lg-arrow.png">
                </span>
@@ -2405,7 +2405,7 @@
                         </div>
                      </div>
                      <div class="btn-wrap text-center">
-                        <a href="javascript:void(0);" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
+                        <a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Search <span><i class="fas fa-search"></i></span></a>
                      </div>
                   </form>
                </div>
@@ -2419,17 +2419,15 @@
 <section class="how-its-work-sec">
    <div class="container">
       <div class="sec-heading text-center">
-         <h4>'ENVISIUN EXPALINED, Let’s show you HOW'</h4>
-         <h2>"PILOT YOUR DREAMS"</h2>
+         <h4>{{$section3_title}}</h4>
+         <h2>{{$section3_tagline}}</h2>
       </div>
       <div class="row">
          <div class="col-lg-10 offset-lg-1">
             <div class="video-container">
                <figure>
-                  <video class="video" id="bVideo" loop="" width="100%" height="100%" poster="/frontend/images/video-poster.png">
-                     <source src="/frontend/videos/Dummy Video.mp4" type="video/mp4">
-                     <source src="/frontend/videos/movie.ogg" type="video/ogg">
-                     <source src="/frontend/images/Blender made House animation.webm" type="video/webm">
+                  <video class="video" id="bVideo" loop="" width="100%" height="100%" poster="{{ $section3_video_poster ? url('/uploads').'/'.$section3_video_poster : '/frontend/images/video-poster.png'}}">
+                     <source src="{{ $section3_video ? url('/uploads').'/'.$section3_video : '/frontend/videos/Dummy Video.mp4' }}" type="video/mp4">
                   </video>
                   <div id="playButton" class="playButton" onclick="playPause()">
                      <span><i class="fas fa-play-circle"></i></span>
@@ -2442,18 +2440,18 @@
 </section>
 <!-- How its work section ends here -->
 <!--Get to knw section starts here-->
-<section class="home-get" style="background: url('/frontend/images/budget-plan-bg.png');">
+<section class="home-get" style="background: url( {{ $section4_image ? url('/uploads').'/'.$section4_image : '/frontend/images/budget-plan-bg.png' }});">
    <div class="container">
       <div class="sec-heading text-center">
-         <h4>WHY NOT CHOOSE US? </h4>
-         <h2>GET TO KNOW ENVISIUN!!</h2>
+         <h4>{{$section4_title1}}</h4>
+         <h2>{{$section4_tagline1}}</h2>
       </div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p>
+      <p>{{$section4_description}}</p>
       <p class="get-text">
-         <span>ARE YOU A VENDOR?</span> List your Business and Start Delivering Dreams
+         <span>{{$section4_title2}}</span>{{$section4_tagline2}}
       </p>
-      <a href="javascript:void(0);" class="cstm-btn solid-btn">
-      Sign up
+      <a href="{{$section4_button_url}}" class="cstm-btn solid-btn">
+      {{$section4_button_title}}
       </a>
    </div>
 </section>
@@ -2462,7 +2460,7 @@
 <section class="testimonial">
    <div class="container" data-aos="fade-left" data-aos-duration="3000">
       <div class="sec-heading text-center">
-         <h2>what people are saying about us</h2>
+         <h2>{{$section5_title}}</h2>
       </div>
       <div class="test owl-carousel owl-theme owl-loaded owl-drag">
          <div class="item">

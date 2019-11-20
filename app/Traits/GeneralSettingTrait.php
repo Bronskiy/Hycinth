@@ -35,11 +35,14 @@ trait GeneralSettingTrait {
                        // Section 2
                        'section2_title' => getAllValueWithMeta('section2_title', $slug),
                        'section2_tagline' => getAllValueWithMeta('section2_tagline', $slug),
+                       'section2_image' => getAllValueWithMeta('section2_image', $slug),
                        'section2_image_tagline' => getAllValueWithMeta('section2_image_tagline', $slug),
 
                        // Section 3
                        'section3_title' => getAllValueWithMeta('section3_title', $slug),
                        'section3_tagline' => getAllValueWithMeta('section3_tagline', $slug),
+                       'section3_video' => getAllValueWithMeta('section3_video', $slug),
+                       'section3_video_poster' => getAllValueWithMeta('section3_video_poster', $slug),
 
                        // Section 4
                        'section4_title1' => getAllValueWithMeta('section4_title1', $slug),
@@ -47,6 +50,7 @@ trait GeneralSettingTrait {
                        'section4_description' => getAllValueWithMeta('section4_description', $slug),
                        'section4_title2' => getAllValueWithMeta('section4_title2', $slug),
                        'section4_tagline2' => getAllValueWithMeta('section4_tagline2', $slug),
+                       'section4_image' => getAllValueWithMeta('section4_image', $slug),
                        'section4_button_title' => getAllValueWithMeta('section4_button_title', $slug),
                        'section4_button_url' => getAllValueWithMeta('section4_button_url', $slug),
 
@@ -60,6 +64,11 @@ trait GeneralSettingTrait {
                        'heading' => getAllValueWithMeta('heading', $slug),
                        'login_banner' => getAllValueWithMeta('login_banner', $slug),
                        'description' => getAllValueWithMeta('description', $slug),
+                       'section1_title' => getAllValueWithMeta('section1_title', $slug),
+                       'section1_tagline' => getAllValueWithMeta('section1_tagline', $slug),
+                       'section1_video' => getAllValueWithMeta('section1_video', $slug),
+                       'section1_video_poster' => getAllValueWithMeta('section1_video_poster', $slug),
+                       'section2_title' => getAllValueWithMeta('section2_title', $slug),
 		 		    ];
 		 		break;
 		 	case 'signup': 
@@ -68,6 +77,11 @@ trait GeneralSettingTrait {
                        'heading' => getAllValueWithMeta('heading', $slug),
                        'signup_banner' => getAllValueWithMeta('signup_banner', $slug),
                        'description' => getAllValueWithMeta('description', $slug),
+                       'section1_title' => getAllValueWithMeta('section1_title', $slug),
+                       'section1_tagline' => getAllValueWithMeta('section1_tagline', $slug),
+                       'section1_video' => getAllValueWithMeta('section1_video', $slug),
+                       'section1_video_poster' => getAllValueWithMeta('section1_video_poster', $slug),
+                       'section2_title' => getAllValueWithMeta('section2_title', $slug),
 		 	  	];
         case 'about_us': 
          return [
