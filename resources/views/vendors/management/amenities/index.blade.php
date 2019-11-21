@@ -17,7 +17,10 @@
          
         </div>
   </div>
+
 @include('vendors.errors')
+
+ 
 
     <div class="row">
        <div class="col-lg-12">
@@ -27,10 +30,13 @@
                <form id="assignCategory">
               <div class="row ">
                 @if($category->categoryAmenity->count() > 0) 
+                
+
+                <div class="col-lg-6">
+                  <h4>Amenities</h4>
                  @foreach($category->categoryAmenity as $cate)
 
 
-                  <div class="col-lg-6">
                    <div class="vendor-category">
                       <div class="category-checkboxes category-title">
                       <input type="checkbox" name="amenity[]" value="{{$cate->Amenity->id}}" id="category-{{$cate->Amenity->id}}"
@@ -38,9 +44,29 @@
                            <label for="category-{{$cate->Amenity->id}}">{{$cate->Amenity->name}}  </label>
                     </div>
                    </div>
-                  </div>
  
                  @endforeach
+                </div>
+
+
+
+                <div class="col-lg-6">
+                  <h4>Games</h4>
+                 @foreach($category->CategoryGames as $cate)
+
+
+                   <div class="vendor-category">
+                      <div class="category-checkboxes category-title">
+                      <input type="checkbox" name="amenity[]" value="{{$cate->Games->id}}" id="category-{{$cate->Games->id}}" {{amenities(\Auth::user()->id,$category->id,$cate->Games->id)}}
+                      >
+                           <label for="category-{{$cate->Games->id}}">{{$cate->Games->name}}  </label>
+                    </div>
+                   </div>
+ 
+                 @endforeach
+                </div>
+
+
 
                  <div class="col-md-12">
                       @csrf <button class="cstm-btn" id="assignCategoryBtn">Assign</button>
@@ -126,7 +152,8 @@ function erorrMessage(errors) {
                     if(parseInt(data.status) == 1){
                            $this[0].reset();
                             
-                           $this.find('.errorMessages').html(ErrorMsg('success',data.msg));
+                          // $this.find('.errorMessages').html(ErrorMsg('success',data.msg));
+                            $("body").find('#globalMessages').html(ErrorMsg('success',data.msg));
                            
                            window.location.href = data.redirect_links;
                            return true;
@@ -135,13 +162,15 @@ function erorrMessage(errors) {
 
                       }else if(parseInt(data.status) == 2){
                           
-                             $this.find('.errorMessages').html(ErrorMsg('warning',data.msg));
+                             //$this.find('.errorMessages').html(ErrorMsg('warning',data.msg));
+                             $("body").find('#globalMessages').html(ErrorMsg('warning',data.msg));
                              $this.find('button').removeAttr('disabled');
                             $("body").find('.loadingDiv').hide();
                            
                       }else if(parseInt(data.status) == 0){
                           
-                            $this.find('.errorMessages').html(erorrMessage(data.errors));
+                            //$this.find('.errorMessages').html(erorrMessage(data.errors));
+                            $("body").find('#globalMessages').html(erorrMessage(data.errors));
                             $this.find('button').removeAttr('disabled');
                             $("body").find('.loadingDiv').hide();
                            

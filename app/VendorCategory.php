@@ -95,10 +95,24 @@ class VendorCategory extends Model
     }
 
 
+     public function prohibtion()
+    {
+       return $this->hasOne('App\VendorCategoryMetaData','vendor_category_id','id')
+                   ->where('type','prohibtion');
+    }
+
+
 
     public function DealsDiscount()
     {
        return $this->hasMany('App\Models\Vendors\DiscountDeal','vendor_category_id','id');
+    }
+
+
+
+    public function VendorEvents()
+    {
+       return $this->hasMany('App\VendorEventGame','vendor_category_id','id');
     }
 
 

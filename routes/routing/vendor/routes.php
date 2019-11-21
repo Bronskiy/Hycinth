@@ -71,7 +71,8 @@ require __DIR__.'/ajax.php';
 
 
         Route::get('/category/{slug}/amenity', 'Vendor\ManagementController@amenity')->name('get_vendor_amenity_management');
-        Route::post('/ajax/category/{slug}/amenity', 'Vendor\ManagementController@amenityAssignAjax')->name('vendor_amenity_management');
+        Route::post('/ajax/category/{slug}/amenity', 'Vendor\ManagementController@amenityAssignAjax')
+        ->name('vendor_amenity_management');
 
 
         #-------------------------------------------------------------------------------------------

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;      
 use App\Traits\GeneralSettingTrait;
 use App\User;
+use App\Models\Admin\CmsPage;
+use App\Category;
 
 class HomeController extends Controller
 {
@@ -30,6 +32,11 @@ class HomeController extends Controller
         return view('auth.register2');
     }
 
+    public function showCmsPage($slug) {
+      $page = CmsPage::FindBySlugOrFail($slug);
+      return view('cmspage')->with('page', $page);
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -37,7 +44,8 @@ class HomeController extends Controller
      */
     public function index() {
       $slug = 'homepage';
-      return view('home', $this->getArrayValue($slug));
+      $categories = Category::where(['status'=> 1, 'parent'=> 0])->get();
+      return view('home', $this->getArrayValue($slug))->with(['categories' => $categories]);
     }
 
 

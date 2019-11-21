@@ -73,6 +73,8 @@
 
 <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.0/jquery.validate.js"></script>
+<script src="//cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 <script src="{{url('/admin-assets/js/validations/customValidation.js')}}"></script>
 @yield('scripts')
 

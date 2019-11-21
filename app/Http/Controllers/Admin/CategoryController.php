@@ -132,6 +132,7 @@ class CategoryController extends AdminController {
        $c->meta_description = trim($request->meta_description);
        $c->status = 1;
        $c->featured = $request->featured;
+       $c->cover_type = $request->cover_type;
        $c->save();
 
       return redirect(route('list_category'))->with('flash_message','Category saved!');
@@ -215,6 +216,7 @@ class CategoryController extends AdminController {
        $c->meta_description = trim($request->meta_description);
        $c->status = 1;
        $c->featured = $request->featured;
+        $c->cover_type = $request->cover_type;
        $c->save();
 
         return redirect(route('list_category'))->with('flash_message','Category updated!');

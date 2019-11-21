@@ -1,4 +1,9 @@
 @extends('layouts.home')
+
+@section('title') {{ getAllValueWithMeta('meta_title', 'homepage') }} @endsection
+@section('description') {{ getAllValueWithMeta('meta_description', 'homepage') }} @endsection
+@section('keywords') {{ getAllValueWithMeta('meta_keyword', 'homepage') }} @endsection
+
 @section('content')
 <!-- side toggle calender sec starts here -->
 <!-- side toggle calender sec starts here -->
@@ -32,263 +37,21 @@
                      </div>
                   </div>
                </div>
+               @foreach($categories as $key => $category)
                <div class="item" data-aos="fade-down" data-aos-duration="2000">
                   <div class="tab-button">
                      <div class="tab-item">
-                        <a href="javascript:void();" data-tag="one" class="">
+                        <a href="javascript:void();" data-tag="twenty-three" class="">
                            <span class="service-icon">
-                           <img class="category_icon" src="{{url('frontend/images/balloons.png')}}" />
+                           <img class="category_icon" src="{{ asset('').'/'.$category->image }}" />
                            </span>
-                           <h3>Balloons</h3>
+                           <h3>{{ $category->label }}</h3>
                         </a>
                      </div>
                   </div>
                </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="two" class="">
-                           <span class="service-icon">
-                           <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
-                           </span>
-                           <h3>Bands</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="three" class="">
-                           <span class="service-icon">
-                           <img class="category_icon" src="{{url('frontend/images/cake.png')}}" />
-                           </span>
-                           <h3>Cake/Baking/pastries</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="four" class="">
-                           <span class="service-icon">
-                           <img class="category_icon" src="{{url('frontend/images/catering.png')}}" />
-                           </span>
-                           <h3>Catering/Food & Beverages</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="five" class="">
-                           <span class="service-icon">
-                           <img class="category_icon" src="{{url('frontend/images/church.png')}}" /></span>
-                           <h3>Churches/ Temples/ Mosques</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="six" class="">
-                           <span class="service-icon">  <img class="category_icon" src="{{url('frontend/images/decoration.png')}}" /></span>
-                           <h3>Decoration</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="seven" class="">
-                           <span class="service-icon">
-                           <img class="category_icon" src="{{url('frontend/images/dj.png')}}" />
-                           </span>
-                           <h3>DJ</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="eight" class="">
-                           <span class="service-icon">  <img class="category_icon" src="{{url('frontend/images/entertainers.png')}}" /></span>
-                           <h3>Entertainers</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="nine" class="">
-                           <span class="service-icon"> 
-                            <img class="category_icon" src="{{url('frontend/images/event-planners.png')}}" /></span>
-                           <h3>Event Planners</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="ten" class="">
-                           <span class="service-icon">
-                           <img class="category_icon" src="{{url('frontend/images/gifts.png')}}" />
-                           </span>
-                           <h3>Favor/gifts/souvenirs</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="eleven" class="">
-                           <span class="service-icon">
-                           <img class="category_icon" src="{{url('frontend/images/florist.png')}}" /></span>
-                           <h3>Florist</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="twelve" class="">
-                           <span class="service-icon">
-                              <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
-                           </span>
-                           <h3>Funeral services</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="thirteen" class="">
-                           <span class="service-icon">
-                              <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
-                           </span>
-                           <h3>Lodging</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="fourteen" class="">
-                           <span class="service-icon">
-                              <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
-                           </span>
-                           <h3>Musicians / instrumentalist</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="fifteen" class="">
-                           <span class="service-icon">
-                           <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
-                        </span>
-                           <h3>Officiants/Staffing</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="sixteen" class="">
-                           <span class="service-icon">
-                              <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
-                           </span>
-                           <h3>Party Rentals</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="seventeen" class="">
-                           <span class="service-icon">
-                             <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
-                           </span>
-                           <h3>Photography</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="eighteen" class="">
-                           <span class="service-icon">
-                           <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
-                           </span>
-                           <h3>Printing and Stationary</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="ninteen" class="">
-                           <span class="service-icon">
-                              <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
-                           </span>
-                           <h3>Security/Bouncers</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="twenty" class="">
-                           <span class="service-icon">
-                             <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
-                           </span>
-                           <h3>Transportation</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="twentyone" class="">
-                           <span class="service-icon">
-                          <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
-                        </span>
-                           <h3>Venues</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
-                  <div class="tab-button">
-                     <div class="tab-item">
-                        <a href="javascript:void();" data-tag="twentytwo" class="">
-                           <span class="service-icon">
-                              <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
-                         </span>
-                           <h3>Videography</h3>
-                        </a>
-                     </div>
-                  </div>
-               </div>
+               @endforeach
+
             </div>
          </div>
          <div class="tab-content" data-aos="fade-right" data-aos-duration="3000">

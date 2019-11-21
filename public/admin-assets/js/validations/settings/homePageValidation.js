@@ -10,6 +10,15 @@ $(document).ready(function(){
     },
   
     rules: {
+      "meta_title": { 
+          required: true,
+      },
+      "meta_description": { 
+          required: true,
+      },
+      "meta_keyword": { 
+          required: true,
+      },
       "slider_title": { 
           required: true,
           maxlength: 100,

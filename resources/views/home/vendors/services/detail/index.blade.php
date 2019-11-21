@@ -34,7 +34,7 @@
 		</div>
 
                      <div class="deatil-navigation-wrap">			
-							<ul class="detail-navigation">
+							<!-- <ul class="detail-navigation">
 								<li><a href="#" data-scroll="image-gallery">Photos</a></li>
 					
 								<li><a href="#faq-sec" data-scroll="faq-sec">FAQs</a></li>
@@ -43,7 +43,41 @@
 								<li><a href="#AmenitiesGames-sec" data-scroll="AmenitiesGames-sec">Amenities and Games</a></li>
 								<li><a href="#deals-sec" data-scroll="deals-sec">Deals</a></li>	
 								<li><a href="#review-sec" data-scroll="review-sec">Reviews</a></li>
-							</ul>                    
+							</ul>  -->  
+
+             <div class="owl-carousel owl-theme nav-menu-slider">
+                        <div class="item">
+                          <a href="#" data-scroll="image-gallery"><!-- <span class="nav-icon"><i class="fas fa-camera-retro"></i></span> --> Photos</a>
+                        </div> 
+                        <div class="item">
+                          <a href="#faq-sec" data-scroll="faq-sec"><!-- <span class="nav-icon"><i class="fas fa-question-circle"></i></span> --> FAQs</a>
+                        </div> 
+                        <div class="item">
+                            <a href="#venue-sec" data-scroll="venue-sec"> <!-- <span class="nav-icon"><i class="fas fa-clipboard-list"></i></span> --> Venue</a>
+                        </div>
+                        <div class="item">
+                           <a href="#description-sec" data-scroll="description-sec"> <!-- <span class="nav-icon"><i class="fas fa-clipboard-list"></i></span> --> Description</a>
+                        </div>
+                        <div class="item">
+                          <a href="#AmenitiesGames-sec" data-scroll="AmenitiesGames-sec"><!--  <span class="nav-icon"><i class="fas fa-question-circle"></i></span> --> Amenities and Games</a>
+                        </div>
+                        <div class="item">
+                         <a href="#deals-sec" data-scroll="deals-sec"><!--  <span class="nav-icon"><i class="fas fa-question-circle"></i></span> --> Deals</a>
+                        </div>
+                        <div class="item">
+                          <a href="#review-sec" data-scroll="review-sec"><!-- <span class="nav-icon"><i class="fas fa-star"></i></span> --> Reviews</a>
+                        </div>
+                    </div>
+                </div>
+
+
+        
+
+
+
+
+
+
 		              </div>
 								
 	</div>
@@ -57,133 +91,22 @@
 		<div class="container lr-container">
 		  <div class="row">
 			<div class="col-lg-8">
-				<div class="product-gallery-wrap" id="image-gallery">
-					<div class="product-gallery-sec">
-						<div class="pannel-card mt-0">		
-							<div class="product-gallery-content">
-					<ul class="nav nav-tabs" id="galleryTab" role="tablist">
-						  <li class="nav-item">
-						    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><span class="tab-icon"><i class="fas fa-camera-retro"></i></span> Photos</a>
-						  </li>
-						  <li class="nav-item">
-						    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><span class="tab-icon"><i class="fas fa-video"></i></span>  Videos</a>
-						  </li>
-						</ul>
-						<div class="tab-content" id="galleryTabContent">
-						  <div class="tab-pane fade  show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-						  	<!-- Photo gallery sec -->
-						  	 <div id="Photo-slider" class="flexslider">
-						          <ul class="slides">
-						          	@if($vendor->ImageGallery->count() > 0)
-						          	@foreach($vendor->ImageGallery as $img)
-						            <li>
-						              <img src="{{url($img->keyValue)}}" />
-						            </li>
-						            @endforeach
-						            @endif
-						           <!--  <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li> -->
-						          </ul>
-						        </div>
-						        <div id="Photo-carousel" class="flexslider">
-						          <ul class="slides">
-						          		@if($vendor->ImageGallery->count() > 0)
-						          	@foreach($vendor->ImageGallery as $img)
-						            <li>
-						              <img src="{{url($img->keyValue)}}" />
-						            </li>
-						            @endforeach
-						            @endif
-						             
-						          </ul>
-						        </div>
-						  	<!-- END here -->
+		
 
-						  </div>
-						  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-						  	<!-- 	Video slider -->
-						  	<div id="Video-slider" class="flexslider">
-						          <ul class="slides">
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						          </ul>
-						        </div>
-						        <div id="Video-carousel" class="flexslider">
-						          <ul class="slides">
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						          </ul>
-						        </div>
-						  	<!-- END here -->
-						  </div>
-						</div>
-				</div>
-			</div>
-		</div>
-	</div>
+
+
+
+
+
+
+
+
+
+
+@include('home.vendors.services.detail.gallery')
+
+
+
 				
 
 <div class="faq-sec" id="faq-sec">
@@ -208,127 +131,19 @@
 				  @endforeach
 				@endif
 
-
-			<!-- <div class="faq-block">
-				<h4 class="faq-question">Quisque pulvinar ligula tortor, nec vulputate sapien imperdiet et?</h4>
-				<div class="faq-ans">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et tellus nec magna maximus vestibulum at a libero. Vestibulum sed justo mi. Donec gravida odio vitae erat auctor ornare. Nunc sollicitudin mi quis quam commodo, sit amet dapibus nulla tristique.</p>
-				</div>
-			</div> -->
-			<!-- <div class="faq-block">
-				<h4 class="faq-question">Quisque pulvinar ligula tortor, nec vulputate sapien imperdiet et?</h4>
-				<div class="faq-ans">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et tellus nec magna maximus vestibulum at a libero. Vestibulum sed justo mi. Donec gravida odio vitae erat auctor ornare. Nunc sollicitudin mi quis quam commodo, sit amet dapibus nulla tristique.</p>
-				</div>
-			</div>
-			<div class="faq-block">
-				<h4 class="faq-question">Quisque pulvinar ligula tortor, nec vulputate sapien imperdiet et?</h4>
-				<div class="faq-ans">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et tellus nec magna maximus vestibulum at a libero. Vestibulum sed justo mi. Donec gravida odio vitae erat auctor ornare. Nunc sollicitudin mi quis quam commodo, sit amet dapibus nulla tristique.</p>
-				</div>
-			</div>
-			<div class="faq-block">
-				<h4 class="faq-question">Quisque pulvinar ligula tortor, nec vulputate sapien imperdiet et?</h4>
-				<div class="faq-ans">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed et tellus nec magna maximus vestibulum at a libero. Vestibulum sed justo mi. Donec gravida odio vitae erat auctor ornare. Nunc sollicitudin mi quis quam commodo, sit amet dapibus nulla tristique.</p>
-				</div>
-			</div> -->
-		</div>
-	</div>
-</div>
-<!-- End here -->
-<div class="venue-card" id="venue-sec">
-	<div class="pannel-card">
-		<div class="card-heading">
-			<h3>Venue details</h3>			
-		</div>		
-		<div class="venue-content">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="feature-wrap">
-						
-						<div class="feature-detail">
-							<h4><span class="feature-icon">
-							<i class="fas fa-clipboard-list"></i>
-				</span> Services:</h4>
-							 <ul class="detail-listing">
-							 	@foreach($services as $k => $service)
-
-                                    <li>{{$service->category->label}}</li>
-
-                                    
-							 	@endforeach
-							 </ul>
-						</div>
-					</div>
-				</div>
-
  
-				<div class="col-lg-12">
-					<div class="feature-wrap">
-						
-					 
-						<div class="feature-detail">
-							<h4><span class="feature-icon">
-							<i class="fas fa-sun"></i>
-				                      </span> Styles:</h4>
-							 <ul class="detail-listing">
-							 	@foreach($services as $k => $service)
-
-                                    <li>{{$service->category->label}}</li>
-
-                                    
-							 	@endforeach
-							 </ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-12">
-					<div class="feature-wrap">						
-						 
-							<div class="feature-detail">
-							<h4><span class="feature-icon">
-							<i class="fas fa-calendar-check"></i>
-				                      </span> Events:</h4>
-							 <ul class="detail-listing">
-							 	@foreach($services as $k => $service)
-
-                                    <li>{{$service->category->label}}</li>
-
-                                    
-							 	@endforeach
-							 </ul>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-12">
-					<div class="feature-wrap">
-						
-						<div class="feature-detail">
-							<h4><span class="feature-icon">
-							<i class="fas fa-poo-storm"></i>
-				                      </span> Seasons:</h4>
-							 <ul class="detail-listing">
-							 	@foreach($services as $k => $service)
-
-                                    <li>{{$service->category->label}}</li>
-
-                                    
-							 	@endforeach
-							 </ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-12">
-					<div class="map-wrap" id="map">
-						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3430.6679305117195!2d76.68865401499058!3d30.699617894279218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390feef69353d285%3A0x6d3c38ef8c74065!2sDeftsoft!5e0!3m2!1sen!2sin!4v1574179093907!5m2!1sen!2sin" allowfullscreen=""></iframe>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 </div>
+
+
+
+@include('home.vendors.services.detail.venue')
+
+
+
+
+
 
    <div class="summary-card" id="description-sec">
 	<div class="pannel-card">
@@ -345,6 +160,9 @@
 			</div>
 		</div>
 	</div>
+
+
+
 
 
 <!-- 	End -->
@@ -376,8 +194,8 @@
 
            		   @if($events->count() > 0)          		  	 
 
-                     @foreach($events->get() as $event)
-                          <li>{{$event->Event->name}}</li>
+                     @foreach($games->get() as $event)
+                             <li>{{$event->amenity->name}}</li>
                      @endforeach
 
            		  @endif          		  	 
@@ -390,6 +208,44 @@
       </div>
    </div>
 </div>
+
+
+
+
+
+
+
+   <div class="summary-card" id="description-sec">
+	<div class="pannel-card">
+		<div class="card-heading">
+			<h3>Prohibtion & Restrictions</h3>			
+		</div>		
+		<div class="summary-details-content">
+                 <div class="summary-details detail-listing">
+					 
+                     
+         <?= ($vendor->prohibtion->count() > 0) ? $vendor->prohibtion->keyValue : 'No Prohibtion & Restrictions' ?>
+                     
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!-- ====================== -->
  <div class="Deals-card" id="deals-sec">
 	<div class="pannel-card">
@@ -435,6 +291,28 @@
 
 	</div>
 <!-- ============================ -->
+
+
+
+
+
+@include('home.vendors.services.detail.reviews')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 					
 				</div>
 			<div class="col-lg-4">
@@ -492,128 +370,19 @@
 
 	</div>
 
-	     <!-- Packages section here -->
-      <div class="package-card" id="package-sec">
-      	<div class="container lr-container">
-	<div class="pannel-card1">
-		<div class="card-heading">
-			<h3>Packages</h3>			
-		</div>		
-		<div class="packages-content">
-
-     <div class="packages-wrap">
-    <div class="row"> 
-  <div class="col-lg-4">
-
-<div class="package-card">
-  <div class="inn-card">
-    <div class="title">
-    	<h3 class="price-table-heading">Title Lorem ipsum</h3>
-      <div class="icon">
-        <i class="fas fa-hand-holding-usd"></i>
-      </div>
-      <span class="pkg-amount">250</span>
-    </div>
-    <div class="content">
-      
-      <div class="pricing-category">
-      <div class="pkg-summary">
-       <label>Decription</label> 
-      <p class="card-text"></p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc congue tristique tincidunt.</p><p></p>
-      </div>
-  </div>
-
-      <!-- rk package details start -->
-<div class="pricing-category">
-
-      <div class="row">
-        <div class="col-md-12">
-      <label for="no_of_hours">Amenities</label>
-                <ul class="pkg-listing-grp">  
-       <li class="pkg-listing"><span class="fa-li"><i class="fas fa-check"></i></span>Bride dressing area</li>
-     </ul>
-     <!-- <div class="vendor-category">
-      <div class="category-checkboxes category-title">
-        Bride dressing area
-      </div>
-     </div> -->
-                  <ul class="pkg-listing-grp">  
-       <li class="pkg-listing"><span class="fa-li"><i class="fas fa-check"></i></span>Ceremony arch</li>
-     </ul>
-         </div>
-<div class="col-md-12">
-  <label for="no_of_hours">Games</label>
-             
-        <ul class="pkg-listing-grp">  
-       <li class="pkg-listing"><span class="fa-li"><i class="fas fa-check"></i></span>Wedding</li>
-     </ul>
-        <ul class="pkg-listing-grp">  
-       <li class="pkg-listing"><span class="fa-li"><i class="fas fa-check"></i></span>Reception</li>
-     </ul>
-             </div>
-</div>
-</div>
-      
- <div class="pricing-category">
-<table class="pricing-inn-table">
-  <tbody><tr>
-      <th><label>Price</label></th>
-      <td>$250</td>
-  </tr>
-   <tr>
-   <th><label>Number Of Hours</label></th>
-    <td>5</td>
-  </tr>
-     <tr>
-   <th><label>Number Of Days</label></th>
-    <td>2</td>
-  </tr>
-  
-    <tr>
-      <th><label>Price Type</label></th>
-     <td>Price Per Person</td>
-   </tr>
-
- <tr>
-  <th><label>Minimum Person</label></th>
-     <td>1</td>
-   </tr>
-<tr>
-<th><label>Maximum Person</label></th>
-<td>400</td>
-</tr>
-<tr>
-  <th>
-<label>Status</label></th>
-<td>Active</td>
-</tr>
-</tbody></table>
-</div>
-
-     <div class="pkg-footer text-center">
-      <ul class="acrdn-action-btns single-row">
-          <li><a href="http://49.249.236.30:6633/vendors/category/event-planner/packages/edit/2" class="action_btn dark-btn"><i class="fas fa-pencil-alt"></i></a></li>
-          <li>          
-            <a href="javascript:void(0);" class="action_btn btn-primary" id="addOns" onclick="openModel()" data-toggle="modal" data-target="#Addons"><i class="fas fa-plus"></i></a>
-          </li>
-          <li><a href="http://49.249.236.30:6633/vendors/category/event-planner/packages/delete/2" class="action_btn danger-btn"><i class="fas fa-trash-alt"></i></a></li>   
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</div> 
 
 
 
 
-  </div>
-  </div> 
-</div>
-</div>
-</div>
-</div>
-</div>
+
+
+
+
+
+
+
+@include('home.vendors.services.detail.packages')
+
 						<!--Testimonial Page starts here-->
 <section class="testimonial" id="review-sec">
    <div class="container lr-container" data-aos="fade-left" data-aos-duration="3000">
@@ -660,6 +429,32 @@
 @section('scripts')
 
 <script>
+
+
+
+
+    
+jQuery(function(){
+
+      
+      jQuery("body").on('click','.play-model-video',function(e){
+            e.preventDefault();
+
+            var url = jQuery( this ).attr('data-link');
+            var title = jQuery( this ).attr('data-title');
+
+            $("body").find('#Video-Modal').find('.modal-title').html(title);
+            $("body").find('#Video-Modal').find('iframe').attr('src',url+'?autoplay=1');
+            $("body").find('#Video-Modal').modal('show');
+      });
+
+
+         $("body").find('#Video-Modal').on('hidden.bs.modal', function () {
+                $('#Video-Modal').find('iframe').attr('src','');
+         });
+
+});
+
 	/*----------------------------------------------   
  -Simple Scroll To Anchor
  -----------------------------------------------  */  	
@@ -693,6 +488,17 @@ $('.test').owlCarousel({
     }
 });
 },0);
+
+
+
+    $('.nav-menu-slider').owlCarousel({
+       loop:false,
+       autoWidth:true,
+       nav:true,
+       dots:false,
+       mouseDrag:true
+    })
+
 
 </script>
 @endsection

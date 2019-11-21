@@ -10,7 +10,9 @@
                         <h3>Envisiun</h3>
                         <ul class="ftr-links">
                             <li><a href="javascript:void(0);">Home</a></li>
-                            <li><a href="javascript:void(0);">About Us</a></li>
+                            @foreach($pages as $page)
+                            <li><a href="{{ route('cmsPage', ['slug' => $page->slug]) }}">{{ $page->title }}</a></li>
+                            @endforeach
                             <li><a href="javascript:void(0);">FAQ</a></li>
                             <li><a href="javascript:void(0);">Contact Us</a></li>
                         </ul>
@@ -30,8 +32,8 @@
                     <div class="ftr-links-wrap" data-aos="fade-right" data-aos-duration="3000">
                         <h3>terms</h3>
                         <ul class="ftr-links">
-                            <li><a href="javascript:void(0);">Terms And Conditions</a></li>
-                            <li><a href="javascript:void(0);">Privacy Policy</a></li>
+                            <li><a href="{{ route('cmsPage', ['slug' => 'terms-and-condition']) }}">Terms And Conditions</a></li>
+                            <li><a href="{{ route('cmsPage', ['slug' => 'privacy-policy']) }}">Privacy Policy</a></li>
                         </ul>
                     </div>
                 </div>

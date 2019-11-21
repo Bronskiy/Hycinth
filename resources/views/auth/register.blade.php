@@ -1,9 +1,13 @@
 @extends('layouts.home')
 
+@section('title') {{ getAllValueWithMeta('meta_title', 'signup') }} @endsection
+@section('description') {{ getAllValueWithMeta('meta_description', 'signup') }} @endsection
+@section('keywords') {{ getAllValueWithMeta('meta_keyword', 'signup') }} @endsection
+
 @section('content')
 
 <!-- <app-header></app-header> -->
-<section class="log-sign-banner" style="background:url('/frontend/images/banner-bg.png');">
+<section class="log-sign-banner" style="background:url({{ url('/uploads').'/'.getAllValueWithMeta('signup_background_image', 'signup')}});">
     <div class="container">
             <div class="page-title text-center">
                     <h1>{{ getAllValueWithMeta('signup_title', 'signup') }}</h1>

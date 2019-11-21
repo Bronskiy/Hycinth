@@ -32,7 +32,7 @@
         </div>
     </section>
     <section class="vendor-listing-sec checklist-wrap">
-        <div class="container">
+        <div class="container lr-container">
             <div class="sec-card outer-wrap">
                <span class="aside-toggle">
                                 <i class="fa fa-bars"></i>
@@ -218,78 +218,18 @@
                         </div>
                         <div class="inner-content-detail">
                            
+                             
+                             @include('home.vendors.includes.vendor')
 
-
-                 @foreach($categories as $cate)    
-
-       
-                            <div class="detail-in-breif">
-                                <div class="row">
-                                    <div class="col-lg-5">
-                                        <div class="left-content">
-                                            <img src="{{url(getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','cover_photo'))}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-7">
-                                        <div class="right-content">
-                              <p><a href="{{url( route('vendor_detail_page',[$cate->category->slug,$cate->business_url]))}}"> {{getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','business_name')}}</p>
-                                            <span class="input-icon likes"><i class="fas fa-heart"></i></span>
-                                            <ul class="rating">
-                                                <li><span>${{custom_format(getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','min_price'),2)}} </span></li>
-                                                <ul class="inner-list">
-                                                    <li><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
-                                                    <li><a href="javascript:void(0);"><i class="far fa-star"></i></a>
-                                                    </li>
-                                                </ul>
-                                                <li>
-                                                    <p class="review">0 Reviews</p>
-                                                </li>
-                                            </ul>
-                                            <hr>
-                                            <p class="detail">
-                                               {{getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','short_description')}}
-                                            </p>
-                                            <a href="javascript:void(0);" class="cstm-btn solid-btn detail-btn">Request For Pricing </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr class="hr-break">
-                       @endforeach      
-                           
+                
 
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="offset-lg-3  col-lg-9 col-md-9 col-sm-12 ">
-                    <div class="pagination-container">
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link Previous" href="#" aria-label="Previous">
-                                        <span>
-                                            <i class="fas fa-angle-left"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link " href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link next " href="#" aria-label="Next">
-                                        <span>
-                                            <i class="fas fa-angle-right"></i>
-                                        </span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
+                <div class="offset-lg-3  col-lg-9 col-md-9 col-sm-12">
+                  
                 </div>
             </div>
         </div>
@@ -305,4 +245,63 @@
 
 
 
+@endsection
+
+@section('scripts')
+<script type="text/javascript">
+
+
+    
+jQuery(function(){
+
+      
+ 
+
+
+//--------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
+
+
+jQuery("body").on('click','.custom-video-container .play-btn',function(e){
+
+  e.preventDefault();
+  stopOtherVideo();
+  var videoPath = jQuery( this ).attr('data-video');
+  var Targets = jQuery( this ).attr('data-target');
+  var videoTag = videoPlaySrc(videoPath);
+   
+
+   jQuery("body").find('#'+Targets).html(videoTag);
+   jQuery( this ).closest('.custom-video-container').addClass('playing');
+  
+});
+
+
+
+function videoPlaySrc(videoPath) {
+           var text ='';
+           text ='<video width="100%"  controls autoplay>';
+           text +='<source src="'+videoPath+'" type="video/mp4">';
+           text +='<source src="movie.ogg" type="video/ogg">';
+           text +='Your browser does not support the video tag.';
+           text +='</video>';
+           
+           return text;
+}
+
+
+
+function stopOtherVideo() {
+    jQuery('.custom-video-container').removeClass('playing');
+
+      $( ".custom-video-container" ).each(function( index ) {
+          $( this ).removeClass('playing').find('.video-screen').html('');
+      });
+}
+
+});
+
+
+
+</script>
 @endsection

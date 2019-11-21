@@ -30,7 +30,7 @@
                </li>
             </ul>
          </div>
-         <!-- ------------------------ -->
+         
       </div>
    </div>
    <div class="header-links-wrap">
@@ -104,13 +104,13 @@
       <div class="container">
          <ul id="menus-list" class="menu-list">
             <li>
-               <a href="javascript:void(0);" style="background:url(/frontend/images/menu-home-img.png)">
+               <a href="/" style="background:url(/frontend/images/menu-home-img.png)">
                   <span class="nav-item-icon"><i class="fas fa-home"></i></span>
                   <h3>Home</h3>
                </a>
             </li>
             <li>
-               <a href="javascript:void(0);" style="background:url(/frontend/images/menu-about.png)">
+               <a href="{{ route('cmsPage', ['slug' => 'about-us']) }}" style="background:url(/frontend/images/menu-about.png)">
                   <span class="nav-item-icon"><i class="fas fa-address-card"></i></span>
                   <h3>About Us</h3>
                </a>
@@ -128,7 +128,7 @@
                </a>
             </li>
             <li>
-               <a href="javascript:void(0);" style="background:url(/frontend/images/menu-policies.png)">
+               <a href="{{ route('cmsPage', ['slug' => 'privacy-policy']) }}" style="background:url(/frontend/images/menu-policies.png)">
                   <span class="nav-item-icon"><i class="fas fa-clipboard"></i></span>
                   <h3>Polices</h3>
                </a>

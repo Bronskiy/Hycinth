@@ -1,6 +1,11 @@
 @extends('layouts.home')
 
+@section('title') {{ getAllValueWithMeta('meta_title', 'login') }} @endsection
+@section('description') {{ getAllValueWithMeta('meta_description', 'login') }} @endsection
+@section('keywords') {{ getAllValueWithMeta('meta_keyword', 'login') }} @endsection
+
 @section('content')
+
 
 <section class="log-sign-banner" style="background:url('/frontend/images/banner-bg.png');">
     <div class="container">

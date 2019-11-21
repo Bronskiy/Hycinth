@@ -38,7 +38,10 @@
                                                         
                                                         @php $i=1; @endphp
                                                         <th>Name</th>
-                                                        <th>Email</th>                                                   
+                                                        <th>Email</th>    
+                                                        <th>Profile</th>    
+                                                        <th>Status</th>    
+                                                        <th width="120">Action</th>                                              
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -62,7 +65,7 @@
  
 $(function() { 
         var i=1;
-    $('#example2').DataTable({
+  $('#example2').DataTable({
          
         processing: true,
         serverSide: true,
@@ -70,6 +73,9 @@ $(function() {
         columns: [
              { data: 'name', name: 'name' },
              { data: 'email', name: 'email' },
+             { data: 'profile', name: 'profile' },
+             { data: 'status', name: 'status' },
+             { data: 'action', name: 'action' },
         ]
        
     });

@@ -88,6 +88,7 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
 		Route::get('/vendors','Admin\VendorController@index')->name('list_vendors');
 		Route::get('/users/ajax_getUsers','Admin\UserController@ajax_getUsers')->name('ajax_getUsers');
 		Route::get('/vendors/ajax_getVendors','Admin\VendorController@ajax_getVendors')->name('ajax_getVendors');
+		Route::get('/vendors/changeStatus/{id}','Admin\VendorController@changeStatus')->name('admin_vendor_changeStatus');
 
 
 		#----------------------------------------------------------------
@@ -128,4 +129,30 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
 
 
         Route::get('/ajax/settings/general/upload', 'Admin\GeneralSettingController@MetaImage')->name('meta_images');
+
+
+        #------------------------------------------------------------------------------------
+        #  Cms Page
+        #------------------------------------------------------------------------------------
+        Route::get('/pages', 'Admin\CmsPageController@index')->name('admin.cms-pages.list');
+        Route::get('/pages/ajaxData', 'Admin\CmsPageController@ajaxData')->name('admin.cms-pages.ajaxData');
+        Route::get('/pages/create', 'Admin\CmsPageController@showCreate')->name('admin.cms-pages.showCreate');
+        Route::post('/pages/create', 'Admin\CmsPageController@create')->name('admin.cms-pages.create');
+        Route::get('/pages/{slug}', 'Admin\CmsPageController@edit')->name('admin.cms-pages.edit');
+        Route::post('/pages/{slug}', 'Admin\CmsPageController@update')->name('admin.cms-pages.update');
+        Route::get('/pages/status/{slug}', 'Admin\CmsPageController@changeStatus')->name('admin.cms-pages.status');
+
+
+        #------------------------------------------------------------------------------------
+        #  Faq
+        #------------------------------------------------------------------------------------
+        Route::get('/faqs', 'Admin\FaqController@index')->name('admin.faqs.list');
+        Route::get('/faqs/ajaxData', 'Admin\FaqController@ajaxData')->name('admin.faqs.ajaxData');
+        Route::get('/faqs/create', 'Admin\FaqController@showCreate')->name('admin.faqs.showCreate');
+        Route::post('/faqs/create', 'Admin\FaqController@create')->name('admin.faqs.create');
+        Route::get('/faqs/{slug}', 'Admin\FaqController@edit')->name('admin.faqs.edit');
+        Route::post('/faqs/{slug}', 'Admin\FaqController@update')->name('admin.faqs.update');
+        Route::get('/faqs/status/{slug}', 'Admin\FaqController@changeStatus')->name('admin.faqs.status');
+
+
 });

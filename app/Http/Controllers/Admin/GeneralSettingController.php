@@ -37,7 +37,8 @@ use GeneralSettingTrait;
  	 }
 
    $ch = new PageMetaTag;
-   $ch->title = trim($request->title);
+   $ch->title = $request->title;
+   $ch->type = str_slug($request->title, '-');
  	 $ch->save();
 
  	 return redirect()->route('list_general_settings')->with('flash_message','New Page type is saved successfully!');
@@ -153,7 +154,7 @@ use GeneralSettingTrait;
 
       if ($request->hasFile($key)) {
           $file = $request->file($key);
-          $value = time().'.'.$file->getClientOriginalExtension();
+          $value = time().$key.'.'.$file->getClientOriginalExtension();
           $destinationPath = public_path('/uploads');
           if (file_exists($file_path)) {
             @unlink($file_path);

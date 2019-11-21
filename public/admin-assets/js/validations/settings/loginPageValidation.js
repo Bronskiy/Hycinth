@@ -10,6 +10,15 @@ $(document).ready(function(){
     },
   
     rules: {
+      "meta_title": { 
+          required: true,
+      },
+      "meta_description": { 
+          required: true,
+      },
+      "meta_keyword": { 
+          required: true,
+      },
       "login_title": { 
           required: true,
           maxlength: 100,
@@ -29,12 +38,6 @@ $(document).ready(function(){
       "section1_tagline": {
         required: true,
         maxlength: 100,
-      },
-      "section1_video": {
-        required: true,
-      },
-      "section1_video_poster": {
-        required: true,
       },
       "section2_title": {
         required: true,

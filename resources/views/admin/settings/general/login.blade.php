@@ -36,6 +36,15 @@
       <input type="hidden" name="type" value="{{Request::route('id')}}">
       <div class="card">
         <div class="card-body">
+          <h5 class="card-title">Meta Data</h5>
+           {{textbox($errors,'Meta Title*','meta_title', $meta_title)}}
+           {{textbox($errors,'Meta Keyword*','meta_keyword', $meta_keyword)}}
+           {{textarea($errors,'Meta Description*','meta_description', $meta_description)}}
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-body">
           <h5 class="card-title">Login</h5>
            {{textbox($errors, 'Title*', 'login_title', $login_title)}}
            {{textbox($errors, 'Heading*', 'heading', $heading)}}

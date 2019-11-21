@@ -51,6 +51,7 @@ public function index2(Request $request,$cateSlug,$vendorSlug)
 
     	 $vendorCategory = VendorCategory::with([
 	 	'basicInfo',
+	 	'VendorEvents',
 	 	'styles',
 	 	'styles.style',
 	 	'faqs',
@@ -65,14 +66,23 @@ return $vendorCategory;
     }
  
     $event = \App\VendorEventGame::with('Event')->where('category_id',$category->first()->id)->where('user_id',$vendor->user_id);
-    $amenities = \App\VendorAmenity::where('category_id',$category->first()->id)->where('user_id',$vendor->user_id);
+    $amenities = \App\VendorAmenity::where('category_id',$category->first()->id)
+                                   ->where('type','amenity')
+                                   ->where('user_id',$vendor->user_id);
+
+       $games = \App\VendorAmenity::where('category_id',$category->first()->id)
+                                   ->where('type','game')
+                                   ->where('user_id',$vendor->user_id);
+
  
 return view($this->folderPath.'.index')
+      ->with('games',$games)
       ->with('amenities',$amenities)
       ->with('events',$event)
-      ->with('styles',$this->getStyleOfThisVendor($vendor->styles,'style','title'))
+      ->with('styles',$vendor->styles)
       ->with('services', $vendor->subcategory)
-      ->with('seasons',$this->getStyleOfThisVendor($vendor->seasons,'season','name'))
+      ->with('VendorEvents', $vendor->VendorEvents)
+      ->with('seasons',$vendor->seasons)
       ->with('vendor',$vendor);
 }
 

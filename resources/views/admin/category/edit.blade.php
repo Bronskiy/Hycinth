@@ -63,10 +63,25 @@
 
  
 
-<div class="col-md-6"> 
+<div class="col-md-3"> 
   <div class="form-group label-floating is-empty"><label class="control-label">Color*</label>
 <input type="color" value="{{$category->color}}" name="color" id="get" style="width: 46px; margin-left: -2px;" onchange="fetch()">
     <input type="text" readonly value="{{$category->color}}" class="form-control valid" name="color" id="color"></div>
+</div>
+
+
+
+<div class="col-md-3">
+
+   <div class="form-group">
+            <label class="label-file">Cover Photo/Video</label>
+
+            <select name="cover_type" class="form-control">
+              <option value="1" <?= $category->cover_type == 1 ? 'selected' : '' ?>>Photo</option>
+              <option value="2" <?= $category->cover_type == 2 ? 'selected' : '' ?>>Video</option>
+            </select>
+            
+           </div>
 </div>
 
  <div class="col-md-6"> {{textbox($errors,'Meta Title*','meta_title',$category->meta_title)}}</div>
@@ -79,13 +94,22 @@
                                     <img src="{{url('/'.$category->image)}}" id="image_src" width="50"> 
                              <?php endif; ?>
                 <!-- {{choosefilemultiple($errors,'Image','image')}} -->
-
-                <div class="form-group">
+   <div class="form-group">
             <label class="label-file">Image*</label>
             <input type="file" accept="image/*" id="cat_image" onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="image">
-           </div>
+     </div>
 
  </div>
+
+
+
+
+
+
+
+
+
+
 
 </div>
                                 

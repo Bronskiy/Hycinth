@@ -19,14 +19,16 @@
         </div>
   </div>
 @include('vendors.errors')
-
+ 
+       <form id="assignCategory">
     <div class="row">
        <div class="col-lg-12">
           <div class="card vendor-dash-card">
-       <div class="card-header"><h3>{{$title}}</h3></div>
+         <div class="card-header"><h3>{{$title}}</h3></div>
            <div class="card-body">
-               <form id="assignCategory">
-              <div class="row ">
+
+              
+                 <div class="row ">
                     @if($cate->subcategory->count() > 0)
                           <input type="hidden" name="category_id" value="{{$category->category_id}}">
                           @foreach($cate->subcategory as $sub)
@@ -44,24 +46,24 @@
 
                     @endif
 
-                    </div>
-                  
-                   </div>
-                  </div>
-                 
-                  <input type="hidden" name="url" value="{{url(route('get_vendor_services_management',$category->slug))}}">
-                 <div class="col-md-12">
-                      @csrf <button class="cstm-btn" id="assignCategoryBtn">Assign</button>
-                      <div class="errorMessages"></div>
-                 </div>
-                 </div>
-                </form>
-           </div>
-        </div>
-     </div>
-   </div>
-</div>
 
+                    <input type="hidden" name="url" value="{{url(route('get_vendor_services_management',$category->slug))}}">
+                       <div class="col-md-12">
+                            @csrf <button class="cstm-btn" id="assignCategoryBtn">Assign</button>
+                            <div class="errorMessages"></div>
+                       </div>
+                  
+                    </div>
+                   </div>
+                   
+                 
+                  
+               </div>
+                </form>
+                 </div>
+           </div>
+        
+</div>
 
 @endsection
 
@@ -112,7 +114,8 @@ function erorrMessage(errors) {
                     if(parseInt(data.status) == 1){
                            $this[0].reset();
                             
-                           $this.find('.errorMessages').html(ErrorMsg('success',data.msg));
+                          
+                            $("body").find('#globalMessages').html(ErrorMsg('success',data.msg));
                            
                            window.location.href = data.redirect_links;
                            return true;
@@ -121,7 +124,8 @@ function erorrMessage(errors) {
 
                       }else{
                           
-                           $this.find('.errorMessages').html(erorrMessage(data.errors));
+                           $("body").find('#globalMessages').html(erorrMessage(data.errors));
+
                             $this.find('button').removeAttr('disabled');
                             $("body").find('.loadingDiv').hide();
                            

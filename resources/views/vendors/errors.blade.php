@@ -43,3 +43,5 @@
    </button>
 </div>
 @endif
+
+<div id="globalMessages"></div>

@@ -1,17 +1,38 @@
 <?php 
 
+function createAction($data, $editUrl, $stsUrl) {
+            $text  ='<div class="btn-group">';
+            $text .='<button type="button" class="btn btn-primary">Action</button>';
+            $text .='<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">';
+            $text .='<span class="caret"></span>';
+            $text .='<span class="sr-only">Toggle Dropdown</span>';
+            $text .='</button>';
+            $text .='<div class="dropdown-menu" role="menu" x-placement="top-start" style="position: absolute; transform: translate3d(67px, -165px, 0px); top: 0px; left: 0px; will-change: transform;">';
+
+            if(!empty($editUrl)) {
+              $text .='<a href="'.route($editUrl, $data->slug).'" class="dropdown-item">Edit</a>';
+              $text .='<div class="dropdown-divider"></div>';
+            }
+            
+            if(!empty($stsUrl)) {
+              $status=$data->status == 0 ? 'Active' : 'In-Active';
+              $text .='<a href="'.route($stsUrl, $data->slug).'" class="dropdown-item">'.$status.'</a>';
+            }
+            $text .='</div>';
+            $text .='</div>';
+
+            return $text;
+}
  
 function checkcarttatal()
 {
   return 1;
 }
 
-
-function getAllValueWithMeta($key, $type)
-    {
+function getAllValueWithMeta($key, $type) {
        $chk = \App\Models\Admin\PageMetaTag::where(['key'=> $key, 'type'=> $type])->first();
 
-       if(!empty($chk)){
+       if(!empty($chk)) {
         return $chk->keyValue;
        } else {
         $c =new \App\Models\Admin\PageMetaTag;

@@ -65,6 +65,7 @@ public $restrictions =[
 
       return view('vendors.management.basicInfo.index',$info)
       ->with('slug', $slug)
+      ->with('category', $category)
       ->with('addLink', 'vendor_basic_category_management')
       ->with('title',$category->label.' :: Basic Information ');
    }
@@ -87,6 +88,8 @@ public $restrictions =[
            'travel_distaince' => $this->getAllValueWithMeta('travel_distaince','basic_information',$category->category_id),
            'min_price' => $this->getAllValueWithMeta('min_price','basic_information',$category->category_id),
            'cover_photo' => $this->getAllValueWithMeta('cover_photo','basic_information',$category->category_id),
+           'cover_video' => $this->getAllValueWithMeta('cover_video','basic_information',$category->category_id),
+           'cover_video_image' => $this->getAllValueWithMeta('cover_video_image','basic_information',$category->category_id),
            'short_description' => $this->getAllValueWithMeta('short_description','basic_information',$category->category_id),
       ];
        
@@ -94,7 +97,8 @@ public $restrictions =[
           return $info;
        }
       return view('vendors.management.basicInfo.add',$info)
-      ->with('slug', $slug)   	   
+      ->with('slug', $slug)
+      ->with('category', $category)   	   
       ->with('title',$category->label.' :: Basic Information ')
    	  ->with('addLink', 'vendor_category_management');
    }
@@ -118,10 +122,32 @@ public $restrictions =[
             'min_price' => 'required',
             'short_description' => 'required',
             'cover_photo' => 'image',
+            'cover_video_image' => 'image',
+            'cover_video' => 'mimes:mp4,3gp,avi,wmv'
      ]);
 
-
         $category = $this->getData($slug);
+ 
+
+if($request->hasFile('cover_video') && $request->file('cover_video')->getSize() < 50000000 && $this->DeleteMetaImages('cover_video',$category->category_id,$request->type)){
+
+         $image = uploadFileWithAjax('videos/vendors/cover/',$request->file('cover_video'));
+         
+
+         $this->saveCategoryMetaData('cover_video',$request->type,$image,$category->category_id);
+
+
+}elseif($request->hasFile('cover_video')){
+
+
+  return redirect()->back()->with('cover_video','Business Cover video size must be less than 50 mb.')
+  ->with('error_message','Business Cover video size must be less than 50 mb.')->withInput();
+
+}
+
+
+
+
 
 
         $VendorCategory = VendorCategory::where('category_id',$category->category_id)
@@ -134,6 +160,8 @@ public $restrictions =[
           $vCate->title = trim($request->business_name);
           $vCate->save();
         }
+
+
 
  
           $this->saveCategoryMetaData('business_name',$request->type,$request->business_name,$category->category_id);
@@ -149,14 +177,15 @@ public $restrictions =[
 
        if($request->hasFile('cover_photo') && $this->DeleteMetaImages('cover_photo',$category->category_id,$request->type)){
             $image = uploadFileWithAjax('images/vendors/settings/',$request->file('cover_photo'));
-         
+           $this->saveCategoryMetaData('cover_photo',$request->type,$image,$category->category_id);
+         }
 
-         $this->saveCategoryMetaData('cover_photo',$request->type,$image,$category->category_id);
+      if($request->hasFile('cover_video_image') && $this->DeleteMetaImages('cover_video_image',$category->category_id,$request->type)){
+            $image = uploadFileWithAjax('images/vendors/settings/',$request->file('cover_video_image'));
+           $this->saveCategoryMetaData('cover_video_image',$request->type,$image,$category->category_id);
 
 
        }
-
-
 
 
 
@@ -620,7 +649,7 @@ public function amenityAssign($slug)
            return response()->json(['status' => 0 , 'errors' => $v->errors()]);
          }else{
 
-           $category = $this->getData($slug);
+         $category = $this->getData($slug);
 
           $status =0;
           $CategoryVaritant = \App\CategoryVariation::where('type','amenity')
@@ -629,7 +658,7 @@ public function amenityAssign($slug)
 
                  $vv = \App\VendorAmenity::where('user_id',Auth::user()->id)
                                    ->where('category_id',$category->category_id)
-                                  ->whereNotIn('amenity_id',$request->amenity)
+                                   ->whereNotIn('amenity_id',$request->amenity)
                                    ->delete();
 
                        
@@ -638,20 +667,26 @@ public function amenityAssign($slug)
                 
             
 
-          foreach ($CategoryVaritant->get() as $key => $cate) {
+          foreach ($request->amenity as $key => $cate) {
 
                $VendorEventGame = \App\VendorAmenity::where('user_id',Auth::user()->id)
-                                                   ->where('category_id',$cate->category_id)
-                                                    ->where('amenity_id',$cate->variant_id);
+                                                    ->where('category_id',$category->category_id)
+                                                    ->where('amenity_id',$cate);
+
+                $Amenity = \App\Amenity::find($cate);
 
                 if($VendorEventGame->count() == 0):
 
-                  $v = new \App\VendorAmenity;
-                  $v->category_id = $cate->category_id;
-                  $v->user_id = Auth::user()->id;
-                  $v->amenity_id = $cate->variant_id;
-                  $v->parent = 0;
-                  $v->save();
+                         
+                       
+                        $v = new \App\VendorAmenity;
+                        $v->category_id = $category->category_id;
+                        $v->user_id = Auth::user()->id;
+                        $v->amenity_id = $cate;
+                        $v->vendor_category_id = $this->getVendorCategoryID($category->category_id);
+                        $v->parent = 0;
+                        $v->type = $Amenity->type;
+                        $v->save();
 
                 endif;
                 
@@ -663,7 +698,7 @@ public function amenityAssign($slug)
           } else {
                  return response()->json(['status' => 1 ,
                   'redirect_links' => url(route('get_vendor_amenity_management',$slug)),
-                  'msg' => 'The Event Type is saved'
+                  'msg' => 'The Amenities & Games is saved'
 
                ]);
           }
@@ -741,6 +776,7 @@ public function event($slug)
                   $v->category_id = $cate->category_id;
                   $v->user_id = Auth::user()->id;
                   $v->event_id = $cate->variant_id;
+                  $v->vendor_category_id = $this->getVendorCategoryID($category->category_id);
                   $v->parent = 0;
                   $v->save();
                 endif;
@@ -752,7 +788,7 @@ public function event($slug)
           }else{
                  return response()->json(['status' => 1 ,
                   'redirect_links' => url(route('get_vendor_event_management',$slug)),
-                  'msg' => 'The Event Type is saved'
+                  'msg' => 'The Event Types are saved'
                 ]);
           }
  
@@ -844,9 +880,9 @@ public function servicesAssignAjax(Request $request,$slug)
           
 
           if($v->count() == 0){
-                 return response()->json(['status' => 2 , 'msg' => 'Something Wrong!']);
+                 return response()->json(['status' => 2 , 'msg' => 'Something Wrong!','msg' => 'Something Wrong']);
           }else{
-                 return response()->json(['status' => 1 , 'redirect_links' => url(route('get_vendor_services_management',$slug))]);
+                 return response()->json(['status' => 1 , 'redirect_links' => url(route('get_vendor_services_management',$slug)),'msg' => 'The Services are saved']);
           }
  
           
@@ -1087,7 +1123,7 @@ public function styleStore(Request $request, $slug)
   }
           
           
-    return redirect()->route('vendor_style_management', $slug)->with('flash_message', 'Style has been saved successfully!');
+    return redirect()->route('vendor_style_management', $slug)->with('flash_message', 'Styles has been saved successfully!');
                                      
 }
 
@@ -1150,7 +1186,7 @@ public function seasons($slug) {
     
           }
 
-                 $msg = 'Seasons is assigned to '.$category->label;
+                 $msg = 'Seasons are assigned to '.$category->label;
                  return response()->json(['status' => 1 , 'redirect_links' => url(route('get_vendor_season_management',$slug)),'msg' => $msg]);
            
         } 

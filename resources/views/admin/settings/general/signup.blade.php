@@ -36,9 +36,26 @@
       <input type="hidden" name="type" value="{{Request::route('id')}}">
       <div class="card">
         <div class="card-body">
+          <h5 class="card-title">Meta Data</h5>
+           {{textbox($errors,'Meta Title*','meta_title', $meta_title)}}
+           {{textbox($errors,'Meta Keyword*','meta_keyword', $meta_keyword)}}
+           {{textarea($errors,'Meta Description*','meta_description', $meta_description)}}
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-body">
           <h5 class="card-title">Sign Up</h5>
            {{textbox($errors, 'Title*', 'signup_title', $signup_title)}}
            {{textbox($errors, 'Heading*', 'heading', $heading)}}
+
+           <div class="form-group">
+            <label class="label-file">Sign Up Background Image*</label>
+            <input type="file" accept="image/*" onchange="ValidateSingleInput(this, 'background_image_src')" class="form-control" name="signup_background_image">
+           </div>
+
+         <img src="{{ url('/uploads').'/'.$signup_background_image }}" id="background_image_src" style="width: 100px; height: 100px;"  />
+
             <div class="form-group">
             <label class="label-file">Sign Up Banner*</label>
             <input type="file" accept="image/*" onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="signup_banner">

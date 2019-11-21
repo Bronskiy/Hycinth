@@ -95,6 +95,14 @@ class Category extends Model
     }
 
 
+
+    # category variants CategoryMaterials
+    public function CategoryGames()
+    {
+        return $this->hasMany('App\CategoryVariation','category_id')->where('type','game');
+    }
+
+
       public function CategoryEvent()
     {
         return $this->hasMany('App\CategoryVariation','category_id')->where('type','event');
