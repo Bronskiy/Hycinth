@@ -49,6 +49,15 @@ require __DIR__.'/ajax.php';
 
 
 
+         Route::get('/category/{slug}/gallery/videos/delete/{id}', 'Vendor\ManagementController@deleteVideos')->name('vendor_category_videos_delete_management');
+
+
+          Route::get('/category/{slug}/gallery/videos/edit/{id}', 'Vendor\ManagementController@editVideos')->name('vendor_category_videos_edit_management');
+
+         Route::post('/category/{slug}/gallery/videos/edit/{id}', 'Vendor\ManagementController@updateVideos')->name('vendor_category_videos_edit_management');
+
+
+
         #-------------------------------------------------------------------------------------------
 		#  vendor_category_management
 		#-------------------------------------------------------------------------------------------
@@ -172,14 +181,19 @@ require __DIR__.'/ajax.php';
 
 
         Route::get('/category/{slug}/prohibtion/restrictions', 'Vendor\ManagementController@prohibtion')->name('vendor_prohibtion_management');
-
-
-        Route::get('/category/{slug}/prohibtion/restrictions/add', 'Vendor\ManagementController@prohibtionAdd')->name('vendor_add_prohibtion_management');
+       Route::get('/category/{slug}/prohibtion/restrictions/add', 'Vendor\ManagementController@prohibtionAdd')->name('vendor_add_prohibtion_management');
         
        Route::post('/category/{slug}/prohibtion/restrictions/add', 'Vendor\ManagementController@prohibtionStore')->name('vendor_add_prohibtion_management');
 
 
+        #-----------------------------------------------------------------------------------
+        #  Preview My Business
+        #-----------------------------------------------------------------------------------
 
+        
+
+        Route::get('/my-business/{slug}/{vendorSlug}', 'Vendor\MyBusinessController@index')->name('myBusinessView');
+        Route::post('/my-business/{slug}/{vendorSlug}', 'Vendor\MyBusinessController@submitForApproval')->name('myBusinessView');
 
 
 });

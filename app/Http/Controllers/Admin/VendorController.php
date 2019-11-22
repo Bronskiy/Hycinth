@@ -5,23 +5,24 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\VendorCategory;
 
 class VendorController extends Controller
 {
     public function index(Request $request) {
-    	return view('admin.user-vendor.vendors')->with('title', 'Vendors');	
+    	return view('admin.user-vendor.vendors.index')->with('title', 'Vendors');	
     }
 
    	public function ajax_getVendors(Request $request)
    	{
    		$vendors = User::where('role', 'vendor')->get();
 		return datatables()->of($vendors)
-		->addColumn('profile', function ($t) {
-			$src = $t->profile_image ? asset('').$t->profile_image : asset('/images/user.jpg');
-			return '<img style="width: 100px; height: 100px;" src="'.$src.'"/>';
-		})
+		// ->addColumn('profile', function ($t) {
+		// 	$src = $t->profile_image ? asset('').$t->profile_image : asset('/images/user.jpg');
+		// 	return '<img style="width: 100px; height: 100px;" src="'.$src.'"/>';
+		// })
 		->addColumn('action', function ($t) {
-			return $this->createAction($t, 'admin.cms-pages.edit', 'admin_vendor_changeStatus');
+			return $this->createAction($t, 'admin_vendor_business', 'admin_vendor_changeStatus');
 		})
 		->editColumn('status', function($t) {
 			return $t->status == 1 ? 'Active' : 'In-Active';
@@ -41,7 +42,44 @@ class VendorController extends Controller
      return redirect()->back()->with('flash_message', 'Something Went Woring!');
 	}
 
-   	function createAction($data, $editUrl, $stsUrl) {
+  public function business($id) {
+    $vendor = User::find($id);
+    return view('admin.user-vendor.vendors.business')->with(['title' => 'Vendor Business', 'vendor'=> $vendor]);
+  }
+
+  public function changeBusinessStatus($user_id, $id, $status) {
+    $vendorCategory = VendorCategory::find($id);
+      $statusTitle = '';
+      $publishSts = 0;
+
+      if($status == 4) {
+        $statusTitle = 'Rejected';
+        $publishSts = 0;
+      }
+      elseif($status == 3) {
+        $statusTitle = 'Approved';
+        $publishSts = 1;
+      }
+      elseif($status == 2) {
+        $statusTitle = 'Pending';
+        $publishSts = 0;
+      }
+
+     if(!empty($vendorCategory)) {
+        $vendorCategory->status = $status;
+        $vendorCategory->publish = $publishSts;
+        $vendorCategory->save();
+        $msg= '<b>'.$vendorCategory->title.'</b> is '.$statusTitle;
+       return redirect(route('admin_vendor_business', $user_id))->with('flash_message', $msg);
+     }
+     return redirect()->back()->with('flash_message', 'Something Went Woring!');
+  }
+
+  public function rejectBusinessStatus(Request $request) {
+    dd($request->all());
+  }
+
+   	function createAction($data, $businessUrl, $stsUrl) {
             $text  ='<div class="btn-group">';
             $text .='<button type="button" class="btn btn-primary">Action</button>';
             $text .='<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">';
@@ -50,8 +88,8 @@ class VendorController extends Controller
             $text .='</button>';
             $text .='<div class="dropdown-menu" role="menu" x-placement="top-start" style="position: absolute; transform: translate3d(67px, -165px, 0px); top: 0px; left: 0px; will-change: transform;">';
 
-            if(!empty($editUrl)) {
-              $text .='<a href="'.route($editUrl, $data->id).'" class="dropdown-item">Edit</a>';
+            if(!empty($businessUrl)) {
+              $text .='<a href="'.route($businessUrl, $data->id).'" class="dropdown-item">View Business</a>';
               $text .='<div class="dropdown-divider"></div>';
             }
             

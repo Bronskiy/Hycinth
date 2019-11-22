@@ -15,6 +15,8 @@ Auth::routes(['verify' => true]);
 Route::post('/login', 'LoginController@check')->name('post_login');
 Route::get('/', 'HomeController@index')->name('homepage');
 Route::get('/home', 'HomeController@index')->name('homepage2');
+Route::get('/about-us', 'HomeController@about')->name('about_us');
+Route::get('/contact-us', 'HomeController@contact')->name('contact_us');
 
 Route::get('/vendor/register', 'HomeController@register')->name('vendor_register');
 

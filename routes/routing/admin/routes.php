@@ -85,11 +85,21 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
 		#  User/Vendor Management
 		#----------------------------------------------------------------
 		Route::get('/users','Admin\UserController@index')->name('list_users');
-		Route::get('/vendors','Admin\VendorController@index')->name('list_vendors');
 		Route::get('/users/ajax_getUsers','Admin\UserController@ajax_getUsers')->name('ajax_getUsers');
+		Route::get('/vendors','Admin\VendorController@index')->name('list_vendors');
 		Route::get('/vendors/ajax_getVendors','Admin\VendorController@ajax_getVendors')->name('ajax_getVendors');
 		Route::get('/vendors/changeStatus/{id}','Admin\VendorController@changeStatus')->name('admin_vendor_changeStatus');
+		Route::get('/vendors/business/{id}','Admin\VendorController@business')->name('admin_vendor_business');
+		Route::get('/vendors/business/changeBusinessStatus/{user_id}/{ven_cat_id}/{status}','Admin\VendorController@changeBusinessStatus')->name('admin_vendor_business_changeBusinessStatus');
+		Route::post('/vendors/business/rejectBusinessStatus','Admin\VendorController@rejectBusinessStatus')->name('admin_vendor_business_rejectBusinessStatus');
 
+		#----------------------------------------------------------------
+		#  Venue Management
+		#----------------------------------------------------------------
+
+		Route::get('/businesses', 'Admin\BusinessController@index')->name('admin.business.index');
+		Route::get('/businesses/ajax_getBusinesses/{status}', 'Admin\BusinessController@ajax_getBusinesses')->name('admin.business.ajax_getBusinesses');
+		Route::get('/businesses/changeBusinessesStatus/{ven_cat_id}/{status}', 'Admin\BusinessController@changeBusinessesStatus')->name('admin_business_changeBusinessesStatus');
 
 		#----------------------------------------------------------------
 		#  Venue Management
@@ -153,6 +163,8 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
         Route::get('/faqs/{slug}', 'Admin\FaqController@edit')->name('admin.faqs.edit');
         Route::post('/faqs/{slug}', 'Admin\FaqController@update')->name('admin.faqs.update');
         Route::get('/faqs/status/{slug}', 'Admin\FaqController@changeStatus')->name('admin.faqs.status');
+
+         Route::get('/my-business/{slug}/{vendorSlug}', 'Vendor\MyBusinessController@index')->name('vendorBusinessView');
 
 
 });

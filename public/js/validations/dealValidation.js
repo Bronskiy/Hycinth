@@ -13,17 +13,12 @@ $(document).ready(function(){
     rules: {
       "title": {
           required: true,
-          alphanumeric: true,
-          maxlength: 30
       },
        "description": {
           required: true,
-          alphanumeric: true,
-          maxlength: 200
       },
       'message_text': {
           required: true,
-          maxlength: 100           
       },
       valueToBeTested: {
           required: true,

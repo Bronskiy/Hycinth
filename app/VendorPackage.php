@@ -12,7 +12,7 @@ class VendorPackage extends Model
     use SluggableScopeHelpers;
 
     protected $fillable = ['title', 'slug', 'description', 'no_of_hours', 'no_of_days', 'menus',
-    'status', 'category_id', 'user_id', 'price', 'price_type', 'min_person', 'max_person'];
+    'status', 'category_id', 'user_id', 'price', 'price_type', 'min_person', 'max_person','vendor_category_id'];
 
     public function sluggable() {
         return [
@@ -26,5 +26,14 @@ class VendorPackage extends Model
     public function package_addons() {
        return $this->hasMany('App\PackageMetaData', 'package_id')->where('type', 'addons');
     }
+
+    public function amenities() {
+       return $this->hasMany('App\PackageMetaData', 'package_id')->where('type', 'amenities');
+    }
+    public function events() {
+       return $this->hasMany('App\PackageMetaData', 'package_id')->where('type', 'events');
+    }
+
+ 
     
 }

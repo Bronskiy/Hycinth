@@ -9,7 +9,7 @@ use App\User;
 class UserController extends Controller
 {
     public function index(Request $request) {
-    	return view('admin.user-vendor.users')->with('title', 'Users');	
+    	return view('admin.user-vendor.users.index')->with('title', 'Users');	
     }
 
    	public function ajax_getUsers(Request $request)

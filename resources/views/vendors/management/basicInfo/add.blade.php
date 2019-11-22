@@ -37,7 +37,9 @@
                               <div class="col-md-6">{{textbox($errors,'Website*','website',$website)}}</div>
                               <div class="col-md-12">{{textbox($errors,'Price Start From*','min_price',$min_price)}}</div>
                               <div class="col-md-12">{{textarea($errors, 'Short Description about your Business*', 'short_description', $short_description)}}</div>
-                              <div class="col-md-12">{{textarea($errors, 'Address*', 'address', $address)}}</div>
+                              <div class="col-md-12">
+                              {{textbox($errors, 'Address*', 'address', $address)}}
+                            </div>
                            </div>
                         </div>
                      </div>
@@ -49,16 +51,24 @@
                            <div class="row">
                               <div class="col-md-6">  
 
-                              {{choosefilemultiple($errors,'Business Cover Image','cover_photo')}} 
-                           </div>
-                              <div class="col-md-6">
-                                 <?php  if($cover_photo != ""): ?>
-                                 <img src="<?= url($cover_photo) ?>" width="200">
-                                 <?php endif; ?>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
+                              <!-- {{choosefilemultiple($errors,'Business Cover Image','cover_photo')}}  -->
+        
+        <div class="form-group">
+          <label class="label-file">Business Cover Image*</label>
+          <input type="file" accept="image/*" multiple onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="cover_photo">
+
+          @if ($errors->has('cover_photo'))
+              <div class="error">{{ $errors->first('cover_photo') }}</div>
+          @endif
+         </div>
+
+         </div>
+            <div class="col-md-6">
+               <img src="<?= url($cover_photo) ?>" style="display: {{ $cover_photo ? 'block' : 'none'  }} " id="image_src" width="200"/>
+            </div>
+         </div>
+      </div>
+   </div>
 
                      @else
 
@@ -136,17 +146,5 @@
 @endsection
 @section('scripts')
 <script src="{{url('/js/validations/basicInfoValidation.js')}}"></script>
-<script type="text/javascript">
-   var options = {
-         filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-         filebrowserWindowWidth  : 800,
-         filebrowserWindowHeight : 500,
-         uiColor: '#eda208',
-         removePlugins: 'save, newpage',
-         allowedContent:true,
-         fillEmptyBlocks:true,
-         extraAllowedContent:'div, a, span, section, img'
-       };
-   CKEDITOR.replace('addresss', options);
-</script>
+<script src="{{url('/js/validations/imageShow.js')}}"></script>
 @endsection

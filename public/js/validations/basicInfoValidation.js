@@ -50,11 +50,9 @@ $(document).ready(function(){
       },
       "short_description": {
           required: true
-           
       },
       "address": {
-          ckrequired: true,
-          maxlength: 500,
+          required: true,
       },
       valueToBeTested: {
           required: true,

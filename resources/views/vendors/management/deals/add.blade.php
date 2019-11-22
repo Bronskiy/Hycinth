@@ -49,8 +49,9 @@
 
                             <div class="form-group">
                               <label class="label-file">Picture For This Deal*</label>
-                               <input type="file" required class="form-control" name="image">
+                               <input type="file" accept="image/*" required onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="image">
                            </div>
+                           <img src="" style="display: none" id="image_src" width="200"/>
                          </div>
                          
       <!--        <div class="form-group">
@@ -100,4 +101,5 @@
 
 @section('scripts')
 <script src="{{url('/js/validations/dealValidation.js')}}"></script>
+<script src="{{url('/js/validations/imageShow.js')}}"></script>
 @endsection

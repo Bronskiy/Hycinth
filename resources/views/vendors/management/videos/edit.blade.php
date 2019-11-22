@@ -21,7 +21,7 @@
     <div class="row">
        <div class="col-lg-12">
           <div class="card vendor-dash-card">
-       <div class="card-header"><h3>Add a video </h3></div>
+       <div class="card-header"><h3>Edit a video </h3></div>
            <div class="card-body">
 
 <div class="row">
@@ -30,11 +30,13 @@
 
 <div class="col-md-12">
   <form method="post" id="videoForm" enctype="multipart/form-data">
-   {{textbox($errors,'Title','title')}}
+    <?php $data = json_decode($video->keyValue); ?>
+   {{textbox($errors,'Title','title',$data->title)}}
    {{choosefilemultiple($errors,'Video Cover Photo','cover_photo')}}
-   {{textbox($errors,'Video Link (please paste here youtube video link)','video_link')}}
+   <img src="{{url($data->image)}}" width="120">
+   {{textbox($errors,'Video Link (please paste here youtube video link)','video_link',$data->link)}}
 @csrf
-<button class="cstm-btn">Save</button>
+<button class="cstm-btn">Update</button>
 </form>
 </div>
 

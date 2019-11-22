@@ -338,7 +338,7 @@ public function videos($slug)
    	  ->with('category',$category)
    	  ->with('videos',$videos)
       ->with('addLink', 'vendor_category_videos_add_management')
-   	  ->with('title',$category->label.' Management :: About');
+   	  ->with('title',$category->label.' Management :: Video Gallery');
 }
 
 
@@ -358,7 +358,7 @@ public function addVideos($slug)
    	  ->with('slug',$slug)
    	  ->with('category',$category)
    	  ->with('addLink', 'vendor_category_videos_management')
-   	  ->with('title',$category->label.' Management :: About');
+   	  ->with('title',$category->label.' Management :: Video Gallery');
 }
 
 
@@ -376,12 +376,15 @@ public function saveVideos(Request $request,$slug)
 
 	$this->validate($request,[
            'title' => 'required',
-           'video_link' => 'required'
+           'cover_photo' => 'required|image',
+           'video_link' => 'required|url'
 	]);
 	      $category = $this->getData($slug);
-    
+        
+
+         $image_name = uploadFileWithAjax('images/vendors/gallery/',$request->cover_photo);
      
-                           $data = ['title' => $request->title,'link' => $request->video_link];
+                           $data = ['title' => $request->title,'link' => $request->video_link,'image' => $image_name];
 
                            $d=new VendorCategoryMetaData;
                            $d->key = 'video';
@@ -397,7 +400,100 @@ public function saveVideos(Request $request,$slug)
    	  
 }
 
+#-------------------------------------------------------------------------------------------
+#  Delete Meta Tags
+#-------------------------------------------------------------------------------------------
 
+public function deleteVideos($slug,$id)
+{
+   $category = $this->getData($slug);
+
+   $v = VendorCategoryMetaData::find($id);
+   if(!empty($v)){
+               $data = json_decode($v->keyValue);
+               $file_path =  public_path().'/'.$data->image;
+               if (file_exists( $file_path )) {
+                   unlink($file_path); 
+               } 
+               $v->delete();
+           return redirect()->route('vendor_category_videos_management',$slug)->with('messages','Video is deleted from your gallery.');
+      }
+
+        return redirect()->route('vendor_category_videos_management',$slug)->with('messages','Something wrong going on.');
+   
+
+    
+}
+
+#-------------------------------------------------------------------------------------------
+#  Delete Meta Tags
+#-------------------------------------------------------------------------------------------
+
+public function editVideos($slug,$id)
+{
+     $category = $this->getData($slug);
+     $video = VendorCategoryMetaData::find($id);
+     if(empty($video)){
+        return redirect()->route('vendor_category_videos_management',$slug)->with('messages','Something wrong going on.');
+              
+     }
+
+    
+
+      return view('vendors.management.videos.edit')
+      ->with('video',$video)
+      ->with('slug',$slug)
+      ->with('category',$category)
+      ->with('addLink', 'vendor_category_videos_management')
+      ->with('title',$category->label.' Management :: Video Gallery');
+}
+
+
+
+public function updateVideos(Request $request,$slug,$id)
+{
+
+  $this->validate($request,[
+           'title' => 'required',
+           'cover_photo' => 'image',
+           'video_link' => 'required|url'
+  ]);
+             $category = $this->getData($slug);
+        
+     $video = VendorCategoryMetaData::find($id);
+
+     if(empty($video)){
+
+        return redirect()->route('vendor_category_videos_management',$slug)->with('messages','Something wrong going on.');
+              
+     }
+
+     $data1 = json_decode($video->keyValue);
+
+               $file_path =  public_path().'/'.$data1->image;
+               if ($request->hasFile('cover_photo') && file_exists( $file_path )) {
+                   unlink($file_path); 
+               } 
+
+                   $image_name = ($request->hasFile('cover_photo')) ? uploadFileWithAjax('images/vendors/gallery/',$request->cover_photo) : $data1->image ;
+
+                   $data = ['title' => $request->title,'link' => $request->video_link,'image' => $image_name];
+
+                    
+                   $video->key = 'video';
+                   $video->keyValue = json_encode($data);
+                   $video->user_id = Auth::user()->id;
+                   $video->category_id = $category->category_id;
+                   $video->vendor_category_id = $this->getVendorCategoryID($category->category_id);
+                   $video->type = 'videoGallery';
+                   $video->save();
+
+
+   return redirect()->route('vendor_category_videos_management',$slug)->with('messages','Video is updated successfully.');
+      
+}
+
+ 
 #-------------------------------------------------------------------------------------------
 #  Delete Meta Tags
 #-------------------------------------------------------------------------------------------
@@ -649,36 +745,27 @@ public function amenityAssign($slug)
            return response()->json(['status' => 0 , 'errors' => $v->errors()]);
          }else{
 
-         $category = $this->getData($slug);
+          $category = $this->getData($slug);
 
           $status =0;
           $CategoryVaritant = \App\CategoryVariation::where('type','amenity')
                                                     ->where('category_id',$category->category_id)
                                                      ->whereIn('variant_id',$request->amenity);
 
-                 $vv = \App\VendorAmenity::where('user_id',Auth::user()->id)
+          $vv = \App\VendorAmenity::where('user_id',Auth::user()->id)
                                    ->where('category_id',$category->category_id)
                                    ->whereNotIn('amenity_id',$request->amenity)
                                    ->delete();
 
-                       
- 
-
-                
-            
-
           foreach ($request->amenity as $key => $cate) {
 
-               $VendorEventGame = \App\VendorAmenity::where('user_id',Auth::user()->id)
+                $VendorEventGame = \App\VendorAmenity::where('user_id',Auth::user()->id)
                                                     ->where('category_id',$category->category_id)
                                                     ->where('amenity_id',$cate);
 
                 $Amenity = \App\Amenity::find($cate);
 
                 if($VendorEventGame->count() == 0):
-
-                         
-                       
                         $v = new \App\VendorAmenity;
                         $v->category_id = $category->category_id;
                         $v->user_id = Auth::user()->id;
@@ -1214,8 +1301,8 @@ public function seasons($slug) {
 
                         # upload image one by one
                                 $image_name = uploadFileWithAjax('images/vendors/settings/',$request->$col);
-
-                                 $this->DeleteMetaImages($request->meta);
+                                 $this->DeleteMetaImages($request->meta,$category->category_id,$request->type);
+                               //  $this->DeleteMetaImages($request->meta);
                         
                                  $parent = !empty($request->parent) ? $request->parent : 0;
                                  $this->saveCategoryMetaData($request->meta,$request->type,$image_name,$category->category_id);
@@ -1243,6 +1330,9 @@ public function seasons($slug) {
 
 
  }
+
+
+
 
 
 

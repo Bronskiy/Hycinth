@@ -46,11 +46,16 @@
                             {{textarea($errors,'Deal Message Text*','message_text',$deal->message_text)}}
                           </div>
                            <div class="col-lg-6">
-                              {{choosefile($errors,'Picture For This Deal*','image')}}
+                              <!-- {{choosefile($errors,'Picture For This Deal*','image')}} -->
+                            <div class="form-group">
+                              <label class="label-file">Picture For This Deal*</label>
+                               <input type="file" accept="image/*" onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="image">
+                           </div>
+
                             </div>
                             <div class="col-md-6">
                              <div class="deal-container">
-                              <img src="{{url($deal->image)}}">
+                              <img src="{{url($deal->image)}}" id="image_src" width="200">
                            </div>
                            </div>
                         </div>
@@ -68,4 +73,5 @@
 
 @section('scripts')
 <script src="{{url('/js/validations/dealValidation.js')}}"></script>
+<script src="{{url('/js/validations/imageShow.js')}}"></script>
 @endsection

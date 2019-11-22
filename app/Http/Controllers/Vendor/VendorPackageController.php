@@ -18,8 +18,8 @@ class VendorPackageController extends Controller
 
 
     public function packages($slug) {
-       $category = $this->getData($slug);
-       $packages = VendorPackage::where([
+         $category = $this->getData($slug);
+         $packages = VendorPackage::where([
                       'category_id' => $category->id,
                       'user_id'=> Auth::User()->id
                     ])
@@ -85,6 +85,7 @@ class VendorPackageController extends Controller
           'user_id' => $user->id,
           'type' => 'amenities',
           'key' => 'amenity',
+          'vendor_category_id' => $this->getVendorCategoryID($category->category_id),
           'key_value' => $value 
          ]); 
         }
@@ -99,6 +100,7 @@ class VendorPackageController extends Controller
             'user_id' => $user->id,
             'type' => 'events',
             'key' => 'event',
+            'vendor_category_id' => $this->getVendorCategoryID($category->category_id),
             'key_value' => $value 
            ]); 
           }
@@ -170,6 +172,7 @@ public function packagesUpdate(Request $request, $slug, $id) {
               'category_id' => $category->id,
               'type' => 'amenities'
             ])->delete();
+              
 
         foreach ($request->amenity as $key => $value) {
          PackageMetaData::create([
@@ -269,5 +272,27 @@ public function getData($slug) {
                      ->route('vendor_dashboard')
                     ->with('messages','Please check your url, Its wrong!');   	   
    }
+
+
+
+
+
+
+
+
+public function getVendorCategoryID($category_id)
+{
+        $VendorCategory = \App\VendorCategory::where('user_id',Auth::user()->id)
+       ->where('category_id',$category_id);
+       $vendor = $VendorCategory->first();
+       return $vendor_category_id = $VendorCategory->count() > 0 ? $vendor->id : 0;
+
+}
+
+
+
+
+
+
 
 }

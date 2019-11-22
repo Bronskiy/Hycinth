@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="{{url('/frontend/css/styles.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('/frontend/css/responsive.css')}}">
 </head>
-<body class="{{\Request::route()->getName() === 'vendor_detail_page' ? 'gray-bg' : ''}}">
+<body class="{{\Request::route()->getName() === 'vendor_detail_page' || \Request::route()->getName() === 'myBusinessView' ? 'gray-bg' : ''}}">
 	 
 @if(\Request::route()->getName() =="homepage" || \Request::route()->getName() =="homepage2")
 @include('includes.header')
@@ -90,7 +90,7 @@ $(window).load(function() {
 
 });
 
-  
+ 
             $(function () {
                 $('#datetimepicker1').datetimepicker();
             });

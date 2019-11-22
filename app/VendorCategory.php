@@ -11,6 +11,10 @@ class VendorCategory extends Model
 
      use Sluggable;
      use SluggableScopeHelpers;
+
+     protected $fillable = [
+        'parent', 'title', 'user_id', 'category_id', 'status', 'business_url', 'publish'
+    ];
     
         public function sluggable()
         {
@@ -38,6 +42,12 @@ class VendorCategory extends Model
     public function faqs()
     {
        return $this->hasMany('App\FAQs','vendor_category_id','id');
+    }
+
+    
+    public function VendorPackage()
+    {
+       return $this->hasMany('App\VendorPackage','vendor_category_id','id');
     }
 
 

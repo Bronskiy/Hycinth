@@ -10722,3 +10722,46 @@ ul{
     padding: 105px 10px;
     cursor: default;
 }
+/*modal css*/
+.modal-dialog {
+    max-width: 700px;
+}
+.modal-content{
+    border: 5px solid #3f4d67;
+    border-radius: 14px;
+}
+.modal-header {
+    background: #3f4d67;
+}
+.modal-header .modal-title{
+    font-size: 22px;
+    color: #fff;
+}
+.modal-header .close{
+  color: #fff;
+}
+.custom-control-label::after {
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block;
+    width: 20px;
+    height: 20px;
+    content: "";
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+}
+.custom-control-label{
+    font-size: 14px;
+    color: #888;
+}
+
+.status-btns {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+

@@ -12,6 +12,7 @@
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url(route('admin_dashboard'))}}"><i class="feather icon-home"></i></a></li>
+                    <li class="breadcrumb-item"><a href="javascript:void(0);">Vendors</a></li>
                 </ul>
             </div>
         </div>
@@ -38,8 +39,7 @@
                                                         
                                                         @php $i=1; @endphp
                                                         <th>Name</th>
-                                                        <th>Email</th>    
-                                                        <th>Profile</th>    
+                                                        <th>Email</th>      
                                                         <th>Status</th>    
                                                         <th width="120">Action</th>                                              
                                                     </tr>
@@ -73,7 +73,6 @@ $(function() {
         columns: [
              { data: 'name', name: 'name' },
              { data: 'email', name: 'email' },
-             { data: 'profile', name: 'profile' },
              { data: 'status', name: 'status' },
              { data: 'action', name: 'action' },
         ]

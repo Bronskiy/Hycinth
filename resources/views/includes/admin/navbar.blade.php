@@ -26,6 +26,10 @@
                         <a href="{{url(route('admin_dashboard'))}}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                     </li>
 
+                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item {{ \Request::route()->getName() === 'admin.business.index'
+                 ? 'nav-item active' : 'nav-item' }}">
+                        <a href="{{url(route('admin.business.index'))}}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-briefcase"></i></span><span class="pcoded-mtext">Businesses</span></a>
+                    </li>
 
                 <li class="nav-item pcoded-menu-caption">
                     <label>Management</label>
@@ -66,12 +70,12 @@
                 </li>
 
 
-                <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_users', 'list_vendors'],'pcoded-trigger') ?>" >
+                <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_users', 'list_vendors', 'admin_vendor_business'],'pcoded-trigger') ?>" >
                 <a href="javascript:" class="nav-link "><span class="pcoded-micon">
                     <i class="feather icon-box"></i></span><span class="pcoded-mtext">User/Vendor Management</span></a>
-                <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['list_users', 'list_vendors'], 'block') ?>;">
+                <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['list_users', 'list_vendors', 'admin_vendor_business'], 'block') ?>;">
                     <li class="<?= ActiveMenu(['list_users'],'active') ?>"><a href="{{ route('list_users') }}" class="">User Management</a></li>
-                    <li class="<?= ActiveMenu(['list_vendors'],'active') ?>"><a href="{{ route('list_vendors') }}" class="">Vendor Management</a></li>
+                    <li class="<?= ActiveMenu(['list_vendors', 'admin_vendor_business'],'active') ?>"><a href="{{ route('list_vendors') }}" class="">Vendor Management</a></li>
                 </ul>
                 </li>
 

@@ -91,22 +91,21 @@
              <div class="col-lg-9">
                 <div class="rating-content"> 
                    <div class="review-block-rate">
-                                <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-
+                                <span class="btn btn-warning btn-xs" aria-label="Left Align">
                                   <span class="fas fa-star" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                </span>
+                                <span class="btn btn-warning btn-xs" aria-label="Left Align">
+                                 <span class="fas fa-star" aria-hidden="true"></span>
+                                </span>
+                                <span class="btn btn-warning btn-xs" aria-label="Left Align">
                                   <span class="fas fa-star" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                                </span>
+                                <span class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
                                   <span class="fas fa-star" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                                </span>
+                                <span class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
                                   <span class="fas fa-star" aria-hidden="true"></span>
-                                </button>
-                                <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                  <span class="fas fa-star" aria-hidden="true"></span>
-                                </button>
+                                </span>
                             </div>
                             <div class="review-block-title">this was nice in buy</div>
                             <div class="review-block-description">this was nice in buy. this was nice in buy. this was nice in buy. this was nice in buy this was nice in buy this was nice in buy this was nice in buy this was nice in buy</div>

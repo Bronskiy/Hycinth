@@ -1,5 +1,64 @@
 <?php 
 
+
+
+
+
+
+function ProgressBar($percent,$total = 20)
+{
+
+   
+    $text ='';
+    $text .='<div class="progress">';
+    $text .='<div class="progress-bar bg-'.ProgressBarColor($percent).'" role="progressbar" aria-valuenow="'.$percent.'" aria-valuemin="0" aria-valuemax="100" style="width: '.$percent.'%">';
+    $text .='<span class="sr-only">'.$percent.'% '.ProgressBarColor($percent,1).'</span>';
+    $text .='</div>';
+    $text .='</div>';
+
+    return $text;
+}
+
+
+
+
+ function ProgressBarColor($percent,$type=0)
+{
+
+ 
+
+
+   switch ($percent) {
+     case $percent <= 25 && $percent > 0:
+       return $type == 0 ? 'danger' : 'In Complete (danger)';
+       break;
+    case $percent <= 50 && $percent > 25:
+       return $type == 0 ? 'warning' : 'In Complete (warning)';
+       break;
+    case $percent <= 75 && $percent > 50:
+      return $type == 0 ? 'info' : 'In Complete (info)';
+       
+       break;
+    case $percent <= 100 && $percent > 75:
+
+    return $type == 0 ? 'success' : 'In Complete (success)';
+       
+       break;
+     default:
+       # code...
+       break;
+   }
+}
+
+
+
+
+
+
+
+
+
+
 function createAction($data, $editUrl, $stsUrl) {
             $text  ='<div class="btn-group">';
             $text .='<button type="button" class="btn btn-primary">Action</button>';

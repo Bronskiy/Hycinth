@@ -117,6 +117,15 @@
                <li role="presentation" class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_prohibtion_management')) ? 'active' : '' }}">
                    <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_prohibtion_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_prohibtion_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Prohibtion & Restrictions</a>
               </li>
+              
+             @if($cate->business_url != "")
+               <li role="presentation">
+                   <a target="_blank" href="{{url(route('myBusinessView',[$cate->category->slug,$cate->business_url]))}}">
+                    <span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+                      Preview Business
+                   </a>
+              </li>
+              @endif
 
             </ul>
       </li>

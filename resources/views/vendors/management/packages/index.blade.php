@@ -150,19 +150,6 @@
 </table>
 </div>
 
-
-<!-- rk package details end -->     
- <!-- <form method="post" action="{{ route('vendor_packagesAddOns_management', ['slug' => $slug, 'id' => $f->id]) }}">
-@csrf
-<div class="input_fields_wrap">
-    <div class="form-group"><input id="title[]" required class="form-control" name="title[]" placeholder="Title"></div>
-    <div class="form-group"><input type="number" required class="form-control" id="price[]" name="price[]" placeholder="Price"></div>
-</div>
- <button id="add_field_button_{{$k}}" onclick="addForm(this.id)" type="button" class="cstm-btn">Add More Fields</button>
-
-  <button type="submit" class="cstm-btn">Save</button>
- </form> -->
-
      <div class="pkg-footer text-center">
       <ul class="acrdn-action-btns single-row">
           <li><a href="{{ route('vendor_packagesedit_management', ['slug' => $category->slug, 'id' => $f->id]) }}" class="action_btn dark-btn"><i class="fas fa-pencil-alt"></i></a></li>

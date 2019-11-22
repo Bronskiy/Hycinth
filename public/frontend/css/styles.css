@@ -1,19 +1,9 @@
 /*fonts included here*/
 
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900&display=swap');
+/*@import url('https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900&display=swap');*/
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900&display=swap');
 /*********************/
 /* Google Material icons */
-@import "http://fonts.googleapis.com/icon?family=Material+Icons";
-
-/* Propeller css */
-@import "dist/css/propeller.min.css";
-
-/* Bootstrap datetimepicker */
-@import "datetimepicker/css/bootstrap-datetimepicker.css";
-
-/* Propeller datetimepicker */
-@import "datetimepicker/css/pmd-datetimepicker.css";
-/* reset css starts here */
 
 a {
     cursor: pointer;
@@ -127,7 +117,8 @@ figure {
 }
 
 body {
-    font-family: 'Raleway', sans-serif !important;
+    /*font-family: 'Raleway', sans-serif !important;*/
+    font-family: 'Poppins', sans-serif !important;
     font-weight: normal;
     overflow-x: hidden;
     position: relative;
@@ -767,6 +758,7 @@ nav#tool-nav #menus-list li a:hover {
     display: inline-flex;
     align-items: center;
     color: #fff;
+    padding: 0;
 }
 #profileDropdown p {
     font-size: 17px;
@@ -775,6 +767,7 @@ nav#tool-nav #menus-list li a:hover {
     display: inline-block;
     margin-bottom: 0;
     padding:0px 4px;
+   white-space: nowrap;
 }
 #profileDropdown:hover{
     color: #eda208;
@@ -942,7 +935,7 @@ nav#tool-nav #menus-list li a:hover {
 
 .banner-content {
     padding: 10px;
-    margin-top: 290px;
+    margin-top: 250px;
     display: inline-block;
     width: 100%;
     text-align: center;
@@ -953,7 +946,8 @@ nav#tool-nav #menus-list li a:hover {
 .banner-content h1 {
     font-size: 75px;
     color: #fff;
-    font-weight: 900;
+    line-height: 1;
+    font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 10px;
 }
@@ -2911,7 +2905,8 @@ nav#tool-nav #menus-list li a:before {
 
 .top-bar.inner-header .dropdown-item:focus,
 .top-bar.inner-header .dropdown-item:hover {
-    background-color: #0b1836 !important;
+    background-color: #eda108 !important;
+    color: #fff;
 }
 
 .top-bar.inner-header ul.inn-top-navigation > li.user i {
@@ -4193,6 +4188,7 @@ form label {
 #Photo-slider ul.slides li, #Video-slider ul.slides li {
     max-height: 400px;
     position: relative;
+    width: 50%;
 }
 #Photo-slider .slides li> img, #Video-slider .slides li> img{
     height: 400px;
@@ -4310,6 +4306,10 @@ form label {
 
 .review-block-rate {
     margin-bottom: 12px;
+}
+.review-block-rate .btn {
+    padding: 3px 6px;
+    font-size: 12px;
 }
 .review-block-title {
     font-size: 20px;
@@ -4574,4 +4574,24 @@ form label {
 
 .video-container.custom-video-container.playing .play-btn{
     display: none !important;
+}
+.contact-map {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: block;
+}
+.contact-map iframe{
+    position: absolute;
+    width: 100%;
+    height:100%;
+    left: 0;
+    top: 0;
+}
+.contact-us-sec .sec-card{
+  padding: 0;
+}
+.contact-us {
+    padding: 30px 25px;
+    padding-right: 0;
 }

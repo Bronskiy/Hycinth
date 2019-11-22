@@ -22,27 +22,7 @@
 						            </li>
 						            @endforeach
 						            @endif
-						           <!--  <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li>
-						            <li>
-						              <img src="/frontend/images/menu-vendor.png" />
-						            </li> -->
+						           
 						          </ul>
 						        </div>
 						        <div id="Photo-carousel" class="flexslider">
@@ -71,13 +51,14 @@
                                           $data = json_decode($video->keyValue);
 
                                           $videoLink = !empty($data) > 0 ? $data->link : '';
+                                          $videoImage = !empty($data) > 0 ? $data->image : '';
                                           $videotitle = !empty($data) > 0 ? $data->title : '';
 						          	 ?>
 						            <li>
 						            	<a href="javascript:void(0);" class="play-btn play-model-video" data-link="{{$videoLink}}" data-title="{{$videotitle}}">
 						            		<span><i class="far fa-play-circle"></i></span>
 						            	</a>
-						              <img src="/frontend/images/menu-vendor.png" />
+						              <img src="{{url($videoImage)}}" />
 						            </li>
 						            @endforeach
 						         @endif

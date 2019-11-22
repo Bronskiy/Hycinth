@@ -28,29 +28,32 @@
 <div class="row">
 
   @if(count($videos) == 0)
-      <div class="col-md-12">
-                    <div class="alert alert-warning" role="alert">No Videos.</div>
+                  <div class="col-md-12">
+                       <div class="alert alert-warning" role="alert">No Videos.</div>
                   </div>
   @endif
  
     @foreach($videos as $img)
  
       <?php $arr = (array)json_decode($img->keyValue); ?>
+
       <div class="col-md-6">
            <div class="gallery-card">
             <div class="video-gallery-container">
              <div class="video-container">
+
               <iframe width="661" height="372" src="{{$arr['link']}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
             </div>
               <div class="card-info">
                 <h4>{{$arr['title']}}</h4>
                 <ul class="acrdn-action-btns">
-                   <!-- <li><a href="javascript:void(0);" class="action_btn primary-btn"><i class="fas fa-pencil-alt"></i></a></li> -->
-                  <li><a href="javascript:void(0);" class="action_btn danger-btn"><i class="fas fa-trash-alt"></i></a></li>
+                  <li><a href="{{url(route('vendor_category_videos_edit_management',[$slug,$img->id]))}}" class="action_btn primary-btn"><i class="fas fa-pencil-alt"></i></a></li>  
+                  <li><a href="{{url(route('vendor_category_videos_delete_management',[$slug,$img->id]))}}" class="action_btn danger-btn"><i class="fas fa-trash-alt"></i></a></li>
              </ul>
               </div>
             </div>
-      </div>
+        </div>
     </div>
 
     @endforeach
