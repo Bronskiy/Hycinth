@@ -13,11 +13,30 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.0/flexslider.min.css">
     <link rel="stylesheet" type="text/css" href="{{url('/frontend/css/bootstrap-datetimepicker.min.css')}}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{url('/frontend/css/styles.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('/frontend/css/responsive.css')}}">
+
+<style type="text/css">
+ .custom-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #11111169;
+    z-index: 99;
+    display: none;
+}
+</style>
+
 </head>
-<body class="{{\Request::route()->getName() === 'vendor_detail_page' || \Request::route()->getName() === 'myBusinessView' ? 'gray-bg' : ''}}">
-	 
+<body data-url="{{url('/')}}" class="{{\Request::route()->getName() === 'vendor_detail_page' || \Request::route()->getName() === 'myBusinessView' ? 'gray-bg' : ''}}">
+	
+<div class="custom-loading"></div>
+
+
+
 @if(\Request::route()->getName() =="homepage" || \Request::route()->getName() =="homepage2")
 @include('includes.header')
 @else
@@ -36,12 +55,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.rawgit.com/michalsnik/aos/2.0.4/dist/aos.js"></script>
     <script src="{{url('/frontend/js/animation.js')}}"></script>
+
+
+    <script src="{{url('/frontend/js/ResizeSensor.js')}}"></script>
+    <script src="{{url('/frontend/js/sticky-sidebar.min.js')}}"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="{{url('/frontend/js/bootstrap-datetimepicker.min.js')}}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.0/jquery.flexslider.min.js"></script>
     <script type="text/javascript" src="{{url('/frontend/js/owl.carousel.min.js')}}"></script>
     <script src="https://yauzer.com/js/validate.min.js"></script>
     <script type="text/javascript" src="{{url('/frontend/js/custom.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
     <script> 
         AOS.init();
     </script>

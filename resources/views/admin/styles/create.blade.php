@@ -39,7 +39,8 @@
 
                   <div class="form-group">
                     <label>Image</label>
-                    <input required type="file" id="image" name="image" accept="image/png, image/jpeg">
+                    <input required accept="image/*" onchange="ValidateSingleInput(this, 'image_src')" type="file" id="image" name="image"/>
+                    <img src="" id="image_src" style="width: 100px; height: 100px; display: none"/>
                     @if ($errors->has('image'))
                         <div class="error">{{ $errors->first('image') }}</div>
                     @endif
@@ -72,9 +73,10 @@
 
 @section('scripts')
 <script src="{{url('/admin-assets/js/validations/valueValidation.js')}}"></script>
-<script type="text/javascript">
+<script src="{{url('/js/validations/imageShow.js')}}"></script>
+<!-- <script type="text/javascript">
   $('#image').on('change', function(){
     $(this).parent().find('label').css('display', 'none');
   });
-</script>
+</script> -->
 @endsection

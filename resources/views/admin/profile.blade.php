@@ -40,7 +40,7 @@
                    <div class="profile-image">
                          <input type="file" name="image" accept="image/*" onchange="ValidateSingleInput(this, 'image_src')" id="selImage" class="form-control" required>
                          
-                         <img id="image_src" style="width: 100px; height: 100px;" src="{{ Auth::User()->profile_image ? asset('').'/'.Auth::User()->profile_image : asset('/images/user.jpg') }}">
+                         <img id="image_src" class="img-radius" style="width: 100px; height: 100px; margin-top: 6px;" src="{{ Auth::User()->profile_image ? asset('').'/'.Auth::User()->profile_image : asset('/images/user.jpg') }}">
 
                           @if ($errors->has('image'))
                               <div class="error">{{ $errors->first('image') }}</div>

@@ -31,6 +31,7 @@ public function index2(Request $request,$cateSlug,$vendorSlug)
 {
      $category = Category::where('slug',$cateSlug);
 	 $vendorCategory = VendorCategory::with([
+	 	'VendorPackage',
 	 	'basicInfo',
 	 	'faqs',
 	 	'DealsDiscount',
@@ -44,7 +45,7 @@ public function index2(Request $request,$cateSlug,$vendorSlug)
 	 	abort(404);
 	 }
 
-	$vendor =  $vendorCategory->first();
+    $vendor =  $vendorCategory->first();
 
     if(!empty($request->test)){
 

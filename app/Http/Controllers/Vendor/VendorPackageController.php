@@ -22,8 +22,9 @@ class VendorPackageController extends Controller
          $packages = VendorPackage::where([
                       'category_id' => $category->id,
                       'user_id'=> Auth::User()->id
-                    ])
-                    ->paginate(10);
+                    ])->paginate(10);
+
+ 
       return view('vendors.management.packages.index')
             ->with('slug', $slug)
             ->with('packages', $packages)
@@ -39,7 +40,7 @@ class VendorPackageController extends Controller
 
 
 
-    public function packagesAdd(Request $request, $slug) {  
+    public function packagesAdd(Request $request, $slug) {
        $category = $this->getData($slug);      
          return view('vendors.management.packages.add')
               ->with('slug', $slug)
@@ -68,11 +69,13 @@ class VendorPackageController extends Controller
           ]);
 
         $category = $this->getData($slug);
+        $vendor_category_id = $this->getVendorCategoryID($category->id);
         $user = Auth::User();
 
         $request['category_id'] = $category->id;
         $request['user_id'] = $user->id;
         $request['status'] = 1;
+        $request['vendor_category_id'] = $vendor_category_id;
 
        $vendorPack = VendorPackage::create($request->all());
 
@@ -85,7 +88,7 @@ class VendorPackageController extends Controller
           'user_id' => $user->id,
           'type' => 'amenities',
           'key' => 'amenity',
-          'vendor_category_id' => $this->getVendorCategoryID($category->category_id),
+          'vendor_category_id' => $vendor_category_id,
           'key_value' => $value 
          ]); 
         }
@@ -100,7 +103,7 @@ class VendorPackageController extends Controller
             'user_id' => $user->id,
             'type' => 'events',
             'key' => 'event',
-            'vendor_category_id' => $this->getVendorCategoryID($category->category_id),
+            'vendor_category_id' => $vendor_category_id,
             'key_value' => $value 
            ]); 
           }
@@ -273,25 +276,10 @@ public function getData($slug) {
                     ->with('messages','Please check your url, Its wrong!');   	   
    }
 
-
-
-
-
-
-
-
-public function getVendorCategoryID($category_id)
-{
-        $VendorCategory = \App\VendorCategory::where('user_id',Auth::user()->id)
-       ->where('category_id',$category_id);
-       $vendor = $VendorCategory->first();
-       return $vendor_category_id = $VendorCategory->count() > 0 ? $vendor->id : 0;
-
+public function getVendorCategoryID($category_id) {
+       $vendor = \App\VendorCategory::where(['user_id'=> Auth::User()->id, 'category_id'=> $category_id])->first();
+       return $vendor_category_id = $vendor->count() > 0 ? $vendor->id : 0;
 }
-
-
-
-
 
 
 

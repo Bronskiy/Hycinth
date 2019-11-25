@@ -1,7 +1,17 @@
 <?php 
 
 
+ function notoficationBusinessFlash($type,$msg,$status)
+{
 
+  if($msg !=null && $msg->count() > 0 && $type == "vendor" && $status == 4){
+      $text ='<div class="instruction-div">';
+      $text .='<p class="blink-text"><i class="fa fa-exclamation-triangle"></i> '.$msg->keyValue.'</p>';
+      $text .='</div>';
+
+      return $type == "vendor" ? $text : '';
+  }
+}
 
 
 

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\VendorCategory;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ApprovedBusiness;
 
 class VendorController extends Controller
 {
@@ -17,10 +19,6 @@ class VendorController extends Controller
    	{
    		$vendors = User::where('role', 'vendor')->get();
 		return datatables()->of($vendors)
-		// ->addColumn('profile', function ($t) {
-		// 	$src = $t->profile_image ? asset('').$t->profile_image : asset('/images/user.jpg');
-		// 	return '<img style="width: 100px; height: 100px;" src="'.$src.'"/>';
-		// })
 		->addColumn('action', function ($t) {
 			return $this->createAction($t, 'admin_vendor_business', 'admin_vendor_changeStatus');
 		})
@@ -52,11 +50,7 @@ class VendorController extends Controller
       $statusTitle = '';
       $publishSts = 0;
 
-      if($status == 4) {
-        $statusTitle = 'Rejected';
-        $publishSts = 0;
-      }
-      elseif($status == 3) {
+      if($status == 3) {
         $statusTitle = 'Approved';
         $publishSts = 1;
       }
@@ -70,13 +64,13 @@ class VendorController extends Controller
         $vendorCategory->publish = $publishSts;
         $vendorCategory->save();
         $msg= '<b>'.$vendorCategory->title.'</b> is '.$statusTitle;
+        if($status == 3) {
+          $vendor_page = route('myBusinessView', ['slug' => $vendorCategory->category->slug, 'vendorSlug' => $vendorCategory->business_url]);
+          Mail::to($vendorCategory->vendors->email)->send(new ApprovedBusiness($vendor_page));
+        }
        return redirect(route('admin_vendor_business', $user_id))->with('flash_message', $msg);
      }
      return redirect()->back()->with('flash_message', 'Something Went Woring!');
-  }
-
-  public function rejectBusinessStatus(Request $request) {
-    dd($request->all());
   }
 
    	function createAction($data, $businessUrl, $stsUrl) {

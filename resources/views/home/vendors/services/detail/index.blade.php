@@ -22,7 +22,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-4">
+					<div class="col-lg-4 sticky-form-sidebar">
 						<div class="cstm-btn-grp text-right">
 							<a href="javascript:void(0);" class="cstm-btn"><span class="btn-icon"><i class="fas fa-handshake"></i></span> Hired?</a>
 							<a href="javascript:void(0);" class="cstm-btn"><span class="btn-icon"><i class="fas fa-heart"></i></span> Save</a>
@@ -111,6 +111,7 @@
 
 <div class="faq-sec" id="faq-sec">
 	<div class="pannel-card">
+   
 		<div class="card-heading">
 			<h3>FAQ</h3>			
 		</div>		
@@ -370,18 +371,8 @@
 
 	</div>
 
-
-
-
-
-
-
-
-
-
-
-
 @include('home.vendors.services.detail.packages')
+@include('home.vendors.services.detail.compare')
 
 						<!--Testimonial Page starts here-->
 <section class="testimonial" id="review-sec">
@@ -430,11 +421,8 @@
 
 <script>
 
-
-
-
     
-jQuery(function(){
+jQuery(function() {
 
       
       jQuery("body").on('click','.play-model-video',function(e){
@@ -452,6 +440,37 @@ jQuery(function(){
          $("body").find('#Video-Modal').on('hidden.bs.modal', function () {
                 $('#Video-Modal').find('iframe').attr('src','');
          });
+
+  let comp_pack_arr = [];
+  $('.custom-control-input').click(function() {
+    
+    const package = $(this).data('package');
+    const pack_index = $.inArray(package.id, comp_pack_arr);
+    let pack = `<div class="" id="com_pack_id_${package.id}">${package.title}<a href="#" class="remove_field" data-pack="${package.id}">Remove</a></div>`;
+// $('#compare-div').empty();
+
+    if($(this).is(':checked')) {
+      comp_pack_arr.push(package.id);
+      $('#compare-div').append(pack);
+    } else {
+      // comp_pack_arr = comp_pack_arr.filter(f => f !== package.id);
+      comp_pack_arr.splice(pack_index, 1);
+      $(`#com_pack_id_${package.id}`).remove();
+    }   
+     console.log('add ', comp_pack_arr ); 
+    });
+
+  $('#compare-div').on("click",".remove_field", function(e) {
+    e.preventDefault();
+    const pid = $(this).data('pack');
+    const rm_index = $.inArray(pid, comp_pack_arr);
+    console.log(`#customCheck_${comp_pack_arr[rm_index]}`);
+    $(`#customCheck_${comp_pack_arr[rm_index]}`).prop("checked", false);
+    comp_pack_arr.splice(rm_index, 1);
+    $(this).parent('div').remove();
+    
+    console.log('rm ',  comp_pack_arr );
+  });
 
 });
 

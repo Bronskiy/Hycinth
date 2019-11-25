@@ -1,6 +1,9 @@
 <!-- End here -->
 <div class="venue-card" id="venue-sec">
 	<div class="pannel-card">
+		@if(!empty($types) && !empty($vendor->venueComment) && !empty($vendor->status))
+		 <?= notoficationBusinessFlash($types, $vendor->venueComment, $vendor->status) ?>
+		 @endif
 		<div class="card-heading">
 			<h3>Venue details</h3>			
 		</div>		

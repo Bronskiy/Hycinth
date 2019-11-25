@@ -91,7 +91,6 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
 		Route::get('/vendors/changeStatus/{id}','Admin\VendorController@changeStatus')->name('admin_vendor_changeStatus');
 		Route::get('/vendors/business/{id}','Admin\VendorController@business')->name('admin_vendor_business');
 		Route::get('/vendors/business/changeBusinessStatus/{user_id}/{ven_cat_id}/{status}','Admin\VendorController@changeBusinessStatus')->name('admin_vendor_business_changeBusinessStatus');
-		Route::post('/vendors/business/rejectBusinessStatus','Admin\VendorController@rejectBusinessStatus')->name('admin_vendor_business_rejectBusinessStatus');
 
 		#----------------------------------------------------------------
 		#  Venue Management
@@ -101,6 +100,7 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
 		Route::get('/businesses/ajax_getBusinesses/{status}', 'Admin\BusinessController@ajax_getBusinesses')->name('admin.business.ajax_getBusinesses');
 		Route::get('/businesses/changeBusinessesStatus/{ven_cat_id}/{status}', 'Admin\BusinessController@changeBusinessesStatus')->name('admin_business_changeBusinessesStatus');
 
+		Route::post('/vendors/business/rejectBusinessStatus/{user_id}/{service_id}','Admin\BusinessController@rejectBusinessStatus')->name('admin_vendor_business_rejectBusinessStatus');
 		#----------------------------------------------------------------
 		#  Venue Management
 		#----------------------------------------------------------------
@@ -164,7 +164,7 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
         Route::post('/faqs/{slug}', 'Admin\FaqController@update')->name('admin.faqs.update');
         Route::get('/faqs/status/{slug}', 'Admin\FaqController@changeStatus')->name('admin.faqs.status');
 
-         Route::get('/my-business/{slug}/{vendorSlug}', 'Vendor\MyBusinessController@index')->name('vendorBusinessView');
+        Route::get('/my-business/{slug}/{vendorSlug}', 'Vendor\MyBusinessController@index')->name('vendorBusinessView');
 
 
 });

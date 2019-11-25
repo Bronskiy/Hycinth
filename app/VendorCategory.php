@@ -5,12 +5,13 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
-
+use App\Traits\NotificationFlash;
 class VendorCategory extends Model
 {
 
      use Sluggable;
      use SluggableScopeHelpers;
+     use NotificationFlash;
 
      protected $fillable = [
         'parent', 'title', 'user_id', 'category_id', 'status', 'business_url', 'publish'
@@ -32,6 +33,9 @@ class VendorCategory extends Model
     }
 
 
+    
+
+
     public function subcategory()
     {
        return $this->hasMany('App\VendorCategory','parent');
@@ -47,7 +51,7 @@ class VendorCategory extends Model
     
     public function VendorPackage()
     {
-       return $this->hasMany('App\VendorPackage','vendor_category_id','id');
+       return $this->hasMany('App\VendorPackage','vendor_category_id');
     }
 
 

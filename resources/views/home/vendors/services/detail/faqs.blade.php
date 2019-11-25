@@ -1,11 +1,13 @@
 <div class="faq-sec" id="faq-sec">
 	<div class="pannel-card">
+ 
+	 <?= notoficationBusinessFlash($types,$vendor->faqComment,$vendor->status) ?>		
 		<div class="card-heading">
 			<h3>FAQ</h3>			
 		</div>		
 		<div class="faq-content">
 
-
+ 
 				@if($vendor->faqs->count() > 0)
 				   @foreach($vendor->faqs as $faq)
 

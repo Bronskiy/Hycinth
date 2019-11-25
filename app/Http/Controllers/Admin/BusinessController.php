@@ -4,10 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
 use App\VendorCategory;
+use App\Models\Admin\ServiceAprovalProcess;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RejectedBusiness;
+use App\Mail\ApprovedBusiness;
 
 class BusinessController extends Controller
 {
+   public $ignors = [
+     '_token', 'return_url', 'vendor_page'
+   ];
+
     public function index(Request $request) {
     	return view('admin.businesses.index')->with('title', 'Businesses');	
     }
@@ -24,14 +33,11 @@ class BusinessController extends Controller
 
   public function changeBusinessesStatus($id, $status) {
     $vendorCategory = VendorCategory::find($id);
+
       $statusTitle = '';
       $publishSts = 0;
 
-      if($status == 4) {
-        $statusTitle = 'Rejected';
-        $publishSts = 0;
-      }
-      elseif($status == 3) {
+      if($status == 3) {
         $statusTitle = 'Approved';
         $publishSts = 1;
       }
@@ -45,6 +51,12 @@ class BusinessController extends Controller
         $vendorCategory->publish = $publishSts;
         $vendorCategory->save();
         $msg= '<b>'.$vendorCategory->title.'</b> is '.$statusTitle;
+
+        if($status == 3) {
+          $vendor_page = route('myBusinessView', ['slug' => $vendorCategory->category->slug, 'vendorSlug' => $vendorCategory->business_url]);
+          Mail::to($vendorCategory->vendors->email)->send(new ApprovedBusiness($vendor_page));
+        }
+
        return redirect(route('admin.business.index'))->with('flash_message', $msg);
      }
      return redirect()->back()->with('flash_message', 'Something Went Woring!');
@@ -60,6 +72,43 @@ class BusinessController extends Controller
       }
     }
       return $text;
+  }
+
+  public function rejectBusinessStatus(Request $request, $user_id, $service_id) {
+    $user = User::find($user_id);
+    
+
+    ServiceAprovalProcess::where(['vendor_service_id'=> $service_id, 'user_id'=> $user_id])->delete();
+
+
+    foreach ($request->all() as $key => $value) {
+      if(!in_array($key, $this->ignors) && $value):
+        $chk = ServiceAprovalProcess::where(['vendor_service_id'=> $service_id, 'user_id'=> $user_id, 'key' => $key])->first();
+        if(!empty($chk)) {
+           $chk->key = $key;
+           $chk->parent = $chk->parent;
+         } else {
+           $chk = new ServiceAprovalProcess;
+           $chk->key = $key;
+           $chk->parent = 0;
+         }
+         $chk->parent = 0;
+         $chk->keyValue = $value;
+         $chk->user_id = $user_id;
+         $chk->vendor_service_id = $service_id;
+         $chk->save();
+      endif;
+    }
+    $vendorCategory = VendorCategory::find($service_id);
+    $vendorCategory->status = 4;
+    $vendorCategory->publish = 0;
+    $vendorCategory->save();
+    $request['user'] = $user;
+    $request['category'] = $vendorCategory;
+    
+    Mail::to($user->email)->send(new RejectedBusiness($request));
+    
+    return redirect($request->return_url)->with('flash_message', '<b>'.$vendorCategory->title.'</b> is Rejected');
   }
 
    	function createAction($data, $businessUrl, $stsUrl) {
@@ -86,9 +135,9 @@ class BusinessController extends Controller
               $text .='<div class="dropdown-divider"></div>';
             }
             if($data->status !== 4) {
-              $text .='<button type="button" class="dropdown-item" style="cursor: pointer;" data-toggle="modal" data-target="#exampleModal">
+              $text .='<a class="dropdown-item" data-toggle="modal" data-action="'.route('admin_vendor_business_rejectBusinessStatus', ['user_id'=> $data->vendors->id, 'service_id' => $data->id]).'" data-vendor_page="'.route('myBusinessView', ['slug' => $data->category->slug, 'url'=> $data->business_url]).'" data-return_url="'.route('admin.business.index').'" onClick = "modalClick(this);" id="openRejectModal" href="javascript:void(0);" data-target="#rejectModal">
                                           Rejected
-                                        </button>';
+                                        </a>';
             }
             $text .='</div>';
             $text .='</div>';

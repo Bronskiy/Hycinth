@@ -28,7 +28,7 @@
 
                     <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item {{ \Request::route()->getName() === 'admin.business.index'
                  ? 'nav-item active' : 'nav-item' }}">
-                        <a href="{{url(route('admin.business.index'))}}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-briefcase"></i></span><span class="pcoded-mtext">Businesses</span></a>
+                        <a href="{{url(route('admin.business.index'))}}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-briefcase"></i></span><span class="pcoded-mtext">Businesses Listing</span></a>
                     </li>
 
                 <li class="nav-item pcoded-menu-caption">

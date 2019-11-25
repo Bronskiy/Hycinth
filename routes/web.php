@@ -22,6 +22,7 @@
 
 
 require __DIR__.'/routing/home/routes.php';
+require __DIR__.'/routing/home/ajax.php';
 require __DIR__.'/routing/admin/routes.php';
 require __DIR__.'/routing/vendor/routes.php';
 require __DIR__.'/routing/user/routes.php';

@@ -23,9 +23,20 @@
 						</div>
 					</div>
 					<div class="col-lg-4">
-						<div class="cstm-btn-grp text-right">
-							<a href="javascript:void(0);" class="cstm-btn"><span class="btn-icon"><i class="fas fa-handshake"></i></span> {{ $currentStatus }}</a>
-							 
+						<div class="success-msg-wrap">
+							<div class="success-message {{!empty($types) && $types == 'admin' ? 'hide' : ''}} @if($vendor->status == 4) reject-message @elseif($vendor->status == 2 || $vendor->status == 1) pending-message @endif">
+                    <figure class="apporved-icon">
+                     @if($vendor->status == 4)
+                      <img src="/frontend/images/reject.png">
+                     @elseif($vendor->status == 3)
+                      <img src="/frontend/images/approve.png">
+                     @elseif($vendor->status == 2 || $vendor->status == 1) 
+                      <img src="/frontend/images/pending.png">
+                     @endif                       
+                    </figure>
+                    <h4 class="success-message__title">{{ $currentStatus }}</h4>
+                    
+                </div>
 						</div>
 					</div>
 				
@@ -84,10 +95,8 @@
 		
 
  
-
+ <?= notoficationBusinessFlash($types,$vendor->GalleryComment,$vendor->status) ?>
 @include('home.vendors.services.detail.gallery')
- 
- 
 @include('home.vendors.services.detail.faqs')
 @include('home.vendors.services.detail.venue')
 @include('home.vendors.services.detail.description')
@@ -100,6 +109,7 @@
 
   <div class="Amenities-card" id="AmenitiesGames-sec">
 	<div class="pannel-card">
+     <?= notoficationBusinessFlash($types,$vendor->AmentityComment,$vendor->status) ?>
 		<div class="card-heading">
 			<h3>Amenities and Games</h3>			
 		</div>		
@@ -148,6 +158,10 @@
 
    <div class="summary-card" id="description-sec">
 	<div class="pannel-card">
+
+
+
+ <?= notoficationBusinessFlash($types,$vendor->prohibtionComment,$vendor->status) ?> 
 		<div class="card-heading">
 			<h3>Prohibtion & Restrictions</h3>			
 		</div>		
@@ -180,8 +194,9 @@
 <!-- ====================== -->
  <div class="Deals-card" id="deals-sec">
 	<div class="pannel-card">
+    <?= notoficationBusinessFlash($types,$vendor->dealComment,$vendor->status) ?>
 		<div class="card-heading">
-			<h3>Deals and Discount</h3>			
+			<h3>Deals and Discount </h3>			
 		</div>		
 		<div class="Deals-content">
 
@@ -231,19 +246,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 					
 				</div>
 			

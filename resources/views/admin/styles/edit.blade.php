@@ -39,13 +39,12 @@
 
                   <div class="form-group">
                     <label>Image</label>
-                    <input type="file" name="image">
+                    <input type="file" name="image" onchange="ValidateSingleInput(this, 'image_src')" accept="image/*" />
                     @if ($errors->has('image'))
                         <div class="error">{{ $errors->first('image') }}</div>
                     @endif
-                  </div>
-
-                  <img src="{{ url('/uploads').'/'.$style->image }}" />
+                    <img id="image_src" class="img-thumbnail" width="100" src="{{ url('/uploads').'/'.$style->image }}" />
+                  </div>                  
                   
                 </div>
 
@@ -74,4 +73,5 @@
 
 @section('scripts')
 <script src="{{url('/admin-assets/js/validations/valueValidation.js')}}"></script>
+<script src="{{url('/js/validations/imageShow.js')}}"></script>
 @endsection

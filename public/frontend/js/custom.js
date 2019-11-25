@@ -1,4 +1,8 @@
- 
+//detail sidebar sticky
+// $(document).ready(function(){
+//     $(".main-detail .col-lg-4").theiaStickySidebar();
+// });
+
 //Toolbox animation
 $(document).ready(function() { 
   $(".toolbox").click(function(){

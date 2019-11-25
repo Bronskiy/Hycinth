@@ -74,6 +74,6 @@
 
 
                     <div class="pagination-container">
-                         {{$categories->links()}}
+                         
                     </div>
 

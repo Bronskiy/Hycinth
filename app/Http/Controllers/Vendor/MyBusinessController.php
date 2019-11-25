@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\VendorCategory;
+//use App\ServiceAprovalProcess;
 use Auth;
 class MyBusinessController extends Controller
 {
@@ -49,7 +50,7 @@ class MyBusinessController extends Controller
 			 	abort(404);
 			 }
 
-	         $vendor =  $vendorCategory->first();
+	       $vendor =  $vendorCategory->first();
 
     
  
@@ -80,21 +81,25 @@ $basicInfo = $vendor->basicInfo->count() > 0 ? 100 : 0;
 $prohibtion = $vendor->prohibtion->count() > 0 ? 100 : 0;
 
 $per = 400 / 100;
+
+$overAll = round($photoVideogalery + $amenitiesAndGames + $venuesPercent + $basicInfo) / $per;
  $percents =[
   'photoVideogalery' => $photoVideogalery,
   'amenitiesAndGames' => $amenitiesAndGames,
   'venuesPercent' => $venuesPercent,
   'basicInfo' => $basicInfo,
   'paymenMethod' => 0,
-  'overAll' => round($photoVideogalery + $amenitiesAndGames + $venuesPercent + $basicInfo) / $per,
+  'overAll' => $overAll,
   'prohibtion' => $prohibtion
 ];
 
 
  
+ $types = Auth::user()->role == "vendor" ? 'vendor' : 'admin';
 
-     return view($this->folderPath.'.vendor_view',$percents)
-	      ->with('games',$games)
+ return view($this->folderPath.'.vendor_view',$percents)
+        ->with('games',$games)
+	      ->with('types',$types)
 	      ->with('reviewing',1)
 	      ->with('amenities',$amenities)
 	      ->with('events',$event)
@@ -102,7 +107,7 @@ $per = 400 / 100;
 	      ->with('services', $vendor->subcategory)
 	      ->with('VendorEvents', $vendor->VendorEvents)
 	      ->with('seasons',$vendor->seasons)
-	      ->with('currentStatus',$this->statusMessages($vendor->status))
+	      ->with('currentStatus',$this->statusMessages($vendor->status,$overAll))
 	      ->with('vendor',$vendor);
 }
  
@@ -127,7 +132,7 @@ public function submitForApproval(Request $request,$slug,$vendorSlug)
      $v->save();
 
 
-    return redirect()->route('myBusinessView',[$slug,$vendorSlug])->with('messages','Your business approval submission has benn submitted successfully.');
+    return redirect()->route('myBusinessView',[$slug,$vendorSlug])->with('messages','Your business approval submission has been submitted successfully.');
       
 	 
 }
@@ -140,25 +145,25 @@ public function submitForApproval(Request $request,$slug,$vendorSlug)
 # status messages
 #---------------------------------------------------------------------------------
 
-public function statusMessages($status)
+public function statusMessages($status,$overAll)
 {
 	switch ($status) {
 		case 1:
-			return 'Complete your profile aleast 80%';
+			return $overAll > 80 ? 'Click Submit Button for Business Approval'  : 'Complete your profile aleast 80% for Business Submission';
 			break;
 
 	    case 2:
 			return 'Waiting for Admin approval.';
 			break;
 	   case 3:
-			return 'Congratulations, Your Business has been approved by Admin.';
+			return 'Approved Business.';
 			break;
 	   case 4:
-			return 'Your business is rejected by admin due to some reasons which are listed in the message. please refine the information then resubmit for approval.';
+			return 'Business rejected due to some reasons which are listed in the email. Please refine the information then resubmit for approval.';
 			break;
 		
 		default:
-			return 'Complete your profile aleast 80%';
+			return 'Complete your profile aleast 80% for Business Submission';
 			break;
 	}
 }

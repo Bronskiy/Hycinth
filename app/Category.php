@@ -115,4 +115,11 @@ class Category extends Model
 
 
 
+    public function businesses()
+    {
+       return $this->hasMany('App\VendorCategory','category_id')->where('status',3)->where('publish',1);
+    }
+
+
+
 }
