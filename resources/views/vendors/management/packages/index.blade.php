@@ -54,7 +54,7 @@
   </div>
 
       <!-- rk package details start -->
-      @if(count($category->categoryAmenity) || count($category->categoryEvent))
+      @if(count($category->categoryAmenity) || count($category->categoryEvent) || count($category->CategoryGames))
 
      <div class="pricing-category">
 
@@ -65,30 +65,35 @@
       @foreach($category->categoryAmenity as $cate)
      @if(activePackageMetaData(\Auth::User()->id, $category->id, $cate->Amenity->id, 'amenities', $f->id)=='checked')
      <ul class="pkg-listing-grp">  
-       <li class="pkg-listing"><span class="fa-li"><i class="fas fa-check"></i></span>{{$cate->Amenity->name}}</li>
+       <li class="pkg-listing">{{$cate->Amenity->name}}</li>
      </ul>
-     <!-- <div class="vendor-category">
-      <div class="category-checkboxes category-title">
-        {{$cate->Amenity->name}}
-      </div>
-     </div> -->
+     
      @endif
    @endforeach
  </div>
  @endif
+
+@if(count($category->CategoryGames))
+<div class="col-md-6">
+  <label for="no_of_hours">Games</label>
+            @foreach($category->CategoryGames as $cate)  
+              @if(activePackageMetaData(\Auth::User()->id, $category->id, $cate->Amenity->id, 'games', $f->id)=='checked')
+        <ul class="pkg-listing-grp">  
+          <li class="pkg-listing">{{$cate->Amenity->name}}</li>
+        </ul>
+        @endif  
+                 @endforeach 
+             </div>
+      @endif
+
  @if(count($category->categoryEvent))
 <div class="col-md-6">
-  <label for="no_of_hours">Game And Events</label>
+  <label for="no_of_hours">Events</label>
 @foreach($category->categoryEvent as $cate)
         @if(activePackageMetaData(\Auth::User()->id, $category->id, $cate->Event->id, 'events', $f->id)=='checked')
-       <!-- <div class="vendor-category">
-          <div class="category-checkboxes category-title">
-          {{$cate->Event->name}}
-        </div>
-        </div> -->
         <ul class="pkg-listing-grp">  
-       <li class="pkg-listing"><span class="fa-li"><i class="fas fa-check"></i></span>{{$cate->Event->name}}</li>
-     </ul>
+          <li class="pkg-listing">{{$cate->Event->name}}</li>
+        </ul>
         @endif
      @endforeach
 </div>
@@ -114,41 +119,40 @@
    @endforeach
  </div>
  @endif
- <div class="pricing-category">
 <table class="pricing-inn-table">
   <tr>
-      <th><label>Price</label></th>
+      <th>Price</th>
       <td>${{$f->price}}</td>
   </tr>
    <tr>
-   <th><label>Number Of Hours</label></th>
+   <th>Number Of Hours</th>
     <td>{{$f->no_of_hours}}</td>
   </tr>
      <tr>
-   <th><label>Number Of Days</label></th>
+   <th>Number Of Days</th>
     <td>{{$f->no_of_days}}</td>
   </tr>
   
     <tr>
-      <th><label>Price Type</label></th>
+      <th>Price Type</th>
      <td>{{ $f->price_type === 'fix' ? 'Fix Price' : 'Price Per Person' }}</td>
    </tr>
 
  <tr>
-  <th><label>Minimum Person</label></th>
+  <th>Minimum Person</th>
      <td>{{$f->min_person}}</td>
    </tr>
 <tr>
-<th><label>Maximum Person</label></th>
+<th>Maximum Person</th>
 <td>{{$f->max_person}}</td>
 </tr>
 <tr>
   <th>
-<label>Status</label></th>
+Status</th>
 <td>{{ $f->status === 1 ? 'Active' : 'InActive' }}</td>
 </tr>
 </table>
-</div>
+
 
      <div class="pkg-footer text-center">
       <ul class="acrdn-action-btns single-row">

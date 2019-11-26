@@ -1,11 +1,11 @@
 <div class="col-lg-4">
 				 <aside>
 				 	<div class="side-form-wrap">
-
-            <h3>{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','business_name')}}</h3>
+<h3 class="form-heading">{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','business_name')}}</h3>
+       
 				 		<h4>Progress Of Business</h4>
 
-            <table class="table">
+            <table class="table business-progress-table">
                  <tr>
                    <th>1. Basic Information About the Business. ({{$basicInfo}}/100)</th>
                  </tr>

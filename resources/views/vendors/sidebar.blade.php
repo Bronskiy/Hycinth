@@ -120,8 +120,8 @@
               
              @if($cate->business_url != "")
                <li role="presentation">
-                   <a target="_blank" href="{{url(route('myBusinessView',[$cate->category->slug,$cate->business_url]))}}">
-                    <span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+                   <a target="_blank" class="preview-link" href="{{url(route('myBusinessView',[$cate->category->slug,$cate->business_url]))}}">
+                    <span class="arrow-before"><i class="fas fa-eye"></i></span>
                       Preview Business
                    </a>
               </li>

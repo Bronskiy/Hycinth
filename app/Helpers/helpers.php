@@ -1,13 +1,36 @@
 <?php 
 
 
+
+
+
+function checkCategoryWithRequest($name,$category_id)
+{
+   if(\Request::has($name)){
+      $arr = \Request::get($name);
+
+      return in_array($category_id,$arr) ? 'checked' : '';
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
  function notoficationBusinessFlash($type,$msg,$status)
 {
 
   if($msg !=null && $msg->count() > 0 && $type == "vendor" && $status == 4){
-      $text ='<div class="instruction-div">';
-      $text .='<p class="blink-text"><i class="fa fa-exclamation-triangle"></i> '.$msg->keyValue.'</p>';
-      $text .='</div>';
+         $text ='<div class="warning-box space">';
+         $text .='<div class="shadow-box">';
+         $text .='<div class="info-tab tip-icon" title="Useful Tips"><span class="fas fa-exclamation-triangle"> </span> <i></i></div>';
+         $text .='<div class="warning-text"><p><strong>Message: </strong>'.$msg->keyValue.'</p></div></div></div>';
 
       return $type == "vendor" ? $text : '';
   }

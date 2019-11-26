@@ -16,19 +16,21 @@
                  <div class="packages-wrap">
                         <div class="row"> 
 
-@foreach($vendor->VendorPackage as $key => $package)
-                             <div class="col-lg-4">
+        @foreach($vendor->VendorPackage as $key => $package)
+                             <div class="col-lg-4" id="package_clone_{{$package->id}}">
                                    <div class="package-card">
                                     <div class="inn-card">
+                                      
                                       <div class="title">    	
                                         <div class="icon">
                                           <i class="fas fa-hand-holding-usd"></i>
                                         </div>
                                         <span class="pkg-amount">{{custom_format($package->price,2)}}</span>
-                                        <p class="priceType">{{$package->price_type == "per_person" ? "Per Person" : "Fixed Price"}}</p>
+                                       <!--  <p class="priceType">{{$package->price_type == "per_person" ? "Per Person" : "Fixed Price"}}</p> -->
                                       </div>
 
                                       <div class="content">
+                                        <div class="inn-card-body">
                                           <h3 class="price-table-heading">{{$package->title}}</h3>
                                            <div class="pricing-category">
                                                <div class="pkg-summary">
@@ -37,13 +39,23 @@
                                                       <?= $package->description ?>      
                                                      </div>
                                                </div>
+
+                                               @if(!empty($package->menus))
+                                               <div class="pkg-summary">
+                                                  <label>Menus</label> 
+                                                    <div class="card-text">
+                                                      {!! $package->menus !!}      
+                                                     </div>
+                                               </div>
+                                               @endif
+
                                            </div>
 
                                         <!-- rk package details start -->
                                            <div class="pricing-category border-tp-bt">
                                               <div class="row">
                                                  <div class="col-md-6 border-rt">
-                                                       <label for="no_of_hours">Amenities & Games</label>
+                                                       <label for="no_of_hours">Amenities</label>
                                                        <ul class="pkg-listing-grp">  
                                                           @foreach($package->amenities as $amenity)
                                                             <li class="pkg-listing">{{$amenity->amenity->name}}</li>
@@ -59,45 +71,61 @@
                                                             @endforeach
                                                            </ul>
                                                  </div>
+                                                 <div class="col-md-6">
+                                                         <label for="no_of_hours">Games</label>
+                                               
+                                                           <ul class="pkg-listing-grp">  
+                                                            @foreach($package->games as $game)
+                                                               <li class="pkg-listing">{{$game->amenity->name}}</li>
+                                                            @endforeach
+                                                           </ul>
+                                                 </div>
                                               </div>
                                             </div>
 
+                                            @if(count($package->package_addons))
                                         <div class="pricing-category">
-                                              <label for="no_of_hours">Add Ons</label>
-                                                 <div class="vendor-category">
-                                                    <div class="category-checkboxes category-title">
-                                                        Collage Family
-                                                            $5
-                                                    </div>
-                                                 </div>
+                                              <label for="add-ons">Add Ons</label>
+
+                                              @foreach($package->package_addons as $package_addon)
+                                                <div class="vendor-category">
+                                                  <div class="category-checkboxes category-title">
+                                                    {{$package_addon->key}} 
+                                                    ${{$package_addon->key_value}}
+                                                  </div>
+                                                </div>
+                                              @endforeach
                                         </div>
+                                        @endif
                                         
                                   <table class="pricing-inn-table">
                                     <tbody>
-                                      
-                                                              <tr>
-                                                               <th>Service Timing</th>
-                                                              <td>{{$package->no_of_hours}} {{$package->no_of_hours > 1 ? 'Hours' : 'Hour'}}</td>
-                                                            </tr>
-                                                            <tr>
-                                                               <th>Package For (In Days)</th>
-                                                               <td>{{$package->no_of_days}} {{$package->no_of_days > 1 ? 'Days' : 'Day'}}</td>
-                                                            </tr>
-                                                             
-                                                            <tr>
-                                                               <th>Number of Person</th>
-                                                               <td>({{$package->min_person}} - {{$package->max_person}}) Persons</td>
-                                                            </tr>
+                                          <tr>
+                                           <th>Service Timing</th>
+                                          <td>{{$package->no_of_hours}} {{$package->no_of_hours > 1 ? 'Hours' : 'Hour'}}</td>
+                                        </tr>
+                                        <tr>
+                                           <th>Package For (In Days)</th>
+                                           <td>{{$package->no_of_days}} {{$package->no_of_days > 1 ? 'Days' : 'Day'}}</td>
+                                        </tr>
+                                         
+                                        <tr>
+                                           <th>Number of Person</th>
+                                           <td>({{$package->min_person}} - {{$package->max_person}}) Persons</td>
+                                        </tr>
                                     </tbody>
                                   </table>
+                                  </div>
 
                                  @if(empty($reviewing))
-                                  <div class="btn-area">
+                                  <div class="btn-area inn-card-footer" id="buy-content">
                                      <a href="javascript:void(0);" class="cstm-btn">Buy</a>
+                                     @if(count($vendor->VendorPackage) >= 2)
                                       <div class="custom-control custom-checkbox">
                                           <input type="checkbox" data-package="{{$package}}" class="custom-control-input" id="customCheck_{{$package->id}}">
                                           <label class="custom-control-label" for="customCheck_{{$package->id}}">Compare</label>
                                         </div>
+                                        @endif
                                   </div>
                                   @endif
                                        

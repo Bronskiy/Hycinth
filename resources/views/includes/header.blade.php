@@ -37,6 +37,7 @@
       <div class="container">
          <ul class="head-links">
             <li><a href="/">Home</a></li>
+            <li><a href="{{url(route('get_all_venues'))}}">Venues</a></li>
             <li><a href="/vendor/register">New Vendors</a></li>
             <li class="mob-hide">
                <a href="javascript:void(0);" class="fav-list">

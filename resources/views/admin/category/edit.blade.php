@@ -41,7 +41,7 @@
 
                  
   <div class="col-md-6"> {{select3($errors,'Parent','parent','label','0',$parent,$category->parent)}}</div>
-  <div class="col-md-6">{{select3($errors,'SubParent','subparent','label','0',$subparent,$category->subparent)}}</div>
+  <div class="col-md-6" style="display: none">{{select3($errors,'SubParent','subparent','label','0',$subparent,$category->subparent)}}</div>
   <div class="col-md-6">{{textbox($errors,'Name*','label',$category->label)}}</div>
          
 <div class="col-md-6" style="display: none">
@@ -63,7 +63,7 @@
 
  
 
-<div class="col-md-3"> 
+<div class="col-md-4"> 
   <div class="form-group label-floating is-empty"><label class="control-label">Color*</label>
 <input type="color" value="{{$category->color}}" name="color" id="get" style="width: 46px; margin-left: -2px;" onchange="fetch()">
     <input type="text" readonly value="{{$category->color}}" class="form-control valid" name="color" id="color"></div>
@@ -71,7 +71,7 @@
 
 
 
-<div class="col-md-3">
+<div class="col-md-4">
 
    <div class="form-group">
             <label class="label-file">Cover Photo/Video</label>
@@ -79,6 +79,20 @@
             <select name="cover_type" class="form-control">
               <option value="1" <?= $category->cover_type == 1 ? 'selected' : '' ?>>Photo</option>
               <option value="2" <?= $category->cover_type == 2 ? 'selected' : '' ?>>Video</option>
+            </select>
+            
+           </div>
+</div>
+
+
+<div class="col-md-4">
+
+   <div class="form-group">
+            <label class="label-file">Capacity</label>
+
+            <select name="capacity" class="form-control">
+              <option value="0" <?= $category->capacity == 0 ? 'selected' : '' ?>>No</option>
+              <option value="1" <?= $category->capacity == 1 ? 'selected' : '' ?>>Yes</option>
             </select>
             
            </div>

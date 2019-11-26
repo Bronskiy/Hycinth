@@ -96,8 +96,15 @@ public $restrictions =[
        if(!empty($request->test)){
           return $info;
        }
+
+
+       $VendorCategory = VendorCategory::where('category_id',$category->category_id)
+        ->where('user_id',Auth::user()->id)->first();
+
+
       return view('vendors.management.basicInfo.add',$info)
       ->with('slug', $slug)
+      ->with('VendorCategory', $VendorCategory)
       ->with('category', $category)   	   
       ->with('title',$category->label.' :: Basic Information ')
    	  ->with('addLink', 'vendor_category_management');
@@ -123,6 +130,8 @@ public $restrictions =[
             'short_description' => 'required',
             'cover_photo' => 'image',
             'cover_video_image' => 'image',
+            'latitude' => 'required',
+            'longitude' => 'required',
             'cover_video' => 'mimes:mp4,3gp,avi,wmv'
      ]);
 
@@ -158,6 +167,10 @@ if($request->hasFile('cover_video') && $request->file('cover_video')->getSize() 
         if($VendorCategory->count() > 0){
           $vCate = $VendorCategory->first();
           $vCate->title = trim($request->business_name);
+          $vCate->business_location = trim($request->business_location);
+          $vCate->latitude = trim($request->latitude);
+          $vCate->longitude = trim($request->longitude);
+          $vCate->travel_distaince = trim($request->travel_distaince);
           $vCate->save();
         }
 
@@ -180,12 +193,14 @@ if($request->hasFile('cover_video') && $request->file('cover_video')->getSize() 
            $this->saveCategoryMetaData('cover_photo',$request->type,$image,$category->category_id);
          }
 
-      if($request->hasFile('cover_video_image') && $this->DeleteMetaImages('cover_video_image',$category->category_id,$request->type)){
+       if($request->hasFile('cover_video_image') && $this->DeleteMetaImages('cover_video_image',$category->category_id,$request->type)){
             $image = uploadFileWithAjax('images/vendors/settings/',$request->file('cover_video_image'));
            $this->saveCategoryMetaData('cover_video_image',$request->type,$image,$category->category_id);
 
 
        }
+
+
 
 
 

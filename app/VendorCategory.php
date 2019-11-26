@@ -17,15 +17,37 @@ class VendorCategory extends Model
         'parent', 'title', 'user_id', 'category_id', 'status', 'business_url', 'publish'
     ];
     
-        public function sluggable()
-        {
-            return [
+    public function sluggable()
+    {
+        return [
 
-                'business_url' => [
-                    'source' => 'title'
-                ]
-            ];
-        }
+            'business_url' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+
+
+
+
+
+
+       // public static function getNearBy($lat, $lng)
+       //  {
+       //      $results =self::select(['*',\DB::raw('( 0.621371 * 3959 * acos( cos( radians('.$lat.') ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians('.$lng.') ) + sin( radians('.$lat.') ) * sin( radians(latitude) ) ) ) AS distance')]);
+       //      return $results;
+       //  }
+
+
+
+
+
+
+
+
+
+
+
 
     public function category()
     {

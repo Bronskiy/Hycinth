@@ -35,3 +35,4 @@ Route::post('/ajax/login', 'HomeController@userLogin')->name('ajax_login');
  Route::get('/listing/{cateSlug}/{vendorSlug}', 'Home\Services\ServiceDetailController@index2')->name('vendor_detail_page');
 
  Route::get('/page/{slug}', 'HomeController@showCmsPage')->name('cmsPage');
+ Route::get('/venues', 'Home\Services\VendorListingController@venue')->name('get_all_venues');

@@ -130,6 +130,7 @@ class CategoryController extends AdminController {
        $c->meta_title = trim($request->meta_title);
        $c->meta_tag = trim($request->meta_tag);
        $c->meta_description = trim($request->meta_description);
+       $c->capacity = trim($request->capacity);
        $c->status = 1;
        $c->featured = $request->featured;
        $c->cover_type = $request->cover_type;
@@ -214,6 +215,7 @@ class CategoryController extends AdminController {
        $c->meta_title = trim($request->meta_title);
        $c->meta_tag = trim($request->meta_tag);
        $c->meta_description = trim($request->meta_description);
+       $c->capacity = trim($request->capacity);
        $c->status = 1;
        $c->featured = $request->featured;
         $c->cover_type = $request->cover_type;

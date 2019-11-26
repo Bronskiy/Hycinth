@@ -38,7 +38,7 @@ public function getServices(Request $request,$id)
 public function allCategoryData($request)
 {
 
-	       $amenityAndGames = '<option value="">Amenities & Games</option>';
+	       $amenityAndGames = '<option value="" disabled>Amenities & Games</option>';
 
 
 		   $amenityAndGames .= '<optgroup label="Amenities">'.$this->getAllAmenity().'</optgroup>' ;
@@ -76,7 +76,7 @@ public function getDataAccordingToCate($id)
 		 	'CategoryGames.Games'
 		 )->where('id',$id)->first();
 
-		$amenityAndGames = '<option value="">Amenities & Games</option>';
+		$amenityAndGames = '<option value="" disabled>Amenities & Games</option>';
 
 
 		$amenityAndGames .= ($Category->CategoryAmenity->count() > 0) ? '<optgroup label="Amenities">'.$this->getEvents($Category->CategoryAmenity,'Amenity','name').'</optgroup>' : '';
@@ -100,7 +100,7 @@ public function getDataAccordingToCate($id)
 
 public function getEvents($data,$tab,$name,$label=null)
 {
-	 $text =$label !=null ? '<option value="">'.$label.'</option>' : '';
+	 $text =$label !=null ? '<option value="" disabled>'.$label.'</option>' : '';
 
 	 foreach ($data as $key => $value) {
 	 	 $text .='<option value="'.$value->$tab->id.'">'.$value->$tab->$name.'</option>';
@@ -114,15 +114,20 @@ public function getEvents($data,$tab,$name,$label=null)
 #-----------------------------------------------------------------------
 
 public function getAllVendor()
-{
+{ 
+    $category = \App\Category::join('vendor_categories','vendor_categories.category_id','=','categories.id')
+                               ->select('categories.*')
+                               ->where('categories.status',1)
+                               ->where('categories.parent',0)
+                               ->orderBy('sorting','ASC')
+                               ->groupBy('categories.id')
+                               ->get();
 
-    $vendors = \App\VendorCategory::where('status',3)->where('publish',1)->orderBy('title','ASC')->get();
 
+	 $text ='<option value="" disabled>Search Vendor</option>';
 
-	 $text ='<option value="">Suggested Vendor</option>';
-
-	 foreach ($vendors as $key => $value) {
-	 	 $text .='<option value="'.$value->id.'">'.$value->title.'</option>';
+	 foreach ($category as $key => $value) {
+	 	 $text .='<option value="'.$value->id.'">'.$value->label.'</option>';
 	 }
 
 	 return $text;
@@ -143,10 +148,11 @@ public function getAllVendor()
  	                      ->join('categories','categories.id','=','category_variations.category_id')
  	                      ->select('category_variations.*')
  	                      ->where('category_variations.type','event')
+ 	                      ->groupBy('category_variations.variant_id')
  	                      ->get();
 
      
-     return $this->getEvents($CategoryVariation,'Event','name',$label='Event Types');
+     return $this->getEvents($CategoryVariation,'Event','name','Event Types');
 
 
  }
@@ -160,10 +166,11 @@ public function getAllVendor()
  	                      ->join('categories','categories.id','=','category_variations.category_id')
  	                      ->select('category_variations.*')
  	                      ->where('category_variations.type',$d)
+ 	                      ->groupBy('category_variations.variant_id')
  	                      ->get();
 
      
-     return $this->getEvents($CategoryVariation,'Amenity','name',$label='Event Types');
+     return $this->getEvents($CategoryVariation,'Amenity','name');
 
 
  }

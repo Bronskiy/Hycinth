@@ -30,10 +30,13 @@ class VendorPackage extends Model
     public function amenities() {
        return $this->hasMany('App\PackageMetaData', 'package_id')->where('type', 'amenities');
     }
+
     public function events() {
        return $this->hasMany('App\PackageMetaData', 'package_id')->where('type', 'events');
     }
 
- 
+    public function games() {
+       return $this->hasMany('App\PackageMetaData', 'package_id')->where('type', 'games');
+    } 
     
 }

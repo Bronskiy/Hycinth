@@ -51,24 +51,24 @@
                            <div class="row">
                               <div class="col-md-6">  
 
-                              <!-- {{choosefilemultiple($errors,'Business Cover Image','cover_photo')}}  -->
+                             
         
-        <div class="form-group">
-          <label class="label-file">Business Cover Image*</label>
-          <input type="file" accept="image/*" multiple onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="cover_photo">
+                                <div class="form-group">
+                                  <label class="label-file">Business Cover Image*</label>
+                                  <input type="file" accept="image/*" multiple onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="cover_photo">
 
-          @if ($errors->has('cover_photo'))
-              <div class="error">{{ $errors->first('cover_photo') }}</div>
-          @endif
-         </div>
+                                  @if ($errors->has('cover_photo'))
+                                      <div class="error">{{ $errors->first('cover_photo') }}</div>
+                                  @endif
+                                 </div>
 
-         </div>
-            <div class="col-md-6">
-               <img src="<?= url($cover_photo) ?>" style="display: {{ $cover_photo ? 'block' : 'none'  }} " id="image_src" width="200"/>
-            </div>
-         </div>
-      </div>
-   </div>
+                                 </div>
+                                    <div class="col-md-6">
+                                       <img src="<?= url($cover_photo) ?>" style="display: {{ $cover_photo ? 'block' : 'none'  }} " id="image_src" width="200"/>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
 
                      @else
 
@@ -134,6 +134,29 @@
                            </div>
                         </div>
                      </div>
+
+
+                     <div class="panel panel-default">
+                        <div class="panel-heading">Business Location</div>
+                        <div class="panel-body">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 {{textbox($errors,'Business Location','business_location',$VendorCategory->business_location)}}
+                              </div>
+                              <div class="col-md-6">
+                                 {{textbox($errors,'Latitude','latitude',$VendorCategory->latitude)}}
+                              </div>
+
+                              <div class="col-md-6">
+                                 {{textbox($errors,'Longitude','longitude',$VendorCategory->longitude)}}
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+
+
+
+
                   </div>
                   <button class="cstm-btn" id="basicInfoBtn">Save</button>
                </form>
@@ -145,6 +168,63 @@
 </div>
 @endsection
 @section('scripts')
+
+ <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAg4nmuh6JxGuULACc9L6AllFwIhCqjL4&libraries=places"></script>
+   
+
+
 <script src="{{url('/js/validations/basicInfoValidation.js')}}"></script>
 <script src="{{url('/js/validations/imageShow.js')}}"></script>
+
+<script type="text/javascript">
+  
+function initialize() 
+{
+    var input = document.getElementById('business_location');
+    var options = {    
+    types: ['address'],
+    componentRestrictions: {country: ["us", "ca"]}
+    };
+    var componentForm = {
+      street_number: 'short_name',
+      route: 'long_name',
+      locality: 'long_name',
+      administrative_area_level_1: 'short_name',
+      country: 'long_name',
+      postal_code: 'short_name'
+    };    
+    var autocomplete = new google.maps.places.Autocomplete(input, options);
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        var place = autocomplete.getPlace();
+        
+        for (var i = 0; i < place.address_components.length; i++) {
+          var addressType = place.address_components[i].types[0];
+          if (componentForm[addressType]) {
+            var val = place.address_components[i][componentForm[addressType]];
+
+            console.log(addressType);
+
+            // var addressType = addressType;
+            // switch (addressType) { 
+            //   case 'locality': 
+            //     document.getElementById('city').value = val;
+            //     break;
+            //   case 'administrative_area_level_1': 
+            //     document.getElementById('state').value = val;
+            //     break;
+            //   case 'postal_code': 
+            //     document.getElementById('zipcode').value = val;
+            //     break;                  
+            // }            
+          }
+        }
+        document.getElementById('latitude').value = place.geometry.location.lat();
+        document.getElementById('longitude').value = place.geometry.location.lng();
+        //document.getElementById('address').value = place.name;
+        autocompleted = true;
+    });
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
 @endsection

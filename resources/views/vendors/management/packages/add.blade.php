@@ -101,7 +101,7 @@
 <div class="form-group">
          <div class="row">
             <div class="col-lg-12">
-            <label for="no_of_hours">Do You Have Amenities</label>
+            <label for="no_of_hours">Do You Have Amenities?</label>
             </div>
             @foreach($category->categoryAmenity as $cate)
                   <div class="col-lg-6">
@@ -115,12 +115,32 @@
                  @endforeach
                </div>
              </div>
+@endif
+
+@if(count($category->CategoryGames))
+<div class="form-group">
+         <div class="row">
+            <div class="col-lg-12">
+            <label for="no_of_hours">Do You Have Games?</label>
+            </div>
+            @foreach($category->CategoryGames as $cate)
+                  <div class="col-lg-6">
+                   <div class="vendor-category">
+                      <div class="category-checkboxes category-title">
+                      <input type="checkbox" name="games[]" value="{{$cate->Amenity->id}}" id="game_{{$cate->Amenity->id}}">
+                           <label for="game_{{$cate->Amenity->id}}">{{$cate->Amenity->name}}  </label> 
+                    </div>
+                   </div>
+                  </div>       
+                 @endforeach
+               </div>
+             </div>
       @endif
 @if(count($category->categoryEvent))
 <div class="form-group">
   <div class="row">
             <div class="col-lg-12">
-            <label for="no_of_hours">Do You Have Event and Games</label>
+            <label for="no_of_hours">Do You Have Event?</label>
           </div>
 
             @foreach($category->categoryEvent as $cate)

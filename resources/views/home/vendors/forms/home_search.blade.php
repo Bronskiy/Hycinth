@@ -37,14 +37,15 @@
          <div class="tab-content" data-aos="fade-right" data-aos-duration="3000">
             <div class="tab-data " id="twenty-three">
                <form class="services-form" action="{{url(route('home_vendor_listing_page'))}}">
+                  <input type="hidden" name="vendors[]" id="vendor_category_id" value="0">
                   <input type="hidden" name="category_id" value="0">
                   <div class="row">
                      <div class="col-lg-4 addressColumn">
                         <div class="form-group">
                            <input type="text"  class="form-control" placeholder="Location" id="address">
 
-                           <input type="hidden" name="latitude">
-                           <input type="hidden" name="longitude">
+                           <input type="hidden" name="latitude" value="29.46786">
+                           <input type="hidden" name="longitude" value="-98.53506">
 
                            <span class="input-icon"><i class="fas fa-map-marker-alt"></i></span>
                         </div>

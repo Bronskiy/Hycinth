@@ -17,8 +17,14 @@
 						<div class="page-header">
 							<figure class="head-logo"><img src="/frontend/images/vendor-03.png"></figure>
 							<div class="heading-details">
-		              <h2>{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','business_name')}}</h2>
+		              		<h2>{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','business_name')}}</h2>
+
 								<p class="address-line"><span class="location-icon"><i class="fas fa-map-marker-alt"></i></span><?= getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','address')?></p>
+                
+                  <ul class="contact-links">
+                    <li><a href="tel:{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','phone_number')}}"><span class="contact-icons"><i class="fas fa-mobile-alt"></i></span></a></li>
+                    <li><a target="_blank" href="{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','website')}}"><span class="contact-icons"><i class="fas fa-globe-americas"></i></span></a></li>
+                  </ul>
 							</div>
 						</div>
 					</div>
@@ -67,6 +73,9 @@
                         </div>
                         <div class="item">
                           <a href="#review-sec" data-scroll="review-sec"><!-- <span class="nav-icon"><i class="fas fa-star"></i></span> --> Reviews</a>
+                        </div>                        
+                        <div class="item">
+                          <a href="#package-sec" data-scroll="package-sec"><!-- <span class="nav-icon"><i class="fas fa-star"></i></span> --> Packages</a>
                         </div>
                     </div>
                 </div>

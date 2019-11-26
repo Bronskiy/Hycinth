@@ -11,8 +11,15 @@
     <link rel="stylesheet" type="text/css" href="{{url('/frontend/css/owl.carousel.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('/frontend/css/animate.css')}}">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.0/flexslider.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+
+
+
+
     <link rel="stylesheet" type="text/css" href="{{url('/frontend/css/bootstrap-datetimepicker.min.css')}}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+ 
 <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{url('/frontend/css/styles.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('/frontend/css/responsive.css')}}">
@@ -33,7 +40,7 @@
 </head>
 <body data-url="{{url('/')}}" class="{{\Request::route()->getName() === 'vendor_detail_page' || \Request::route()->getName() === 'myBusinessView' ? 'gray-bg' : ''}}">
 	
-<div class="custom-loading"></div>
+<div class="custom-loading"><img src="{{url('/images/Envisiun1.gif')}}"></div>
 
 
 
@@ -67,6 +74,7 @@
     <script src="https://yauzer.com/js/validate.min.js"></script>
     <script type="text/javascript" src="{{url('/frontend/js/custom.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+     
     <script> 
         AOS.init();
     </script>

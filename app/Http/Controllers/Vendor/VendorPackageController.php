@@ -94,6 +94,22 @@ class VendorPackageController extends Controller
         }
        }
 
+
+        if(!empty($request->games) && count($request->games)) {
+        foreach ($request->games as $key => $value) {
+         PackageMetaData::create([
+          'parent' => 0,
+          'package_id' => $vendorPack->id,
+          'category_id' => $category->id,
+          'user_id' => $user->id,
+          'type' => 'games',
+          'key' => 'game',
+          'vendor_category_id' => $vendor_category_id,
+          'key_value' => $value 
+         ]); 
+        }
+       }
+
        if(!empty($request->event_type) && count($request->event_type)) {
           foreach ($request->event_type as $key => $value) {
            PackageMetaData::create([
@@ -178,15 +194,37 @@ public function packagesUpdate(Request $request, $slug, $id) {
               
 
         foreach ($request->amenity as $key => $value) {
-         PackageMetaData::create([
-          'parent' => 0,
-          'package_id' => $package->id,
-          'category_id' => $category->id,
-          'user_id' => $user->id,
-          'type' => 'amenities',
-          'key' => 'amenity',
-          'key_value' => $value 
-         ]); 
+               PackageMetaData::create([
+                'parent' => 0,
+                'package_id' => $package->id,
+                'category_id' => $category->id,
+                'user_id' => $user->id,
+                'type' => 'amenities',
+                'key' => 'amenity',
+                'key_value' => $value 
+               ]); 
+        }
+       }
+
+         if(!empty($request->games) && count($request->games)) {
+
+               PackageMetaData::where([
+                  'user_id' => $user->id,
+                  'package_id' => $package->id,
+                  'category_id' => $category->id,
+                  'type' => 'games'
+                ])->delete();
+               
+        foreach ($request->games as $key => $value) {
+               PackageMetaData::create([
+                'parent' => 0,
+                'package_id' => $package->id,
+                'category_id' => $category->id,
+                'user_id' => $user->id,
+                'type' => 'games',
+                'key' => 'game',
+                'key_value' => $value 
+               ]); 
         }
        }
 
@@ -194,15 +232,15 @@ public function packagesUpdate(Request $request, $slug, $id) {
         PackageMetaData::where(['user_id' => $user->id, 'package_id' => $package->id, 'category_id' => $category->id, 'type' => 'events'])->delete();
 
           foreach ($request->event_type as $key => $value) {
-           PackageMetaData::create([
-            'parent' => 0,
-            'package_id' => $package->id,
-            'category_id' => $category->id,
-            'user_id' => $user->id,
-            'type' => 'events',
-            'key' => 'event',
-            'key_value' => $value 
-           ]); 
+               PackageMetaData::create([
+                'parent' => 0,
+                'package_id' => $package->id,
+                'category_id' => $category->id,
+                'user_id' => $user->id,
+                'type' => 'events',
+                'key' => 'event',
+                'key_value' => $value 
+               ]); 
           }
        }
 

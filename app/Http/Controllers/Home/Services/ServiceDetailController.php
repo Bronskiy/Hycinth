@@ -31,7 +31,9 @@ public function index2(Request $request,$cateSlug,$vendorSlug)
 {
      $category = Category::where('slug',$cateSlug);
 	 $vendorCategory = VendorCategory::with([
-	 	'VendorPackage',
+	 	'VendorPackage' => function($vp){
+	 		return $vp->where('status', 1)->get();
+	 	},
 	 	'basicInfo',
 	 	'faqs',
 	 	'DealsDiscount',

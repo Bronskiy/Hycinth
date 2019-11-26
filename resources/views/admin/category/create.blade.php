@@ -38,7 +38,7 @@
           <div class="col-md-6"> 
              {{select3($errors,'Parent','parent','label','0',$category)}}
            </div>
-        <div class="col-md-6">
+        <div class="col-md-6" style="display: none">
          {{select3($errors,'SubParent','subparent','label','0',array())}}
        </div>
         <div class="col-md-6"> 
@@ -61,13 +61,13 @@
  
 
 
-<div class="col-md-3"> 
+<div class="col-md-4"> 
   <div class="form-group label-floating is-empty"><label class="control-label">Color*</label>
 <input type="color" value="#eda208" name="color" id="get" style="width: 46px; margin-left: -2px;" onchange="fetch()">
     <input type="text" readonly value="#eda208" class="form-control valid" name="color" id="color"></div>
 </div>
 
-<div class="col-md-3">
+<div class="col-md-4">
 
    <div class="form-group">
             <label class="label-file">Cover Photo/Video</label>
@@ -75,6 +75,19 @@
             <select name="cover_type" class="form-control">
               <option value="1">Photo</option>
               <option value="2">Video</option>
+            </select>
+            
+           </div>
+</div>
+
+<div class="col-md-4">
+
+   <div class="form-group">
+            <label class="label-file">Capacity</label>
+
+            <select name="capacity" class="form-control">
+              <option value="0">No</option>
+              <option value="1">Yes</option>
             </select>
             
            </div>

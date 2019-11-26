@@ -41,189 +41,23 @@
                                 </span>
                             </span>
                 <div class="row">
-                    <div class="col-lg-3 col-md-4 range eventside-bar">
-                        <div id="accordion">
-                            <div class="card">
-                                <div class="card-header">
-                                    <a class="card-link collapsed" data-toggle="collapse" href="#collapseOne" aria-expanded="false">
-                                        category
-                                    </a>
-                                </div>
-                                <div id="collapseOne" class="collapse" data-parent="#accordion">
-                                    <div class="card-body listing sub-head">
-                                        <b>All category</b>
-                                    </div>
-                                    <div class="card-body listing">
-                                        <a href="javascript:void(0);">Wedding Photographers</a>
-                                    </div>
-                                    <div class="card-body listing">
-                                        <a href="javascript:void(0);">Wedding DJs</a>
-                                    </div>
-                                    <div class="card-body listing">
-                                        <a href="javascript:void(0);">Wedding Hair & Makeup</a>
-                                    </div>
-                                    <div class="card-body listing">
-                                        <a href="javascript:void(0);">Wedding Planners</a>
-                                    </div>
-                                    <div class="card-body listing">
-                                        <a href="javascript:void(0);">Wedding Caterers</a>
-                                    </div>
-                                    <div class="card-body listing">
-                                        <a href="javascript:void(0);">Wedding Florists</a>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="card">
-                                <div class="card-header">
-                                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
-                                        Availability
-                                    </a>
-                                </div>
-                                <div id="collapseTwo" class="collapse" data-parent="#accordion">
-                                    <div class="card-body listing">
-                                        <div class="form-group">
-                                            <input type="text" id="" class="form-control available" placeholder="Select Date">
-                                            <span class="input-icon date"><i class="far fa-calendar"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <a class="collapsed card-link" data-toggle="collapse" href="#collapsefour">
-                                        Price Range
-                                    </a>
-                                </div>
-                                <div id="collapsefour" class="collapse" data-parent="#accordion">
-                                    <div class="card-body listing">
-                                        <div class="wrap1">
-                                            <div class="checkboxwrap">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" id="cb11">
-                                                        <label for="cb11"> Under $1,000</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" id="cb2">
-                                                        <label for="cb2"> $1,000 - $1,999</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" id="cb3">
-                                                        <label for="cb3"> $2,000 - $2,999</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" id="cb4">
-                                                        <label for="cb4"> $3,000 - $3,999</label>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="checkbox" id="cb5">
-                                                        <label for="cb5"> $4,000+</label>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <a class="collapsed card-link" data-toggle="collapse" href="#collapsefive">
-                                        Advance Search
-                                    </a>
-                                </div>
-                                <div id="collapsefive" class="collapse" data-parent="#accordion">
-                                    <div class="card-body listing sub-head type">
-                                        <b>All category</b>
-                                    </div>
-                                    <div class="card-body listing">
-                                        <form>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="cb1121">
-                                                <label for="cb1121"> Contemporary</label>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="cb12">
-                                                <label for="cb12"> Film</label>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="cb13">
-                                                <label for="cb13"> Natural</label>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="cb14">
-                                                <label for="cb14"> Photojournalism</label>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="cb15">
-                                                <label for="cb15"> Traditional</label>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="cb16">
-                                                <label for="cb16"> Vintage</label>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-header">
-                                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
-                                        Services
-                                    </a>
-                                </div>
-                                <div id="collapseThree" class="collapse" data-parent="#accordion">
-                                    <div class="card-body listing">
-                                        <form>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="cb11211">
-                                                <label for="cb11211"> Additional Hours</label>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="cb112">
-                                                <label for="cb112"> Boudoir Shoot</label>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="cb113">
-                                                <label for="cb113"> Destination / Travel</label>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="cb114">
-                                                <label for="cb114"> Engagement Shoot</label>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="cb115">
-                                                <label for="cb115"> High-Res Images</label>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="cb116">
-                                                <label for="cb116"> One Event / Day</label>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                     @include('home.vendors.includes.sidebar')
+                    
                     <div class="col-lg-9 col-md-8">
                         <div class="inner-content">
-                            <p>Showing Results <b>{{$categoryCount}}</b></p>
+                            <p>Showing Results <b id="categoryCount">Searching...</b></p>
                             <span class="view-toggle">
-                                <ul>
+                               <!--  <ul>
                                     <li><a href="javascript:void(0);"> <i class="fas fa-list"></i></a>
                                     <li><a href="javascript:void(0);"> <i class="fas fa-th"></i></a>
-                                </ul>
+                                </ul> -->
                             </span>
                             <hr>
                         </div>
-                        <div class="inner-content-detail">
+                        <div class="inner-content-detail" id="inner-content-detail">
                            
-                             
-                             @include('home.vendors.includes.vendor')
-
-                
-
-                        </div>
+                         </div>
                     </div>
                 </div>
             </div>
@@ -248,58 +82,10 @@
 @endsection
 
 @section('scripts')
+
+<script type="text/javascript" src="{{url('/js/validations/businessListingFilter.js')}}"></script>
 <script type="text/javascript">
-
-
-    
-jQuery(function(){
-
-      
  
-
-
-//--------------------------------------------------------------------------------
-//--------------------------------------------------------------------------------
-
-
-jQuery("body").on('click','.custom-video-container .play-btn',function(e){
-
-  e.preventDefault();
-  stopOtherVideo();
-  var videoPath = jQuery( this ).attr('data-video');
-  var Targets = jQuery( this ).attr('data-target');
-  var videoTag = videoPlaySrc(videoPath);
-   
-
-   jQuery("body").find('#'+Targets).html(videoTag);
-   jQuery( this ).closest('.custom-video-container').addClass('playing');
-  
-});
-
-
-
-function videoPlaySrc(videoPath) {
-           var text ='';
-           text ='<video width="100%"  controls autoplay>';
-           text +='<source src="'+videoPath+'" type="video/mp4">';
-           text +='<source src="movie.ogg" type="video/ogg">';
-           text +='Your browser does not support the video tag.';
-           text +='</video>';
-           
-           return text;
-}
-
-
-
-function stopOtherVideo() {
-    jQuery('.custom-video-container').removeClass('playing');
-
-      $( ".custom-video-container" ).each(function( index ) {
-          $( this ).removeClass('playing').find('.video-screen').html('');
-      });
-}
-
-});
 
 
 

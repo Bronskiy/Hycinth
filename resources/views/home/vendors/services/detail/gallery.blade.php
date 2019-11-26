@@ -74,11 +74,12 @@
                                           $data = json_decode($video->keyValue);
 
                                           $videoLink = !empty($data) > 0 ? $data->link : '';
+                                          $videoImage = !empty($data) > 0 ? $data->image : '';
                                           $videotitle = !empty($data) > 0 ? $data->title : '';
 						          	 ?>
 						            <li>
 						            	 
-						              <img src="/frontend/images/menu-vendor.png" />
+						              <img src="{{url($videoImage)}}" />
 						            </li>
 						            @endforeach
 						         @endif

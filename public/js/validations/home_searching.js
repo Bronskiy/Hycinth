@@ -5,9 +5,12 @@ var $url = jQuery("body").attr('data-url');
 
 
 
-$('.select2').select2();
+$('.select2').select2({ maximumSelectionSize: 3 });
 
 
+
+
+    
 
 
 activeAllCategories();
@@ -19,7 +22,7 @@ jQuery("body").on('click','.getCategory',function(e){
    var $this = jQuery( this );
    var category_id =  $this.attr('data-id');
    var formDiv =  $this.attr('data-tag');
-   jQuery('#'+formDiv).find('input[name=category_id]').val(category_id);
+   jQuery('#'+formDiv).find('#vendor_category_id').val(category_id);
    var url =  $this.attr('data-url');
 
    hideShowColums(formDiv,category_id);
@@ -32,7 +35,7 @@ function activeAllCategories() {
    var $this = jQuery("body").find('a.activelink.getCategory');
    var category_id =  $this.attr('data-id');
    var formDiv =  $this.attr('data-tag');
-   jQuery('#'+formDiv).find('input[name=category_id]').val(category_id);
+   jQuery('#'+formDiv).find('#vendor_category_id').val(category_id);
    var url =  $this.attr('data-url');
 
    hideShowColums(formDiv,category_id);
