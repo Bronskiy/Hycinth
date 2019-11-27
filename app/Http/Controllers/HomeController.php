@@ -26,7 +26,6 @@ class HomeController extends Controller
     //     $this->middleware('auth');
     // }
 
-
     public function register()
     {
         return view('auth.register2');

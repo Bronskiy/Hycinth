@@ -8,7 +8,6 @@ Route::get('/logout', function () {
 \Auth::logout();
 return redirect('/login');
 });
-
 Auth::routes(['verify' => true]);
 
 

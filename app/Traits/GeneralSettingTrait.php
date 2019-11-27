@@ -13,9 +13,6 @@ trait GeneralSettingTrait {
  ];
 
 
-
-
-
   public function getArrayValue($slug)
  {
 	    switch ($slug) {
@@ -129,7 +126,10 @@ trait GeneralSettingTrait {
                        // Section 2
                        'section2_title' => getAllValueWithMeta('section2_title', $slug),
 		 	  	];
-		 	
+		 	case 'global-settings': 
+          return [
+                  'google_api_key' => getAllValueWithMeta('google_api_key', $slug),
+          ];
 		 	default:
 		 		# code...
 		 		break;

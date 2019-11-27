@@ -1,7 +1,7 @@
  <div class="summary-card" id="description-sec">
 	<div class="pannel-card">
 		
-		 
+		
 		 	 <?= notoficationBusinessFlash($types,$vendor->DescriptionComment,$vendor->status) ?>	
 		<div class="card-heading">
 			<h3>Description</h3>			

@@ -15,7 +15,7 @@
 						<div class="feature-detail">
 							<h4><span class="feature-icon">
 							<i class="fas fa-clipboard-list"></i>
-				</span> Services:</h4>
+				          </span> Services:</h4>
 							 <ul class="detail-listing">
 							 	@foreach($services as $k => $service)
 
@@ -85,6 +85,32 @@
 						</div>
 					</div>
 				</div>
+
+                @if($vendor->category->capacity == 1)
+				<div class="col-lg-12">
+					<div class="feature-wrap">
+						
+						<div class="feature-detail">
+							<h4><span class="feature-icon">
+							<i class="fas fa-users" style="font-size: 23px;"></i>
+				                      </span> Guest Capacity:</h4>
+							  <ul class="detail-listing">
+							      @if($vendor->capacity_type == 1)
+                                      <li>Sitting Capacity ({{$vendor->sitting_capacity}} Guest)</li>
+							      @elseif($vendor->capacity_type == 2)
+                                       <li>Standing Capacity ({{$vendor->standing_capacity}} Guest)</li>
+							      @elseif($vendor->capacity_type == 3)
+                                     <li>Sitting Capacity ({{$vendor->sitting_capacity}})</li> <li>Standing Capacity ({{$vendor->standing_capacity}})</li>
+							      @endif
+                                           
+                                    
+							  </ul>
+						</div>
+					</div>
+				</div>
+
+				@endif
+
 				<div class="col-lg-12">
 					<div class="map-wrap" id="map">
 						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3430.6679305117195!2d76.68865401499058!3d30.699617894279218!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390feef69353d285%3A0x6d3c38ef8c74065!2sDeftsoft!5e0!3m2!1sen!2sin!4v1574179093907!5m2!1sen!2sin" allowfullscreen=""></iframe>

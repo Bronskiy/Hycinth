@@ -35,7 +35,9 @@ function activeAllCategories() {
    var $this = jQuery("body").find('a.activelink.getCategory');
    var category_id =  $this.attr('data-id');
    var formDiv =  $this.attr('data-tag');
-   jQuery('#'+formDiv).find('#vendor_category_id').val(category_id);
+
+   
+
    var url =  $this.attr('data-url');
 
    hideShowColums(formDiv,category_id);
@@ -52,11 +54,13 @@ function hideShowColums(formDiv,category_id) {
       jQuery("body").find('.addressColumn').removeClass('col-lg-6').addClass('col-lg-4');
       jQuery("body").find('.eventColumn').removeClass('col-lg-6').addClass('col-lg-4');
       jQuery("body").find('.vendorColumn').removeClass('hide');
+      jQuery('#'+formDiv).find('#vendor_category_id').val(category_id);
        
   }else{
       jQuery("body").find('.addressColumn').removeClass('col-lg-4').addClass('col-lg-6');
       jQuery("body").find('.eventColumn').removeClass('col-lg-4').addClass('col-lg-6');
       jQuery("body").find('.vendorColumn').addClass('hide');
+      jQuery('#'+formDiv).find('#vendor_category_id').val(category_id);
        
   }
   

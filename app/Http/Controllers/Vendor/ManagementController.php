@@ -51,7 +51,7 @@ public $restrictions =[
        
 
 
-    $info =[
+       $info =[
            'business_name' => $this->getAllValueWithMeta('business_name','basic_information',$category->category_id),
            'address' => $this->getAllValueWithMeta('address','basic_information',$category->category_id),
            'website' => $this->getAllValueWithMeta('website','basic_information',$category->category_id),
@@ -61,6 +61,7 @@ public $restrictions =[
            'min_price' => $this->getAllValueWithMeta('min_price','basic_information',$category->category_id),
            'cover_photo' => $this->getAllValueWithMeta('cover_photo','basic_information',$category->category_id),
            'short_description' => $this->getAllValueWithMeta('short_description','basic_information',$category->category_id),
+           'facebook_url' => $this->getAllValueWithMeta('facebook_url','basic_information',$category->category_id),
       ];
 
       return view('vendors.management.basicInfo.index',$info)
@@ -91,6 +92,11 @@ public $restrictions =[
            'cover_video' => $this->getAllValueWithMeta('cover_video','basic_information',$category->category_id),
            'cover_video_image' => $this->getAllValueWithMeta('cover_video_image','basic_information',$category->category_id),
            'short_description' => $this->getAllValueWithMeta('short_description','basic_information',$category->category_id),
+           'facebook_url' => $this->getAllValueWithMeta('facebook_url','basic_information',$category->category_id),
+           'linkedin_url' => $this->getAllValueWithMeta('linkedin_url','basic_information',$category->category_id),
+           'twitter_url' => $this->getAllValueWithMeta('twitter_url','basic_information',$category->category_id),
+           'instagram_url' => $this->getAllValueWithMeta('instagram_url','basic_information',$category->category_id),
+           'pinterest_url' => $this->getAllValueWithMeta('pinterest_url','basic_information',$category->category_id),
       ];
        
        if(!empty($request->test)){
@@ -112,14 +118,20 @@ public $restrictions =[
 
 
 
-      #-----------------------------------------------------------------
+   #-----------------------------------------------------------------
    #    addAbout
    #-----------------------------------------------------------------
+
+
+ 
   
    public function storeAbout(Request $request,$slug)
    {
+       $category = $this->getData($slug);
 
-     $this->validate($request,[
+
+      
+       $validation = [
             'business_name' => 'required',
             'address' => 'required',
             'website' => 'required',
@@ -133,9 +145,34 @@ public $restrictions =[
             'latitude' => 'required',
             'longitude' => 'required',
             'cover_video' => 'mimes:mp4,3gp,avi,wmv'
-     ]);
+      ];
 
-        $category = $this->getData($slug);
+     $VendorCategory = VendorCategory::where('category_id',$category->category_id)
+        ->where('user_id',Auth::user()->id);
+
+      
+
+if($category->capacity == 1){
+
+   $validation['capacity_type'] ='required';
+
+   if($request->capacity_type == 1){
+
+        $validation['sitting_capacity'] ='required';
+    
+   }elseif($request->capacity_type == 2){
+        $validation['standing_capacity'] ='required';
+
+   }elseif($request->capacity_type == 3){
+      $validation['sitting_capacity'] ='required';
+      $validation['standing_capacity'] ='required';
+   }
+ 
+
+ }
+
+$this->validate($request,$validation);
+
  
 
 if($request->hasFile('cover_video') && $request->file('cover_video')->getSize() < 50000000 && $this->DeleteMetaImages('cover_video',$category->category_id,$request->type)){
@@ -154,59 +191,57 @@ if($request->hasFile('cover_video') && $request->file('cover_video')->getSize() 
 
 }
 
+ 
 
-
-
-
-
-        $VendorCategory = VendorCategory::where('category_id',$category->category_id)
-        ->where('user_id',Auth::user()->id);
-
-        
-
-        if($VendorCategory->count() > 0){
-          $vCate = $VendorCategory->first();
-          $vCate->title = trim($request->business_name);
-          $vCate->business_location = trim($request->business_location);
-          $vCate->latitude = trim($request->latitude);
-          $vCate->longitude = trim($request->longitude);
-          $vCate->travel_distaince = trim($request->travel_distaince);
-          $vCate->save();
-        }
-
-
+if($VendorCategory->count() > 0){
+  $vCate = $VendorCategory->first();
+  $vCate->title = trim($request->business_name);
+  $vCate->business_location = trim($request->business_location);
+  $vCate->latitude = trim($request->latitude);
+  $vCate->longitude = trim($request->longitude);
+  $vCate->price = trim($request->min_price);
+  $vCate->travel_distaince = $vCate->capacity == 1 ? trim($request->travel_distaince) : 0;
+  if($category->capacity == 1):
+      $vCate->standing_capacity =  trim($request->standing_capacity);
+      $vCate->sitting_capacity =  trim($request->sitting_capacity);
+      $vCate->capacity_type =  trim($request->capacity_type);
+  endif;
+  $vCate->save();
+}
 
  
-          $this->saveCategoryMetaData('business_name',$request->type,$request->business_name,$category->category_id);
-          $this->saveCategoryMetaData('short_description',$request->type,$request->short_description,$category->category_id);
-          $this->saveCategoryMetaData('address',$request->type,$request->address,$category->category_id);
-          $this->saveCategoryMetaData('website',$request->type,$request->website,$category->category_id);
-          $this->saveCategoryMetaData('phone_number',$request->type,$request->phone_number,$category->category_id);
-          $this->saveCategoryMetaData('company',$request->type,$request->company,$category->category_id);
-          $this->saveCategoryMetaData('travel_distaince',$request->type,$request->travel_distaince,$category->category_id);
-          $this->saveCategoryMetaData('min_price',$request->type,$request->min_price,$category->category_id);
+ 
+$this->saveCategoryMetaData('business_name',$request->type,$request->business_name,$category->category_id);
+$this->saveCategoryMetaData('short_description',$request->type,$request->short_description,$category->category_id);
+$this->saveCategoryMetaData('address',$request->type,$request->address,$category->category_id);
+$this->saveCategoryMetaData('website',$request->type,$request->website,$category->category_id);
+$this->saveCategoryMetaData('phone_number',$request->type,$request->phone_number,$category->category_id);
+$this->saveCategoryMetaData('company',$request->type,$request->company,$category->category_id);
+$this->saveCategoryMetaData('travel_distaince',$request->type,$request->travel_distaince,$category->category_id);
+$this->saveCategoryMetaData('min_price',$request->type,$request->min_price,$category->category_id);
+$this->saveCategoryMetaData('facebook_url',$request->type,$request->facebook_url,$category->category_id);
+$this->saveCategoryMetaData('linkedin_url',$request->type,$request->linkedin_url,$category->category_id);
+$this->saveCategoryMetaData('twitter_url',$request->type,$request->twitter_url,$category->category_id);
+$this->saveCategoryMetaData('instagram_url',$request->type,$request->instagram_url,$category->category_id);
+$this->saveCategoryMetaData('pinterest_url',$request->type,$request->pinterest_url,$category->category_id);
 
 
 
-       if($request->hasFile('cover_photo') && $this->DeleteMetaImages('cover_photo',$category->category_id,$request->type)){
-            $image = uploadFileWithAjax('images/vendors/settings/',$request->file('cover_photo'));
-           $this->saveCategoryMetaData('cover_photo',$request->type,$image,$category->category_id);
-         }
+if($request->hasFile('cover_photo') && $this->DeleteMetaImages('cover_photo',$category->category_id,$request->type)){
+    $image = uploadFileWithAjax('images/vendors/settings/',$request->file('cover_photo'));
+    $this->saveCategoryMetaData('cover_photo',$request->type,$image,$category->category_id);
+ }
 
-       if($request->hasFile('cover_video_image') && $this->DeleteMetaImages('cover_video_image',$category->category_id,$request->type)){
-            $image = uploadFileWithAjax('images/vendors/settings/',$request->file('cover_video_image'));
-           $this->saveCategoryMetaData('cover_video_image',$request->type,$image,$category->category_id);
+if($request->hasFile('cover_video_image') && $this->DeleteMetaImages('cover_video_image',$category->category_id,$request->type)){
+    $image = uploadFileWithAjax('images/vendors/settings/',$request->file('cover_video_image'));
+    $this->saveCategoryMetaData('cover_video_image',$request->type,$image,$category->category_id);
+}
 
-
-       }
-
-
-
+return redirect()->route('vendor_category_management',$slug)->with('messages','Basic Information is saved.');     
+   
 
 
-
-       return redirect()->route('vendor_category_management',$slug)->with('messages','Basic Information is saved.');     
-   }
+  }
 
    #-----------------------------------------------------------------
    #    images

@@ -17,44 +17,11 @@ class VendorListingController extends Controller
 
 public function index(Request $request)
 {
+  
   return $Vendors =  $this->getVendorData($request);
 }
 
-
  
-
-
-
-
-
-
-
-
-
-
-
-function distance($lat1, $lon1, $lat2, $lon2, $unit) {
-  if (($lat1 == $lat2) && ($lon1 == $lon2)) {
-    return 0;
-  }
-  else {
-    $theta = $lon1 - $lon2;
-    $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) +  cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
-    $dist = acos($dist);
-    $dist = rad2deg($dist);
-    $miles = $dist * 60 * 1.1515;
-    $unit = strtoupper($unit);
-
-    if ($unit == "K") {
-      return ($miles * 1.609344);
-    } else if ($unit == "N") {
-      return ($miles * 0.8684);
-    } else {
-      return $miles;
-    }
-  }
-}
-
 
 #-------------------------------------------------------------------------------
 # Vendor Listing Page
@@ -91,14 +58,9 @@ public function getVendorData($request)
 
 public function getBusinesAccordingToSearch($request)
 {
-
-	 $lng = $request->latitude;
-	 $lat = $request->longitude;
-
-	 $ids = $this->getVendorIds($request);
-	 $businesses = VendorCategory::whereIn('id',$ids);
-                            
-	 return $businesses;
+   $ids = $this->getVendorIds($request);
+ $businesses = VendorCategory::whereIn('id',$ids);
+ return $businesses;
 }
 
 
@@ -113,8 +75,21 @@ public function getBusinesAccordingToSearch($request)
 
 public function getVendorIds($request)
 {
-	 $category =  VendorCategory::
-	 join('users','users.id','=','vendor_categories.user_id')
+    
+    $latitude = $request->latitude;
+    $longitude = $request->longitude;
+
+
+    $haversine = "(3959 * acos(cos(radians($latitude)) 
+                        * cos(radians(vendor_categories.latitude)) 
+                        * cos(radians(vendor_categories.longitude) 
+                        - radians($longitude)) 
+                        + sin(radians($latitude)) 
+                        * sin(radians(vendor_categories.latitude))))";
+   
+
+	 $category =  VendorCategory::select('vendor_categories.*')
+	 ->join('users','users.id','=','vendor_categories.user_id')
 	 ->join('vendor_event_games','vendor_event_games.vendor_category_id','=','vendor_categories.id')
 	 ->join('vendor_amenities','vendor_amenities.vendor_category_id','=','vendor_categories.id')
 	 ->select('vendor_categories.*')
@@ -127,18 +102,50 @@ public function getVendorIds($request)
           if(!empty($request->event_type)){
              $t->whereIn('vendor_event_games.event_id',$request->event_type);
 	 	  }
-         if(!empty($request->amenities)){
+     if(!empty($request->amenities)){
              $t->whereIn('vendor_amenities.amenity_id',$request->amenities);
 	 	  }
-          if(!empty($request->vendors) && $request->category_id == 0){
+      if(!empty($request->vendors) && $request->category_id == 0){
 	 	  	 $t->whereIn('vendor_categories.category_id',$request->vendors);
 	 	  }
+
+       
      })
 
 	 ->where('vendor_categories.business_url','!=','')
 	 ->where('vendor_categories.publish',1)
 	 ->groupBy('vendor_categories.id');
 
+      if(!empty($request->price_range)){
+          $range = explode('-',$request->price_range);
+     
+         $category->whereBetween('vendor_categories.price',[$range[0],$range[1]]);
+      }
+
+
+     if(!empty($request->sitting_capacity) && $request->sitting_capacity > 0){
+         
+          $category->where('vendor_categories.sitting_capacity','>=',$request->sitting_capacity);
+      }
+
+      if(!empty($request->standing_capacity) && $request->standing_capacity > 0){
+         
+          $category->where('vendor_categories.standing_capacity','>=',$request->standing_capacity);
+      }
+
+      
+
+     if(!empty($latitude) && !empty($longitude)){
+                 $category->selectRaw("{$haversine} AS distance")
+                            ->join('vendor_categories as t2', function ($join) use($haversine){
+                             $join->on('vendor_categories.id', '=', 't2.id')
+                                  ->where('t2.travel_distaince' ,'>',\DB::Raw($haversine));
+                   });
+
+     }
+
+    // return $category;
+ 
 	return  $category->pluck('id')->toArray();
 }
 
@@ -153,6 +160,12 @@ public function getVendorIds($request)
 
 public function getBusiness(Request $request)
 {
+// if(!empty($request->price_range)){
+//     return $range = explode('-',$request->price_range);
+// }
+
+
+ 
      $business = $this->getBusinesAccordingToSearch($request);
 
 

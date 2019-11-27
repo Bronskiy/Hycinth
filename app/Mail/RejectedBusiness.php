@@ -29,6 +29,6 @@ class RejectedBusiness extends Mailable
      * @return $this
      */
     public function build() {
-        return $this->markdown('emails.business')->with('data', $this->data);
+        return $this->markdown('emails.businessRejected')->with('data', $this->data);
     }
 }

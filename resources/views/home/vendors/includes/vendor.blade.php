@@ -1,16 +1,63 @@
 
 @if($categoryCount == 0)
 
-<div class="not-found text-center">
-    <h4>Not Found Business</h4>
-    <h5>We couldn't find any results for your search. Try clearing some filters and try again.</h5>
-
-</div>
+@include('includes.not_found')
 @endif
 
+<style type="text/css">
+  ul.capacity li p {
+    padding-top: 10px;
+    font-size: 14px;
+    color: #88718c;
+    font-weight: bold;
+}
+
+ul.capacity li p b {
+    display: inline-block;
+    background: #eda208;
+    padding: 4px;
+    border-radius: 5px;
+    color: #fff;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+ul.capacity li p i {
+    font-size: 18px;
+    color: #333;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.detail-in-breif a.detail-btn {
+    padding: 8px 15px !important;
+}
+
+.right-content p.detail {
+    
+    min-height: 55px;
+}
+</style>
 
  @foreach($businesses as $cate)    
 
+
+
+
+
+
+
+
+<?php
+
+$facebook_url = getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','facebook_url');
+$linkedin_url = getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','linkedin_url');
+$twitter_url =  getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','twitter_url');
+$instagram_url = getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','instagram_url');
+$pinterest_url = getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','pinterest_url');
+
+
+?>
        
                             <div class="detail-in-breif">
                                 <div class="row">
@@ -79,18 +126,40 @@
                                                 <li>
                                                     <p class="review">0 Reviews</p>
                                                 </li>
+                                               
+                                            </ul>
+
+                                            <ul class="capacity">
+                                               @if($cate->category->capacity == 1)
+                                                 <li>
+                                                    <p class=""><i class="fa fa-users"></i> <?= $cate->sitting_capacity > 0 ? 'Sitting Capacity <b>'.$cate->sitting_capacity.'</b> ' : ''?> <?= $cate->standing_capacity > 0 ? 'Standing Capacity<b>'.$cate->standing_capacity.'</b>' : ''?></p>
+                                                 </li>
+                                                @endif
                                             </ul>
                                             <hr>
+
                                             <p class="detail">
                                                 <?php $description = getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','short_description'); ?>
                                                {{substr($description,0,100)}} {{strlen($description) > 100 ? '...' : ''}}
                                             </p>
                                             <ul class="social-links listing-social">
                                               <li><p>Follow us:</p></li>
-                                              <li><a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a></li>
-                                              <li><a href="javascript:void(0);"><i class="fab fa-linkedin-in"></i></a></li>
-                                              <li><a href="javascript:void(0);"><i class="fab fa-twitter"></i></a></li>
-                                              <li><a href="javascript:void(0);"><i class="fab fa-instagram"></i></a></li><li><a href="javascript:void(0);"><i class="fab fa-pinterest"></i></a></li>
+
+                                              <li class="{{empty($facebook_url) ? 'hide' : ''}}">
+                                                <a href="<?= $facebook_url ?>" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                              </li>
+                                              <li class="{{empty($linkedin_url)? 'hide' : ''}}">
+                                                <a href="<?= $linkedin_url ?>" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                                              </li>
+                                              <li class="{{empty($twitter_url) ? 'hide' : ''}}">
+                                                <a href="<?= $twitter_url ?>" target="_blank"><i class="fab fa-twitter"></i></a>
+                                              </li>
+                                              <li class="{{empty($instagram_url) ? 'hide' : ''}}">
+                                                <a href="<?= $instagram_url ?>" target="_blank"><i class="fab fa-instagram"></i></a>
+                                              </li>
+                                              <li class="{{empty($pinterest_url) ? 'hide' : ''}}">
+                                                <a href="<?= $pinterest_url ?>" target="_blank"><i class="fab fa-pinterest"></i></a>
+                                              </li>
                                             </ul>
 
                                             <a href="javascript:void(0);" class="cstm-btn solid-btn detail-btn"><i class="fa fa-comment-dots"></i> Chat</a>

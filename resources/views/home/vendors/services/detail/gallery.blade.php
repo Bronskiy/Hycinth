@@ -1,3 +1,9 @@
+		 
+
+
+
+
+
 		<div class="product-gallery-wrap" id="image-gallery">
 					<div class="product-gallery-sec">
 						<div class="pannel-card mt-0">		

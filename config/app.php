@@ -177,6 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Unisharp\Ckeditor\ServiceProvider::class,
+        Chencha\Share\ShareServiceProvider::class,
 
     ],
 
@@ -228,6 +229,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Share' => Chencha\Share\ShareFacade::class,
     ],
 
 ];

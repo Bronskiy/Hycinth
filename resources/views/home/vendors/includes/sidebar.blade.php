@@ -9,9 +9,18 @@
                                 </div>
 
 
-                                @if(Request::has('category_id'))
+                                @if(Request::has('category_id') && Request::get('category_id') > 0)
                                     <input type="hidden" name="vendors[]" value="{{Request::get('category_id')}}">
                                 @endif
+ 
+                                @if(Request::has('latitude') && Request::get('latitude') != "")
+                                    <input type="hidden" name="latitude" value="{{Request::get('latitude')}}">
+                                @endif
+                                @if(Request::has('longitude') && Request::get('longitude') != "")
+                                    <input type="hidden" name="longitude" value="{{Request::get('longitude')}}">
+                                @endif
+
+
                                 <div id="collapseOne" class="collapse" data-parent="#accordion">
 
                                  @foreach($categories as $category)
@@ -68,23 +77,23 @@
                                             <div class="checkboxwrap">
                                                 <form>
                                                     <div class="form-group">
-                                                        <input type="checkbox" id="cb11">
+                                                        <input type="radio" id="cb11" name="price_range" value="0-1000" class="businesses">
                                                         <label for="cb11"> Under $1,000</label>
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="checkbox" id="cb2">
+                                                        <input type="radio" id="cb2" name="price_range" value="1000-2000" class="businesses">
                                                         <label for="cb2"> $1,000 - $1,999</label>
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="checkbox" id="cb3">
+                                                        <input type="radio" id="cb3" name="price_range" value="2000-3000" class="businesses">
                                                         <label for="cb3"> $2,000 - $2,999</label>
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="checkbox" id="cb4">
+                                                        <input type="radio" id="cb4" name="price_range" value="3000-4000" class="businesses">
                                                         <label for="cb4"> $3,000 - $3,999</label>
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="checkbox" id="cb5">
+                                                        <input type="radio" id="cb5" name="price_range" value="0-100000000" class="businesses">
                                                         <label for="cb5"> $4,000+</label>
                                                     </div>
                                                 </form>
@@ -95,41 +104,44 @@
                             </div>
                            
                             <div class="card">
-                                <div class="card-header">
-                                    <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
-                                        Services
+                                <div class="card-header">                                
+                                     <a class="collapsed card-link" data-toggle="collapse" href="#collapsefive">
+                                      Guest Capacity 
                                     </a>
                                 </div>
-                                <div id="collapseThree" class="collapse" data-parent="#accordion">
-                                    <div class="card-body listing">
-                                        <form>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="cb11211">
-                                                <label for="cb11211"> Additional Hours</label>
+                                 <div id="collapsefive" class="collapse" data-parent="#accordion">
+                                    <div class="card-body">
+                                        
+                                            <div class="inn-form-group">
+                                                <label>Sitting</label>
+                                               
+                                                <input type="range" data-id="#sitting_capacitys" id="sitting_capacity" class="Capacity"
+                                                 min="10"     
+                                                max="1000" 
+                                                step="10"
+                                                value="0">
+                                                <input type="hidden" name="sitting_capacity" id="sitting_capacitys">
                                             </div>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="cb112">
-                                                <label for="cb112"> Boudoir Shoot</label>
+
+                                             <div class="inn-form-group">
+                                                <label>Standing</label>
+                                              
+                                                <input type="range" 
+                                                data-id="#standing_capacitys" id="standing_capacity" 
+                                                class="Capacity" 
+                                                min="10"     
+                                                max="1000" 
+                                                step="10"
+                                                value="0">
+
+                                                <input type="hidden" name="standing_capacity" id="standing_capacitys">
+
                                             </div>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="cb113">
-                                                <label for="cb113"> Destination / Travel</label>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="cb114">
-                                                <label for="cb114"> Engagement Shoot</label>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="cb115">
-                                                <label for="cb115"> High-Res Images</label>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="checkbox" id="cb116">
-                                                <label for="cb116"> One Event / Day</label>
-                                            </div>
-                                        </form>
+                                            
+                                         
                                     </div>
                                 </div>
+                               
                             </div>
                         </div>
                     </form>

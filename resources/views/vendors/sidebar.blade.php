@@ -118,7 +118,7 @@
                    <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_prohibtion_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_prohibtion_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Prohibtion & Restrictions</a>
               </li>
               
-             @if($cate->business_url != "")
+             @if($cate->business_url != "" && $cate->description != null && $cate->prohibtion != null)
                <li role="presentation">
                    <a target="_blank" class="preview-link" href="{{url(route('myBusinessView',[$cate->category->slug,$cate->business_url]))}}">
                     <span class="arrow-before"><i class="fas fa-eye"></i></span>

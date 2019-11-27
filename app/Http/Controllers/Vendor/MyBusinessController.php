@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Category;
 use App\VendorCategory;
 //use App\ServiceAprovalProcess;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AdminBusiness;
 use Auth;
 class MyBusinessController extends Controller
 {
@@ -20,17 +22,13 @@ class MyBusinessController extends Controller
    #    construct
    #-----------------------------------------------------------------
   
-   public function getData($slug)
-   {
+   public function getData($slug) {
    	  
-      $category = Category::where('slug',$slug)
+      $category = Category::where('slug', $slug)
                            ->join('vendor_categories','vendor_categories.category_id','=','categories.id')
-                           ->where('vendor_categories.user_id',Auth::user()->id);
+                           ->where('vendor_categories.user_id',Auth::User()->id);
 
-
-      return $category->count() > 0 ? $category->first() : redirect()->route('vendor_dashboard')->with('error_message','Please check your url, Its wrong!');
-
-   	   
+      return $category->count() > 0 ? $category->first() : redirect()->route('vendor_dashboard')->with('error_message','Please check your url, Its wrong!');   	   
    }
 
     public function index($slug,$vendorSlug)
@@ -78,7 +76,7 @@ $venuesPercent += $vendor->styles->count() > 0 ? 25 : 0;
 $venuesPercent += $vendor->seasons->count() > 0 ? 25 : 0;
 $basicInfo = $vendor->basicInfo->count() > 0 ? 100 : 0;
 
-$prohibtion = $vendor->prohibtion->count() > 0 ? 100 : 0;
+$prohibtion = $vendor->prohibtion != null && $vendor->prohibtion->count() > 0 ? 100 : 0;
 
 $per = 400 / 100;
 
@@ -115,24 +113,28 @@ $overAll = round($photoVideogalery + $amenitiesAndGames + $venuesPercent + $basi
 #     submitForApproval
 #----------------------------------------------------------------------------
  
-public function submitForApproval(Request $request,$slug,$vendorSlug)
+public function submitForApproval(Request $request, $slug, $vendorSlug)
 {
      
      $this->getData($slug);
 
-     $vendor = VendorCategory::where('business_url',$vendorSlug)->where('user_id',Auth::user()->id)->where('status','!=',3);
+     $vendor = VendorCategory::where('business_url', $vendorSlug)->where('user_id',Auth::user()->id)->where('status','!=',3);
 
 
-     if($vendor->count() == 0){
-     	return redirect()->route('myBusinessView',[$slug,$vendorSlug])->with('messages','Your business already Approved.');
+     if($vendor->count() == 0) {
+     	return redirect()->route('myBusinessView', [$slug, $vendorSlug])->with('messages','Your business already Approved.');
      }
 
      $v= $vendor->first();
      $v->status = 2;
      $v->save();
 
+     $request['vendor_page'] = route('vendorBusinessView', ['slug' => $vendor->first()->category->slug, 'vendorSlug' => $vendor->first()->business_url]);
+     $request['title'] = $vendor->first()->title;
 
-    return redirect()->route('myBusinessView',[$slug,$vendorSlug])->with('messages','Your business approval submission has been submitted successfully.');
+     Mail::to('admin001@yopmail.com')->send(new AdminBusiness($request));
+
+    return redirect()->route('myBusinessView', [$slug,$vendorSlug])->with('messages','Your business approval submission has been submitted successfully.');
       
 	 
 }

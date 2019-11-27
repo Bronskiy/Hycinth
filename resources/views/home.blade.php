@@ -23,7 +23,7 @@
 
 
 
-@include('home.vendors.forms.home_search')
+@include('includes.home.homepage.search')
 
 <!--Tabs Section ends here-->
 <!--Popular event starts here-->
@@ -977,7 +977,7 @@
 <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAg4nmuh6JxGuULACc9L6AllFwIhCqjL4&libraries=places&callback=initAutocomplete"
         async defer> -->
 
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAg4nmuh6JxGuULACc9L6AllFwIhCqjL4&libraries=places"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDULjv0UAVmj_zgc9GjBhJNh9fNuEj87LQ&libraries=places"></script>
    
 
 <script type="text/javascript" src="{{url('js/validations/home_searching.js')}}"></script>

@@ -135,6 +135,51 @@
                         </div>
                      </div>
 
+                  @if($VendorCategory ->category->capacity == 1)
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Guest Capacity</div>
+                        <div class="panel-body">
+                           <div class="row">
+                              <div class="col-md-4">
+                                  <div class="vendor-category">
+                                    <div class="category-checkboxes category-title">
+                                    <input type="radio" name="capacity_type" value="1" id="category-1" 
+                                    {{$VendorCategory->capacity_type == 1 || old('capacity_type') == 1 ? 'checked' : ''}} 
+                                    {{$VendorCategory->capacity_type == 0 || old('capacity_type') == 1 ? 'checked' : ''}}>
+                                         <label for="category-1">Sitting Guest Capacity</label>
+                                    </div>
+                                 </div>
+                              </div>
+
+                              <div class="col-md-4">
+                                  <div class="vendor-category">
+                                    <div class="category-checkboxes category-title">
+                                    <input type="radio" name="capacity_type" value="2" id="category-2" 
+                                    {{$VendorCategory->capacity_type == 2 || old('capacity_type') == 2 ? 'checked' : ''}}>
+                                         <label for="category-2">Standing Guest Capacity</label>
+                                    </div>
+                                 </div>
+                              </div>
+
+                              <div class="col-md-4">
+                                  <div class="vendor-category">
+                                    <div class="category-checkboxes category-title">
+                                    <input type="radio" name="capacity_type" value="3" id="category-3" 
+                                    {{$VendorCategory->capacity_type == 3 || old('capacity_type') == 3 ? 'checked' : ''}}>
+                                         <label for="category-3">Both Sitting/Standing</label>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+
+                           <div class="row" id="loadCapcity">
+
+
+                           </div>
+                        </div>
+                     </div>
+                     @endif
 
                      <div class="panel panel-default">
                         <div class="panel-heading">Business Location</div>
@@ -149,6 +194,30 @@
 
                               <div class="col-md-6">
                                  {{textbox($errors,'Longitude','longitude',$VendorCategory->longitude)}}
+                              </div>
+                           </div>
+                        </div>
+                     </div>                     
+
+                     <div class="panel panel-default">
+                        <div class="panel-heading">Social Media Links</div>
+                        <div class="panel-body">
+                           <div class="row">
+                              <div class="col-md-6">
+                                 {{textbox($errors,'Facebook Link','facebook_url',$facebook_url)}}
+                              </div>
+                              <div class="col-md-6">
+                                 {{textbox($errors,'Linkedin Link','linkedin_url',$linkedin_url)}}
+                              </div>
+
+                              <div class="col-md-6">
+                                 {{textbox($errors,'Twitter Link','twitter_url',$twitter_url)}}
+                              </div>                              
+                              <div class="col-md-6">
+                                 {{textbox($errors,'Instagram Link','instagram_url',$instagram_url)}}
+                              </div>                              
+                              <div class="col-md-6">
+                                 {{textbox($errors,'Pinterest Link','pinterest_url',$pinterest_url)}}
                               </div>
                            </div>
                         </div>
@@ -169,7 +238,7 @@
 @endsection
 @section('scripts')
 
- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAg4nmuh6JxGuULACc9L6AllFwIhCqjL4&libraries=places"></script>
+ <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDULjv0UAVmj_zgc9GjBhJNh9fNuEj87LQ&libraries=places"></script>
    
 
 
@@ -177,6 +246,62 @@
 <script src="{{url('/js/validations/imageShow.js')}}"></script>
 
 <script type="text/javascript">
+
+
+
+
+jQuery("body").on('change','input[name=capacity_type]',function(){
+   
+   capacity_type();
+});
+
+capacity_type();
+function capacity_type() {
+
+    var val = $('input[name=capacity_type]:checked').val();
+    var text ="";  
+    if(val == 1){
+      
+      text +="<div class='col-md-12'>"+textbox('Sitting','sitting_capacity','<?= $VendorCategory->sitting_capacity ?>')+"</div>";
+
+
+    }else if(val == 2){
+
+      text +="<div class='col-md-12'>"+textbox('Standing','standing_capacity','<?= $VendorCategory->standing_capacity ?>')+"</div>";
+
+    }else{
+      text +="<div class='col-md-6'>"+textbox('Sitting','sitting_capacity','<?= $VendorCategory->sitting_capacity ?>')+"</div>";
+      text +="<div class='col-md-6'>"+textbox('Standing','standing_capacity','<?= $VendorCategory->standing_capacity ?>')+"</div>";
+    }
+
+
+    jQuery('#loadCapcity').html(text);
+}
+
+
+
+function textbox(label,name,val='') {
+      text  ="<div class='form-group label-floating is-empty'>";
+      text +="<label class='control-label'>"+label+"</label>";
+      text +='<input type="text" class="form-control " name="'+name+'" value="'+val+'" id="'+name+'">';
+      text +="</div>";
+
+      return text;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
 function initialize() 
 {

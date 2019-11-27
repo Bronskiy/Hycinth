@@ -4,6 +4,13 @@ jQuery(function(){
 
 
 
+
+
+
+
+
+
+
 getAllBusinessAccordingToFilter();
 
 
@@ -22,15 +29,12 @@ jQuery("body").on('change','.businesses',function(){
 
 });
 
+jQuery("body").on('change','.Capacity',function(){
 
+  getAllBusinessAccordingToFilter();
 
-
-
-
-
-
-
-
+});
+ 
 
 
 function getAllBusinessAccordingToFilter() {
@@ -71,9 +75,48 @@ function getAllBusinessAccordingToFilter() {
 
 
 
+var valueBubble = '<output class="rangeslider__value-bubble" />';
 
+function updateValueBubble(pos, value, context,divID) {
+  pos = pos || context.position;
+  value = value || context.value;
+  var $valueBubble = $('.rangeslider__value-bubble', context.$range);
+   $(divID).val(value);
+  var tempPosition = pos + context.grabPos;
+  var position = (tempPosition <= context.handleDimension) ? context.handleDimension : (tempPosition >= context.maxHandlePos) ? context.maxHandlePos : tempPosition;
 
+  if ($valueBubble.length) {
+    $valueBubble[0].style.left = Math.ceil(position) + 'px';
+    $valueBubble[0].innerHTML = value;
+    
+  }
+}
 
+$('#sitting_capacity').rangeslider({
+  polyfill: false,
+  onInit: function() {
+    
+    this.$range.append($(valueBubble));
+    updateValueBubble(null, null, this,'#sitting_capacitys');
+  },
+  onSlide: function(pos, value) {
+     
+    updateValueBubble(pos, value, this,'#sitting_capacitys');
+  }
+});
+
+$('#standing_capacity').rangeslider({
+  polyfill: false,
+  onInit: function() {
+    
+    this.$range.append($(valueBubble));
+    updateValueBubble(null, null, this,'#standing_capacitys');
+  },
+  onSlide: function(pos, value) {
+     
+    updateValueBubble(pos, value, this,'#standing_capacitys');
+  }
+});
 
 
 

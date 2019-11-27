@@ -1632,7 +1632,7 @@ nav#tool-nav #menus-list li a:hover {
     height: initial;
     width: initial;
     margin-bottom: 0;
-    display: none;
+    /*display: none;*/
     cursor: pointer;
 }
 
@@ -2151,8 +2151,8 @@ section.vendor-listing-sec .inner-content-detail {
     border-radius: 10px;
     -webkit-box-shadow: 0 0px 39px rgba(0, 0, 0, .10), 0 0px 39px rgba(0, 0, 0, .10);
             box-shadow: 0 0px 39px rgba(0, 0, 0, .10), 0 0px 39px rgba(0, 0, 0, .10);
-
     margin-top: 30px;
+    min-height: 500px;
 
 }
 
@@ -4633,6 +4633,13 @@ flex-direction: column;
     display: flex;
     align-items: center;
 }
+.select2-container--default .select2-selection--multiple .select2-selection__rendered{
+    display: flex;
+    align-items: center;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+    margin-top: 0px;
+}
 .select2-container--default.select2-container--focus .select2-selection--multiple{
      border: 2px solid #36496c;
 }
@@ -4711,12 +4718,21 @@ flex-direction: column;
 .warning-text p {
     color: #846403;
 }
+.warning-text h4 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #846403;
+    margin-bottom: 7px;
+}
 .warning-box .tip-icon span {
     top: 11px;
     left: 10px;
     position: absolute;
     font-size: 16px;
     color: #fff;
+}
+.not-found-box .warning-text{
+   padding: 16px 8px 16px 26px;
 }
 .warning-box .info-tab {
     width: 40px;
@@ -4814,7 +4830,10 @@ flex-direction: column;
 #compModal .modal-dialog {
     max-width: 1000px;
 }
-#compModal button.close {
+#weatherModal .modal-dialog{
+     max-width: 800px;
+}
+#compModal button.close, #weatherModal button.close {
     color: #fff;
 }
 .btn-area .custom-control-label {
@@ -4886,7 +4905,7 @@ table.compere-table th {
 .custom-loading{
    position: fixed !important;
     height: 100vh;
-    background: #000000a3 !important;
+    background: rgba(0,0,0,0.8) !important;
     text-align: center;
 }
 .custom-loading img{
@@ -4951,3 +4970,182 @@ table.compere-table th {
    display: inline-block !important;
 }
 .select2-choices{ display:-webkit-inline-box; max-width: 250px;   }
+
+.loader5 {
+  display:inline-block;
+  width: 0;
+    height:0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 30px solid #36496c;
+  border-top: 30px solid #eda208;
+   -webkit-animation: loader5 1.6s ease-in-out infinite alternate;
+   animation: loader5 1.6s ease-in-out infinite alternate;
+   position: absolute;
+   top: 50%;
+   left: 46%;
+   transform: translate(-50%, -50%);
+}
+
+@keyframes loader5 {
+   from {transform: rotate(0deg);}
+   to {transform: rotate(720deg);}
+}
+@-webkit-keyframes loader5 {
+   from {-webkit-transform: rotate(0deg);}
+   to {-webkit-transform: rotate(720deg);}
+}
+.inn-form-group label{
+    color: #6d6d6d;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+/*custom range slider css*/
+
+
+.rangeslider__value-bubble {
+    border: 1px solid #ccc;
+    display: block;
+    padding: 5px;
+    position: absolute;
+    bottom: 100%;
+    margin-bottom: 15px;
+    font-size: 12px;
+    width: 50px;
+    margin-left: -27px;
+    text-align: center;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+.rangeslider__fill{
+    background: #36496c;
+}
+.rangeslider__value-bubble:before, .rangeslider__value-bubble:after {
+  border-width: 11px;
+  border-style: solid;
+  border-color: transparent;
+  content: "";
+  display: block;
+  margin: auto;
+  width: 10px;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.rangeslider__value-bubble:before {
+  border-top-color: #ccc;
+  border-bottom-width: 0;
+  bottom: -11px;
+}
+.rangeslider__value-bubble:after {
+  border-top-color: #fff;
+  border-bottom-width: 0;
+  bottom: -10px;
+}
+
+.rangeslider--horizontal{
+    height: 10px;
+}
+.rangeslider--horizontal .rangeslider__handle {
+    top: -6px;
+    }
+    .rangeslider__handle{
+    width: 20px;
+    height: 20px;
+    }
+    .rangeslider__handle:after{
+         width: 10px;
+         height: 10px;
+    }
+.inn-form-group .rangeslider--horizontal {
+    margin-top: 35px;
+}
+.inn-form-group {
+    display: block;
+    margin-bottom: 20px;
+    position: relative;
+}
+#open_weather_modal {
+    max-height: 19px;
+    max-width: 22px;
+}
+.modal{
+  background: rgba(0,0,0,0.8);
+}
+.modal-backdrop {
+    display: none !important;
+}
+/***************************/
+/*weather report chart css*/
+#weather-wrapper {
+  background-color:#d1d1d1;
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 720px;
+  padding: 15px;
+  color: black;  
+  position: relative;
+}
+#weather-wrapper:after{
+    position: absolute;
+    content: "";
+    background: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    left:0;
+    top: 0;
+}
+
+#current-weather{
+  padding: 15px;
+  position: relative;
+  z-index: 111;
+  color: #fff;
+}
+
+#mainTemperature{
+  font-size: 5.5em; 
+  line-height: 0.7;
+}
+
+#tempDescription {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.day-weather-box {
+  border: 1px solid #28688C;
+  background-color: #AFEEEE;
+  border-radius: 5px;
+  height: 5em;
+}
+
+.day-weather-box p{
+  margin-bottom: 0;
+}
+
+.side-weather-info {
+  padding: 0px 10px;
+}
+
+.day-weather-inner-box {
+  display: inline-flex;
+  margin: 14px auto;
+  padding: 0px 5px;
+}
+
+.forecast-main {
+  padding: 0px 0px 0px 30px;
+}
+
+.forecast-icon {
+  font-size: 25px;
+  margin-left: 5px;
+}
+
+.modal-body p{
+  color: #333;
+}
+/**************************/

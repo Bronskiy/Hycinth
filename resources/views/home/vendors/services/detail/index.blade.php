@@ -7,6 +7,10 @@
       </div>
    </div>
 </section>
+
+<input type="hidden" value="{{$vendor->latitude}}" id="latitude" />
+<input type="hidden" value="{{$vendor->longitude}}" id="longitude" />
+
 <section class="vendor-detail-header">
    <div class="container lr-container">
       <div class="sec-card">
@@ -21,10 +25,24 @@
                         <ul class="contact-links">
                           <li><a href="tel:{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','phone_number')}}"><span class="contact-icons"><i class="fas fa-mobile-alt"></i></span></a></li>
                           <li><a target="_blank" href="{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','website')}}"><span class="contact-icons"><i class="fas fa-globe-americas"></i></span></a></li>
+                          <li>
+                             <!-- weather details for venues -->
+                     @if(\Request::route()->getName() === 'vendor_detail_page')
+                        @include('home.vendors.services.detail.weather')
+                     @endif
+                          </li>
                         </ul>                        
                      </div>
+                     
+
                   </div>
                </div>
+
+
+ 
+
+ 
+               
                <div class="col-lg-4 sticky-form-sidebar">
                   <div class="cstm-btn-grp text-right">
                      <a href="javascript:void(0);" class="cstm-btn"><span class="btn-icon"><i class="fas fa-handshake"></i></span> Hired?</a>
@@ -32,11 +50,31 @@
                   </div>
                   <div class="share-icons-wrap">
                      <ul class="social-icons">
-                        <li><a target="_blank" href=""><img src="https://yauzer.com/images/icon-fb.png" alt="Facebook"></a></li>
-                        <li><a target="_blank" href=""><img src="https://yauzer.com/images/icon-twitter.png" alt="Twitter"></a></li>
-                        <li><a target="_blank" href=""><img src="https://yauzer.com/images/icon-gplus.png" alt="Google Plus"></a></li>
-                        <li><a target="_blank" href=""><img src="https://yauzer.com/images/linkedin-icon.png" alt="Linkedin"></a></li>
-                        <li><a target="_blank" href=""><img src="https://yauzer.com/images/icon-Pinterest.png" alt="Pinterest"></a></li>
+                        <li>
+                           <a target="_blank" href="<?= \Share::load(url('/'),$vendor->description->keyValue)->facebook() ?>">
+                           <img src="https://yauzer.com/images/icon-fb.png" alt="Facebook">
+                        </a>
+                       </li>
+                        <li>
+                           <a target="_blank" href="<?= \Share::load(url('/'),$vendor->description->keyValue)->twitter() ?>">
+                              <img src="https://yauzer.com/images/icon-twitter.png" alt="Twitter">
+                           </a>
+                        </li>
+                        <li>
+                           <a target="_blank" href="<?= \Share::load(url('/'),$vendor->description->keyValue)->gplus() ?>">
+                              <img src="https://yauzer.com/images/icon-gplus.png" alt="Google Plus">
+                           </a>
+                        </li>
+                        <li>
+                           <a target="_blank" href="<?= \Share::load(url('/'),$vendor->description->keyValue)->linkedin() ?>">
+                              <img src="https://yauzer.com/images/linkedin-icon.png" alt="Linkedin">
+                           </a>
+                        </li>
+                        <li>
+                           <a target="_blank" href="<?= \Share::load(url('/'),$vendor->description->keyValue)->pinterest() ?>">
+                              <img src="https://yauzer.com/images/icon-Pinterest.png" alt="Pinterest">
+                           </a>
+                        </li>
                      </ul>
                   </div>
                </div>
@@ -512,6 +550,12 @@
       });
       
      });
+
+
+     $('#open_weather_modal').click(function() {
+         console.log('weather');
+         console.log(this);
+     });
    
    
    });
@@ -558,7 +602,24 @@
           nav:true,
           dots:false,
           mouseDrag:true
-       })
+       });
+
+
+// weather api
+
+$.ajax({
+headers: { 'Access-Control-Allow-Origin': '*' },
+url: "http://openweathermap.org/data/2.5/forecast/daily?APPID=9b4bbf30228eb8528d36e79d05da1fac&lat=9.9399&lon=76.2602&units=metric&cnt=5",
+type: "GET",
+dataType: "JSON",
+success: function(res)
+{
+    console.log('res ', res);
+},
+error: function(err) {
+   console.log('err ', err);
+}
+});
    
    
 </script>

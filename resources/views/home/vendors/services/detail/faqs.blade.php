@@ -1,15 +1,6 @@
 <div class="faq-sec" id="faq-sec">
 	<div class="pannel-card">
-	<!-- 	warning message -->
-     <div class="warning-box space">
-                    <div class="shadow-box">
-                        <div class="info-tab tip-icon" title="Useful Tips"><span class="fas fa-exclamation-triangle"> </span> <i></i></div>
-                        <div class="warning-text">
-                            <p><strong>Error:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis orci mauris, feugiat ac auctor ac, ultrices vitae lacus.</p>
-                    </div>
-                </div>
-            </div>
-  <!--    ============== -->
+ 
 
 
 	 <?= notoficationBusinessFlash($types,$vendor->faqComment,$vendor->status) ?>		

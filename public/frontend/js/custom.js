@@ -3,6 +3,12 @@
 //     $(".main-detail .col-lg-4").theiaStickySidebar();
 // });
 
+//custom range slider
+
+
+
+// =============
+
 //Toolbox animation
 $(document).ready(function() { 
   $(".toolbox").click(function(){
@@ -205,6 +211,7 @@ $('.test').owlCarousel({
         }
     }
 });
+
 
 
 
