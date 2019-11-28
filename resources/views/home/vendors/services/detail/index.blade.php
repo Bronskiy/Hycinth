@@ -8,9 +8,6 @@
    </div>
 </section>
 
-<input type="hidden" value="{{$vendor->latitude}}" id="latitude" />
-<input type="hidden" value="{{$vendor->longitude}}" id="longitude" />
-
 <section class="vendor-detail-header">
    <div class="container lr-container">
       <div class="sec-card">
@@ -23,27 +20,23 @@
                         <h2>{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','business_name')}}</h2>
                         <p class="address-line"><span class="location-icon"><i class="fas fa-map-marker-alt"></i></span><?= getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','address')?></p>
                         <ul class="contact-links">
-                          <li><a href="tel:{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','phone_number')}}"><span class="contact-icons"><i class="fas fa-mobile-alt"></i></span></a></li>
-                          <li><a target="_blank" href="{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','website')}}"><span class="contact-icons"><i class="fas fa-globe-americas"></i></span></a></li>
-                          <li>
-                             <!-- weather details for venues -->
-                     @if(\Request::route()->getName() === 'vendor_detail_page')
-                        @include('home.vendors.services.detail.weather')
-                     @endif
-                          </li>
+                          <li><a href="tel:{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','phone_number')}}" data-toggle="tooltip" title="call us"><span class="contact-icons"><i class="fas fa-mobile-alt"></i></span></a></li>
+                          <li><a target="_blank" href="{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','website')}}" data-toggle="tooltip" title="Website"><span class="contact-icons"><i class="fas fa-globe-americas"></i></span></a></li>
+                          
                         </ul>                        
-                     </div>
-                     
+                     </div>                  
 
                   </div>
+                  <!-- weather details for venues -->
+                     @include('home.vendors.services.detail.weather')
+
                </div>
 
 
  
 
  
-               
-               <div class="col-lg-4 sticky-form-sidebar">
+              <div class="col-lg-4 sticky-form-sidebar">
                   <div class="cstm-btn-grp text-right">
                      <a href="javascript:void(0);" class="cstm-btn"><span class="btn-icon"><i class="fas fa-handshake"></i></span> Hired?</a>
                      <a href="javascript:void(0);" class="cstm-btn"><span class="btn-icon"><i class="fas fa-heart"></i></span> Save</a>
@@ -51,33 +44,35 @@
                   <div class="share-icons-wrap">
                      <ul class="social-icons">
                         <li>
-                           <a target="_blank" href="<?= \Share::load(url('/'),$vendor->description->keyValue)->facebook() ?>">
+                           <a target="_blank" href="<?= \Share::load(url()->full(),$vendor->title)->facebook() ?>">
                            <img src="https://yauzer.com/images/icon-fb.png" alt="Facebook">
                         </a>
                        </li>
                         <li>
-                           <a target="_blank" href="<?= \Share::load(url('/'),$vendor->description->keyValue)->twitter() ?>">
+                           <a target="_blank" href="<?= \Share::load(url()->full(),$vendor->title)->twitter() ?>">
                               <img src="https://yauzer.com/images/icon-twitter.png" alt="Twitter">
                            </a>
                         </li>
                         <li>
-                           <a target="_blank" href="<?= \Share::load(url('/'),$vendor->description->keyValue)->gplus() ?>">
+                           <a target="_blank" href="<?= \Share::load(url()->full(),$vendor->title)->gplus() ?>">
                               <img src="https://yauzer.com/images/icon-gplus.png" alt="Google Plus">
                            </a>
                         </li>
                         <li>
-                           <a target="_blank" href="<?= \Share::load(url('/'),$vendor->description->keyValue)->linkedin() ?>">
+                           <a target="_blank" href="<?= \Share::load(url()->full(),$vendor->title)->linkedin() ?>">
                               <img src="https://yauzer.com/images/linkedin-icon.png" alt="Linkedin">
                            </a>
                         </li>
                         <li>
-                           <a target="_blank" href="<?= \Share::load(url('/'),$vendor->description->keyValue)->pinterest() ?>">
+                           <a target="_blank" href="<?= \Share::load(url()->full(),$vendor->title)->pinterest() ?>">
                               <img src="https://yauzer.com/images/icon-Pinterest.png" alt="Pinterest">
                            </a>
                         </li>
                      </ul>
+                      
                   </div>
                </div>
+               
             </div>
          </div>
       <div class="deatil-navigation-wrap">
@@ -170,16 +165,31 @@
                      <div class="summary-details detail-listing">
                         <?= ($vendor->description->count() > 0) ? $vendor->description->keyValue : 'No Description' ?>
                      </div>
-                     <ul class="social-links listing-social">
-                        <li>
-                           <p><strong>Follow us:</strong></p>
-                        </li>
-                        <li><a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="javascript:void(0);"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="javascript:void(0);"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="javascript:void(0);"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="javascript:void(0);"><i class="fab fa-pinterest"></i></a></li>
-                     </ul>
+                <?php
+                  $facebook_url = getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','facebook_url');
+                  $linkedin_url = getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','linkedin_url');
+                  $twitter_url =  getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','twitter_url');
+                  $instagram_url = getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','instagram_url');
+                  $pinterest_url = getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','pinterest_url');
+                ?> 
+             <ul class="social-links listing-social">
+                        <li><p><strong>Follow us:</strong></p></li>
+                  <li class="{{empty($facebook_url) ? 'hide' : ''}}">
+                  <a href="<?= $facebook_url ?>" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                  </li>
+                  <li class="{{empty($linkedin_url)? 'hide' : ''}}">
+                  <a href="<?= $linkedin_url ?>" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                  </li>
+                  <li class="{{empty($twitter_url) ? 'hide' : ''}}">
+                  <a href="<?= $twitter_url ?>" target="_blank"><i class="fab fa-twitter"></i></a>
+                  </li>
+                  <li class="{{empty($instagram_url) ? 'hide' : ''}}">
+                  <a href="<?= $instagram_url ?>" target="_blank"><i class="fab fa-instagram"></i></a>
+                  </li>
+                  <li class="{{empty($pinterest_url) ? 'hide' : ''}}">
+                  <a href="<?= $pinterest_url ?>" target="_blank"><i class="fab fa-pinterest"></i></a>
+                  </li>
+                </ul>
                   </div>
                </div>
             </div>
@@ -552,10 +562,10 @@
      });
 
 
-     $('#open_weather_modal').click(function() {
-         console.log('weather');
-         console.log(this);
-     });
+     // $('#open_weather_modal').click(function() {
+     //     console.log('weather');
+     //     console.log(this);
+     // });
    
    
    });
@@ -605,22 +615,303 @@
        });
 
 
-// weather api
+function getWeatherData() {
 
-$.ajax({
-headers: { 'Access-Control-Allow-Origin': '*' },
-url: "http://openweathermap.org/data/2.5/forecast/daily?APPID=9b4bbf30228eb8528d36e79d05da1fac&lat=9.9399&lon=76.2602&units=metric&cnt=5",
-type: "GET",
-dataType: "JSON",
-success: function(res)
-{
-    console.log('res ', res);
-},
-error: function(err) {
-   console.log('err ', err);
+const venue_weather_route = $('#venue_weather_route').val();
+  $.ajax({
+    type: "GET",
+    url: venue_weather_route,
+    cache: true,
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'), 
+    },
+
+    success: function(forecast) {
+      $('#weather-loader').css('display', 'none');
+      $('#open_weather_modal').css('opacity', '1');
+      setForecast(forecast);
+      startClock(forecast.currently.time);
+    },
+    error: function(error) {
+      $('#weather-loader').css('display', 'none');
+      console.log("Error with ajax: "+ error);
+    }
+  });
 }
+const d = new Date();
+$('#weatherDatePicker').val(`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}`);
+getWeatherData();
+
+function startClock(time) {
+  // setInterval(function() {
+    $("#localTime").text(new Date(time).toLocaleTimeString());
+  // }, 1000);
+}
+
+function setForecast(forecast) {
+   var today = forecast.daily.data[0];
+  $("#tempDescription").text(today.summary);
+  $("#humidity").text(today.humidity);
+  $("#wind").text(today.windSpeed);
+  $("#localDate").text(getFormattedDate(today.time));
+  $("#main-icon").attr('src', `/frontend/DarkSky-icons/SVG/${today.icon}.svg`);
+  $("#mainTemperature").text(toCelcius(forecast.currently.temperature));
+  // $("#mainTempHot").text(toCelcius(today.temperatureHigh));
+  // $("#mainTempLow").text(toCelcius(today.temperatureLow));
+  // $("#cityName").text(forecast.city.name);
+  // $("#cityCode").text(forecast.city.country);
+
+// // // modal
+ $("#modal-main-icon").attr('src', `/frontend/DarkSky-icons/SVG/${today.icon}.svg`);
+ $("#modal-localDate").text(getFormattedDate(today.time));
+ $("#modal-mainTemperature").text(toCelcius(forecast.currently.temperature));
+ // $("#modal-cityName").text(forecast.city.name);
+ // $("#modal-cityCode").text(forecast.city.country);
+
+ let we = '';
+ let data = forecast.daily.data.length > 1 ? forecast.daily.data : forecast.hourly.data;
+ for (var i = 1; i < data.length; i++) {
+      const f = data[i];
+      let temp = f.temperature ? `${toCelcius(f.temperature)}°C` : `${toCelcius(f.temperatureLow)}°C - ${toCelcius(f.temperatureHigh)}°C`;
+      let time = f.temperature ? `${new Date(f.time).getHours()} : ${new Date(f.time).getMinutes()}` : `${getFormattedDate(f.time)}`;
+      we += `<div class="weakly-weather-item">
+              <p class="mb-0"> ${time} </p> <img id="modal-main-icon" src="/frontend/DarkSky-icons/SVG/${f.icon}.svg">
+              <p class="mb-0"> ${temp} </p>
+          </div>`;
+ }
+ 
+ $('#w-hourly').empty();
+ $('#w-hourly').append(we);
+}
+
+
+function searchWeather() {
+   $('#weather-loader').css('display', 'block');
+   let date = $('#weatherDatePicker').val();
+   let url = $('#venue_weather_route').val();
+   $('#venue_weather_route').val(`${url}&time=${date}`);
+   getWeatherData();
+}
+
+
+//weather report js
+
+// var unitIsCelcius = true;
+// var globalForecast = [];
+
+// // Maps the API's icons to the ones from https://erikflowers.github.io/weather-icons/
+// var weatherIconsMap = {
+//   "01d": "wi-day-sunny",
+//   "01n": "wi-night-clear",
+//   "02d": "wi-day-cloudy",
+//   "02n": "wi-night-cloudy",
+//   "03d": "wi-cloud",
+//   "03n": "wi-cloud",
+//   "04d": "wi-cloudy",
+//   "04n": "wi-cloudy",
+//   "09d": "wi-showers",
+//   "09n": "wi-showers",
+//   "10d": "wi-day-hail",
+//   "10n": "wi-night-hail",
+//   "11d": "wi-thunderstorm",
+//   "11n": "wi-thunderstorm",
+//   "13d": "wi-snow",
+//   "13n": "wi-snow",
+//   "50d": "wi-fog",
+//   "50n": "wi-fog"
+// };
+
+
+// $(function(){
+//   const latitude = $('#latitude').val();
+//   const longitude = $('#longitude').val();
+
+//   getWeatherData(latitude, longitude);
+//   startClock();  
+// });
+
+
+// function startClock() {
+//   setInterval(function() {
+//     $("#localTime").text(new Date().toLocaleTimeString());
+//   }, 1000);
+// }
+
+// function getWeatherData(latitude, longitude) {
+// const venue_weather_route = $('#venue_weather_route').val();
+//   $.ajax({
+//     type: "GET",
+//     url: venue_weather_route,
+//     cache: true,
+//     headers: {
+//       "Access-Control-Allow-Headers": "x-requested-with",
+//       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'), 
+//       'Access-Control-Allow-Origin': '*' 
+//     },
+
+//     success: function(forecast) {
+//       console.log('forecast', forecast);
+//       globalForecast = forecast;
+//       updateForecast(forecast);
+
+//       // Stops Refresh button's spinning animation
+//       $("#refreshButton").html("<i class='fa fa-refresh fa-fw'></i> Refresh");
+//     },
+//     error: function(error) {
+//       alert("Error with ajax: "+ error);
+//       console.log("Error with ajax: "+ error);
+//     }
+//   });
+// }
+
+
+// // Update view values from passed forecast
+// function updateForecast(forecast) {
+
+//   // Present day
+//   var today = forecast.list[0];
+//   $("#tempDescription").text(toCamelCase(today.weather[0].description));
+//   $("#humidity").text(today.humidity);
+//   $("#wind").text(today.speed);
+//   $("#localDate").text(getFormattedDate(today.dt));
+//   $("#main-icon").addClass(weatherIconsMap[today.weather[0].icon]);
+//   $("#mainTemperature").text(Math.round(today.temp.day));
+//   $("#mainTempHot").text(Math.round(today.temp.max));
+//   $("#mainTempLow").text(Math.round(today.temp.min));
+//   $("#cityName").text(forecast.city.name);
+//   $("#cityCode").text(forecast.city.country);
+
+// // modal
+
+//  $("#modal-main-icon").addClass(weatherIconsMap[today.weather[0].icon]);
+//  $("#modal-localDate").text(getFormattedDate(today.dt));
+//  $("#modal-cityName").text(forecast.city.name);
+//  $("#modal-cityCode").text(forecast.city.country);
+
+//   // Following days data
+//   for(var i = 0; i < (forecast.list).length; i++) {
+//     var day = forecast.list[i];
+
+//     // Day short format e.g. Mon
+//     var dayName = getFormattedDate(day.dt).substring(0, 3);
+
+//     // weather icon from map
+//     var weatherIcon = weatherIconsMap[day.weather[0].icon];
+
+//     $("#forecast-day-" + i + "-name").text(dayName);
+//     $("#forecast-day-" + i + "-icon").addClass(weatherIcon);
+//     $("#forecast-day-" + i + "-main").text(Math.round(day.temp.day));
+//     $("#forecast-day-" + i + "-ht").text(Math.round(day.temp.max));
+//     $("#forecast-day-" + i + "-lt").text(Math.round(day.temp.min));
+//   }
+// }
+
+// // Refresh button handler
+// $("#refreshButton").on("click", function() {
+//   // Starts Refresh button's spinning animation
+//   $("#refreshButton").html("<i class='fa fa-refresh fa-spin fa-fw'></i>");
+//   getWeatherData();
+// });
+
+// // Celcius button handler.
+// // Converts every shown value to Celcius
+// $("#celcius").on("click", function() {
+//   if(!unitIsCelcius){
+//     $("#farenheit").removeClass("active");
+//     this.className = "active";
+
+//     // main day
+//     var today = globalForecast.list[0];
+//     today.temp.day = toCelcius(today.temp.day);
+//     today.temp.max = toCelcius(today.temp.max);
+//     today.temp.min = toCelcius(today.temp.min);
+//     globalForecast.list[0] = today;
+
+//     // week
+//     for(var i = 1; i < 5; i ++) {
+//       var weekDay = globalForecast.list[i];
+//       weekDay.temp.day = toCelcius(weekDay.temp.day);
+//       weekDay.temp.max = toCelcius(weekDay.temp.max);
+//       weekDay.temp.min = toCelcius(weekDay.temp.min);
+//       globalForecast[i] = weekDay;
+//     }
+
+//     // update view with updated values
+//     updateForecast(globalForecast);
+
+//     unitIsCelcius = true;
+//   }
+// });
+
+// // Farenheit button handler
+// // Converts every shown value to Farenheit
+// $("#farenheit").on("click", function(){  
+//   if(unitIsCelcius){
+//     $("#celcius").removeClass("active");
+//     this.className = "active";
+    
+//     // main day
+//     var today = globalForecast.list[0];
+//     today.temp.day = toFerenheit(today.temp.day);
+//     today.temp.max = toFerenheit(today.temp.max);
+//     today.temp.min = toFerenheit(today.temp.min);
+//     globalForecast.list[0] = today;
+
+//     // week
+//     for(var i = 1; i < 5; i ++){
+//       var weekDay = globalForecast.list[i];
+//       weekDay.temp.day = toFerenheit(weekDay.temp.day);
+//       weekDay.temp.max = toFerenheit(weekDay.temp.max);
+//       weekDay.temp.min = toFerenheit(weekDay.temp.min);
+//       globalForecast[i] = weekDay;
+//     }
+
+//     // update view with updated values
+//     updateForecast(globalForecast);
+    
+//     unitIsCelcius = false;
+//   }
+// });
+
+// // Applies the following format to date: WeekDay, Month Day, Year
+function getFormattedDate(date) {
+  var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(date * 1000).toLocaleDateString("en-US", options);
+}
+
+// // // Formats the text to CamelCase
+function toCamelCase(str) {
+  var arr = str.split(" ").map(
+    function(sentence){
+      return sentence.charAt(0).toUpperCase() + sentence.substring(1);
+    }
+  );
+  return arr.join(" ");
+}
+
+// // Converts to Celcius
+function toCelcius(val) {
+  return Math.round((val - 32) * (5/9));
+}
+
+// // Converts to Farenheit
+// function toFerenheit(val) {
+//   var degrees = (val * 1.8) + 32;
+//   var rounded = Math.round(degrees);
+//   return rounded;
+// }
+
+// function calcTime(offset) {
+//     d = new Date();
+//     utc = d.getTime() + (d.getTimezoneOffset() * 60000);
+//     nd = new Date(utc + (3600000*offset));
+//     return nd.toLocaleString();
+// }
+   
+
+   //tooltip
+   $(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();   
 });
-   
-   
 </script>
 @endsection

@@ -37,9 +37,8 @@
                               <div class="col-md-6">{{textbox($errors,'Website*','website',$website)}}</div>
                               <div class="col-md-12">{{textbox($errors,'Price Start From*','min_price',$min_price)}}</div>
                               <div class="col-md-12">{{textarea($errors, 'Short Description about your Business*', 'short_description', $short_description)}}</div>
-                              <div class="col-md-12">
-                              {{textbox($errors, 'Address*', 'address', $address)}}
-                            </div>
+                               
+                            <input type="hidden" name="address" value="{{$address}}">
                            </div>
                         </div>
                      </div>
@@ -79,11 +78,11 @@
                            <div class="row">
                               <div class="col-md-6"> 
  
-                            <div class="form-group">
-                             <label>Business Cover Photo</label>
-                             <input type="file" name="cover_video_image" class="form-control">
-                             <label class="error">{{$errors->first('cover_video_image')}}</label>
-                          </div>
+                                <div class="form-group">
+                                 <label>Business Cover Photo</label>
+                                 <input type="file" name="cover_video_image" class="form-control">
+                                 <label class="error">{{$errors->first('cover_video_image')}}</label>
+                              </div>
 
                             </div>
                               <div class="col-md-6">  
@@ -186,7 +185,7 @@
                         <div class="panel-body">
                            <div class="row">
                               <div class="col-md-12">
-                                 {{textbox($errors,'Business Location','business_location',$VendorCategory->business_location)}}
+                                 {{textbox($errors,'Business Location','business_location',$VendorCategory->business_location,$address)}}
                               </div>
                               <div class="col-md-6">
                                  {{textbox($errors,'Latitude','latitude',$VendorCategory->latitude)}}

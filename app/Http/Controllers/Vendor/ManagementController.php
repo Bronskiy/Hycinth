@@ -133,17 +133,18 @@ public $restrictions =[
       
        $validation = [
             'business_name' => 'required',
-            'address' => 'required',
+            
             'website' => 'required',
             'phone_number' => 'required',
             'company' => 'required',
             'travel_distaince' => 'required',
-            'min_price' => 'required',
+            'min_price' => 'required|numeric',
             'short_description' => 'required',
             'cover_photo' => 'image',
             'cover_video_image' => 'image',
             'latitude' => 'required',
             'longitude' => 'required',
+            'business_location' => 'required',
             'cover_video' => 'mimes:mp4,3gp,avi,wmv'
       ];
 
@@ -213,7 +214,7 @@ if($VendorCategory->count() > 0){
  
 $this->saveCategoryMetaData('business_name',$request->type,$request->business_name,$category->category_id);
 $this->saveCategoryMetaData('short_description',$request->type,$request->short_description,$category->category_id);
-$this->saveCategoryMetaData('address',$request->type,$request->address,$category->category_id);
+$this->saveCategoryMetaData('address',$request->type,$request->business_location,$category->category_id);
 $this->saveCategoryMetaData('website',$request->type,$request->website,$category->category_id);
 $this->saveCategoryMetaData('phone_number',$request->type,$request->phone_number,$category->category_id);
 $this->saveCategoryMetaData('company',$request->type,$request->company,$category->category_id);
@@ -284,19 +285,91 @@ public function saveCategoryMetaData($key,$type,$value,$category_id)
    {
 
  
+      $category = $this->getData($slug);
+      $images = VendorCategoryMetaData::where('category_id',$category->category_id)
+                                      ->where('user_id',Auth::user()->id)
+                                      ->where('type','imageGallery')
+                                      ->paginate(12);
+      return view('vendors.management.images.index')
+      ->with('slug',$slug)
+      ->with('category',$category)
+      ->with('images',$images)
+      ->with('addLink', 'vendor_category_add_image_management')
+      ->with('title',$category->label.' Management :: About');
+   }
+
+
+
+   #-----------------------------------------------------------------
+   #    imageGallery
+   #-----------------------------------------------------------------
+  
+   public function imageGallery($slug)
+   {
+
+ 
    	  $category = $this->getData($slug);
    	  $images = VendorCategoryMetaData::where('category_id',$category->category_id)
    	                                  ->where('user_id',Auth::user()->id)
-   	                                  ->where('type','imageGallery')
-   	                                  ->paginate(12);
-      return view('vendors.management.images.index')
-   	  ->with('slug',$slug)
-   	  ->with('category',$category)
-   	  ->with('images',$images)
-      ->with('addLink', 'vendor_category_add_image_management')
-   	  ->with('title',$category->label.' Management :: About');
+   	                                  ->where('type','imageGallery');
+   	                                   
+        $vv = view('vendors.management.images.list')
+   	        ->with('category',$category)
+   	        ->with('images',$images)->render();
+
+      return response()->json(['status'=> 1 ,'result' => $vv]);
    }
 
+
+
+  #--------------------------------------------------------------------------
+  #  uploadGalleryImage
+  #--------------------------------------------------------------------------
+
+
+
+
+  public function uploadGalleryImage(Request $request)
+  {
+
+
+ 
+      $validation = \Validator::make($request->all(), [
+      'gallery_image' => 'required'
+     ]);
+
+     
+     if($validation->fails()){
+
+        return response()->json([
+                           'message'   => $validation->errors()->all(),
+                           'success' => false,
+                           'class_name'  => 'alert-danger'
+                          ]);
+
+     }else{
+
+
+
+              foreach ($request->gallery_image as $key) {
+                          $image_name = uploadFileWithAjax('images/vendors/gallery/',$key);
+
+                           $d=new VendorCategoryMetaData;
+                           $d->key = 'aboutus_slider_images';
+                           $d->keyValue = $image_name;
+                           $d->user_id = Auth::user()->id;
+                           $d->category_id = $request->category_id;
+                           $d->vendor_category_id = $this->getVendorCategoryID($request->category_id);
+                           $d->type = 'imageGallery';
+                           $d->save();
+              }
+
+
+              return response()->json(['success' => true]);
+
+      }
+
+  }
 
 
   public function imageView($slug)

@@ -38,7 +38,7 @@ public function getServices(Request $request,$id)
 public function allCategoryData($request)
 {
 
-	       $amenityAndGames = '<option value="" disabled>Amenities & Games</option>';
+	       $amenityAndGames = '<option></option>';
 
 
 		   $amenityAndGames .= '<optgroup label="Amenities">'.$this->getAllAmenity().'</optgroup>' ;
@@ -76,7 +76,7 @@ public function getDataAccordingToCate($id)
 		 	'CategoryGames.Games'
 		 )->where('id',$id)->first();
 
-		$amenityAndGames = '<option value="" disabled>Amenities & Games</option>';
+		$amenityAndGames = '<option></option>';
 
 
 		$amenityAndGames .= ($Category->CategoryAmenity->count() > 0) ? '<optgroup label="Amenities">'.$this->getEvents($Category->CategoryAmenity,'Amenity','name').'</optgroup>' : '';
@@ -89,7 +89,7 @@ public function getDataAccordingToCate($id)
 		return $variation = [
 		    'events' => $this->getEvents($Category->CategoryEvent,'Event','name','Event Type'),
 		    'amenities' => $amenityAndGames,
-		    'vendors' => '<option value="">Suggested Vendor</option>'
+		    'vendors' => '<option></option>'
 		 ];
 }
 
@@ -100,7 +100,7 @@ public function getDataAccordingToCate($id)
 
 public function getEvents($data,$tab,$name,$label=null)
 {
-	 $text =$label !=null ? '<option value="" disabled>'.$label.'</option>' : '';
+	 $text =$label !=null ? '<option></option>' : '';
 
 	 foreach ($data as $key => $value) {
 	 	 $text .='<option value="'.$value->$tab->id.'">'.$value->$tab->$name.'</option>';
@@ -124,7 +124,7 @@ public function getAllVendor()
                                ->get();
 
 
-	 $text ='<option value="" disabled>Search Vendor</option>';
+	 $text ='<option></option>';
 
 	 foreach ($category as $key => $value) {
 	 	 $text .='<option value="'.$value->id.'">'.$value->label.'</option>';

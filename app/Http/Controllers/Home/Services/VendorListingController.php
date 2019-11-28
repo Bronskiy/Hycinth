@@ -44,6 +44,7 @@ public function getVendorData($request)
      return view('home.vendors.listing',[
         'categories' => $category,
         'businesses' => $business->get(),
+        'vendors' => $business->get(),
         'categoryCount' => $business->count(),
 	 ]);
 }

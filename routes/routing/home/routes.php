@@ -35,3 +35,6 @@ Route::post('/ajax/login', 'HomeController@userLogin')->name('ajax_login');
 
  Route::get('/page/{slug}', 'HomeController@showCmsPage')->name('cmsPage');
  Route::get('/venues', 'Home\Services\VendorListingController@venue')->name('get_all_venues');
+
+ // weather api
+ Route::get('/venue/getweather', 'Home\Services\ServiceDetailController@getweather')->name('get_venue_weather');

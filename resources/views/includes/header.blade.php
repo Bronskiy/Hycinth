@@ -37,7 +37,9 @@
       <div class="container">
          <ul class="head-links">
             <li><a href="/">Home</a></li>
-            <li><a href="{{url(route('get_all_venues'))}}">Venues</a></li>
+            <!-- <li><a href="{{url(route('get_all_venues'))}}">Venues</a></li> -->
+            <li><a href="javascript:void(0);" data-toggle="modal" data-target="#VenuesCategoriesModal">Businesses</a></li>
+            
             <li><a href="/vendor/register">New Vendors</a></li>
             <li class="mob-hide">
                <a href="javascript:void(0);" class="fav-list">
@@ -204,4 +206,6 @@
       <a href="javascript:void(0);" (click)="close_nav()" class="nav-close-btn"><i class="fas fa-times"></i></a>
    </nav>
    <a href="javascript:void(0);" id="calender-toggle"><span><i class="fas fa-calendar-alt"></i></span></a>
+
+ 
 </header>

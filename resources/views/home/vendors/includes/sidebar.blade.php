@@ -13,11 +13,26 @@
                                     <input type="hidden" name="vendors[]" value="{{Request::get('category_id')}}">
                                 @endif
  
-                                @if(Request::has('latitude') && Request::get('latitude') != "")
-                                    <input type="hidden" name="latitude" value="{{Request::get('latitude')}}">
+                              
+
+
+                                 @if(Request::has('event_type') && !empty(Request::get('event_type')))
+                                     
+                                     @foreach(Request::get('event_type') as $e)
+                                        <input type="hidden" name="event_type[]" value="{{$e}}">
+
+                                     @endforeach
+
                                 @endif
-                                @if(Request::has('longitude') && Request::get('longitude') != "")
-                                    <input type="hidden" name="longitude" value="{{Request::get('longitude')}}">
+
+
+                                @if(Request::has('amenities') && !empty(Request::get('amenities')))
+                                     
+                                     @foreach(Request::get('amenities') as $a)
+                                        <input type="hidden" name="amenities[]" value="{{$a}}">
+
+                                     @endforeach
+
                                 @endif
 
 
@@ -116,9 +131,9 @@
                                                 <label>Sitting</label>
                                                
                                                 <input type="range" data-id="#sitting_capacitys" id="sitting_capacity" class="Capacity"
-                                                 min="10"     
-                                                max="1000" 
-                                                step="10"
+                                                 min="0"     
+                                                max="100000" 
+                                                step="50"
                                                 value="0">
                                                 <input type="hidden" name="sitting_capacity" id="sitting_capacitys">
                                             </div>
@@ -129,9 +144,9 @@
                                                 <input type="range" 
                                                 data-id="#standing_capacitys" id="standing_capacity" 
                                                 class="Capacity" 
-                                                min="10"     
-                                                max="1000" 
-                                                step="10"
+                                                min="0"     
+                                                max="100000" 
+                                                step="50"
                                                 value="0">
 
                                                 <input type="hidden" name="standing_capacity" id="standing_capacitys">
@@ -143,6 +158,46 @@
                                 </div>
                                
                             </div>
+
+
+                              <div class="card">
+                                <div class="card-header">                                
+                                     <a class="collapsed card-link" data-toggle="collapse" href="#collapseSix">
+                                     Location
+                                    </a>
+                                </div>
+                                 <div id="collapseSix" class="collapse" data-parent="#accordion">
+                                    <div class="card-body">
+                                        
+                                           <div class="form-group">  
+                                                <input type="search" name="address" id="address" value="" class="form-control" placeholder="Location">
+
+                                                  
+                                                       <input type="hidden" name="latitude" id="latitude" value="{{(Request::has('latitude') && Request::get('latitude') != "") ? Request::get('latitude') : ''}}">
+                                                   
+                                                   
+                                                    <input type="hidden" name="longitude" id="longitude" value="{{(Request::has('longitude') && Request::get('longitude') != "") ? Request::get('longitude') : ''}}">
+                                                   
+                                           </div>
+                                            
+                                    </div>
+                                </div>
+                               
+                            </div>
+
+
+
+
+
+                             
+
+
+
+
+
+
+
+
                         </div>
                     </form>
                     </div>

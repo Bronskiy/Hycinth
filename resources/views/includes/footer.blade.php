@@ -64,3 +64,59 @@
         </div>
     </div>
   </footer>
+
+
+
+
+
+
+
+
+
+
+
+  <!-- Modal -->
+<div class="modal fade" id="VenuesCategoriesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Businesses</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+         <div class="venues-categories-wrap">
+           <ul class="venues-cat-list row">
+
+         <?php $businessCategory = \App\Category::join('vendor_categories','vendor_categories.category_id','=','categories.id')
+                               ->select('categories.*')
+                               ->where('categories.status',1)
+                               ->where('categories.parent',0)
+                               ->where('vendor_categories.status',3)
+                               ->where('vendor_categories.publish',1)
+                               ->orderBy('sorting','ASC')
+                               ->groupBy('categories.id')
+                               ->get(); ?>   
+
+          @foreach($businessCategory as $business)       
+
+             <li class="col-lg-4">
+               <a href="{{url(route('home_vendor_listing_page'))}}?category_id={{$business->id}}" class="category-link"><span class="cate-link-icon">
+                <img src="{{ url($business->image)}}"></span>
+                {{$business->label}} <b>({{$business->businesses->count()}})</b></a>
+             </li>
+             
+           @endforeach
+             
+             
+           </ul>
+         </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>

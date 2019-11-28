@@ -14,7 +14,7 @@
             </ul>
         </div>
         <div class="side-btns-wrap">
-          <a href="{{url(route($addLink, $slug))}}" class="add_btn"><i class="fa fa-plus"></i></a>
+           
         </div>
   </div>
 @include('vendors.errors')
@@ -22,37 +22,179 @@
     <div class="row">
        <div class="col-lg-12">
           <div class="card vendor-dash-card">
-       <div class="card-header"><h3>Added images 
-       </h3></div>
+       <div class="card-header">
+            <h3>Added images </h3>
+       </div>
            <div class="card-body">
-<div class="row"> 
-      	   @foreach($images as $img)
-            <div class="col-lg-4">
-                <div class="gallery-card">
-                  <div class="image-gallery-container">
-                       <img src="{{url($img->keyValue)}}" width="100%">
-                       <!-- <div class="olay">
-                           <a href="{{route('vendor_category_meta_delete',[$category->slug,$img->id])}}">Delete</a>
-                           
-                       </div> -->
-                   <div class="card-info">
-                <h4>test</h4>
-                <ul class="acrdn-action-btns">
-                   <!-- <li><a href="javascript:void(0);" class="action_btn primary-btn"><i class="fas fa-pencil-alt"></i></a></li> -->
-                  <li><a href="{{route('vendor_category_meta_delete',[$category->slug,$img->id])}}" class="action_btn danger-btn"><i class="fas fa-trash-alt"></i></a></li>
-             </ul>
-              </div>
-                    
 
+
+
+
+
+  <form method="post" id="upload_form" enctype="multipart/form-data">
+             {{ csrf_field() }}
+
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="custom-file" style="width: 100%">
+
+                        <input type="file" class="custom-file-input" name="gallery_image[]" multiple="" id="select_file">
+                        <label class="custom-file-label" for="select_file">Choose file</label>
+                      </div>
+                     
+                    </div>
                   </div>
-                </div>
-            </div>
-          @endforeach
-    {{$images->links()}}      	                     
+
+
+              
+ <div class="progress">
+  <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+    <span class="sr-only">0% Complete</span>
+  </div>
+</div>
+<input type="hidden" name="category_id" value="{{$category->category_id}}">
+      </form>
+
+
+
+
+
+
+
+
+
+           <div class="row" id="getListing"> 
+       	                     
+          </div>
 </div>
 </div>
 </div>
 </div>
 </div>
-</div>
+@endsection
+
+
+
+
+
+
+@section('scripts')
+
+<script type="text/javascript">
+
+
+  getList();
+  
+  $('body').on('change','#select_file', function(e){
+        var form = $('body').find('#upload_form')[0]; // You need to use standard javascript object here
+        var formData = new FormData(form);
+        var percent = $('body').find('.percent');
+        var bar = $('.bar');
+
+
+
+         $.ajax({
+
+           url:"{{ url(route('uploadGalleryImage')) }}",
+           method:"POST",
+           data:formData,
+           dataType:'JSON',
+           contentType: false,
+           cache: false,
+           processData: false,
+           beforeSend: function() {
+            
+               $('body').find('.progress').show();
+               $('.progress').find('span.sr-only').text('0%');
+
+          },
+           xhr: function () {
+            var xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener("progress", function (evt) {
+                if (evt.lengthComputable) {
+                    var percentComplete = evt.loaded / evt.total;
+                    percentComplete = parseInt(percentComplete * 100);
+                    $('.progress').find('span.sr-only').text(percentComplete + '%');
+                    $('.progress .progress-bar').css('width', percentComplete + '%');
+                }
+            }, false);
+            return xhr;
+          },
+           success:function(data)
+           {
+            $('#globalMessages').html('');
+            console.log(data.html);
+            if(data.success ==true){
+                  $('body').find('.progress').hide();
+                  $('.progress').find('span.sr-only').text('0%');
+                   $('.progress .progress-bar').css('width','0%');
+                    form.reset();
+                   getList();
+
+                
+
+            }else{
+                $('body').find('.progress').hide();
+                  $('.progress').find('span.sr-only').text('0%');
+                   $('.progress .progress-bar').css('width','0%');
+                $('body').find('#globalMessages').css('display', 'block');
+
+                 $('#globalMessages').html(data.message);
+
+        
+
+            }
+
+           }
+
+          });
+    });
+
+
+
+
+
+
+
+/*____________________________________________________________________________________________________
+|
+|
+|_____________________________________________________________________________________________________
+*/
+
+function getList(link="{{ url(route('vendor_category__image_gallery_management',$category->slug)) }}") {
+
+  
+  
+         $.ajax({
+
+           url:link,
+           method:"GET",
+           data:{
+            getdata : 1
+           },
+           dataType:'JSON',
+           beforeSend: function() {
+            
+               $("body").find('.loading-div').show();
+
+           },
+           success:function(data)
+           {
+             $('#getListing').html(data.result);
+           },
+            complete: function() {
+            
+               $("body").find('.loading-div').hide();
+
+           }
+
+          });
+}
+
+
+
+
+
+</script>
 @endsection

@@ -10,7 +10,8 @@
                 
                 <ul class="inn-top-navigation">
                     <li><a href="{{url('/')}}">Home</a></li>
-                    <li><a href="{{url(route('get_all_venues'))}}">Venues</a></li>
+                   <li><a href="javascript:void(0);" data-toggle="modal" data-target="#VenuesCategoriesModal">Businesses</a></li>
+            
                     <li><a href="{{url('/vendor/register')}}">New Vendors</a></li>
                     <li>
                         <a href="javascript:void(0);"><i class="fas fa-heart"></i></a>

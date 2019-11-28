@@ -42,18 +42,18 @@
                   <div class="row">
                      <div class="col-lg-4 addressColumn">
                         <div class="form-group">
-                           <input type="text"  class="form-control" placeholder="Location" id="address">
+                           <input type="text"  class="form-control" placeholder="Location" id="address" autocomplete="off">
 
-                           <input type="hidden" name="latitude" id="latitude" value="29.46786">
-                           <input type="hidden" name="longitude" id="longitude" value="-98.53506">
+                           <input type="hidden" name="latitude" id="latitude" value="">
+                           <input type="hidden" name="longitude" id="longitude" value="">
 
                            <span class="input-icon"><i class="fas fa-map-marker-alt"></i></span>
                         </div>
                      </div>
                      <div class="col-lg-4 eventColumn">
                         <div class="form-group">
-                           <select class="form-control select2 eventType" name="event_type[]" multiple="">
-                              <option value="">Event Type</option>
+                           <select class="form-control select2 eventType" name="event_type[]" multiple="" data-placeholder="Event Type">
+                              <option></option>
                            </select>
                            <span class="input-icon"><i class="fas fa-glass-cheers"></i></span>
                         </div>
@@ -61,16 +61,16 @@
                      <div class="col-lg-4 vendorColumn">
                         <div class="form-group">
                             
-                           <select class="form-control select2 SuggestedVendors" multiple="" name="vendors[]">
-                              <option value="">Suggested Vendor</option>
+                           <select class="form-control select2 SuggestedVendors" multiple="" name="vendors[]" data-placeholder="Search Vendors">
+                              <option></option>
                            </select>
                            <span class="input-icon"><i class="fas fa-user"></i></span>
                         </div>
                      </div>
                      <div class="col-lg-6">
                         <div class="form-group">
-                             <select class="form-control select2 amenitiesAndGames" name="amenities[]" multiple="">
-                              <option value="">Amenities & Games</option>
+                             <select class="form-control select2 amenitiesAndGames" name="amenities[]" multiple="" data-placeholder="Amenities & Games">
+                              <option></option>
                            </select>
                            <span class="input-icon"><i class="fas fa-concierge-bell"></i></span>
                         </div>

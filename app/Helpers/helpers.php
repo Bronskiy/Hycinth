@@ -4,6 +4,34 @@
 
 
 
+
+function getCoverPictureOfBusiness($cate)
+{
+       if($cate->category && $cate->category->cover_type == 1):
+        $image = url(getBasicInfo($cate->vendors->id, $cate->category_id,"basic_information","cover_photo"));
+
+        return  $text ='<img src="'.$image.'" width="100%">';
+
+                                           
+        else:
+          $image = url(getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','cover_video_image'));
+          return  $text ='<img src="'.$image.'" width="100%">';
+        endif;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function checkCategoryWithRequest($name,$category_id)
 {
    if(\Request::has($name)){
@@ -2649,8 +2677,10 @@ function ReturnValueFromArray($val,$array){
 
                     $timestamp = time().str_random(20);
                     $hash = explode(' ',$file->getClientOriginalName());
-                    $OriginalName = implode("-",$hash);
-                    $name = $timestamp. '-' .$OriginalName;  
+                    $OriginalName = implode("",$hash);
+                    $hash2 = explode('-',$OriginalName);
+                    $OriginalName2 = implode("",$hash2);
+                    $name = $timestamp. '' .$OriginalName2;  
                     if($file->move($path, $name)) {
                          return $path.$name;
                     	

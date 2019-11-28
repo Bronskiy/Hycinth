@@ -37,17 +37,29 @@ ul.capacity li p i {
     
     min-height: 55px;
 }
+.mapCanvas{
+  height: 559px;
+}
+.info_content{
+      max-width: 220px;
+}
+.info_content h3 {
+    font-size: 17px;
+    font-weight: 500;
+    margin: 5px 0px;
+}
+.info_content p{
+  font-size: 15px;
+}
+.info_content label {
+    font-size: 16px;
+    color: #000;
+}
 </style>
-
+<div class="business-view" id="business-view">
  @foreach($businesses as $cate)    
 
-
-
-
-
-
-
-
+ 
 <?php
 
 $facebook_url = getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','facebook_url');
@@ -56,7 +68,7 @@ $twitter_url =  getBasicInfo($cate->vendors->id, $cate->category_id,'basic_infor
 $instagram_url = getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','instagram_url');
 $pinterest_url = getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','pinterest_url');
 
-
+$followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) && empty($instagram_url) && empty($pinterest_url) ? 'hide' : '';
 ?>
        
                             <div class="detail-in-breif">
@@ -97,9 +109,20 @@ $pinterest_url = getBasicInfo($cate->vendors->id, $cate->category_id,'basic_info
                                     </div>
                                     <div class="col-lg-7">
                                         <div class="right-content">
-                              <a href="{{url( route('vendor_detail_page',[$cate->category->slug,$cate->business_url]))}}"> <h4>{{getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','business_name')}}</h4></a>
+                                          <div class="listing-head">
+                                    <a href="{{url( route('vendor_detail_page',[$cate->category->slug,$cate->business_url]))}}"> <h4>{{getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','business_name')}}</h4></a>
+                                           
+                                           <ul class="listing-action-btns">
+                                             <li class="mb-1"><a href="javascript:void(0);" class="list-icon-btn"><i class="fas fa-heart"></i></a></li>
+                                             <li><a href="tel:{{getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','phone_number')}}" class="list-icon-btn"><i class="fas fa-phone-alt"></i></a></li>
+                                           </ul>
 
-                                            <span class="input-icon likes"><i class="fas fa-heart"></i></span>
+
+
+
+                                             
+                       
+                                            <!-- <span class="input-icon likes"><i class="fas fa-heart"></i></span> -->
 
                                    <p class="ser-text"> {{$cate->category->label}}</p>
 
@@ -128,6 +151,7 @@ $pinterest_url = getBasicInfo($cate->vendors->id, $cate->category_id,'basic_info
                                                 </li>
                                                
                                             </ul>
+                                          </div>
 
                                             <ul class="capacity">
                                                @if($cate->category->capacity == 1)
@@ -142,7 +166,7 @@ $pinterest_url = getBasicInfo($cate->vendors->id, $cate->category_id,'basic_info
                                                 <?php $description = getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','short_description'); ?>
                                                {{substr($description,0,100)}} {{strlen($description) > 100 ? '...' : ''}}
                                             </p>
-                                            <ul class="social-links listing-social">
+                                            <ul class="social-links listing-social {{$followus}}">
                                               <li><p>Follow us:</p></li>
 
                                               <li class="{{empty($facebook_url) ? 'hide' : ''}}">
@@ -181,4 +205,31 @@ $pinterest_url = getBasicInfo($cate->vendors->id, $cate->category_id,'basic_info
                     <div class="pagination-container">
                          
                     </div>
+</div>
 
+
+
+<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDULjv0UAVmj_zgc9GjBhJNh9fNuEj87LQ&libraries=places"></script>
+ -->
+<script type="text/javascript">
+ 
+
+
+jQuery("body").on('click','.view-mapper',function(e){
+    e.preventDefault();
+    var val = jQuery( this ).attr('data-id');
+    var valHide = jQuery( this ).attr('data-hide');
+     jQuery(val).slideDown('slow');
+     jQuery(valHide).slideUp('slow');
+});
+
+
+
+
+
+
+
+
+
+
+</script>

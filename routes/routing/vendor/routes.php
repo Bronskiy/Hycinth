@@ -35,6 +35,10 @@ require __DIR__.'/ajax.php';
 
 
 		Route::get('/category/{slug}/gallery/images', 'Vendor\ManagementController@images')->name('vendor_category__image_management');
+
+        Route::get('/category/{slug}/gallery/image-gallery', 'Vendor\ManagementController@imageGallery')->name('vendor_category__image_gallery_management');
+
+
 		Route::get('/category/{slug}/gallery/images/add', 'Vendor\ManagementController@imageView')->name('vendor_category_add_image_management');
 		Route::post('/ajax/category/management/gallery/images', 'Vendor\ManagementController@upload')->name('upload_vendor_image_gallery');
 
