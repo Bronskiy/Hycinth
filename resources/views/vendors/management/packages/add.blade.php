@@ -43,12 +43,26 @@
           <div class="row">
             <div class="col-md-3">
               <div class="form-group">
-           <div class="radio">
+           <!-- <div class="radio">
             <label><input type="radio" name="price_type" value="per_person" checked>Price Per Person</label>
-          </div>
-          <div class="radio">
+          </div> -->
+          <label>Price status</label>
+
+            <div class="custom-control custom-radio mb-1">
+        <input type="radio" id="PriceType1" name="price_type" value="per_person" class="custom-control-input" checked>
+        <label class="custom-control-label" for="PriceType1">Price Per Person</label>
+      </div>
+
+       <div class="custom-control custom-radio">
+        <input type="radio" id="PriceType" name="price_type" value="per_person" class="custom-control-input">
+        <label class="custom-control-label" for="PriceType">Fix Price</label>
+      </div>
+
+
+
+          <!-- <div class="radio">
             <label><input type="radio" name="price_type" value="fix" >Fix Price</label>
-          </div>
+          </div> -->
           </div>
             </div>
             <div class="col-md-3">

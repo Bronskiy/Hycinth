@@ -1,4 +1,27 @@
 @extends('layouts.home')
+@section('stylesheet')
+
+ <style type="text/css">
+    div#Video-carousel li {
+    position: relative;
+    cursor: pointer;
+}
+
+ 
+
+div#Video-carousel li span {
+    position: absolute;
+    color: #fff;
+    font-size: 47px;
+    text-align: center !important;
+    left: 77px;
+    /* right: 0px; */
+    top: 27px;
+}
+
+
+ </style>
+@endsection
 @section('content')
 <section class="log-sign-banner" style="background:url('/frontend/images/banner-bg.png');">
    <div class="container">
@@ -13,20 +36,23 @@
       <div class="sec-card">
          <div class="page-head">
             <div class="row">
-               <div class="col-lg-8">
+               <div class="col-lg-5">
                   <div class="page-header">
                      <figure class="head-logo"><img src="/frontend/images/vendor-03.png"></figure>
                      <div class="heading-details">
                         <h2>{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','business_name')}}</h2>
                         <p class="address-line"><span class="location-icon"><i class="fas fa-map-marker-alt"></i></span><?= getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','address')?></p>
                         <ul class="contact-links">
-                          <li><a href="tel:{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','phone_number')}}" data-toggle="tooltip" title="call us"><span class="contact-icons"><i class="fas fa-mobile-alt"></i></span></a></li>
-                          <li><a target="_blank" href="{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','website')}}" data-toggle="tooltip" title="Website"><span class="contact-icons"><i class="fas fa-globe-americas"></i></span></a></li>
+                          <li><a href="tel:{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','phone_number')}}" data-toggle="tooltip" title="Call {{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','business_name')}}"><span class="contact-icons"><i class="fas fa-mobile-alt"></i></span></a></li>
+                          <li><a target="_blank" href="{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','Visit Website')}}" data-toggle="tooltip" title="Website"><span class="contact-icons"><i class="fas fa-globe-americas"></i></span></a></li>
                           
                         </ul>                        
                      </div>                  
 
                   </div>
+                  
+               </div>
+               <div class="col-lg-4">
                   <!-- weather details for venues -->
                      @include('home.vendors.services.detail.weather')
 
@@ -36,10 +62,10 @@
  
 
  
-              <div class="col-lg-4 sticky-form-sidebar">
+              <div class="col-lg-3 sticky-form-sidebar">
                   <div class="cstm-btn-grp text-right">
                      <a href="javascript:void(0);" class="cstm-btn"><span class="btn-icon"><i class="fas fa-handshake"></i></span> Hired?</a>
-                     <a href="javascript:void(0);" class="cstm-btn"><span class="btn-icon"><i class="fas fa-heart"></i></span> Save</a>
+                     <!-- <a href="javascript:void(0);" class="cstm-btn"><span class="btn-icon"><i class="fas fa-heart"></i></span> Save</a> -->
                   </div>
                   <div class="share-icons-wrap">
                      <ul class="social-icons">
@@ -76,54 +102,45 @@
             </div>
          </div>
       <div class="deatil-navigation-wrap">
-         <!-- <ul class="detail-navigation">
-            <li><a href="#" data-scroll="image-gallery">Photos</a></li>
-            
-            <li><a href="#faq-sec" data-scroll="faq-sec">FAQs</a></li>
-            <li><a href="#venue-sec" data-scroll="venue-sec">Venue</a></li>                              
-            <li><a href="#description-sec" data-scroll="description-sec">Description</a></li>
-            <li><a href="#AmenitiesGames-sec" data-scroll="AmenitiesGames-sec">Amenities and Games</a></li>
-            <li><a href="#deals-sec" data-scroll="deals-sec">Deals</a></li>  
-            <li><a href="#review-sec" data-scroll="review-sec">Reviews</a></li>
-            </ul>  -->  
+         
          <div class="owl-carousel owl-theme nav-menu-slider">
             <div class="item">
                <a href="#" data-scroll="image-gallery">
-                  <!-- <span class="nav-icon"><i class="fas fa-camera-retro"></i></span> --> Photos
+                    Photos
                </a>
             </div>
             <div class="item">
                <a href="#faq-sec" data-scroll="faq-sec">
-                  <!-- <span class="nav-icon"><i class="fas fa-question-circle"></i></span> --> FAQs
+                  FAQs
                </a>
             </div>
             <div class="item">
                <a href="#venue-sec" data-scroll="venue-sec">
-                  <!-- <span class="nav-icon"><i class="fas fa-clipboard-list"></i></span> --> Venue
+                 Venue
                </a>
             </div>
             <div class="item">
                <a href="#description-sec" data-scroll="description-sec">
-                  <!-- <span class="nav-icon"><i class="fas fa-clipboard-list"></i></span> --> Description
+                  Description
                </a>
             </div>
             <div class="item">
                <a href="#AmenitiesGames-sec" data-scroll="AmenitiesGames-sec">
-                  <!--  <span class="nav-icon"><i class="fas fa-question-circle"></i></span> --> Amenities and Games
+                Amenities and Games
                </a>
             </div>
             <div class="item">
                <a href="#deals-sec" data-scroll="deals-sec">
-                  <!--  <span class="nav-icon"><i class="fas fa-question-circle"></i></span> --> Deals
+                  Deals
                </a>
             </div>
             <div class="item">
                <a href="#review-sec" data-scroll="review-sec">
-                  <!-- <span class="nav-icon"><i class="fas fa-star"></i></span> --> Reviews
+                   Reviews
                </a>
             </div>
             <div class="item">
-              <a href="#package-sec" data-scroll="package-sec"><!-- <span class="nav-icon"><i class="fas fa-star"></i></span> --> Packages</a>
+              <a href="#package-sec" data-scroll="package-sec">  Packages</a>
             </div>            
          </div>
       </div>
@@ -171,8 +188,10 @@
                   $twitter_url =  getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','twitter_url');
                   $instagram_url = getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','instagram_url');
                   $pinterest_url = getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','pinterest_url');
+
+                  $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) && empty($instagram_url) && empty($pinterest_url) ? 'hide' : '';
                 ?> 
-             <ul class="social-links listing-social">
+             <ul class="social-links listing-social {{$followus}}">
                         <li><p><strong>Follow us:</strong></p></li>
                   <li class="{{empty($facebook_url) ? 'hide' : ''}}">
                   <a href="<?= $facebook_url ?>" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -279,7 +298,7 @@
                <div class="side-form-wrap">
                   <span class="side-form-icon"><i class="fas fa-envelope-open-text"></i></span>
                   <form class="side-form">
-                     <h3 class="form-heading">Vendor Message</h3>
+                     <h3 class="form-heading">Contact Vendor</h3>
                      <div class="form-group">
                         <input type="text" id="" class="form-control" placeholder="Enter your Name">
                         <span class="input-icon"><i class="fas fa-user"></i></span>
@@ -367,29 +386,38 @@
    </div>
 </section>
 @endsection
+
+
+
+
+
 @section('scripts')
+
 <script>
-   jQuery(function() {
+jQuery(function() {
+    
+// modal view video popup
+ 
+jQuery("body").on('click','.play-model-video2',function(e){
+
+   e.preventDefault();
+
+   var url = jQuery( this ).attr('data-link');
+   var title = jQuery( this ).attr('data-title');
+
+   $("body").find('#Video-Modal').find('.modal-title').html(title);
+   $("body").find('#Video-Modal').find('iframe').attr('src',url+'?autoplay=1');
+   $("body").find('#Video-Modal').modal('show').css('display','block');
+});
+ 
+// modal view video popup
+ 
+$("body").find('#Video-Modal').on('hidden.bs.modal', function () {
+       $('#Video-Modal').find('iframe').attr('src','');
+});
    
-         
-         jQuery("body").on('click','.play-model-video',function(e){
-               e.preventDefault();
-   
-               var url = jQuery( this ).attr('data-link');
-               var title = jQuery( this ).attr('data-title');
-   
-               $("body").find('#Video-Modal').find('.modal-title').html(title);
-               $("body").find('#Video-Modal').find('iframe').attr('src',url+'?autoplay=1');
-               $("body").find('#Video-Modal').modal('show');
-         });
-   
-   
-            $("body").find('#Video-Modal').on('hidden.bs.modal', function () {
-                   $('#Video-Modal').find('iframe').attr('src','');
-            });
-   
-     let comp_pack_arr = [];
-     $('.custom-control-input').click(function() {
+ let comp_pack_arr = [];
+ $('.custom-control-input').click(function() {
        
        const package = $(this).data('package');
        const pack_index = $.inArray(package, comp_pack_arr);
@@ -415,7 +443,7 @@
         </div>
     </div>`;
    
-   // $('#compare-div').empty();
+ 
    
        if($(this).is(':checked')) {
          comp_pack_arr.push(package);
@@ -424,7 +452,7 @@
          comp_pack_arr.splice(pack_index, 1);
          $(`#com_pack_id_${package.id}`).remove();
        }   
-        // console.log('add ', comp_pack_arr ); 
+    
         if(comp_pack_arr.length > 0 ) {
           $('#com_pack_heading').css('display', 'block');
         } else {
@@ -435,14 +463,14 @@
         } else {
           $('#open_com_modal').css('display', 'none');
         }
-       });
+ });
    
-     $('#compare-div').on("click",".remove_field", function(e) {
+ $('#compare-div').on("click",".remove_field", function(e) {
       e.preventDefault();
        const pid = $(this).data('pack');
        comp_pack_arr = comp_pack_arr.filter(f => f.id !== pid);
        $(`#customCheck_${pid}`).prop("checked", false);
-       // $(this).parent('div').remove();
+       
        $(`#com_pack_id_${pid}`).remove();
    
        if(comp_pack_arr.length > 0 ) {
@@ -455,10 +483,10 @@
         } else {
           $('#open_com_modal').css('display', 'none');
         }
-       // console.log('rm ',  comp_pack_arr );
+        
      });
    
-      $('#com_pack_modal_body').on("click",".remove_field", function(e) {
+    $('#com_pack_modal_body').on("click",".remove_field", function(e) {
        e.preventDefault();
        $(this).parent('div').remove();
      });
@@ -562,10 +590,7 @@
      });
 
 
-     // $('#open_weather_modal').click(function() {
-     //     console.log('weather');
-     //     console.log(this);
-     // });
+  
    
    
    });
@@ -606,13 +631,13 @@
    
    
    
-       $('.nav-menu-slider').owlCarousel({
-          loop:false,
-          autoWidth:true,
-          nav:true,
-          dots:false,
-          mouseDrag:true
-       });
+ $('.nav-menu-slider').owlCarousel({
+    loop:false,
+    autoWidth:true,
+    nav:true,
+    dots:false,
+    mouseDrag:true
+ });
 
 
 function getWeatherData() {
@@ -627,6 +652,8 @@ const venue_weather_route = $('#venue_weather_route').val();
     },
 
     success: function(forecast) {
+      if(forecast.code === 400) return;
+
       $('#weather-loader').css('display', 'none');
       $('#open_weather_modal').css('opacity', '1');
       setForecast(forecast);
@@ -643,36 +670,45 @@ $('#weatherDatePicker').val(`${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}
 getWeatherData();
 
 function startClock(time) {
-  // setInterval(function() {
+   
     $("#localTime").text(new Date(time).toLocaleTimeString());
-  // }, 1000);
+   
 }
 
 function setForecast(forecast) {
    var today = forecast.daily.data[0];
+   let countryUs = '';
+
+   if(forecast.timezone === 'America/New_York') countryUs = 'toFerenheit';
+
+if(forecast.daily.data.length > 1) {
   $("#tempDescription").text(today.summary);
   $("#humidity").text(today.humidity);
   $("#wind").text(today.windSpeed);
   $("#localDate").text(getFormattedDate(today.time));
   $("#main-icon").attr('src', `/frontend/DarkSky-icons/SVG/${today.icon}.svg`);
-  $("#mainTemperature").text(toCelcius(forecast.currently.temperature));
-  // $("#mainTempHot").text(toCelcius(today.temperatureHigh));
-  // $("#mainTempLow").text(toCelcius(today.temperatureLow));
-  // $("#cityName").text(forecast.city.name);
-  // $("#cityCode").text(forecast.city.country);
+  $("#mainTemperature").text(countryUs ? toFerenheit(forecast.currently.temperature)+'°F' : toCelcius(forecast.currently.temperature)+'°C');
+  
+}
 
 // // // modal
  $("#modal-main-icon").attr('src', `/frontend/DarkSky-icons/SVG/${today.icon}.svg`);
  $("#modal-localDate").text(getFormattedDate(today.time));
- $("#modal-mainTemperature").text(toCelcius(forecast.currently.temperature));
- // $("#modal-cityName").text(forecast.city.name);
- // $("#modal-cityCode").text(forecast.city.country);
+ $("#modal-mainTemperature").text(countryUs ? toFerenheit(forecast.currently.temperature)+'°F' : toCelcius(forecast.currently.temperature)+'°C');
+
 
  let we = '';
  let data = forecast.daily.data.length > 1 ? forecast.daily.data : forecast.hourly.data;
  for (var i = 1; i < data.length; i++) {
       const f = data[i];
-      let temp = f.temperature ? `${toCelcius(f.temperature)}°C` : `${toCelcius(f.temperatureLow)}°C - ${toCelcius(f.temperatureHigh)}°C`;
+
+      let temp = '';
+      if(countryUs) {
+         temp = f.temperature ? `${toFerenheit(f.temperature)}°F` : `${toFerenheit(f.temperatureLow)}°F - ${toFerenheit(f.temperatureHigh)}°F`;
+      } else {
+      temp = f.temperature ? `${toCelcius(f.temperature)}°C` : `${toCelcius(f.temperatureLow)}°C - ${toCelcius(f.temperatureHigh)}°C`;
+      }
+
       let time = f.temperature ? `${new Date(f.time).getHours()} : ${new Date(f.time).getMinutes()}` : `${getFormattedDate(f.time)}`;
       we += `<div class="weakly-weather-item">
               <p class="mb-0"> ${time} </p> <img id="modal-main-icon" src="/frontend/DarkSky-icons/SVG/${f.icon}.svg">
@@ -693,185 +729,15 @@ function searchWeather() {
    getWeatherData();
 }
 
-
-//weather report js
-
-// var unitIsCelcius = true;
-// var globalForecast = [];
-
-// // Maps the API's icons to the ones from https://erikflowers.github.io/weather-icons/
-// var weatherIconsMap = {
-//   "01d": "wi-day-sunny",
-//   "01n": "wi-night-clear",
-//   "02d": "wi-day-cloudy",
-//   "02n": "wi-night-cloudy",
-//   "03d": "wi-cloud",
-//   "03n": "wi-cloud",
-//   "04d": "wi-cloudy",
-//   "04n": "wi-cloudy",
-//   "09d": "wi-showers",
-//   "09n": "wi-showers",
-//   "10d": "wi-day-hail",
-//   "10n": "wi-night-hail",
-//   "11d": "wi-thunderstorm",
-//   "11n": "wi-thunderstorm",
-//   "13d": "wi-snow",
-//   "13n": "wi-snow",
-//   "50d": "wi-fog",
-//   "50n": "wi-fog"
-// };
+$("#weatherModal").on("hidden.bs.modal", function () {
+   const venue_weather_route = $('#venue_weather_route').val();
+   $('#venue_weather_route').val(venue_weather_route.split('&time')[0]);
+   // $('#open_weather_modal').css('opacity', '0');
+   getWeatherData();
+});
 
 
-// $(function(){
-//   const latitude = $('#latitude').val();
-//   const longitude = $('#longitude').val();
-
-//   getWeatherData(latitude, longitude);
-//   startClock();  
-// });
-
-
-// function startClock() {
-//   setInterval(function() {
-//     $("#localTime").text(new Date().toLocaleTimeString());
-//   }, 1000);
-// }
-
-// function getWeatherData(latitude, longitude) {
-// const venue_weather_route = $('#venue_weather_route').val();
-//   $.ajax({
-//     type: "GET",
-//     url: venue_weather_route,
-//     cache: true,
-//     headers: {
-//       "Access-Control-Allow-Headers": "x-requested-with",
-//       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'), 
-//       'Access-Control-Allow-Origin': '*' 
-//     },
-
-//     success: function(forecast) {
-//       console.log('forecast', forecast);
-//       globalForecast = forecast;
-//       updateForecast(forecast);
-
-//       // Stops Refresh button's spinning animation
-//       $("#refreshButton").html("<i class='fa fa-refresh fa-fw'></i> Refresh");
-//     },
-//     error: function(error) {
-//       alert("Error with ajax: "+ error);
-//       console.log("Error with ajax: "+ error);
-//     }
-//   });
-// }
-
-
-// // Update view values from passed forecast
-// function updateForecast(forecast) {
-
-//   // Present day
-//   var today = forecast.list[0];
-//   $("#tempDescription").text(toCamelCase(today.weather[0].description));
-//   $("#humidity").text(today.humidity);
-//   $("#wind").text(today.speed);
-//   $("#localDate").text(getFormattedDate(today.dt));
-//   $("#main-icon").addClass(weatherIconsMap[today.weather[0].icon]);
-//   $("#mainTemperature").text(Math.round(today.temp.day));
-//   $("#mainTempHot").text(Math.round(today.temp.max));
-//   $("#mainTempLow").text(Math.round(today.temp.min));
-//   $("#cityName").text(forecast.city.name);
-//   $("#cityCode").text(forecast.city.country);
-
-// // modal
-
-//  $("#modal-main-icon").addClass(weatherIconsMap[today.weather[0].icon]);
-//  $("#modal-localDate").text(getFormattedDate(today.dt));
-//  $("#modal-cityName").text(forecast.city.name);
-//  $("#modal-cityCode").text(forecast.city.country);
-
-//   // Following days data
-//   for(var i = 0; i < (forecast.list).length; i++) {
-//     var day = forecast.list[i];
-
-//     // Day short format e.g. Mon
-//     var dayName = getFormattedDate(day.dt).substring(0, 3);
-
-//     // weather icon from map
-//     var weatherIcon = weatherIconsMap[day.weather[0].icon];
-
-//     $("#forecast-day-" + i + "-name").text(dayName);
-//     $("#forecast-day-" + i + "-icon").addClass(weatherIcon);
-//     $("#forecast-day-" + i + "-main").text(Math.round(day.temp.day));
-//     $("#forecast-day-" + i + "-ht").text(Math.round(day.temp.max));
-//     $("#forecast-day-" + i + "-lt").text(Math.round(day.temp.min));
-//   }
-// }
-
-// // Refresh button handler
-// $("#refreshButton").on("click", function() {
-//   // Starts Refresh button's spinning animation
-//   $("#refreshButton").html("<i class='fa fa-refresh fa-spin fa-fw'></i>");
-//   getWeatherData();
-// });
-
-// // Celcius button handler.
-// // Converts every shown value to Celcius
-// $("#celcius").on("click", function() {
-//   if(!unitIsCelcius){
-//     $("#farenheit").removeClass("active");
-//     this.className = "active";
-
-//     // main day
-//     var today = globalForecast.list[0];
-//     today.temp.day = toCelcius(today.temp.day);
-//     today.temp.max = toCelcius(today.temp.max);
-//     today.temp.min = toCelcius(today.temp.min);
-//     globalForecast.list[0] = today;
-
-//     // week
-//     for(var i = 1; i < 5; i ++) {
-//       var weekDay = globalForecast.list[i];
-//       weekDay.temp.day = toCelcius(weekDay.temp.day);
-//       weekDay.temp.max = toCelcius(weekDay.temp.max);
-//       weekDay.temp.min = toCelcius(weekDay.temp.min);
-//       globalForecast[i] = weekDay;
-//     }
-
-//     // update view with updated values
-//     updateForecast(globalForecast);
-
-//     unitIsCelcius = true;
-//   }
-// });
-
-// // Farenheit button handler
-// // Converts every shown value to Farenheit
-// $("#farenheit").on("click", function(){  
-//   if(unitIsCelcius){
-//     $("#celcius").removeClass("active");
-//     this.className = "active";
-    
-//     // main day
-//     var today = globalForecast.list[0];
-//     today.temp.day = toFerenheit(today.temp.day);
-//     today.temp.max = toFerenheit(today.temp.max);
-//     today.temp.min = toFerenheit(today.temp.min);
-//     globalForecast.list[0] = today;
-
-//     // week
-//     for(var i = 1; i < 5; i ++){
-//       var weekDay = globalForecast.list[i];
-//       weekDay.temp.day = toFerenheit(weekDay.temp.day);
-//       weekDay.temp.max = toFerenheit(weekDay.temp.max);
-//       weekDay.temp.min = toFerenheit(weekDay.temp.min);
-//       globalForecast[i] = weekDay;
-//     }
-
-//     // update view with updated values
-//     updateForecast(globalForecast);
-    
-//     unitIsCelcius = false;
-//   }
-// });
+ 
 
 // // Applies the following format to date: WeekDay, Month Day, Year
 function getFormattedDate(date) {
@@ -894,23 +760,15 @@ function toCelcius(val) {
   return Math.round((val - 32) * (5/9));
 }
 
-// // Converts to Farenheit
-// function toFerenheit(val) {
-//   var degrees = (val * 1.8) + 32;
-//   var rounded = Math.round(degrees);
-//   return rounded;
-// }
-
-// function calcTime(offset) {
-//     d = new Date();
-//     utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-//     nd = new Date(utc + (3600000*offset));
-//     return nd.toLocaleString();
-// }
-   
-
+// Converts to Farenheit
+function toFerenheit(val) {
+  var degrees = (val * 1.8) + 32;
+  var rounded = Math.round(degrees);
+  return rounded;
+}
+ 
    //tooltip
-   $(document).ready(function(){
+ $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();   
 });
 </script>

@@ -114,6 +114,7 @@ function login($this) {
                 beforeSend: function() {
                     $this.find('.loading').show();
                     $this.find('button.cstm-btn').attr('disabled','true');
+                     $("body").find('.custom-loading').show();
                 },
 
                success: function (data) {
@@ -132,6 +133,7 @@ function login($this) {
                         $this.find('.loading').hide();
                         $this.find('button.cstm-btn').removeAttr('disabled');
                         $this.find('.messages').html(ErrorMsg('success',data.message));
+                         $("body").find('.custom-loading').hide();
 
                         setTimeout(function () {
                                  $this.find('.messages').html('');
@@ -140,6 +142,7 @@ function login($this) {
                       }else{
 
                         $this.find('.loading').hide();
+                         $("body").find('.custom-loading').hide();
                         $this.find('button.cstm-btn').removeAttr('disabled');
                         $this.find('.messages').html(erorrMessage(data.errors));
 
@@ -152,6 +155,7 @@ function login($this) {
                },
                complete: function() {
                         $this.find('.loading').hide();
+                        // $("body").find('.custom-loading').hide();
                         $this.find('button.cstm-btn').removeAttr('disabled');
                },
                error: function (jqXhr, textStatus, errorMessage) {
@@ -179,6 +183,7 @@ function register($this) {
                },
                 beforeSend: function() {
                     $this.find('.loading').show();
+                     $("body").find('.custom-loading').show();
                     $this.find('button.cstm-btn').attr('disabled','true');
                 },
 
@@ -195,6 +200,7 @@ function register($this) {
                       }else{
 
                         $this.find('.loading').hide();
+                         $("body").find('.custom-loading').hide();
                         $this.find('button.cstm-btn').removeAttr('disabled');
                         $this.find('.messages').html(erorrMessage(data.errors));
 
@@ -207,6 +213,7 @@ function register($this) {
                },
                complete: function() {
                         $this.find('.loading').hide();
+                         $("body").find('.custom-loading').hide();
                         $this.find('button.cstm-btn').removeAttr('disabled');
                },
                error: function (jqXhr, textStatus, errorMessage) {

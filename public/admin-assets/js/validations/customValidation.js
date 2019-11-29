@@ -38,9 +38,10 @@ $.validator.addMethod("lettersonly", function(value, element) {
 }, "Letters only please");
 
 // greater than equals to
+
 $.validator.addMethod('ge', function(value, element, param) {
   return this.optional(element) || value >= param;
-}, 'Must be greater than or equal to field 0');
+}, `Must be greater than or equal to field min value`);
 
  // greater than equals to
 $.validator.addMethod('res_number', function(value, element, param) {
@@ -62,3 +63,20 @@ $.validator.addMethod("pwcheck", function(value, element) {
 $.validator.addMethod('amount', function(value, element, param) {
   return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
 }, 'Please enter valid amount');
+
+$.validator.addMethod("minDate", function(value, element) {
+    var curDate = new Date();
+    var inputDate = new Date(value);    
+
+    if (inputDate == 'Invalid Date' || inputDate > curDate) {
+      return true; 
+    }
+    return false;
+}, "Please select date greater than of today Date!");
+
+$.validator.addMethod('minPerson', function(value, element) {
+  const minPer = $('#min_person').val();
+  if(!minPer) return false;
+  return this.optional(element) || value >= minPer;
+}, `Must be greater than or equal to field min Person`);
+

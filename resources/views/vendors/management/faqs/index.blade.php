@@ -42,13 +42,9 @@
             <i class="fas fa-plus fa-stack-1x fa-inverse"></i>
           </span><!-- <span class="question-count">{{($k + 1)}}</span> --> {{$f->question}}</h3>          
         </button>
-        <ul class="acrdn-action-btns">
-          
-
- 
-
-          <li><a href="{{ route('vendor_faqsedit_management',[$category->slug,$f->id])}}" class="action_btn primary-btn"><i class="fas fa-pencil-alt"></i></a></li>
-          <li><a href="{{ url(route('vendor_faq_del_management',[$category->slug,$f->id]))}}" class="action_btn danger-btn"><i class="fas fa-trash-alt"></i></a></li>
+        <ul class="acrdn-action-btns">  
+          <li><a href="{{ route('vendor_faqsedit_management',[$category->slug,$f->id])}}" class="action_btn primary-btn" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a></li>
+          <li><a href="{{ url(route('vendor_faq_del_management',[$category->slug,$f->id]))}}" class="action_btn danger-btn" data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></a></li>
         </ul>
     </div>
     <div id="{{$k}}" class="collapse" aria-labelledby="headingOne" data-parent="#faq-accordion">

@@ -30,18 +30,22 @@ $(document).ready(function(){
       "min_person": {
         required: true,
         digits: true,
+        min: 1,
         minlength: 1,
         maxlength: 4
       },
       "max_person": {
         required: true,
         digits: true,
+        min: 1,
+        minPerson: true,
         minlength: 1,
         maxlength: 10
       },
       "price": {
         required: true,
         amount: true,
+        min: 1,
         minlength: 1,
         maxlength: 10
       },

@@ -983,11 +983,11 @@
 <script type="text/javascript" src="{{url('js/validations/home_searching.js')}}"></script>
 
 <script>
-   jQuery().find('.custom-loading').show();
+ 
    $( document ).ready(function() {
 
       setTimeout(() => {
-      jQuery().find('.custom-loading').hide();
+     // jQuery().find('.custom-loading').hide();
          $('#event-slider-1').css('display', 'block');   
       }, 1500)
 });

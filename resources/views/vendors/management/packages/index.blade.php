@@ -192,7 +192,7 @@ Status</th>
 
       <div class="input_fields_wrap">
           <div class="form-group"><input id="title[]" required class="form-control" name="title[]" placeholder="Title"></div>
-          <div class="form-group"><input type="number" required class="form-control" id="price[]" name="price[]" placeholder="Price"></div>
+          <div class="form-group"><input type="number" required min="1" class="form-control" id="price[]" name="price[]" placeholder="Price"></div>
       </div>
        <button id="add_field_button_{{$k}}" onclick="addForm(this.id)" type="button" class="cstm-btn">Add More Fields</button>
 
@@ -247,7 +247,7 @@ function openModel() {
 
 function addForm(id) {
   $(`#${id}`).closest('div').find('.input_fields_wrap').append(`<div class="addsform" id="addsform"><div class="form-group"><input required id="title[]" class="form-control" name="title[]" placeholder="Title"></div>
-     <div class="form-group"><input type="number" class="form-control" required id="price[]" name="price[]" placeholder="Price"></div><a href="#" class="remove_field">Remove</a></div>`);
+     <div class="form-group"><input type="number" min="1" class="form-control" required id="price[]" name="price[]" placeholder="Price"></div><a href="#" class="remove_field">Remove</a></div>`);
 }
 
 </script>

@@ -36,7 +36,7 @@
                             {{textbox($errors,'Title*','title')}}
                            </div>
                            <div class="col-lg-6">
-                            {{datebox($errors,'Expiry Date','expiry_date')}}
+                            {{datebox($errors, 'Expiry Date', 'expiry_date')}}
                            </div>
                            <div class="col-lg-6"> 
                             {{textarea($errors,'Description*','description')}}

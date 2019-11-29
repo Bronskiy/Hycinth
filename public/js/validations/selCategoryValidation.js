@@ -27,6 +27,7 @@ $(document).ready(function(){
         $('#assignCategoryBtn').prop('disabled', true);
         $('#assignCategory').submit();
       } else {
+        window.scrollTo({top: 0, behavior: 'smooth'});
         return false;
       }
     });

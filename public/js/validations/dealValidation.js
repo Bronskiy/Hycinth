@@ -14,6 +14,10 @@ $(document).ready(function(){
       "title": {
           required: true,
       },
+      "expiry_date": {
+        required: false,
+        minDate: true
+      },
        "description": {
           required: true,
       },

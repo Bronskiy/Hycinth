@@ -153,7 +153,7 @@ textarea.form-control {
     border: 1px solid #36496c;
     border-radius: 12px;
     background: #dfeaff;
-    overflow: hidden;
+   /* overflow: hidden;*/
 }
 .faq-accordion .acrdn-card,
 .faq-accordion .acrdn-card:last-child .acrdn-header {
@@ -167,9 +167,12 @@ textarea.form-control {
 }
 
 .faq-accordion .fa-stack {
-  font-size: 18px;
+    font-size: 18px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
 }
-
 .faq-accordion .btn {
     width: 100%;
     font-weight: bold;
@@ -183,10 +186,16 @@ textarea.form-control {
 	outline: none;
 	box-shadow: none;
 }
-.acrdn-header h3{
-	font-size: 18px;
+.acrdn-header h3 {
+    font-size: 18px;
+    min-height: 36px;
+    position: relative;
+    padding-left: 45px;
+    align-items: center;
+    display: flex;
+    white-space: normal;
+    text-align: left;
 }
-
 .faq-accordion .btn-link:hover,
 .faq-accordion .btn-link:focus {
   text-decoration: none;
@@ -460,6 +469,7 @@ body {
 .form-group {
     margin-bottom: 20px;
     position: relative;
+    display: block;
 }
 
 label.error, p.error {
@@ -493,9 +503,13 @@ label.error, p.error {
     display: inline-block;
     transition: all 0.3s ease;
 }
-.cstm-btn:hover{
+.cstm-btn:hover, .cstm-btn:focus{
   color: #35486b;
   background: transparent;
+}
+.cstm-btn:focus{
+  outline: none;
+  box-shadow: none;
 }
 
 
@@ -1304,12 +1318,32 @@ input.form-control.custom-file-input{
     border-radius: 10px;
     overflow: hidden;
 }
-.deal-container img {
+/*.deal-container img {
     max-width: 100%;
+}*/
+.deal-container img {
+    max-width: 90px;
+    max-height: 90px;
 }
-
 .alert{
   opacity: 1;
+}
+
+.modal-dialog button.close {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #d9534f;
+    top: -18px;
+    right: -10px;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: #fff;
+    z-index: 11;
 }
 
 .vendor-side-navigation .dropdown .dropdown-menu {
@@ -1373,6 +1407,38 @@ input.form-control.custom-file-input{
  -webkit-animation: none;-moz-animation: none;-ms-animation: none;animation: none;
 }
 
+/*cstm-radio butttons*/
+.custom-control-label:after, .custom-control-label:before{
+  width: 20px;
+  height: 20px;
+}
+.custom-radio .custom-control-input:checked~.custom-control-label:before {
+    background-color: #36496c;
+}
+.custom-control-label {
+    position: relative;
+    margin-bottom: 0;
+    padding-left: 14px;
+    color: #555;
+    font-weight: 500;
+    line-height: 20px;
+}
+.vendor-dash-card h4 {
+    margin-bottom: 15px;
+}
+
+.vendor-category label.error {
+    padding-left: 0px;
+    line-height: normal;
+    top: auto;
+    bottom: -31px;
+}
+i.fas.fa-pencil-alt.fa-minus.fa-plus:before{
+  content: "\f303" !important;
+} 
+label.error:after, label.error:before {
+    display: none;
+}
 /******************/
 @media (max-width: 767px) {
 .package-card .inn-card {

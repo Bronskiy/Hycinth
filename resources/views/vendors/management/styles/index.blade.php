@@ -36,7 +36,10 @@
                   </div>
                  @endforeach
                  <div class="col-md-12">
-                      @csrf <button class="cstm-btn" id="assignCategoryBtn">Assign</button>
+                      @csrf 
+                  <div class="btn-wrap mt-2">
+                      <button class="cstm-btn" id="assignCategoryBtn">Assign</button>
+                    </div>
                       <div class="errorMessages"></div>
                  </div>
                    @else

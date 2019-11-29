@@ -801,14 +801,12 @@ public function faqsDelete(Request $request,$slug,$id)
 
 
         if($faqs->count() == 0){
-          return redirect()->route('vendor_faqs_management',$slug)->with('messages','Something Wrong.');
+          return redirect()->route('vendor_faqs_management',$slug)->with('error_message','Something Wrong.');
         }
 
          $faqs->delete();
 
-
-
-   return redirect()->route('vendor_faqs_management',$slug)->with('messages','Faqs is saved.');
+   return redirect()->route('vendor_faqs_management', $slug)->with('messages', 'Faq is deleted successfully.');
 }
 
 #-------------------------------------------------------------------------------------------

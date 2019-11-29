@@ -48,8 +48,29 @@
 						  </div>
 						  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 						  	<!-- 	Video slider -->
-						  	<div id="Video-slider" class="flexslider">
-						          <ul class="slides">
+						  	<div id="Video-slider" class="flexsliders">
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+						         <ul class="slides">
                               	@if($vendor->VideoGallery->count() > 0)
 						           
 						          	@foreach($vendor->VideoGallery as $video)
@@ -61,7 +82,8 @@
                                           $videotitle = !empty($data) > 0 ? $data->title : '';
 						          	 ?>
 						            <li>
-						            	<a href="javascript:void(0);" class="play-btn play-model-video" data-link="{{$videoLink}}" data-title="{{$videotitle}}">
+						            	<a href="javascript:void(0);" class="play-btn play-model-video play-model-video2" data-link="{{$videoLink}}" data-title="{{$videotitle}}" data-toggle="modal" data-target="#Video-Modal">
+
 						            		<span><i class="far fa-play-circle"></i></span>
 						            	</a>
 						              <img src="{{url($videoImage)}}" />
@@ -84,13 +106,13 @@
                                           $videotitle = !empty($data) > 0 ? $data->title : '';
 						          	 ?>
 						            <li>
-						            	 
+						            	 <span><i class="far fa-play-circle"></i></span>
 						              <img src="{{url($videoImage)}}" />
 						            </li>
 						            @endforeach
 						         @endif
 						             
-						          </ul>
+						          </ul>  
 						        </div>
 						  	<!-- END here -->
 						  </div>
@@ -101,27 +123,25 @@
 	</div>
 
 	<!-- Video modal -->
- <div class="modal" id="Video-Modal">
+ <div class="modal fade show" id="Video-Modal">
   <div class="modal-dialog">
     <div class="modal-content">
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">Video title here..</h4>
+        <h4 id="video-Title" class="modal-title">Video title here..</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
         <div class="youtube-video-container">
-        	<iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        	<!-- <iframe src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+
+            <iframe id="video-gallery" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
         </div>
       </div>
-
-      <!-- Modal footer -->
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div> -->
 
     </div>
   </div>

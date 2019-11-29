@@ -54,7 +54,9 @@
 
 
                  <div class="col-md-12">
+                  <div class="btn-wrap mt-2">
                       @csrf <button class="cstm-btn" id="assignCategoryBtn">Assign</button>
+                    </div>
 
                       <div class="errorMessages"></div>
                  </div>

@@ -1,4 +1,5 @@
-@include('emails.header')                       
+@extends('emails.layout')
+@section('content')                     
             <!-- welcom text here -->
           <tr style="background-color: #fff;">
                   <td style="">
@@ -93,4 +94,4 @@
             </tr>
             <!-- info table ends here -->
             <!-- footer here -->
-            @include('emails.footer')    
+@endsection    

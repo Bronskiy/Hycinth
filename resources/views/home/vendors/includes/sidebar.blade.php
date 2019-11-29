@@ -134,8 +134,8 @@
                                                  min="0"     
                                                 max="100000" 
                                                 step="50"
-                                                value="0">
-                                                <input type="hidden" name="sitting_capacity" id="sitting_capacitys">
+                                                value="{{Request::has('guest_capacity') && !empty(Request::get('guest_capacity')) ? Request::get('guest_capacity') : 0}}">
+                                                <input type="hidden" name="sitting_capacity" id="sitting_capacitys" value="{{Request::has('guest_capacity') && !empty(Request::get('guest_capacity')) ? Request::get('guest_capacity') : 0}}">
                                             </div>
 
                                              <div class="inn-form-group">

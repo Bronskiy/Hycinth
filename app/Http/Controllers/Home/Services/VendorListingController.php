@@ -92,30 +92,49 @@ public function getVendorIds($request)
 	 $category =  VendorCategory::select('vendor_categories.*')
 	 ->join('users','users.id','=','vendor_categories.user_id')
 	 ->join('vendor_event_games','vendor_event_games.vendor_category_id','=','vendor_categories.id')
-	 ->join('vendor_amenities','vendor_amenities.vendor_category_id','=','vendor_categories.id')
-	 ->select('vendor_categories.*')
+   ->join('vendor_amenities','vendor_amenities.vendor_category_id','=','vendor_categories.id')
+	 ->join('categories','categories.id','=','vendor_categories.category_id')
+	 ->select('vendor_categories.*','categories.capacity')
 	 ->where('vendor_categories.parent',0)
 	 ->where(function($t) use($request){
 
 	 	  if(!empty($request->category_id) && $request->category_id > 0){
 	 	  	 $t->where('vendor_categories.category_id',$request->category_id);
 	 	  }
-          if(!empty($request->event_type)){
+
+      if(!empty($request->event_type)){
              $t->whereIn('vendor_event_games.event_id',$request->event_type);
 	 	  }
-     if(!empty($request->amenities)){
+
+      if(!empty($request->amenities)){
              $t->whereIn('vendor_amenities.amenity_id',$request->amenities);
 	 	  }
+
       if(!empty($request->vendors) && $request->category_id == 0){
 	 	  	 $t->whereIn('vendor_categories.category_id',$request->vendors);
 	 	  }
 
+
+       if(!empty($request->sitting_capacity) && $request->sitting_capacity > 0){
+         
+          $t->where('vendor_categories.sitting_capacity','>=',$request->sitting_capacity);
+          $t->where('vendor_categories.sitting_capacity','>',0);
+          
+      }
+
+      if(!empty($request->standing_capacity) && $request->standing_capacity > 0){
+         
+           $t->where('vendor_categories.standing_capacity','>=',$request->standing_capacity);
+           $t->where('vendor_categories.sitting_capacity','>',0);
+      }
+
+
        
-     })
+   })
 
 	 ->where('vendor_categories.business_url','!=','')
-	 ->where('vendor_categories.publish',1)
-	 ->groupBy('vendor_categories.id');
+	 ->where('vendor_categories.publish',1);
+	
 
       if(!empty($request->price_range)){
           $range = explode('-',$request->price_range);
@@ -124,16 +143,7 @@ public function getVendorIds($request)
       }
 
 
-     if(!empty($request->sitting_capacity) && $request->sitting_capacity > 0){
-         
-          $category->where('vendor_categories.sitting_capacity','>=',$request->sitting_capacity);
-      }
-
-      if(!empty($request->standing_capacity) && $request->standing_capacity > 0){
-         
-          $category->where('vendor_categories.standing_capacity','>=',$request->standing_capacity);
-      }
-
+    
       
 
      if(!empty($latitude) && !empty($longitude)){
@@ -147,7 +157,7 @@ public function getVendorIds($request)
 
     // return $category;
  
-	return  $category->pluck('id')->toArray();
+	return  $category->groupBy('vendor_categories.id')->pluck('id')->toArray();
 }
 
 

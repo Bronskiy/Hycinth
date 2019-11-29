@@ -195,6 +195,13 @@ $(function () {
 })(jQuery);
 
 
+// tooltip js
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+
+
+
 
 
     </script>

@@ -125,19 +125,14 @@ $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) 
                                             <!-- <span class="input-icon likes"><i class="fas fa-heart"></i></span> -->
 
                                    <p class="ser-text"> {{$cate->category->label}}</p>
-
-                                           <!--  @if($cate->subcategory->count() > 0)
-                                               <p class="business-services"><strong>Services : </strong>
-                                                @foreach($cate->subcategory as $k => $service)
-                                                 {{$service->category->label}} {{($k + 1) < $cate->subcategory->count() ? ',' : ''}}  
-                                               @endforeach
-                                             </p>
-                                            @endif -->
-
-
+ 
 
                                             <ul class="rating">
-                                                <li><span>${{custom_format(getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','min_price'),2)}} </span></li>
+                                                <li>
+                                                  <div class="price-review-detail"><p>Starting From:</p> <span> ${{custom_format(getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','min_price'),2)}} &nbsp;<i class="fa fa-users"></i> </span>
+                                                  </div>
+                                                </li>
+                                                <li>
                                                 <ul class="inner-list">
                                                     <li><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
                                                     <li><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
@@ -146,6 +141,7 @@ $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) 
                                                     <li><a href="javascript:void(0);"><i class="far fa-star"></i></a>
                                                     </li>
                                                 </ul>
+                                              </li>
                                                 <li>
                                                     <p class="review">0 Reviews</p>
                                                 </li>

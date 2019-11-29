@@ -291,7 +291,13 @@
             -ms-transform: translate(-224px);
                 transform: translate(-224px);
     }
-}
+    .price-content {
+        width: 120px;
+        }
+        .price-card{
+            padding: 20px 10px;
+        }
+      }
 
 
 

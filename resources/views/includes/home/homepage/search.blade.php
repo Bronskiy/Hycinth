@@ -61,7 +61,7 @@
                      <div class="col-lg-4 vendorColumn">
                         <div class="form-group">
                             
-                           <select class="form-control select2 SuggestedVendors" multiple="" name="vendors[]" data-placeholder="Search Vendors">
+                           <select class="form-control select2 SuggestedVendors" id="SuggestedVendors" multiple="" name="vendors[]" data-placeholder="Select Vendors">
                               <option></option>
                            </select>
                            <span class="input-icon"><i class="fas fa-user"></i></span>
@@ -77,7 +77,7 @@
                      </div>
                      <div class="col-lg-6">
                         <div class="form-group">
-                           <input type="text" id="" class="form-control" placeholder="Guest#">
+                           <input type="text" id="" class="form-control" placeholder="Guest# 000000" name="guest_capacity">
                            <span class="input-icon"><i class="fas fa-map-marker-alt"></i></span>
                         </div>
                      </div>

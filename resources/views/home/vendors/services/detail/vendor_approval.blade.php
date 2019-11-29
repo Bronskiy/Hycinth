@@ -7,31 +7,31 @@
 
             <table class="table business-progress-table">
                  <tr>
-                   <th>1. Basic Information About the Business. ({{$basicInfo}}%)</th>
+                   <th width="20px">1.</th><th> Basic Information About the Business. ({{$basicInfo}}%)</th>
                  </tr>
-                 <tr><td><?= ProgressBar($basicInfo) ?></td></tr>
+                 <tr><td colspan="2"><?= ProgressBar($basicInfo) ?></td></tr>
 
                  <tr>
-                   <th>2. Photo And Video Gallery. ({{$photoVideogalery}}%)</th>
+                   <th>2.</th><th> Photo And Video Gallery. ({{$photoVideogalery}}%)</th>
                  </tr>
-                 <tr><td><?= ProgressBar($photoVideogalery) ?></td></tr>
+                 <tr><td colspan="2"><?= ProgressBar($photoVideogalery) ?></td></tr>
                  <tr>
-                   <th>3. Venue Details (Services & Events, Styles, Seasons). ({{$venuesPercent}}%)</th>
+                   <th>3.</th><th> Venue Details (Services & Events, Styles, Seasons). ({{$venuesPercent}}%)</th>
                  </tr>
-                 <tr><td><?= ProgressBar($venuesPercent) ?></td></tr>
+                 <tr><td colspan="2"><?= ProgressBar($venuesPercent) ?></td></tr>
 
                  <tr>
-                   <th>4. Amenities & Games. ({{$amenitiesAndGames}}%)</th>
+                   <th>4.</th><th> Amenities & Games. ({{$amenitiesAndGames}}%)</th>
                  </tr>
-                 <tr><td><?= ProgressBar($amenitiesAndGames) ?></td></tr>
+                 <tr><td colspan="2"><?= ProgressBar($amenitiesAndGames) ?></td></tr>
 
                  
 
                  <tr>
-                   <th>Full Business Progress ({{$overAll}}%)</th>
+                   <th colspan="2" width="100%">Full Business Progress ({{$overAll}}%)</th>
                  </tr>
                  <tr>
-                    <td><?= ProgressBar($overAll) ?></td>
+                    <td colspan="2" width="100%"><?= ProgressBar($overAll) ?></td>
                  </tr>  
                  
                   

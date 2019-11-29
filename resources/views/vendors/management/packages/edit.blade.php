@@ -32,12 +32,27 @@
 
             <div class="col-md-3">
               <div class="form-group">
-           <div class="radio">
+           <!-- <div class="radio">
             <label><input type="radio" name="price_type" value="per_person" {{ $package->price_type === 'per_person' ? 'checked' : '' }}>Price Per Person</label>
           </div>
           <div class="radio">
             <label><input type="radio" name="price_type" value="fix" {{ $package->price_type === 'fix' ? 'checked' : '' }}>Fix Price</label>
-          </div>
+          </div> -->
+
+               <label>Price status</label>
+
+            <div class="custom-control custom-radio mb-1">
+        <input type="radio" id="PriceType1" name="price_type" value="per_person" class="custom-control-input" checked>
+        <label class="custom-control-label" for="PriceType1">Price Per Person</label>
+      </div>
+
+       <div class="custom-control custom-radio">
+        <input type="radio" id="PriceType" name="price_type" value="per_person" class="custom-control-input">
+        <label class="custom-control-label" for="PriceType">Fix Price</label>
+      </div>
+
+
+
           </div>
             </div>
 
@@ -151,12 +166,19 @@
 </div>
 @endif
                <div class="form-group">
-           <div class="radio">
-            <label><input type="radio" name="status" value="1" {{ $package->status === 1 ? 'checked' : '' }}>Active</label>
-          </div>
-          <div class="radio">
-            <label><input type="radio" name="status" value="0" {{ $package->status === 0 ? 'checked' : '' }}>Inactive</label>
-          </div>
+           
+
+           <div class="custom-control custom-radio mb-1">
+        <input type="radio" id="status" name="status" value="per_person" class="custom-control-input" checked>
+        <label class="custom-control-label" for="status">Price Per Person</label>
+      </div>
+
+       <div class="custom-control custom-radio">
+        <input type="radio" id="status2" name="status" value="per_person" class="custom-control-input">
+        <label class="custom-control-label" for="status2">Fix Price</label>
+      </div>
+
+
           </div>
 
             <button id="packageFormBtn" class="cstm-btn">Save</button>

@@ -1,5 +1,5 @@
-@include('emails.header')
-
+@extends('emails.layout')
+@section('content')
 <tr style="background-color: #fff;">
                   <td style="">
                     <table align="center" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
@@ -35,4 +35,4 @@
                 </tr>
 
 
-@include('emails.footer') 
+@endsection 

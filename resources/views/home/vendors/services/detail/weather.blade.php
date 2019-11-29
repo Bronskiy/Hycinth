@@ -15,7 +15,7 @@
       
       <div class="info-weather">
         <div class="weather-wrapper">
-          <span class="weather-temperature" id="mainTemperature"></span><span class="symbol">°</span>C
+          <span class="weather-temperature" id="mainTemperature"></span>
           <div class="weather-sunny"><img id="main-icon" src="{{ asset('/frontend/DarkSky-icons/SVG/clear-day.svg') }}"></div>
         </div>        
         <h5><span class="weather-city" id="cityName"></span> <spam id="cityCode"></spam></h5>
@@ -69,7 +69,7 @@
                         <div class="weather-data d-flex">
                             <div class="mr-auto">
                                <div class="weather-status d-f a-i-c">
-                                <span class="weather-status-icon"><img id="modal-main-icon" src="{{ asset('/frontend/DarkSky-icons/SVG/clear-day.svg') }}"></span><h4 class="display-3" id="modal-mainTemperature"><span class="symbol">°</span>C</h4>
+                                <span class="weather-status-icon"><img id="modal-main-icon" src="{{ asset('/frontend/DarkSky-icons/SVG/clear-day.svg') }}"></span><h4 class="display-3" id="modal-mainTemperature"></h4>
                               </div>
                                 <p id="tempDescription"></p>
                             </div>
@@ -83,11 +83,6 @@
         </div>
         </div>
       </div>
-      <!-- =============== -->
-      
-      <!-- <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div> -->
     </div>
 
   </div>

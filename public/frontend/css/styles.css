@@ -922,6 +922,25 @@ nav#tool-nav #menus-list li a:hover {
     color: #fff !important;
 }
 /*category menu modal*/
+.modal-dialog{
+	position: relative;
+}
+.modal-dialog button.close {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #d9534f;
+    top: -18px;
+    right: -10px;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    color: #fff;
+    z-index: 11;
+}
 .cate-link-icon {
     max-width: 19px;
     margin-right: 10px;
@@ -1122,9 +1141,9 @@ nav#tool-nav #menus-list li a:hover {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    max-height: 50px;
+    max-height: 52px;
     margin-bottom: 10px;
-    min-height: 50px;
+    min-height: 52px;
 }
 
 /*********/
@@ -1255,6 +1274,7 @@ nav#tool-nav #menus-list li a:hover {
     -webkit-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
+    width: 100%;
 }
 
 .main-package-card:hover figure img {
@@ -2229,9 +2249,9 @@ hr.hr-break {
             align-items: center;
 }
 
-.right-content ul.rating li a i {
+.right-content ul.rating li a{
     color: #eea31e;
-    font-size: 15px;
+    font-size: 14px;
 }
 
 .right-content ul.inner-list {
@@ -2260,10 +2280,10 @@ hr.hr-break {
 }
 
 .right-content p.review {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     text-transform: capitalize;
-    padding-top: 4px;
+    padding-top: 0px;
 }
 
 .right-content p.detail {
@@ -3805,20 +3825,26 @@ label.error {
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.1);
 }
 .vendor-detail-header .page-head {
-    padding: 0px 20px;
+    padding: 0px 40px;
 }
 .vendor-detail-header .head-logo {
     max-width: 70px;
     display: inline-block;
     margin-right: 15px;
-    padding-top: 10px;
+    padding-top: 4px;
+}
+.vendor-detail-header .page-header .heading-details {
+    width: calc(100% - 85px);
+    display: inline-block;
 }
 .vendor-detail-header .page-header {
     display: flex;
     flex-wrap: wrap;
 }
 .heading-details h2 {
-    margin-bottom: 9px;
+    margin-bottom: 8px;
+    font-size: 22px;
+    font-weight: 600;
 }
 .location-icon{
     margin-right: 10px;
@@ -4872,7 +4898,7 @@ flex-direction: column;
 }
 .address-line{
     display: inline-block;
-
+    font-size: 15px;
 }
 #compModal .modal-dialog {
     max-width: 1000px;
@@ -5054,7 +5080,7 @@ table.compere-table th {
 .rangeslider__value-bubble {
     border: 1px solid #ccc;
     display: block;
-    padding: 5px;
+    padding: 3px;
     position: absolute;
     bottom: 100%;
     margin-bottom: 15px;
@@ -5328,7 +5354,7 @@ table.compere-table th {
 .weather-mini-card {
     /*float: right;*/
     display: block;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
 }
 
 .weather-info-wrapper {
@@ -5447,3 +5473,54 @@ table.compere-table th {
     background: rgba(0,0,0,0.6);
     z-index: 1;
 }
+.select2-container--default .select2-results__option[role=group] {
+    padding: 0;
+    width: 50%;
+    float: left;
+}
+.select2-container--default .select2-results__option[role=group]:first-child {
+    border-right: 2px solid #36496c;
+}
+.price-review-detail p, .price-review-detail span {
+    font-size: 14px;
+    display: inline-block;
+}
+
+/*select2 checkbox*/
+.select2-results__option[aria-selected=true]:after {
+    opacity: 1;
+
+}
+.select2-container--default .select2-results__option[aria-selected=true]{
+    position: relative;
+}
+.select2-results__option[aria-selected=true]:before {
+     background-color: #eda208 !important;
+}
+.select2-results__option:after {
+    position: absolute;
+    content: "";
+    left: 13px;
+    top: 8px;
+    width: 7px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    opacity: 0;
+    }
+.select2-results__option:before {
+    content: "";
+    display: inline-block;
+    position: relative;
+    height: 20px;
+    width: 20px;
+    border: 2px solid #000;
+    border-radius: 4px;
+    background-color: #fff;
+    margin-right: 20px;
+    vertical-align: middle;
+}
+

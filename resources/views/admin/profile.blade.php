@@ -35,7 +35,7 @@
 <div class="col-md-6">
 <h3>Profile Image</h3>
   <form role="form" id="profileForm" action="{{url(route('post_admin_settings'))}}" method="post" enctype="multipart/form-data">
-                <div class="card-body">
+                <div class="profile-card">
                   @csrf
                    <div class="profile-image">
                          <input type="file" name="image" accept="image/*" onchange="ValidateSingleInput(this, 'image_src')" id="selImage" class="form-control" required>
@@ -54,7 +54,7 @@
                 </div>
                 <!-- /.card-body -->
 
-                <div class="card-footer">
+                <div class="profile-card-ftr">
                   <button type="submit" id="profileFormBtn" class="btn btn-primary">Change Profile Image</button>
                 </div>
  </form>
@@ -66,7 +66,7 @@
 <div class="col-md-6">
 <h3>Password Settings</h3>
   <form role="form" id="passwordForm" action="{{url(route('post_admin_password_settings'))}}" method="post" enctype="multipart/form-data">
-                <div class="card-body">
+                <div class="profile-card">
 
 
                    @csrf
@@ -79,7 +79,7 @@
                 </div>
                 <!-- /.card-body -->
 
-                <div class="card-footer">
+                <div class="">
                   <button type="submit" id="passwordFormBtn" class="btn btn-primary">Change Password</button>
                 </div>
  </form>

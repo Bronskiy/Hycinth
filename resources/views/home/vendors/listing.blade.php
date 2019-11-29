@@ -94,8 +94,10 @@
     function initMap() {
            var map;
            var bounds = new google.maps.LatLngBounds();
+
            var mapOptions = {
-               mapTypeId: 'roadmap'
+               mapTypeId: 'roadmap' 
+               
            };
             // Display a map on the web page
            map = new google.maps.Map(document.getElementById("mapCanvas"), mapOptions);

@@ -26,7 +26,7 @@
                <form method="post" id="basicInfoForm" enctype="multipart/form-data">
                   @csrf
                   <input type="hidden" name="type" value="basic_information">
-                  <div class="col-md-12">
+                  <div class="">
                      <div class="panel panel-default">
                         <div class="panel-heading">Business Info</div>
                         <div class="panel-body">

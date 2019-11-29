@@ -20,7 +20,8 @@ $(document).ready(function(){
   
     rules: {
       "question": { 
-          required: true
+          required: true,
+          maxlength: 150,
       },
       "answer": {
         ckrequired: true,

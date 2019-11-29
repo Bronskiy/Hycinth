@@ -10766,3 +10766,8 @@ ul{
     flex-wrap: wrap;
 }
 
+.profile-card {
+    padding: 20px 0px;
+    display: block;
+}
+

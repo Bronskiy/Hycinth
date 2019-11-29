@@ -46,13 +46,41 @@ $(document).ready(function(){
       "min_price": {
           required: true,
           amount: true,
-          maxlength: 50,
+          min: 1,
+          minlength: 1,
+          maxlength: 10
       },
       "short_description": {
           required: true
       },
       "address": {
           required: true,
+      },
+      "latitude":{
+      	required: true,
+      	number: true
+      },
+      "business_location": {
+        required: true,
+      },
+  	 "longitude":{
+      	required: true,
+      	number: true
+      },
+      "facebook_url": {
+        isUrl: true
+      },
+      "linkedin_url": {
+        isUrl: true
+      },
+      "twitter_url": {
+        isUrl: true
+      },
+      "instagram_url": {
+        isUrl: true
+      },
+      "pinterest_url": {
+        isUrl: true
       },
       valueToBeTested: {
           required: true,
@@ -68,6 +96,7 @@ $(document).ready(function(){
         $('#basicInfoBtn').prop('disabled', true);
         $('#basicInfoForm').submit();
       } else {
+        window.scrollTo({top: 0, behavior: 'smooth'});
         return false;
       }
     });

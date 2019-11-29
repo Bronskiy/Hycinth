@@ -3,10 +3,10 @@
         <div class="ftr-content">
             <div class="row">
                 <div class="col-lg-2 col-md-2 col-12">
-                    <a href="index.html" class="ftr-logo" data-aos="fade-right" data-aos-duration="3000"><img src="/frontend/images/logo.svg"></a>
+                    <a href="index.html" class="ftr-logo"><img src="/frontend/images/logo.svg"></a>
                 </div>
                 <div class="col-lg-2 col-md-2 col-6">
-                    <div class="ftr-links-wrap" data-aos="fade-right" data-aos-duration="3000">
+                    <div class="ftr-links-wrap">
                         <h3>Envisiun</h3>
                         <ul class="ftr-links">
                             <li><a href="javascript:void(0);">Home</a></li>
@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-2 col-6">
-                    <div class="ftr-links-wrap" data-aos="fade-right" data-aos-duration="3000">
+                    <div class="ftr-links-wrap">
                         <h3>Vendors</h3>
                         <ul class="ftr-links">
                             <li><a href="javascript:void(0);">Venues</a></li>
@@ -29,7 +29,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-2 col-6">
-                    <div class="ftr-links-wrap" data-aos="fade-right" data-aos-duration="3000">
+                    <div class="ftr-links-wrap">
                         <h3>terms</h3>
                         <ul class="ftr-links">
                             <li><a href="{{ route('cmsPage', ['slug' => 'terms-and-condition']) }}">Terms And Conditions</a></li>
@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-2 col-6 res-full-width">
-                    <div class="ftr-links-wrap" data-aos="fade-right" data-aos-duration="3000">
+                    <div class="ftr-links-wrap">
                         <h3>Let's Connect</h3>
                         <ul class="social-links">
                             <li><a href="javascript:void(0);"><span><i class="fab fa-facebook-f"></i></span></a></li>
