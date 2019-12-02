@@ -17,7 +17,7 @@ class ManagementController extends VendorController
        '_token'
   ];
    
-public $restrictions =[
+  public $restrictions =[
                 'imageGallery',
                 'videoGallery'
  ];
@@ -88,6 +88,7 @@ public $restrictions =[
            'company' => $this->getAllValueWithMeta('company','basic_information',$category->category_id),
            'travel_distaince' => $this->getAllValueWithMeta('travel_distaince','basic_information',$category->category_id),
            'min_price' => $this->getAllValueWithMeta('min_price','basic_information',$category->category_id),
+           'min_guest' => $this->getAllValueWithMeta('min_guest','basic_information',$category->category_id),
            'cover_photo' => $this->getAllValueWithMeta('cover_photo','basic_information',$category->category_id),
            'cover_video' => $this->getAllValueWithMeta('cover_video','basic_information',$category->category_id),
            'cover_video_image' => $this->getAllValueWithMeta('cover_video_image','basic_information',$category->category_id),
@@ -145,6 +146,7 @@ public $restrictions =[
             'latitude' => 'required',
             'longitude' => 'required',
             'business_location' => 'required',
+            'min_guest' => 'required',
             'cover_video' => 'mimes:mp4,3gp,avi,wmv'
       ];
 
@@ -225,6 +227,7 @@ $this->saveCategoryMetaData('linkedin_url',$request->type,$request->linkedin_url
 $this->saveCategoryMetaData('twitter_url',$request->type,$request->twitter_url,$category->category_id);
 $this->saveCategoryMetaData('instagram_url',$request->type,$request->instagram_url,$category->category_id);
 $this->saveCategoryMetaData('pinterest_url',$request->type,$request->pinterest_url,$category->category_id);
+$this->saveCategoryMetaData('min_guest',$request->type,$request->min_guest,$category->category_id);
 
 
 
@@ -306,8 +309,6 @@ public function saveCategoryMetaData($key,$type,$value,$category_id)
   
    public function imageGallery($slug)
    {
-
- 
    	  $category = $this->getData($slug);
    	  $images = VendorCategoryMetaData::where('category_id',$category->category_id)
    	                                  ->where('user_id',Auth::user()->id)

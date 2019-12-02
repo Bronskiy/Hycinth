@@ -49,7 +49,7 @@
                 <h4>{{$arr['title']}}</h4>
                 <ul class="acrdn-action-btns">
                   <li><a href="{{url(route('vendor_category_videos_edit_management',[$slug,$img->id]))}}" class="action_btn primary-btn"><i class="fas fa-pencil-alt"></i></a></li>  
-                  <li><a href="{{url(route('vendor_category_videos_delete_management',[$slug,$img->id]))}}" class="action_btn danger-btn"><i class="fas fa-trash-alt"></i></a></li>
+                  <li><a onclick="deleteItem(this)" href="javascript:void(0)" data-delurl="{{url(route('vendor_category_videos_delete_management',[$slug,$img->id]))}}" class="action_btn danger-btn"><i class="fas fa-trash-alt"></i></a></li>
              </ul>
               </div>
             </div>

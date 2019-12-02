@@ -35,7 +35,11 @@
                               <div class="col-md-6">{{textbox($errors,'Company*','company',$company)}}</div>
                               <div class="col-md-6">{{textbox($errors,'Phone number*','phone_number',$phone_number)}}</div>
                               <div class="col-md-6">{{textbox($errors,'Website*','website',$website)}}</div>
-                              <div class="col-md-12">{{textbox($errors,'Price Start From*','min_price',$min_price)}}</div>
+                              <div class="col-md-6">{{textbox($errors,'Basic Price*','min_price',$min_price)}}</div>
+
+                               <div class="col-md-6">{{textbox($errors,'Min Guest*','min_guest',$min_guest)}}</div>
+
+
                               <div class="col-md-12">{{textarea($errors, 'Short Description about your Business*', 'short_description', $short_description)}}</div>
                                
                             <input type="hidden" name="address" value="{{$address}}">

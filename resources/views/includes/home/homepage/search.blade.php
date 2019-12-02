@@ -77,8 +77,8 @@
                      </div>
                      <div class="col-lg-6">
                         <div class="form-group">
-                           <input type="text" id="" class="form-control" placeholder="Guest# 000000" name="guest_capacity">
-                           <span class="input-icon"><i class="fas fa-map-marker-alt"></i></span>
+                           <input type="text" id="" class="form-control" placeholder="Number of Guest" name="guest_capacity">
+                           <span class="input-icon"><i class="fas fa-users"></i></span>
                         </div>
                      </div>
                   </div>

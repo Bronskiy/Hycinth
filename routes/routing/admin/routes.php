@@ -152,7 +152,6 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
         Route::post('/pages/{slug}', 'Admin\CmsPageController@update')->name('admin.cms-pages.update');
         Route::get('/pages/status/{slug}', 'Admin\CmsPageController@changeStatus')->name('admin.cms-pages.status');
 
-
         #------------------------------------------------------------------------------------
         #  Faq
         #------------------------------------------------------------------------------------
@@ -166,5 +165,8 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
 
         Route::get('/my-business/{slug}/{vendorSlug}', 'Vendor\MyBusinessController@index')->name('vendorBusinessView');
 
+        // Email Management
+        Route::get('/email-management', 'Admin\EmailManagementController@index')->name('admin.emails.index');
+        Route::post('/email-management/{id}', 'Admin\EmailManagementController@update')->name('admin.emails.update');
 
 });

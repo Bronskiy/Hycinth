@@ -180,7 +180,7 @@ public function getBusiness(Request $request)
      $business = $this->getBusinesAccordingToSearch($request);
 
 
-           $vv = view('home.vendors.includes.vendor',[
+           $vv = view('includes.home.business.list',[
                      'businesses' => $business->get(),
                      'categoryCount' => $business->count()
                    ])->render();

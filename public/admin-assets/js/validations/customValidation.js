@@ -5,16 +5,25 @@ $.validator.addMethod("chrequired", function(value, elem, param) {
 // Ck-Editor
 $.validator.addMethod('ckrequired', function (value, element, params) {
   var idname = jQuery(element).attr('id');
-  var messageLength = jQuery.trim ( CKEDITOR.instances[idname].getData() );
-  CKEDITOR.instances[idname].on("change", function (evt) {
-      if(CKEDITOR.instances[idname].getData().length !== 0)
+  var editor = CKEDITOR.instances[idname]; 
+  var messageLength = jQuery.trim(editor.getData() );
+  var ckValue = GetTextFromHtml(editor.getData()).replace(/<[^>]*>/gi, '').trim();
+  editor.on("change", function (evt) {
+    ckValue = GetTextFromHtml(editor.getData()).replace(/<[^>]*>/gi, '').trim(); 
+      if(ckValue.length !== 0)
         $(`#${idname}`).closest('.form-group').find('label').eq(1).css('display', 'none');
       else
         $(`#${idname}`).closest('.form-group').find('label').eq(1).css('display', 'block');
   });
-  CKEDITOR.instances[idname].updateElement();    
-  return !params || messageLength.length !== 0;
+  editor.updateElement();
+  return !params || ckValue.length !== 0;
 }, "This field is required.");
+
+function GetTextFromHtml(html) {  
+    var dv = document.createElement("DIV");  
+    dv.innerHTML = html;
+    return dv.textContent || dv.innerText || "";  
+}
 
 // url
 $.validator.addMethod('isUrl', function(s, element){

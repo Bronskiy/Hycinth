@@ -13,18 +13,12 @@
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('vendor_dashboard') }}"><i class="fa fa-home" aria-hidden="true"></i></a></li>
                 <li class="breadcrumb-item"><a href="{{url(route($addLink ,$slug))}}">List</a></li>
-                <li class="breadcrumb-item"><a href="javascriptLvoid(0)">Add</a></li>
+                <li class="breadcrumb-item active"><a href="javascript:void(0)">Add</a></li>
             </ul>
         </div>
   </div>
 
 @include('vendors.errors')
-
-
-
-
-
-
 
     <div class="row">
        <div class="col-lg-12">

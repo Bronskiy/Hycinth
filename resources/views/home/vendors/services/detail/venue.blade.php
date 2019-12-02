@@ -5,7 +5,7 @@
 		 <?= notoficationBusinessFlash($types, $vendor->venueComment, $vendor->status) ?>
 		 @endif
 		<div class="card-heading">
-			<h3>Venue details</h3>			
+			<h3>Service Detail</h3>			
 		</div>		
 		<div class="venue-content">
 			<div class="row">

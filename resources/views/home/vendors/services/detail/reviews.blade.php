@@ -17,6 +17,7 @@
         <hr style="border:2px solid #f1f1f1">
 
         <div class="rating-bar-row">
+          <div class="single-rating-row">
           <div class="side">
             <div>5 star</div>
           </div>
@@ -28,6 +29,9 @@
           <div class="side right">
             <div>150</div>
           </div>
+        </div>
+
+       <div class="single-rating-row">
           <div class="side">
             <div>4 star</div>
           </div>
@@ -39,6 +43,9 @@
           <div class="side right">
             <div>63</div>
           </div>
+        </div>
+
+        <div class="single-rating-row">
           <div class="side">
             <div>3 star</div>
           </div>
@@ -50,6 +57,9 @@
           <div class="side right">
             <div>15</div>
           </div>
+        </div>
+
+        <div class="single-rating-row">
           <div class="side">
             <div>2 star</div>
           </div>
@@ -61,6 +71,9 @@
           <div class="side right">
             <div>6</div>
           </div>
+        </div>
+
+       <div class="single-rating-row">
           <div class="side">
             <div>1 star</div>
           </div>
@@ -72,6 +85,10 @@
           <div class="side right">
             <div>20</div>
           </div>
+        </div>
+
+
+
         </div>
     </div>
 

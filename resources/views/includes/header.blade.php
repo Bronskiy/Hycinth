@@ -39,8 +39,9 @@
             <li><a href="/">Home</a></li>
             <!-- <li><a href="{{url(route('get_all_venues'))}}">Venues</a></li> -->
             <li><a href="javascript:void(0);" data-toggle="modal" data-target="#VenuesCategoriesModal">Businesses</a></li>
-            
+            <li><a href="{{url(route('all_deals'))}}">Deals & Discount</a></li>
             <li><a href="/vendor/register">New Vendors</a></li>
+
             <li class="mob-hide">
                <a href="javascript:void(0);" class="fav-list">
                <i class="fas fa-heart"></i>
@@ -48,30 +49,30 @@
                </a>
             </li>
             <li>
-                            @if(Auth::check())
+          @if(Auth::check())
                        
-                   <li>                                       
-                        <div class="nav-item nav-profile dropdown">
-                          <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
-                            <span class="nav-profile-img">
-                              <i class="fas fa-user-circle"></i>
-                            </span>
-                            <div class="nav-profile-text">
-                              <p class="user-name-text">{{Auth::user()->name}}</p>
-                            </div>
-                          </a>
-                          <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 36px, 0px); top: 0px; left: 0px; will-change: transform;">
-                            <a class="dropdown-item" href="{{url(route(Auth::user()->role.'_dashboard'))}}"><span><i class="far fa-user"></i></span> Profile</a>
-                               <a class="dropdown-item" href="/logout"><span><i class="fas fa-sign-out-alt"></i></span> Logout</a>
-                           </div>
-                        </div>
-                  </li>
-                          @else
-                    <li class="user header-btns">
-                            <a href="{{url('/login')}}" class="cstm-btn solid-btn">Login</a>
-                            <a href="{{url('/register')}}" class="cstm-btn">Sign Up</a>
-                    </li>
-                          @endif
+             <li>                                       
+                  <div class="nav-item nav-profile dropdown">
+                    <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
+                      <span class="nav-profile-img">
+                        <i class="fas fa-user-circle"></i>
+                      </span>
+                      <div class="nav-profile-text">
+                        <p class="user-name-text">{{Auth::user()->name}}</p>
+                      </div>
+                    </a>
+                    <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 36px, 0px); top: 0px; left: 0px; will-change: transform;">
+                      <a class="dropdown-item" href="{{url(route(Auth::user()->role.'_dashboard'))}}"><span><i class="far fa-user"></i></span> Profile</a>
+                         <a class="dropdown-item" href="/logout"><span><i class="fas fa-sign-out-alt"></i></span> Logout</a>
+                     </div>
+                  </div>
+            </li>
+            @else
+                <li class="user header-btns">
+                        <a href="{{url('/login')}}" class="cstm-btn solid-btn">Login</a>
+                        <a href="{{url('/register')}}" class="cstm-btn">Sign Up</a>
+                </li>
+            @endif
 
   
             <li class="show-for-mob">

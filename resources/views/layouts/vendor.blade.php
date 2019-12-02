@@ -90,6 +90,15 @@
 <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 <script src="{{url('/admin-assets/js/validations/customValidation.js')}}"></script>
    
+<script type="text/javascript">
+ function deleteItem(item) {
+  const url = $(item).data('delurl');
+  if (confirm("Are you sure you want to delete it!")) {
+    window.location.href = url;
+  }
+}
+</script>
+
 @yield('scripts')
 
 <script>
@@ -196,13 +205,9 @@ $(function () {
 
 
 // tooltip js
-$(document).ready(function(){
+$(document).ready(function() {
   $('[data-toggle="tooltip"]').tooltip();
 });
-
-
-
-
 
     </script>
 </body>

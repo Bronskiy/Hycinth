@@ -1843,7 +1843,7 @@ function selectsimple($errors,$label,$name,$array,$value=null){
 		}
 		$old=old($name);
 		$text = "";
-		$text .= "<div class='form-group label-floating is-focused'>";
+		$text .= "<div class='form-group label-floating is-focused' id=".$name.">";
 		$text .="<label class='control-label'>$label</label>";
         $text .= "<select class='form-control $border' name='$name'>";
          $text .="<option value=''>Select</option>";    

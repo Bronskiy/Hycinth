@@ -115,6 +115,10 @@ section {
 figure {
     line-height: 0;
 }
+a:hover, a:focus{
+	text-decoration: none;
+  outline: none;
+}
 
 body {
     /*font-family: 'Raleway', sans-serif !important;*/
@@ -2419,7 +2423,7 @@ section.vendor-listing-sec .card-body.listing .form-group input {
     display: none;
 }
 
-section.vendor-listing-sec .form-group label {
+/*section.vendor-listing-sec .form-group label {
     margin-bottom: 0;
     position: relative;
     cursor: pointer;
@@ -2445,9 +2449,9 @@ section.vendor-listing-sec .form-group label:before {
     cursor: pointer;
     margin-right: 5px;
     margin-bottom: 5px;
-}
+}*/
 
-section.vendor-listing-sec .form-group input:checked + label:after {
+/*section.vendor-listing-sec .form-group input:checked + label:after {
     content: '';
     display: block;
     position: absolute;
@@ -2465,7 +2469,7 @@ section.vendor-listing-sec .form-group input:checked + label:after {
 section.vendor-listing-sec .form-group input:checked + label:before {
     background: #36496c;
     color: #36496c;
-}
+}*/
 
 section.vendor-listing-sec .card-body.listing a:hover,
 .card-header a:hover,
@@ -2913,7 +2917,7 @@ nav#tool-nav #menus-list li a:before {
 }
 
 .top-bar.inner-header ul.inn-top-navigation > li {
-    padding: 0 20px;
+    padding: 0 16px;
     position: relative;
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
@@ -3802,6 +3806,9 @@ label.error {
     font-size: 15px;
     position: absolute;
 }
+label.error:after, label.error:before{
+    display: none !important;
+}
 .normal-link {
     color: #eda208;
     text-decoration: underline;
@@ -4218,7 +4225,7 @@ flex-direction: column;
     width: 100%;
 }
 .pricing-inn-table td, .pricing-inn-table th {
-    padding: 10px;
+    padding: 10px 20px;
 }
 .pricing-inn-table td{
     text-align: right;
@@ -4349,7 +4356,11 @@ flex-direction: column;
 .rating-head .checked {
   color: orange;
 }
-
+.single-rating-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
 /* Three column layout */
 .rating-bar-row .side {
   float: left;
@@ -5481,9 +5492,15 @@ table.compere-table th {
 .select2-container--default .select2-results__option[role=group]:first-child {
     border-right: 2px solid #36496c;
 }
+.select2-container--default .select2-results__option[role=group]:before{
+    display: none;
+}
 .price-review-detail p, .price-review-detail span {
     font-size: 14px;
     display: inline-block;
+}
+.select2-container--default .select2-results__group{
+    text-align: center;
 }
 
 /*select2 checkbox*/
@@ -5496,11 +5513,16 @@ table.compere-table th {
 }
 .select2-results__option[aria-selected=true]:before {
      background-color: #eda208 !important;
+     border-color:#eda208;
 }
+.select2-container--default .select2-results__option .select2-results__option, .select2-results__option {
+    padding-left: 40px;
+}
+
 .select2-results__option:after {
     position: absolute;
     content: "";
-    left: 13px;
+    left: 17px;
     top: 8px;
     width: 7px;
     height: 12px;
@@ -5510,6 +5532,9 @@ table.compere-table th {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
     opacity: 0;
+    }
+    .select2-results__option{
+        position: relative;
     }
 .select2-results__option:before {
     content: "";
@@ -5522,5 +5547,74 @@ table.compere-table th {
     background-color: #fff;
     margin-right: 20px;
     vertical-align: middle;
+    position: absolute;
+    left: 10px;
+    top: 5px;
 }
 
+[id^="select2-event_type-"] .select2-results__option {
+    padding-left: 10px;
+}
+[id^="select2-event_type-"] .select2-results__option:before, [id^="select2-event_type-"] .select2-results__option:after{
+    display: none;
+}
+
+
+  ul.capacity li p {
+    padding-top: 10px;
+    font-size: 14px;
+    color: #88718c;
+    font-weight: bold;
+}
+
+ul.capacity li p b {
+    display: inline-block;
+    background: #eda208;
+    padding: 4px;
+    border-radius: 5px;
+    color: #fff;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+
+ul.capacity li p i {
+    font-size: 18px;
+    color: #333;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.detail-in-breif a.detail-btn {
+    padding: 8px 15px !important;
+}
+
+.right-content p.detail {
+    
+    min-height: 55px;
+}
+.mapCanvas{
+  height: 559px;
+}
+.info_content{
+      max-width: 220px;
+}
+.info_content h3 {
+    font-size: 17px;
+    font-weight: 500;
+    margin: 5px 0px;
+}
+.info_content p{
+  font-size: 15px;
+}
+.info_content label {
+    font-size: 16px;
+    color: #000;
+}
+
+#myModalDealDiscount .modal-dialog {
+    max-width: 800px;
+}
+#package-sec {
+    background: #fff;
+    padding: 60px 0px;
+}

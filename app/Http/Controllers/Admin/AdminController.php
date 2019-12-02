@@ -88,7 +88,7 @@ public function change(Request $request,$id = null)
     { 
         
 
-        $valid = ['old_password' => 'required','password' => ['required', 'string', 'min:6', 'max:12', 'confirmed']];
+        $valid = ['old_password' => 'required','password' => ['required', 'string', 'min:6', 'max:20', 'confirmed']];
 
         $valid2= ['password' => ['required', 'string', 'min:6', 'max:12', 'confirmed']];
 

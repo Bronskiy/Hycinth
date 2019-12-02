@@ -34,16 +34,30 @@
   <form method="post" id="upload_form" enctype="multipart/form-data">
              {{ csrf_field() }}
 
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <div class="input-group">
                       <div class="custom-file" style="width: 100%">
 
                         <input type="file" class="custom-file-input" name="gallery_image[]" multiple="" id="select_file">
                         <label class="custom-file-label" for="select_file">Choose file</label>
-                      </div>
-                     
+                      </div>                     
                     </div>
-                  </div>
+                   </div> -->
+
+
+        <div class="form-group">
+          <label for="file" class="sr-only">File</label>
+          <div class="input-group">
+            <input type="text" name="filename" class="form-control" placeholder="No file selected" readonly>
+            <span class="input-group-btn">
+              <div class="btn btn-default  custom-file-uploader">
+                <input type="file" class="custom-file-input" name="gallery_image[]" multiple="" accept="image/*" id="select_file" onchange="ValidateSingleInput(this, 'image_src')">     
+        <!-- onchange="this.form.filename.value = this.files.length ? this.files[0].name : ''"  -->
+                Select a file
+              </div>
+            </span>
+          </div>
+        </div>
 
 
               
@@ -79,7 +93,7 @@
 
 
 @section('scripts')
-
+<script src="{{url('/js/validations/imageShow.js')}}"></script>
 <script type="text/javascript">
 
 

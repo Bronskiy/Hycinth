@@ -43,6 +43,13 @@ $(document).ready(function(){
           digits:true,
           maxlength: 50,
       },
+      "min_guest": {
+        required: true,
+        number: true,
+        min: 1,
+        minlength: 1,
+        maxlength: 10
+      },
       "min_price": {
           required: true,
           amount: true,

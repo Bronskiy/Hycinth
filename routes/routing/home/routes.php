@@ -38,3 +38,20 @@ Route::post('/ajax/login', 'HomeController@userLogin')->name('ajax_login');
 
  // weather api
  Route::get('/venue/getweather', 'Home\Services\ServiceDetailController@getweather')->name('get_venue_weather');
+
+
+
+
+#------------------------------------------------------------------------------------------
+#  Vendor Listing Page
+#------------------------------------------------------------------------------------------
+ Route::get('/deals-&-discount', 'Home\Deals\DealsController@index')->name('all_deals');
+
+
+
+
+
+
+
+
+

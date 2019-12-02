@@ -80,10 +80,9 @@
                                         <button class="cstm-btn solid-btn register-Submit">Register</button>
                                         <!-- <a routerLink="/login" class="cstm-btn">Login</a> -->
                                         <img  class="pl-3 loading hide" src="{{url('/images/small-loader.gif')}}" style="display: none;" />
-
-                                        <div class="messages">
-                                        </div>
                                     </div>
+                                    <div class="messages">
+                                        </div>
                                     
                             </form>
                         </div>

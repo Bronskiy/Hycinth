@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
 use App\VendorCategory;
+use App\Models\Admin\EmailTemplate;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ApprovedBusiness;
+use App\Mail\Emails;
 
 class VendorController extends Controller
 {
@@ -65,8 +66,11 @@ class VendorController extends Controller
         $vendorCategory->save();
         $msg= '<b>'.$vendorCategory->title.'</b> is '.$statusTitle;
         if($status == 3) {
-          $vendor_page = route('myBusinessView', ['slug' => $vendorCategory->category->slug, 'vendorSlug' => $vendorCategory->business_url]);
-          Mail::to($vendorCategory->vendors->email)->send(new ApprovedBusiness($vendor_page));
+          $vendorCategory['link'] = route('myBusinessView', ['slug' => $vendorCategory->category->slug, 'vendorSlug' => $vendorCategory->business_url]);
+          $vendorCategory['title'] = $vendorCategory->title;
+          $vendorCategory['email'] = EmailTemplate::find(2);
+          Mail::to($vendorCategory->vendors->email)
+          ->send(new Emails($vendorCategory));
         }
        return redirect(route('admin_vendor_business', $user_id))->with('flash_message', $msg);
      }

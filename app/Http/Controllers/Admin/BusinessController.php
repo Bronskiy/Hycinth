@@ -8,8 +8,8 @@ use App\User;
 use App\VendorCategory;
 use App\Models\Admin\ServiceAprovalProcess;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\RejectedBusiness;
-use App\Mail\ApprovedBusiness;
+use App\Models\Admin\EmailTemplate;
+use App\Mail\Emails;
 
 class BusinessController extends Controller
 {
@@ -53,10 +53,12 @@ class BusinessController extends Controller
         $msg= '<b>'.$vendorCategory->title.'</b> is '.$statusTitle;
 
         if($status == 3) {
-          $vendor_page = route('myBusinessView', ['slug' => $vendorCategory->category->slug, 'vendorSlug' => $vendorCategory->business_url]);
-          Mail::to($vendorCategory->vendors->email)->send(new ApprovedBusiness($vendor_page));
+          $vendorCategory['link'] = route('myBusinessView', ['slug' => $vendorCategory->category->slug, 'vendorSlug' => $vendorCategory->business_url]);
+          $vendorCategory['title'] = $vendorCategory->title;
+          $vendorCategory['email'] = EmailTemplate::find(2);
+          Mail::to($vendorCategory->vendors->email)
+          ->send(new Emails($vendorCategory));
         }
-
        return redirect(route('admin.business.index'))->with('flash_message', $msg);
      }
      return redirect()->back()->with('flash_message', 'Something Went Woring!');
@@ -75,11 +77,9 @@ class BusinessController extends Controller
   }
 
   public function rejectBusinessStatus(Request $request, $user_id, $service_id) {
-    $user = User::find($user_id);
-    
+    $user = User::find($user_id);    
 
     ServiceAprovalProcess::where(['vendor_service_id'=> $service_id, 'user_id'=> $user_id])->delete();
-
 
     foreach ($request->all() as $key => $value) {
       if(!in_array($key, $this->ignors) && $value):
@@ -103,10 +103,14 @@ class BusinessController extends Controller
     $vendorCategory->status = 4;
     $vendorCategory->publish = 0;
     $vendorCategory->save();
+
+    $request['link'] = route('myBusinessView', ['slug' => $vendorCategory->category->slug, 'vendorSlug' => $vendorCategory->business_url]);
+    $request['title'] = $vendorCategory->title;
     $request['user'] = $user;
     $request['category'] = $vendorCategory;
+    $request['email'] = EmailTemplate::find(3);
     
-    Mail::to($user->email)->send(new RejectedBusiness($request));
+    Mail::to($user->email)->send(new Emails($request));
     
     return redirect($request->return_url)->with('flash_message', '<b>'.$vendorCategory->title.'</b> is Rejected');
   }

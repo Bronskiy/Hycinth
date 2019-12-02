@@ -111,7 +111,7 @@
         ${{$pcd->key_value}}
         <ul class="acrdn-action-btns">
           <li>
-            <a href="{{ route('vendor_packagesAddOns_delete_management', ['slug' => $slug, 'id' => $pcd->id]) }}" class="action_btn danger-btn"><i class="fas fa-trash-alt"></i></a>
+            <a onclick="deleteItem(this)" href="javascript:void(0)" data-delurl="{{ route('vendor_packagesAddOns_delete_management', ['slug' => $slug, 'id' => $pcd->id]) }}" class="action_btn danger-btn" data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></a>
           </li>
         </ul>
       </div>
@@ -156,11 +156,11 @@ Status</th>
 
      <div class="pkg-footer text-center">
       <ul class="acrdn-action-btns single-row">
-          <li><a href="{{ route('vendor_packagesedit_management', ['slug' => $category->slug, 'id' => $f->id]) }}" class="action_btn dark-btn"><i class="fas fa-pencil-alt"></i></a></li>
+          <li><a href="{{ route('vendor_packagesedit_management', ['slug' => $category->slug, 'id' => $f->id]) }}" class="action_btn dark-btn" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a></li>
           <li>          
-            <a href="javascript:void(0);" class="action_btn btn-primary" id="addOns" onclick="openModel()" data-toggle="modal" data-target="#Addons"><i class="fas fa-plus"></i></a>
+            <a href="javascript:void(0);" class="action_btn btn-primary" id="addOns" onclick="openModel()" data-toggle="modal" data-target="#Addons" data-toggle="tooltip" title="Add Ons"><i class="fas fa-plus"></i></a>
           </li>
-          <li><a href="{{ route('vendor_packages_delete_management', ['slug' => $category->slug, 'id' => $f->id]) }}" class="action_btn danger-btn"><i class="fas fa-trash-alt"></i></a></li>   
+          <li><a onclick="deleteItem(this)" href="javascript:void(0)" data-delurl="{{ route('vendor_packages_delete_management', ['slug' => $category->slug, 'id' => $f->id]) }}" class="action_btn danger-btn" data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></a></li>   
         </ul>
       </div>
 

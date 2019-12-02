@@ -47,7 +47,9 @@
                             </span>
                 <div class="row">
 
-                     @include('home.vendors.includes.sidebar')
+                      
+
+                      @include('includes.home.business.sidebar')
                     
                     <div class="col-lg-9 col-md-8">
                         <div class="inner-content">
@@ -55,7 +57,10 @@
                             <span class="view-toggle">
                                  <ul>
                                     <li><a href="javascript:void(0);" class="view-mapper" data-id="#business-view" data-hide="#map-marker-placer"> <i class="fas fa-list"></i></a>
-                                    <li><a href="javascript:void(0);" class="view-mapper"  data-id="#map-marker-placer" data-hide="#business-view"> <i class="fas fa-map"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="javascript:void(0);" class="view-mapper"  data-id="#map-marker-placer" data-hide="#business-view"> <i class="fas fa-map"></i></a>
+                                   </li>
                                 </ul> 
                             </span>
                             <hr>
@@ -64,7 +69,7 @@
                                   
                                   <div id="inner-content-detail"></div>
                                   <div class="map-marker-placer" id="map-marker-placer" style="display: none;">
-                                          @include('home.vendors.includes.map')
+                                          @include('includes.home.business.map')
                                   </div>
                         </div>
 

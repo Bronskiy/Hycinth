@@ -6,10 +6,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\VendorCategory;
+use App\Models\Admin\EmailTemplate;
 //use App\ServiceAprovalProcess;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\AdminBusiness;
+use App\Mail\Emails;
 use Auth;
+
 class MyBusinessController extends Controller
 {
     
@@ -129,18 +131,13 @@ public function submitForApproval(Request $request, $slug, $vendorSlug)
      $v->status = 2;
      $v->save();
 
-     $request['vendor_page'] = route('vendorBusinessView', ['slug' => $vendor->first()->category->slug, 'vendorSlug' => $vendor->first()->business_url]);
+     $request['link'] = route('vendorBusinessView', ['slug' => $vendor->first()->category->slug, 'vendorSlug' => $vendor->first()->business_url]);
      $request['title'] = $vendor->first()->title;
+     $request['email'] = EmailTemplate::find(1);
+     Mail::to('admin001@yopmail.com')->send(new Emails($request));
 
-     Mail::to('admin001@yopmail.com')->send(new AdminBusiness($request));
-
-    return redirect()->route('myBusinessView', [$slug,$vendorSlug])->with('messages','Your business approval submission has been submitted successfully.');
-      
-	 
+    return redirect()->route('myBusinessView', [$slug,$vendorSlug])->with('messages','Your business approval submission has been submitted successfully.');	 
 }
-
-
-
 
 
 #----------------------------------------------------------------------------------

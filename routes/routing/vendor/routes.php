@@ -38,13 +38,11 @@ require __DIR__.'/ajax.php';
 
         Route::get('/category/{slug}/gallery/image-gallery', 'Vendor\ManagementController@imageGallery')->name('vendor_category__image_gallery_management');
 
-
 		Route::get('/category/{slug}/gallery/images/add', 'Vendor\ManagementController@imageView')->name('vendor_category_add_image_management');
 		Route::post('/ajax/category/management/gallery/images', 'Vendor\ManagementController@upload')->name('upload_vendor_image_gallery');
 
 
         Route::get('/category/{slug}/delete/metas/{id}', 'Vendor\ManagementController@delete')->name('vendor_category_meta_delete');
-
 
         Route::get('/category/{slug}/gallery/videos', 'Vendor\ManagementController@videos')->name('vendor_category_videos_management');
 

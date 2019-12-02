@@ -91,6 +91,7 @@ class DealController extends Controller
       $d->user_id = Auth::user()->id;
       $d->description = trim($request->description);
       $d->expiry_date = trim($request->expiry_date);
+      $d->deal_life = trim($request->deal_life);
       $d->message_text = trim($request->message_text);
       $d->vendor_category_id = $this->getVendorCategoryID($category->category_id);
       $d->image = $request->hasFile('image') ? uploadFileWithAjax($this->path,$request->file('image')) : '';
@@ -160,6 +161,7 @@ class DealController extends Controller
       $d->user_id = Auth::user()->id;
       $d->description = trim($request->description);
       $d->message_text = trim($request->message_text);
+      $d->deal_life = trim($request->deal_life);
       $d->image = $request->hasFile('image') ? uploadFileWithAjax($this->path,$request->file('image')) : $d->image;
       $d->title = trim($request->title);
       $d->vendor_category_id = $this->getVendorCategoryID($category->category_id);
