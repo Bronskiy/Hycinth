@@ -52,7 +52,7 @@
                      </div>
                      <div class="col-lg-4 eventColumn">
                         <div class="form-group">
-                           <select class="form-control select2 eventType" name="event_type[]" multiple="" data-placeholder="Event Type">
+                           <select class="form-control select2 eventType" name="event_type[]" data-placeholder="Event Type" id="EventSelect">
                               <option></option>
                            </select>
                            <span class="input-icon"><i class="fas fa-glass-cheers"></i></span>
@@ -61,7 +61,7 @@
                      <div class="col-lg-4 vendorColumn">
                         <div class="form-group">
                             
-                           <select class="form-control select2 SuggestedVendors" id="SuggestedVendors" multiple="" name="vendors[]" data-placeholder="Select Vendors">
+                           <select class="form-control select2 SuggestedVendors" id="SuggestedVendors" multiple="multiple" name="vendors[]" data-placeholder="Select Vendors">
                               <option></option>
                            </select>
                            <span class="input-icon"><i class="fas fa-user"></i></span>
@@ -69,7 +69,7 @@
                      </div>
                      <div class="col-lg-6">
                         <div class="form-group">
-                             <select class="form-control select2 amenitiesAndGames" name="amenities[]" multiple="" data-placeholder="Amenities & Games">
+                             <select class="form-control select2 amenitiesAndGames" name="amenities[]" id="amenities" multiple="multiple" data-placeholder="Amenities & Games">
                               <option></option>
                            </select>
                            <span class="input-icon"><i class="fas fa-concierge-bell"></i></span>

@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'name', 'email', 'password','role','email_verified_at
+        'first_name', 'last_name', 'name', 'email', 'password', 'role', 'email_verified_at
         ', 'profile_image', 'status'
     ];
 
@@ -46,5 +46,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function faqs()
     {
        return $this->hasMany('App\Models\Vendors\FAQ');
+    }
+
+
+     public function chats()
+    {
+       return $this->hasMany('App\Models\Vendors\Chat');
     }
 }

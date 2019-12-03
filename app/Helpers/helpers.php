@@ -2580,10 +2580,20 @@ function Responserate($company_id){
 
      function ProfileImg($img){
 
+       if($img == ""){
+        return '<img src="'.url("admin-assets/images/user/avatar-2.jpg").'">';
+       }else{
+        return '<img src="'.$img.'">';
+       }
+
+     }
+
+     function ProfileImage($img){
+
      	 if($img == ""){
-     	 	return '<img src="/images/team-placeholder.png">';
+     	 	 return  url("admin-assets/images/user/avatar-2.jpg");
      	 }else{
-     	 	return '<img src="'.$img.'">';
+     	 	return  url($img);
      	 }
 
      }

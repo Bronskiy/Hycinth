@@ -16,7 +16,8 @@ $(document).ready(function(){
       "password": {
           required: true,
           minlength: 6,
-          pwcheck: true
+          pwcheck: true,
+          maxlength: 20,
       },
       "password_confirmation": {
       	required: true,

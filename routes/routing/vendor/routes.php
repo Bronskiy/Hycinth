@@ -1,8 +1,5 @@
 <?php
 
-
- 
-
 Route::group(['middleware' => ['VendorAuth'],'prefix' => 'vendors'], function(){
 
 require __DIR__.'/ajax.php';

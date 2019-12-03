@@ -1,23 +1,54 @@
-   <div class="col-md-3 sidebar">
-      <ul class="list-group">
-        <li class="list-group-item active">
-          <a href="{{url(route('user_dashboard'))}}"><i class="glyphicon glyphicon-play"></i>Dashboard</a>
-       </li>
-        <li class="list-group-item">
-         <a href="{{url(route('user_events'))}}"><i class="glyphicon glyphicon-play"></i> My Events</a>
-       </li>
-
-        
-
-
-
-
-        <li class="list-group-item"> <span class="badge">0</span> 
-          <a href="">
-            <i class="glyphicon glyphicon-play"></i> Messages
-         </a>
-       </li>
-        
-        <li class="list-group-item"> <a href="{{url('/logout')}}"><i class="glyphicon glyphicon-play"></i> Log Out</a></li>
-      </ul>
+        <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
+        </div>
     </div>
+    <!-- [ Pre-loader ] End -->
+    <!-- [ navigation menu ] start -->
+    <nav class="pcoded-navbar">
+        <div class="navbar-wrapper">
+            <div class="navbar-brand header-logo">
+                <a href="{{url(route('admin_dashboard'))}}" class="b-brand">
+                    <div class="b-bg">
+                        <img src="/frontend/images/logo.svg">
+                    </div>
+                    <span class="b-title">Envisiun User</span>
+                </a>
+        <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
+            </div>
+            <div class="navbar-content scroll-div">
+                <ul class="nav pcoded-inner-navbar">
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Dashboard</label>
+                    </li>
+                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item {{ \Request::route()->getName() === 'user_dashboard'
+                 ? 'nav-item active' : 'nav-item' }}">
+                        <a href="{{url(route('user_dashboard'))}}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                    </li>
+
+                
+
+                <li class="nav-item pcoded-menu-caption">
+                    <label>User Businesses</label>
+                </li>
+
+                <li class="nav-item">
+                    <a href="javascript:void(0)" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Chat</span></a>
+                </li> 
+
+               <!--  <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_category', 'category_variations', 'create_category','edit_category'],'pcoded-trigger') ?>" >
+                <a href="javascript:" class="nav-link "><span class="pcoded-micon">
+                    <i class="feather icon-box"></i></span><span class="pcoded-mtext">Category Management</span></a>
+                <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['list_category', 'category_variations', 'create_category','edit_category'],'block') ?>;">
+                    <li class="<?= ActiveMenu(['list_category', 'category_variations', 'create_category','edit_category'],'active') ?>"><a href="{{ route('list_category') }}" class="">Categories</a></li>
+                </ul>
+                </li>
+                -->
+
+                
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- [ navigation menu ] end -->

@@ -5,7 +5,6 @@ var $url = jQuery("body").attr('data-url');
 
 
 
-$('.select2').select2({ maximumSelectionSize: 3 });
 
 
 
@@ -96,9 +95,9 @@ function getFormDataAccordingCategory(formDiv,$url) {
 
                         console.log(result.data.events);
          
-                        eventType.html(result.data.events).select2();
-                        amenitiesAndGames.html(result.data.amenities).select2();
-                        SuggestedVendors.html(result.data.vendors).select2();
+                        eventType.html(result.data.events);
+                        amenitiesAndGames.html(result.data.amenities);
+                        SuggestedVendors.html(result.data.vendors);
                        
                       }
                      
@@ -170,6 +169,15 @@ function initialize()
     });
 }
 google.maps.event.addDomListener(window, 'load', initialize);
+
+
+$('#SuggestedVendors, #amenities').select2({ 
+    closeOnSelect: false
+   });
+
+
+$('#EventSelect').select2();
+
 
 
 

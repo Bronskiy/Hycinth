@@ -32,9 +32,13 @@
                         <div class="panel-body">
                            <div class="row">
                               <div class="col-md-6">{{textbox($errors,'Business Name*','business_name',$business_name)}}</div>
+
                               <div class="col-md-6">{{textbox($errors,'Company*','company',$company)}}</div>
+                              
                               <div class="col-md-6">{{textbox($errors,'Phone number*','phone_number',$phone_number)}}</div>
+                              
                               <div class="col-md-6">{{textbox($errors,'Website*','website',$website)}}</div>
+                              
                               <div class="col-md-6">{{textbox($errors,'Basic Price*','min_price',$min_price)}}</div>
 
                                <div class="col-md-6">{{textbox($errors,'Min Guest*','min_guest',$min_guest)}}</div>
@@ -185,12 +189,12 @@
                      @endif
 
                      <div class="panel panel-default">
-                        <div class="panel-heading">Business Location</div>
                         <div class="panel-body">
                            <div class="row">
                               <div class="col-md-12">
-                                 {{textbox($errors,'Business Location','business_location',$VendorCategory->business_location,$address)}}
+                                 {{textbox($errors,'Business Location','business_location', $VendorCategory->business_location,$address)}}
                               </div>
+
                               <div class="col-md-6">
                                  {{textbox($errors,'Latitude','latitude',$VendorCategory->latitude)}}
                               </div>

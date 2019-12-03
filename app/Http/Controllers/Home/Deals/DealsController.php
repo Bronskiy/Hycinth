@@ -8,6 +8,8 @@ use App\VendorCategory;
 use App\Models\Vendors\DiscountDeal;
 use Session;
 use Auth;
+use App\Models\Vendors\Chat;
+use App\Models\Vendors\ChatMessage;
 class DealsController extends Controller
 {
     
@@ -44,7 +46,8 @@ class DealsController extends Controller
 
 public function getDeals(Request $request)
 {
- $discount_deals = DiscountDeal::join('vendor_categories','vendor_categories.id','=','discount_deals.vendor_category_id')
+ $discount_deals = DiscountDeal::with('chats')
+                          ->join('vendor_categories','vendor_categories.id','=','discount_deals.vendor_category_id')
                           ->join('categories','categories.id','=','vendor_categories.category_id')
                           ->join('users','users.id','=','vendor_categories.user_id')
                           ->select('discount_deals.*')
@@ -60,8 +63,11 @@ public function getDeals(Request $request)
                              }
 
                           })
+                          ->where('vendor_categories.status',3)
+                          ->where('vendor_categories.publish',1)
                          
                           ->orderBy('discount_deals.id','DESC');
+
     $vv = view('includes.home.deals.list',$this->getSesssionData())
         ->with('discount_deals',$discount_deals->paginate(20));
    return response()->json([
@@ -87,16 +93,16 @@ public function getSesssionData()
          'phone' => '',
          'email' => Auth::user()->email,
          'event_date' => '',
-         'message' => '',
+         
        ];
    }elseif(Session::has('dealData')){
       $dealdata =Session::get('dealData');
       $arr =[
          'name' => $dealdata['name'],
-         'phone' => $dealdata['phone'],
+         'phone' => $dealdata['phone_number'],
          'email' => $dealdata['email'],
          'event_date' => $dealdata['event_date'],
-         'message' => $dealdata['message'],
+          
        ];
    }else{
       $arr =[
@@ -104,13 +110,128 @@ public function getSesssionData()
          'phone' => '',
          'email' => '',
          'event_date' => '',
-         'message' => '',
+          
       ];
    }
 
    return $arr;
 
 }
+
+
+
+
+
+public function getDealRequest(Request $request)
+{
+
+    $v = \Validator::make($request->all(),[
+        'deal_id' => 'required',
+        'name' => 'required',
+        'email' => 'required',
+        'phone_number' => 'required',
+        'event_date' => 'required|after:yesterday',
+        'message' => 'required',
+    ]);
+
+    $id = $request->deal_id;
+
+    $deal = DiscountDeal::find($id);
+                         
+
+
+    if($v->fails()){
+
+       return response()->json(['status' => 0,'errors' => $v->errors()]);
+
+    }elseif(empty($deal)){
+
+       return response()->json(['status' => 2,'message' => 'This deal is not valid!']);
+
+    }elseif(!empty($deal) && $deal->deal_life == 1 && $deal->expiry_date < date('Y-m-d')){
+
+       return response()->json(['status' => 3,'message' => 'This deal is Expired!']);
+
+    }elseif(!Auth::check() || Auth::user()->role != "user"){
+
+       return response()->json(['status' => 4,'message' => 'Your are not logged in. please login first.']);
+
+    }else{
+         
+         $c = $this->sendMessage($request,$deal);
+         
+        if($c > 0){
+          $link = url(route('deal_discount_chatMessages',$c));
+          $links = 'Your message has been sent to vendor, soon that will reply you. <a href="'.$link.'">view chat</a>';
+          return response()->json(['status' => 1, 'link' => $links]);
+        }else{
+          return response()->json(['status' => 2, 'message' => 'Something wrong!']);
+        }
+        
+
+    }
+     
+      
+
+}
+
+
+#----------------------------------------------------------------------------------------------
+#  Send Message -------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------
+
+
+
+public function sendMessage($request,$deal)
+{
+          $data = [
+             'name' => $request->name,
+             'email' => $request->email,
+             'phone_number' => $request->phone_number,
+             'event_date' => $request->event_date,
+          ];
+          Session::put('dealData',$data);
+          
+          #################################################
+
+          $text ='Hello '.$deal->vendor->first_name.'<br>';
+          $text .=  $request->message.'<br>';
+          $text .='By '.$request->name.', Email: '.$request->email .', Phone Number : '.$request->phone_number .'<br>';
+          
+
+
+          #################################################
+
+          
+          $chat = new Chat;
+          $chat->user_id = Auth::user()->id;
+          $chat->business_id = $deal->vendor_category_id;
+          $chat->deal_id = $deal->id;
+          $chat->vendor_id =trim($deal->user_id);
+          $chat->status = 0;
+          if($chat->save()){
+                $m = new ChatMessage;
+                $m->sender_id = trim(Auth::user()->id);
+                $m->receiver_id = trim($deal->user_id);
+                $m->deal_id = trim($deal->id);
+                $m->business_id = trim($deal->vendor_category_id);
+                $m->chat_id = trim($chat->id);
+                $m->message = $text;
+                $m->sender_status = 0;
+                $m->receiver_status = 0;
+                $m->save();
+            return $chat->id;
+
+          }
+   
+
+}
+
+
+
+
+
+
 
 
 }

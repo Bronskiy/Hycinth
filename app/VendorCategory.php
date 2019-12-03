@@ -93,6 +93,13 @@ class VendorCategory extends Model
     }
 
 
+    public function profileImage()
+    {
+       return $this->hasOne('App\VendorCategoryMetaData','vendor_category_id','id')
+                   ->where('type','basic_information')->where('key','cover_video_image');
+    }
+
+
 
 
     public function ImageGallery()

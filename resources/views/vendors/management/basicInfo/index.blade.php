@@ -1,4 +1,4 @@
-`@extends('vendors.management.layout')
+@extends('vendors.management.layout')
 @section('vendorContents')
 
 <div class="container-fluid">

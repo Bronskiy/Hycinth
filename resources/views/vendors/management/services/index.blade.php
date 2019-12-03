@@ -116,13 +116,14 @@ function erorrMessage(errors) {
                 success: function (data) {
                     if(parseInt(data.status) == 1){
                            $this[0].reset();
-                            
-                          
                             $("body").find('#globalMessages').html(ErrorMsg('success',data.msg));
-                           
-                           window.location.href = data.redirect_links;
-                           return true;
-
+                            
+                            // setTimeout(() => {
+                            //   window.location.href = data.redirect_links;
+                            // }, 3000)
+                             
+                            
+                             return true;
 
 
                       }else{

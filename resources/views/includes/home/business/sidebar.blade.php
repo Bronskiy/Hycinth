@@ -132,7 +132,7 @@
                                                
                                                 <input type="range" data-id="#sitting_capacitys" id="sitting_capacity" class="Capacity"
                                                  min="0"     
-                                                max="100000" 
+                                                max="1000000" 
                                                 step="50"
                                                 value="{{Request::has('guest_capacity') && !empty(Request::get('guest_capacity')) ? Request::get('guest_capacity') : 0}}">
                                                 <input type="hidden" name="sitting_capacity" id="sitting_capacitys" value="{{Request::has('guest_capacity') && !empty(Request::get('guest_capacity')) ? Request::get('guest_capacity') : 0}}">
@@ -145,7 +145,7 @@
                                                 data-id="#standing_capacitys" id="standing_capacity" 
                                                 class="Capacity" 
                                                 min="0"     
-                                                max="100000" 
+                                                max="1000000" 
                                                 step="50"
                                                 value="0">
 

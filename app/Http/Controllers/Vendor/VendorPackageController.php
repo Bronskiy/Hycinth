@@ -125,7 +125,7 @@ class VendorPackageController extends Controller
           }
        }
 
-	   return redirect()->route('vendor_packages_management', $slug)->with('messages','Package added successfully.');
+	   return redirect()->route('vendor_packages_management', $slug)->with('messages','Package has added successfully.');
 	}
 
 
@@ -143,7 +143,7 @@ class VendorPackageController extends Controller
        $package = VendorPackage::find($id);
 
         if(!$package) {
-          return redirect()->route('vendor_packages_management', $slug)->with('messages', 'Something Wrong.');
+          return redirect()->route('vendor_packages_management', $slug)->with('messages', 'Something Went Wrong.');
         }
       
       return view('vendors.management.packages.edit')
@@ -179,7 +179,7 @@ public function packagesUpdate(Request $request, $slug, $id) {
 	      $package = VendorPackage::find($id);
 
         if(!$package) {
-          return redirect()->route('vendor_packages_management', $slug)->with('messages','Something Wrong.');
+          return redirect()->route('vendor_packages_management', $slug)->with('messages','Something Went Wrong.');
         }
 
        $package->update($request->all());
@@ -244,7 +244,7 @@ public function packagesUpdate(Request $request, $slug, $id) {
           }
        }
 
-   return redirect()->route('vendor_packages_management', $slug)->with('messages','Package updated successfully.');
+   return redirect()->route('vendor_packages_management', $slug)->with('messages','Package has updated successfully.');
 }
 
 
@@ -271,7 +271,7 @@ public function addOnsCreate(Request $request, $slug, $id) {
       }        
       }
    }
-   return redirect()->route('vendor_packages_management', $slug)->with('messages','Package add ons created successfully.');;
+   return redirect()->route('vendor_packages_management', $slug)->with('messages','Package add ons has created successfully.');;
 }
 
 
@@ -284,7 +284,7 @@ public function addOnsDelete(Request $request, $slug, $id) {
    PackageMetaData::find($id)->delete();
    return redirect()
               ->route('vendor_packages_management', $slug)
-              ->with('messages','Package add ons is deleted.');;
+              ->with('messages','Package add ons has deleted successfully.');;
 }
 
 
@@ -297,7 +297,7 @@ public function packagesDelete(Request $request, $slug, $id) {
             VendorPackage::find($id)->delete();
             PackageMetaData::where('package_id', $id)->delete();
         
-        return redirect()->route('vendor_packages_management',$slug)->with('messages','Package deleted successfully.');
+        return redirect()->route('vendor_packages_management',$slug)->with('messages','Package has deleted successfully.');
 }
 
 

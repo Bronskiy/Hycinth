@@ -71,3 +71,18 @@
 {{$faqs->links()}}
    
 @endsection
+
+
+@section('scripts')
+
+<script type="text/javascript">
+  
+  $(document).ready(function(){
+  $("#faq-accordion").on("hide.bs.collapse show.bs.collapse", e => {
+    $(e.target).prev().find("i:last-child").toggleClass("fa-minus fa-plus");
+  });
+  });    
+
+</script>
+
+@endsection

@@ -19,8 +19,6 @@ Route::get('/contact-us', 'HomeController@contact')->name('contact_us');
 
 Route::get('/vendor/register', 'HomeController@register')->name('vendor_register');
 
-Route::post('/ajax/register', 'HomeController@userRegister')->name('ajax_register');
-Route::post('/ajax/login', 'HomeController@userLogin')->name('ajax_login');
 
 
 #------------------------------------------------------------------------------------------
@@ -45,7 +43,7 @@ Route::post('/ajax/login', 'HomeController@userLogin')->name('ajax_login');
 #------------------------------------------------------------------------------------------
 #  Vendor Listing Page
 #------------------------------------------------------------------------------------------
- Route::get('/deals-&-discount', 'Home\Deals\DealsController@index')->name('all_deals');
+ Route::get('/deals-discounts', 'Home\Deals\DealsController@index')->name('all_deals');
 
 
 

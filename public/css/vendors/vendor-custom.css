@@ -29,6 +29,15 @@ h1,h2,h3,h4,h5,p{
 	padding: 0;
 	box-sizing: border-box;
 }
+img{
+  max-width: 100%;
+}
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
 textarea.form-control {
     height: 130px;
     resize: none;
@@ -200,6 +209,7 @@ textarea.form-control {
     display: flex;
     white-space: normal;
     text-align: left;
+    color: #fff;
 }
 .faq-accordion .btn-link:hover,
 .faq-accordion .btn-link:focus {
@@ -1073,7 +1083,7 @@ body {background-color: #2a2b3d}
     width: 10px;
     /*height: 10px;*/
     border-radius: 50%;
-    left: -8px;
+    left: 43px;
     top: 50%;
     transform: translateY(-50%);
     opacity: 1;
@@ -1390,8 +1400,7 @@ input.form-control.custom-file-input{
     border: 1px solid #ddd;
     padding: 15px;
 }
-
-.category-menus .dropdown-menu > li > a.preview-link{
+ a.preview-link{
     font-weight: bold;
     color: #f0ad4e;
     font-size: 17px;
@@ -1424,7 +1433,7 @@ input.form-control.custom-file-input{
 .custom-control-label {
     position: relative;
     margin-bottom: 0;
-    padding-left: 14px;
+    padding-left: 28px;
     color: #555;
     font-weight: 500;
     line-height: 20px;
@@ -1474,6 +1483,54 @@ label.error:after, label.error:before {
 .btn.btn-default.custom-file-uploader:hover{
   background: transparent;
   color: #36496c;
+}
+.pcoded-navbar .pcoded-inner-navbar li.pcoded-hasmenu .pcoded-submenu li > a:before{
+
+}
+.pcoded-navbar .pcoded-inner-navbar li.pcoded-hasmenu .pcoded-submenu li > a.nav-link{
+    padding: 7px 7px 7px 30px;
+}
+.pcoded-navbar .pcoded-inner-navbar li.pcoded-hasmenu .pcoded-submenu li > a.nav-link:before{
+    display: none;
+}
+.pcoded-navbar .pcoded-inner-navbar li.pcoded-hasmenu .pcoded-submenu li .pcoded-submenu > li > a {
+    padding: 7px 7px 7px 75px;
+}
+.pcoded-navbar .pcoded-inner-navbar li.pcoded-hasmenu .pcoded-submenu li .pcoded-submenu > li > a:hover {
+  color: #fff;
+}
+.pcoded-navbar .pcoded-inner-navbar li.pcoded-hasmenu .pcoded-submenu li .pcoded-submenu > li > a:before {
+    left: 50px;
+    
+}
+.pcoded-navbar .pcoded-inner-navbar li.pcoded-hasmenu .pcoded-submenu li .pcoded-submenu > li:hover > a:before{
+  background: #fff;
+}
+.pcoded-navbar{
+  background: #36496c;
+}
+.pcoded-navbar .header-logo{
+  background: #36496c;
+}
+.pcoded-navbar .pcoded-inner-navbar > li.active > a, .pcoded-navbar .pcoded-inner-navbar > li.pcoded-trigger > a{
+  background: #eda208;
+  color: #fff;
+}
+.pcoded-navbar .pcoded-inner-navbar > li.active:after, .pcoded-navbar .pcoded-inner-navbar > li.pcoded-trigger:after{
+  background: #eda208;
+}
+.pcoded-navbar .pcoded-inner-navbar li.active > a, .pcoded-navbar .pcoded-inner-navbar li:focus > a, .pcoded-navbar .pcoded-inner-navbar li:hover > a{
+  color: #eda208;
+}
+.pcoded-navbar .pcoded-inner-navbar li.active > a.nav-link, .pcoded-navbar .pcoded-inner-navbar li:focus > a.nav-link, .pcoded-navbar .pcoded-inner-navbar li:hover > a.nav-link{
+  color: #fff;
+}
+
+.pcoded-navbar .pcoded-inner-navbar li .pcoded-submenu > li.active > a:before, .pcoded-navbar .pcoded-inner-navbar li .pcoded-submenu > li:focus > a:before, .pcoded-navbar .pcoded-inner-navbar li .pcoded-submenu > li:hover > a:before{
+   background: #eda208;
+}
+.pcoded-header .dropdown .dropdown-toggle:after{
+	right: -5px;
 }
 /******************/
 @media (max-width: 767px) {

@@ -85,7 +85,9 @@ $.validator.addMethod("minDate", function(value, element) {
 
 $.validator.addMethod('minPerson', function(value, element) {
   const minPer = $('#min_person').val();
-  if(!minPer) return false;
-  return this.optional(element) || value >= minPer;
+  if(!minPer || parseInt(minPer) > parseInt(value)) {
+    return false;
+  }
+   return true; 
 }, `Must be greater than or equal to field min Person`);
 

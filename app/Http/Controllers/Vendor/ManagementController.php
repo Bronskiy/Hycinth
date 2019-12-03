@@ -241,7 +241,7 @@ if($request->hasFile('cover_video_image') && $this->DeleteMetaImages('cover_vide
     $this->saveCategoryMetaData('cover_video_image',$request->type,$image,$category->category_id);
 }
 
-return redirect()->route('vendor_category_management',$slug)->with('messages','Basic Information is saved.');     
+return redirect()->route('vendor_category_management',$slug)->with('messages','Basic Information has been saved successfully.');     
    
 
 
@@ -520,7 +520,7 @@ public function saveVideos(Request $request,$slug)
                            $d->save();
 
 
-   return redirect()->route('vendor_category_videos_management',$slug)->with('messages','Video is saved in your gallery.');
+   return redirect()->route('vendor_category_videos_management',$slug)->with('messages','Video has been saved successfully.');
    	  
 }
 
@@ -540,10 +540,10 @@ public function deleteVideos($slug,$id)
                    unlink($file_path); 
                } 
                $v->delete();
-           return redirect()->route('vendor_category_videos_management',$slug)->with('messages','Video is deleted from your gallery.');
+           return redirect()->route('vendor_category_videos_management',$slug)->with('messages','Video has been deleted successfully.');
       }
 
-        return redirect()->route('vendor_category_videos_management',$slug)->with('messages','Something wrong going on.');
+        return redirect()->route('vendor_category_videos_management',$slug)->with('messages','Something Went Wrong.');
    
 
     
@@ -558,7 +558,7 @@ public function editVideos($slug,$id)
      $category = $this->getData($slug);
      $video = VendorCategoryMetaData::find($id);
      if(empty($video)){
-        return redirect()->route('vendor_category_videos_management',$slug)->with('messages','Something wrong going on.');
+        return redirect()->route('vendor_category_videos_management',$slug)->with('messages','Something Went Wrong.');
               
      }
 
@@ -588,7 +588,7 @@ public function updateVideos(Request $request,$slug,$id)
 
      if(empty($video)){
 
-        return redirect()->route('vendor_category_videos_management',$slug)->with('messages','Something wrong going on.');
+        return redirect()->route('vendor_category_videos_management',$slug)->with('messages','Something went Wrong.');
               
      }
 
@@ -613,7 +613,7 @@ public function updateVideos(Request $request,$slug,$id)
                    $video->save();
 
 
-   return redirect()->route('vendor_category_videos_management',$slug)->with('messages','Video is updated successfully.');
+   return redirect()->route('vendor_category_videos_management',$slug)->with('messages','Video has been updated successfully.');
       
 }
 
@@ -633,7 +633,7 @@ public function delete($slug,$id)
      ->whereIn('type',$this->restrictions)->first();
 
      if(empty($v)){
-         return redirect()->back()->with('error_message','Something wrong!');
+         return redirect()->back()->with('error_message','Something Went Wrong!');
      }
 
              // $file_path =  public_path().'/'.$m->value;
@@ -724,7 +724,7 @@ public function faqsStore(Request $request, $slug)
                            $d->save();
 
 
-   return redirect()->route('vendor_faqs_management',$slug)->with('messages','Faqs is saved.');
+   return redirect()->route('vendor_faqs_management',$slug)->with('messages','Faq has been saved successfully.');
 }
 
 
@@ -737,7 +737,7 @@ public function faqsEdit(Request $request,$slug,$id)
 
 
         if($faqs->count() == 0){
-          return redirect()->route('vendor_faqs_management',$slug)->with('messages','Something Wrong.');
+          return redirect()->route('vendor_faqs_management',$slug)->with('messages','Something Went Wrong.');
         }
       
       return view('vendors.management.faqs.edit')
@@ -769,7 +769,7 @@ public function faqsUpdate(Request $request,$slug,$id)
 
 
         if($faqs->count() == 0){
-          return redirect()->route('vendor_faqs_management',$slug)->with('messages','Something Wrong.');
+          return redirect()->route('vendor_faqs_management',$slug)->with('messages','Something Went Wrong.');
         }
                            
 
@@ -784,7 +784,7 @@ public function faqsUpdate(Request $request,$slug,$id)
                            $d->save();
 
 
-   return redirect()->route('vendor_faqs_management',$slug)->with('messages','Faqs is updated.');
+   return redirect()->route('vendor_faqs_management',$slug)->with('messages','Faq has been updated successfully.');
 }
 #-------------------------------------------------------------------------------------------
 #  Delete Meta Tags
@@ -802,12 +802,12 @@ public function faqsDelete(Request $request,$slug,$id)
 
 
         if($faqs->count() == 0){
-          return redirect()->route('vendor_faqs_management',$slug)->with('error_message','Something Wrong.');
+          return redirect()->route('vendor_faqs_management',$slug)->with('error_message','Something Went Wrong.');
         }
 
          $faqs->delete();
 
-   return redirect()->route('vendor_faqs_management', $slug)->with('messages', 'Faq is deleted successfully.');
+   return redirect()->route('vendor_faqs_management', $slug)->with('messages', 'Faq has been deleted successfully.');
 }
 
 #-------------------------------------------------------------------------------------------
@@ -903,12 +903,11 @@ public function amenityAssign($slug)
           }
 
           if($CategoryVaritant->count() == 0) {
-                 return response()->json(['status' => 2 , 'msg' => 'Something Wrong!']);
+                 return response()->json(['status' => 2 , 'msg' => 'Something Went Wrong!']);
           } else {
                  return response()->json(['status' => 1 ,
                   'redirect_links' => url(route('get_vendor_amenity_management',$slug)),
-                  'msg' => 'The Amenities & Games is saved'
-
+                  'msg' => 'The Amenities & Games has been saved successfully.'
                ]);
           }
  
@@ -993,11 +992,11 @@ public function event($slug)
           }
 
           if($CategoryVaritant->count() == 0){
-                 return response()->json(['status' => 2 , 'msg' => 'Something Wrong!']);
+                 return response()->json(['status' => 2 , 'msg' => 'Something Went Wrong.']);
           }else{
                  return response()->json(['status' => 1 ,
                   'redirect_links' => url(route('get_vendor_event_management',$slug)),
-                  'msg' => 'The Event Types are saved'
+                  'msg' => 'Event Types has been saved successfully.'
                 ]);
           }
  
@@ -1089,9 +1088,9 @@ public function servicesAssignAjax(Request $request,$slug)
           
 
           if($v->count() == 0){
-                 return response()->json(['status' => 2 , 'msg' => 'Something Wrong!','msg' => 'Something Wrong']);
+                 return response()->json(['status' => 2 , 'msg' => 'Something Went Wrong!','msg' => 'Something Went Wrong']);
           }else{
-                 return response()->json(['status' => 1 , 'redirect_links' => url(route('get_vendor_services_management',$slug)),'msg' => 'The Services are saved']);
+                 return response()->json(['status' => 1 , 'redirect_links' => url(route('get_vendor_services_management',$slug)),'msg' => 'Services has been saved successfully']);
           }
  
           
@@ -1192,7 +1191,7 @@ public function prohibtionStore(Request $request,$slug)
     }
 
 
-    return redirect()->route('vendor_prohibtion_management',$slug)->with('messages','Prohibtion & Restrictions is saved successfully.');
+    return redirect()->route('vendor_prohibtion_management',$slug)->with('messages','Prohibtion & Restrictions has been saved successfully.');
                                      
 }
 
@@ -1257,7 +1256,7 @@ public function descriptionStore(Request $request,$slug)
     }
 
 
-    return redirect()->route('vendor_description_management',$slug)->with('messages','Description is saved successfully.');
+    return redirect()->route('vendor_description_management',$slug)->with('messages','Description has been saved successfully.');
                                      
 }
 

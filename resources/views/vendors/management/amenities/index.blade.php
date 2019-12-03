@@ -140,55 +140,53 @@ function erorrMessage(errors) {
 
   function assignCategory($this) {
       $.ajax({
-               url : "<?= url(route('vendor_amenity_management',$category->slug)) ?>",
-               data : $this.serialize(),
-               type: 'POST',  // http method
-               dataTYPE:'JSON',
-               headers: {
-                 'X-CSRF-TOKEN': $('input[name=_token]').val()
-               },
-                beforeSend: function() {
-                     $this.find('button').attr('disabled','true');
-                     $("body").find('.loadingDiv').show();
-                },
-                success: function (data) {
-                    if(parseInt(data.status) == 1){
-                           $this[0].reset();
-                            
-                          // $this.find('.errorMessages').html(ErrorMsg('success',data.msg));
-                            $("body").find('#globalMessages').html(ErrorMsg('success',data.msg));
-                           
-                           window.location.href = data.redirect_links;
-                           return true;
+         url : "<?= url(route('vendor_amenity_management',$category->slug)) ?>",
+         data : $this.serialize(),
+         type: 'POST',  // http method
+         dataTYPE:'JSON',
+         headers: {
+           'X-CSRF-TOKEN': $('input[name=_token]').val()
+         },
+          beforeSend: function() {
+               $this.find('button').attr('disabled','true');
+               $("body").find('.loadingDiv').show();
+          },
+          success: function (data) {
+              if(parseInt(data.status) == 1){
+                     // $this[0].reset();
+                      
+                    // $this.find('.errorMessages').html(ErrorMsg('success',data.msg));
+                      $("body").find('#globalMessages').html(ErrorMsg('success',data.msg));
+                     
+                     // window.location.href = data.redirect_links;
+                     return true;
 
-
-
-                      }else if(parseInt(data.status) == 2){
-                          
-                             //$this.find('.errorMessages').html(ErrorMsg('warning',data.msg));
-                             $("body").find('#globalMessages').html(ErrorMsg('warning',data.msg));
-                             $this.find('button').removeAttr('disabled');
-                            $("body").find('.loadingDiv').hide();
-                           
-                      }else if(parseInt(data.status) == 0){
-                          
-                            //$this.find('.errorMessages').html(erorrMessage(data.errors));
-                            $("body").find('#globalMessages').html(erorrMessage(data.errors));
-                            $this.find('button').removeAttr('disabled');
-                            $("body").find('.loadingDiv').hide();
-                           
-                      }
+                } else if(parseInt(data.status) == 2) {
                     
-               },
-               complete: function() {
-                    $this.find('button').removeAttr('disabled');
-                    $("body").find('.loadingDiv').hide();
-               },
-               error: function (jqXhr, textStatus, errorMessage) {
-                     $this.find('button').removeAttr('disabled');
-               }
+                       //$this.find('.errorMessages').html(ErrorMsg('warning',data.msg));
+                       $("body").find('#globalMessages').html(ErrorMsg('warning',data.msg));
+                       $this.find('button').removeAttr('disabled');
+                      $("body").find('.loadingDiv').hide();
+                     
+                }else if(parseInt(data.status) == 0){
+                    
+                      //$this.find('.errorMessages').html(erorrMessage(data.errors));
+                      $("body").find('#globalMessages').html(erorrMessage(data.errors));
+                      $this.find('button').removeAttr('disabled');
+                      $("body").find('.loadingDiv').hide();
+                     
+                }
+              
+         },
+         complete: function() {
+              $this.find('button').removeAttr('disabled');
+              $("body").find('.loadingDiv').hide();
+         },
+         error: function (jqXhr, textStatus, errorMessage) {
+               $this.find('button').removeAttr('disabled');
+         }
 
-        });
+  });
   }
 
 

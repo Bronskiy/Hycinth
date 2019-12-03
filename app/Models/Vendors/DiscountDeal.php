@@ -12,4 +12,17 @@ class DiscountDeal extends Model
     {
        return $this->belongsTo('App\VendorCategory','vendor_category_id');
     }
+
+    public function vendor()
+    {
+       return $this->belongsTo('App\User','user_id');
+    }
+
+
+     public function chats()
+    {
+       return $this->hasOne('App\Models\Vendors\Chat','deal_id');
+    }
+
+
 }

@@ -133,6 +133,59 @@ public function userLogin(Request $request,$role="user")
 }
 
 
+#-----------------------------------------------------------------------
+#  save new user
+#-----------------------------------------------------------------------
+
+
+public function userLoginPopup(Request $request,$role="user")
+{
+       $v= \Validator::make($request->all(), [
+           
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:6'],
+            
+        ]);
+
+        if($v->fails()){
+             return response()->json(['status' => 0,'errors' => $v->errors()]);
+        }else{
+
+                    if (Auth::attempt(['email' => $request->email, 'password' => $request->password,'role' => 'user']))
+                    {
+                            if(Auth::check() && Auth::user()->email_verified_at){
+
+                               $arr = [
+                                    'status' => 1,
+                                     'message' => 'Please wait... Redirecting to your dashboard.',
+                                    'redirectLink' => url(route('user_dashboard'))
+                                ];
+
+                            } else {
+
+                              Auth::logout();
+                             
+                                 $arr = [
+                                    'status' => 2,
+                                     'message' => 'Your account is not verified yet.'
+                                   
+                                ];
+                            }
+
+                   } else {
+                    
+                         $arr = [
+                               'status' => 2,
+                               'message' => 'Invalid Email | Password'
+                             
+                          ];
+                  }
+            return response()->json($arr);
+
+        }
+}
+
+
 
 public function login($request)
 {

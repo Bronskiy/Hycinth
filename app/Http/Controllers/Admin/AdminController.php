@@ -84,19 +84,25 @@ public function dashboard()
 
 
 
-public function change(Request $request,$id = null)
+public function change(Request $request, $id = null)
     { 
         
+        $valid = [
+            'old_password' => 'required',
+            'password' => ['required', 'string', 'min:6', 'max:20', 'confirmed']
+        ];
 
-        $valid = ['old_password' => 'required','password' => ['required', 'string', 'min:6', 'max:20', 'confirmed']];
-
-        $valid2= ['password' => ['required', 'string', 'min:6', 'max:12', 'confirmed']];
+        $valid2 = ['password' => ['required', 'string', 'min:6', 'confirmed']];
 
         $validation = $id == null ? $valid : $valid2;
 
-        $this->validate($request,$validation);
+        $customMessages = [
+            'password.max' => 'The password can not be greater than 20 characters',
+        ];
 
-        $user_id = Auth::user()->id;
+        $this->validate($request, $validation, $customMessages);
+        
+        $user_id = Auth::User()->id;
 
         $u = $id != null ? User::where('id',$id)->where('role','super')->first() : User::find($user_id);
 
@@ -131,8 +137,7 @@ public function change(Request $request,$id = null)
 
     }
 
-public function changeProfileImage(Request $request)
-{   
+public function changeProfileImage(Request $request) { 
 
 
     $this->validate($request,[

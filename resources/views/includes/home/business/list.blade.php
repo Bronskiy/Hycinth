@@ -59,10 +59,10 @@ $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) 
                                     <div class="col-lg-7">
                                         <div class="right-content">
                                           <div class="listing-head">
-                                    <a href="{{url( route('vendor_detail_page',[$cate->category->slug,$cate->business_url]))}}"> <h4>{{getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','business_name')}}</h4></a>
+                                    <a href="{{url( route('vendor_detail_page',[$cate->category->slug,$cate->business_url]))}}"> <h4 class="padding-rt">{{getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','business_name')}}</h4></a>
                                            
                                            <ul class="listing-action-btns">
-                                             <li class="mb-1"><a href="javascript:void(0);" class="list-icon-btn"><i class="fas fa-heart"></i></a></li>
+                                             <li><a href="javascript:void(0);" class="list-icon-btn"><i class="fas fa-heart"></i></a></li>
                                              <li><a href="tel:{{getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','phone_number')}}" class="list-icon-btn"><i class="fas fa-phone-alt"></i></a></li>
                                            </ul>
 
@@ -78,7 +78,7 @@ $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) 
 
                                             <ul class="rating">
                                                 <li>
-                                                  <div class="price-review-detail"><p>Starting From:</p> <span> ${{custom_format(getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','min_price'),2)}} &nbsp;for {{getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','min_guest')}} <i class="fa fa-users"></i> </span>
+                                                  <div class="price-review-detail"><p>Starting From:</p> <span> ${{custom_format(getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','min_price'),2)}} for {{getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','min_guest')}} <i class="fa fa-users"></i> </span>
                                                   </div>
                                                 </li>
                                                 <li>
