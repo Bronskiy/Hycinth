@@ -48,11 +48,20 @@ public function checkCategoryOfVendor()
 
    public function index($value='')
    {
-
-     
        return view('vendors.dashboard');
    }
 
+
+   public function payment() {
+    return view('vendors.payment');
+   }
+
+   public function updatePayment(Request $request) {
+     $u = Auth::user();
+     $u->payment_status = $request->payment_status;
+     $u->save();
+     return redirect()->back()->with('flash_message', "Your Payment has been changed"); 
+   }
 
 #---------------------------------------------------	
 #  vendor_profile
@@ -68,10 +77,7 @@ public function checkCategoryOfVendor()
 #---------------------------------------------------
 
 
-
-
-public function vendorProfile(Request $request)
-{
+public function vendorProfile(Request $request) {
    $this->validate($request,[
          'image' => 'image',
          'name' => 'required',
@@ -80,9 +86,10 @@ public function vendorProfile(Request $request)
      $u = User::find(Auth::user()->id);
      $u->profile_image = $request->hasFile('image') ? uploadFileWithAjax($path,$request->file('image')) : $u->profile_image;
      $u->name = $request->name;
+     $u->phone_number = $request->phone_number;
      $u->save();
     
-     return redirect()->back()->with('flash_message',"Your Profile image has been changed"); 
+     return redirect()->back()->with('flash_message',"Your Profile has been changed"); 
 }
 
 

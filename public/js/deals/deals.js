@@ -170,7 +170,8 @@ loginValidation();
 dealValidation();
 
 function login($this) {
-  
+   
+   var $dealModal = jQuery("body").find('#myModalDealDiscount');
 
             $.ajax({
                url : $this.attr('action'),
@@ -194,7 +195,13 @@ function login($this) {
                            jQuery("body").find('#myModalDealDiscount')
                                           .find('.messageNotofications')
                                           .html(ErrorMsg('success','Login Successfully. Now you can sen message to vendor for deal & Discount.'));
+                            
+                            // $dealModal.find('input[name=name]').val();
+                            // $dealModal.find('input[name=email]').val();
+                            // $dealModal.find('input[name=phone_number]').val();
+
                             $("body").find('.custom-loading').hide();
+
                       }else if(parseInt(data.status) == 2){
 
                        

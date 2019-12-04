@@ -123,21 +123,27 @@ use GeneralSettingTrait;
 	*/
 
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
           $type = $request->type;
 
-          foreach ($request->all() as $key => $value) {
-            if(!in_array($key, $this->ignors)):
-          	//if($key != "_token" && $key != "homePage_banner"):
-          	     $this->updateMeta($key, $value, $type, $request);
+          if($type == 'paypal-credentials') {
+            $key = 'paypal_credentials';
+            $value = json_encode($request->all());
+            $this->updateMeta($key, $value, $type, $request);
+          } elseif($type == 'stripe-credentials') {
+            $key = 'stripe_credentials';
+            $value = json_encode($request->all());
+            $this->updateMeta($key, $value, $type, $request);
+          } else {
+            foreach ($request->all() as $key => $value) {
+              if(!in_array($key, $this->ignors)):
+            	//if($key != "_token" && $key != "homePage_banner"):
+            	     $this->updateMeta($key, $value, $type, $request);
 
-             endif;
+               endif;
+            }
           }
-
-
           return redirect()->route('list_general_settings')->with('flash_message','The general setting is done.');
-           
     }
 
 
@@ -167,7 +173,6 @@ use GeneralSettingTrait;
        $chk->parent = $parent;
        $chk->save();
     }
-
 	/*__________________________________________________________________________________________
 	|
 	|  Next Function starts

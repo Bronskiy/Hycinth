@@ -1,43 +1,39 @@
-@extends('users.layouts.layout')
-@section('content')
+@extends('layouts.vendor')
+@section('vendorContents')
 
-<div class="page-header">
-                        <div class="page-block">
-                            <div class="row align-items-center">
-                                <div class="col-md-12">
-                                    <div class="page-header-title">
-                                        <h5 class="m-b-10"></h5>
-                                    </div>
-                                    <ul class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href="{{url(route('user_dashboard'))}}"><i class="feather icon-home"></i></a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0)">Profile</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
- </div>
+<div class="container-fluid">
 
-  <section class="content">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <!-- /.card-header -->
+ <div class="page_head-card">
+    <div class="page-info">
+            <div class="page-header-title">
+                <h3 class="m-b-10">{{$title}}</h3>
+            </div>
+            <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('vendor_dashboard') }}"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Amenities</a></li>
+            </ul>
+        </div>
+        <div class="side-btns-wrap">
+         
+        </div>
+  </div>
+
+@include('vendors.errors')
+
  
-            <div class="card-body">
 
-
-
-              @include('admin.error_message')
-
-
-
+    <div class="row">
+       <div class="col-lg-12">
+          <div class="card vendor-dash-card">
+          <div class="card-header"><h3>{{$title}}</h3></div>
+           <div class="card-body">
               <div class="chat-box-container">
                 <div id="frame" class="chatBox-frame">
   <div id="sidepanel" class="chatBox-sidepanel">
     <div id="profile" class="chat-profile">
       <div class="wrap">
-        <img id="profile-img" src="{{ProfileImage(Auth::user()->profile_image)}}" class="online" alt="" />
-        <p>{{Auth::user()->name}}</p>
+        <img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
+        <p>John doe</p>
        <!--  <i class="fa fa-chevron-down expand-button" aria-hidden="true"></i> -->
         <div id="status-options">
           <ul>
@@ -56,26 +52,30 @@
     </div>
     <div id="contacts">
       <ul>
-         @foreach(Auth::user()->chats as $c)
+
+
+        @foreach($business->chats as $c)
 
         <?php  $chat = $c->ChatMessages()->orderBy('id','DESC')->first(); ?>
 
-        <li class="contact {{$chats->id == $c->id ? 'active' : ''}}">
-          <a href="{{url(route('deal_discount_chatMessages',$c->id))}}"> 
+        <li class="contact">
+          <a href="{{url(route('deal_discount_vendor_chatMessages',[$business->category->slug,$c->id]))}}"> 
           <div class="wrap">
+            <span class="unreadMsgCount">10</span>
             @if($c->unReadMessages->count() > 0)
             <span class="unreadMsgCount">{{$c->unReadMessages->count()}}</span>
             @endif
             <span class="contact-status online"></span>
-            <img src="{{ProfileImage($c->deals->Business->profileImage->keyValue)}}" alt="" />
+            <img src="{{ProfileImage($c->user->profile_image)}}" alt="" />
             <div class="meta">
-              <p class="name">{{$c->deals->Business->title}}</p>
+              <p class="name">{{$c->user->name}}</p>
               <p class="preview">{!! $chat->message !!}</p>
             </div>
           </div>
         </a>
         </li>
         @endforeach
+        
       </ul>
     </div>
     <!-- <div id="bottom-bar">
@@ -83,75 +83,41 @@
       <button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span></button>
     </div> -->
   </div>
-  <div class="content">
-    <div class="contact-profile">
-      <div class="profile-cont">
-      <img src="{{ProfileImage($chats->deals->Business->profileImage->keyValue)}}" alt="" />
-    
-      <p>{{$chats->deals->Business->title}}</p>
-      </div>
-    
-    </div>
-    <div class="messages">
-      <ul id="ChatMessages" data-action="{{url(route('deal_discount_getMessages',$chats->id))}}">
-      
-      </ul>
-    </div>
-    <div class="message-input">
-      <div class="wrap">
-                  <form id="sendMessage" action="{{url(route('deal_discount_sendMessages',$chats->id))}}">
-                               <div class="chat-input-box">
-                                    <textarea name="message" required placeholder="Write your message.." class="chat-input"></textarea>
-                                    <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-                                    <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                                  </div>
-                      </form>
+   <div class="content">
+     <figure class="chat-here-img">
+         <img src="/frontend/images/chat-here.png">
+     </figure>
    </div>
-    </div>
-  </div>
 </div>
 <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
               </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-              
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-          <!-- /.card -->
+           </div>
         </div>
-        <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </section>
+     </div>
+   </div>
+</div>
 
-    
-     
- 
-     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @endsection
 
+
 @section('scripts')
-<script src="{{url('/js/chats/chat.js')}}"></script>
- <script type="text/javascript">
+ 
+<script type="text/javascript">
  $(".messages").animate({ scrollTop: $(document).height() }, "fast");
 
 $("#profile-img").click(function() {
@@ -211,5 +177,9 @@ $(window).on('keydown', function(e) {
 
 </script>
 
-@endsection
 
+
+
+
+
+@endsection

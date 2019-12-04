@@ -23,4 +23,8 @@
          #  Event Management ----------------------------------------------------------------
          #-----------------------------------------------------------------------------------
 
+         // payment
+         Route::post('/paypalAuth', 'Users\PaymentController@paypalAuth')->name('user_paypalAuth');
+         Route::post('/payToVendor', 'Users\PaymentController@payouts')->name('user_payToVendor');
+
 });

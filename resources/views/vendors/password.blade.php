@@ -2,6 +2,7 @@
 @section('vendorContents')
 
 <div class="container-fluid">
+  @include('admin.error_message')
       <div class="row">      
 
       <div class="col-lg-6 offset-lg-3">

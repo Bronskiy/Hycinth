@@ -31,6 +31,8 @@
     <link href="/bootstrap-fileinput-master/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="/bootstrap-fileinput-master/themes/explorer-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="{{url('/admin-assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{url('/css/chat.css')}}">
+
     <link rel="stylesheet" href="{{url('/AdminFILE/dist/css/jquery-ui.css')}}">
 <link href="{{ url('/css/vendors/vendor-custom.css') }}" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">

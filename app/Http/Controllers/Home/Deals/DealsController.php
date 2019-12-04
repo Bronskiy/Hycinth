@@ -157,6 +157,8 @@ public function getDealRequest(Request $request)
        return response()->json(['status' => 4,'message' => 'Your are not logged in. please login first.']);
 
     }else{
+
+
          
          $c = $this->sendMessage($request,$deal);
          
@@ -190,9 +192,11 @@ public function sendMessage($request,$deal)
              'phone_number' => $request->phone_number,
              'event_date' => $request->event_date,
           ];
-          Session::put('dealData',$data);
           
+          Session::put('dealData',$data);
           #################################################
+
+
 
           $text ='Hello '.$deal->vendor->first_name.'<br>';
           $text .=  $request->message.'<br>';
@@ -201,15 +205,14 @@ public function sendMessage($request,$deal)
 
 
           #################################################
-
           
-          $chat = new Chat;
-          $chat->user_id = Auth::user()->id;
-          $chat->business_id = $deal->vendor_category_id;
-          $chat->deal_id = $deal->id;
-          $chat->vendor_id =trim($deal->user_id);
-          $chat->status = 0;
-          if($chat->save()){
+          $chats = Chat::where('user_id',Auth::user()->id)
+                       ->where('deal_id',$deal->id)
+                       ->where('vendor_id',$deal->user_id)
+                       ->where('business_id',$deal->vendor_category_id);
+
+          if($chats->count() > 0){
+                $chat = $chats->first();
                 $m = new ChatMessage;
                 $m->sender_id = trim(Auth::user()->id);
                 $m->receiver_id = trim($deal->user_id);
@@ -220,9 +223,31 @@ public function sendMessage($request,$deal)
                 $m->sender_status = 0;
                 $m->receiver_status = 0;
                 $m->save();
-            return $chat->id;
+                 return $chat->id;
+          }else{
+          
+                $chat = new Chat;
+                $chat->user_id = Auth::user()->id;
+                $chat->business_id = $deal->vendor_category_id;
+                $chat->deal_id = $deal->id;
+                $chat->vendor_id =trim($deal->user_id);
+                $chat->status = 0;
+                if($chat->save()){
+                      $m = new ChatMessage;
+                      $m->sender_id = trim(Auth::user()->id);
+                      $m->receiver_id = trim($deal->user_id);
+                      $m->deal_id = trim($deal->id);
+                      $m->business_id = trim($deal->vendor_category_id);
+                      $m->chat_id = trim($chat->id);
+                      $m->message = $text;
+                      $m->sender_status = 0;
+                      $m->receiver_status = 0;
+                      $m->save();
+                  return $chat->id;
 
-          }
+                }
+
+        }
    
 
 }

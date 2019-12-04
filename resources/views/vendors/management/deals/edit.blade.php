@@ -37,7 +37,7 @@
                              {{textbox($errors,'Title*','title', $deal->title)}}
                            </div>
                           <div class="col-lg-6">
-                              {{selectsimple($errors,"Deal's Life",'deal_life',[0 => 'Parmanenet',1 => 'According to Expiry Date'],$deal->deal_life)}}
+                              {{selectsimple($errors,"Deal's Life",'deal_life',[0 => 'Permanent',1 => 'According to Expiry Date'],$deal->deal_life)}}
                           </div>
                            <div class="col-lg-6">
                           <!-- {{datebox($errors,'Expiry Date','expiry_date', $deal->expiry_date)}} -->

@@ -42,7 +42,10 @@ class VendorCategory extends Model
 
 
 
-
+    public function chats()
+    {
+       return $this->hasMany('App\Models\Vendors\Chat','business_id');
+    }
 
 
 

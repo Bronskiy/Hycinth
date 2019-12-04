@@ -43,7 +43,6 @@ class ChatController extends Controller
 	{ 
        $Chat = Chat::where('id',$id)->where('user_id',Auth::user()->id);
        if($Chat->count() > 0){
-
                 $c = $Chat->first();
                 $m = new ChatMessage;
                 $m->sender_id = trim(Auth::user()->id);
@@ -52,12 +51,10 @@ class ChatController extends Controller
                 $m->business_id = trim($c->business_id);
                 $m->chat_id = trim($c->id);
                 $m->message = $request->message;
-                $m->sender_status = 0;
+                $m->sender_status = 1;
                 $m->receiver_status = 0;
                 $m->save();
-
-            return response()->json(['status' => 1,'message' => $this->getMessage($m)]);    
-            
+                return response()->json(['status' => 1,'message' => $this->getMessage($m)]);    
        }
 	}
 
@@ -71,10 +68,10 @@ class ChatController extends Controller
 
 public function getMessage($msg)
 {
-	$text ='<div class="myMessageBlock">';
-	$text .='<img src="'.ProfileImage($msg->sender->profile_image).'" width="30">';
-	$text .='<p>'.$msg->message.'</p> ';
-	$text .='</div>';
+    $text  ='<li class="replies">';
+    $text .='<img src="'.ProfileImage(Auth::user()->profile_image).'" alt="" />';
+    $text .='<p>'.$msg->message.'</p>';
+    $text .='</li>';
 	return $text;
 }
 
@@ -82,7 +79,35 @@ public function getMessage($msg)
 
 
 
+public function getMessages(Request $request,$id)
+{
 
+  $Chat = Chat::with([
+       'ChatMessages',
+       'ChatMessages.sender',
+       'ChatMessages.receiver',
+   ])
+   ->where('id',$id)->where('user_id',Auth::user()->id)->first();
+
+
+   $messages = ChatMessage::where('chat_id',$Chat->id)
+    ->where('receiver_id',Auth::user()->id)
+    ->where('receiver_status',0)->count();
+
+   if($request->type == "all"){
+        $vv = view('users.chats.messages')->with('chats', $Chat);
+        return response()->json(['status' => 1 ,'messages' => $vv->render()]);
+    }else{
+
+      if($messages > 0){
+        $vv = view('users.chats.messages')->with('chats', $Chat);
+        return response()->json(['status' => 1 ,'messages' => $vv->render()]);
+      }else{
+        return response()->json(['status' => 0]);
+      }
+         
+    }
+}
 
 
 

@@ -156,9 +156,10 @@ public function userLoginPopup(Request $request,$role="user")
                             if(Auth::check() && Auth::user()->email_verified_at){
 
                                $arr = [
-                                    'status' => 1,
+                                     'status' => 1,
                                      'message' => 'Please wait... Redirecting to your dashboard.',
-                                    'redirectLink' => url(route('user_dashboard'))
+                                     'redirectLink' => url(route('user_dashboard')),
+                                     'users' => Auth::user()
                                 ];
 
                             } else {
@@ -166,7 +167,7 @@ public function userLoginPopup(Request $request,$role="user")
                               Auth::logout();
                              
                                  $arr = [
-                                    'status' => 2,
+                                     'status' => 2,
                                      'message' => 'Your account is not verified yet.'
                                    
                                 ];

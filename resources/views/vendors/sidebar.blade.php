@@ -113,6 +113,12 @@
                 || \Request::route()->getName() === 'vendor_edit_deals_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_deals_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Deal & Discounts</a>
               </li>
 
+               <li class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'myCategoryChat')) ? 'active' : '' }}">
+                   <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'myCategoryChat'
+                   )) ? $cate->category->color : '' }}" href="{{url(route('myCategoryChat',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Chats</a>
+              </li>
+
+
                <li class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_prohibtion_management' || \Request::route()->getName() === 'vendor_add_prohibtion_management')) ? 'active' : '' }}">
                    <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_prohibtion_management'
                    || \Request::route()->getName() === 'vendor_add_prohibtion_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_prohibtion_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Prohibtion & Restrictions</a>
@@ -140,18 +146,18 @@
                 </li>
 
 
-                <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['vendor_profile', 'vendor_password'],'pcoded-trigger') ?>" >
+                <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['vendor_profile', 'vendor_password', 'vendor_payment'],'pcoded-trigger') ?>" >
                 <a href="javascript:" class="nav-link "><span class="pcoded-micon">
                     <i class="feather icon-box"></i></span><span class="pcoded-mtext">Settings</span></a>
-                <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['vendor_profile', 'vendor_password'],'block') ?>;">
+                <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['vendor_profile', 'vendor_password', 'vendor_payment'],'block') ?>;">
                     <li class="<?= ActiveMenu(['vendor_profile'],'active') ?>"><a href="{{ route('vendor_profile') }}" class="">Profile Settings</a></li>
+                    <li class="<?= ActiveMenu(['vendor_payment'],'active') ?>"><a href="{{ route('vendor_payment') }}" class="">Payment Settings</a></li>
                     <li class="<?= ActiveMenu(['vendor_password'],'active') ?>"><a href="{{ route('vendor_password') }}" class="">Password Settings</a></li>
                 </ul>
                 </li>
 
 
-
-                
+               
 
                 </ul>
             </div>

@@ -3,7 +3,7 @@
 namespace App\Models\Vendors;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Auth;
 class DiscountDeal extends Model
 {
     
@@ -21,7 +21,13 @@ class DiscountDeal extends Model
 
      public function chats()
     {
-       return $this->hasOne('App\Models\Vendors\Chat','deal_id');
+       return $this->hasOne('App\Models\Vendors\Chat','deal_id')->where(function($t){
+          if(Auth::check() && Auth::user()->role == "user"){
+            $t->where('user_id',Auth::user()->id);
+          }else{
+            $t->where('user_id',0);
+          }
+       })->where('deal_status',0);
     }
 
 

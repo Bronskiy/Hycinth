@@ -109,8 +109,6 @@ use GeneralSettingTrait;
      ->with('addLink','list_general_settings');
 	}
 
-
-
 	/*__________________________________________________________________________________________
 	|
 	|  Next Function starts
@@ -118,8 +116,8 @@ use GeneralSettingTrait;
 	*/
 
 
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
+      dd($request->all());
           $type = $request->type;
 
           foreach ($request->all() as $key => $value) {
@@ -130,9 +128,7 @@ use GeneralSettingTrait;
              endif;
           }
 
-
           return redirect()->route('list_general_settings')->with('flash_message','The general setting is done.');
-           
     }
 
 

@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{url('/AdminFILE/dist/css/jquery-ui.css')}}">
     <link rel="stylesheet" href="{{url('/admin-assets/css/style.css')}}">
     <link rel="stylesheet" href="{{url('/css/user.css')}}">
+     <link rel="stylesheet" href="{{url('/css/chat.css')}}">
 
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
@@ -52,6 +53,7 @@
 </div>
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+ <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ getAllValueWithMeta('google_api_key', 'global-settings') }}&libraries=places"></script>
 <script src="{{url('/admin-assets/js/vendor-all.min.js')}}"></script>
 <script src="{{url('/admin-assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
 <script src="{{url('/admin-assets/js/pcoded.min.js')}}"></script>

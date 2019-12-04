@@ -102,9 +102,9 @@ public function getVendorIds($request)
 	 	  	 $t->where('vendor_categories.category_id',$request->category_id);
 	 	  }
 
-      if(!empty($request->event_type)){
+      if(!empty($request->event_type) && !in_array(null, $request->event_type, true)){
              $t->whereIn('vendor_event_games.event_id',$request->event_type);
-	 	  }
+      }
 
       if(!empty($request->amenities)){
              $t->whereIn('vendor_amenities.amenity_id',$request->amenities);
@@ -171,10 +171,7 @@ public function getVendorIds($request)
 
 public function getBusiness(Request $request)
 {
-// if(!empty($request->price_range)){
-//     return $range = explode('-',$request->price_range);
-// }
-
+ 
 
  
      $business = $this->getBusinesAccordingToSearch($request);

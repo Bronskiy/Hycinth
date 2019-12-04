@@ -63,7 +63,21 @@ $(document).ready(function(){
       "name": {
         required: true,
         lettersonly: true
-      },   
+      },
+      "phone_number": {
+        required: true,
+        phoneUS: true
+      },
+      "user_location": {
+        required: true,
+      },
+      "latitude": {
+        required: true,
+      },
+      "longitude": {
+        required: true,
+      },  
+
       valueToBeTested: {
           required: true,
       }

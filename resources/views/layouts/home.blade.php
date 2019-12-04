@@ -30,6 +30,7 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{url('/frontend/css/styles.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('/frontend/css/responsive.css')}}">
+     <link rel="stylesheet" href="{{url('/css/chat.css')}}">
 
 <style type="text/css">
     .custom-loading {

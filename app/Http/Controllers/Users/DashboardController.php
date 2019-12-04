@@ -39,7 +39,7 @@ public function updateProfile(Request $request) {
      $path = 'images/vendors/profile/';
      $request['profile_image'] = uploadFileWithAjax($path, $request->image);
      if($user->profile_image != 'user.jpg') {
-        if(file_exists($path.$user->profile_image)) {
+        if($user->profile_image && file_exists($path.$user->profile_image)) {
             unlink($path.$user->profile_image);
         }
      }

@@ -130,6 +130,14 @@ trait GeneralSettingTrait {
           return [
                   'google_api_key' => getAllValueWithMeta('google_api_key', $slug),
           ];
+      case 'paypal-credentials': 
+          return [
+                  'paypal_credentials' => getAllValueWithMeta('paypal_credentials', $slug)
+          ];
+      case 'stripe-credentials':
+          return [
+                  'stripe_credentials' => getAllValueWithMeta('stripe_credentials', $slug),
+          ];
 		 	default:
 		 		# code...
 		 		break;

@@ -44,7 +44,7 @@
 
                            </div>
                             <div class="col-lg-6">
-                              {{selectsimple($errors, "Deal's Life", 'deal_life',[0 => 'Parmanenet',1 => 'According to Expiry Date'])}}
+                              {{selectsimple($errors, "Deal's Life", 'deal_life',[0 => 'Permanent',1 => 'According to Expiry Date'])}}
                           </div>
                            <div class="col-lg-6"> 
                             {{textarea($errors,'Description*','description')}}

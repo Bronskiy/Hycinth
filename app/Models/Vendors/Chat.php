@@ -3,7 +3,7 @@
 namespace App\Models\Vendors;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Auth;
 class Chat extends Model
 {
     
@@ -18,6 +18,18 @@ class Chat extends Model
     public function ChatMessages()
     {
     	return $this->hasMany('App\Models\Vendors\ChatMessage','chat_id');
+    }
+
+
+     public function user()
+    {
+    	return $this->belongsTo('App\User','user_id');
+    }
+
+    public function unReadMessages()
+    {
+       return $this->hasMany('App\Models\Vendors\ChatMessage','chat_id')->where('receiver_id',Auth::user()->id)
+                    ->where('receiver_status',0);
     }
 
 

@@ -3401,7 +3401,17 @@ h3.category {
         -ms-flex-align: center;
             align-items: center;
     font-size: 14px;
+    padding: 0;
+    background: transparent !important;
+    border:none;
+    font-weight: normal;
 }
+.mob-side-menus li.user a:first-child:after{
+	content: "/";
+	margin:0px 3px;
+
+}
+
 .mob-side-menus .dropdown-item{
     color: #212529;
 }
@@ -3426,6 +3436,10 @@ h3.category {
 }
 .icon-grp a {
     padding: 0px 5px;
+    margin-right: 10px;
+}
+.icon-grp a:last-child{
+	margin-right: 0px;
 }
 .icon-grp {
     display: -webkit-box;
@@ -3809,6 +3823,7 @@ label.error {
     color: #d51c18;
     font-size: 15px;
     position: absolute;
+    font-weight: normal;
 }
 label.error:after, label.error:before{
     display: none !important;
@@ -4707,6 +4722,9 @@ flex-direction: column;
 
 .select2 .selection{
     width: 100%;
+}
+.select2-container{
+	width: 100% !important;
 }
 .select2-selection.select2-selection--single, .select2-container--default .select2-selection--multiple {
     height: 60px;

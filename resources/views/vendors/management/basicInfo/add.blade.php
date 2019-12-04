@@ -242,12 +242,11 @@
    </div>
 </div>
 </div>
+
 @endsection
 @section('scripts')
 
- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDULjv0UAVmj_zgc9GjBhJNh9fNuEj87LQ&libraries=places"></script>
-   
-
+ <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ getAllValueWithMeta('google_api_key', 'global-settings') }}&libraries=places"></script>
 
 <script src="{{url('/js/validations/basicInfoValidation.js')}}"></script>
 <script src="{{url('/js/validations/imageShow.js')}}"></script>

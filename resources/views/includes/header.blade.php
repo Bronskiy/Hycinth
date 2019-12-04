@@ -11,36 +11,54 @@
             <span><i class="fas fa-wrench"></i></span> Toolbox
             </button>
             <!-- only for mobile -->
-            <ul class="mob-side-menus">
-               <!-- <li class="user">
-                  <span>
-                      <i class="fas fa-user"></i>
-                  </span>
-                  <div class="dropdown">
-                      <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe </a>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
-                          <a class="dropdown-item" [routerLink]="[ '/' ]" (click)="auth.logout()">Logout</a>
-                      </div>
+
+              <ul class="mob-side-menus">
+            @if(Auth::check()) 
+                    <li class="user">
+                        <span>
+                            <i class="fas fa-user"></i>
+                        </span>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}} </a>
+                             <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 36px, 0px); top: 0px; left: 0px; will-change: transform;">
+                      <a class="dropdown-item" href="{{url(route(Auth::user()->role.'_dashboard'))}}"><span><i class="far fa-user"></i></span> Profile</a>
+                         <a class="dropdown-item" href="/logout"><span><i class="fas fa-sign-out-alt"></i></span> Logout</a>
+                     </div>
+                        </div>
+                    </li>
+               @endif
+                <li>
+                <button class="toolbox" type="button">
+                    <span><i class="fas fa-wrench"></i></span> Toolbox
+                </button>
+              </li>
+              <li>
+                  <div class="icon-grp">
+                     <a href="javascript:void(0);" class=""><i class="fas fa-envelope"></i></a>
+                      <a href="javascript:void(0);" class="fav-list">
+                            <i class="fas fa-heart"></i>
+                            <sup>2</sup>
+                        </a>
                   </div>
-                  </li> -->
-               <li>
-                  <button class="toolbox" type="button">
-                  <span><i class="fas fa-wrench"></i></span> Toolbox
-                  </button>
-               </li>
+              </li>
+
             </ul>
+
+
+
+
          </div>
          
       </div>
    </div>
    <div class="header-links-wrap">
       <div class="container">
-         <ul class="head-links">
-            <li><a href="/">Home</a></li>
+         <ul class="head-links {{ Auth::check() ? 'userLoggedIn' : ''}}">
+            <li class="mob-hide"><a href="/">Home</a></li>
             <!-- <li><a href="{{url(route('get_all_venues'))}}">Venues</a></li> -->
-            <li><a href="javascript:void(0);" data-toggle="modal" data-target="#VenuesCategoriesModal">Businesses</a></li>
-            <li><a href="{{url(route('all_deals'))}}">Deals & Discount</a></li>
-            <li><a href="/vendor/register">New Vendors</a></li>
+            <li class="mob-hide"><a href="javascript:void(0);" data-toggle="modal" data-target="#VenuesCategoriesModal">Businesses</a></li>
+            <li class="mob-hide"><a href="{{url(route('all_deals'))}}">Deals & Discount</a></li>
+            <li class="mob-hide"><a href="/vendor/register">New Vendors</a></li>
 
             <li class="mob-hide">
                <a href="javascript:void(0);" class="fav-list">
@@ -49,8 +67,8 @@
                </a>
             </li>
             <li>
-          @if(Auth::check())
-                       
+
+          @if(Auth::check())                       
              <li>                                       
                   <div class="nav-item nav-profile dropdown">
                     <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
@@ -67,7 +85,8 @@
                      </div>
                   </div>
             </li>
-            @else
+            @endif
+            @if(!Auth::check()) 
                 <li class="user header-btns">
                         <a href="{{url('/login')}}" class="cstm-btn solid-btn">Login</a>
                         <a href="{{url('/register')}}" class="cstm-btn">Sign Up</a>
@@ -75,7 +94,7 @@
             @endif
 
   
-            <li class="show-for-mob">
+            <!-- <li class="mob-hide">
                <div class="icon-grp">
                   <a href="javascript:void(0);" class=""><i class="fas fa-envelope"></i></a>
                   <a href="javascript:void(0);" class="fav-list">
@@ -83,7 +102,7 @@
                   <sup>2</sup>
                   </a>
                </div>
-            </li>
+            </li> -->
          </ul>
       </div>
    </div>

@@ -6,7 +6,7 @@
           <div class="card vendor-dash-card">
        <div class="card-header"><h3>PROFILE SETTINGS</h3></div>
            <div class="card-body">
-
+@include('admin.error_message')
 <div class="row">
 
 <div class="col-md-12">
@@ -14,7 +14,8 @@
 <form method="post" id="profileForm" enctype="multipart/form-data">
 	@csrf
 
-	{{textbox($errors,'Name','name',Auth::user()->name)}}
+  {{textbox($errors,'Name','name',Auth::user()->name)}}
+	{{textbox($errors,'Phone Number','phone_number',Auth::user()->phone_number)}}
 
     <!-- {{choosefile($errors,'Profile Image','image')}} -->
 
