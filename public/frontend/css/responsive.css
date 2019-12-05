@@ -55,6 +55,17 @@
     .top-bar .brand-name img {
         height: 100px
     }
+    .coupon-code{
+        position: relative;
+        padding: 5px 6px;
+        margin-top: 5px;
+    }
+    .dealls-dis-head{
+        padding-right: 0px;
+    }
+    .deals-card .deal-img{
+       height: 230px;
+    }
 }
 
 @media(max-width: 991px) {
@@ -170,14 +181,14 @@
         font-size: 20px;
     }
 
-    .checklist-wrap .row .col-md-3,
+  /*  .checklist-wrap .row .col-md-3,
     .vendor-listing-sec .col-lg-3.col-md-4 {
         -webkit-box-flex: 0;
         -ms-flex: 0 0 50%;
         flex: 0 0 50%;
         max-width: 50%;
         position: static;
-    }
+    }*/
 
     .checklist-wrap .row .col-md-9,
     .vendor-listing-sec .col-lg-9.col-md-8 {
@@ -317,6 +328,13 @@
             -ms-transform: translate(-224px);
                 transform: translate(-224px);
     }
+    .button-grp-wrap{
+        margin-top: 10px;
+    }
+    span.aside-toggle {
+    margin-bottom: 0px;
+}
+
 }
 
 
@@ -507,7 +525,37 @@
     font-size: 18px;
 
     }
-
+    .deals-card{
+        flex-direction: column;
+    }
+    .detal-card-details{
+        width: 100%;
+        padding: 20px;
+    }
+    .deals-card .deal-img {
+    height: 220px;
+    width: 100%;
+}
+.deals-card .deal-img{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 10px;
+}
+.coupon-code{
+    margin-top: 15px;
+}
+.button-grp-wrap {
+    margin-top: 20px;
+}
+section.vendor-listing-sec .inner-content-detail {
+    padding: 20px 15px;
+}
+.sec-card{
+        padding: 20px 10px;
+  }
+  .dealls-dis-head h4{
+    font-size: 15px;
+  }
 }
 
 @media(max-width:580px) {
@@ -969,6 +1017,12 @@
     .package-card{
         max-height: 270px;
     }
+    .deals-card .deal-img {
+    height: 150px;
+   }
+   .detal-card-details {
+     padding: 10px;
+}
     
 }
 

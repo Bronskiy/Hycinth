@@ -137,6 +137,13 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
         Route::post('/settings/general/edit/{id}', 'Admin\GeneralSettingController@store')->name('add_general_settings');
         Route::get('/settings/general/ajax', 'Admin\GeneralSettingController@ajaxData')->name('list_general_ajax_settings');
 
+        // payment Setting
+        Route::get('/settings/payment', 'Admin\GeneralSettingController@payments')->name('list_payment_settings');
+        Route::post('/settings/payment', 'Admin\GeneralSettingController@updatePayments')->name('list_payment_settings');
+
+        // global Setting
+        Route::get('/settings/global', 'Admin\GeneralSettingController@global')->name('global_settings');
+        Route::post('/settings/global', 'Admin\GeneralSettingController@updateGlobal')->name('global_settings');
 
         Route::get('/ajax/settings/general/upload', 'Admin\GeneralSettingController@MetaImage')->name('meta_images');
 
@@ -155,6 +162,7 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
         #------------------------------------------------------------------------------------
         #  Faq
         #------------------------------------------------------------------------------------
+
         Route::get('/faqs', 'Admin\FaqController@index')->name('admin.faqs.list');
         Route::get('/faqs/ajaxData', 'Admin\FaqController@ajaxData')->name('admin.faqs.ajaxData');
         Route::get('/faqs/create', 'Admin\FaqController@showCreate')->name('admin.faqs.showCreate');

@@ -10,7 +10,7 @@
                                     </div>
                                     <ul class="breadcrumb">
                                         <li class="breadcrumb-item"><a href="{{url(route('user_dashboard'))}}"><i class="feather icon-home"></i></a></li>
-                                        <li class="breadcrumb-item"><a href="javascript:void(0)">Profile</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript:void(0)">My Inbox</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -35,54 +35,24 @@
                             <div id="profile" class="chat-profile">
                               <div class="wrap">
                                 <img id="profile-img" src="{{ProfileImage(Auth::user()->profile_image)}}" class="online" alt="" />
-                                <p>{{Auth::user()->name}}</p>
-                               <!--  <i class="fa fa-chevron-down expand-button" aria-hidden="true"></i> -->
-                                <div id="status-options">
-                                  <ul>
-                                    <li id="status-online" class="active"><span class="status-circle"></span> <p>Online</p></li>
-                                    <li id="status-away"><span class="status-circle"></span> <p>Away</p></li>
-                                    <li id="status-busy"><span class="status-circle"></span> <p>Busy</p></li>
-                                    <li id="status-offline"><span class="status-circle"></span> <p>Offline</p></li>
-                                  </ul>
-                                </div>
-                               
+                                <p>{{Auth::user()->name}}</p>                               
                               </div>
                             </div>
                             <div id="search">
                               <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
                               <input type="text" placeholder="Search contacts..." />
                             </div>
-                            <div id="contacts">
-                              <ul>
+                            <div id="contacts" data-action="{{url(route('get_chat_list'))}}">
+                             
 
-
-                               @foreach(Auth::user()->chats as $c)
-
-                                <?php  $chat = $c->ChatMessages()->orderBy('id','DESC')->first(); ?>
-
-                                <li class="contact">
-                                  <a href="{{url(route('deal_discount_chatMessages',$c->id))}}"> 
-                                  <div class="wrap">
-                                     
-                                    @if($c->unReadMessages->count() > 0)
-                                    <span class="unreadMsgCount">{{$c->unReadMessages->count()}}</span>
-                                    @endif
-                                    <span class="contact-status online"></span>
-                                    <img src="{{ProfileImage($c->deals->Business->profileImage->keyValue)}}" alt="" />
-                                    <div class="meta">
-                                      <p class="name">{{$c->deals->Business->title}}</p>
-                                      <p class="preview">{!! $chat->message !!}</p>
-                                    </div>
-                                  </div>
-                                </a>
-                                </li>
-                                @endforeach
-                                
-                              </ul>
+                               @include('users.chats.chatlist')
+                               
+                               
                             </div>
+                            <input type="hidden" id="listactive" value="0">
      
                       </div>
-                     <div class="content">
+                     <div class="content" id="userChatBox">
                        <figure class="chat-here-img">
                            <img src="/frontend/images/chat-here.png">
                        </figure>
@@ -115,7 +85,10 @@
 
  
 @section('scripts')
- <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
+<script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script>
+
+<script src="{{url('/js/chats/chat.js')}}"></script>
+
 <script type="text/javascript">
  $(".messages").animate({ scrollTop: $(document).height() }, "fast");
 

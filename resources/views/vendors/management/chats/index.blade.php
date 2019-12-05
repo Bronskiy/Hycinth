@@ -50,40 +50,16 @@
       <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
       <input type="text" placeholder="Search contacts..." />
     </div>
-    <div id="contacts">
-      <ul>
-
-
-        @foreach($business->chats as $c)
-
-        <?php  $chat = $c->ChatMessages()->orderBy('id','DESC')->first(); ?>
-
-        <li class="contact">
-          <a href="{{url(route('deal_discount_vendor_chatMessages',[$business->category->slug,$c->id]))}}"> 
-          <div class="wrap">
-            <span class="unreadMsgCount">10</span>
-            @if($c->unReadMessages->count() > 0)
-            <span class="unreadMsgCount">{{$c->unReadMessages->count()}}</span>
-            @endif
-            <span class="contact-status online"></span>
-            <img src="{{ProfileImage($c->user->profile_image)}}" alt="" />
-            <div class="meta">
-              <p class="name">{{$c->user->name}}</p>
-              <p class="preview">{!! $chat->message !!}</p>
-            </div>
-          </div>
-        </a>
-        </li>
-        @endforeach
-        
-      </ul>
+    <div id="contacts" data-action="{{url(route('getBusineschatList',$business->category->slug))}}">
+     @include('vendors.management.chats.chatlist')
     </div>
+    <input type="hidden" id="listactive" value="0">
     <!-- <div id="bottom-bar">
       <button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button>
       <button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span></button>
     </div> -->
   </div>
-   <div class="content">
+   <div class="content" id="userChatBox">
      <figure class="chat-here-img">
          <img src="/frontend/images/chat-here.png">
      </figure>
@@ -116,7 +92,7 @@
 
 
 @section('scripts')
- 
+   <script src="{{url('/js/chats/vendor_chat.js')}}"></script>
 <script type="text/javascript">
  $(".messages").animate({ scrollTop: $(document).height() }, "fast");
 

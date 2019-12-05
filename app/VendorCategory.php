@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use App\Traits\NotificationFlash;
+use Auth;
 class VendorCategory extends Model
 {
 
@@ -14,7 +15,8 @@ class VendorCategory extends Model
      use NotificationFlash;
 
      protected $fillable = [
-        'parent', 'title', 'user_id', 'category_id', 'status', 'business_url', 'publish'
+        'parent', 'title', 'user_id', 'category_id', 'status', 'business_url', 'publish',
+        'payment_status', 'paypal_email', 'stripe_email'
     ];
     
     public function sluggable()
@@ -38,7 +40,21 @@ class VendorCategory extends Model
        //      return $results;
        //  }
 
+    public function getChatOfLoggedUser()
+    { 
+       return $this->hasOne('App\Models\Vendors\Chat','business_id','id')->where(function($t){
+        
+              if(Auth::check() && Auth::user()->role == "user"){
 
+                  $t->where('chats.user_id',Auth::user()->id);
+
+              }else{
+
+                  $t->where('chats.user_id',0);
+
+              }
+       });
+    }
 
 
 

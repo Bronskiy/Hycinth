@@ -33,6 +33,7 @@ jQuery("body").on('submit','#sendMessage',function(e){
                         if(parseInt(result.status) == 1){
                             $("body").find('#ChatMessages').append(result.message);
                             $this.find('button.cstm-btn').removeAttr('disabled');
+                            scrollingTop();
                        }
                },
                complete: function() {
@@ -54,14 +55,16 @@ jQuery("body").on('submit','#sendMessage',function(e){
 getDealAndDiscountChat();
 
 setInterval(function(){ 
-getDealAndDiscountChat('onlyNewMessages');
+    getChatListOfUser();
+   getDealAndDiscountChat('onlyNewMessages');
+
  }, 5000);
 
 
 
 function getDealAndDiscountChat(type="all") {
  
-   var $this = jQuery('#ChatMessages');
+   var $this = jQuery("body").find('#ChatMessages');
    var url = $this.attr('data-action');
    
       $.ajax({
@@ -80,6 +83,9 @@ function getDealAndDiscountChat(type="all") {
                 success: function (result) {
                         if(parseInt(result.status) == 1){
                             $("body").find('#ChatMessages').html(result.messages);
+
+                             scrollingTop();
+                            
                            
                         }
                },
@@ -93,6 +99,110 @@ function getDealAndDiscountChat(type="all") {
         });
  
 }
+
+
+
+function scrollingTop() {
+
+  var sheight = jQuery("body").find('ul#ChatMessages').height();
+  console.log(sheight);
+  jQuery("body").find('.messages').animate({ scrollTop: sheight }, "slow");
+ 
+}
+
+
+
+ 
+
+///////////////////////////////////////////////////////////////////////////////
+
+
+
+function getChatListOfUser(type="some") {
+ 
+   var $this = jQuery('#contacts');
+   var url = $this.attr('data-action');
+
+   var activeList = jQuery("body").find('#listactive').val();
+   
+      $.ajax({
+               url : url,
+               type: 'GET',
+               data:{
+                 activeList:activeList,
+                 type : type
+               },   
+               dataTYPE:'JSON',
+               headers: {
+                 'X-CSRF-TOKEN': $('input[name=_token]').val()
+               },
+               beforeSend: function() {
+                   
+               },
+               success: function (result) {
+                      if(parseInt(result.status) == 1){
+                         $this.html(result.list);
+                         scrollingTop();
+
+                      }
+               },
+               complete: function() {
+                        
+               },
+               error: function (jqXhr, textStatus, errorMessage) {
+                     
+               }
+
+        });
+ 
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////
+
+
+
+jQuery("body").on('click','a.getChatbox',function(e){
+      e.preventDefault();
+      var $this = jQuery( this );
+
+      jQuery("body").find('#listactive').val($this.attr('data-id'));
+
+      $('li.contact').removeClass('active');
+      
+      $this.closest('li.contact').addClass('active');
+
+      var url = $this.attr('data-href');
+      $.ajax({
+               url : url,
+                
+               type: 'GET',   
+               dataTYPE:'JSON',
+               headers: {
+                 'X-CSRF-TOKEN': $('input[name=_token]').val()
+               },
+                beforeSend: function() {
+                     
+                },
+                success: function (result) {
+                        if(parseInt(result.status) == 1){
+                           $("body").find('#userChatBox').html(result.data);
+                           getChatListOfUser('all');
+                        }
+               },
+               complete: function() {
+                        
+               },
+               error: function (jqXhr, textStatus, errorMessage) {
+                     
+               }
+
+        });  
+});
+
+
+
 
 
 

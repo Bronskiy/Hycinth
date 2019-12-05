@@ -96,11 +96,13 @@
                 </li>
 
 
-             <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_general_settings', 'add_general_settings'],'pcoded-trigger') ?>" >
+             <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_general_settings', 'add_general_settings', 'list_payment_settings', 'global_settings'],'pcoded-trigger') ?>" >
                 <a href="javascript:" class="nav-link "><span class="pcoded-micon">
-                    <i class="feather icon-box"></i></span><span class="pcoded-mtext">Page Settings</span></a>
-                <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['list_general_settings', 'add_general_settings'], 'block') ?>;">
-                    <li class="<?= ActiveMenu(['list_general_settings', 'add_general_settings'],'active') ?>"><a href="{{ route('list_general_settings') }}" class="">General Settings</a></li>
+                    <i class="feather icon-box"></i></span><span class="pcoded-mtext">Settings</span></a>
+                <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['list_general_settings', 'add_general_settings', 'list_payment_settings', 'global_settings'], 'block') ?>;">
+                    <li class="<?= ActiveMenu(['list_general_settings', 'add_general_settings'],'active') ?>"><a href="{{ route('list_general_settings') }}" class="">Page Settings</a></li>
+                    <li class="<?= ActiveMenu(['list_payment_settings'],'active') ?>"><a href="{{ route('list_payment_settings') }}" class="">Payment Settings</a></li>
+                    <li class="<?= ActiveMenu(['global_settings'],'active') ?>"><a href="{{ route('global_settings') }}" class="">Global Settings</a></li>
                 </ul>
                 </li>
 
@@ -117,14 +119,14 @@
                 </li>
 
 
-                <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['admin_settings'],'pcoded-trigger') ?>" >
+               <!--  <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['admin_settings'],'pcoded-trigger') ?>" >
                 <a href="javascript:" class="nav-link "><span class="pcoded-micon">
                     <i class="feather icon-box"></i></span><span class="pcoded-mtext">Settings</span></a>
                 <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['admin_settings'],'block') ?>;">
                     <li class="<?= ActiveMenu(['admin_settings'],'active') ?>"><a href="{{ route('admin_settings') }}" class="">Profile</a></li>
                     <li class="<?= ActiveMenu(['admin_logout'],'active') ?>"><a href="{{ route('admin_logout') }}" class="">Logout</a></li>
                 </ul>
-                </li>
+                </li> -->
 
                 </ul>
             </div>

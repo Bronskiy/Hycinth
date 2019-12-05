@@ -16,7 +16,7 @@
                <span class="aside-toggle">
                                 <i class="fa fa-bars"></i>
                                 <span class="cross-class">
-                                    <i class="fas fa-times"></i>
+                                    <i class="fas fa-times" style="display: none;"></i>
                                 </span>
                             </span>
                 <div class="row">
@@ -28,7 +28,7 @@
                             <p>Showing Results <b id="categoryCount">Searching...</b></p>
                            <hr>
                         </div>
-                        <div class="inner-content-detail" >
+                        <div class="inner-content-detail">
                                     <div id="inner-content-detail"></div>
                          </div>
 

@@ -441,7 +441,7 @@ img{
 }
 .chatBox-frame .chat-here-img {
     position: absolute;
-    max-width: 134px;
+    max-width: 245px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);

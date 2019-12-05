@@ -81,7 +81,18 @@ $.validator.addMethod("minDate", function(value, element) {
       return true; 
     }
     return false;
-}, "Please select date greater than of today Date!");
+}, "Please select date greater than of Current Date!");
+
+
+$.validator.addMethod("minStartDate", function(value, element) {
+    var curDate = new Date($('#start_date').val());
+    var inputDate = new Date(value);    
+
+    if (inputDate == 'Invalid Date' || inputDate > curDate) {
+      return true; 
+    }
+    return false;
+}, "Please select date greater than of Start Date!");
 
 $.validator.addMethod('minPerson', function(value, element) {
   const minPer = $('#min_person').val();

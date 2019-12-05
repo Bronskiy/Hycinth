@@ -105,11 +105,11 @@ class ManagementController extends VendorController
        }
 
 
-       $VendorCategory = VendorCategory::where('category_id',$category->category_id)
+       $VendorCategory = VendorCategory::where('category_id', $category->category_id)
         ->where('user_id',Auth::user()->id)->first();
 
 
-      return view('vendors.management.basicInfo.add',$info)
+      return view('vendors.management.basicInfo.add', $info)
       ->with('slug', $slug)
       ->with('VendorCategory', $VendorCategory)
       ->with('category', $category)   	   
@@ -1204,9 +1204,6 @@ public function getAllValueWithMeta($key,$type,$category_id)
     {
        $chk = \App\VendorCategoryMetaData::where('user_id',Auth::user()->id)->where('key',$key)->where('type',$type)->where('category_id',$category_id)->first();
 
-      
-
-
        if(!empty($chk)){
         return $chk->keyValue;
        }else{
@@ -1421,7 +1418,7 @@ public function seasons($slug) {
                $category = $this->getData($slug);
 
                         # upload image one by one
-                                $image_name = uploadFileWithAjax('images/vendors/settings/',$request->$col);
+                                $image_name = uploadFileWithAjax('images/vendors/settings/', $request->$col);
                                  $this->DeleteMetaImages($request->meta,$category->category_id,$request->type);
                                //  $this->DeleteMetaImages($request->meta);
                         
@@ -1484,7 +1481,7 @@ public function seasons($slug) {
     }
 
 
- public function DeleteMetaImages($key,$category_id,$type)
+ public function DeleteMetaImages($key, $category_id, $type)
  {
     $m = VendorCategoryMetaData::where('key',$key)
     ->where('user_id',Auth::user()->id)
@@ -1505,8 +1502,21 @@ public function seasons($slug) {
 
     }
     return 1;
-
-
-
  }
+
+
+ public function paymentSetting($slug) {
+  $category = $this->getData($slug);
+  $vendorCategory= VendorCategory::where(['category_id'=> $category->category_id, 'user_id' => Auth::User()->id])->first();
+  return view('vendors.management.payment.index')->with(['ven_cat' => $vendorCategory, 'slug'=> $slug]);
+ }
+
+ public function updatePaymentSetting(Request $request, $slug) {
+  $category = $this->getData($slug);
+  $vendorCategory= VendorCategory::where(['category_id'=> $category->category_id, 'user_id' => Auth::User()->id])->first();
+  $vendorCategory->update($request->all());
+  return redirect()->route('vendor_cat_pay_management', $slug)->with('flash_message', 'Payment Settings has been saved successfully.');
+ }
+
+
 }

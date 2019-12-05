@@ -28,8 +28,9 @@ class Chat extends Model
 
     public function unReadMessages()
     {
-       return $this->hasMany('App\Models\Vendors\ChatMessage','chat_id')->where('receiver_id',Auth::user()->id)
-                    ->where('receiver_status',0);
+       return $this->hasMany('App\Models\Vendors\ChatMessage','chat_id')
+                   ->where('receiver_id',Auth::user()->id)
+                   ->where('receiver_status',0);
     }
 
 

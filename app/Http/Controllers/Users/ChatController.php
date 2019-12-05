@@ -78,6 +78,11 @@ public function getMessage($msg)
 
 
 
+#------------------------------------------------------------------------------------
+#   sendMesage
+#------------------------------------------------------------------------------------
+
+
 
 public function getMessages(Request $request,$id)
 {
@@ -111,6 +116,64 @@ public function getMessages(Request $request,$id)
 
 
 
+
+
+
+public function getChatBox(Request $request,$id)
+{
+
+     $Chat = Chat::with([
+        'ChatMessages',
+        'deals',
+        'deals.Business',
+        'deals.Business.profileImage',
+        'ChatMessages.sender',
+        'ChatMessages.receiver'
+      ])->where('id',$id)->where('user_id',Auth::user()->id)->first();
+
+
+    $vv = view('users.chats.chatbox')->with('chats',$Chat);
+
+
+
+
+    return response()->json(['status' => 1,'data' => $vv->render()]);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+#------------------------------------------------------------------------------------
+#   sendMesage
+#------------------------------------------------------------------------------------
+
+
+public function getList(Request $request)
+{
+
+  $chats = Chat::join('chat_messages','chat_messages.chat_id','=','chats.id')
+                  ->where('receiver_id',Auth::user()->id)
+                  ->where('receiver_status',0)->count();
+  
+  if($chats > 0 || $request->type == "all"){
+   $vv = view('users.chats.chatlist')->with('activeList',$request->activeList);
+   return response()->json(['status' => 1, 'list' => $vv->render()]);
+    
+  }else{
+    return response()->json(['status' => 1]);
+  }
+
+ 
+   
+}
 
 
 }

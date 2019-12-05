@@ -307,17 +307,38 @@ public function packagesDelete(Request $request, $slug, $id) {
 
 
 
-public function getData($slug) {
-      $category = Category::FindBySlugOrFail($slug);
-      return $category ? $category : redirect()
-                     ->route('vendor_dashboard')
-                    ->with('messages','Please check your url, Its wrong!');   	   
+// public function getData($slug) {
+//       $category = Category::FindBySlugOrFail($slug);
+//       return $category ? $category : redirect()
+//                      ->route('vendor_dashboard')
+//                     ->with('messages','Please check your url, Its wrong!');   	   
+//    }
+
+public function getData($slug)
+   {
+      
+      $category = Category::where('slug',$slug)
+                           ->join('vendor_categories','vendor_categories.category_id','=','categories.id')
+                           ->where('vendor_categories.user_id',Auth::user()->id);
+
+      return $category->count() > 0 ? $category->first() : redirect()->route('vendor_dashboard')->with('messages','Please check your url, Its wrong!');
+
+       
    }
 
-public function getVendorCategoryID($category_id) {
-       $vendor = \App\VendorCategory::where(['user_id'=> Auth::User()->id, 'category_id'=> $category_id])->first();
-       return $vendor_category_id = $vendor->count() > 0 ? $vendor->id : 0;
+public function getVendorCategoryID($category_id)
+{
+        $VendorCategory = \App\VendorCategory::where('user_id',Auth::user()->id)
+       ->where('category_id',$category_id);
+       $vendor = $VendorCategory->first();
+       return $vendor_category_id = $VendorCategory->count() > 0 ? $vendor->id : 0;
+
 }
+
+// public function getVendorCategoryID($category_id) {
+//        $vendor = \App\VendorCategory::where(['user_id'=> Auth::User()->id, 'category_id'=> $category_id])->first();
+//        return $vendor_category_id = $vendor->count() > 0 ? $vendor->id : 0;
+// }
 
 
 

@@ -46,7 +46,7 @@ class DealsController extends Controller
 
 public function getDeals(Request $request)
 {
- $discount_deals = DiscountDeal::with('chats')
+ $discount_deals = DiscountDeal::with('Business.getChatOfLoggedUser')
                           ->join('vendor_categories','vendor_categories.id','=','discount_deals.vendor_category_id')
                           ->join('categories','categories.id','=','vendor_categories.category_id')
                           ->join('users','users.id','=','vendor_categories.user_id')
@@ -67,6 +67,8 @@ public function getDeals(Request $request)
                           ->where('vendor_categories.publish',1)
                          
                           ->orderBy('discount_deals.id','DESC');
+
+     // return $discount_deals->get();
 
     $vv = view('includes.home.deals.list',$this->getSesssionData())
         ->with('discount_deals',$discount_deals->paginate(20));
@@ -207,7 +209,7 @@ public function sendMessage($request,$deal)
           #################################################
           
           $chats = Chat::where('user_id',Auth::user()->id)
-                       ->where('deal_id',$deal->id)
+                      // ->where('deal_id',$deal->id)
                        ->where('vendor_id',$deal->user_id)
                        ->where('business_id',$deal->vendor_category_id);
 

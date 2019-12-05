@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Auth;
 use App\Category;
 use App\Models\Vendors\DiscountDeal;
+use App\VendorPackage;
+
 class DealController extends Controller
 {
 
@@ -38,7 +40,7 @@ class DealController extends Controller
    public function index($slug)
    {
    	    $category = $this->getData($slug);
-       $deals = DiscountDeal::where('category_id',$category->category_id)
+        $deals = DiscountDeal::where('category_id', $category->category_id)
                            ->where('user_id',Auth::user()->id);
 
 
@@ -59,12 +61,18 @@ class DealController extends Controller
    public function add($slug)
    {
    	  $category = $this->getData($slug);
-       
+      $packages = VendorPackage::where([
+                      'category_id' => $category->id,
+                      'user_id'=> Auth::User()->id,
+                      'status'=> 1
+                    ])->get();
+
       return view('vendors.management.deals.add')
-              ->with('category',$category)
+              ->with('category', $category)
               ->with('addLink', 'vendor_deals_management')
-              ->with('slug',$slug)
-              ->with('title',$category->label.' Management :: Deals & Discount');
+              ->with('packages', $packages)
+              ->with('slug', $slug)
+              ->with('title', $category->label.' Management :: Deals & Discount');
    }
 
 
@@ -96,6 +104,14 @@ class DealController extends Controller
       $d->vendor_category_id = $this->getVendorCategoryID($category->category_id);
       $d->image = $request->hasFile('image') ? uploadFileWithAjax($this->path,$request->file('image')) : '';
       $d->title = trim($request->title);
+      
+      $d->type_of_deal = trim($request->type_of_deal);
+      $d->packages = trim($request->packages);
+      $d->start_date = trim($request->start_date);
+      $d->amount = trim($request->amount);
+      $d->deal_off_type = trim($request->deal_off_type);
+      $d->deal_code = trim($request->deal_code);
+
       $d->save();
 
       return redirect()->route('vendor_deals_management',$slug)->with('messages','Deal & Discount added successfully.');
@@ -117,6 +133,12 @@ class DealController extends Controller
                            ->where('id',$id)
                            ->where('user_id',Auth::user()->id);
 
+      $packages = VendorPackage::where([
+                      'category_id' => $category->id,
+                      'user_id'=> Auth::User()->id,
+                      'status'=> 1
+                    ])->get();
+
         if($deals->count() == 0){
         	return redirect()->back()->with('error_message','Something Wrong!');
         }
@@ -124,6 +146,7 @@ class DealController extends Controller
       return view('vendors.management.deals.edit')
               ->with('category',$category)
               ->with('slug',$slug)
+              ->with('packages', $packages)
               ->with('deal',$deal)
               ->with('addLink', 'vendor_deals_management')
               ->with('title',$category->label.' Management :: Deals & Discount');
@@ -164,6 +187,14 @@ class DealController extends Controller
       $d->deal_life = trim($request->deal_life);
       $d->image = $request->hasFile('image') ? uploadFileWithAjax($this->path,$request->file('image')) : $d->image;
       $d->title = trim($request->title);
+
+      $d->type_of_deal = trim($request->type_of_deal);
+      $d->packages = trim($request->packages);
+      $d->start_date = trim($request->start_date);
+      $d->amount = trim($request->amount);
+      $d->deal_off_type = trim($request->deal_off_type);
+      $d->deal_code = trim($request->deal_code);
+      
       $d->vendor_category_id = $this->getVendorCategoryID($category->category_id);
       $d->save();
 

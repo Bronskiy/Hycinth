@@ -10,13 +10,14 @@ require __DIR__.'/ajax.php';
 		Route::post('/settings/password', 'Vendor\VendorController@changePassword')->name('vendor_password'); 
 
         Route::get('/settings/payment', 'Vendor\VendorController@payment')->name('vendor_payment'); 
-		Route::post('/settings/payment', 'Vendor\VendorController@updatePayment')->name('vendor_payment'); 
+		Route::post('/settings/payment', 'Vendor\VendorController@updatePayment')->name('vendor_payment');
+        Route::get('/category/{slug}/payment', 'Vendor\ManagementController@paymentSetting')->name('vendor_cat_pay_management');
+        Route::post('/category/{slug}/payment', 'Vendor\ManagementController@updatePaymentSetting')->name('vendor_cat_pay_management');
 
-		
+
         Route::get('/category/assign', 'Vendor\CategoryController@assign')->name('vendor_category_assign');    
 		Route::get('/category/assign/new', 'Vendor\CategoryController@assign2')->name('vendor_category_assign2');    
 		Route::post('/category/assign', 'Vendor\CategoryController@assignCategory')->name('vendorAssignCategory'); 
-
 
 
 		#-------------------------------------------------------------------------------------------

@@ -16,8 +16,8 @@
          #-----------------------------------------------------------------------------------
 
 
-         Route::get('/deal-discount-chats', 'Users\ChatController@index')->name('deal_discount_chats'); 
-         Route::get('/deal-discount-chat/{id}', 'Users\ChatController@chat')->name('deal_discount_chatMessages'); 
+         Route::get('/messages/chats', 'Users\ChatController@index')->name('deal_discount_chats'); 
+         Route::get('/messages/chat/{id}', 'Users\ChatController@chat')->name('deal_discount_chatMessages'); 
 
          #-----------------------------------------------------------------------------------
          #  Event Management ----------------------------------------------------------------

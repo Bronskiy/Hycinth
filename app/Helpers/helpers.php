@@ -1436,7 +1436,7 @@ function DateBox($errors,$label, $name,$value=null){
 		$text = "";
 		$text .= "<div class='form-group'>";
 		$text .="<label>$label</label>";
-		$text .= "<input type='date' class='form-control $border' id='datepicker' name='$name' value='".$v."'>";
+		$text .= "<input type='date' class='form-control $border' id='$name' name='$name' value='".$v."'>";
 		$text .="<p class='error'>".$errors->first($name)."&nbsp;".$ex."</p>";
 		$text .="</div>";
 

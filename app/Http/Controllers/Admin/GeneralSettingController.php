@@ -51,16 +51,10 @@ use GeneralSettingTrait;
 #-----------------------------------------------------------------------
 
 
-
-
-
-
-
- 	public function ajaxData()
-	{
-		 	 
+ 	public function ajaxData() {
 		 $amenities = PageMetaTag::select('*')
                              ->where('title','!=',"")
+                             ->whereNotIn('type', ['paypal-credentials', 'stripe-credentials', 'global-settings'])
 		                         ->groupBy('type')
 		                         ->get();
 		
@@ -125,16 +119,6 @@ use GeneralSettingTrait;
 
     public function store(Request $request) {
           $type = $request->type;
-
-          if($type == 'paypal-credentials') {
-            $key = 'paypal_credentials';
-            $value = json_encode($request->all());
-            $this->updateMeta($key, $value, $type, $request);
-          } elseif($type == 'stripe-credentials') {
-            $key = 'stripe_credentials';
-            $value = json_encode($request->all());
-            $this->updateMeta($key, $value, $type, $request);
-          } else {
             foreach ($request->all() as $key => $value) {
               if(!in_array($key, $this->ignors)):
             	//if($key != "_token" && $key != "homePage_banner"):
@@ -142,7 +126,6 @@ use GeneralSettingTrait;
 
                endif;
             }
-          }
           return redirect()->route('list_general_settings')->with('flash_message','The general setting is done.');
     }
 
@@ -275,9 +258,34 @@ use GeneralSettingTrait;
 
 
 
+// global settings
+
+public function global() {
+  return view('admin.settings.general.global-settings')->with(['title'=> 'Global Settings']);
+}
+
+public function updateGlobal(Request $request) {
+    $type = $request->type;
+        foreach ($request->all() as $key => $value) {
+          if(!in_array($key, $this->ignors)):
+               $this->updateMeta($key, $value, $type, $request);
+           endif;
+        }
+    return redirect()->route('global_settings')->with('flash_message', 'The Global setting has been saved successfully.');
+}
 
 
+// payment settings
 
+public function payments() {
+	return view('admin.settings.general.payment')->with(['title'=> 'Payment Settings']);
+}
+
+public function updatePayments(Request $request) {
+    $value = json_encode($request->all());
+    $this->updateMeta($request->key, $value, $request->type, $request);
+	  return redirect()->route('list_payment_settings')->with('flash_message', 'The Payment setting has been saved successfully.');
+}
 
 
 

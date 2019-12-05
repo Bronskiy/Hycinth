@@ -10,7 +10,6 @@
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url(route('admin_dashboard'))}}"><i class="feather icon-home"></i></a></li>
-                    <li class="breadcrumb-item "><a href="{{ route($addLink) }}">View</a></li>
                     <li class="breadcrumb-item "><a href="javascript:void(0)">Edit</a></li>
                 </ul>
             </div>
@@ -23,21 +22,21 @@
         <div class="col-12">
           <div class="card">
             <!-- /.card-header -->
-       @include('admin.error_message')
+       
  
             <div class="card-body">
 
-
+@include('admin.error_message')
 
 <div class="col-md-12">
 
   <form role="form" method="post" id="globalSettingsForm" enctype="multipart/form-data">
       @csrf
-      <input type="hidden" name="type" value="{{Request::route('id')}}">
+      <input type="hidden" name="type" value="global-settings">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Google Api Key</h5>
-           {{textbox($errors,'Google Api Key*', 'google_api_key', $google_api_key)}}
+           {{textbox($errors,'Google Api Key*', 'google_api_key', getAllValueWithMeta('google_api_key', 'global-settings'))}}
         </div>
       </div>
 

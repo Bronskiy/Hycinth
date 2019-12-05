@@ -19,7 +19,9 @@ class CreateVendorCategoriesTable extends Migration
             $table->integer('user_id')->nullable();
             $table->integer('category_id')->nullable();
             $table->integer('status')->nullable();
-            
+            $table->string('payment_status')->nullable();
+            $table->string('paypal_email')->nullable();
+            $table->string('stripe_email')->nullable();
             $table->timestamps();
         });
     }

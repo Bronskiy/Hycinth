@@ -54,8 +54,8 @@
                               <li><a href="{{url(route('vendor_delete_deals_management',[$slug,$d->id]))}}">Delete</a></li>
                             </ul> -->
                             <ul class="acrdn-action-btns single-row">
-          <li><a href="{{url(route('vendor_edit_deals_management',[$slug,$d->id]))}}" class="action_btn dark-btn"><i class="fas fa-pencil-alt"></i></a></li>         
-          <li><a onclick="deleteItem(this)" href="javascript:void(0)" data-delurl="{{url(route('vendor_delete_deals_management',[$slug,$d->id]))}}" class="action_btn danger-btn"><i class="fas fa-trash-alt"></i></a></li>   
+          <li><a data-toggle="tooltip" title="Edit" href="{{url(route('vendor_edit_deals_management',[$slug,$d->id]))}}" class="action_btn dark-btn"><i class="fas fa-pencil-alt"></i></a></li>         
+          <li><a data-toggle="tooltip" title="Delete" onclick="deleteItem(this)" href="javascript:void(0)" data-delurl="{{url(route('vendor_delete_deals_management',[$slug,$d->id]))}}" class="action_btn danger-btn"><i class="fas fa-trash-alt"></i></a></li>   
         </ul>
                        </div>
                    </div>

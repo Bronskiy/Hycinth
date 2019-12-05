@@ -13,18 +13,44 @@ $(document).ready(function(){
     rules: {
       "title": {
           required: true,
+          maxlength: 150
+      },
+      "packages":{
+        required: true
+      },
+      "type_of_deal":{
+        required: true
+      },
+      "deal_code": {
+        required: true,
+        maxlength: 10
+      },
+      "amount": {
+        required: true,
+        amount: true,
+        maxlength: 10
       },
       "deal_life": {
         required: true
       },
-      "expiry_date": {
+      "start_date": {
+        required: true,
         minDate: true
+      },
+      "expiry_date": {
+        required: true,
+        minStartDate: true
+      },
+      "deal_off_type": {
+        required: true
       },
        "description": {
           required: true,
+          maxlength: 500
       },
       'message_text': {
           required: true,
+          maxlength: 300
       },
       valueToBeTested: {
           required: true,

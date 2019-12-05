@@ -133,7 +133,7 @@ public function getMessage($msg)
 public function getMessages(Request $request,$slug,$id)
 {
 
- $business = $this->getData($slug);
+  $business = $this->getData($slug);
   $Chat = Chat::with([
        'ChatMessages'
    ])
@@ -147,12 +147,12 @@ public function getMessages(Request $request,$slug,$id)
                           ->where('receiver_status',0)->count();
 
    if($request->type == "all"){
-        $vv = view('users.chats.messages')->with('chats', $Chat);
+        $vv = view('vendors.management.chats.messages')->with('chats', $Chat);
         return response()->json(['status' => 1 ,'messages' => $vv->render()]);
     }else{
 
       if($messages > 0){
-        $vv = view('users.chats.messages')->with('chats', $Chat);
+        $vv = view('vendors.management.chats.messages')->with('chats', $Chat);
         return response()->json(['status' => 1 ,'messages' => $vv->render()]);
       }else{
         return response()->json(['status' => 0]);
@@ -160,6 +160,64 @@ public function getMessages(Request $request,$slug,$id)
          
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+public function getchatList(Request $request,$slug)
+{
+
+    $business = $this->getData($slug);
+
+    $chats = Chat::join('chat_messages','chat_messages.chat_id','=','chats.id')
+                  ->where('chat_messages.receiver_id',Auth::user()->id)
+                  ->where('chats.business_id',$business->id)
+                  ->where('chat_messages.receiver_status',0)->count();
+  
+    if($chats > 0 || $request->type == "all"){
+         $vv = view('vendors.management.chats.chatlist')
+         ->with('business',$business)
+         ->with('activeList',$request->activeList);
+         return response()->json(['status' => 1, 'list' => $vv->render()]);
+     }else{
+         return response()->json(['status' => 1]);
+     }
+}
+
+
+
+
+public function getChatbox(Request $request,$slug,$id)
+{
+     $business = $this->getData($slug);
+
+    $Chat = Chat::with([
+        'ChatMessages',
+        'deals',
+        'deals.Business',
+        'deals.Business.profileImage',
+        'ChatMessages.sender',
+        'ChatMessages.receiver'
+      ])
+    ->where('id',$id)
+    ->where('business_id',$business->id)
+    ->where('vendor_id',Auth::user()->id)
+    ->first();
+
+
+    $vv = view('vendors.management.chats.chatbox')->with('chats',$Chat)->with('business',$business);
+ 
+    return response()->json(['status' => 1,'data' => $vv->render()]);
+
+}
+
 
 
 

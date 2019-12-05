@@ -15,7 +15,7 @@
                         
                         <ul class="acrdn-action-btns">
                            <!-- <li><a href="javascript:void(0);" class="action_btn primary-btn"><i class="fas fa-pencil-alt"></i></a></li> -->
-                          <li><a onclick="deleteItem(this)" href="javascript:void(0)" data-delurl="{{route('vendor_category_meta_delete', [$category->slug, $img->id])}}" class="action_btn danger-btn"><i class="fas fa-trash-alt"></i></a></li>
+                          <li><a data-toggle="tooltip" title="Delete" onclick="deleteItem(this)" href="javascript:void(0)" data-delurl="{{route('vendor_category_meta_delete', [$category->slug, $img->id])}}" class="action_btn danger-btn"><i class="fas fa-trash-alt"></i></a></li>
                      </ul>
               </div>
                     

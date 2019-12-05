@@ -36,15 +36,50 @@
                           <div class="col-lg-12">
                              {{textbox($errors,'Title*','title', $deal->title)}}
                            </div>
+
+                           <div class="col-lg-6">
+                            <label class="control-label">Type Of Deal's </label>
+                             <select class="form-control" id="type_of_deal" class="form-control" 
+                            name="type_of_deal">
+                            <option value="">Select</option>
+                                <option {{ $deal->type_of_deal == '0' ? 'selected' : '' }} value="0">Universal</option>
+                                <option {{ $deal->type_of_deal == '1' ? 'selected' : '' }} value="1">Assign Packages</option>
+                            </select>
+                              <!-- {{selectsimple($errors, "Type Of Deal's", 'type_of_deal',[0 => 'Universal',1 => 'Assign Packages', $deal->type_of_deal])}} -->
+                          </div>
+                          <div class="col-lg-6" style="display: {{ $deal->type_of_deal == '1' ? 'block' : 'none' }}">
+                            <label class="control-label">Packages </label>
+                            <select class="form-control" id="packages" class="form-control" 
+                            name="packages">
+                            <option value="">Select</option>
+                            @foreach($packages as $package)
+                                <option {{ $deal->packages == $package->id ? 'selected' : '' }} value="{{$package->id}}">{{$package->title}}</option>
+                                @endforeach
+                            </select>
+                          </div>
+                          
+                          <div class="col-lg-6" style="display: {{ $deal->type_of_deal == '0' ? 'block' : 'none' }}"> 
+                            {{textbox($errors, 'Deal Code*', 'deal_code', $deal->deal_code)}}
+                           </div>
+
                           <div class="col-lg-6">
                               {{selectsimple($errors,"Deal's Life",'deal_life',[0 => 'Permanent',1 => 'According to Expiry Date'],$deal->deal_life)}}
                           </div>
-                           <div class="col-lg-6">
-                          <!-- {{datebox($errors,'Expiry Date','expiry_date', $deal->expiry_date)}} -->
-                          <div class="form-group"><label>Expiry Date</label>
-                                <input type="date" class="form-control valid" data-rule-required="false" id="datepicker" value="{{$deal->expiry_date}}" name="expiry_date"/>
-                              </div>
+
+                           <div class="col-lg-6" style="display: {{ $deal->deal_life == '1' ? 'block' : 'none' }}">
+                            {{datebox($errors, 'Start Date', 'start_date', $deal->start_date)}}
+                           </div>
+
+                           <div class="col-lg-6" style="display:  {{ $deal->deal_life == '1' ? 'block' : 'none' }}">
+                          {{datebox($errors,'Expiry Date','expiry_date', $deal->expiry_date, $deal->expiry_date)}}
                           </div>
+
+                           <div class="col-lg-6">
+                              {{selectsimple($errors, "Deal's Off Type", 'deal_off_type',[0 => 'Percent',1 => 'Direct'], $deal->deal_off_type)}}
+                          </div>
+                          <div class="col-lg-6">
+                            {{textbox($errors, 'Percent/Amount*', 'amount', $deal->amount)}}
+                           </div>
                           <div class="col-lg-6">
                              {{textarea($errors,'Description*','description',$deal->description)}}
                           </div>
@@ -81,23 +116,38 @@
 <script src="{{url('/js/validations/dealValidation.js')}}"></script>
 <script src="{{url('/js/validations/imageShow.js')}}"></script>
 <script type="text/javascript">
-  $("select.form-control").change(function() {
-        var selectedCountry = $(this).children("option:selected").val();
-        if(selectedCountry === '1') {
-          if(!$('#datepicker').data('rule-required')) {
-            $('#datepicker').data('rule-required', true);
-            $('#datepicker').parent('.form-group').find('label').eq(1).css('display', 'block');    
-          }
+  $('select[name="deal_life"]').change(function() {
+        const selectedDealLife = $(this).children("option:selected").val();
+        if(selectedDealLife === '1') {
+          $('#start_date').parents('.col-lg-6').css('display', 'block');
+          $('#expiry_date').parents('.col-lg-6').css('display', 'block');
         } else {
-          if($('#datepicker').data('rule-required')) {
-            $('#datepicker').parent('.form-group').find('label').eq(1).css('display', 'none');
-            $('#datepicker').data('rule-required', false);    
-          }
+          $('#start_date').parents('.col-lg-6').css('display', 'none');
+          $('#expiry_date').parents('.col-lg-6').css('display', 'none');
         }
     });
 
-  $("#datepicker").change(function() {
-    $('#datepicker').parent('.form-group').find('label').eq(1).css('display', 'none');
+  $("#start_date").change(function() {
+    $(this).parent('.form-group').find('label').eq(1).css('display', 'none');
   });
+
+  $("#expiry_date").change(function() {
+    $(this).parent('.form-group').find('label').eq(1).css('display', 'none');
+  });
+
+  $('select[name="type_of_deal"]').change(function() {
+      const selectedDealLife = $(this).children("option:selected").val();
+        if(selectedDealLife === '0') {
+          $('#deal_code').parents('.col-lg-6').css('display', 'block');
+          $('#packages').parents('.col-lg-6').css('display', 'none');
+        } else if(selectedDealLife === '1') {
+          $('#deal_code').parents('.col-lg-6').css('display', 'none');
+          $('#packages').parents('.col-lg-6').css('display', 'block');
+        } else {
+          $('#deal_code').parents('.col-lg-6').css('display', 'none');
+          $('#packages').parents('.col-lg-6').css('display', 'none');
+        }
+  });
+
 </script>
 @endsection

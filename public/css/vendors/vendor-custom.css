@@ -38,6 +38,9 @@ label {
     margin-bottom: 5px;
     font-weight: 700;
 }
+form label{
+    color: #333;
+}
 textarea.form-control {
     height: 130px;
     resize: none;
@@ -1531,6 +1534,22 @@ label.error:after, label.error:before {
 }
 .pcoded-header .dropdown .dropdown-toggle:after{
 	right: -5px;
+}
+.cstm-grp-input {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    position: relative;
+}
+.cstm-grp-input .custom-control{
+  position: static;
+}
+.cstm-grp-input .custom-control.custom-radio {
+    padding-left: 0px;
+    padding-right: 10px;
+}
+.cstm-grp-input .custom-control.custom-radio:last-child{
+  padding-right: 0px;
 }
 /******************/
 @media (max-width: 767px) {

@@ -8,7 +8,7 @@
     <nav class="pcoded-navbar">
         <div class="navbar-wrapper">
             <div class="navbar-brand header-logo">
-                <a href="{{url(route('admin_dashboard'))}}" class="b-brand">
+                <a href="{{url(route('user_dashboard'))}}" class="b-brand">
                     <div class="b-bg">
                         <img src="/frontend/images/logo.svg">
                     </div>
@@ -29,11 +29,15 @@
                 
 
                 <li class="nav-item pcoded-menu-caption">
-                    <label>User Businesses</label>
+                    <label>User Events</label>
                 </li>
 
                 <li class="nav-item">
-                    <a href="javascript:void(0)" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Chat</span></a>
+                    <a href="" class="nav-link "><span class="pcoded-micon"><i class="feather icon-calendar"></i></span><span class="pcoded-mtext">My Events</span></a>
+                </li> 
+
+                <li class="nav-item">
+                    <a href="{{url(route('deal_discount_chats'))}}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-inbox"></i></span><span class="pcoded-mtext">My Inbox</span></a>
                 </li> 
 
                <!--  <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_category', 'category_variations', 'create_category','edit_category'],'pcoded-trigger') ?>" >

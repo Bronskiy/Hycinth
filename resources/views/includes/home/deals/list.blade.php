@@ -24,10 +24,10 @@
  
 <?php
 
-  $chats = $deal->chats != null && $deal->chats->count() > 0 ? 1 : 0;
+  $chats = $deal->Business->getChatOfLoggedUser != null && $deal->Business->getChatOfLoggedUser->count() > 0 ? 1 : 0;
   $links = '';
-  if($deal->chats != null && $deal->chats->count() > 0){
-     $link = url(route('deal_discount_chatMessages',$deal->chats->id));
+  if($deal->Business->getChatOfLoggedUser != null && $deal->Business->getChatOfLoggedUser->count() > 0){
+     $link = url(route('deal_discount_chatMessages',$deal->Business->getChatOfLoggedUser->id));
      $links = 'Your message has been sent to vendor, soon that will reply you. <a href="'.$link.'">view chat</a>';
   }
 
@@ -37,7 +37,40 @@
 
 
 
+  <div class="deals-card">
+  	<figure class="deal-img">
+  		<img src="{{url($deal->image)}}">
+  		<figcaption class="discount-per"><span class="blink-text">20% <small>Off </small></span> </figcaption>  		
+  	</figure>
+  	 <div class="detal-card-details">
+  	 	<div class="dealls-dis-head">
+  	 		<a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec"> <h4>{{$deal->title}}</h4></a>
+  	 		<p class="ser-text"> <span><i class="fas fa-calendar-alt"></i></span>
+              <span class="deal-starting-date">Stating:<strong> {{$deal->updated_at->format('Y-m-d')}} </strong></span> <span class="deal-starting-date">Ending:<strong> {{$deal->expiry_date}}</strong></span>
+  	 		 <!-- {{$deal->deal_life == 1 ? 'Expires on '.$deal->expiry_date : 'Permanent promotion'}} --></p>
+  	 		<a href="javascript:void(0);" class="coupon-code">
+  	 			<span class="code-text">CALENDARS</span>
+  	 			<span class="get-code">Get Code</span>
+  	 		</a>
+  	 	</div>
+  	 	<p class="deal-discription">
+             <?php $description =  $deal->description; ?>
+                                               {{substr($description,0,100)}} {{strlen($description) > 100 ? '...' : ''}}
+        </p>
+        <ul class="button-grp-wrap">
+        	<li><a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec" data-toggle="tooltip" title="More Detail" class="icon-btn"><i class="fa fa-eye"></i></a></li>
+        	<li><a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec" data-toggle="tooltip" title="Get Deal" class="icon-btn"><i class="fas fa-tags"></i></a></li>
+        	<li><a href="javascript:void(0);" class="icon-btn" data-title="{{$deal->Business->title}}"
+                                             data-message="{{$deal->message_text}}"
+                                             data-id="{{$deal->id}}"
+                                             data-chat="{{$chats}}"
+                                             data-chatMessage="{{$links}}" data-toggle="tooltip" title="Chat"><i class="fa fa-comment-dots"></i></a></li>
+        </ul>
+  	 </div>
 
+  </div>
+
+<!-- 
   <div class="detail-in-breif">
                                 <div class="row">
                                     <div class="col-lg-5">
@@ -61,6 +94,8 @@
 
                                             <a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec" class="cstm-btn solid-btn detail-btn"><i class="fa fa-eye"></i> More detail</a>
 
+                                             <a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec" class="cstm-btn solid-btn detail-btn"><i class="fa fa-eye"></i> Get Deal</a>
+
                                             <a href="javascript:void(0);"
                                              class="cstm-btn solid-btn detail-btn get_detail"
                                              data-title="{{$deal->Business->title}}"
@@ -68,13 +103,14 @@
                                              data-id="{{$deal->id}}"
                                              data-chat="{{$chats}}"
                                              data-chatMessage="{{$links}}"
-                                             >Get Deal </a>
+                                             ><i class="fa fa-comment-dots"></i> Chat</a>
 
                                              
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                             -->
                             <hr class="hr-break">
  
 
@@ -131,6 +167,12 @@
     </div>
   </div>
 </div>
+
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 
 
 

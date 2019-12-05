@@ -57,10 +57,8 @@ public function checkCategoryOfVendor()
    }
 
    public function updatePayment(Request $request) {
-     $u = Auth::user();
-     $u->payment_status = $request->payment_status;
-     $u->save();
-     return redirect()->back()->with('flash_message', "Your Payment has been changed"); 
+     Auth::User()->update($request->all());
+     return redirect()->back()->with('flash_message', "Your Payment Settings has been changed successfully"); 
    }
 
 #---------------------------------------------------	
