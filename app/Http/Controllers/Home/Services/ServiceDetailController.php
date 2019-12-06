@@ -11,7 +11,6 @@ use Gmopx\LaravelOWM\LaravelOWM;
 class ServiceDetailController extends Controller
 {
     
-
  public $folderPath ='home.vendors.services.detail';
 
 #-----------------------------------------------------------------------
@@ -121,6 +120,9 @@ public function getStyleOfThisVendor($styles,$relation,$col)
 }
 
 public function getweather(Request $req) {
+	$weather_api_key = getAllValueWithMeta('weather_api_key', 'global-settings');
+	// $weather_api_key = '8b9eccd531cf8de092a195b4d5c2d869';
+
 	$headers = [
         'Content-Type: application/json',
    	];
@@ -128,9 +130,9 @@ public function getweather(Request $req) {
     $weather = curl_init();
     if($req->time) {
     	$req->time = \Carbon\Carbon::parse($req->time)->timestamp;
-		$url = "https://api.darksky.net/forecast/8b9eccd531cf8de092a195b4d5c2d869/$req->latitude,$req->longitude,$req->time";
+		$url = "https://api.darksky.net/forecast/$weather_api_key/$req->latitude,$req->longitude,$req->time";
     } else {
-    $url = "https://api.darksky.net/forecast/8b9eccd531cf8de092a195b4d5c2d869/$req->latitude,$req->longitude";
+    $url = "https://api.darksky.net/forecast/$weather_api_key/$req->latitude,$req->longitude";
     }
 
     curl_setopt($weather, CURLOPT_URL, $url);

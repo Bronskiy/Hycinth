@@ -52,14 +52,15 @@ public function getDeals(Request $request)
                           ->join('users','users.id','=','vendor_categories.user_id')
                           ->select('discount_deals.*')
                          
-                          ->where(function($t) use($request){
+                          ->where(function($t) use($request) {
                              $data = $t->first();
-                             if($data->deal_life == 1){
-                                  $t->where('discount_deals.expiry_date','>=',date('Y-m-d'));
+
+                             if($data->deal_life == 1) {
+                                  $data->whereDate('discount_deals.expiry_date', '>=', date('Y-m-d'));
                              }
                              
-                             if(!empty($request->categories)){
-                                $t->whereIn('categories.id',$request->categories);
+                             if(!empty($request->categories)) {
+                                $data->whereIn('categories.id', $request->categories);
                              }
 
                           })
@@ -70,7 +71,7 @@ public function getDeals(Request $request)
 
      // return $discount_deals->get();
 
-    $vv = view('includes.home.deals.list',$this->getSesssionData())
+    $vv = view('includes.home.deals.list', $this->getSesssionData())
         ->with('discount_deals',$discount_deals->paginate(20));
    return response()->json([
        'status' => 1,
@@ -111,8 +112,7 @@ public function getSesssionData()
          'name' => '',
          'phone' => '',
          'email' => '',
-         'event_date' => '',
-          
+         'event_date' => '',          
       ];
    }
 

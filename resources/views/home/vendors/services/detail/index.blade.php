@@ -36,7 +36,9 @@ div#Video-carousel li span {
       <div class="sec-card">
          <div class="page-head">
             <div class="row">
-               <div class="col-lg-5">
+               <div class="col-lg-9 col-md-8">
+                   <div class="row">
+                     <div class="col-lg-7">
                   <div class="page-header">
                      <figure class="head-logo"><img src="/frontend/images/vendor-03.png"></figure>
                      <div class="heading-details">
@@ -50,19 +52,23 @@ div#Video-carousel li span {
                      </div>                  
 
                   </div>
-                  
                </div>
-               <div class="col-lg-4">
+
+                  <div class="col-lg-5">
                   <!-- weather details for venues -->
                      @include('home.vendors.services.detail.weather')
 
                </div>
+                  
+               </div>
+            </div>
+               
 
 
  
 
  
-              <div class="col-lg-3 sticky-form-sidebar">
+              <div class="col-lg-3 col-md-4 sticky-form-sidebar">
                   <div class="cstm-btn-grp text-right">
                      <a href="javascript:void(0);" class="cstm-btn"><span class="btn-icon"><i class="fas fa-handshake"></i></span> Hired?</a>
                      <!-- <a href="javascript:void(0);" class="cstm-btn"><span class="btn-icon"><i class="fas fa-heart"></i></span> Save</a> -->
@@ -265,7 +271,56 @@ div#Video-carousel li span {
                   <div class="Deals-content">
                      @if($vendor->DealsDiscount->count() > 0)
                      @foreach($vendor->DealsDiscount as $deal)
-                     <div class="detail-in-breif">
+                     <div class="deals-card">
+    <figure class="deal-img">
+      <img src="{{url($deal->image)}}">
+      <figcaption class="discount-per"><span class="blink-text">
+        @if($deal->deal_off_type == 0)
+         {{$deal->amount}}% 
+        @else
+         ${{$deal->amount}} 
+        @endif
+        <small> OFF</small></span> </figcaption>      
+    </figure>
+     <div class="detal-card-details">
+      <div class="dealls-dis-head">
+        <a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec"> <h4>{{$deal->title}}</h4></a>
+
+<p class="ser-text"> <span><i class="fas fa-calendar-alt"></i></span>
+        @if($deal->deal_life == 0)
+          Permanent Deal
+        @else
+                <span class="deal-starting-date">Stating:<strong> {{date('d-m-Y',strtotime($deal->start_date))}}</strong></span> <span class="deal-starting-date">Ending:<strong> {{date('d-m-Y',strtotime($deal->expiry_date))}}</strong></span>
+        @endif
+        </p>
+
+        <p class="ser-text mt-1">
+         <span><i class="fas fa-tag"></i></span> {{ $deal->Business->category->label }}
+        </p>
+
+        @if($deal->type_of_deal == '0')
+        <a href="javascript:void(0);" class="coupon-code" data-toggle="tooltip" title="Copy to clipboard">
+          <span class="code-text">{{ $deal->deal_code }}</span>
+          <span class="get-code">Get Code</span>
+        </a>
+       @endif
+      </div>
+      <p class="deal-discription">
+             <?php $description =  $deal->description; ?>
+                                               {{substr($description,0,100)}} {{strlen($description) > 100 ? '...' : ''}}
+        </p>
+        <ul class="button-grp-wrap">
+          <li><a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec" data-toggle="tooltip" title="Get Deal" class="icon-btn"><i class="fas fa-tags"></i></a></li>
+          <li><a href="javascript:void(0);" class="icon-btn" data-title="{{$deal->Business->title}}"
+                                             data-message="{{$deal->message_text}}"
+                                             data-id="{{$deal->id}}"
+                                             data-toggle="tooltip" title="Chat">
+                                             <i class="fa fa-comment-dots"></i></a></li>
+        </ul>
+     </div>
+
+  </div>
+                    <!--  <div class="detail-in-breif">
                         <div class="row">
                            <div class="col-lg-4 col-md-12">
                               <div class="left-content">
@@ -283,7 +338,7 @@ div#Video-carousel li span {
                               </div>
                            </div>
                         </div>
-                     </div>
+                     </div> -->
                      @endforeach
                      @endif
                   </div>
@@ -652,7 +707,7 @@ const venue_weather_route = $('#venue_weather_route').val();
     },
 
     success: function(forecast) {
-      if(forecast.code === 400) return;
+      if(forecast.code === 400 || forecast.code === 403) return;
 
       $('#weather-loader').css('display', 'none');
       $('#open_weather_modal').css('opacity', '1');
@@ -770,6 +825,24 @@ function toFerenheit(val) {
    //tooltip
  $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();   
+});
+
+ $('.coupon-code').click(function() {
+  /* Get the text field */
+  var text = $(this).parent().find('.code-text').text();
+  var copyText = document.createElement("textarea");
+  document.body.appendChild(copyText);
+  copyText.value = text;
+
+  /* Select the text field */
+  copyText.select(); 
+  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+  document.body.removeChild(copyText);
+  $(this).attr('data-original-title', `Copied ${copyText.value}`);
+  
 });
 </script>
 @endsection

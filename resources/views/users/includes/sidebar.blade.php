@@ -32,8 +32,9 @@
                     <label>User Events</label>
                 </li>
 
-                <li class="nav-item">
-                    <a href="" class="nav-link "><span class="pcoded-micon"><i class="feather icon-calendar"></i></span><span class="pcoded-mtext">My Events</span></a>
+                <li class="nav-item {{ \Request::route()->getName() === 'user_events' || \Request::route()->getName() === 'user_show_create_event'
+                 ? 'active' : '' }}">
+                    <a href="{{ route('user_events') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-calendar"></i></span><span class="pcoded-mtext">My Events</span></a>
                 </li> 
 
                 <li class="nav-item">

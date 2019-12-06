@@ -45,13 +45,9 @@
                        {{activeCategoryMetaData(Auth::User()->id,$category->category_id, $s->season->id, 'seasons')}}>
                            <label for="category-{{$s->season->id}}">{{$s->season->name}}  </label>
  
-                    </div>
-                    
+                    </div>                    
                    </div>
-
-                  </div>
- 
-                        
+                  </div>                        
                  @endforeach
 
 
@@ -59,7 +55,7 @@
 
                  <div class="col-md-12">
                       @csrf 
-                      <div class="btn-wrap mt-2">
+                      <div class="btn-wrap mt-2 mb-3">
                       <button class="cstm-btn" id="assignCategoryBtn">Assign</button>
                     </div>
 
@@ -80,16 +76,6 @@
      </div>
    </div>
 </div>
-
-
-
-
-
-
-
-
-
-
 
 
 

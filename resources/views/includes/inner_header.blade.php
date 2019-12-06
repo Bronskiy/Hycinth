@@ -56,7 +56,7 @@
                 <button class="menu-toggle" type="button">
                     <span><i class="fas fa-bars"></i></span> Menu
                 </button>
-                <a class="brand-name"><img src="/frontend/images/logo.svg"></a>
+                <a href="http://49.249.236.30:6633" class="brand-name"><img src="/frontend/images/logo.svg"></a>
                 <button class="toolbox mob-hide" type="button">
                     <span><i class="fas fa-wrench"></i></span> Toolbox
                 </button>

@@ -96,7 +96,7 @@
         <div class="user-rating-sec">
         	<div class="user-rating-card">
          <div class="row">
-             <div class="col-lg-3">
+             <div class="col-md-3">
                  <div class="rating-user-detail">
                      <figure>
                          <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image">
@@ -105,7 +105,7 @@
                      <div class="review-block-date"><p>January 29, 2016<br>1 day ago</p></div>
                  </div>
              </div>
-             <div class="col-lg-9">
+             <div class="col-md-9">
                 <div class="rating-content"> 
                    <div class="review-block-rate">
                                 <span class="btn btn-warning btn-xs" aria-label="Left Align">
@@ -134,7 +134,7 @@
 
         <div class="user-rating-card">
          <div class="row">
-             <div class="col-lg-3">
+             <div class="col-md-3">
                  <div class="rating-user-detail">
                      <figure>
                          <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image">
@@ -143,7 +143,7 @@
                      <div class="review-block-date"><p>January 29, 2016<br>1 day ago</p></div>
                  </div>
              </div>
-             <div class="col-lg-9">
+             <div class="col-md-9">
                 <div class="rating-content"> 
                    <div class="review-block-rate">
                                 <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">

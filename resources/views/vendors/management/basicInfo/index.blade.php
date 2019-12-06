@@ -27,7 +27,8 @@
             <div class="card-header"><h3>{{$title}}</h3></div>
         <div class="card-body">
 
-        <div class="col-md-12"> 
+        <div class="col-md-12">
+        <div class="table-responsive"> 
 		     	<table class="table">
 		         <tr>
                   <th>Business Name</th>
@@ -66,6 +67,7 @@
                  
 
          </table>
+       </div>
 
 		    </div>
     </div>

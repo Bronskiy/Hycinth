@@ -1,4 +1,4 @@
-<div class="col-lg-3 col-md-4 range eventside-bar">
+<div class="col-lg-3 range eventside-bar">
     <form id="BusinessListingFilter" action="{{url(route('get_all_businesses'))}}">
                         <div id="accordion">
                             <div class="card">

@@ -10,6 +10,7 @@ use App\VendorCategoryMetaData;
 use App\Category;
 use App\Style;
 use Auth;
+
 class ManagementController extends VendorController
 {
 

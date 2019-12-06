@@ -1,7 +1,6 @@
 @extends('layouts.home')
 @section('content')
 
-
   <section class="main-banner" style="background:url('/frontend/images/banner-bg.png');">
         <div class="container">
             <div class="banner-content">
@@ -23,7 +22,7 @@
 
                      
                     @include('includes.home.deals.sidebar')
-                    <div class="col-lg-9 col-md-8">
+                    <div class="col-lg-9">
                         <div class="inner-content">
                             <p>Showing Results <b id="categoryCount">Searching...</b></p>
                            <hr>
@@ -39,13 +38,6 @@
         </div>
     </section>
     <!-- banner section starts Ends here -->
-
-
-
-
-
-
-
 
 
 
@@ -96,16 +88,5 @@
   
 <script type="text/javascript" src="{{url('/js/deals/deals.js')}}"></script>
 
-
-
-
-
-
-
-
-
-
-
-
-
 @endsection
+

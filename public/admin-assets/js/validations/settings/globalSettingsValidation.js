@@ -13,6 +13,9 @@ $(document).ready(function(){
       "google_api_key": { 
           required: true,
       },
+      "weather_api_key": { 
+          required: true,
+      },
       valueToBeTested: {
           required: true,
       }

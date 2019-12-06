@@ -33,7 +33,7 @@
                      <form method="post" id="dealForm" enctype="multipart/form-data">
                           @csrf
                           <div class="row">
-                          <div class="col-lg-12">
+                          <div class="col-lg-6">
                              {{textbox($errors,'Title*','title', $deal->title)}}
                            </div>
 
@@ -60,18 +60,18 @@
                           
                           <div class="col-lg-6" style="display: {{ $deal->type_of_deal == '0' ? 'block' : 'none' }}"> 
                             {{textbox($errors, 'Deal Code*', 'deal_code', $deal->deal_code)}}
-                           </div>
+                           </div>                          
 
                           <div class="col-lg-6">
                               {{selectsimple($errors,"Deal's Life",'deal_life',[0 => 'Permanent',1 => 'According to Expiry Date'],$deal->deal_life)}}
                           </div>
 
                            <div class="col-lg-6" style="display: {{ $deal->deal_life == '1' ? 'block' : 'none' }}">
-                            {{datebox($errors, 'Start Date', 'start_date', $deal->start_date)}}
+                            {{datebox($errors, 'Start Date', 'start_date', date('Y-m-d',strtotime($deal->start_date)))}}
                            </div>
 
                            <div class="col-lg-6" style="display:  {{ $deal->deal_life == '1' ? 'block' : 'none' }}">
-                          {{datebox($errors,'Expiry Date','expiry_date', $deal->expiry_date, $deal->expiry_date)}}
+                          {{datebox($errors,'Expiry Date','expiry_date', date('Y-m-d',strtotime($deal->expiry_date)))}}
                           </div>
 
                            <div class="col-lg-6">
@@ -89,15 +89,17 @@
                            <div class="col-lg-6">
                               <!-- {{choosefile($errors,'Picture For This Deal*','image')}} -->
                             <div class="form-group">
-                              <label class="label-file">Picture For This Deal*</label>
+                              <!-- <label class="label-file">Picture For This Deal*</label> -->
                                <input type="file" accept="image/*" onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="image">
                            </div>
 
                             </div>
                             <div class="col-md-6">
+                               <div class="form-group">
                              <div class="deal-container">
                               <img src="{{url($deal->image)}}" id="image_src" width="200">
                            </div>
+                         </div>
                            </div>
                         </div>
                          <div class="form-group"><button id="dealFormBtn" class="cstm-btn">Save</button></div>

@@ -213,7 +213,55 @@
 			    @if($vendor->DealsDiscount->count() > 0)
 
 			    @foreach($vendor->DealsDiscount as $deal)
-                  <div class="detail-in-breif">
+
+  <div class="deals-card">
+    <figure class="deal-img">
+      <img src="{{url($deal->image)}}">
+      <figcaption class="discount-per"><span class="blink-text">
+        @if($deal->deal_off_type == 0)
+         {{$deal->amount}}% 
+        @else
+         ${{$deal->amount}} 
+        @endif
+        <small> OFF</small></span> </figcaption>      
+    </figure>
+     <div class="detal-card-details">
+      <div class="dealls-dis-head">
+        <a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec"> <h4>{{$deal->title}}</h4></a>
+
+<p class="ser-text"> <span><i class="fas fa-calendar-alt"></i></span>
+        @if($deal->deal_life == 0)
+          Permanent Deal
+        @else
+                <span class="deal-starting-date">Stating:<strong> {{date('d-m-Y',strtotime($deal->start_date))}}</strong></span> <span class="deal-starting-date">Ending:<strong> {{date('d-m-Y',strtotime($deal->expiry_date))}}</strong></span>
+        @endif
+        </p>
+
+        <p class="ser-text mt-1">
+         <span><i class="fas fa-tag"></i></span> {{ $deal->Business->category->label }}
+        </p>
+
+        @if($deal->type_of_deal == '0')
+        <a href="javascript:void(0);" class="coupon-code" data-toggle="tooltip" title="Copy to clipboard">
+          <span class="code-text">{{ $deal->deal_code }}</span>
+          <span class="get-code">Get Code</span>
+        </a>
+       @endif
+      </div>
+      <p class="deal-discription">
+             <?php $description =  $deal->description; ?>
+                                               {{substr($description,0,100)}} {{strlen($description) > 100 ? '...' : ''}}
+        </p>
+        <ul class="button-grp-wrap">
+          <li><a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec" data-toggle="tooltip" title="Get Deal" class="icon-btn"><i class="fas fa-tags"></i></a></li>
+          <li><a href="javascript:void(0);" class="icon-btn" data-title="{{$deal->Business->title}}"
+                                             data-message="{{$deal->message_text}}"
+                                             data-id="{{$deal->id}}"data-toggle="tooltip" title="Chat"><i class="fa fa-comment-dots"></i></a></li>
+        </ul>
+     </div>
+
+  </div>
+                  <!-- <div class="detail-in-breif">
                                 <div class="row">
                                     <div class="col-lg-4 col-md-12">
                                         <div class="left-content">
@@ -233,7 +281,7 @@
                                         </div>
                                     </div>
                                 </div>
-                    </div>
+                    </div> -->
                    @endforeach
 
                     @endif

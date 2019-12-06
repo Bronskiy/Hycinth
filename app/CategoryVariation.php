@@ -25,15 +25,16 @@ class CategoryVariation extends Model
         return $this->belongsTo('App\Amenity','variant_id');
     }
 
-
-
-
-
      # category variants CategoryMaterials
     public function Event()
     {
         return $this->belongsTo('App\Event','variant_id');
     }
+
+    public function category() {
+        return $this->belongsTo('App\Category','category_id');
+    }
+
 
 
       # category variants CategoryMaterials

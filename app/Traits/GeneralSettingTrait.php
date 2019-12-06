@@ -13,8 +13,7 @@ trait GeneralSettingTrait {
  ];
 
 
-  public function getArrayValue($slug)
- {
+  public function getArrayValue($slug) {
 	    switch ($slug) {
 		 	case 'homepage':
 		 		    return [
@@ -129,6 +128,7 @@ trait GeneralSettingTrait {
 		 	case 'global-settings': 
           return [
                   'google_api_key' => getAllValueWithMeta('google_api_key', $slug),
+                  'weather_api_key' => getAllValueWithMeta('weather_api_key', $slug),
           ];
       case 'paypal-credentials': 
           return [

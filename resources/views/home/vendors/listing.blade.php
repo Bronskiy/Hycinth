@@ -10,7 +10,7 @@
                     <form>
                     <div class="row">
                         
-                        <div class="col-lg-10 col-md-10 col-sm-10 pd-right-0">
+                        <div class="col-lg-10 col-md-9 pd-right-0">
                             <div class="form-group">
                                 <!-- <input type="text" name="" class="form-control"> -->
                                 <select name="vendors[]" class="form-control select2" data-placeholder="Search Vendors">
@@ -23,7 +23,7 @@
                             </div>
                         </div>
                          
-                        <div class="col-lg-2 col-md-2 col-sm-2">
+                        <div class="col-lg-2 col-md-3 padding-left-0">
                             <div class="form-group">
                                 <button class="cstm-btn solid-btn banner-btn">Search</button>
                                 <!-- <a href="#" class="cstm-btn solid-btn banner-btn">Search</a> -->
@@ -42,7 +42,7 @@
                <span class="aside-toggle">
                                 <i class="fa fa-bars"></i>
                                 <span class="cross-class">
-                                    <i class="fas fa-times"></i>
+                                    <i class="fas fa-times" style="display: none;"></i>
                                 </span>
                             </span>
                 <div class="row">
@@ -51,7 +51,7 @@
 
                       @include('includes.home.business.sidebar')
                     
-                    <div class="col-lg-9 col-md-8">
+                    <div class="col-lg-9">
                         <div class="inner-content">
                             <p>Showing Results <b id="categoryCount">Searching...</b></p>
                             <span class="view-toggle">

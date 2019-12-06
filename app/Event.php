@@ -19,14 +19,18 @@ class Event extends Model
      * @return array
      */
 
-    public function sluggable()
-    {
+    public function sluggable() {
         return [
 
             'slug' => [
                 'source' => 'name'
             ]
         ];
+    }
+
+    public function categoryVariation() {
+       return $this->hasMany('App\CategoryVariation', 'variant_id', 'id');
+                    
     }
     
 }

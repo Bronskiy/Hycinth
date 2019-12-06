@@ -148,7 +148,7 @@
                         <div class="panel-heading">Guest Capacity</div>
                         <div class="panel-body">
                            <div class="row">
-                              <div class="col-md-4">
+                              <div class="col-xl-4 col-lg-6">
                                   <div class="vendor-category">
                                     <div class="category-checkboxes category-title">
                                     <input type="radio" name="capacity_type" value="1" id="category-1" 
@@ -159,7 +159,7 @@
                                  </div>
                               </div>
 
-                              <div class="col-md-4">
+                              <div class="col-xl-4 col-lg-6">
                                   <div class="vendor-category">
                                     <div class="category-checkboxes category-title">
                                     <input type="radio" name="capacity_type" value="2" id="category-2" 
@@ -169,7 +169,7 @@
                                  </div>
                               </div>
 
-                              <div class="col-md-4">
+                              <div class="col-xl-4 col-lg-6">
                                   <div class="vendor-category">
                                     <div class="category-checkboxes category-title">
                                     <input type="radio" name="capacity_type" value="3" id="category-3" 

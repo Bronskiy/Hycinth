@@ -27,7 +27,7 @@
                      <form method="post" id="dealForm" enctype="multipart/form-data">
                           @csrf
                          <div class="row"> 
-                           <div class="col-lg-12">
+                           <div class="col-lg-6">
                             {{textbox($errors,'Title*','title')}}
                            </div>
 
@@ -35,6 +35,7 @@
                               {{selectsimple($errors, "Type Of Deal's", 'type_of_deal',[0 => 'Universal',1 => 'Assign Packages'])}}
                           </div>
                           <div class="col-lg-6" style="display: none;">
+                            <label>Packages</label>
                           	<select class="form-control" id="packages" class="form-control" 
                             name="packages">
                             <option value="">Select</option>
@@ -87,10 +88,13 @@
                             <!-- {{choosefile($errors, 'Picture For This Deal*', 'image')}} -->
 
                             <div class="form-group">
-                              <label class="label-file">Picture For This Deal*</label>
+                              <!-- <label class="label-file">Picture For This Deal*</label> -->
                                <input type="file" accept="image/*" required onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="image">
                            </div>
-                           <img src="" style="display: none" id="image_src" width="200"/>
+                           
+                         </div>
+                         <div class="col-lg-6">
+                           <div class="uploaded-img"><img src="" style="display: none" id="image_src" width="80"/></div>
                          </div>
                          
       <!--        <div class="form-group">

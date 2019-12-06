@@ -3,7 +3,7 @@
         <div class="ftr-content">
             <div class="row">
                 <div class="col-lg-2 col-md-2 col-12">
-                    <a href="index.html" class="ftr-logo"><img src="/frontend/images/logo.svg"></a>
+                    <a href="{{ route('homepage') }}" class="ftr-logo"><img src="/frontend/images/logo.svg"></a>
                 </div>
                 <div class="col-lg-2 col-md-2 col-6">
                     <div class="ftr-links-wrap">

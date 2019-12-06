@@ -22,7 +22,7 @@ $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) 
        
                             <div class="detail-in-breif">
                                 <div class="row">
-                                    <div class="col-lg-5">
+                                    <div class="col-lg-4">
                                         
                                         <div class="custom-left-content">
 
@@ -56,7 +56,7 @@ $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) 
                                          
                                     
                                     </div>
-                                    <div class="col-lg-7">
+                                    <div class="col-lg-8">
                                         <div class="right-content">
                                           <div class="listing-head">
                                     <a href="{{url( route('vendor_detail_page',[$cate->category->slug,$cate->business_url]))}}"> <h4 class="padding-rt">{{getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','business_name')}}</h4></a>
@@ -77,7 +77,7 @@ $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) 
  
 
                                             <ul class="rating">
-                                                <li>
+                                                <li class="price-detail-wrap">
                                                   <div class="price-review-detail"><p>Starting From:</p> <span> ${{custom_format(getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','min_price'),2)}} for {{getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','min_guest')}} <i class="fa fa-users"></i> </span>
                                                   </div>
                                                 </li>
@@ -98,10 +98,10 @@ $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) 
                                             </ul>
                                           </div>
 
-                                            <ul class="capacity">
+                                            <ul class="sitting-capacity">
                                                @if($cate->category->capacity == 1)
                                                  <li>
-                                                    <p class=""><i class="fa fa-users"></i> <?= $cate->sitting_capacity > 0 ? 'Sitting Capacity <b>'.$cate->sitting_capacity.'</b> ' : ''?> <?= $cate->standing_capacity > 0 ? 'Standing Capacity<b>'.$cate->standing_capacity.'</b>' : ''?></p>
+                                                  <p class=""><i class="fa fa-users"></i> <?= $cate->sitting_capacity > 0 ? 'Sitting Capacity <b>'.$cate->sitting_capacity.'</b></p></li>' : ''?> <li><p><?= $cate->standing_capacity > 0 ? 'Standing Capacity<b>'.$cate->standing_capacity.'</b>' : ''?></p>
                                                  </li>
                                                 @endif
                                             </ul>

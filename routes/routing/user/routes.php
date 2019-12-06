@@ -9,7 +9,11 @@
          #  Event Management ----------------------------------------------------------------
          #-----------------------------------------------------------------------------------
 
-          Route::get('/events', 'Users\EventController@index')->name('user_events');
+          Route::get('/events', 'Users\UserEventController@index')->name('user_events');
+          Route::get('/events/create', 'Users\UserEventController@showCreateEvent')->name('user_show_create_event');
+          Route::post('/events/create', 'Users\UserEventController@create')->name('user_show_create_event');
+          Route::get('/events/edit/{slug}', 'Users\UserEventController@showEditEvent')->name('user_show_edit_event');
+          Route::post('/events/edit/{slug}', 'Users\UserEventController@update')->name('user_show_edit_event');
 
          #-----------------------------------------------------------------------------------
          #  Event Management ----------------------------------------------------------------

@@ -40,6 +40,13 @@
         </div>
       </div>
 
+       <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Weather Api Key</h5>
+           {{textbox($errors,'Weather Api Key*', 'weather_api_key', getAllValueWithMeta('weather_api_key', 'global-settings'))}}
+        </div>
+      </div>
+
       <div class="card-footer">
         <button type="submit" id="globalSettingsFormBtn" class="btn btn-primary">Submit</button>
       </div>

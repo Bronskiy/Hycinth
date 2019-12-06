@@ -1,5 +1,5 @@
 
-<div class="col-lg-3 col-md-4 range eventside-bar">
+<div class="col-lg-3 range eventside-bar">
     <form id="formBusinessDisountDeals" action="{{url(route('get_all_dealAndDiscount'))}}">
                         <div id="accordion">
                             <div class="card">

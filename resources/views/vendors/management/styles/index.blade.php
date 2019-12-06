@@ -37,7 +37,7 @@
                  @endforeach
                  <div class="col-md-12">
                       @csrf 
-                  <div class="btn-wrap mt-2">
+                  <div class="btn-wrap mt-2 mb-3">
                       <button class="cstm-btn" id="assignCategoryBtn">Assign</button>
                     </div>
                       <div class="errorMessages"></div>

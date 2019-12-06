@@ -40,26 +40,53 @@
 
                   @endif
 
-           @foreach($deals as $d)
-               <div class="col-md-12"> 
-                   <div class="row deals">
-                       <div class="col-md-4"><img src="{{url($d->image)}}" class="img-responsive"></div>
-                       <div class="col-md-8">
-                            <h4>{{$d->title}}</h4>
-                            <p>{{$d->description}}</p>
+           @foreach($deals as $deal)
 
-                           <!--  <ul>
-                               
-                              <li><a href="{{url(route('vendor_edit_deals_management',[$slug,$d->id]))}}">Edit</a></li>
-                              <li><a href="{{url(route('vendor_delete_deals_management',[$slug,$d->id]))}}">Delete</a></li>
-                            </ul> -->
-                            <ul class="acrdn-action-btns single-row">
-          <li><a data-toggle="tooltip" title="Edit" href="{{url(route('vendor_edit_deals_management',[$slug,$d->id]))}}" class="action_btn dark-btn"><i class="fas fa-pencil-alt"></i></a></li>         
-          <li><a data-toggle="tooltip" title="Delete" onclick="deleteItem(this)" href="javascript:void(0)" data-delurl="{{url(route('vendor_delete_deals_management',[$slug,$d->id]))}}" class="action_btn danger-btn"><i class="fas fa-trash-alt"></i></a></li>   
+           <div class="deals-card">
+    <figure class="deal-img">
+      <img src="{{url($deal->image)}}">
+      <figcaption class="discount-per"><span class="blink-text">
+        @if($deal->deal_off_type == 0)
+         {{$deal->amount}}% 
+        @else
+         ${{$deal->amount}} 
+        @endif
+        <small> OFF</small></span> </figcaption>      
+    </figure>
+     <div class="detal-card-details">
+      <div class="dealls-dis-head">
+        <a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec"> <h4>{{$deal->title}}</h4></a>
+
+<p class="ser-text"> <span><i class="fas fa-calendar-alt"></i></span>
+        @if($deal->deal_life == 0)
+          Permanent Deal
+        @else
+                <span class="deal-starting-date">Stating:<strong> {{date('d-m-Y',strtotime($deal->start_date))}}</strong></span> <span class="deal-starting-date">Ending:<strong> {{date('d-m-Y',strtotime($deal->expiry_date))}}</strong></span>
+           <!-- {{$deal->deal_life == 1 ? 'Expires on '.$deal->expiry_date : 'Permanent promotion'}} -->
+        @endif
+        </p>
+
+        @if($deal->type_of_deal == '0')
+        <a href="javascript:void(0);" class="coupon-code">
+          <span class="code-text">{{ $deal->deal_code }}</span>
+          <span class="get-code">Get Code</span>
+        </a>
+       @endif
+      </div>
+      <p class="deal-discription">
+             <?php $description =  $deal->description; ?>
+                                               {{substr($description,0,100)}} {{strlen($description) > 100 ? '...' : ''}}
+        </p>
+        <ul class="acrdn-action-btns single-row">
+          <li><a data-toggle="tooltip" title="Edit" href="{{url(route('vendor_edit_deals_management',[$slug,$deal->id]))}}" class="action_btn dark-btn"><i class="fas fa-pencil-alt"></i></a></li>         
+          <li><a data-toggle="tooltip" title="Delete" onclick="deleteItem(this)" href="javascript:void(0)" data-delurl="{{url(route('vendor_delete_deals_management',[$slug,$deal->id]))}}" class="action_btn danger-btn"><i class="fas fa-trash-alt"></i></a></li>   
         </ul>
-                       </div>
-                   </div>
-               </div>
+     </div>
+
+  </div>
+
+
+
 
           @endforeach
 
