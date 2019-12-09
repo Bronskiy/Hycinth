@@ -15,6 +15,7 @@
               <ul class="mob-side-menus">
             @if(Auth::check()) 
                     <li class="user">
+
                         <span>
                             <i class="fas fa-user"></i>
                         </span>
@@ -34,7 +35,10 @@
               </li>
               <li>
                   <div class="icon-grp">
-                     <a href="javascript:void(0);" class=""><i class="fas fa-envelope"></i></a>
+                    
+
+                    @include('includes.messageCountHeader')
+                      
                       <a href="javascript:void(0);" class="fav-list">
                             <i class="fas fa-heart"></i>
                             <sup>2</sup>
@@ -59,14 +63,13 @@
             <li class="mob-hide"><a href="javascript:void(0);" data-toggle="modal" data-target="#VenuesCategoriesModal">Businesses</a></li>
             <li class="mob-hide"><a href="{{url(route('all_deals'))}}">Deals & Discount</a></li>
             <li class="mob-hide"><a href="/vendor/register">New Vendors</a></li>
-
+            @include('includes.messageCountHeader')
             <li class="mob-hide">
                <a href="javascript:void(0);" class="fav-list">
                <i class="fas fa-heart"></i>
                <sup>2</sup>
                </a>
             </li>
-            <li>
 
           @if(Auth::check())                       
              <li>                                       

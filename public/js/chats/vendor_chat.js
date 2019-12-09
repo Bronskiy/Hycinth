@@ -9,6 +9,16 @@ jQuery(function(){
 |_____________________________________________________________________________
 */
 
+  $(window).on('keypress keydown',function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+       if(event.target.nodeName == 'TEXTAREA'){
+           $("body").find('#sendMessage').submit();
+       }
+      return false;
+    }
+  });
+
 jQuery("body").on('submit','#sendMessage',function(e){
    e.preventDefault();
    var $this = jQuery( this );
@@ -35,6 +45,7 @@ jQuery("body").on('submit','#sendMessage',function(e){
                             $("body").find('#ChatMessages').append(result.message);
                             $this.find('button.cstm-btn').removeAttr('disabled');
                              scrollingTop();
+                             getChatListOfUser('all');
                        }
                },
                complete: function() {
@@ -128,7 +139,7 @@ function getChatListOfUser(type="some") {
                success: function (result) {
                       if(parseInt(result.status) == 1){
                          $this.html(result.list);
-                         scrollingTop();
+                          
 
                       }
                },
@@ -185,6 +196,7 @@ jQuery("body").on('click','a.getChatbox',function(e){
                         if(parseInt(result.status) == 1){
                            $("body").find('#userChatBox').html(result.data);
                            getChatListOfUser('all');
+                           scrollingTop();
 
                         }
                },

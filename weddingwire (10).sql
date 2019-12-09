@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 06, 2019 at 09:36 PM
+-- Generation Time: Dec 09, 2019 at 10:12 PM
 -- Server version: 5.7.28-0ubuntu0.16.04.2
 -- PHP Version: 7.2.16-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -266,10 +266,13 @@ CREATE TABLE `chats` (
 --
 
 INSERT INTO `chats` (`id`, `user_id`, `vendor_id`, `deal_id`, `business_id`, `status`, `deal_status`, `created_at`, `updated_at`) VALUES
-(1, 32, 44, 13, 26, 0, 1, '2019-12-03 08:35:00', '2019-12-03 08:35:00'),
-(3, 32, 31, 2, 1, 0, 0, '2019-12-04 05:14:22', '2019-12-04 05:14:22'),
-(4, 51, 31, 4, 1, 0, 0, '2019-12-04 08:50:25', '2019-12-04 08:50:25'),
-(5, 32, 34, 10, 15, 0, 0, '2019-12-05 00:51:03', '2019-12-05 00:51:03');
+(1, 32, 44, 13, 26, 0, 1, '2019-12-03 08:35:00', '2019-12-09 07:30:14'),
+(3, 32, 31, 2, 1, 0, 0, '2019-12-04 05:14:22', '2019-12-09 10:17:56'),
+(4, 51, 31, 4, 1, 0, 0, '2019-12-04 08:50:25', '2019-12-09 07:31:03'),
+(5, 32, 34, 10, 15, 0, 0, '2019-12-05 00:51:03', '2019-12-05 00:51:03'),
+(6, 32, 34, 25, 25, 0, 0, '2019-12-09 00:39:06', '2019-12-09 00:39:06'),
+(7, 60, 59, 27, 35, 0, 0, '2019-12-09 07:47:22', '2019-12-09 10:07:24'),
+(8, 32, 59, 27, 35, 0, 0, '2019-12-09 08:03:59', '2019-12-09 10:04:11');
 
 -- --------------------------------------------------------
 
@@ -380,7 +383,69 @@ INSERT INTO `chat_messages` (`id`, `sender_id`, `receiver_id`, `deal_id`, `busin
 (82, 51, 31, 4, 1, 'On the way home?', 4, 1, 1, '2019-12-05 06:07:46', '2019-12-05 06:08:12'),
 (83, 31, 51, 4, 1, 'hw', 4, 1, 1, '2019-12-05 06:08:21', '2019-12-05 06:08:21'),
 (84, 51, 31, 4, 1, 'Great Test', 4, 1, 1, '2019-12-05 06:09:01', '2019-12-05 06:09:03'),
-(85, 51, 31, 4, 1, 'Ok we will get in touch', 4, 1, 0, '2019-12-05 09:54:13', '2019-12-05 09:54:13');
+(85, 51, 31, 4, 1, 'Ok we will get in touch', 4, 1, 1, '2019-12-05 09:54:13', '2019-12-09 01:08:29'),
+(86, 32, 34, 25, 25, 'Hello vendor<br>hello<br>By Narinder Singh, Email: admin@printgenie.com, Phone Number : 4158464500<br>', 6, 0, 0, '2019-12-09 00:39:06', '2019-12-09 00:39:06'),
+(87, 32, 31, 2, 1, 'gud mrng', 3, 1, 1, '2019-12-09 01:11:09', '2019-12-09 01:31:14'),
+(88, 32, 31, 2, 1, 'hello', 3, 1, 1, '2019-12-09 01:21:18', '2019-12-09 01:31:14'),
+(89, 32, 31, 2, 1, 'hiiii', 3, 1, 1, '2019-12-09 01:22:07', '2019-12-09 01:31:14'),
+(90, 32, 31, 2, 1, 'dddd', 3, 1, 1, '2019-12-09 01:24:12', '2019-12-09 01:31:15'),
+(91, 32, 44, 13, 26, 'hello', 1, 1, 0, '2019-12-09 01:27:13', '2019-12-09 01:27:13'),
+(92, 32, 31, 2, 1, 'helo', 3, 1, 1, '2019-12-09 01:28:49', '2019-12-09 01:31:15'),
+(93, 32, 31, 2, 1, 'hello', 3, 1, 1, '2019-12-09 01:29:11', '2019-12-09 01:31:15'),
+(94, 32, 44, 13, 26, 'hello', 1, 1, 0, '2019-12-09 01:30:08', '2019-12-09 01:30:08'),
+(95, 32, 31, 2, 1, 'hello', 3, 1, 1, '2019-12-09 01:30:15', '2019-12-09 01:31:15'),
+(96, 31, 32, 2, 1, 'hiiiiii', 3, 1, 1, '2019-12-09 01:32:56', '2019-12-09 01:33:00'),
+(97, 31, 32, 2, 1, 'hello', 3, 1, 1, '2019-12-09 01:34:00', '2019-12-09 01:34:05'),
+(98, 31, 32, 2, 1, 'hiiuiaffgk', 3, 1, 1, '2019-12-09 01:36:06', '2019-12-09 01:36:10'),
+(99, 31, 32, 2, 1, 'hola', 3, 1, 1, '2019-12-09 01:36:39', '2019-12-09 01:36:40'),
+(100, 31, 32, 2, 1, 'hello', 3, 1, 1, '2019-12-09 01:37:04', '2019-12-09 01:37:10'),
+(101, 32, 44, 13, 26, 'helllo', 1, 1, 0, '2019-12-09 01:38:49', '2019-12-09 01:38:49'),
+(102, 31, 32, 2, 1, 'hllo', 3, 1, 1, '2019-12-09 01:39:22', '2019-12-09 01:39:25'),
+(103, 31, 32, 2, 1, 'hi', 3, 1, 1, '2019-12-09 01:39:41', '2019-12-09 01:42:31'),
+(104, 31, 51, 4, 1, 'hello', 4, 1, 0, '2019-12-09 01:43:56', '2019-12-09 01:43:56'),
+(105, 31, 32, 2, 1, 'hello', 3, 1, 1, '2019-12-09 01:44:58', '2019-12-09 01:50:00'),
+(106, 31, 51, 4, 1, 'hiiiiii', 4, 1, 0, '2019-12-09 01:45:27', '2019-12-09 01:45:27'),
+(107, 31, 32, 2, 1, 'fgffg', 3, 1, 1, '2019-12-09 01:45:35', '2019-12-09 01:50:00'),
+(108, 31, 51, 4, 1, 'hello', 4, 1, 0, '2019-12-09 01:46:28', '2019-12-09 01:46:28'),
+(109, 31, 32, 2, 1, 'hello', 3, 1, 1, '2019-12-09 02:34:49', '2019-12-09 02:36:37'),
+(110, 31, 32, 2, 1, 'hiii', 3, 1, 1, '2019-12-09 02:34:55', '2019-12-09 02:36:37'),
+(111, 31, 32, 2, 1, 'fghhgfgh', 3, 1, 1, '2019-12-09 02:34:58', '2019-12-09 02:36:37'),
+(112, 31, 32, 2, 1, 'ghghgf', 3, 1, 1, '2019-12-09 02:35:00', '2019-12-09 02:36:37'),
+(113, 31, 32, 2, 1, 'ghghgh', 3, 1, 1, '2019-12-09 02:35:02', '2019-12-09 02:36:37'),
+(114, 32, 31, 2, 1, 'hi', 3, 1, 1, '2019-12-09 02:36:44', '2019-12-09 02:36:47'),
+(115, 32, 31, 2, 1, '1212', 3, 1, 1, '2019-12-09 02:36:48', '2019-12-09 02:36:52'),
+(116, 32, 31, 2, 1, '3333', 3, 1, 1, '2019-12-09 02:36:51', '2019-12-09 02:36:52'),
+(117, 32, 31, 2, 1, '4444', 3, 1, 1, '2019-12-09 02:36:53', '2019-12-09 02:36:57'),
+(118, 32, 31, 2, 1, '5555', 3, 1, 1, '2019-12-09 02:36:56', '2019-12-09 02:36:57'),
+(119, 32, 31, 2, 1, 'sdsds', 3, 1, 1, '2019-12-09 02:51:19', '2019-12-09 06:21:51'),
+(120, 32, 31, 2, 1, 'sdsdsd', 3, 1, 1, '2019-12-09 02:51:21', '2019-12-09 06:21:51'),
+(121, 32, 31, 2, 1, 'sdsd', 3, 1, 1, '2019-12-09 02:51:24', '2019-12-09 06:21:51'),
+(122, 32, 31, 2, 1, 'sdsdsd', 3, 1, 1, '2019-12-09 02:51:26', '2019-12-09 06:21:51'),
+(123, 32, 31, 2, 1, 'sdsdsd', 3, 1, 1, '2019-12-09 02:51:28', '2019-12-09 06:21:51'),
+(124, 32, 31, 2, 1, 'sdsds', 3, 1, 1, '2019-12-09 06:22:22', '2019-12-09 06:54:58'),
+(125, 32, 31, 2, 1, 'sdsd', 3, 1, 1, '2019-12-09 06:22:24', '2019-12-09 06:54:58'),
+(126, 32, 31, 2, 1, 'ssd', 3, 1, 1, '2019-12-09 06:22:26', '2019-12-09 06:54:58'),
+(127, 32, 31, 2, 1, 'sdsds', 3, 1, 1, '2019-12-09 06:22:28', '2019-12-09 06:54:58'),
+(128, 31, 32, 2, 1, 'hello', 3, 1, 1, '2019-12-09 06:55:05', '2019-12-09 09:14:20'),
+(129, 32, 44, 13, 26, 'sasa', 1, 1, 0, '2019-12-09 07:30:09', '2019-12-09 07:30:09'),
+(130, 32, 44, 13, 26, 'kks', 1, 1, 0, '2019-12-09 07:30:14', '2019-12-09 07:30:14'),
+(131, 31, 51, 4, 1, 'jhwhwd', 4, 1, 0, '2019-12-09 07:31:04', '2019-12-09 07:31:04'),
+(132, 60, 59, 27, 35, 'Hello Kanny<br>I am intersted in your deal please let me know when to discuss for this.<br>By Kanny Customer, Email: kannyc@yopmail.com, Phone Number : 9465470549<br>', 7, 0, 1, '2019-12-09 07:47:22', '2019-12-09 10:07:18'),
+(133, 32, 59, 27, 35, 'Hello Kanny<br>sdsdsdsd<br>By Narinder Bajwa, Email: bajwa9876470491@gmail.com, Phone Number : 789654156<br>', 8, 0, 1, '2019-12-09 08:03:59', '2019-12-09 09:39:15'),
+(134, 32, 31, 2, 1, 'hello', 3, 1, 1, '2019-12-09 09:14:57', '2019-12-09 09:43:06'),
+(135, 32, 31, 2, 1, 'hi', 3, 1, 1, '2019-12-09 09:15:00', '2019-12-09 09:43:06'),
+(136, 32, 31, 2, 1, 'jl', 3, 1, 1, '2019-12-09 09:15:03', '2019-12-09 09:43:06'),
+(137, 31, 32, 2, 1, 'hello', 3, 1, 1, '2019-12-09 09:43:10', '2019-12-09 09:53:57'),
+(138, 31, 32, 2, 1, 'jsdjf', 3, 1, 1, '2019-12-09 09:43:12', '2019-12-09 09:53:57'),
+(139, 32, 59, 27, 35, 'hi', 8, 1, 0, '2019-12-09 10:03:59', '2019-12-09 10:03:59'),
+(140, 32, 59, 27, 35, 'dfdfd', 8, 1, 0, '2019-12-09 10:04:11', '2019-12-09 10:04:11'),
+(141, 59, 60, 27, 35, 'Okay', 7, 1, 0, '2019-12-09 10:07:24', '2019-12-09 10:07:24'),
+(142, 32, 31, 2, 1, 'hi', 3, 1, 1, '2019-12-09 10:07:31', '2019-12-09 10:14:45'),
+(143, 32, 31, 2, 1, 'hello', 3, 1, 1, '2019-12-09 10:07:33', '2019-12-09 10:14:45'),
+(144, 31, 32, 2, 1, 'hello', 3, 1, 1, '2019-12-09 10:14:49', '2019-12-09 10:17:50'),
+(145, 31, 32, 2, 1, 'hi', 3, 1, 1, '2019-12-09 10:14:51', '2019-12-09 10:17:50'),
+(146, 32, 31, 2, 1, 'hi', 3, 1, 1, '2019-12-09 10:17:53', '2019-12-09 10:17:55'),
+(147, 32, 31, 2, 1, 'hello', 3, 1, 1, '2019-12-09 10:17:56', '2019-12-09 10:18:00');
 
 -- --------------------------------------------------------
 
@@ -447,7 +512,9 @@ INSERT INTO `discount_deals` (`id`, `category_id`, `user_id`, `vendor_category_i
 (21, 25, 34, 15, 'Get Flat 100 OFF', 'Grab the Flat 100 OFF Deal within this Month', 'images/vendors/deals/1575620736MC9WuXw7kH4028f5DVu5t10_dsc5356_15_1836831555326929.jpg', 'Grab the Flat 100 OFF Deal within this Month', '2020-01-10 18:30:00.000000', NULL, 1, '2019-12-06 02:55:36', '2019-12-06 03:32:11', 1, '27', '', '100', 1, '2019-12-06 18:30:00.000000'),
 (23, 1, 34, 16, 'Grab Christmas Deal', 'Grab the latest 15% OFF on the Christmas Deal', 'images/vendors/deals/1575623593iCADn3Ne4h1L6qBFXSEPsanchez1_51_698336157383071560610.jpg', 'Grab the latest 15% OFF on the Christmas Deal', '0000-00-00 00:00:00.000000', NULL, 0, '2019-12-06 03:43:13', '2019-12-06 03:43:13', 0, '', 'GRAB15', '15', 0, '0000-00-00 00:00:00.000000'),
 (24, 11, 44, 26, 'Tester', 'Combining a trendy, upscale atmosphere with timeless elegance, Blush Banquet Hall is certain to be the perfect event venue for your special occasion. A versatile and stunning banquet hall, Blush is perfect not only for weddings, but also for any special  corporate events such as awar', 'images/vendors/deals/1575628645mLaGP7NP7kSBdvEusULDd0bd6384296a78bb9d33bd4f8d948e0c.jpg', 'Combining a trendy, upscale atmosphere with timeless elegance, Blush Banquet Hall is certain to be the perfect event venue for your special occasion. A versatile and stunning banquet hall, Blush is perfect not only for weddings, but also for any special event, including quinceañeras, Sweet 16s, bar and bat mitzvahs, anniversaries, baby showers, christenings, holiday parties, and corporate events such as awards galas and fundraisers. Wh', '0000-00-00 00:00:00.000000', NULL, 0, '2019-12-06 05:07:25', '2019-12-06 05:07:25', 1, '29', '', '20', 0, '0000-00-00 00:00:00.000000'),
-(25, 11, 34, 25, 'New video', 'lorem ipsum lorem ipsum', 'images/vendors/deals/1575631408BBR4GSfJTA6HCRnRwkkxeventpic.jpg', 'lorem ipsum lorem ipsum lorem ipsum', '2019-12-27 18:30:00.000000', NULL, 1, '2019-12-06 05:53:28', '2019-12-06 05:53:28', 1, '20', '', '10', 0, '2019-12-06 18:30:00.000000');
+(25, 11, 34, 25, 'New video', 'lorem ipsum lorem ipsum', 'images/vendors/deals/1575631408BBR4GSfJTA6HCRnRwkkxeventpic.jpg', 'lorem ipsum lorem ipsum lorem ipsum', '2019-12-27 18:30:00.000000', NULL, 1, '2019-12-06 05:53:28', '2019-12-06 05:53:28', 1, '20', '', '10', 0, '2019-12-06 18:30:00.000000'),
+(26, 11, 44, 26, 'stdhsdhd', 'sd dsg sd gsdg s', 'images/vendors/deals/1575875996QkdAqcu42c5OldjEHg8M162958.jpg', 'fdhsdssf f gfdg', '0000-00-00 00:00:00.000000', NULL, 0, '2019-12-09 01:49:56', '2019-12-09 01:49:56', 0, '', 'dhfdhd', '100', 0, '0000-00-00 00:00:00.000000'),
+(27, 1, 59, 35, 'Grab Winter Deal', 'Grab Winter Deal direct 50% OFF on my Packages. Hurry Try Coupon Code Now!!', 'images/vendors/deals/1575881871WPtwNXYfCRO38QCZWepjimg_77201.jpg', 'Grab Winter Deal direct 50% OFF on my Packages. Hurry Try Coupon Code Now!!', '2020-01-30 18:30:00.000000', NULL, 1, '2019-12-09 03:27:51', '2019-12-09 03:27:51', 0, '', 'GETWIN50', '50', 0, '2019-12-08 18:30:00.000000');
 
 -- --------------------------------------------------------
 
@@ -552,7 +619,8 @@ INSERT INTO `f_a_qs` (`id`, `question`, `answer`, `user_id`, `category_id`, `ven
 (23, 'It is a long established fact that a reader will be distracted by the readable', '<p>l[kplk[</p>', 34, 20, 14, 1, '2019-11-29 05:10:25', '2019-11-29 05:10:25'),
 (25, 'Helloo', '<p>Ffjhvh jhgjgjhgjh g lhjhjg he gjg hug Jha he h &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>', 44, 11, 26, 1, '2019-12-02 04:23:50', '2019-12-06 04:24:54'),
 (26, 'new question', '<p>my answer</p>', 34, 20, 14, 1, '2019-12-03 04:41:08', '2019-12-03 04:41:08'),
-(27, 'Testing', '<p>FGsh vjvihg NV. &nbsp;Jghkf I&rsquo;ve iub is ukub Uk bulb ukulele is bi buhig igig ig Uk Gil his hkhuiug I big jug I h kgukugig is iu gig is iu go gi gigigiugigiguguiggiy Uighur IGN iigu ig u gig ug if if g I gut if ,IGN I give gjg give it ig. I giygiyg iguana ignite go gg ig I gig I guess hi gu gig is juggjg I big jgjg jiggly IGN IGN ujg g gi&nbsp;</p>', 44, 11, 26, 1, '2019-12-06 04:26:54', '2019-12-06 04:26:54');
+(27, 'Testing', '<p>FGsh vjvihg NV. &nbsp;Jghkf I&rsquo;ve iub is ukub Uk bulb ukulele is bi buhig igig ig Uk Gil his hkhuiug I big jug I h kgukugig is iu gig is iu go gi gigigiugigiguguiggiy Uighur IGN iigu ig u gig ug if if g I gut if ,IGN I give gjg give it ig. I giygiyg iguana ignite go gg ig I gig I guess hi gu gig is juggjg I big jgjg jiggly IGN IGN ujg g gi&nbsp;</p>', 44, 11, 26, 1, '2019-12-06 04:26:54', '2019-12-06 04:26:54'),
+(28, 'What is the starting price for your wedding photography services?', '<p>$ 1000.00</p>', 59, 1, 35, 1, '2019-12-09 03:18:07', '2019-12-09 03:18:07');
 
 -- --------------------------------------------------------
 
@@ -674,7 +742,25 @@ INSERT INTO `package_meta_datas` (`id`, `parent`, `package_id`, `category_id`, `
 (322, 0, 26, 11, 42, 'amenities', 'amenity', '11', '2019-12-05 10:23:28', '2019-12-05 10:23:28'),
 (323, 0, 26, 11, 42, 'games', 'game', '12', '2019-12-05 10:23:28', '2019-12-05 10:23:28'),
 (324, 0, 26, 11, 42, 'events', 'event', '6', '2019-12-05 10:23:28', '2019-12-05 10:23:28'),
-(325, 0, 26, 11, 42, 'events', 'event', '11', '2019-12-05 10:23:28', '2019-12-05 10:23:28');
+(325, 0, 26, 11, 42, 'events', 'event', '11', '2019-12-05 10:23:28', '2019-12-05 10:23:28'),
+(326, 0, 30, 35, 59, 'addons', 'Add On for one Large Portrait', '10', '2019-12-09 03:22:18', '2019-12-09 03:22:18'),
+(330, 0, 32, 16, 34, 'amenities', 'amenity', '8', '2019-12-09 04:17:15', '2019-12-09 04:17:15'),
+(331, 0, 32, 16, 34, 'amenities', 'amenity', '9', '2019-12-09 04:17:15', '2019-12-09 04:17:15'),
+(332, 0, 32, 16, 34, 'games', 'game', '7', '2019-12-09 04:17:15', '2019-12-09 04:17:15'),
+(333, 0, 32, 16, 34, 'events', 'event', '2', '2019-12-09 04:17:15', '2019-12-09 04:17:15'),
+(334, 0, 33, 16, 34, 'amenities', 'amenity', '6', '2019-12-09 04:18:07', '2019-12-09 04:18:07'),
+(335, 0, 33, 16, 34, 'games', 'game', '13', '2019-12-09 04:18:08', '2019-12-09 04:18:08'),
+(336, 0, 33, 16, 34, 'events', 'event', '1', '2019-12-09 04:18:08', '2019-12-09 04:18:08'),
+(337, 0, 32, 16, 34, 'addons', 'my', '25', '2019-12-09 04:25:33', '2019-12-09 04:25:33'),
+(338, 0, 33, 16, 34, 'addons', 'new add', '20', '2019-12-09 04:25:44', '2019-12-09 04:25:44'),
+(339, 0, 31, 35, 59, 'addons', 'Add On for two Large Portrait', '50', '2019-12-09 04:26:39', '2019-12-09 04:26:39'),
+(345, 0, 36, 1, 59, 'amenities', 'amenity', '11', '2019-12-09 04:59:45', '2019-12-09 04:59:45'),
+(346, 0, 36, 1, 59, 'games', 'game', '7', '2019-12-09 04:59:45', '2019-12-09 04:59:45'),
+(347, 0, 36, 1, 59, 'events', 'event', '2', '2019-12-09 04:59:45', '2019-12-09 04:59:45'),
+(348, 0, 36, 1, 59, 'events', 'event', '3', '2019-12-09 04:59:45', '2019-12-09 04:59:45'),
+(349, 0, 37, 1, 59, 'amenities', 'amenity', '10', '2019-12-09 05:01:54', '2019-12-09 05:01:54'),
+(350, 0, 37, 1, 59, 'games', 'game', '12', '2019-12-09 05:01:54', '2019-12-09 05:01:54'),
+(351, 0, 37, 1, 59, 'events', 'event', '3', '2019-12-09 05:01:54', '2019-12-09 05:01:54');
 
 -- --------------------------------------------------------
 
@@ -968,11 +1054,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `first_name`, `last_name`, `email`, `phone_number`, `user_location`, `latitude`, `longitude`, `email_verified_at`, `password`, `role`, `profile_image`, `status`, `payment_status`, `payment_type`, `paypal_email`, `stripe_email`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', NULL, NULL, 'admin@gmail.com', '0', NULL, NULL, NULL, NULL, '$2y$10$24fdx3W1i9M2GLFjlOeUXuE2H7reNsX/Nsixl/ou8JxPIB.2EmZh.', 'admin', 'images/admin/1574677337kn9RnvDobyEJXsHyk5xe-photo-1551592398-c320012bc1c6.jpeg', NULL, NULL, NULL, NULL, NULL, 'q9UOIg6Se8Rkeb4uDpdfZMQmnsaV4dKbISNPq3XtkLmbIA2nhqJzTQyy20p7', '2019-11-09 00:19:35', '2019-11-25 04:52:17'),
+(1, 'Admin', NULL, NULL, 'admin@gmail.com', '0', NULL, NULL, NULL, NULL, '$2y$10$24fdx3W1i9M2GLFjlOeUXuE2H7reNsX/Nsixl/ou8JxPIB.2EmZh.', 'admin', 'images/admin/1574677337kn9RnvDobyEJXsHyk5xe-photo-1551592398-c320012bc1c6.jpeg', NULL, NULL, NULL, NULL, NULL, 'QjhiIKBFG55ixgrokaf70TDxpuefccA4rp09NxuizJ0SrreJvTsTqmiyhJSr', '2019-11-09 00:19:35', '2019-11-25 04:52:17'),
 (31, 'Narinder Bajwa', 'Narinder', 'Bajwa', 'bajwa7696346232@gmail.com', '0', NULL, NULL, NULL, '2019-11-12 07:02:09', '$2y$10$he8YxmZeBwdKAMqcbtQ0/.aJqTWo1Nxpm/WCKXK2XaEZAAJUE7Hc.', 'vendor', 'images/vendors/profile/15754682903k0mKXR3oz1UOM4OSDE2istockphoto953790424612x612.jpg', 1, '0', 1, 'paypalg@gmail.com', NULL, 'w25TcJXisf55ZleShsQRQ4q1m1GSX4aoj8ZxG0SuUTN9B8MuhByZyxIVBfx4', '2019-11-12 06:11:13', '2019-12-05 07:48:09'),
-(32, 'Narinder Bajwa', 'Narinder', 'Bajwa', 'bajwa9876470491@gmail.com', '789654156', 'New York Avenue Northwest, Washington, DC, USA', '38.9032325', '-77.02110679999998', '2019-11-30 18:30:00', '$2y$10$tiBVNqE4PMLEbmyfMNH9/eXn4rkSKw0uHTNdeFJEALg2yBdwB04JG', 'user', 'images/vendors/profile/15754697554EkKbsnz87ArnXAWUqAht10_dsc5356_15_1836831555326929.jpg', NULL, NULL, NULL, NULL, NULL, 'nRLDC28mGnxJDyzffAjAgvEB6EKpOowvv92pUKG9k1wAIMcmAoQqVGKilc4l', '2019-11-12 06:25:25', '2019-12-04 08:59:15'),
+(32, 'Narinder Bajwa', 'Narinder', 'Bajwa', 'bajwa9876470491@gmail.com', '789654156', 'New York Avenue Northwest, Washington, DC, USA', '38.9032325', '-77.02110679999998', '2019-11-30 18:30:00', '$2y$10$tiBVNqE4PMLEbmyfMNH9/eXn4rkSKw0uHTNdeFJEALg2yBdwB04JG', 'user', 'images/vendors/profile/15754697554EkKbsnz87ArnXAWUqAht10_dsc5356_15_1836831555326929.jpg', NULL, NULL, NULL, NULL, NULL, '5F8NDjafAMsgEpQyOsZw7cX47CQDjDXLqEmq4J0kLe7oxyVRCm12QfdAnlOq', '2019-11-12 06:25:25', '2019-12-04 08:59:15'),
 (33, 'hitesh sharma', 'hitesh', 'sharma', 'hitesh22791@gmail.com', '0', NULL, NULL, NULL, '2019-11-13 18:30:00', '$2y$10$o6TsuB0J0za0EknNojA7g.B304Cg3SRfIqrJU7QQZKSxgCYb5FpGi', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, 'usHDkMT6QyFgQUsA03DB113wGW1nDuLMbyqfBp9gdXKsZ8J0fi5xPkAJDT82', '2019-11-14 02:17:10', '2019-11-21 09:09:51'),
-(34, 'vendor s', 'vendor', 's', 'vendor001@yopmail.com', '12345656', NULL, NULL, NULL, '2019-11-14 04:22:00', '$2y$10$3nhw3wasoho0VKY52ffgHO7/OBu5wNz0O4r2SXSQrtzktEnI3YI5K', 'vendor', 'images/vendors/profile/1575376773SRf20ex3xxBQ4dgJjBNZonline.png', 1, '2', 1, 'paypal@gmail.com', 'stripe@gmail.com', 'W1cNGbMjJt2MxrP9SDW6Kfnu1ZPXQ5AHlTwrOvGzfn7IBi6yWFcytdD8a4Z8', '2019-11-14 04:19:37', '2019-12-05 07:33:14'),
+(34, 'vendor s', 'vendor', 's', 'vendor001@yopmail.com', '12345656', NULL, NULL, NULL, '2019-11-14 04:22:00', '$2y$10$3nhw3wasoho0VKY52ffgHO7/OBu5wNz0O4r2SXSQrtzktEnI3YI5K', 'vendor', 'images/vendors/profile/1575376773SRf20ex3xxBQ4dgJjBNZonline.png', 1, '2', 1, 'paypal@gmail.com', 'stripe@gmail.com', 'rtqiGMneq7hcNWxTJkqh7XKRQblQW6TAFa0XE0D0GD0pMkNZOtBxUch7TQnc', '2019-11-14 04:19:37', '2019-12-05 07:33:14'),
 (35, 'Kanny Gill', 'Kanny', 'Gill', 'kanny@yopmail.com', '0', NULL, NULL, NULL, '2019-11-15 03:06:31', '$2y$10$XZA0JR6bHi1MSANa86u8jOncOCBPT7wFdxaq5RZBjLIYW992ssDA.', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, 'Xrl2c1Wi9CoObL6isRFEmDk1wHPpScmBBteayDW2fjF1aVKrOBVdDIAZgx2W', '2019-11-15 03:06:02', '2019-11-21 09:10:03'),
 (36, 'Kanny Rajput', 'Kanny', 'Rajput', 'kannyraj@yopmail.com', '0', NULL, NULL, NULL, '2019-11-15 04:27:34', '$2y$10$05CiO5N1YnlHK2qAV493Kub/2oQ1PkscvvcNJ5lEeupu.MNxtrT7m', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, 'MiJiNw0hILOy4O7TcVXUAYem6b3hAujmp6kbR0rc2B8ILItRzt4iDwxj4wnI', '2019-11-15 04:27:09', '2019-11-21 09:10:06'),
 (37, 'Kanny Singhh', 'Kanny', 'Singhh', 'kannysingh@yopmail.com', '0', NULL, NULL, NULL, '2019-11-15 04:30:26', '$2y$10$D43XORx9FPYbJXJu2L7CkuJsKI9ywXPjNOXoVhPi9iegyE5tXy7h2', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, 'Moa9zHEdREFzRSFG7DNs2fDCSMEFPyGiUGOgan9FxOFj4TjsZNcdLF5CgwIa', '2019-11-15 04:30:08', '2019-11-21 09:10:10'),
@@ -980,7 +1066,7 @@ INSERT INTO `users` (`id`, `name`, `first_name`, `last_name`, `email`, `phone_nu
 (39, 'HYCINTH YIMGA', 'HYCINTH', 'YIMGA', 'contactfavorville@gmail.com', '0', NULL, NULL, NULL, '2019-11-15 16:20:30', '$2y$10$6Nq8e2EhE6Xp2/r7pSISb.cvfxbVENNgwPDeu4MZ0PIzm6a6/dEBe', 'user', NULL, NULL, NULL, NULL, NULL, NULL, 'HZfumDTztXkugyIUn7sXHgtJXprsW6Cp5e12T6rnJug0qChroiHGZY8eRyGQ', '2019-11-15 16:20:15', '2019-11-15 16:20:30'),
 (40, 'Test Test', 'Test', 'Test', 'yimgah@outlook.com', '0', NULL, NULL, NULL, '2019-11-15 16:26:13', '$2y$10$7i8QLKLRZvQS/aoDt/OWTuit05TjXMX9wkMMKzmDsT14wJ5IVIi3a', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, 'J6E8MXFU30Ds9mL0aBKSunr2UePU5F1PnmAIskQMBnUNQbbWXh1U7HDemJ0j', '2019-11-15 16:26:02', '2019-11-21 09:10:19'),
 (41, 'Ivery High', 'Ivery', 'High', 'ihigh@masonlive.gmu.edu', '0', NULL, NULL, NULL, '2019-11-15 19:10:31', '$2y$10$I3FxreZ4zHuUEns6VhcvmOCU7T5DvjU/j91f3YxUoUUXVzZFyDpjK', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, NULL, '2019-11-15 19:09:57', '2019-11-21 09:09:56'),
-(42, 'Jaskaran Singh', 'Jaskaran', 'Singh', 'jaskaran@yopmail.com', '0', NULL, NULL, NULL, '2019-11-18 03:05:55', '$2y$10$24fdx3W1i9M2GLFjlOeUXuE2H7reNsX/Nsixl/ou8JxPIB.2EmZh.', 'vendor', 'images/vendors/profile/1575373430Wc8UYg1bG43YtloV103pt10_1435802609300solo019.jpg', 1, NULL, 1, NULL, NULL, 'WINvem0leclNkUWZYWCj2x3YdZHfcfdu3gmYfKAX8KfQOuMCB6BmVvStMgtw', '2019-11-18 03:05:38', '2019-12-05 08:55:24'),
+(42, 'Jaskaran Singh', 'Jaskaran', 'Singh', 'jaskaran@yopmail.com', '0', NULL, NULL, NULL, '2019-11-18 03:05:55', '$2y$10$24fdx3W1i9M2GLFjlOeUXuE2H7reNsX/Nsixl/ou8JxPIB.2EmZh.', 'vendor', 'images/vendors/profile/1575373430Wc8UYg1bG43YtloV103pt10_1435802609300solo019.jpg', 1, NULL, 1, NULL, NULL, 'iHISD31bStoJ8drOiQv55Yd9HKH1NjW7pg1RjNHyWwYyTLgOfUTHweBuoXNt', '2019-11-18 03:05:38', '2019-12-05 08:55:24'),
 (43, 'karan singh', 'karan', 'singh', 'karan@yopmail.com', '0', NULL, NULL, NULL, '2019-11-18 04:02:59', '$2y$10$/HFJc7wVlgEDh.Uiyier1O8wxUmYr6kohUh4c7KizeLcVHlVFyKPe', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, NULL, '2019-11-18 04:02:23', '2019-11-21 09:10:13'),
 (44, 'jassi singh', 'jassi', 'singh', 'jassi91@yopmail.com', '0', NULL, NULL, NULL, '2019-11-26 00:58:09', '$2y$10$N/UOLjgGNNissqOqvSmGm.pq5rBBgxI9CKPC4zFmT733riMeQT4tO', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, 'nUi4jEchT1xG5ZuK9nSnfV6efg0HVg4JQpvpIiY9tpXSMKVYxzl3h8jcrmxt', '2019-11-26 00:54:09', '2019-12-05 05:04:56'),
 (45, 'Testing Test', 'Testing', 'Test', 'test91@yopmail.com', '0', NULL, NULL, NULL, '2019-12-02 04:14:48', '$2y$10$nISzsSM4J3M6Ly/wjNd/duqEYi0QHl39FSZAjfZef/6zQ5oI9TxqO', 'user', NULL, NULL, NULL, NULL, NULL, NULL, 'r177koEhaUuGefWW73RpVYWtuulovmGZhejTQopPaig1zhkFrD6wgfC3uFYQ', '2019-12-02 04:12:33', '2019-12-02 04:14:48'),
@@ -988,15 +1074,17 @@ INSERT INTO `users` (`id`, `name`, `first_name`, `last_name`, `email`, `phone_nu
 (47, 'test test', 'test', 'test', 'hitesh@gmail.com', '0', NULL, NULL, NULL, NULL, '$2y$10$FPv8fsNNHN03PdraRVbQEuuAYgqd06MytqybnvOcvC8tGD4VwgpOO', 'vendor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-02 08:32:54', '2019-12-02 08:32:54'),
 (48, 'raj kumar', 'raj', 'kumar', 'raj@gmail.com', '0', NULL, NULL, NULL, NULL, '$2y$10$dk71CVag5j6iEppLlhg8sOOutXUF10tO41m9SEbmHxgvetvZ18HwS', 'vendor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-02 08:45:24', '2019-12-02 08:45:24'),
 (49, 'user ss', 'user', 'ss', 'user002@yopmail.com', '0', NULL, NULL, NULL, NULL, '$2y$10$HHw5htguFfOR4o4kBczkFO/8IIPUNRNMaAj6zuJk8CLUy05gN2slq', 'vendor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-02 08:49:58', '2019-12-02 08:49:58'),
-(50, 'rk s', 'rk', 's', 'user001@yopmail.com', '14523654', 'U.S. 1, Kennebunk, ME, USA', '43.3849549', '-70.54269469999997', '2019-12-03 05:54:47', '$2y$10$f.wzTKaKghDaxwbjyihnsO85DYrcL2A0WZ4cQnvEWXSvWwgXKmKHS', 'user', 'images/vendors/profile/1575380038swGGAXUHFFXwJ7yBwsyBonline.png', NULL, NULL, NULL, NULL, NULL, 'qQYvqlxSE5CH2WnHfyu4T1I8t6GWw2ct0MyIYIzqEozrpWpr4j8wjSAebipm', '2019-12-03 05:54:27', '2019-12-04 01:59:15'),
-(51, 'Kanny Gill', 'Kanny', 'Gill', 'kanny786@yopmail.com', '9465470549', 'USC McCarthy Way, Los Angeles, CA, USA', '34.0205687', '-118.2813509', '2019-12-04 08:49:01', '$2y$10$htlgqwsz8x/H6OvnK0Ncfuc18z9RYQqJnRoEPGwMIzZdsEy54Y58G', 'user', 'images/vendors/profile/1575559734NrTSdag3NzPIqrP0wOzqt10_1435802609300solo019.jpg', NULL, NULL, NULL, NULL, NULL, 'KmzW6ZejeDo1tmVN9RHQ0OLZ5s8zUr7NBgrz2jTkDsZ8pAK4y6ssey6iUy9u', '2019-12-04 08:48:44', '2019-12-06 08:02:24'),
+(50, 'rk s', 'rk', 's', 'user001@yopmail.com', '14523654', 'U.S. 1, Kennebunk, ME, USA', '43.3849549', '-70.54269469999997', '2019-12-03 05:54:47', '$2y$10$f.wzTKaKghDaxwbjyihnsO85DYrcL2A0WZ4cQnvEWXSvWwgXKmKHS', 'user', 'images/vendors/profile/1575380038swGGAXUHFFXwJ7yBwsyBonline.png', NULL, NULL, NULL, NULL, NULL, 'ImY6llywZowTZ687w3fq5x0BfEIfiFxIqzxrcIvc4G61wiwFsYNMC1UXVJBD', '2019-12-03 05:54:27', '2019-12-04 01:59:15'),
+(51, 'Kanny Gill', 'Kanny', 'Gill', 'kanny786@yopmail.com', '9465470549', 'USC McCarthy Way, Los Angeles, CA, USA', '34.0205687', '-118.2813509', '2019-12-04 08:49:01', '$2y$10$htlgqwsz8x/H6OvnK0Ncfuc18z9RYQqJnRoEPGwMIzZdsEy54Y58G', 'user', 'images/vendors/profile/1575559734NrTSdag3NzPIqrP0wOzqt10_1435802609300solo019.jpg', NULL, NULL, NULL, NULL, NULL, '7iYGWhdrzqYrnhZvnI5FWXRrWMKISLNr17UiAzAwgRy02KKr5zhGVaP4dWB7', '2019-12-04 08:48:44', '2019-12-06 08:02:24'),
 (52, 'TEST sandha', 'TEST', 'sandha', 'TEST@yopmail.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$06n1888HwkEutLzgq3D2H.PyFrZgVzUFJmwldrC/QtkIGP1Yn1eEi', 'vendor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-05 00:35:01', '2019-12-05 00:35:01'),
 (53, 'karan JHJ', 'karan', 'JHJ', 'deft321@yopmail.com', NULL, NULL, NULL, NULL, '2019-12-05 00:39:13', '$2y$10$tB5.hjlH5HIUkZdbMnNBO.YVQ3rLra9rxvu4ndGqU8Fb0Xa/DjUka', 'user', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-05 00:38:47', '2019-12-05 00:39:13'),
 (54, 'Hycinth EV', 'Hycinth', 'EV', 'Hycinth12@yopmail.com', NULL, NULL, NULL, NULL, '2019-12-05 01:05:52', '$2y$10$kYEAJbTdlcv9Lgsai8c9m.rBv2fgiolwLfdY1TjJB6nopyZBUL39.', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, 'YrniHT2AKfTlkEYfaWXec3GJCKNjzzIQP8DcpiBKVMdePIKGxgGcPV7blPwz', '2019-12-05 01:02:31', '2019-12-05 05:03:30'),
 (55, 'sandha Singh', 'sandha', 'Singh', 'sandha78@yopmail.com', NULL, NULL, NULL, NULL, '2019-12-05 03:18:23', '$2y$10$CLZDveG.QgNHnTnqiz7Q8eC.Eb/61sLyux2ITPD6RSBeCZ2OZRfqC', 'user', NULL, NULL, NULL, NULL, NULL, NULL, 'FYz1zlkl1UkJQCDtMyZfaJoLK7ZmaqlK1FfzCb5JKtOkNdgvcWoWJHAAsdZk', '2019-12-05 03:15:00', '2019-12-05 03:18:23'),
 (56, 'Inder Bajwa', 'Inder', 'Bajwa', 'qa2.defsoft@gmail.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$O2X.68/cxdnSWTjhO2cW5OsgLakNXhQDm3e4MYpk3zxX6lzDKsFUC', 'vendor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-05 03:28:52', '2019-12-05 03:28:52'),
 (57, 'pallavi toomar', 'pallavi', 'toomar', 'qa2.deftsoft@gmail.com', NULL, NULL, NULL, NULL, '2019-12-05 03:32:45', '$2y$10$NtsBEHLcUQG8nkSLtrUbQ.JTQpiefyrc7DIatcZV2ztayxs6ThEzG', 'vendor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-05 03:32:21', '2019-12-05 03:32:45'),
-(58, 'Dkisisis Idiidisi', 'Dkisisis', 'Idiidisi', 'Ksksjsi@yopmail.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$HxQP976VGBBYIE9ABFGrSe/qVkRFqClYtL8dFDYjZ0UN/0fmSF6mC', 'user', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-05 04:20:35', '2019-12-05 04:20:35');
+(58, 'Dkisisis Idiidisi', 'Dkisisis', 'Idiidisi', 'Ksksjsi@yopmail.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$HxQP976VGBBYIE9ABFGrSe/qVkRFqClYtL8dFDYjZ0UN/0fmSF6mC', 'user', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-05 04:20:35', '2019-12-05 04:20:35'),
+(59, 'Kanny Vendor', 'Kanny', 'Vendor', 'kannyv@yopmail.com', '9465470549', NULL, NULL, NULL, '2019-12-09 03:08:48', '$2y$10$Y0S0fTZR6g70BiaO84IYM.oApOraGM7iDFl9lpkAuiL.VMVj6xgkO', 'vendor', 'images/vendors/profile/1575882091j0GZOQCG6Q7AB3dlJFb2k.jpg', NULL, NULL, NULL, NULL, NULL, 'vEBGG0C6ixwTgEdX5IbzEjYA9UE0x5SuwcQkAKq9OWqxM2ankPn1EiJVD7X4', '2019-12-09 03:08:24', '2019-12-09 03:31:31'),
+(60, 'Kanny Customer', 'Kanny', 'Customer', 'kannyc@yopmail.com', NULL, NULL, NULL, NULL, '2019-12-09 03:10:12', '$2y$10$2NoI44RRR.M9N5YBuSHtu.LokV/LdI07LFfDouegVOPIbq8C5xWIy', 'user', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-09 03:10:03', '2019-12-09 03:10:12');
 
 -- --------------------------------------------------------
 
@@ -1006,16 +1094,18 @@ INSERT INTO `users` (`id`, `name`, `first_name`, `last_name`, `email`, `phone_nu
 
 CREATE TABLE `user_events` (
   `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) DEFAULT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `start_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `end_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `end_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `location` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `latitude` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `longitude` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `event_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `categories` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `categories` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(2) DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1024,9 +1114,38 @@ CREATE TABLE `user_events` (
 -- Dumping data for table `user_events`
 --
 
-INSERT INTO `user_events` (`id`, `slug`, `title`, `description`, `start_date`, `end_date`, `location`, `latitude`, `longitude`, `event_type`, `categories`, `created_at`, `updated_at`) VALUES
-(1, 'tt', 'title', 'descc', '2019-12-05 18:30:00', '2019-12-12 18:30:00', 'Uvic Bus Loop, Victoria, BC, Canada', '48.46586019999999', '-123.30889530000002', '3', '["1","1"]', '2019-12-06 09:51:04', '2019-12-06 10:22:57'),
-(2, 'new-title', 'new title', 'desc', '2019-12-07 18:30:00', '2019-12-17 18:30:00', 'Logan Airport Terminal B, East Boston, MA, USA', '42.3645508', '-71.01954490000003', '10', '["18","18"]', '2019-12-06 10:24:07', '2019-12-06 10:24:07');
+INSERT INTO `user_events` (`id`, `user_id`, `slug`, `title`, `description`, `start_date`, `end_date`, `location`, `latitude`, `longitude`, `event_type`, `categories`, `status`, `created_at`, `updated_at`) VALUES
+(17, 50, 'new', 'new', 'asd', '2019-12-08 18:30:00', '2019-12-13 18:30:00', 'Disneyland Drive, Anaheim, CA, USA', '33.8136287', '-117.92424490000002', '1', NULL, 0, '2019-12-09 10:50:14', '2019-12-09 10:54:58');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_event_meta_datas`
+--
+
+CREATE TABLE `user_event_meta_datas` (
+  `id` int(11) NOT NULL,
+  `parent` int(10) NOT NULL,
+  `user_id` int(10) NOT NULL,
+  `type` varchar(191) NOT NULL,
+  `key` varchar(191) NOT NULL,
+  `key_value` varchar(191) NOT NULL,
+  `event_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user_event_meta_datas`
+--
+
+INSERT INTO `user_event_meta_datas` (`id`, `parent`, `user_id`, `type`, `key`, `key_value`, `event_id`, `created_at`, `updated_at`) VALUES
+(9, 0, 60, 'events', 'category_id', '6', 15, '2019-12-09 09:23:47', '2019-12-09 09:23:47'),
+(10, 0, 60, 'events', 'category_id', '1', 15, '2019-12-09 09:23:47', '2019-12-09 09:23:47'),
+(11, 0, 50, 'events', 'category_id', '31', 16, '2019-12-09 10:00:23', '2019-12-09 10:00:23'),
+(12, 0, 50, 'events', 'category_id', '16', 16, '2019-12-09 10:00:23', '2019-12-09 10:00:23'),
+(15, 0, 50, 'events', 'category_id', '25', 17, '2019-12-09 10:54:58', '2019-12-09 10:54:58'),
+(16, 0, 50, 'events', 'category_id', '20', 17, '2019-12-09 10:54:58', '2019-12-09 10:54:58');
 
 -- --------------------------------------------------------
 
@@ -1074,7 +1193,10 @@ INSERT INTO `vendor_amenities` (`id`, `parent`, `user_id`, `amenity_id`, `catego
 (74, 0, 34, 11, 20, 14, 'amenity', NULL, '2019-12-03 04:53:48', '2019-12-03 04:53:48'),
 (81, 0, 34, 12, 20, 14, 'game', NULL, '2019-12-03 04:56:59', '2019-12-03 04:56:59'),
 (86, 0, 44, 11, 11, 26, 'amenity', NULL, '2019-12-06 05:39:55', '2019-12-06 05:39:55'),
-(87, 0, 34, 12, 11, 25, 'game', NULL, '2019-12-06 07:20:54', '2019-12-06 07:20:54');
+(87, 0, 34, 12, 11, 25, 'game', NULL, '2019-12-06 07:20:54', '2019-12-06 07:20:54'),
+(88, 0, 44, 12, 11, 26, 'game', NULL, '2019-12-09 01:27:19', '2019-12-09 01:27:19'),
+(89, 0, 59, 11, 1, 35, 'amenity', NULL, '2019-12-09 03:20:46', '2019-12-09 03:20:46'),
+(90, 0, 59, 12, 1, 35, 'game', NULL, '2019-12-09 03:20:46', '2019-12-09 03:20:46');
 
 -- --------------------------------------------------------
 
@@ -1126,7 +1248,7 @@ INSERT INTO `vendor_categories` (`id`, `parent`, `user_id`, `category_id`, `titl
 (13, 11, 42, 35, NULL, NULL, 0, 1, 0, NULL, NULL, NULL, '0', 0, 0, 0, NULL, NULL, NULL, '2019-11-20 03:32:20', '2019-11-20 03:32:20'),
 (14, 0, 34, 20, 'Photos', 'photos', 500, 3, 1, 'Korniv Drive, Charlotte, NC, USA', '35.3127194', '-80.93545039999998', '0', 0, 0, 0, '0', 'hospital@yopmail.com', 'st@sdf.cos', '2019-11-20 03:35:54', '2019-12-05 06:43:22'),
 (15, 0, 34, 25, 'Decoration', 'decoration', 500, 3, 1, 'USC McCarthy Way, Los Angeles, CA, USA', '34.0205687', '-118.2813509', '0', 0, 0, 0, NULL, NULL, NULL, '2019-11-20 03:35:54', '2019-12-06 01:46:46'),
-(16, 0, 34, 1, NULL, NULL, 0, 3, 1, NULL, NULL, NULL, '0', 0, 0, 0, NULL, NULL, NULL, '2019-11-20 03:35:54', '2019-12-05 05:14:27'),
+(16, 0, 34, 1, 'photos', 'photos-1', 25, 3, 1, 'Canal Street, Chinatown, NY, USA', '40.7163437', '-73.99638620000002', '0', 0, 0, 0, NULL, NULL, NULL, '2019-11-20 03:35:54', '2019-12-09 04:15:24'),
 (17, 0, 40, 6, NULL, NULL, 0, 1, 0, NULL, NULL, NULL, '0', 0, 0, 0, NULL, NULL, NULL, '2019-11-20 05:19:29', '2019-11-20 05:19:29'),
 (18, 2, 31, 44, NULL, NULL, 0, 1, 0, NULL, NULL, NULL, '0', 0, 0, 0, NULL, NULL, NULL, '2019-11-21 07:33:08', '2019-11-21 07:33:08'),
 (19, 14, 34, 34, NULL, NULL, 0, 1, 0, NULL, NULL, NULL, '0', 0, 0, 0, NULL, NULL, NULL, '2019-11-22 04:58:59', '2019-11-22 04:58:59'),
@@ -1136,14 +1258,18 @@ INSERT INTO `vendor_categories` (`id`, `parent`, `user_id`, `category_id`, `titl
 (23, 22, 44, 34, NULL, NULL, 0, 1, 0, NULL, NULL, NULL, '0', 0, 0, 0, NULL, NULL, NULL, '2019-11-26 04:43:03', '2019-11-26 04:43:03'),
 (24, 0, 31, 11, 'Harkul Royal Events', 'harkul-royal-events', 5000, 3, 1, 'Miami Beach Boardwalk, Miami Beach, FL, USA', '25.8136198', '-80.1217557', '0', 3, 500, 200, NULL, NULL, NULL, '2019-11-27 01:36:18', '2019-11-28 05:42:33'),
 (25, 0, 34, 11, 'Mohali Star', 'mohali-star', 500, 3, 1, '', '37.0902', '95.7129', '100', 0, 0, 0, NULL, NULL, NULL, '2019-11-27 02:13:22', '2019-12-02 04:47:18'),
-(26, 0, 44, 11, 'Blush Banquet Hall', 'blush-banquet-hall', 5000, 3, 1, 'Miami Beach, FL, USA', '25.792240', '-80.134850', '0', 3, 100000, 200000, NULL, NULL, NULL, '2019-11-28 03:46:35', '2019-12-06 04:22:14'),
+(26, 0, 44, 11, 'Blush Banquet Hall', 'blush-banquet-hall', 5000, 3, 1, 'Miami Beach, FL, USA', '25.792240', '-80.134850', '0', 2, 0, 0, NULL, NULL, NULL, '2019-11-28 03:46:35', '2019-12-09 01:17:14'),
 (27, 0, 54, 11, NULL, NULL, 0, 1, 0, NULL, NULL, NULL, '0', 0, 0, 0, NULL, NULL, NULL, '2019-12-05 01:06:49', '2019-12-05 01:06:49'),
 (28, 0, 44, 45, NULL, NULL, 0, 1, 0, NULL, NULL, NULL, '0', 0, 0, 0, NULL, '', NULL, '2019-12-05 05:18:33', '2019-12-05 05:18:33'),
 (29, 16, 34, 29, NULL, NULL, 0, 1, 0, NULL, NULL, NULL, '0', 0, 0, 0, NULL, NULL, NULL, '2019-12-06 08:27:48', '2019-12-06 08:27:48'),
 (30, 16, 34, 30, NULL, NULL, 0, 1, 0, NULL, NULL, NULL, '0', 0, 0, 0, NULL, NULL, NULL, '2019-12-06 08:27:48', '2019-12-06 08:27:48'),
 (31, 16, 34, 35, NULL, NULL, 0, 1, 0, NULL, NULL, NULL, '0', 0, 0, 0, NULL, NULL, NULL, '2019-12-06 08:27:48', '2019-12-06 08:27:48'),
 (32, 16, 34, 36, NULL, NULL, 0, 1, 0, NULL, NULL, NULL, '0', 0, 0, 0, NULL, NULL, NULL, '2019-12-06 08:27:48', '2019-12-06 08:27:48'),
-(33, 16, 34, 37, NULL, NULL, 0, 1, 0, NULL, NULL, NULL, '0', 0, 0, 0, NULL, NULL, NULL, '2019-12-06 08:27:48', '2019-12-06 08:27:48');
+(33, 16, 34, 37, NULL, NULL, 0, 1, 0, NULL, NULL, NULL, '0', 0, 0, 0, NULL, NULL, NULL, '2019-12-06 08:27:48', '2019-12-06 08:27:48'),
+(34, 0, 42, 11, NULL, NULL, 0, 1, 0, NULL, NULL, NULL, '0', 0, 0, 0, NULL, NULL, NULL, '2019-12-09 02:39:29', '2019-12-09 02:39:29'),
+(35, 0, 59, 1, 'Kanny Photo Lab', 'kanny-photo-lab', 1000, 3, 1, 'Miami Gardens Drive, Hialeah, FL, USA', '25.9409179', '-80.24732970000002', '0', 0, 0, 0, NULL, NULL, NULL, '2019-12-09 03:10:43', '2019-12-09 04:22:24'),
+(36, 35, 59, 35, NULL, NULL, 0, 1, 0, NULL, NULL, NULL, '0', 0, 0, 0, NULL, NULL, NULL, '2019-12-09 03:20:30', '2019-12-09 03:20:30'),
+(37, 35, 59, 37, NULL, NULL, 0, 1, 0, NULL, NULL, NULL, '0', 0, 0, 0, NULL, NULL, NULL, '2019-12-09 03:20:30', '2019-12-09 03:20:30');
 
 -- --------------------------------------------------------
 
@@ -1199,15 +1325,15 @@ INSERT INTO `vendor_category_meta_datas` (`id`, `parent`, `key`, `type`, `keyVal
 (36, NULL, 'description', 'description', '<p>&ldquo;IN THE FACE OF LOVE, EVERYONE IS EQUAL. LET EVERYONE HAVE THE FREEDOM TO LOVE AND PURSUE THEIR HAPPINESS&rdquo; . - TSAI ING-WEN</p>\r\n\r\n<p>I have been so lucky to have lived my dream job for the last 8 years! Yes thats more than 300 weddings, 4 countries and many states. It is such a special thing to share an experience like this. My background in Advertising, documentary and fashion has given me a unique view on the process of recording your wedding. Emotion, the details and the connections made are my focus for the day.</p>\r\n\r\n<p>After spending a year abroad to be with my fiance and planing our wedding from Chile I truely understand the stress that can be involved in planning your day. My partner and I fully understand what goes into wedding planning and would love to help you along you path. Every wedding and every couple is unique. I put my focus on making sure that I can help you be at ease throughout this process.</p>\r\n\r\n<p>We both truly hope that we can be a part of others wedding days. We know how special this moment is that we also have dreamed of for for ourselves for so many years.</p>', 42, 1, 11, '2019-11-20 03:31:28', '2019-11-20 03:31:59'),
 (45, NULL, 'prohibtion', 'prohibtion', '<p>-&nbsp;Wedding coordinator required</p>\r\n\r\n<p>- Testing</p>\r\n\r\n<p>- Lightning</p>\r\n\r\n<p>-&nbsp;Venue must have keypads</p>', 42, 1, 11, '2019-11-20 03:40:51', '2019-11-20 03:52:40'),
 (50, NULL, 'aboutus_slider_images', 'imageGallery', 'images/vendors/gallery/1574242892rgUPBbk7uXWBEVSbAHoc-anchez4_51_698336-157383070553519.jpg', 42, 1, 11, '2019-11-20 04:11:32', '2019-11-20 04:11:32'),
-(53, NULL, 'business_name', 'basic_information', '', 34, 1, 16, '2019-11-20 04:27:21', '2019-11-20 04:27:21'),
-(54, NULL, 'address', 'basic_information', '', 34, 1, 16, '2019-11-20 04:27:22', '2019-11-20 04:27:22'),
-(55, NULL, 'website', 'basic_information', '', 34, 1, 16, '2019-11-20 04:27:22', '2019-11-20 04:27:22'),
-(56, NULL, 'phone_number', 'basic_information', '', 34, 1, 16, '2019-11-20 04:27:22', '2019-11-20 04:27:22'),
-(57, NULL, 'company', 'basic_information', '', 34, 1, 16, '2019-11-20 04:27:22', '2019-11-20 04:27:22'),
-(58, NULL, 'travel_distaince', 'basic_information', '', 34, 1, 16, '2019-11-20 04:27:22', '2019-11-20 04:27:22'),
-(59, NULL, 'min_price', 'basic_information', '', 34, 1, 16, '2019-11-20 04:27:22', '2019-11-20 04:27:22'),
-(60, NULL, 'cover_photo', 'basic_information', '', 34, 1, 16, '2019-11-20 04:27:22', '2019-11-20 04:27:22'),
-(61, NULL, 'short_description', 'basic_information', '', 34, 1, 16, '2019-11-20 04:27:22', '2019-11-20 04:27:22'),
+(53, NULL, 'business_name', 'basic_information', 'photos', 34, 1, 16, '2019-11-20 04:27:21', '2019-12-09 04:15:24'),
+(54, NULL, 'address', 'basic_information', 'Canal Street, Chinatown, NY, USA', 34, 1, 16, '2019-11-20 04:27:22', '2019-12-09 04:15:24'),
+(55, NULL, 'website', 'basic_information', 'http://google.com`', 34, 1, 16, '2019-11-20 04:27:22', '2019-12-09 04:15:24'),
+(56, NULL, 'phone_number', 'basic_information', '4542128525', 34, 1, 16, '2019-11-20 04:27:22', '2019-12-09 04:15:24'),
+(57, NULL, 'company', 'basic_information', 'photos', 34, 1, 16, '2019-11-20 04:27:22', '2019-12-09 04:15:24'),
+(58, NULL, 'travel_distaince', 'basic_information', '52', 34, 1, 16, '2019-11-20 04:27:22', '2019-12-09 04:15:24'),
+(59, NULL, 'min_price', 'basic_information', '25', 34, 1, 16, '2019-11-20 04:27:22', '2019-12-09 04:15:25'),
+(60, NULL, 'cover_photo', 'basic_information', 'images/vendors/settings/1575884725Rg0IsmxvCk8NCuqusz5emenuhome.png', 34, 1, 16, '2019-11-20 04:27:22', '2019-12-09 04:15:25'),
+(61, NULL, 'short_description', 'basic_information', 'its good', 34, 1, 16, '2019-11-20 04:27:22', '2019-12-09 04:15:24'),
 (62, NULL, 'description', 'description', '<p>its too good</p>', 34, 25, 15, '2019-11-20 04:28:17', '2019-11-27 01:37:25'),
 (64, NULL, 'prohibtion', 'prohibtion', '<p>its too good descr</p>', 34, 25, 15, '2019-11-20 04:30:00', '2019-11-27 01:39:10'),
 (66, NULL, 'business_name', 'basic_information', 'Photos', 34, 20, 14, '2019-11-20 04:38:40', '2019-11-22 01:59:40'),
@@ -1400,7 +1526,7 @@ INSERT INTO `vendor_category_meta_datas` (`id`, `parent`, `key`, `type`, `keyVal
 (316, NULL, 'aboutus_slider_images', 'imageGallery', 'images/vendors/gallery/1575297397O4uvv2wQe0wnbGbpmBg7band2.png', 34, 20, 14, '2019-12-02 09:06:37', '2019-12-02 09:06:37'),
 (317, NULL, 'aboutus_slider_images', 'imageGallery', 'images/vendors/gallery/1575297472nig2aKQjjwnTSHtFqY9tfavourite.png', 34, 20, 14, '2019-12-02 09:07:52', '2019-12-02 09:07:52'),
 (318, NULL, 'facebook_url', 'basic_information', NULL, 34, 25, 15, '2019-12-03 02:17:05', '2019-12-06 01:46:46'),
-(319, NULL, 'facebook_url', 'basic_information', '', 34, 1, 16, '2019-12-03 04:05:41', '2019-12-03 04:05:41'),
+(319, NULL, 'facebook_url', 'basic_information', NULL, 34, 1, 16, '2019-12-03 04:05:41', '2019-12-09 04:15:25'),
 (320, NULL, 'aboutus_slider_images', 'imageGallery', 'images/vendors/gallery/1575366911mu0zaFjxJYG3pbQi9vfQballoons.png', 34, 20, 14, '2019-12-03 04:25:11', '2019-12-03 04:25:11'),
 (327, 0, 'style', 'styles', '1', 34, 20, 14, '2019-12-03 04:48:49', '2019-12-03 04:48:49'),
 (328, 0, 'style', 'styles', '3', 34, 20, 14, '2019-12-03 04:48:49', '2019-12-03 04:48:49'),
@@ -1448,13 +1574,47 @@ INSERT INTO `vendor_category_meta_datas` (`id`, `parent`, `key`, `type`, `keyVal
 (371, NULL, 'linkedin_url', 'basic_information', NULL, 34, 25, 15, '2019-12-06 01:46:25', '2019-12-06 01:46:46'),
 (372, NULL, 'twitter_url', 'basic_information', NULL, 34, 25, 15, '2019-12-06 01:46:25', '2019-12-06 01:46:47'),
 (373, NULL, 'instagram_url', 'basic_information', NULL, 34, 25, 15, '2019-12-06 01:46:26', '2019-12-06 01:46:47'),
-(374, NULL, 'pinterest_url', 'basic_information', NULL, 34, 25, 15, '2019-12-06 01:46:26', '2019-12-06 01:46:47'),
-(378, NULL, 'facebook_url', 'basic_information', '', 44, 20, 22, '2019-12-06 04:32:02', '2019-12-06 04:32:02');
+(374, NULL, 'pinterest_url', 'basic_information', NULL, 34, 25, 15, '2019-12-06 01:46:26', '2019-12-06 01:46:47');
 INSERT INTO `vendor_category_meta_datas` (`id`, `parent`, `key`, `type`, `keyValue`, `user_id`, `category_id`, `vendor_category_id`, `created_at`, `updated_at`) VALUES
-(379, NULL, 'aboutus_slider_images', 'imageGallery', 'images/vendors/gallery/1575630375MB4vqgYMXhRqi5lZlwEFPenguins.jpg', 44, 11, 26, '2019-12-06 05:36:15', '2019-12-06 05:36:15'),
-(380, 0, 'style', 'styles', '1', 44, 11, 26, '2019-12-06 05:39:27', '2019-12-06 05:39:27'),
-(382, 0, 'season', 'seasons', '4', 44, 11, 26, '2019-12-06 05:40:56', '2019-12-06 05:40:56'),
-(383, 0, 'season', 'seasons', '4', 34, 11, 25, '2019-12-06 06:47:51', '2019-12-06 06:47:51');
+(378, NULL, 'facebook_url', 'basic_information', '', 44, 20, 22, '2019-12-06 04:32:02', '2019-12-06 04:32:02'),
+(383, 0, 'season', 'seasons', '4', 34, 11, 25, '2019-12-06 06:47:51', '2019-12-06 06:47:51'),
+(384, 0, 'season', 'seasons', '4', 44, 11, 26, '2019-12-09 01:03:41', '2019-12-09 01:03:41'),
+(386, NULL, 'aboutus_slider_images', 'imageGallery', 'images/vendors/gallery/1575874092vCe5ZX920elpfV8BQj7bPenguins.jpg', 44, 11, 26, '2019-12-09 01:18:12', '2019-12-09 01:18:12'),
+(387, 0, 'style', 'styles', '4', 44, 11, 26, '2019-12-09 01:22:06', '2019-12-09 01:22:06'),
+(388, NULL, 'style', 'styles', '', 42, 11, 34, '2019-12-09 02:42:24', '2019-12-09 02:42:24'),
+(389, NULL, 'business_name', 'basic_information', 'Kanny Photo Lab', 59, 1, 35, '2019-12-09 03:10:48', '2019-12-09 04:20:34'),
+(390, NULL, 'address', 'basic_information', 'Miami Gardens Drive, Hialeah, FL, USA', 59, 1, 35, '2019-12-09 03:10:48', '2019-12-09 04:20:34'),
+(391, NULL, 'website', 'basic_information', 'https://www.amazon.com', 59, 1, 35, '2019-12-09 03:10:48', '2019-12-09 04:20:34'),
+(392, NULL, 'phone_number', 'basic_information', '9465470549', 59, 1, 35, '2019-12-09 03:10:48', '2019-12-09 04:20:34'),
+(393, NULL, 'company', 'basic_information', 'Kanny Photo Lab', 59, 1, 35, '2019-12-09 03:10:48', '2019-12-09 04:20:34'),
+(394, NULL, 'travel_distaince', 'basic_information', '50', 59, 1, 35, '2019-12-09 03:10:48', '2019-12-09 04:20:34'),
+(395, NULL, 'min_price', 'basic_information', '1000', 59, 1, 35, '2019-12-09 03:10:48', '2019-12-09 04:20:35'),
+(396, NULL, 'cover_photo', 'basic_information', 'images/vendors/settings/1575885035TXodYRMS3x9cS1SqyMLkk.jpg', 59, 1, 35, '2019-12-09 03:10:48', '2019-12-09 04:20:35'),
+(397, NULL, 'short_description', 'basic_information', 'Kanny Photo Lab is a full-service wedding photography and videography company based in Mokena, Illinois. This talented team serves each client with effortless professionalism, capturing their wedding nuptials with precision and care.', 59, 1, 35, '2019-12-09 03:10:48', '2019-12-09 04:20:34'),
+(398, NULL, 'facebook_url', 'basic_information', 'https://www.facebook.com', 59, 1, 35, '2019-12-09 03:10:48', '2019-12-09 04:20:35'),
+(399, NULL, 'min_guest', 'basic_information', '50', 59, 1, 35, '2019-12-09 03:10:50', '2019-12-09 04:20:35'),
+(400, NULL, 'cover_video', 'basic_information', '', 59, 1, 35, '2019-12-09 03:10:50', '2019-12-09 03:10:50'),
+(401, NULL, 'cover_video_image', 'basic_information', '', 59, 1, 35, '2019-12-09 03:10:50', '2019-12-09 03:10:50'),
+(402, NULL, 'linkedin_url', 'basic_information', 'https://www.linkedin.com', 59, 1, 35, '2019-12-09 03:10:50', '2019-12-09 04:20:35'),
+(403, NULL, 'twitter_url', 'basic_information', 'https://www.twitter.com', 59, 1, 35, '2019-12-09 03:10:50', '2019-12-09 04:20:35'),
+(404, NULL, 'instagram_url', 'basic_information', 'https://www.instagram.com', 59, 1, 35, '2019-12-09 03:10:50', '2019-12-09 04:20:35'),
+(405, NULL, 'pinterest_url', 'basic_information', 'https://www.pinterest.com', 59, 1, 35, '2019-12-09 03:10:50', '2019-12-09 04:20:35'),
+(406, NULL, 'aboutus_slider_images', 'imageGallery', 'images/vendors/gallery/1575881129CzLCNf4IfC0ApwPjtco715747561420CECWnSZ7yaVhvavQEMn14997.png', 59, 1, 35, '2019-12-09 03:15:29', '2019-12-09 03:15:29'),
+(407, NULL, 'aboutus_slider_images', 'imageGallery', 'images/vendors/gallery/1575881129Y13btcL50pGskR4RpT1Vanchez4_51_698336157383070553519.jpg', 59, 1, 35, '2019-12-09 03:15:29', '2019-12-09 03:15:29'),
+(408, NULL, 'aboutus_slider_images', 'imageGallery', 'images/vendors/gallery/1575881129KVNITIDvHRpu4eGW8SoMsanchex2_51_698336157383070987838.jpg', 59, 1, 35, '2019-12-09 03:15:29', '2019-12-09 03:15:29'),
+(409, NULL, 'aboutus_slider_images', 'imageGallery', 'images/vendors/gallery/1575881129boJL7coVKTrsHoIcxsWcsanchez1_51_698336157383071560610.jpg', 59, 1, 35, '2019-12-09 03:15:29', '2019-12-09 03:15:29'),
+(410, NULL, 'aboutus_slider_images', 'imageGallery', 'images/vendors/gallery/1575881129sxTMVkrxhoKBb981CqeDt10_1435802609300solo019.jpg', 59, 1, 35, '2019-12-09 03:15:29', '2019-12-09 03:15:29'),
+(411, NULL, 'aboutus_slider_images', 'imageGallery', 'images/vendors/gallery/1575881129t1kt22bDaxKIi8IFTYCdt20_1312238515529Pwc10011.jpg', 59, 1, 35, '2019-12-09 03:15:29', '2019-12-09 03:15:29'),
+(412, NULL, 'video', 'videoGallery', '{"title":"Wedding Creative","link":"https:\\/\\/www.youtube.com\\/embed\\/EBv48eIcwiQ","image":"images\\/vendors\\/gallery\\/1575881237iWj2brlfHOZj8PjYqVfSt10_1435802609300solo019.jpg"}', 59, 1, 35, '2019-12-09 03:17:17', '2019-12-09 03:17:17'),
+(413, NULL, 'description', 'description', '<h2>About Kanny&nbsp;Photo Lab</h2>\r\n\r\n<p>Kanny Photo Lab is a Detroit, Michigan-based wedding company specializing in Photography, Video, DJ and Photo Booths. The team at Kanny Photo Lab is committed to excellency both in service and in craft. They&rsquo;ll use their professional planning and service skills to help find the right package for your vision and budget. With over 15 years of experience in their field, you can trust this team of award-winning videographers to provide a timeless, beautiful photography and video experience that you&rsquo;ll enjoy for years to come. Inquire about Fairytale Productions Wedding Services today to reserve your wedding date!</p>', 59, 1, 35, '2019-12-09 03:19:03', '2019-12-09 03:20:15'),
+(415, 0, 'style', 'styles', '1', 59, 1, 35, '2019-12-09 03:20:23', '2019-12-09 03:20:23'),
+(416, 0, 'season', 'seasons', '3', 59, 1, 35, '2019-12-09 03:20:57', '2019-12-09 03:20:57'),
+(417, NULL, 'prohibtion', 'prohibtion', '<p>Lorium Epsum is dummy Text value to show for Testing.&nbsp;Lorium Epsum is dummy Text value to show for Testing.&nbsp;Lorium Epsum is dummy Text value to show for Testing.&nbsp;Lorium Epsum is dummy Text value to show for Testing.&nbsp;Lorium Epsum is dummy Text value to show for Testing.</p>', 59, 1, 35, '2019-12-09 03:28:03', '2019-12-09 03:28:26'),
+(418, NULL, 'min_guest', 'basic_information', '5', 34, 1, 16, '2019-12-09 04:00:51', '2019-12-09 04:15:25'),
+(419, NULL, 'linkedin_url', 'basic_information', NULL, 34, 1, 16, '2019-12-09 04:00:51', '2019-12-09 04:15:25'),
+(420, NULL, 'twitter_url', 'basic_information', NULL, 34, 1, 16, '2019-12-09 04:00:51', '2019-12-09 04:15:25'),
+(421, NULL, 'instagram_url', 'basic_information', NULL, 34, 1, 16, '2019-12-09 04:00:51', '2019-12-09 04:15:25'),
+(422, NULL, 'pinterest_url', 'basic_information', NULL, 34, 1, 16, '2019-12-09 04:00:51', '2019-12-09 04:15:25');
 
 -- --------------------------------------------------------
 
@@ -1501,7 +1661,11 @@ INSERT INTO `vendor_event_games` (`id`, `parent`, `user_id`, `event_id`, `catego
 (21, 0, 34, 1, 11, 25, NULL, '2019-11-27 02:20:01', '2019-11-27 02:20:01'),
 (22, 0, 34, 5, 11, 25, NULL, '2019-11-27 02:20:01', '2019-11-27 02:20:01'),
 (25, 0, 34, 2, 20, 14, NULL, '2019-12-03 05:01:46', '2019-12-03 05:01:46'),
-(27, 0, 44, 11, 11, 26, NULL, '2019-12-06 05:40:14', '2019-12-06 05:40:14');
+(27, 0, 44, 11, 11, 26, NULL, '2019-12-06 05:40:14', '2019-12-06 05:40:14'),
+(28, 0, 44, 6, 11, 26, NULL, '2019-12-09 01:27:39', '2019-12-09 01:27:39'),
+(29, 0, 44, 9, 11, 26, NULL, '2019-12-09 01:27:39', '2019-12-09 01:27:39'),
+(30, 0, 59, 2, 1, 35, NULL, '2019-12-09 03:20:52', '2019-12-09 03:20:52'),
+(31, 0, 59, 3, 1, 35, NULL, '2019-12-09 03:20:52', '2019-12-09 03:20:52');
 
 -- --------------------------------------------------------
 
@@ -1544,10 +1708,14 @@ INSERT INTO `vendor_packages` (`id`, `title`, `slug`, `description`, `category_i
 (21, 'summer', 'summer', '<p>summer packages&nbsp;</p>', 11, 34, 200, 2, 1, NULL, 'per_person', 1, 20, 25, 1, '2019-11-27 02:20:44', '2019-11-27 02:20:44'),
 (24, 'Orchid Farms', 'orchid-farms', '<p>Visit your nearest Weddingz Venue to Avail Wedding Packages upto Rs 1 Lakh. T&amp;C Apply. Choose from largest collection of venues &amp; book with Weddingz.in for end to end services. Quality Services. Hassle Free Booking. Dedicated Venue Managers. Great Deals Available.Visit your nearest Weddingz Venue to Avail Wedding Packages upto Rs 1 Lakh. T&amp;C Apply. Choose from largest collection of venues &amp; book with Weddingz.in for end to end services. Quality Services. Hassle Free Booking. Dedicated Venue Managers. Great Deals Available.</p>', 11, 44, 500, 6, 3, NULL, 'per_person', 100, 5, 26, 0, '2019-12-02 00:39:13', '2019-12-03 00:36:55'),
 (25, 'ne', 'ne', '<p>asd</p>', 14, 34, 44, 3, 5, NULL, 'per_person', 2, 4, 0, 1, '2019-12-05 10:08:50', '2019-12-05 10:08:50'),
-(26, 'Gold', 'gold', '<p>Lorium Epsum</p>', 11, 42, 10, 5, 5, '<p>No</p>', 'per_person', 10, 100, 0, 1, '2019-12-05 10:23:28', '2019-12-05 10:23:28'),
-(27, 'Silver', 'silver', '<p>Lorium Epsum&nbsp;Lorium Epsum&nbsp;Lorium Epsum&nbsp;Lorium Epsum</p>', 15, 34, 10, 4, 7, '<p>No</p>', 'per_person', 10, 100, 0, 1, '2019-12-06 01:00:24', '2019-12-06 01:00:24'),
 (28, 'Buffet', 'buffet', '<p>Combining a trendy, upscale atmosphere with timeless elegance, Blush Banquet Hall is certain to be the perfect event venue for your special occasion. A versatile and stunning banquet hall, Blush is perfect not only for weddings, but also for any special event, including quincea&ntilde;eras, Sweet 16s, bar and bat mitzvahs, anniversaries, baby showers, christenings, holiday parties, and corporate events such as awards galas and fundraisers. When you celebrate with Blush Banquet Hall, you&rsquo;re giving your guests an incredible experience that they will never forget.</p>\r\n\r\n<ul>\r\n	<li>\r\n	<p><strong>Follow us:</strong></p>\r\n	</li>\r\n</ul>', 26, 44, 120000, 12, 3, '<p>Combining a trendy, upscale atmosphere with timeless elegance, Blush Banquet Hall is certain to be the perfect event venue for your special occasion. A versatile and stunning banquet hall, Blush is perfect not only for weddings, but also for any special event, including quincea&ntilde;eras, Sweet 16s, bar and bat mitzvahs, anniversaries, baby showers, christenings, holiday parties, and corporate events such as awards galas and fundraisers. When you celebrate with Blush Banquet Hall, you&rsquo;re giving your guests an incredible experience that they will never forget.</p>\r\n\r\n<ul>\r\n	<li>\r\n	<p><strong>Follow us:</strong></p>\r\n	</li>\r\n</ul>', 'per_person', 1000, 200000, 0, 1, '2019-12-06 05:04:03', '2019-12-06 05:04:03'),
-(29, 'Veg Buffet', 'veg-buffet', '<p>Combining a trendy, upscale atmosphere with timeless elegance, Blush Banquet Hall is certain to be the perfect event venue for your special occasion. A versatile and stunning banquet hall, Blush is perfect not only for weddings, but also for any special event, including quincea&ntilde;eras, Sweet 16s, bar and bat mitzvahs, anniversaries, baby showers, christenings, holiday parties, and corporate events such as awards galas and fundraisers. When you celebrate with Blush Banquet Hall, you&rsquo;re giving your guests an incredible experience that they will never forget.</p>\r\n\r\n<ul>\r\n	<li>\r\n	<p><strong>Follow us:</strong></p>\r\n	</li>\r\n</ul>', 26, 44, 340000, 11, 2, '<p>Combining a trendy, upscale atmosphere with timeless elegance, Blush Banquet Hall is certain to be the perfect event venue for your special occasion. A versatile and stunning banquet hall, Blush is perfect not only for weddings, but also for any special event, including quincea&ntilde;eras, Sweet 16s, bar and bat mitzvahs, anniversaries, baby showers, christenings, holiday parties, and corporate events such as awards galas and fundraisers. When you celebrate with Blush Banquet Hall, you&rsquo;re giving your guests an incredible experience that they will never forget.</p>\r\n\r\n<ul>\r\n	<li>\r\n	<p><strong>Follow us:</strong></p>\r\n	</li>\r\n</ul>', 'per_person', 2000, 300000, 0, 1, '2019-12-06 05:05:47', '2019-12-06 05:05:47');
+(29, 'Veg Buffet', 'veg-buffet', '<p>Combining a trendy, upscale atmosphere with timeless elegance, Blush Banquet Hall is certain to be the perfect event venue for your special occasion. A versatile and stunning banquet hall, Blush is perfect not only for weddings, but also for any special event, including quincea&ntilde;eras, Sweet 16s, bar and bat mitzvahs, anniversaries, baby showers, christenings, holiday parties, and corporate events such as awards galas and fundraisers. When you celebrate with Blush Banquet Hall, you&rsquo;re giving your guests an incredible experience that they will never forget.</p>\r\n\r\n<ul>\r\n	<li>\r\n	<p><strong>Follow us:</strong></p>\r\n	</li>\r\n</ul>', 26, 44, 340000, 11, 2, '<p>Combining a trendy, upscale atmosphere with timeless elegance, Blush Banquet Hall is certain to be the perfect event venue for your special occasion. A versatile and stunning banquet hall, Blush is perfect not only for weddings, but also for any special event, including quincea&ntilde;eras, Sweet 16s, bar and bat mitzvahs, anniversaries, baby showers, christenings, holiday parties, and corporate events such as awards galas and fundraisers. When you celebrate with Blush Banquet Hall, you&rsquo;re giving your guests an incredible experience that they will never forget.</p>\r\n\r\n<ul>\r\n	<li>\r\n	<p><strong>Follow us:</strong></p>\r\n	</li>\r\n</ul>', 'per_person', 2000, 300000, 0, 1, '2019-12-06 05:05:47', '2019-12-06 05:05:47'),
+(30, 'Silver', 'silver-1', '<p>Lorium Epsum is dummy values of Testing for any thing you want</p>', 35, 59, 1000, 5, 5, '<p>No</p>', 'per_person', 100, 2000, 35, 0, '2019-12-09 03:21:53', '2019-12-09 04:54:09'),
+(31, 'Gold', 'gold-1', '<p>Lorium Epsum is dummy values of Testing for any thing you want</p>', 35, 59, 1000, 5, 5, '<p>No</p>', 'per_person', 100, 1000, 36, 1, '2019-12-09 03:23:08', '2019-12-09 03:23:08'),
+(32, 'winter package', 'winter-package-1', '<p>that is too good</p>', 16, 34, 50, 3, 1, '<ul>\r\n	<li>food</li>\r\n	<li>ice cream</li>\r\n</ul>', 'per_person', 2, 5, 0, 1, '2019-12-09 04:17:15', '2019-12-09 04:17:15'),
+(33, 'summer', 'summer-1', '<p>good</p>', 16, 34, 33, 3, 44, '<ul>\r\n	<li>junk food</li>\r\n</ul>', 'per_person', 1, 2, 0, 1, '2019-12-09 04:18:07', '2019-12-09 04:18:07'),
+(36, 'Grab Gold Package', 'grab-gold-package', '<p>Grab Gold Package for dummy offers</p>', 1, 59, 1000, 5, 5, '<p>No</p>', 'per_person', 100, 1000, 35, 1, '2019-12-09 04:59:45', '2019-12-09 04:59:45'),
+(37, 'GRAB SILVER PACKAGE', 'grab-silver-package', '<p>Grab Silver Package for dummy offers</p>', 1, 59, 100, 8, 8, '<p>No</p>', 'per_person', 50, 100, 35, 1, '2019-12-09 05:01:54', '2019-12-09 05:01:54');
 
 -- --------------------------------------------------------
 
@@ -1688,6 +1856,12 @@ ALTER TABLE `user_events`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `user_event_meta_datas`
+--
+ALTER TABLE `user_event_meta_datas`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `vendor_amenities`
 --
 ALTER TABLE `vendor_amenities`
@@ -1746,12 +1920,12 @@ ALTER TABLE `category_variations`
 -- AUTO_INCREMENT for table `chats`
 --
 ALTER TABLE `chats`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `chat_messages`
 --
 ALTER TABLE `chat_messages`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
 --
 -- AUTO_INCREMENT for table `cms_pages`
 --
@@ -1761,7 +1935,7 @@ ALTER TABLE `cms_pages`
 -- AUTO_INCREMENT for table `discount_deals`
 --
 ALTER TABLE `discount_deals`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `email_templates`
 --
@@ -1776,7 +1950,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `f_a_qs`
 --
 ALTER TABLE `f_a_qs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
@@ -1786,7 +1960,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `package_meta_datas`
 --
 ALTER TABLE `package_meta_datas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=326;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=352;
 --
 -- AUTO_INCREMENT for table `page_meta_tags`
 --
@@ -1811,37 +1985,42 @@ ALTER TABLE `styles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 --
 -- AUTO_INCREMENT for table `user_events`
 --
 ALTER TABLE `user_events`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+--
+-- AUTO_INCREMENT for table `user_event_meta_datas`
+--
+ALTER TABLE `user_event_meta_datas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `vendor_amenities`
 --
 ALTER TABLE `vendor_amenities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 --
 -- AUTO_INCREMENT for table `vendor_categories`
 --
 ALTER TABLE `vendor_categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT for table `vendor_category_meta_datas`
 --
 ALTER TABLE `vendor_category_meta_datas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=384;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=423;
 --
 -- AUTO_INCREMENT for table `vendor_event_games`
 --
 ALTER TABLE `vendor_event_games`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 --
 -- AUTO_INCREMENT for table `vendor_packages`
 --
 ALTER TABLE `vendor_packages`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT for table `venues`
 --

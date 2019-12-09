@@ -11,6 +11,12 @@
         max-width: 150px;
         margin-right: 0;
     }
+    .top-bar.inner-header ul.inn-top-navigation > li > a{
+        font-size: 14px;
+    }
+    #profileDropdown p{
+        font-size: 15px;
+    }
     .top-bar.inner-header ul.inn-top-navigation > li{
       padding: 0 10px;
     }

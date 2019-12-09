@@ -105,7 +105,7 @@ jQuery("body").on('click','.get_detail',function(e){
       $modal.find('.modal-body').removeClass('aleadyRequested');
 
       $modal.find('#busines_title').text($this.attr('data-title'));
-      $modal.find('#message').html($this.attr('data-message'));
+      //$modal.find('#message').html($this.attr('data-message'));
       $modal.find('input[name=deal_id]').val($this.attr('data-id'));
       $modal.modal({backdrop: 'static', keyboard: false});
       dealValidation();

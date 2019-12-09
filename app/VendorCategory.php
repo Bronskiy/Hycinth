@@ -60,7 +60,8 @@ class VendorCategory extends Model
 
     public function chats()
     {
-       return $this->hasMany('App\Models\Vendors\Chat','business_id');
+       return $this->hasMany('App\Models\Vendors\Chat','business_id')
+                    ->orderBy('updated_at','DESC');
     }
 
 
@@ -115,7 +116,17 @@ class VendorCategory extends Model
     public function profileImage()
     {
        return $this->hasOne('App\VendorCategoryMetaData','vendor_category_id','id')
-                   ->where('type','basic_information')->where('key','cover_video_image');
+                    
+                   ->where('type','basic_information')
+                   ->where(function($t){
+                       $category = $t->first();
+                       if($category->category->cover_type == 1){
+                          $t->where('key','cover_photo');
+                       }else{
+                          $t->where('key','cover_video_image');
+                       }
+                   });
+                   
     }
 
 
@@ -175,6 +186,16 @@ class VendorCategory extends Model
     public function VendorEvents()
     {
        return $this->hasMany('App\VendorEventGame','vendor_category_id','id');
+    }
+
+
+
+     public function UnreadBusinessMessages()
+    {
+       return $this->hasMany('App\Models\Vendors\Chat','business_id') 
+                    ->join('chat_messages','chat_messages.chat_id','=','chats.id')
+                    ->where('chat_messages.receiver_id',\Auth::user()->id)
+                    ->where('chat_messages.receiver_status',0);
     }
 
 

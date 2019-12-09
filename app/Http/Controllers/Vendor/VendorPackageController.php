@@ -8,6 +8,7 @@ use App\VendorPackage;
 use App\Category;
 use App\PackageMetaData;
 use Auth;
+use App\VendorCategory;
 
 class VendorPackageController extends Controller
 {
@@ -68,14 +69,18 @@ class VendorPackageController extends Controller
                'max_person' => 'required'
           ]);
 
-        $category = $this->getData($slug);
-        $vendor_category_id = $this->getVendorCategoryID($category->id);
+         $category = $this->getData($slug);
+       $VendorCategory = VendorCategory::where('category_id',$category->id)
+                                       ->where('user_id',Auth::user()->id)
+                                       ->first();  
         $user = Auth::User();
 
         $request['category_id'] = $category->id;
         $request['user_id'] = $user->id;
         $request['status'] = 1;
-        $request['vendor_category_id'] = $vendor_category_id;
+        $request['vendor_category_id'] = $VendorCategory->id;
+        
+        $vendor_category_id = $VendorCategory->id;
 
        $vendorPack = VendorPackage::create($request->all());
 
@@ -182,6 +187,11 @@ public function packagesUpdate(Request $request, $slug, $id) {
           return redirect()->route('vendor_packages_management', $slug)->with('messages','Something Went Wrong.');
         }
 
+
+       $VendorCategory = VendorCategory::where('category_id',$category->id)
+                                       ->where('user_id',Auth::user()->id)
+                                       ->first();  
+       $request['vendor_category_id'] =  $VendorCategory->id;
        $package->update($request->all());
 
        if(!empty($request->amenity) && count($request->amenity)) {
@@ -319,6 +329,7 @@ public function getData($slug)
       
       $category = Category::where('slug',$slug)
                            ->join('vendor_categories','vendor_categories.category_id','=','categories.id')
+                           ->select('categories.*')
                            ->where('vendor_categories.user_id',Auth::user()->id);
 
       return $category->count() > 0 ? $category->first() : redirect()->route('vendor_dashboard')->with('messages','Please check your url, Its wrong!');

@@ -6,11 +6,11 @@
  <div class="page_head-card">
     <div class="page-info">
             <div class="page-header-title">
-                <h3 class="m-b-10">{{$title}}</h3>
+                <h3 class="m-b-10">My Inbox</h3>
             </div>
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('vendor_dashboard') }}"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0)">Amenities</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">My Inbox</a></li>
             </ul>
         </div>
         <div class="side-btns-wrap">
@@ -25,15 +25,15 @@
     <div class="row">
        <div class="col-lg-12">
           <div class="card vendor-dash-card">
-          <div class="card-header"><h3>{{$title}}</h3></div>
+          <div class="card-header"><h3>Chat Messages</h3></div>
            <div class="card-body">
               <div class="chat-box-container">
                 <div id="frame" class="chatBox-frame">
   <div id="sidepanel" class="chatBox-sidepanel">
     <div id="profile" class="chat-profile">
       <div class="wrap">
-        <img id="profile-img" src="http://emilcarlsson.se/assets/mikeross.png" class="online" alt="" />
-        <p>John doe</p>
+        <img id="profile-img" src="{{ ProfileImage($business->profileImage->keyValue) }}" class="online" alt="" />
+        <p>{{ @sizeof($business->title) ? $business->title : ''  }}</p>
        <!--  <i class="fa fa-chevron-down expand-button" aria-hidden="true"></i> -->
         <div id="status-options">
           <ul>

@@ -41,7 +41,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index(Request $request) {
+
+        if(!empty($request->test)){
+          return getUserNotifications();
+            return \App\User::with('newVendorsBusinessMessages','newVendorsBusinessMessages.unReadMessages')->where('id',\Auth::user()->id)->first();
+        }
+
+
       $slug = 'homepage';
       $categories = Category::where(['status'=> 1, 'parent'=> 0])->get();
       return view('home', $this->getArrayValue($slug))->with(['categories' => $categories]);

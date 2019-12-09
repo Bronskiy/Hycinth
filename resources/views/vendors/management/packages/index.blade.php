@@ -158,7 +158,7 @@ Status</th>
       <ul class="acrdn-action-btns single-row">
           <li><a href="{{ route('vendor_packagesedit_management', ['slug' => $category->slug, 'id' => $f->id]) }}" class="action_btn dark-btn" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a></li>
           <li>          
-            <a href="javascript:void(0);" class="action_btn btn-primary" id="addOns" onclick="openModel()" data-toggle="modal" data-target="#Addons" data-toggle="tooltip" title="Add Ons"><i class="fas fa-plus"></i></a>
+            <a href="javascript:void(0);" class="action_btn btn-primary" id="addOns" onclick="openModel()" data-toggle="modal" data-target="#Addons_{{$f->id}}" data-toggle="tooltip" title="Add Ons"><i class="fas fa-plus"></i></a>
           </li>
           <li><a onclick="deleteItem(this)" href="javascript:void(0)" data-delurl="{{ route('vendor_packages_delete_management', ['slug' => $category->slug, 'id' => $f->id]) }}" class="action_btn danger-btn" data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></a></li>   
         </ul>
@@ -175,7 +175,7 @@ Status</th>
   <!-- ========================= -->
 
 <!-- The Modal -->
-<div class="modal" id="Addons">
+<div class="modal" id="Addons_{{$f->id}}">
   <div class="modal-dialog">
     <div class="modal-content">
 

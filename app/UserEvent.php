@@ -12,7 +12,7 @@ class UserEvent extends Model
     use SluggableScopeHelpers;
 
     protected $fillable = [
-    	'slug', 'title', 'description', 'start_date', 'end_date', 'location', 'latitude', 'longitude', 'event_type', 'categories'
+    	'slug', 'title', 'user_id', 'description', 'start_date', 'end_date', 'location', 'latitude', 'longitude', 'event_type', 'categories', 'status'
     ];
 
     public function sluggable() {
@@ -22,5 +22,9 @@ class UserEvent extends Model
                 'source' => 'title'
             ]
         ];
+    }
+
+    public function eventCategories() {
+        return $this->hasMany('App\UserEventMetaData', 'event_id')->where('key', 'category_id');
     }
 }

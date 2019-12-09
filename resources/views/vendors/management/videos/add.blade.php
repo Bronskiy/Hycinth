@@ -42,12 +42,12 @@
 
  
 </div>
+</div>
+</div>
+</div>
+</div>
+</div>
 @endsection
-</div>
-</div>
-</div>
-</div>
-</div>
 
 @section('scripts')
 <script src="{{url('/js/validations/videoValidation.js')}}"></script>

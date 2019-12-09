@@ -48,9 +48,49 @@ class User extends Authenticatable implements MustVerifyEmail
        return $this->hasMany('App\Models\Vendors\FAQ');
     }
 
-
-     public function chats()
+ 
+    public function chats()
     {
-       return $this->hasMany('App\Models\Vendors\Chat');
+       return $this->hasMany('App\Models\Vendors\Chat')
+                   ->orderBy('updated_at','DESC');
+                   
     }
+
+
+    public function newMessages()
+    {
+       return $this->hasMany('App\Models\Vendors\Chat')
+                   ->join('chat_messages','chat_messages.chat_id','=','chats.id')
+                   ->where('chat_messages.receiver_id',\Auth::user()->id) 
+                   ->where('chat_messages.receiver_status',0);
+                   
+    }
+
+
+    public function newVendorsMessages()
+    {
+       return $this->hasMany('App\Models\Vendors\Chat','vendor_id') 
+                    ->join('chat_messages','chat_messages.chat_id','=','chats.id')
+                    ->where('chat_messages.receiver_id',\Auth::user()->id)
+                    ->where('chat_messages.receiver_status',0);
+    }
+
+
+
+    public function newVendorsBusinessMessages()
+    {
+       return $this->hasMany('App\Models\Vendors\Chat','vendor_id') 
+                       
+                       ->where(function($t){
+                            $msg = $t->first();
+                            $unReadMessages = \DB::table('chat_messages')->where('chat_id',$msg->id)
+                                                              ->where('receiver_id',\Auth::user()->id)
+                                                              ->where('receiver_status',0)
+                                                              ->count();
+                            if($unReadMessages == 0){
+                                $t->where('vendor_id',0);
+                            }
+                       });
+    }
+
 }

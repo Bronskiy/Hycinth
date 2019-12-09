@@ -1,5 +1,5 @@
 	     <!-- Packages section here -->
- @if($vendor->VendorPackage->count() > 0 || !empty($types))
+ @if($vendor->VendorPackage->count() > 0 )
 
  <div class="package-card" id="package-sec">
      <div class="container lr-container">

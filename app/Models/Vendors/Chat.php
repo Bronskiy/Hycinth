@@ -33,6 +33,20 @@ class Chat extends Model
                    ->where('receiver_status',0);
     }
 
+     public function unReadFirstMessage()
+    {
+       return $this->hasOne('App\Models\Vendors\ChatMessage','chat_id')
+                   ->where('receiver_id',Auth::user()->id)
+                   ->where('receiver_status',0)
+                   ->orderBy('id','DESC');
+    }
+
+
+    public function business()
+    {
+      return $this->belongsTo('App\VendorCategory','business_id');
+    }
+
 
   
 }

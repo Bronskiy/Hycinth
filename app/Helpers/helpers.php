@@ -2,7 +2,28 @@
 
 
 
+ function getVendorNotifications()
+{
+   return $business = \App\Models\Vendors\Chat::where('vendor_id',Auth::user()->id)
+                                          ->join('chat_messages','chat_messages.chat_id','=','chats.id')
+                                          ->select('chats.*')
+                                          ->where('chat_messages.receiver_id',Auth::user()->id)
+                                          ->where('chat_messages.receiver_status',0)
+                                          ->groupBy('chat_messages.chat_id')
+                                          ->get();
+}
 
+
+function getUserNotifications()
+{
+   return $business = \App\Models\Vendors\Chat::where('user_id',Auth::user()->id)
+                                          ->join('chat_messages','chat_messages.chat_id','=','chats.id')
+                                          ->select('chats.*')
+                                          ->where('chat_messages.receiver_id',Auth::user()->id)
+                                          ->where('chat_messages.receiver_status',0)
+                                          ->groupBy('chat_messages.chat_id')
+                                          ->get();
+}
 
 
 function getCoverPictureOfBusiness($cate)
@@ -1984,7 +2005,7 @@ function textarea($errors,$label, $name,$value=null){
 		$text = "";
 		$text .= "<div class='form-group'>";
 		$text .= "<label>$label</label>";
-		$text .= "<textarea class='form-control $border myTextEditor' id='$name' name='$name' rows='10' col='10'>".$v."</textarea>";
+		$text .= "<textarea class='form-control $border myTextEditor' id='$name' name='$name' rows='5' col='10'>".$v."</textarea>";
 		$text .= "<p class='error'>".$errors->first($name)."</p>";
 		$text .= "</div>";
 

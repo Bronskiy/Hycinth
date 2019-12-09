@@ -10,7 +10,7 @@
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url(route('admin_dashboard'))}}"><i class="feather icon-home"></i></a></li>
-                    <li class="breadcrumb-item "><a href="javascript:void(0);">Create Event</a></li>
+                    <li class="breadcrumb-item "><a href="javascript:void(0);">Dashboard</a></li>
                 </ul>
             </div>
         </div>
@@ -20,143 +20,94 @@
        <section class="content">
       <div class="row">
         <!-- [ rating list ] end-->
-                                <div class="col-xl-8 col-md-12 m-b-30">
+                                <div class="col-xl-12 col-md-12 m-b-30">
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="false">Upcoming Events</a>
+                                            <a class="nav-link active show" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">Upcoming Events</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link active show" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="true">All Events</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Done</a>
-                                        </li>
-
-                                         <li class="nav-item">
-                                            <a class="nav-link" id="expred-tab" data-toggle="tab" href="#expired" role="tab" aria-controls="contact" aria-selected="false">Expired</a>
-                                        </li>
+                                        
                                     </ul>
                                     <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                                      @foreach($events as $event)
+                                                    @php  
+                                                      $start_time = \Carbon\Carbon::now();  
+                                                      $finish_time = \Carbon\Carbon::parse($event->end_date); 
+                                                      $result = $start_time->diffInDays($finish_time, false);
+                                                    @endphp
+                                                  @if($result > 0)                                        
+                                         <div class="col-md-6 m-b-30">
+                                    <div class="card Upcoming-event-card">
+                                        <div class="card-block">
+                                          <div class="upcmg-evnt-head text-center">
+                                          <a href="{{route('user_show_detail_event', $event->slug)}}"> <h2>Upcoming Events</h2>
+                                          <h3>{{$event->title}}</h3>
+                                        </a>
+                                          <p>{{$event->description}}</p>
+
+                                        </div>
+                                        <div class="countdown-timer-container">
+                                          <input type="hidden" value="{{$event->end_date}}" id="end_date_{{$event->id}}" />
+                                        <ul class="count-down-timer">
+                                          <li><span id="days_{{$event->id}}"></span>days</li>
+                                          <li><span id="hours_{{$event->id}}"></span>Hours</li>
+                                          <li><span id="minutes_{{$event->id}}"></span>Minutes</li>
+                                          <li><span id="seconds_{{$event->id}}"></span>Seconds</li>
+                                        </ul>
+
+                                        <script type="text/javascript">
+                                          setTimeout(() => {
+                                            comingsoon('end_date_{{$event->id}}', 'days_{{$event->id}}', 'hours_{{$event->id}}', 'minutes_{{$event->id}}', 'seconds_{{$event->id}}');
+                                          }, 1000);
+                                        </script>
+
+                                      </div>
+                                        </div>
+                                      </div>
+                                </div>
+                                @endif
+                                                    @endforeach
+{{ $events->links() }}
+
+                                        <!-- <div class="tab-pane fade active show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                             <table class="table table-hover">
                                                 
                                                 <tbody>
+                                                    
+                                                     @foreach($events as $event)
+                                                    @php  
+                                                      $start_time = \Carbon\Carbon::now();  
+                                                      $finish_time = \Carbon\Carbon::parse($event->end_date); 
+                                                      $result = $start_time->diffInDays($finish_time, false);
+                                                    @endphp
+                                                  @if($result > 0)
                                                     <tr>
                                                         <td>
-                                                          <h4>Lorem Ipsum is simply dummy text </h4>
-                                                            <p class="m-0">Lorem Ipsum is simply dummy text of the printing and typesetting.It is a long established fact that a reader will be distracted.</p>
+                                                          <a href="{{route('user_show_detail_event', $event->slug)}}">
+                                                          <h4>{{ $event->title }} </h4>
+                                                            <p class="m-0">{{ $event->description }}</p>
+                                                          </a>
                                                         </td>
                                                         
-                                                        <td class="text-right" style="white-space: nowrap;"><i class="fas fa-circle text-c-green f-10"></i> 1 day left</td>
+                                                        <td class="text-right" style="white-space: nowrap;"><i class="fas fa-circle text-c-green f-10"></i> 
+                                                         @if($result <= 0 && $event->status == 0)
+                                        Expired {{ \Carbon\Carbon::parse($event->end_date)->format('Y-m-d') }}
+                                      @elseif($result <= 0 && $event->status == 1)
+                                        Done {{ \Carbon\Carbon::parse($event->end_date)->format('Y-m-d') }}
+                                      @else
+                                        {{ $result }} Days left
+                                      @endif
+                                                      </td>
                                                     </tr>
-                                                     <tr>
-                                                        <td>
-                                                          <h4>Lorem Ipsum is simply dummy text </h4>
-                                                            <p class="m-0">Lorem Ipsum is simply dummy text of the printing and typesetting.It is a long established fact that a reader </p>
-                                                        </td>
-                                                        
-                                                        <td class="text-right" style="white-space: nowrap;"><i class="fas fa-circle text-c-green f-10"></i> 1 day left</td>
-                                                    </tr>                                             
-                                                    
-
-                                                    
-                                                   
+                                                    @endif
+                                                    @endforeach
                                                 </tbody>
                                             </table>
-
-                                        </div>
-                                        <div class="tab-pane fade active show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                            <table class="table table-hover">
-                                                
-                                                <tbody>
-                                                    
-                                                     <tr>
-                                                        <td>
-                                                          <h4>Lorem Ipsum is simply dummy text </h4>
-                                                            <p class="m-0">Lorem Ipsum is simply dummy text of the printing and typesetting.It is a long established fact that a reader will be distracted</p>
-                                                        </td>
-                                                        
-                                                        <td class="text-right" style="white-space: nowrap;"><i class="fas fa-circle text-c-green f-10"></i> 1 day left</td>
-                                                    </tr>
-                                                     <tr>
-                                                        <td>
-                                                          <h4>Lorem Ipsum is simply dummy text </h4>
-                                                            <p class="m-0">Lorem Ipsum is simply dummy text of the printing and typesetting.It is a long established fact that a reader will be distracted by the readable </p>
-                                                        </td>
-                                                        
-                                                        <td class="text-right" style="white-space: nowrap;"><i class="fas fa-circle text-c-green f-10"></i> 1 day left</td>
-                                                    </tr>
-
-                                                    
-
-                                                    
-                                                   
-                                                </tbody>
-                                            </table>
-
-                                        </div>
-                                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                                            <table class="table table-hover">
-                                                
-                                                <tbody>
-                                                    
-                                                     <tr>
-                                                        <td>
-                                                          <h4>Lorem Ipsum is simply dummy text </h4>
-                                                            <p class="m-0">Lorem Ipsum is simply dummy text of the printing and typesetting.It is a long established fact that a reader will be distracted</p>
-                                                        </td>
-                                                        
-                                                        <td class="text-right" style="white-space: nowrap;"><i class="fas fa-circle text-c-green f-10"></i> 1 day left</td>
-                                                    </tr>
-                                                     <tr>
-                                                        <td>
-                                                          <h4>Lorem Ipsum is simply dummy text </h4>
-                                                            <p class="m-0">Lorem Ipsum is simply dummy text of the printing and typesetting.It is a long established fact that a reader will be distracted</p>
-                                                        </td>
-                                                        
-                                                        <td class="text-right" style="white-space: nowrap;"><i class="fas fa-circle text-c-green f-10"></i> 1 day left</td>
-                                                    </tr>
-
-                                                    
-
-                                                    
-                                                   
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-                                        <div class="tab-pane fade" id="expired" role="tabpanel" aria-labelledby="contact-tab">
-                                            <table class="table table-hover">
-                                                
-                                                <tbody>
-                                                  
-                                                     <tr>
-                                                        <td>
-                                                          <h4>Lorem Ipsum is simply dummy text </h4>
-                                                            <p class="m-0">Lorem Ipsum is simply dummy text of the printing and typesetting.It is a long established fact that a reader will be distracte</p>
-                                                        </td>
-                                                        
-                                                        <td class="text-right" style="white-space: nowrap;"><i class="fas fa-circle text-c-green f-10"></i> 1 day left</td>
-                                                    </tr>
-                                                     <tr>
-                                                        <td>
-                                                          <h4>Lorem Ipsum is simply dummy text </h4>
-                                                            <p class="m-0">Lorem Ipsum is simply dummy text of the printing and typesetting.</p>
-                                                        </td>
-                                                        
-                                                        <td class="text-right" style="white-space: nowrap;"><i class="fas fa-circle text-c-green f-10"></i> 1 day left</td>
-                                                    </tr>
-
-                                                    
-
-                                                    
-                                                   
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                            {{ $events->links() }}
+                                        </div> -->
                                     </div>
                                 </div>
-                                <div class="col-xl-4 col-md-12 m-b-30">
+                                <!-- <div class="col-xl-4 col-md-12 m-b-30">
 
                                   <div class="card Upcoming-event-card">
                                         <div class="card-block">
@@ -250,20 +201,15 @@
 
                                         </div>
                                       </div>
-                                </div>
+                                </div> -->
       </div>
-         
       <!-- /.row -->
-
     </section>
-
- 
-     
 @endsection
 
 
-
 @section('scripts')
+<script src="{{url('/js/comingsoon.js')}}"></script>
 @endsection
 
 

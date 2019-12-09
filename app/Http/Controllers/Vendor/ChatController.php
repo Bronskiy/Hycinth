@@ -91,6 +91,8 @@ public function sendMessages(Request $request,$id)
    if($Chat->count() > 0){
 
             $c = $Chat->first();
+            $c->updated_at =\Carbon\Carbon::now();
+            $c->save();
             $m = new ChatMessage;
             $m->sender_id = trim(Auth::user()->id);
             $m->receiver_id = trim($c->user_id);

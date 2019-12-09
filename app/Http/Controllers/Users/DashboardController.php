@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\UserEvent;
 use Hash;
 
 class DashboardController extends Controller {
@@ -15,7 +16,8 @@ class DashboardController extends Controller {
 #----------------------------------------------------------------------
  
 public function index() {
-	return view('users.dashboard.dashboard');
+	$events = UserEvent::where(['user_id' => Auth::User()->id])->paginate(10);
+	return view('users.dashboard.dashboard')->with('events', $events);
 }
 
 public function profile() {

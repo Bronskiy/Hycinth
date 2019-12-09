@@ -97,7 +97,7 @@
                         </li>
                         <li class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'myCategoryChat')) ? 'active' : '' }}">
                            <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'myCategoryChat'
-                              )) ? $cate->category->color : '' }}" href="{{url(route('myCategoryChat',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> My Inbox</a>
+                              )) ? $cate->category->color : '' }}" href="{{url(route('myCategoryChat',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> My Inbox <sup class="msg-count">{{$cate->UnreadBusinessMessages->count()}}</sup></a>
                         </li>
                         <li class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_prohibtion_management' || \Request::route()->getName() === 'vendor_add_prohibtion_management')) ? 'active' : '' }}">
                            <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_prohibtion_management'

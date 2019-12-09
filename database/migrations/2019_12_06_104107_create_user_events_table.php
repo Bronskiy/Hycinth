@@ -16,6 +16,7 @@ class CreateUserEventsTable extends Migration
         Schema::create('user_events', function (Blueprint $table) {
             $table->increments('id');
             $table->string('slug');
+            $table->integer('user_id');            
             $table->string('title');
             $table->LongText('description');
             $table->timestamp('start_date');
@@ -25,6 +26,7 @@ class CreateUserEventsTable extends Migration
             $table->string('longitude');
             $table->string('event_type');
             $table->string('categories');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

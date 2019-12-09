@@ -31,7 +31,7 @@
                         <div class="panel-heading">Business Info</div>
                         <div class="panel-body">
                            <div class="row">
-                              <div class="col-md-6">{{textbox($errors,'Business Name*','business_name',$business_name)}}</div>
+                              <div class="col-md-6">{{textbox($errors,'Business Name*','business_name', $business_name)}}</div>
 
                               <div class="col-md-6">{{textbox($errors,'Company*','company',$company)}}</div>
                               
@@ -46,7 +46,7 @@
 
                               <div class="col-md-12">{{textarea($errors, 'Short Description about your Business*', 'short_description', $short_description)}}</div>
                                
-                            <input type="hidden" name="address" value="{{$address}}">
+                            <!-- <input type="hidden" name="address" value="{{$address}}"> -->
                            </div>
                         </div>
                      </div>
@@ -62,7 +62,7 @@
         
                                 <div class="form-group">
                                   <label class="label-file">Business Cover Image*</label>
-                                  <input type="file" accept="image/*" multiple onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="cover_photo">
+                                  <input type="file" {{ $address ? '' : 'required' }} accept="image/*" multiple onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="cover_photo">
 
                                   @if ($errors->has('cover_photo'))
                                       <div class="error">{{ $errors->first('cover_photo') }}</div>

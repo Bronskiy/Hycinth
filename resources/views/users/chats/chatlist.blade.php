@@ -1,9 +1,22 @@
 <ul>
+<?php 
+
+$activeLists = !empty($activeList) ? $activeList : 0;
+
+$activeList1 = Request::has('chat_id') ? Request::get('chat_id') : $activeLists;
+
+ ?>
 @foreach(Auth::user()->chats as $c)
 
-                                <?php  $chat = $c->ChatMessages()->orderBy('id','DESC')->first(); ?>
+ <?php  $chat = $c->ChatMessages()->orderBy('id','DESC')->first();
 
-                                <li class="contact {{!empty($activeList) && $activeList == $c->id ? 'active' : ''}}">
+
+
+
+
+  ?>
+
+           <li class="contact {{!empty($activeList1) && $activeList1 == $c->id ? 'active' : ''}}">
                                       <a href="javascript::void(0)"
                                          data-href="{{url(route('chat_user_getMessages',$c->id))}}"
                                          data-id="{{$c->id}}"
@@ -15,9 +28,10 @@
                                         <span class="unreadMsgCount">{{$c->unReadMessages->count()}}</span>
                                         @endif
                                         <span class="contact-status online"></span>
-                                        <img src="{{ProfileImage($c->deals->Business->profileImage->keyValue)}}" alt="" />
+                                        <img src="{{ProfileImage($c->business->profileImage->keyValue)}}" 
+                                        alt="" />
                                         <div class="meta">
-                                          <p class="name">{{$c->deals->Business->title}}</p>
+                                          <p class="name">{{$c->business->title}}</p>
                                           <p class="preview">{!! $chat->message !!}</p>
                                         </div>
                                       </div>

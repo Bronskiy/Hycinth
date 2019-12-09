@@ -28,12 +28,14 @@ jQuery("body").on('submit','#sendMessage',function(e){
                      $this.find('button.cstm-btn').attr('disabled','true');
                      $this[0].reset();
 
+
                 },
                 success: function (result) {
                         if(parseInt(result.status) == 1){
                             $("body").find('#ChatMessages').append(result.message);
                             $this.find('button.cstm-btn').removeAttr('disabled');
                             scrollingTop();
+                             getChatListOfUser('all');
                        }
                },
                complete: function() {
@@ -49,14 +51,35 @@ jQuery("body").on('submit','#sendMessage',function(e){
 });
 
 
+ 
+  $(window).on('keypress keydown',function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+       if(event.target.nodeName == 'TEXTAREA'){
+           $("body").find('#sendMessage').submit();
+       }
+      return false;
+    }
+  });
+ 
+
+
+
+ $('#textarea').keypress(function (e) {
+ var key = e.keyCode;
+  alert(key);
+  if(key==13){ 
+    $("body").find('#sendMessage').submit();
+  } 
+});
 
 
 
 getDealAndDiscountChat();
-
+getMessagesAccordingToID();
 setInterval(function(){ 
     getChatListOfUser();
-   getDealAndDiscountChat('onlyNewMessages');
+    getDealAndDiscountChat('onlyNewMessages');
 
  }, 5000);
 
@@ -85,6 +108,7 @@ function getDealAndDiscountChat(type="all") {
                             $("body").find('#ChatMessages').html(result.messages);
 
                              scrollingTop();
+                             getChatListOfUser('all');
                             
                            
                         }
@@ -142,7 +166,7 @@ function getChatListOfUser(type="some") {
                success: function (result) {
                       if(parseInt(result.status) == 1){
                          $this.html(result.list);
-                         scrollingTop();
+                         //scrollingTop();
 
                       }
                },
@@ -166,12 +190,20 @@ function getChatListOfUser(type="some") {
 jQuery("body").on('click','a.getChatbox',function(e){
       e.preventDefault();
       var $this = jQuery( this );
+      $('li.contact').removeClass('active');
+      $this.closest('li.contact').addClass('active');
+      getMessagesAccordingToID();
+});
 
+
+
+
+function getMessagesAccordingToID() {
+   
+      var $this = jQuery("body").find('#contacts').find('li.active').find('a.getChatbox');
       jQuery("body").find('#listactive').val($this.attr('data-id'));
 
-      $('li.contact').removeClass('active');
-      
-      $this.closest('li.contact').addClass('active');
+     
 
       var url = $this.attr('data-href');
       $.ajax({
@@ -189,6 +221,7 @@ jQuery("body").on('click','a.getChatbox',function(e){
                         if(parseInt(result.status) == 1){
                            $("body").find('#userChatBox').html(result.data);
                            getChatListOfUser('all');
+                           scrollingTop();
                         }
                },
                complete: function() {
@@ -199,12 +232,7 @@ jQuery("body").on('click','a.getChatbox',function(e){
                }
 
         });  
-});
-
-
-
-
-
+}
 
 
 

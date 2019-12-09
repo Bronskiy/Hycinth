@@ -44,6 +44,8 @@ class ChatController extends Controller
        $Chat = Chat::where('id',$id)->where('user_id',Auth::user()->id);
        if($Chat->count() > 0){
                 $c = $Chat->first();
+                $c->updated_at =\Carbon\Carbon::now();
+                $c->save();
                 $m = new ChatMessage;
                 $m->sender_id = trim(Auth::user()->id);
                 $m->receiver_id = trim($c->vendor_id);
@@ -158,6 +160,8 @@ public function getChatBox(Request $request,$id)
 
 public function getList(Request $request)
 {
+
+  // return \App\User::with('chats','chats.business','chats.business.profileImage')->where('id',Auth::user()->id)->first();
 
   $chats = Chat::join('chat_messages','chat_messages.chat_id','=','chats.id')
                   ->where('receiver_id',Auth::user()->id)

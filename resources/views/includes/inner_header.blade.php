@@ -16,9 +16,7 @@
                     <li>
                         <a href="javascript:void(0);"><i class="fas fa-heart"></i></a>
                     </li>
-                    <li>
-                        <a href="javascript:void(0);"><i class="fas fa-envelope"></i></a>
-                    </li>
+                   <li>@include('includes.messageCountHeader')</li>
                           @if(Auth::check())
                        
                    <li>                                       
@@ -62,7 +60,7 @@
                 </button>
                 <!-- only for mobile -->
                 <ul class="mob-side-menus">
-                    <li class="user">
+                    <li class="user log-sign-btns">
                        
                    @if(Auth::check())
 

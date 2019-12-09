@@ -1,13 +1,9 @@
 <style type="text/css">
  .MessageChat{
   display: none;
-  padding: 70px 0;
   text-align: center;
  } 
- .MessageChat a{
-  color: #d9534f;
-  text-decoration: underline;
- }
+
   .modal-body.aleadyRequested form{
     display: none;
   }
@@ -27,8 +23,11 @@
   $chats = $deal->Business->getChatOfLoggedUser != null && $deal->Business->getChatOfLoggedUser->count() > 0 ? 1 : 0;
   $links = '';
   if($deal->Business->getChatOfLoggedUser != null && $deal->Business->getChatOfLoggedUser->count() > 0){
-     $link = url(route('deal_discount_chatMessages',$deal->Business->getChatOfLoggedUser->id));
-     $links = 'Your message has been sent to vendor, soon that will reply you. <a href="'.$link.'">view chat</a>';
+     
+     $link = url(route('deal_discount_chats')).'?chat_id='.$deal->Business->getChatOfLoggedUser->id;
+     $links = '<div class="deal-sucess-msg"><span class="suc-msg-icon"><i class="far fa-clock"></i></span>Your message has been sent to vendor, soon vendor will reply you.<div class="btn-wrap text-center mt-3"><a href="'.$link.'" class="cstm-btn">View chat</a>
+     </div>
+     </div>';
   }
 
 
@@ -52,7 +51,7 @@
       <div class="dealls-dis-head">
         <a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec"> <h4>{{$deal->title}}</h4></a>
 
-<p class="ser-text"> <span><i class="fas fa-calendar-alt"></i></span>
+        <p class="ser-text"> <span><i class="fas fa-calendar-alt"></i></span>
         @if($deal->deal_life == 0)
           Permanent Deal
         @else
@@ -78,7 +77,7 @@
         <ul class="button-grp-wrap">
           <li><a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec" data-toggle="tooltip" title="More Detail" class="icon-btn"><i class="fa fa-eye"></i></a></li>
           <li><a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec" data-toggle="tooltip" title="Get Deal" class="icon-btn"><i class="fas fa-tags"></i></a></li>
-          <li><a href="javascript:void(0);" class="icon-btn" data-title="{{$deal->Business->title}}"
+          <li><a href="javascript:void(0);" class="icon-btn get_detail" data-title="{{$deal->Business->title}}"
                                              data-message="{{$deal->message_text}}"
                                              data-id="{{$deal->id}}"
                                              data-chat="{{$chats}}"
@@ -87,49 +86,8 @@
      </div>
 
   </div>
-
-<!-- 
-  <div class="detail-in-breif">
-                                <div class="row">
-                                    <div class="col-lg-5">
-                                         <div class="custom-left-content">
-                                             <img src="{{url($deal->image)}}">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-7">
-                                        <div class="right-content">
-                                           <div class="listing-head">
-                                             <a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec"> <h4>{{$deal->title}}</h4></a>
-                                             <p class="ser-text"><i class="fa fa-clock"></i> {{$deal->deal_life == 1 ? 'Expires on '.$deal->expiry_date : 'Permanent promotion'}}
-                                             </p>
-                                           </div>
-                                           <hr>
-                                            <p class="detail">
-                                                <?php $description =  $deal->description; ?>
-                                               {{substr($description,0,100)}} {{strlen($description) > 100 ? '...' : ''}}
-                                            </p>
-                                            
-
-                                            <a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec" class="cstm-btn solid-btn detail-btn"><i class="fa fa-eye"></i> More detail</a>
-
-                                             <a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec" class="cstm-btn solid-btn detail-btn"><i class="fa fa-eye"></i> Get Deal</a>
-
-                                            <a href="javascript:void(0);"
-                                             class="cstm-btn solid-btn detail-btn get_detail"
-                                             data-title="{{$deal->Business->title}}"
-                                             data-message="{{$deal->message_text}}"
-                                             data-id="{{$deal->id}}"
-                                             data-chat="{{$chats}}"
-                                             data-chatMessage="{{$links}}"
-                                             ><i class="fa fa-comment-dots"></i> Chat</a>
-
-                                             
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                             -->
-                            <hr class="hr-break">
+ 
+  <hr class="hr-break">
  
 
 
@@ -137,17 +95,13 @@
 @endforeach
 
 
-
-
-
-
 <!-- Modal -->
-<div class="modal fade" id="myModalDealDiscount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="get_Deal modal fade" id="myModalDealDiscount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Get Deal Coupon Code from <span id="busines_title"></span></h4>
+        <h4 class="modal-title" id="myModalLabel">Get Deal & Discount</h4>
       </div>
       <div class="modal-body">
          <form id="getDealForm" action="{{url(route('get-deal-request'))}}">
@@ -173,8 +127,9 @@
                       {{textarea($errors,'Message','message')}}
                  </div>
                  <div class="col-md-12">
-                    <button type="submit" class="cstm-btn solid-btn detail-btn pull-right">Submit</button>
-
+                  <div class="btn-wrap mt-3">
+                      <button type="submit" class="cstm-btn solid-btn detail-btn pull-right">Submit</button>
+                  </div>
                     
                 </div>
             </div>

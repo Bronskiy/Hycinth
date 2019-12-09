@@ -95,6 +95,7 @@
 @section('scripts')
  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDULjv0UAVmj_zgc9GjBhJNh9fNuEj87LQ&libraries=places"></script>
 <script type="text/javascript" src="{{url('/js/validations/businessListingFilter.js')}}"></script>
+<script type="text/javascript" src="{{url('/js/validations/quotes.js')}}"></script>
 <script type="text/javascript">
     function initMap() {
            var map;

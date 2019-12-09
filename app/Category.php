@@ -113,11 +113,8 @@ class Category extends Model
         return $this->hasMany('App\CategoryVariation','category_id','category_id')->where('type','seasons');
     }
 
-
-
-    public function businesses()
-    {
-       return $this->hasMany('App\VendorCategory','category_id')->where('status',3)->where('publish',1);
+    public function businesses() {
+       return $this->hasMany('App\VendorCategory')->where('status', 3)->where('publish', 1);
     }
 
 

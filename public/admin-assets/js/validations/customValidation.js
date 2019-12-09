@@ -78,7 +78,7 @@ $.validator.addMethod("minDate", function(value, element) {
     const inputDate = new Date(value);    
 
     const curDatemonth = curDate.getMonth() + 1; 
-    const curDatedate = curDate.getDate(); 
+    const curDatedate = curDate.getDate() - 1; 
     const curDateyear = curDate.getFullYear();
 
     const inputDatemonth = inputDate.getMonth() + 1; 
@@ -88,7 +88,7 @@ $.validator.addMethod("minDate", function(value, element) {
     const current = curDatedate + '-' + curDatemonth + '-' + curDateyear;
     const input = inputDatedate + '-' + inputDatemonth + '-' + inputDateyear;
 
-    if (inputDate == 'Invalid Date' || input >= current) {
+    if (inputDate == 'Invalid Date' || ( inputDateyear >= curDateyear && inputDatemonth >= curDatemonth && inputDatedate >= curDatedate)) {
       return true; 
     }
     return false;
@@ -97,19 +97,7 @@ $.validator.addMethod("minDate", function(value, element) {
 
 $.validator.addMethod("minStartDate", function(value, element) {
     var curDate = new Date($('#start_date').val());
-    var inputDate = new Date(value);    
-
-    // const curDatemonth = curDate.getMonth() + 1; 
-    // const curDatedate = curDate.getDate(); 
-    // const curDateyear = curDate.getFullYear();
-
-    // const inputDatemonth = inputDate.getMonth() + 1; 
-    // const inputDatedate = inputDate.getDate(); 
-    // const inputDateyear = inputDate.getFullYear();
-
-    // const start = curDatedate + '-' + curDatemonth + '-' + curDateyear;
-    // const expire = inputDatedate + '-' + inputDatemonth + '-' + inputDateyear;
-
+    var inputDate = new Date(value);
     if (inputDate == 'Invalid Date' || inputDate > curDate) {
       return true; 
     }

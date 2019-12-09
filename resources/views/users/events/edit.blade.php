@@ -12,23 +12,19 @@
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url(route('admin_dashboard'))}}"><i class="feather icon-home"></i></a></li>
                     <li class="breadcrumb-item "><a href="{{ route('user_events') }}">List</a></li>
-                    <li class="breadcrumb-item "><a href="javascript:void(0)">Create Event</a></li>
+                    <li class="breadcrumb-item "><a href="javascript:void(0)">Edit Event</a></li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
-
         <section class="content">
       <div class="row">
         <div class="col-12">
           <div class="card">
             <!-- /.card-header -->
        @include('admin.error_message')
- 
             <div class="card-body">
-
-
 
 <div class="col-md-12">
 
@@ -87,7 +83,6 @@
         <button type="submit" id="UserEventFormBtn" class="btn btn-primary">Create</button>
       </div>
  </form>
-
 
 </div>
 

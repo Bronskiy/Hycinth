@@ -19,6 +19,13 @@ class ChatMessage extends Model
     	return $this->belongsTo('App\User','receiver_id');
     }
 
+    public function chat()
+    {
+      return $this->belongsTo('App\Chat','chat_id');
+    }
+
+     
+
 
      public function business()
     {

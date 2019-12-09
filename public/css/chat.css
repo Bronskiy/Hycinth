@@ -729,6 +729,21 @@ form#sendMessage{
   height: 100%;
   position: absolute;
 }
+.msg-count {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    background: #eda208;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 11px;
+}
 @media screen and (max-width: 735px) {
   .chatBox-frame .content .message-input .wrap button {
     padding: 16px 0;

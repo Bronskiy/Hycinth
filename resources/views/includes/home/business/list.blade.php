@@ -1,9 +1,7 @@
 
 @if($categoryCount == 0)
-
-@include('includes.not_found')
+   @include('includes.not_found')
 @endif
-
  
 <div class="business-view" id="business-view">
  @foreach($businesses as $cate)    
@@ -132,7 +130,9 @@ $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) 
                                             </ul>
 
                                             <a href="javascript:void(0);" class="cstm-btn solid-btn detail-btn"><i class="fa fa-comment-dots"></i> Chat</a>
-                                            <a href="javascript:void(0);" class="cstm-btn solid-btn detail-btn">Request A Qoute </a>
+                                            <a href="javascript:void(0);"
+                                             class="cstm-btn solid-btn detail-btn getQuote"
+                                             data-id="{{$cate->id}}">Request A Qoute</a>
 
                                              
                                         </div>
@@ -154,27 +154,17 @@ $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) 
 
 
 
-<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDULjv0UAVmj_zgc9GjBhJNh9fNuEj87LQ&libraries=places"></script>
- -->
-<script type="text/javascript">
+@include('home.includes.quotes')
  
+<script type="text/javascript">
+   
+   jQuery("body").on('click','.view-mapper',function(e){
+        e.preventDefault();
+        var val = jQuery( this ).attr('data-id');
+        var valHide = jQuery( this ).attr('data-hide');
+         jQuery(val).slideDown('slow');
+         jQuery(valHide).slideUp('slow');
+   });
 
-
-jQuery("body").on('click','.view-mapper',function(e){
-    e.preventDefault();
-    var val = jQuery( this ).attr('data-id');
-    var valHide = jQuery( this ).attr('data-hide');
-     jQuery(val).slideDown('slow');
-     jQuery(valHide).slideUp('slow');
-});
-
-
-
-
-
-
-
-
-
-
+ 
 </script>

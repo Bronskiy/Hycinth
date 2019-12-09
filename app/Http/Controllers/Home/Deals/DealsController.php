@@ -165,7 +165,7 @@ public function getDealRequest(Request $request)
          $c = $this->sendMessage($request,$deal);
          
         if($c > 0){
-          $link = url(route('deal_discount_chatMessages',$c));
+          $link = url(route('deal_discount_chats')).'?chat_id='.$c;
           $links = 'Your message has been sent to vendor, soon that will reply you. <a href="'.$link.'">view chat</a>';
           return response()->json(['status' => 1, 'link' => $links]);
         }else{
@@ -215,6 +215,8 @@ public function sendMessage($request,$deal)
 
           if($chats->count() > 0){
                 $chat = $chats->first();
+                $chat->updated_at =\Carbon\Carbon::now();
+                $chat->save();
                 $m = new ChatMessage;
                 $m->sender_id = trim(Auth::user()->id);
                 $m->receiver_id = trim($deal->user_id);
@@ -233,6 +235,7 @@ public function sendMessage($request,$deal)
                 $chat->business_id = $deal->vendor_category_id;
                 $chat->deal_id = $deal->id;
                 $chat->vendor_id =trim($deal->user_id);
+                $chat->updated_at =\Carbon\Carbon::now();
                 $chat->status = 0;
                 if($chat->save()){
                       $m = new ChatMessage;
