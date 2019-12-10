@@ -9,6 +9,26 @@ jQuery(function(){
 |_____________________________________________________________________________
 */
 
+
+
+
+$("body").on('keyup','[data-search]',function() { // This will need to change to the id of your search field
+     var searchStr = $(this).val().toLowerCase();
+     $("body").find('li.contact').each(function() { // Here you'll need to update your selector to find each image. As you are not using the class "caption" on any of your images. // '#thumbnails li' or something similar
+          var str = $(this).attr("data-filter-name").toLowerCase(); //this call pulls the attribute "data-title", you'll need to update it to the attribute value you're using for the caption text. // 'data-ilb2-caption', You should also keep the code clean and add a space between attributes. 'data-imagelightbox="demo"data-ilb2-caption' to 'data-imagelightbox="demo" data-ilb2-caption'
+          
+          console.log(str.indexOf(searchStr));
+          if(str.indexOf(searchStr) > -1) {  
+               $(this).show(); 
+          } else {
+               $(this).hide(); 
+          }
+     });
+});
+
+
+
+
   $(window).on('keypress keydown',function(event){
     if(event.keyCode == 13) {
       event.preventDefault();

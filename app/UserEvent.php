@@ -12,7 +12,7 @@ class UserEvent extends Model
     use SluggableScopeHelpers;
 
     protected $fillable = [
-    	'slug', 'title', 'user_id', 'description', 'start_date', 'end_date', 'location', 'latitude', 'longitude', 'event_type', 'categories', 'status'
+    	'slug', 'title', 'user_id', 'description', 'start_date', 'end_date', 'min_person', 'max_person', 'location', 'latitude', 'longitude', 'event_type', 'status'
     ];
 
     public function sluggable() {

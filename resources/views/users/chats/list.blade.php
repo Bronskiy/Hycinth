@@ -17,7 +17,7 @@
                         </div>
  </div>
 
-  <section class="content">
+  <section class="content chatbox-manage">
       <div class="row">
         <div class="col-12">
           <div class="card">
@@ -40,7 +40,7 @@
                             </div>
                             <div id="search">
                               <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-                              <input type="text" placeholder="Search contacts..." />
+                              <input type="text" placeholder="Search contacts..." data-search/>
                             </div>
                             <div id="contacts" data-action="{{url(route('get_chat_list'))}}">
                              

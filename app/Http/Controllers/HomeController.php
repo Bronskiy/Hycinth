@@ -44,7 +44,7 @@ class HomeController extends Controller
     public function index(Request $request) {
 
         if(!empty($request->test)){
-          return getUserNotifications();
+            return getUserNotifications();
             return \App\User::with('newVendorsBusinessMessages','newVendorsBusinessMessages.unReadMessages')->where('id',\Auth::user()->id)->first();
         }
 
@@ -237,10 +237,12 @@ public function login($request)
            
             if(Auth::check() && Auth::user()->email_verified_at){
 
+                $url = !empty($request->redirectLink) ? $request->redirectLink : url(route('user_dashboard'));
+
                $arr = [
                     'status' => 1,
                      'message' => 'Please wait... Redirecting to your dashboard.',
-                    'redirectLink' => url(route('user_dashboard'))
+                    'redirectLink' => $url
                 ];
 
 

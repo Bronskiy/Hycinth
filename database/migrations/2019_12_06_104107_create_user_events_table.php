@@ -25,7 +25,8 @@ class CreateUserEventsTable extends Migration
             $table->string('latitude');
             $table->string('longitude');
             $table->string('event_type');
-            $table->string('categories');
+            $table->string('min_person');
+            $table->string('max_person');
             $table->boolean('status')->default(0);
             $table->timestamps();
         });

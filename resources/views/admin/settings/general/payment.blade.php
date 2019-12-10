@@ -17,7 +17,7 @@
     </div>
 </div>
 
-@php
+<?php
   $arr =  json_decode( getAllValueWithMeta('paypal_credentials', 'paypal-credentials'));
 
   $mode = !empty($arr) && !empty($arr->mode) ? $arr->mode : '';
@@ -40,7 +40,7 @@
 
   $live_secret = !empty($arrStripe) && !empty($arrStripe->live_secret) ? $arrStripe->live_secret : '';
   $live_public = !empty($arrStripe) && !empty($arrStripe->live_public) ? $arrStripe->live_public : '';
-@endphp
+?>
 
   <div class="row">
     <div class="col-12">
@@ -62,11 +62,11 @@
             <h5 class="card-title">Paypal Settings</h5>
               
               <form method="POST" id="paypalCreadentialsForm">
-      @csrf
-      <input type="hidden" name="type" value="paypal-credentials">
-      <input type="hidden" name="key" value="paypal_credentials"/>
+                  @csrf
+                  <input type="hidden" name="type" value="paypal-credentials">
+                  <input type="hidden" name="key" value="paypal_credentials"/>
 
-      <div class="custom-switch flex-end">
+                  <div class="custom-switch flex-end">
         <!-- <input type="checkbox" class="custom-control-input" id="customSwitch1" name="mode" id="mode" {{ $mode ? 'checked' : ''}} /> -->
        
       

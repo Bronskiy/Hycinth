@@ -25,7 +25,6 @@ class UserEventController extends Controller
 
 	public function create(Request $request) {
         $user = Auth::User();
-		// $request['categories'] = json_encode($request->event_categories);
         $request['user_id'] = $user->id;
     	$event = UserEvent::create($request->all());
         $this->save_event_meta_data($request->event_categories, $user, $event);
@@ -33,7 +32,9 @@ class UserEventController extends Controller
     }
 
     public function getEventCategories(Request $request) {
-    	$event = Event::with(['categoryVariation', 'categoryVariation.category'])->find($request->id);
+    	$event = Event::with(['categoryVariation' => function($q) {
+            $q->groupBy('category_id');
+        }, 'categoryVariation.category'])->find($request->id);
     	return response()->json($event);
     }
 
@@ -52,19 +53,11 @@ class UserEventController extends Controller
     public function showDetailEvent($slug) {
         $events = Event::where('status', 1)->get();
         $user_event = UserEvent::FindBySlugOrFail($slug);
-        
-        // foreach ($user_event->eventCateIds as $key => $value) {
-        //     $cat_ids[] = $value->key_value;
-        // }
-
-        // $cat_ids = json_decode($user_event->categories);
-        // $categories = Category::with('businesses')->whereIn('id', $cat_ids)->get();
         return view('users.events.detail')->with(['events' => $events, 'user_event' => $user_event]);
     }
 
     public function update(Request $request, $slug) {
         $user = Auth::User();
-		// $request['categories'] = json_encode($request->event_categories);
 		$user_event = UserEvent::FindBySlugOrFail($slug);
         UserEventMetaData::where('event_id', $user_event->id)->delete();
         $this->save_event_meta_data($request->event_categories, $user, $user_event);

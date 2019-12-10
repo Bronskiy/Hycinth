@@ -6,11 +6,11 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 <div class="page-header-title">
-                    <h5 class="m-b-10">My Dashboard</h5>
+                    <h5 class="m-b-10">My Events</h5>
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url(route('admin_dashboard'))}}"><i class="feather icon-home"></i></a></li>
-                    <li class="breadcrumb-item "><a href="javascript:void(0);">List</a></li>
+                    <li class="breadcrumb-item "><a href="javascript:void(0);">Events</a></li>
                 </ul>
             </div>
 
@@ -42,6 +42,7 @@
                                     </ul>
                                     <div class="tab-content" id="myTabContent">
                                         <div class="tab-pane fade active show" id="allevent" role="tabpanel" aria-labelledby="allevent-tab">
+                                          @if(count($events) > 0)
                                             <table class="table table-hover">
                                                 
                                                 <tbody>
@@ -62,18 +63,19 @@
                                         $result = $start_time->diffInDays($finish_time, false);
                                       @endphp
 
-                                      @if($result <= 0 && $event->status == 0)
-                                        Expired {{ \Carbon\Carbon::parse($event->end_date)->format('Y-m-d') }}
-                                      @elseif($result <= 0 && $event->status == 1)
-                                        Done {{ \Carbon\Carbon::parse($event->end_date)->format('Y-m-d') }}
+                                      @if($result <= 0)
+                                        Past Event
                                       @else
                                         {{ $result }} Days left
                                       @endif
-                                                       </td>
-                                                    </tr>
-                                                    @endforeach
+                                         </td>
+                                      </tr>
+                                      @endforeach
                                                 </tbody>
                                             </table>
+                                            @else
+                                             No Events Found
+                                            @endif
                                         </div>
                                         <div class="tab-pane fade" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
                                             <table class="table table-hover">
@@ -123,7 +125,7 @@
                                                           </a>
                                                         </td>
                                                         <td class="text-right" style="white-space: nowrap;"><i class="fas fa-clock"></i>
-                                                        Expired {{ \Carbon\Carbon::parse($event->end_date)->format('Y-m-d') }}
+                                                        Past Events {{ \Carbon\Carbon::parse($event->end_date)->format('Y-m-d') }}
                                                         </td>
                                                     </tr>
                                                     @endif

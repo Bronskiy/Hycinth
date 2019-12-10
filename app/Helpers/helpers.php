@@ -50,7 +50,11 @@ function getCoverPictureOfBusiness($cate)
 
 
 
-
+// fav_vendor
+function fav_vendor($id) {
+  $fav_vendor = \App\FavouriteVendor::where(['vendor_id' => $id, 'user_id'=> \Auth::User()->id])->first();
+  return $fav_vendor ? 'fav-active' : '';
+}
 
 
 function checkCategoryWithRequest($name,$category_id)
@@ -2385,11 +2389,11 @@ function  OrderByIdOfCart($count){
 
 
 function SripeAccount(){
-	 $d=WebsiteContent();
+	  
 	$array = array(
-		 'pk'         =>   $d->pk,
-		 'sk'         =>   $d->sk,
-		 'client_id'  =>   $d->client_id
+		 'pk'         =>   'pk_test_dtD5WE757jp1zzxVXexp3BIx',
+		 'sk'         =>   'sk_test_kKoOOeRxs9N93l9t17qQBIza',
+		 'client_id'  => 'ca_CRS1oNfESdOlwL8loL9AgfpHtBv6Ucvc' 
 		 );
 	return $array;
 }
@@ -2778,26 +2782,18 @@ function Actions2($arr)
 
 
 
-function ActiveMenu($arr,$returnText,$route=null)
-{
+function ActiveMenu($arr, $returnText, $route= null) {
      $currentRoute = \Request::route()->getName();
          $i=0;
-
          if($currentRoute == $route){
              return  $returnText;
-         }elseif($route == null){
-
+         } elseif ($route == null){
             for($j=0;$j<count($arr); $j++){
-                
                 if($arr[$j] == $currentRoute){
                     $i++;
                  }
            }
-
         }
-
-          
-
          return $i > 0 ? $returnText : '' ;
 }
 

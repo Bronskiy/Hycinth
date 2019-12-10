@@ -45,9 +45,8 @@
                                     <i class="fas fa-times" style="display: none;"></i>
                                 </span>
                             </span>
-                <div class="row">
-
-                      
+              @include('admin.error_message')
+                <div class="row">                      
 
                       @include('includes.home.business.sidebar')
                     

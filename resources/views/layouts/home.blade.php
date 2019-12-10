@@ -31,6 +31,8 @@
     <link rel="stylesheet" type="text/css" href="{{url('/frontend/css/styles.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('/frontend/css/responsive.css')}}">
      <link rel="stylesheet" href="{{url('/css/chat.css')}}">
+     <link rel="stylesheet" href="{{url('/css/common-style.css')}}">
+    <link rel="stylesheet" href="{{url('/css/common-responsive.css')}}">
 
 <style type="text/css">
     .custom-loading {

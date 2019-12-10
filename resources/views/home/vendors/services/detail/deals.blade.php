@@ -61,6 +61,9 @@ $event_date = '';
                     <p class="ser-text mt-1">
                         <span><i class="fas fa-tag"></i></span> {{ $deal->Business->category->label }}
                     </p>
+                      <p class="ser-text mt-1">
+         <span><i class="fas fa-info-circle"></i></span>  {!! $deal->type_of_deal == '0' ? 'Use Coupon for all packages of this Vendor.' : 'Available for <a href="'.url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url])).'#package-sec"><strong>'.strtoupper($deal->dealPackage->title).'</strong></a> package of this Vendor' !!}
+        </p>
 
                     @if($deal->type_of_deal == '0')
                     <a href="javascript:void(0);" class="coupon-code" data-toggle="tooltip" title="Copy to clipboard">

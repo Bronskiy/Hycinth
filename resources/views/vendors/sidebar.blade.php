@@ -93,7 +93,8 @@
                            || \Request::route()->getName() === 'vendor_edit_deals_management')) ? 'active' : '' }}">
                            <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'vendor_deals_management'
                               || \Request::route()->getName() === 'vendor_add_deals_management'
-                              || \Request::route()->getName() === 'vendor_edit_deals_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_deals_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Deal & Discounts</a>
+                              || \Request::route()->getName() === 'vendor_edit_deals_management')) ? $cate->category->color : '' }}" href="{{url(route('vendor_deals_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> 
+                           Deal & Discounts</a>
                         </li>
                         <li class="{{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'myCategoryChat')) ? 'active' : '' }}">
                            <a style="color: {{ (Request::route('slug') === $cate->category->slug && (\Request::route()->getName() === 'myCategoryChat'
@@ -143,9 +144,18 @@
                <a href="javascript:" class="nav-link "><span class="pcoded-micon">
                <i class="feather icon-settings"></i></span><span class="pcoded-mtext">Settings</span></a>
                <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['vendor_profile', 'vendor_password', 'vendor_payment'],'block') ?>;">
-                  <li class="<?= ActiveMenu(['vendor_profile'],'active') ?>"><a href="{{ route('vendor_profile') }}" class="">Profile Settings</a></li>
-                  <li class="<?= ActiveMenu(['vendor_payment'],'active') ?>"><a href="{{ route('vendor_payment') }}" class="">Payment Settings</a></li>
-                  <li class="<?= ActiveMenu(['vendor_password'],'active') ?>"><a href="{{ route('vendor_password') }}" class="">Password Settings</a></li>
+                  <li class="<?= ActiveMenu(['vendor_profile'],'active') ?>">
+                     <a href="{{ route('vendor_profile') }}" class="">Profile Settings</a>
+                  </li>
+                  <li class="<?= ActiveMenu(['vendor_payment'],'active') ?>">
+                     <a href="{{ route('vendor_payment') }}" class="">Payment Settings</a>
+                  </li> 
+                  <li class="<?= ActiveMenu(['stripeSettings'],'active') ?>">
+                     <a href="{{ route('stripeSettings') }}" class="">Stripe Settings</a>
+                  </li>
+                  <li class="<?= ActiveMenu(['vendor_password'],'active') ?>">
+                     <a href="{{ route('vendor_password') }}" class="">Password Settings</a>
+                  </li>
                </ul>
             </li>
          </ul>

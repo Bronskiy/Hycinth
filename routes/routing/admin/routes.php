@@ -11,9 +11,7 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
 		Route::post('/profile/settings/image','Admin\AdminController@changeProfileImage')->name('post_admin_settings');
 		Route::post('/profile/settings/password','Admin\AdminController@change')->name('post_admin_password_settings');
 
-
-
-		Route::get('/logout','Admin\AdminController@logout')->name('admin_logout');
+		Route::get('/logout', 'Admin\AdminController@logout')->name('admin_logout');
 
 		#----------------------------------------------------------------
 		#  Category Management

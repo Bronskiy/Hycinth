@@ -15,10 +15,11 @@
 </style>
 
 
-@foreach($discount_deals as $deal)
+@foreach($discount_deals as $dealDisount)
  
  
 <?php
+$deal = \App\Models\Vendors\DiscountDeal::find($dealDisount->id);
 
   $chats = $deal->Business->getChatOfLoggedUser != null && $deal->Business->getChatOfLoggedUser->count() > 0 ? 1 : 0;
   $links = '';
@@ -31,6 +32,10 @@
   }
 
 
+$businessDetailLink = url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url])).'#deals-sec';
+
+
+$redirectLink = $deal->type_of_deal == 0 ? $businessDetailLink : url(route('payWithDeal',[$deal->slug,$deal->dealPackage->slug]));
 
 ?>
 
@@ -40,12 +45,9 @@
     <figure class="deal-img">
       <img src="{{url($deal->image)}}">
       <figcaption class="discount-per"><span class="blink-text">
-        @if($deal->deal_off_type == 0)
-         {{$deal->amount}}% 
-        @else
-         ${{$deal->amount}} 
-        @endif
-        <small> OFF</small></span> </figcaption>      
+      {{($deal->deal_off_type == 0) ? $deal->amount.'%' : '$'.$deal->amount }}
+         
+        <small> OFF  </small></span> </figcaption>      
     </figure>
      <div class="detal-card-details">
       <div class="dealls-dis-head">
@@ -63,6 +65,10 @@
          <span><i class="fas fa-tag"></i></span> {{ $deal->Business->category->label }}
         </p>
 
+       <p class="ser-text mt-1">
+         <span><i class="fas fa-info-circle"></i></span>  {!! $deal->type_of_deal == '0' ? 'Use Coupon for all packages of this Vendor.' : 'Available for <a href="'.url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url])).'#package-sec"><strong>'.strtoupper($deal->dealPackage->title).'</strong></a> package of this Vendor' !!}
+        </p>
+
         @if($deal->type_of_deal == '0')
         <a href="javascript:void(0);" class="coupon-code" data-toggle="tooltip" title="Copy to clipboard">
           <span class="code-text">{{ $deal->deal_code }}</span>
@@ -75,13 +81,22 @@
                                                {{substr($description,0,100)}} {{strlen($description) > 100 ? '...' : ''}}
         </p>
         <ul class="button-grp-wrap">
-          <li><a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec" data-toggle="tooltip" title="More Detail" class="icon-btn"><i class="fa fa-eye"></i></a></li>
-          <li><a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec" data-toggle="tooltip" title="Get Deal" class="icon-btn"><i class="fas fa-tags"></i></a></li>
-          <li><a href="javascript:void(0);" class="icon-btn get_detail" data-title="{{$deal->Business->title}}"
-                                             data-message="{{$deal->message_text}}"
-                                             data-id="{{$deal->id}}"
-                                             data-chat="{{$chats}}"
-                                             data-chatMessage="{{$links}}" data-toggle="tooltip" title="Chat"><i class="fa fa-comment-dots"></i></a></li>
+                        <li>
+                          <a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec" data-toggle="tooltip" title="More Detail" class="icon-btn"><i class="fa fa-eye"></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{$redirectLink}}" data-toggle="tooltip" title="Get Deal" class="icon-btn"><i class="fas fa-tags"></i>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="javascript:void(0);" class="icon-btn get_detail" data-title="{{$deal->Business->title}}"
+                                                           data-message="{{$deal->message_text}}"
+                                                           data-id="{{$deal->id}}"
+                                                           data-chat="{{$chats}}"
+                                                           data-chatMessage="{{$links}}" data-toggle="tooltip" title="Chat"><i class="fa fa-comment-dots"></i>
+                          </a>
+                       </li>
         </ul>
      </div>
 

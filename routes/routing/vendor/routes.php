@@ -215,5 +215,15 @@ require __DIR__.'/ajax.php';
         Route::get('/category/{slug}/chat', 'Vendor\ChatController@index2')->name('myCategoryChats');
         Route::get('/category/{slug}/chat/{id}', 'Vendor\ChatController@chatMessages')->name('deal_discount_vendor_chatMessages');
         
+         
+
+
+        #-----------------------------------------------------------------------------------
+        #  Stripe Settings
+        #-----------------------------------------------------------------------------------
+
+        Route::get('/payment/settings/stripe', 'Vendor\StripePaymentSettingController@index')->name('stripeSettings');
+        Route::post('/payment/settings/stripe', 'Vendor\StripePaymentSettingController@store')->name('stripeSettings');
+
 
 });

@@ -1,7 +1,7 @@
  <ul>
     @foreach($business->chats as $c)
       <?php  $chat = $c->ChatMessages()->orderBy('id','DESC')->first(); ?>
-        <li class="contact  {{!empty($activeList) && $activeList == $c->id ? 'active' : ''}}">
+        <li data-filter-name="{{$c->user->name}}" class="contact  {{!empty($activeList) && $activeList == $c->id ? 'active' : ''}}">
              
                                    <a href="javascript::void(0)"
                                          data-href="{{url(route('getChatBoxOfBusiness',[$business->category->slug,$c->id]))}}"

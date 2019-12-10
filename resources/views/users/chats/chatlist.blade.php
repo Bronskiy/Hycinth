@@ -16,7 +16,7 @@ $activeList1 = Request::has('chat_id') ? Request::get('chat_id') : $activeLists;
 
   ?>
 
-           <li class="contact {{!empty($activeList1) && $activeList1 == $c->id ? 'active' : ''}}">
+           <li data-filter-item data-filter-name="{{$c->business->title}}" class="contact {{!empty($activeList1) && $activeList1 == $c->id ? 'active' : ''}}">
                                       <a href="javascript::void(0)"
                                          data-href="{{url(route('chat_user_getMessages',$c->id))}}"
                                          data-id="{{$c->id}}"

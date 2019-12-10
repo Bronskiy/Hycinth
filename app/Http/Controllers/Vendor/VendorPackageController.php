@@ -141,11 +141,11 @@ class VendorPackageController extends Controller
 
 
 
-	public function packagesEdit(Request $request, $slug, $id) {
+	public function packagesEdit(Request $request, $slug, $pack_slug) {
   
        $category = $this->getData($slug);
 
-       $package = VendorPackage::find($id);
+       $package = VendorPackage::FindBySlugOrFail($pack_slug);
 
         if(!$package) {
           return redirect()->route('vendor_packages_management', $slug)->with('messages', 'Something Went Wrong.');

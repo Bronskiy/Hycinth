@@ -47,7 +47,7 @@ $(document).ready(function(){
         amount: true,
         min: 1,
         minlength: 1,
-        maxlength: 10
+        maxlength: 5
       },
       "no_of_hours": {
         required: true,

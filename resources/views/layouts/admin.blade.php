@@ -30,6 +30,8 @@
     <link href="/bootstrap-fileinput-master/themes/explorer-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="{{url('/AdminFILE/dist/css/jquery-ui.css')}}">
     <link rel="stylesheet" href="{{url('/admin-assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{url('/css/common-style.css')}}">
+    <link rel="stylesheet" href="{{url('/css/common-responsive.css')}}">
 
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 

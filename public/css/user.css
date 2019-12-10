@@ -57,16 +57,28 @@
     margin-top: 30px;
     display: block;
 }
-.countdown-timer-container .count-down-timer li span{
+.countdown-timer-container .count-down-timer li span {
     display: block;
     font-size: 36px;
     color: #eda108;
     font-weight: bold;
+    background: #35486b;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 4px;
 }
-.countdown-timer-container .count-down-timer li{
-  font-size: 17px;
+.countdown-timer-container .count-down-timer li {
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    width: 80px;
+    border-radius: 6px;
+    margin-right: 10px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 12px;
 }
-
+.countdown-timer-container .count-down-timer li:last-child{
+    margin-right: 0px;
+}
 
 /*chatbox css*/
 .recommended-vedor{
@@ -175,4 +187,11 @@ table label {
 }
 .table .action-td {
     width: 80px;
+}
+
+/*responsive css*/
+@media(max-width:1199px){
+    .card .card-block, .card .card-body {
+    padding: 20px 15px;
+}
 }

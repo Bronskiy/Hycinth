@@ -156,7 +156,7 @@ Status</th>
 
      <div class="pkg-footer text-center">
       <ul class="acrdn-action-btns single-row">
-          <li><a href="{{ route('vendor_packagesedit_management', ['slug' => $category->slug, 'id' => $f->id]) }}" class="action_btn dark-btn" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a></li>
+          <li><a href="{{ route('vendor_packagesedit_management', ['slug' => $category->slug, 'id' => $f->slug]) }}" class="action_btn dark-btn" data-toggle="tooltip" title="Edit"><i class="fas fa-pencil-alt"></i></a></li>
           <li>          
             <a href="javascript:void(0);" class="action_btn btn-primary" id="addOns" onclick="openModel()" data-toggle="modal" data-target="#Addons_{{$f->id}}" data-toggle="tooltip" title="Add Ons"><i class="fas fa-plus"></i></a>
           </li>

@@ -9,11 +9,11 @@
  
 <?php
 
-$facebook_url = getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','facebook_url');
-$linkedin_url = getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','linkedin_url');
-$twitter_url =  getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','twitter_url');
-$instagram_url = getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','instagram_url');
-$pinterest_url = getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','pinterest_url');
+$facebook_url = getBasicInfo($cate->vendors->id, $cate->category_id, 'basic_information', 'facebook_url');
+$linkedin_url = getBasicInfo($cate->vendors->id, $cate->category_id, 'basic_information', 'linkedin_url');
+$twitter_url =  getBasicInfo($cate->vendors->id, $cate->category_id, 'basic_information', 'twitter_url');
+$instagram_url = getBasicInfo($cate->vendors->id, $cate->category_id, 'basic_information', 'instagram_url');
+$pinterest_url = getBasicInfo($cate->vendors->id, $cate->category_id, 'basic_information', 'pinterest_url');
 
 $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) && empty($instagram_url) && empty($pinterest_url) ? 'hide' : '';
 ?>
@@ -60,16 +60,13 @@ $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) 
                                     <a href="{{url( route('vendor_detail_page',[$cate->category->slug,$cate->business_url]))}}"> <h4 class="padding-rt">{{getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','business_name')}}</h4></a>
                                            
                                            <ul class="listing-action-btns">
-                                             <li><a href="javascript:void(0);" class="list-icon-btn"><i class="fas fa-heart"></i></a></li>
+                                             @if(Auth::check() && Auth::User()->role == 'user')
+                                             <li><a href="{{ route('user_add_favourite_vendors', $cate->id) }}" class="list-icon-btn {{ fav_vendor($cate->id) }}"><i class="fas fa-heart"></i></a>
+                                             </li>
+                                             @endif
+
                                              <li><a href="tel:{{getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','phone_number')}}" class="list-icon-btn"><i class="fas fa-phone-alt"></i></a></li>
                                            </ul>
-
-
-
-
-                                             
-                       
-                                            <!-- <span class="input-icon likes"><i class="fas fa-heart"></i></span> -->
 
                                    <p class="ser-text"> {{$cate->category->label}}</p>
  

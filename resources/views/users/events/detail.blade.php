@@ -7,11 +7,11 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 <div class="page-header-title">
-                    <h5 class="m-b-10">My Dashboard</h5>
+                    <h5 class="m-b-10">Detail Event</h5>
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url(route('admin_dashboard'))}}"><i class="feather icon-home"></i></a></li>
-                    <li class="breadcrumb-item "><a href="{{ route('user_events') }}">List</a></li>
+                    <li class="breadcrumb-item "><a href="{{ route('user_events') }}">Events</a></li>
                     <li class="breadcrumb-item "><a href="javascript:void(0)">Detail Event</a></li>
                 </ul>
             </div>
@@ -40,20 +40,22 @@
                                                           </a>
                                                         </td>
                                                         
-                                                        <td class="text-right" style="white-space: nowrap;"><i class="fas fa-clock"></i> 
-                                      @php  
-                                        $start_time = \Carbon\Carbon::now();  
-                                        $finish_time = \Carbon\Carbon::parse($user_event->end_date); 
-                                        $result = $start_time->diffInDays($finish_time, false);
-                                      @endphp
+                                                        <td class="text-right" style="white-space: nowrap;">
+                                                          ({{ $user_event->min_person }} - {{ $user_event->max_person }}) Persons
+                                                        </br>
+                                                              <i class="fas fa-clock"></i> 
+                                                    @php  
+                                                      $start_time = \Carbon\Carbon::now();  
+                                                      $finish_time = \Carbon\Carbon::parse($user_event->end_date); 
+                                                      $result = $start_time->diffInDays($finish_time, false);
+                                                    @endphp
 
-                                      @if($result <= 0 && $user_event->status == 0)
-                                        Expired {{ \Carbon\Carbon::parse($user_event->end_date)->format('Y-m-d') }}
-                                      @elseif($result <= 0 && $user_event->status == 1)
-                                        Done {{ \Carbon\Carbon::parse($user_event->end_date)->format('Y-m-d') }}
-                                      @else
-                                        {{ $result }} Days left
-                                      @endif
+                                                    @if($result <= 0)
+                                                      Past Event
+                                                    @else
+                                                      {{ $result }} Days left
+                                                    @endif
+                                                          
 
                                                         </td>
                                                     </tr>
@@ -237,27 +239,64 @@
                 <div class="rec-card">
                    <h3 class="rec-heading">{{$category->eventCategory->label}}</h3>
                     <div class="row">
+          			@if(count($category->eventCategory->businesses) > 0)
                       @foreach($category->eventCategory->businesses as $business)
                       <div class="col-lg-4">
                         <a href="javascript:void(0);" class="recommended-vedor">
-                          @foreach($business->basicInfo as $b)
-                            @if($b->key == 'cover_photo')
-                              <figure><img src="{{asset('').$b->keyValue}}"></figure>
-                            @endif
-                          @endforeach
 
+                         <figure> <img src="{{url(getBasicInfo($business->vendors->id, $business->category_id,'basic_information','cover_photo'))}}"/></figure>
                           <div class="rec-detail">
                           <h3>{{ $business->title }}</h3>
-                          @foreach($business->basicInfo as $b)
-                            @if($b->key == 'short_description')
-                              <p>{{ $b->keyValue }}</p>
-                            @endif
-                          @endforeach
+                              <p>{{ getBasicInfo($business->vendors->id, $business->category_id,'basic_information','short_description') }}</p>
                         </div>
                         </a>
                       </div>
                     @endforeach
+                    @else
+                    <div class="col-lg-12">
+                    	<h5>No Recommended Vendor</h5>
                     </div>
+                    @endif
+                    </div>
+
+                   <h3 class="rec-heading">Amenities</h3>
+                    <div class="row">
+                @if(count($category->eventCategory->CategoryAmenity) > 0)
+                      @foreach($category->eventCategory->CategoryAmenity as $amenity)
+                      <div class="col-lg-4">
+                        <a href="javascript:void(0);" class="recommended-vedor">
+                          <div class="rec-detail">
+                          <h3>{{ $amenity->Amenity->name }}</h3>
+                        </div>
+                        </a>
+                      </div>
+                    @endforeach
+                    @else
+                    <div class="col-lg-12">
+                      <h5>No Recommended Vendor Amenities</h5>
+                    </div>
+                    @endif
+                    </div>
+
+                    <h3 class="rec-heading">Games</h3>
+                    <div class="row">
+                @if(count($category->eventCategory->CategoryGames) > 0)
+                      @foreach($category->eventCategory->CategoryGames as $game)
+                      <div class="col-lg-4">
+                        <a href="javascript:void(0);" class="recommended-vedor">
+                          <div class="rec-detail">
+                          <h3>{{ $game->Games->name }}</h3>
+                        </div>
+                        </a>
+                      </div>
+                    @endforeach
+                    @else
+                    <div class="col-lg-12">
+                      <h5>No Recommended Vendor Games</h5>
+                    </div>
+                    @endif
+                    </div>
+
                 </div>
                 @endforeach
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\UserEvent;
+use App\FavouriteVendor;
 use Hash;
 
 class DashboardController extends Controller {
@@ -50,5 +51,31 @@ public function updateProfile(Request $request) {
      $user->update($request->all());    
      return redirect()->back()->with('flash_message', "Your Profile has updated successfully"); 
 }
+
+	public function addFavouriteVendors($id) {
+		$favourite_vendor = FavouriteVendor::where('vendor_id', $id)->first();
+		if($favourite_vendor) {
+          $favourite_vendor->delete();
+		  return redirect()->back()->with('flash_message', 'Your favourite vendor has been removed successfully');
+		}
+            $user = Auth::User();
+            $meta = new FavouriteVendor;
+            $meta->vendor_id = $id;
+            $meta->user_id = $user->id;
+            $meta->save();
+        return redirect()->back()->with('flash_message', 'Your favourite vendor has been saved successfully');
+    }
+
+    public function favouriteVendors() {
+        $favourite_vendors = FavouriteVendor::paginate(10);
+        return view('users.favourite-vendor.index')->with(['favourite_vendors'=> $favourite_vendors]);
+    }
+
+    public function deleteFavouriteVendor(Request $request) {
+        if($request->id) {
+	        FavouriteVendor::find($request->id)->delete();
+	        return redirect()->back()->with('flash_message', 'Your favourite vendor has been deleted successfully');
+        }
+    }
 
 }

@@ -22,10 +22,10 @@
 
  
 
-    <div class="row">
+    <div class="row chatbox-manage">
        <div class="col-lg-12">
           <div class="card vendor-dash-card">
-          <div class="card-header"><h3>Chat Messages</h3></div>
+         
            <div class="card-body">
               <div class="chat-box-container">
                 <div id="frame" class="chatBox-frame">
@@ -48,7 +48,7 @@
     </div>
     <div id="search">
       <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
-      <input type="text" placeholder="Search contacts..." />
+      <input type="text" placeholder="Search contacts..." data-search/>
     </div>
     <div id="contacts" data-action="{{url(route('getBusineschatList',$business->category->slug))}}">
      @include('vendors.management.chats.chatlist')

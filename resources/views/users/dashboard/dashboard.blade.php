@@ -28,15 +28,16 @@
                                         
                                     </ul>
                                     <div class="tab-content" id="myTabContent">
-
+                                      <div class="row">
+@if(count($events) > 0)
                                       @foreach($events as $event)
-                                                    @php  
-                                                      $start_time = \Carbon\Carbon::now();  
-                                                      $finish_time = \Carbon\Carbon::parse($event->end_date); 
-                                                      $result = $start_time->diffInDays($finish_time, false);
-                                                    @endphp
-                                                  @if($result > 0)                                        
-                                         <div class="col-md-6 m-b-30">
+                                        @php  
+                                          $start_time = \Carbon\Carbon::now();  
+                                          $finish_time = \Carbon\Carbon::parse($event->end_date); 
+                                          $result = $start_time->diffInDays($finish_time, false);
+                                        @endphp
+                                      @if($result > 0)
+                                         <div class="col-lg-6 m-b-30">
                                     <div class="card Upcoming-event-card">
                                         <div class="card-block">
                                           <div class="upcmg-evnt-head text-center">
@@ -58,7 +59,7 @@
                                         <script type="text/javascript">
                                           setTimeout(() => {
                                             comingsoon('end_date_{{$event->id}}', 'days_{{$event->id}}', 'hours_{{$event->id}}', 'minutes_{{$event->id}}', 'seconds_{{$event->id}}');
-                                          }, 1000);
+                                          }, 500);
                                         </script>
 
                                       </div>
@@ -67,6 +68,10 @@
                                 </div>
                                 @endif
                                                     @endforeach
+                                          @else
+                                             No Events Found
+                                            @endif
+                                                  </div>
 {{ $events->links() }}
 
                                         <!-- <div class="tab-pane fade active show" id="profile" role="tabpanel" aria-labelledby="profile-tab">

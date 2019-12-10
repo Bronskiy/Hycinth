@@ -1,12 +1,24 @@
 <?php
 
 namespace App\Models\Vendors;
-
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Auth;
 class DiscountDeal extends Model
 {
-    
+    use Sluggable;
+    use SluggableScopeHelpers;
+
+    public function sluggable()
+    {
+        return [
+
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 
     public function Business()
     {
@@ -17,6 +29,13 @@ class DiscountDeal extends Model
     {
        return $this->belongsTo('App\User','user_id');
     }
+
+
+    public function dealPackage()
+    {
+       return $this->belongsTo('App\VendorPackage','packages');
+    }
+
 
 
      public function chats()

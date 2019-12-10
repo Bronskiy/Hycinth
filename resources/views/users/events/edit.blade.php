@@ -7,11 +7,11 @@
         <div class="row align-items-center">
             <div class="col-md-12">
                 <div class="page-header-title">
-                    <h5 class="m-b-10">My Dashboard</h5>
+                    <h5 class="m-b-10">Edit Event</h5>
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url(route('admin_dashboard'))}}"><i class="feather icon-home"></i></a></li>
-                    <li class="breadcrumb-item "><a href="{{ route('user_events') }}">List</a></li>
+                    <li class="breadcrumb-item "><a href="{{ route('user_events') }}">Events</a></li>
                     <li class="breadcrumb-item "><a href="javascript:void(0)">Edit Event</a></li>
                 </ul>
             </div>
@@ -43,6 +43,12 @@
            </div>
          <div class="col-md-6">
            {{datebox($errors, 'End Date*', 'end_date', date('Y-m-d',strtotime($user_event->end_date)))}}
+           </div>
+           <div class="col-md-6">
+           {{textbox($errors, 'Min Person*', 'min_person', $user_event->min_person)}}
+           </div>
+           <div class="col-md-6">
+           {{textbox($errors, 'Max Person*', 'max_person', $user_event->max_person)}}
            </div>
          <div class="col-md-12">
            {{textbox($errors, 'Address*', 'location', $user_event->location)}}
@@ -138,7 +144,7 @@ function getCat(selectedEvent) {
           setTimeout(() => {
             $('#event_categories').val(JSON.parse($('#sel_cats').val()));
             $('#event_categories').trigger('change');
-          }, 1000)
+          }, 100)
         },
         error: function(err) {
             console.log(err);

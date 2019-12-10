@@ -7,11 +7,11 @@
         <div class="row align-items-center">
             <div class="col-md-12">
                 <div class="page-header-title">
-                    <h5 class="m-b-10">My Dashboard</h5>
+                    <h5 class="m-b-10">Create Event</h5>
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url(route('admin_dashboard'))}}"><i class="feather icon-home"></i></a></li>
-                    <li class="breadcrumb-item "><a href="{{ route('user_events') }}">List</a></li>
+                    <li class="breadcrumb-item "><a href="{{ route('user_events') }}">Events</a></li>
                     <li class="breadcrumb-item "><a href="javascript:void(0)">Create Event</a></li>
                 </ul>
             </div>
@@ -47,6 +47,12 @@
            </div>
          <div class="col-md-6">
            {{datebox($errors, 'End Date*', 'end_date')}}
+           </div>
+           <div class="col-md-6">
+           {{textbox($errors, 'Min Person*', 'min_person')}}
+           </div>
+           <div class="col-md-6">
+           {{textbox($errors, 'Max Person*', 'max_person')}}
            </div>
          <div class="col-md-12">
            {{textbox($errors, 'Address*', 'location')}}

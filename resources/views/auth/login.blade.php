@@ -60,7 +60,9 @@
                                    </div>
                 
                                </div>
-                
+                @if(Request::has('redirectLink'))
+                <input type="hidden" value="{{Request::get('redirectLink')}}" name="redirectLink">
+                @endif
                                 
                                <div class="form-links">
                                          @if (Route::has('password.request'))

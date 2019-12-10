@@ -16,9 +16,14 @@
           Route::get('/events/detail/{slug}', 'Users\UserEventController@showDetailEvent')->name('user_show_detail_event');
           Route::post('/events/edit/{slug}', 'Users\UserEventController@update')->name('user_show_edit_event');
 
+
          #-----------------------------------------------------------------------------------
          #  Event Management ----------------------------------------------------------------
          #-----------------------------------------------------------------------------------
+          
+          Route::get('/favourite-vendors/{id}', 'Users\DashboardController@addFavouriteVendors')->name('user_add_favourite_vendors');
+          Route::get('/favourite-vendors', 'Users\DashboardController@favouriteVendors')->name('user_show_favourite_vendors');
+          Route::get('/favourite-vendors/delete/{id}', 'Users\DashboardController@deleteFavouriteVendor')->name('user_delete_favourite_vendors');
 
 
          Route::get('/messages/chats', 'Users\ChatController@index')->name('deal_discount_chats'); 
