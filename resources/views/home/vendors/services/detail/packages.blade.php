@@ -119,7 +119,7 @@
 
                                  @if(empty($reviewing))
                                   <div class="btn-area inn-card-footer" id="buy-content">
-                                     <a href="javascript:void(0);" class="cstm-btn">Buy</a>
+                                     <a href="{{url(route('payWithPackage',$package->slug))}}" class="cstm-btn">Buy</a>
                                      @if(count($vendor->VendorPackage) >= 2)
                                       <div class="custom-control custom-checkbox">
                                           <input type="checkbox" data-package="{{$package}}" class="custom-control-input" id="customCheck_{{$package->id}}">

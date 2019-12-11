@@ -46,6 +46,8 @@
                                 </span>
                             </span>
               @include('admin.error_message')
+              @include('includes.ajaxMessage')
+
                 <div class="row">                      
 
                       @include('includes.home.business.sidebar')

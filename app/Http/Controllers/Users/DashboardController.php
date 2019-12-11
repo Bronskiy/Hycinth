@@ -56,14 +56,14 @@ public function updateProfile(Request $request) {
 		$favourite_vendor = FavouriteVendor::where('vendor_id', $id)->first();
 		if($favourite_vendor) {
           $favourite_vendor->delete();
-		  return redirect()->back()->with('flash_message', 'Your favourite vendor has been removed successfully');
+		  return response()->json(['message'=> 'Your favourite vendor has been removed successfully', 'status' => false ]);
 		}
             $user = Auth::User();
             $meta = new FavouriteVendor;
             $meta->vendor_id = $id;
             $meta->user_id = $user->id;
             $meta->save();
-        return redirect()->back()->with('flash_message', 'Your favourite vendor has been saved successfully');
+        return response()->json(['message'=> 'Your favourite vendor has been saved successfully', 'status' => true ]);
     }
 
     public function favouriteVendors() {

@@ -57,10 +57,7 @@
 				                      </span> Events:</h4>
 							 <ul class="detail-listing">
 							 	@foreach($VendorEvents as $k => $event)
-
-                                    <li>{{$event->Event->name}}</li>
-
-                                    
+                                    <li>{{$event->Event->name}}</li>                                    
 							 	@endforeach
 							 </ul>
 						</div>

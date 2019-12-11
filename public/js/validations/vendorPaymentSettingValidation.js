@@ -10,13 +10,12 @@ $(document).ready(function() {
     },
   
     rules: {
-      "paypal_email": {
+      "paypal_account": {
         required: true,
         email: true
       },
-      "stripe_email": {
+      "stripe_account": {
         required: true,
-        email: true
       },
       valueToBeTested: {
           required: true,

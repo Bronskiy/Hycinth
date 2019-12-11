@@ -17,7 +17,7 @@
   <label>Choose Global Payment Type</label>
   <div class="cstm-grp-input">
   <div class="custom-control custom-radio mb-1">
-    <input required type="radio" value="0" id="global" name="payment_type" {{ Auth::User()->payment_type == '0' ? 'checked' : '' }} class="custom-control-input"/>
+    <input required type="radio" value="0" id="global" name="payment_type" {{ Auth::User()->payment_type ? Auth::User()->payment_type == '0' ? 'checked' : '' : 'checked'}} class="custom-control-input"/>
     <label class="custom-control-label" for="global">Global Payment Settings</label>
   </div>
 
@@ -28,7 +28,7 @@
 </div>
 
 
-<div id="sel_global" style="display: {{ Auth::User()->payment_type == '0' ? 'block' : 'none' }}">
+<div id="sel_global" style="display: {{ Auth::User()->payment_type ? Auth::User()->payment_type == '0' ? 'block' : 'none' : 'block'}}">
        <label>Choose Global Payment Type</label>
        <div class="cstm-grp-input">
         <div class="custom-control custom-radio mb-1">
@@ -42,25 +42,27 @@
           <input required type="radio" value="1" id="stripe" name="payment_status" {{ Auth::User()->payment_status == '1' ? 'checked' : '' }} class="custom-control-input"/>
           <label class="custom-control-label" for="stripe">Stripe</label>
         </div>
-      
-
         
 
         <div class="custom-control custom-radio mb-1">
-          <input required type="radio" value="2" id="both" name="payment_status" {{ Auth::User()->payment_status == '2' ? 'checked' : '' }} class="custom-control-input"/>
+          <input required type="radio" value="2" id="both" name="payment_status" {{ Auth::User()->payment_status ? Auth::User()->payment_status == '2' ? 'checked' : '' : 'checked'}} class="custom-control-input"/>
           <label class="custom-control-label" for="both">Both</label>
         </div>
         </div>
 
         <div class="selected-fields">
-           <div class="form-group" id="paypal_email_div" style="display: {{ Auth::User()->payment_status == '0' || Auth::User()->payment_status == '2' ? 'block' : 'none' }}">
-          <label for="paypal_email">Paypal Email</label>
-          <input type="email" value="{{Auth::User()->paypal_email}}" name="paypal_email" class="form-control" id="paypal_email" placeholder="Enter paypal email">
+           <div class="form-group" id="paypal_email_div" style="display: {{ Auth::User()->payment_status ? Auth::User()->payment_status == '0' || Auth::User()->payment_status == '2' ? 'block' : 'none' : 'block' }}">
+          <label for="paypal_account">Paypal Account</label>
+          <input type="email" value="{{Auth::User()->paypal_account}}" name="paypal_account" class="form-control" id="paypal_account" placeholder="Enter paypal email">
         </div>
-        <div class="form-group" id="stripe_email_div"  style="display: {{ Auth::User()->payment_status == '1' || Auth::User()->payment_status == '2' ? 'block' : 'none' }}">
-          <label for="stripe_email">Stripe Email</label>
-          <input type="email" value="{{Auth::User()->stripe_email}}" name="stripe_email" class="form-control" id="stripe_email" placeholder="Enter stripe email">
-        </div>
+
+          <div class="form-group" id="stripe_email_div"  style="display: {{ Auth::User()->payment_status ?Auth::User()->payment_status == '1' || Auth::User()->payment_status == '2' ? 'block' : 'none' : 'block' }}">
+            <label for="stripe_account">Stripe Account</label>
+
+            <!-- <input type="text" value="{{Auth::User()->stripe_account}}" name="stripe_account" class="form-control" id="stripe_account" placeholder="Enter stripe email"> -->
+
+            @include('vendors.settings.stripeLinkUrl')
+          </div>
         </div>
   </div>
 
@@ -81,7 +83,10 @@
 @endsection
 
 @section('scripts')
+<script src="https://js.stripe.com/v2/"></script>
 <script src="{{url('/js/validations/vendorPaymentSettingValidation.js')}}"></script>
+<script src="{{url('/js/stripe/stripe.js')}}"></script>
+
 <script type="text/javascript">
 $('input[type=radio][name=payment_type]').change(function() {
   if (this.value == 0) {

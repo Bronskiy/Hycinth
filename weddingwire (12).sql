@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 10, 2019 at 08:24 PM
+-- Generation Time: Dec 12, 2019 at 12:32 AM
 -- Server version: 5.7.28-0ubuntu0.16.04.2
 -- PHP Version: 7.2.16-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -192,14 +192,6 @@ INSERT INTO `category_variations` (`id`, `parent`, `category_id`, `variant_id`, 
 (328, NULL, 6, 13, 'game', '2019-11-18 05:22:55', '2019-11-18 05:22:55'),
 (329, NULL, 6, 2, 'seasons', '2019-11-18 05:22:55', '2019-11-18 05:22:55'),
 (330, NULL, 6, 3, 'seasons', '2019-11-18 05:22:55', '2019-11-18 05:22:55'),
-(343, NULL, 1, 2, 'event', '2019-11-21 02:20:45', '2019-11-21 02:20:45'),
-(344, NULL, 1, 3, 'event', '2019-11-21 02:20:45', '2019-11-21 02:20:45'),
-(345, NULL, 1, 10, 'amenity', '2019-11-21 02:20:45', '2019-11-21 02:20:45'),
-(346, NULL, 1, 11, 'amenity', '2019-11-21 02:20:45', '2019-11-21 02:20:45'),
-(347, NULL, 1, 4, 'game', '2019-11-21 02:20:45', '2019-11-21 02:20:45'),
-(348, NULL, 1, 7, 'game', '2019-11-21 02:20:45', '2019-11-21 02:20:45'),
-(349, NULL, 1, 12, 'game', '2019-11-21 02:20:45', '2019-11-21 02:20:45'),
-(350, NULL, 1, 3, 'seasons', '2019-11-21 02:20:46', '2019-11-21 02:20:46'),
 (351, NULL, 18, 1, 'event', '2019-11-21 07:27:37', '2019-11-21 07:27:37'),
 (352, NULL, 18, 2, 'event', '2019-11-21 07:27:37', '2019-11-21 07:27:37'),
 (353, NULL, 18, 3, 'event', '2019-11-21 07:27:38', '2019-11-21 07:27:38'),
@@ -235,24 +227,33 @@ INSERT INTO `category_variations` (`id`, `parent`, `category_id`, `variant_id`, 
 (465, NULL, 20, 7, 'game', '2019-11-29 04:58:18', '2019-11-29 04:58:18'),
 (466, NULL, 20, 12, 'game', '2019-11-29 04:58:18', '2019-11-29 04:58:18'),
 (467, NULL, 20, 4, 'seasons', '2019-11-29 04:58:18', '2019-11-29 04:58:18'),
-(579, NULL, 11, 1, 'event', '2019-12-10 01:08:57', '2019-12-10 01:08:57'),
-(580, NULL, 11, 2, 'event', '2019-12-10 01:08:57', '2019-12-10 01:08:57'),
-(581, NULL, 11, 3, 'event', '2019-12-10 01:08:57', '2019-12-10 01:08:57'),
-(582, NULL, 11, 5, 'event', '2019-12-10 01:08:57', '2019-12-10 01:08:57'),
-(583, NULL, 11, 10, 'event', '2019-12-10 01:08:57', '2019-12-10 01:08:57'),
-(584, NULL, 11, 14, 'event', '2019-12-10 01:08:57', '2019-12-10 01:08:57'),
-(585, NULL, 11, 17, 'event', '2019-12-10 01:08:57', '2019-12-10 01:08:57'),
-(586, NULL, 11, 6, 'amenity', '2019-12-10 01:08:57', '2019-12-10 01:08:57'),
-(587, NULL, 11, 10, 'amenity', '2019-12-10 01:08:57', '2019-12-10 01:08:57'),
-(588, NULL, 11, 11, 'amenity', '2019-12-10 01:08:57', '2019-12-10 01:08:57'),
-(589, NULL, 11, 15, 'amenity', '2019-12-10 01:08:57', '2019-12-10 01:08:57'),
-(590, NULL, 11, 4, 'game', '2019-12-10 01:08:57', '2019-12-10 01:08:57'),
-(591, NULL, 11, 7, 'game', '2019-12-10 01:08:57', '2019-12-10 01:08:57'),
-(592, NULL, 11, 12, 'game', '2019-12-10 01:08:57', '2019-12-10 01:08:57'),
-(593, NULL, 11, 16, 'game', '2019-12-10 01:08:58', '2019-12-10 01:08:58'),
-(594, NULL, 11, 3, 'seasons', '2019-12-10 01:08:58', '2019-12-10 01:08:58'),
-(595, NULL, 11, 4, 'seasons', '2019-12-10 01:08:58', '2019-12-10 01:08:58'),
-(596, NULL, 11, 5, 'seasons', '2019-12-10 01:08:58', '2019-12-10 01:08:58');
+(614, NULL, 11, 1, 'event', '2019-12-11 01:28:26', '2019-12-11 01:28:26'),
+(615, NULL, 11, 2, 'event', '2019-12-11 01:28:26', '2019-12-11 01:28:26'),
+(616, NULL, 11, 3, 'event', '2019-12-11 01:28:26', '2019-12-11 01:28:26'),
+(617, NULL, 11, 5, 'event', '2019-12-11 01:28:26', '2019-12-11 01:28:26'),
+(618, NULL, 11, 10, 'event', '2019-12-11 01:28:26', '2019-12-11 01:28:26'),
+(619, NULL, 11, 14, 'event', '2019-12-11 01:28:26', '2019-12-11 01:28:26'),
+(620, NULL, 11, 17, 'event', '2019-12-11 01:28:26', '2019-12-11 01:28:26'),
+(621, NULL, 11, 6, 'amenity', '2019-12-11 01:28:26', '2019-12-11 01:28:26'),
+(622, NULL, 11, 10, 'amenity', '2019-12-11 01:28:26', '2019-12-11 01:28:26'),
+(623, NULL, 11, 11, 'amenity', '2019-12-11 01:28:26', '2019-12-11 01:28:26'),
+(624, NULL, 11, 15, 'amenity', '2019-12-11 01:28:26', '2019-12-11 01:28:26'),
+(625, NULL, 11, 4, 'game', '2019-12-11 01:28:26', '2019-12-11 01:28:26'),
+(626, NULL, 11, 7, 'game', '2019-12-11 01:28:26', '2019-12-11 01:28:26'),
+(627, NULL, 11, 12, 'game', '2019-12-11 01:28:27', '2019-12-11 01:28:27'),
+(628, NULL, 11, 16, 'game', '2019-12-11 01:28:27', '2019-12-11 01:28:27'),
+(629, NULL, 11, 3, 'seasons', '2019-12-11 01:28:27', '2019-12-11 01:28:27'),
+(630, NULL, 11, 4, 'seasons', '2019-12-11 01:28:27', '2019-12-11 01:28:27'),
+(631, NULL, 11, 5, 'seasons', '2019-12-11 01:28:27', '2019-12-11 01:28:27'),
+(632, NULL, 1, 2, 'event', '2019-12-11 10:18:59', '2019-12-11 10:18:59'),
+(633, NULL, 1, 3, 'event', '2019-12-11 10:18:59', '2019-12-11 10:18:59'),
+(634, NULL, 1, 17, 'event', '2019-12-11 10:19:00', '2019-12-11 10:19:00'),
+(635, NULL, 1, 10, 'amenity', '2019-12-11 10:19:00', '2019-12-11 10:19:00'),
+(636, NULL, 1, 11, 'amenity', '2019-12-11 10:19:00', '2019-12-11 10:19:00'),
+(637, NULL, 1, 4, 'game', '2019-12-11 10:19:00', '2019-12-11 10:19:00'),
+(638, NULL, 1, 7, 'game', '2019-12-11 10:19:00', '2019-12-11 10:19:00'),
+(639, NULL, 1, 12, 'game', '2019-12-11 10:19:00', '2019-12-11 10:19:00'),
+(640, NULL, 1, 3, 'seasons', '2019-12-11 10:19:00', '2019-12-11 10:19:00');
 
 -- --------------------------------------------------------
 
@@ -609,14 +610,6 @@ CREATE TABLE `favourite_vendors` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `favourite_vendors`
---
-
-INSERT INTO `favourite_vendors` (`id`, `vendor_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(13, 11, 50, '2019-12-10 06:10:50', '2019-12-10 06:10:50'),
-(14, 1, 50, '2019-12-10 09:10:32', '2019-12-10 09:10:32');
-
 -- --------------------------------------------------------
 
 --
@@ -719,6 +712,7 @@ CREATE TABLE `orders` (
   `amount` double NOT NULL DEFAULT '0',
   `payment_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `balance_transaction` longtext COLLATE utf8mb4_unicode_ci,
+  `payout_batch_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -728,8 +722,11 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `vendor_id`, `business_id`, `deal_id`, `user_id`, `event_id`, `category_id`, `amount`, `payment_by`, `balance_transaction`, `status`, `created_at`, `updated_at`) VALUES
-(1, 31, 1, 28, 32, 0, 1, 2503, 'STRIPE', '{"id":"ch_1Fo9oMHkXAunnuluJLeYonwj","object":"charge","amount":250300,"amount_refunded":0,"application":null,"application_fee":null,"application_fee_amount":null,"balance_transaction":"txn_1Fo9oMHkXAunnuluuf85263l","billing_details":{"address":{"city":null,"country":null,"line1":null,"line2":null,"postal_code":null,"state":null},"email":null,"name":"bajwa9876470491@gmail.com","phone":null},"captured":true,"created":1575988538,"currency":"usd","customer":"cus_GKpTZ7TnEQQhrC","description":"description","destination":null,"dispute":null,"disputed":false,"failure_code":null,"failure_message":null,"fraud_details":[],"invoice":null,"livemode":false,"metadata":[],"on_behalf_of":null,"order":null,"outcome":{"network_status":"approved_by_network","reason":null,"risk_level":"normal","risk_score":31,"seller_message":"Payment complete.","type":"authorized"},"paid":true,"payment_intent":null,"payment_method":"card_1Fo9oHHkXAunnuluPWdHgd6j","payment_method_details":{"card":{"brand":"visa","checks":{"address_line1_check":null,"address_postal_code_check":null,"cvc_check":"pass"},"country":"US","exp_month":12,"exp_year":2022,"fingerprint":"CtpcOTjWSi0XuJEg","funding":"unknown","installments":null,"last4":"1111","network":"visa","three_d_secure":null,"wallet":null},"type":"card"},"receipt_email":"bajwa9876470491@gmail.com","receipt_number":null,"receipt_url":"https:\\/\\/pay.stripe.com\\/receipts\\/acct_1BVdTAHkXAunnulu\\/ch_1Fo9oMHkXAunnuluJLeYonwj\\/rcpt_GKpTuNjybmBHyDZtgUs4o150vcviURZ","refunded":false,"refunds":{"object":"list","data":[],"has_more":false,"total_count":0,"url":"\\/v1\\/charges\\/ch_1Fo9oMHkXAunnuluJLeYonwj\\/refunds"},"review":null,"shipping":null,"source":{"id":"card_1Fo9oHHkXAunnuluPWdHgd6j","object":"card","address_city":null,"address_country":null,"address_line1":null,"address_line1_check":null,"address_line2":null,"address_state":null,"address_zip":null,"address_zip_check":null,"brand":"Visa","country":"US","customer":"cus_GKpTZ7TnEQQhrC","cvc_check":"pass","dynamic_last4":null,"exp_month":12,"exp_year":2022,"fingerprint":"CtpcOTjWSi0XuJEg","funding":"unknown","last4":"1111","metadata":[],"name":"bajwa9876470491@gmail.com","tokenization_method":null},"source_transfer":null,"statement_descriptor":null,"statement_descriptor_suffix":null,"status":"succeeded","transfer_data":null,"transfer_group":null}', 0, '2019-12-10 09:05:39', '2019-12-10 09:05:39');
+INSERT INTO `orders` (`id`, `vendor_id`, `business_id`, `deal_id`, `user_id`, `event_id`, `category_id`, `amount`, `payment_by`, `balance_transaction`, `payout_batch_id`, `status`, `created_at`, `updated_at`) VALUES
+(1, 31, 1, 28, 32, 0, 1, 2503, 'STRIPE', '{"id":"ch_1Fo9oMHkXAunnuluJLeYonwj","object":"charge","amount":250300,"amount_refunded":0,"application":null,"application_fee":null,"application_fee_amount":null,"balance_transaction":"txn_1Fo9oMHkXAunnuluuf85263l","billing_details":{"address":{"city":null,"country":null,"line1":null,"line2":null,"postal_code":null,"state":null},"email":null,"name":"bajwa9876470491@gmail.com","phone":null},"captured":true,"created":1575988538,"currency":"usd","customer":"cus_GKpTZ7TnEQQhrC","description":"description","destination":null,"dispute":null,"disputed":false,"failure_code":null,"failure_message":null,"fraud_details":[],"invoice":null,"livemode":false,"metadata":[],"on_behalf_of":null,"order":null,"outcome":{"network_status":"approved_by_network","reason":null,"risk_level":"normal","risk_score":31,"seller_message":"Payment complete.","type":"authorized"},"paid":true,"payment_intent":null,"payment_method":"card_1Fo9oHHkXAunnuluPWdHgd6j","payment_method_details":{"card":{"brand":"visa","checks":{"address_line1_check":null,"address_postal_code_check":null,"cvc_check":"pass"},"country":"US","exp_month":12,"exp_year":2022,"fingerprint":"CtpcOTjWSi0XuJEg","funding":"unknown","installments":null,"last4":"1111","network":"visa","three_d_secure":null,"wallet":null},"type":"card"},"receipt_email":"bajwa9876470491@gmail.com","receipt_number":null,"receipt_url":"https:\\/\\/pay.stripe.com\\/receipts\\/acct_1BVdTAHkXAunnulu\\/ch_1Fo9oMHkXAunnuluJLeYonwj\\/rcpt_GKpTuNjybmBHyDZtgUs4o150vcviURZ","refunded":false,"refunds":{"object":"list","data":[],"has_more":false,"total_count":0,"url":"\\/v1\\/charges\\/ch_1Fo9oMHkXAunnuluJLeYonwj\\/refunds"},"review":null,"shipping":null,"source":{"id":"card_1Fo9oHHkXAunnuluPWdHgd6j","object":"card","address_city":null,"address_country":null,"address_line1":null,"address_line1_check":null,"address_line2":null,"address_state":null,"address_zip":null,"address_zip_check":null,"brand":"Visa","country":"US","customer":"cus_GKpTZ7TnEQQhrC","cvc_check":"pass","dynamic_last4":null,"exp_month":12,"exp_year":2022,"fingerprint":"CtpcOTjWSi0XuJEg","funding":"unknown","last4":"1111","metadata":[],"name":"bajwa9876470491@gmail.com","tokenization_method":null},"source_transfer":null,"statement_descriptor":null,"statement_descriptor_suffix":null,"status":"succeeded","transfer_data":null,"transfer_group":null}', NULL, 0, '2019-12-10 09:05:39', '2019-12-10 09:05:39'),
+(2, 34, 14, 0, 32, 0, 20, 306, 'STRIPE', '{"id":"ch_1FoS9vHkXAunnulupcAmr6BA","object":"charge","amount":30600,"amount_refunded":0,"application":null,"application_fee":null,"application_fee_amount":null,"balance_transaction":"txn_1FoS9xHkXAunnuluomKZY9Gs","billing_details":{"address":{"city":null,"country":null,"line1":null,"line2":null,"postal_code":null,"state":null},"email":null,"name":"bajwa9876470491@gmail.com","phone":null},"captured":true,"created":1576059067,"currency":"usd","customer":"cus_GL8QAW9yLalQhB","description":"description","destination":null,"dispute":null,"disputed":false,"failure_code":null,"failure_message":null,"fraud_details":[],"invoice":null,"livemode":false,"metadata":[],"on_behalf_of":null,"order":null,"outcome":{"network_status":"approved_by_network","reason":null,"risk_level":"normal","risk_score":8,"seller_message":"Payment complete.","type":"authorized"},"paid":true,"payment_intent":null,"payment_method":"card_1FoS9lHkXAunnuluaauwa9Pm","payment_method_details":{"card":{"brand":"visa","checks":{"address_line1_check":null,"address_postal_code_check":null,"cvc_check":"pass"},"country":"US","exp_month":12,"exp_year":2022,"fingerprint":"CtpcOTjWSi0XuJEg","funding":"unknown","installments":null,"last4":"1111","network":"visa","three_d_secure":null,"wallet":null},"type":"card"},"receipt_email":"bajwa9876470491@gmail.com","receipt_number":null,"receipt_url":"https:\\/\\/pay.stripe.com\\/receipts\\/acct_1BVdTAHkXAunnulu\\/ch_1FoS9vHkXAunnulupcAmr6BA\\/rcpt_GL8QJ0GNjpdsFbn3Q7CbAcebcPvVQpc","refunded":false,"refunds":{"object":"list","data":[],"has_more":false,"total_count":0,"url":"\\/v1\\/charges\\/ch_1FoS9vHkXAunnulupcAmr6BA\\/refunds"},"review":null,"shipping":null,"source":{"id":"card_1FoS9lHkXAunnuluaauwa9Pm","object":"card","address_city":null,"address_country":null,"address_line1":null,"address_line1_check":null,"address_line2":null,"address_state":null,"address_zip":null,"address_zip_check":null,"brand":"Visa","country":"US","customer":"cus_GL8QAW9yLalQhB","cvc_check":"pass","dynamic_last4":null,"exp_month":12,"exp_year":2022,"fingerprint":"CtpcOTjWSi0XuJEg","funding":"unknown","last4":"1111","metadata":[],"name":"bajwa9876470491@gmail.com","tokenization_method":null},"source_transfer":null,"statement_descriptor":null,"statement_descriptor_suffix":null,"status":"succeeded","transfer_data":null,"transfer_group":null}', NULL, 0, '2019-12-11 04:41:09', '2019-12-11 04:41:09'),
+(4, 31, 1, 28, 50, 28, 1, 10, 'paypal', 'Payement by Paypal', 'xyz123', 0, '2019-12-11 10:16:12', '2019-12-11 10:16:12'),
+(5, 31, 1, 28, 50, 28, 1, 10, 'paypal', 'Payement by Paypal', 'xyz123', 0, '2019-12-11 11:55:05', '2019-12-11 11:55:05');
 
 -- --------------------------------------------------------
 
@@ -762,7 +759,6 @@ INSERT INTO `package_meta_datas` (`id`, `parent`, `package_id`, `category_id`, `
 (127, 0, 3, 1, 42, 'events', 'event', '2', '2019-11-20 03:38:58', '2019-11-20 03:38:58'),
 (128, 0, 3, 1, 42, 'events', 'event', '3', '2019-11-20 03:38:58', '2019-11-20 03:38:58'),
 (129, 0, 3, 1, 42, 'addons', 'Collage Family', '5', '2019-11-20 03:40:34', '2019-11-20 03:40:34'),
-(146, 0, 1, 1, 31, 'addons', 'Add', '250', '2019-11-20 05:58:44', '2019-11-20 05:58:44'),
 (154, 0, 1, 1, 31, 'amenities', 'amenity', '10', '2019-11-22 02:29:37', '2019-11-22 02:29:37'),
 (155, 0, 1, 1, 31, 'amenities', 'amenity', '11', '2019-11-22 02:29:37', '2019-11-22 02:29:37'),
 (156, 0, 1, 1, 31, 'events', 'event', '2', '2019-11-22 02:29:37', '2019-11-22 02:29:37'),
@@ -833,7 +829,10 @@ INSERT INTO `package_meta_datas` (`id`, `parent`, `package_id`, `category_id`, `
 (366, 0, 11, 1, 42, 'games', 'game', '4', '2019-12-10 04:14:15', '2019-12-10 04:14:15'),
 (367, 0, 11, 1, 42, 'games', 'game', '7', '2019-12-10 04:14:15', '2019-12-10 04:14:15'),
 (368, 0, 11, 1, 42, 'events', 'event', '2', '2019-12-10 04:14:15', '2019-12-10 04:14:15'),
-(369, 0, 11, 1, 42, 'events', 'event', '3', '2019-12-10 04:14:15', '2019-12-10 04:14:15');
+(369, 0, 11, 1, 42, 'events', 'event', '3', '2019-12-10 04:14:15', '2019-12-10 04:14:15'),
+(370, 0, 1, 1, 31, 'addons', 'Bridal Dress', '20', '2019-12-11 09:02:58', '2019-12-11 09:02:58'),
+(371, 0, 1, 1, 31, 'addons', 'Cake', '5', '2019-12-11 09:03:40', '2019-12-11 09:03:40'),
+(372, 0, 1, 1, 31, 'addons', 'Flowers', '2', '2019-12-11 09:03:40', '2019-12-11 09:03:40');
 
 -- --------------------------------------------------------
 
@@ -1116,8 +1115,7 @@ CREATE TABLE `users` (
   `status` tinyint(1) DEFAULT NULL,
   `payment_status` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `payment_type` tinyint(2) DEFAULT NULL,
-  `paypal_email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `stripe_email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `paypal_account` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `stripe_account` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -1128,38 +1126,38 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `first_name`, `last_name`, `email`, `phone_number`, `user_location`, `latitude`, `longitude`, `email_verified_at`, `password`, `role`, `profile_image`, `status`, `payment_status`, `payment_type`, `paypal_email`, `stripe_email`, `stripe_account`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', NULL, NULL, 'admin@gmail.com', '0', NULL, NULL, NULL, NULL, '$2y$10$24fdx3W1i9M2GLFjlOeUXuE2H7reNsX/Nsixl/ou8JxPIB.2EmZh.', 'admin', 'images/admin/1574677337kn9RnvDobyEJXsHyk5xe-photo-1551592398-c320012bc1c6.jpeg', NULL, NULL, NULL, NULL, NULL, NULL, 'AlbtsR98GhWhKsThuNAPHePy9OKtdp4itkGAj4J1Ag5Ez3aMDfzBZAT4oB7y', '2019-11-09 00:19:35', '2019-11-25 04:52:17'),
-(31, 'Narinder Bajwa', 'Narinder', 'Bajwa', 'bajwa7696346232@gmail.com', '0', NULL, NULL, NULL, '2019-11-12 07:02:09', '$2y$10$he8YxmZeBwdKAMqcbtQ0/.aJqTWo1Nxpm/WCKXK2XaEZAAJUE7Hc.', 'vendor', 'images/vendors/profile/15754682903k0mKXR3oz1UOM4OSDE2istockphoto953790424612x612.jpg', 1, '0', 1, 'paypalg@gmail.com', NULL, 'acct_1Fo5XDLPmLY4XjL0', 'w25TcJXisf55ZleShsQRQ4q1m1GSX4aoj8ZxG0SuUTN9B8MuhByZyxIVBfx4', '2019-11-12 06:11:13', '2019-12-10 04:49:20'),
-(32, 'Narinder Bajwa', 'Narinder', 'Bajwa', 'bajwa9876470491@gmail.com', '789654156', 'New York Avenue Northwest, Washington, DC, USA', '38.9032325', '-77.02110679999998', '2019-11-30 18:30:00', '$2y$10$tiBVNqE4PMLEbmyfMNH9/eXn4rkSKw0uHTNdeFJEALg2yBdwB04JG', 'user', 'images/vendors/profile/15754697554EkKbsnz87ArnXAWUqAht10_dsc5356_15_1836831555326929.jpg', NULL, NULL, NULL, NULL, NULL, NULL, '0VWqMGZtvFsXi3GhJJypfkpFEBdWnrI7bwzyvMLzrMzuKmUdUCv2IVb7wvhO', '2019-11-12 06:25:25', '2019-12-04 08:59:15'),
-(33, 'hitesh sharma', 'hitesh', 'sharma', 'hitesh22791@gmail.com', '0', NULL, NULL, NULL, '2019-11-13 18:30:00', '$2y$10$o6TsuB0J0za0EknNojA7g.B304Cg3SRfIqrJU7QQZKSxgCYb5FpGi', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, NULL, 'usHDkMT6QyFgQUsA03DB113wGW1nDuLMbyqfBp9gdXKsZ8J0fi5xPkAJDT82', '2019-11-14 02:17:10', '2019-11-21 09:09:51'),
-(34, 'vendor s', 'vendor', 's', 'vendor001@yopmail.com', '12345656', NULL, NULL, NULL, '2019-11-14 04:22:00', '$2y$10$3nhw3wasoho0VKY52ffgHO7/OBu5wNz0O4r2SXSQrtzktEnI3YI5K', 'vendor', 'images/vendors/profile/1575376773SRf20ex3xxBQ4dgJjBNZonline.png', 1, '2', 1, 'paypal@gmail.com', 'stripe@gmail.com', 'acct_1Fo6N7AdTAPPrpJ2', 'U7rKxjYeE2y9ZB8LoKN3JKmdT5TBc45QrHk87ryEqxNjFb8AcqmrW8mMbiHV', '2019-11-14 04:19:37', '2019-12-10 05:25:30'),
-(35, 'Kanny Gill', 'Kanny', 'Gill', 'kanny@yopmail.com', '0', NULL, NULL, NULL, '2019-11-15 03:06:31', '$2y$10$XZA0JR6bHi1MSANa86u8jOncOCBPT7wFdxaq5RZBjLIYW992ssDA.', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, NULL, 'Xrl2c1Wi9CoObL6isRFEmDk1wHPpScmBBteayDW2fjF1aVKrOBVdDIAZgx2W', '2019-11-15 03:06:02', '2019-11-21 09:10:03'),
-(36, 'Kanny Rajput', 'Kanny', 'Rajput', 'kannyraj@yopmail.com', '0', NULL, NULL, NULL, '2019-11-15 04:27:34', '$2y$10$05CiO5N1YnlHK2qAV493Kub/2oQ1PkscvvcNJ5lEeupu.MNxtrT7m', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, NULL, 'MiJiNw0hILOy4O7TcVXUAYem6b3hAujmp6kbR0rc2B8ILItRzt4iDwxj4wnI', '2019-11-15 04:27:09', '2019-11-21 09:10:06'),
-(37, 'Kanny Singhh', 'Kanny', 'Singhh', 'kannysingh@yopmail.com', '0', NULL, NULL, NULL, '2019-11-15 04:30:26', '$2y$10$D43XORx9FPYbJXJu2L7CkuJsKI9ywXPjNOXoVhPi9iegyE5tXy7h2', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, NULL, 'Moa9zHEdREFzRSFG7DNs2fDCSMEFPyGiUGOgan9FxOFj4TjsZNcdLF5CgwIa', '2019-11-15 04:30:08', '2019-11-21 09:10:10'),
-(38, 'Yuvraj Bajwa', 'Yuvraj', 'Bajwa', 'yuvi@gmail.com', '0', NULL, NULL, NULL, '2019-11-14 18:30:00', '$2y$10$nNsAZlbUjk5MQejC/gAcO.00QkIKDfJI7cODHa4OT8KQ96SGWFRqW', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-15 04:51:50', '2019-11-21 09:10:26'),
-(39, 'HYCINTH YIMGA', 'HYCINTH', 'YIMGA', 'contactfavorville@gmail.com', '0', NULL, NULL, NULL, '2019-11-15 16:20:30', '$2y$10$6Nq8e2EhE6Xp2/r7pSISb.cvfxbVENNgwPDeu4MZ0PIzm6a6/dEBe', 'user', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'HZfumDTztXkugyIUn7sXHgtJXprsW6Cp5e12T6rnJug0qChroiHGZY8eRyGQ', '2019-11-15 16:20:15', '2019-11-15 16:20:30'),
-(40, 'Test Test', 'Test', 'Test', 'yimgah@outlook.com', '0', NULL, NULL, NULL, '2019-11-15 16:26:13', '$2y$10$7i8QLKLRZvQS/aoDt/OWTuit05TjXMX9wkMMKzmDsT14wJ5IVIi3a', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, NULL, 'J6E8MXFU30Ds9mL0aBKSunr2UePU5F1PnmAIskQMBnUNQbbWXh1U7HDemJ0j', '2019-11-15 16:26:02', '2019-11-21 09:10:19'),
-(41, 'Ivery High', 'Ivery', 'High', 'ihigh@masonlive.gmu.edu', '0', NULL, NULL, NULL, '2019-11-15 19:10:31', '$2y$10$I3FxreZ4zHuUEns6VhcvmOCU7T5DvjU/j91f3YxUoUUXVzZFyDpjK', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-15 19:09:57', '2019-11-21 09:09:56'),
-(42, 'Jaskaran Singh', 'Jaskaran', 'Singh', 'jaskaran@yopmail.com', '0', NULL, NULL, NULL, '2019-11-18 03:05:55', '$2y$10$24fdx3W1i9M2GLFjlOeUXuE2H7reNsX/Nsixl/ou8JxPIB.2EmZh.', 'vendor', 'images/vendors/profile/1575373430Wc8UYg1bG43YtloV103pt10_1435802609300solo019.jpg', 1, NULL, 1, NULL, NULL, NULL, 'aodYFScM6fAWNW3LKbcq15WlUlgK0JtPJq3BkhLPMxhW5aOAB8UwLsEiSHss', '2019-11-18 03:05:38', '2019-12-05 08:55:24'),
-(43, 'karan singh', 'karan', 'singh', 'karan@yopmail.com', '0', NULL, NULL, NULL, '2019-11-18 04:02:59', '$2y$10$/HFJc7wVlgEDh.Uiyier1O8wxUmYr6kohUh4c7KizeLcVHlVFyKPe', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-18 04:02:23', '2019-11-21 09:10:13'),
-(44, 'jassi singh', 'jassi', 'singh', 'jassi91@yopmail.com', '0', NULL, NULL, NULL, '2019-11-26 00:58:09', '$2y$10$N/UOLjgGNNissqOqvSmGm.pq5rBBgxI9CKPC4zFmT733riMeQT4tO', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, NULL, 'nUi4jEchT1xG5ZuK9nSnfV6efg0HVg4JQpvpIiY9tpXSMKVYxzl3h8jcrmxt', '2019-11-26 00:54:09', '2019-12-05 05:04:56'),
-(45, 'Testing Test', 'Testing', 'Test', 'test91@yopmail.com', '0', NULL, NULL, NULL, '2019-12-02 04:14:48', '$2y$10$nISzsSM4J3M6Ly/wjNd/duqEYi0QHl39FSZAjfZef/6zQ5oI9TxqO', 'user', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'r177koEhaUuGefWW73RpVYWtuulovmGZhejTQopPaig1zhkFrD6wgfC3uFYQ', '2019-12-02 04:12:33', '2019-12-02 04:14:48'),
-(46, 'TEST JHJ', 'TEST', 'JHJ', 'daad@yopmail.com', '0', NULL, NULL, NULL, NULL, '$2y$10$4432zcTf61VZz7iikxJS/.iQJq8NJPJX1Ogp6amDpgWT9P90MSfbS', 'vendor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-02 08:14:23', '2019-12-02 08:14:23'),
-(47, 'test test', 'test', 'test', 'hitesh@gmail.com', '0', NULL, NULL, NULL, NULL, '$2y$10$FPv8fsNNHN03PdraRVbQEuuAYgqd06MytqybnvOcvC8tGD4VwgpOO', 'vendor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-02 08:32:54', '2019-12-02 08:32:54'),
-(48, 'raj kumar', 'raj', 'kumar', 'raj@gmail.com', '0', NULL, NULL, NULL, NULL, '$2y$10$dk71CVag5j6iEppLlhg8sOOutXUF10tO41m9SEbmHxgvetvZ18HwS', 'vendor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-02 08:45:24', '2019-12-02 08:45:24'),
-(49, 'user ss', 'user', 'ss', 'user002@yopmail.com', '0', NULL, NULL, NULL, NULL, '$2y$10$HHw5htguFfOR4o4kBczkFO/8IIPUNRNMaAj6zuJk8CLUy05gN2slq', 'vendor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-02 08:49:58', '2019-12-02 08:49:58'),
-(50, 'rk s', 'rk', 's', 'user001@yopmail.com', '14523654', 'U.S. 1, Kennebunk, ME, USA', '43.3849549', '-70.54269469999997', '2019-12-03 05:54:47', '$2y$10$f.wzTKaKghDaxwbjyihnsO85DYrcL2A0WZ4cQnvEWXSvWwgXKmKHS', 'user', 'images/vendors/profile/1575380038swGGAXUHFFXwJ7yBwsyBonline.png', NULL, NULL, NULL, NULL, NULL, NULL, 'CwZ1MNmNBZvDYdxDoxQYvIijML5gbrmzeCCrhglSH7UluFPuWe73b0phcefO', '2019-12-03 05:54:27', '2019-12-04 01:59:15'),
-(51, 'Kanny Gill', 'Kanny', 'Gill', 'kanny786@yopmail.com', '9465470549', 'USC McCarthy Way, Los Angeles, CA, USA', '34.0205687', '-118.2813509', '2019-12-04 08:49:01', '$2y$10$htlgqwsz8x/H6OvnK0Ncfuc18z9RYQqJnRoEPGwMIzZdsEy54Y58G', 'user', 'images/vendors/profile/1575559734NrTSdag3NzPIqrP0wOzqt10_1435802609300solo019.jpg', NULL, NULL, NULL, NULL, NULL, NULL, '7iYGWhdrzqYrnhZvnI5FWXRrWMKISLNr17UiAzAwgRy02KKr5zhGVaP4dWB7', '2019-12-04 08:48:44', '2019-12-06 08:02:24'),
-(52, 'TEST sandha', 'TEST', 'sandha', 'TEST@yopmail.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$06n1888HwkEutLzgq3D2H.PyFrZgVzUFJmwldrC/QtkIGP1Yn1eEi', 'vendor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-05 00:35:01', '2019-12-05 00:35:01'),
-(53, 'karan JHJ', 'karan', 'JHJ', 'deft321@yopmail.com', NULL, NULL, NULL, NULL, '2019-12-05 00:39:13', '$2y$10$tB5.hjlH5HIUkZdbMnNBO.YVQ3rLra9rxvu4ndGqU8Fb0Xa/DjUka', 'user', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-05 00:38:47', '2019-12-05 00:39:13'),
-(54, 'Hycinth EV', 'Hycinth', 'EV', 'Hycinth12@yopmail.com', NULL, NULL, NULL, NULL, '2019-12-05 01:05:52', '$2y$10$kYEAJbTdlcv9Lgsai8c9m.rBv2fgiolwLfdY1TjJB6nopyZBUL39.', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, NULL, 'YrniHT2AKfTlkEYfaWXec3GJCKNjzzIQP8DcpiBKVMdePIKGxgGcPV7blPwz', '2019-12-05 01:02:31', '2019-12-05 05:03:30'),
-(55, 'sandha Singh', 'sandha', 'Singh', 'sandha78@yopmail.com', NULL, NULL, NULL, NULL, '2019-12-05 03:18:23', '$2y$10$CLZDveG.QgNHnTnqiz7Q8eC.Eb/61sLyux2ITPD6RSBeCZ2OZRfqC', 'user', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'FYz1zlkl1UkJQCDtMyZfaJoLK7ZmaqlK1FfzCb5JKtOkNdgvcWoWJHAAsdZk', '2019-12-05 03:15:00', '2019-12-05 03:18:23'),
-(56, 'Inder Bajwa', 'Inder', 'Bajwa', 'qa2.defsoft@gmail.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$O2X.68/cxdnSWTjhO2cW5OsgLakNXhQDm3e4MYpk3zxX6lzDKsFUC', 'vendor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-05 03:28:52', '2019-12-05 03:28:52'),
-(57, 'pallavi toomar', 'pallavi', 'toomar', 'qa2.deftsoft@gmail.com', NULL, NULL, NULL, NULL, '2019-12-05 03:32:45', '$2y$10$NtsBEHLcUQG8nkSLtrUbQ.JTQpiefyrc7DIatcZV2ztayxs6ThEzG', 'vendor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-05 03:32:21', '2019-12-05 03:32:45'),
-(58, 'Dkisisis Idiidisi', 'Dkisisis', 'Idiidisi', 'Ksksjsi@yopmail.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$HxQP976VGBBYIE9ABFGrSe/qVkRFqClYtL8dFDYjZ0UN/0fmSF6mC', 'user', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-05 04:20:35', '2019-12-05 04:20:35'),
-(59, 'Kanny Vendor', 'Kanny', 'Vendor', 'kannyv@yopmail.com', '9465470549', NULL, NULL, NULL, '2019-12-09 03:08:48', '$2y$10$Y0S0fTZR6g70BiaO84IYM.oApOraGM7iDFl9lpkAuiL.VMVj6xgkO', 'vendor', 'images/vendors/profile/1575882091j0GZOQCG6Q7AB3dlJFb2k.jpg', NULL, NULL, NULL, NULL, NULL, NULL, 'SFv2arwHxRcyXNk2Rlq2iq0TaZnymWWOvPd0WpUNm6jlo8SzWRXyNZLF5J8z', '2019-12-09 03:08:24', '2019-12-09 03:31:31'),
-(60, 'Kanny Customer', 'Kanny', 'Customer', 'kannyc@yopmail.com', NULL, NULL, NULL, NULL, '2019-12-09 03:10:12', '$2y$10$2NoI44RRR.M9N5YBuSHtu.LokV/LdI07LFfDouegVOPIbq8C5xWIy', 'user', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'jLQOkqdu8TGpgCzS3XPFrhUq483O93g3Np7YXUIff8ty8tMYth1shBIhWZKp', '2019-12-09 03:10:03', '2019-12-09 03:10:12');
+INSERT INTO `users` (`id`, `name`, `first_name`, `last_name`, `email`, `phone_number`, `user_location`, `latitude`, `longitude`, `email_verified_at`, `password`, `role`, `profile_image`, `status`, `payment_status`, `payment_type`, `paypal_account`, `stripe_account`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', NULL, NULL, 'admin@gmail.com', '0', NULL, NULL, NULL, NULL, '$2y$10$24fdx3W1i9M2GLFjlOeUXuE2H7reNsX/Nsixl/ou8JxPIB.2EmZh.', 'admin', 'images/admin/1574677337kn9RnvDobyEJXsHyk5xe-photo-1551592398-c320012bc1c6.jpeg', NULL, NULL, NULL, NULL, NULL, 'tmzh0USwThMAP84tn6NgfCdgmWT1ghMG3GueHr5UUWK07TPQ56HUsEkTesED', '2019-11-09 00:19:35', '2019-11-25 04:52:17'),
+(31, 'Narinder Bajwa', 'Narinder', 'Bajwa', 'bajwa7696346232@gmail.com', '0', NULL, NULL, NULL, '2019-11-12 07:02:09', '$2y$10$he8YxmZeBwdKAMqcbtQ0/.aJqTWo1Nxpm/WCKXK2XaEZAAJUE7Hc.', 'vendor', 'images/vendors/profile/15754682903k0mKXR3oz1UOM4OSDE2istockphoto953790424612x612.jpg', 1, '0', 1, 'paypalg@gmail.com', 'acct_1Fo5XDLPmLY4XjL0', 'w25TcJXisf55ZleShsQRQ4q1m1GSX4aoj8ZxG0SuUTN9B8MuhByZyxIVBfx4', '2019-11-12 06:11:13', '2019-12-10 04:49:20'),
+(32, 'Narinder Bajwa', 'Narinder', 'Bajwa', 'bajwa9876470491@gmail.com', '789654156', 'New York Avenue Northwest, Washington, DC, USA', '38.9032325', '-77.02110679999998', '2019-11-30 18:30:00', '$2y$10$tiBVNqE4PMLEbmyfMNH9/eXn4rkSKw0uHTNdeFJEALg2yBdwB04JG', 'user', 'images/vendors/profile/15754697554EkKbsnz87ArnXAWUqAht10_dsc5356_15_1836831555326929.jpg', NULL, NULL, NULL, NULL, NULL, '0VWqMGZtvFsXi3GhJJypfkpFEBdWnrI7bwzyvMLzrMzuKmUdUCv2IVb7wvhO', '2019-11-12 06:25:25', '2019-12-04 08:59:15'),
+(33, 'hitesh sharma', 'hitesh', 'sharma', 'hitesh22791@gmail.com', '0', NULL, NULL, NULL, '2019-11-13 18:30:00', '$2y$10$o6TsuB0J0za0EknNojA7g.B304Cg3SRfIqrJU7QQZKSxgCYb5FpGi', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, 'usHDkMT6QyFgQUsA03DB113wGW1nDuLMbyqfBp9gdXKsZ8J0fi5xPkAJDT82', '2019-11-14 02:17:10', '2019-11-21 09:09:51'),
+(34, 'vendor s', 'vendor', 's', 'vendor001@yopmail.com', '12345656', NULL, NULL, NULL, '2019-11-14 04:22:00', '$2y$10$3nhw3wasoho0VKY52ffgHO7/OBu5wNz0O4r2SXSQrtzktEnI3YI5K', 'vendor', 'images/vendors/profile/1575376773SRf20ex3xxBQ4dgJjBNZonline.png', 1, '2', 1, NULL, 'acct_1FlvGZCqcZPOBWPd', 'BePJheFM53pEtIJ8lEJ7bradJ8DR2a5YSY9KQFNlyQP6N7eowCqL8g8ucT36', '2019-11-14 04:19:37', '2019-12-11 04:42:59'),
+(35, 'Kanny Gill', 'Kanny', 'Gill', 'kanny@yopmail.com', '0', NULL, NULL, NULL, '2019-11-15 03:06:31', '$2y$10$XZA0JR6bHi1MSANa86u8jOncOCBPT7wFdxaq5RZBjLIYW992ssDA.', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, 'Xrl2c1Wi9CoObL6isRFEmDk1wHPpScmBBteayDW2fjF1aVKrOBVdDIAZgx2W', '2019-11-15 03:06:02', '2019-11-21 09:10:03'),
+(36, 'Kanny Rajput', 'Kanny', 'Rajput', 'kannyraj@yopmail.com', '0', NULL, NULL, NULL, '2019-11-15 04:27:34', '$2y$10$05CiO5N1YnlHK2qAV493Kub/2oQ1PkscvvcNJ5lEeupu.MNxtrT7m', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, 'MiJiNw0hILOy4O7TcVXUAYem6b3hAujmp6kbR0rc2B8ILItRzt4iDwxj4wnI', '2019-11-15 04:27:09', '2019-11-21 09:10:06'),
+(37, 'Kanny Singhh', 'Kanny', 'Singhh', 'kannysingh@yopmail.com', '0', NULL, NULL, NULL, '2019-11-15 04:30:26', '$2y$10$D43XORx9FPYbJXJu2L7CkuJsKI9ywXPjNOXoVhPi9iegyE5tXy7h2', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, 'Moa9zHEdREFzRSFG7DNs2fDCSMEFPyGiUGOgan9FxOFj4TjsZNcdLF5CgwIa', '2019-11-15 04:30:08', '2019-11-21 09:10:10'),
+(38, 'Yuvraj Bajwa', 'Yuvraj', 'Bajwa', 'yuvi@gmail.com', '0', NULL, NULL, NULL, '2019-11-14 18:30:00', '$2y$10$nNsAZlbUjk5MQejC/gAcO.00QkIKDfJI7cODHa4OT8KQ96SGWFRqW', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, NULL, '2019-11-15 04:51:50', '2019-11-21 09:10:26'),
+(39, 'HYCINTH YIMGA', 'HYCINTH', 'YIMGA', 'contactfavorville@gmail.com', '0', NULL, NULL, NULL, '2019-11-15 16:20:30', '$2y$10$6Nq8e2EhE6Xp2/r7pSISb.cvfxbVENNgwPDeu4MZ0PIzm6a6/dEBe', 'user', NULL, NULL, NULL, NULL, NULL, NULL, 'HZfumDTztXkugyIUn7sXHgtJXprsW6Cp5e12T6rnJug0qChroiHGZY8eRyGQ', '2019-11-15 16:20:15', '2019-11-15 16:20:30'),
+(40, 'Test Test', 'Test', 'Test', 'yimgah@outlook.com', '0', NULL, NULL, NULL, '2019-11-15 16:26:13', '$2y$10$7i8QLKLRZvQS/aoDt/OWTuit05TjXMX9wkMMKzmDsT14wJ5IVIi3a', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, 'J6E8MXFU30Ds9mL0aBKSunr2UePU5F1PnmAIskQMBnUNQbbWXh1U7HDemJ0j', '2019-11-15 16:26:02', '2019-11-21 09:10:19'),
+(41, 'Ivery High', 'Ivery', 'High', 'ihigh@masonlive.gmu.edu', '0', NULL, NULL, NULL, '2019-11-15 19:10:31', '$2y$10$I3FxreZ4zHuUEns6VhcvmOCU7T5DvjU/j91f3YxUoUUXVzZFyDpjK', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, NULL, '2019-11-15 19:09:57', '2019-11-21 09:09:56'),
+(42, 'Jaskaran Singh', 'Jaskaran', 'Singh', 'jaskaran@yopmail.com', '0', NULL, NULL, NULL, '2019-11-18 03:05:55', '$2y$10$24fdx3W1i9M2GLFjlOeUXuE2H7reNsX/Nsixl/ou8JxPIB.2EmZh.', 'vendor', 'images/vendors/profile/1575373430Wc8UYg1bG43YtloV103pt10_1435802609300solo019.jpg', 1, NULL, 1, NULL, NULL, 'aodYFScM6fAWNW3LKbcq15WlUlgK0JtPJq3BkhLPMxhW5aOAB8UwLsEiSHss', '2019-11-18 03:05:38', '2019-12-05 08:55:24'),
+(43, 'karan singh', 'karan', 'singh', 'karan@yopmail.com', '0', NULL, NULL, NULL, '2019-11-18 04:02:59', '$2y$10$/HFJc7wVlgEDh.Uiyier1O8wxUmYr6kohUh4c7KizeLcVHlVFyKPe', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, NULL, '2019-11-18 04:02:23', '2019-11-21 09:10:13'),
+(44, 'jassi singh', 'jassi', 'singh', 'jassi91@yopmail.com', '0', NULL, NULL, NULL, '2019-11-26 00:58:09', '$2y$10$N/UOLjgGNNissqOqvSmGm.pq5rBBgxI9CKPC4zFmT733riMeQT4tO', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, 'nUi4jEchT1xG5ZuK9nSnfV6efg0HVg4JQpvpIiY9tpXSMKVYxzl3h8jcrmxt', '2019-11-26 00:54:09', '2019-12-05 05:04:56'),
+(45, 'Testing Test', 'Testing', 'Test', 'test91@yopmail.com', '0', NULL, NULL, NULL, '2019-12-02 04:14:48', '$2y$10$nISzsSM4J3M6Ly/wjNd/duqEYi0QHl39FSZAjfZef/6zQ5oI9TxqO', 'user', NULL, NULL, NULL, NULL, NULL, NULL, 'r177koEhaUuGefWW73RpVYWtuulovmGZhejTQopPaig1zhkFrD6wgfC3uFYQ', '2019-12-02 04:12:33', '2019-12-02 04:14:48'),
+(46, 'TEST JHJ', 'TEST', 'JHJ', 'daad@yopmail.com', '0', NULL, NULL, NULL, NULL, '$2y$10$4432zcTf61VZz7iikxJS/.iQJq8NJPJX1Ogp6amDpgWT9P90MSfbS', 'vendor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-02 08:14:23', '2019-12-02 08:14:23'),
+(47, 'test test', 'test', 'test', 'hitesh@gmail.com', '0', NULL, NULL, NULL, NULL, '$2y$10$FPv8fsNNHN03PdraRVbQEuuAYgqd06MytqybnvOcvC8tGD4VwgpOO', 'vendor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-02 08:32:54', '2019-12-02 08:32:54'),
+(48, 'raj kumar', 'raj', 'kumar', 'raj@gmail.com', '0', NULL, NULL, NULL, NULL, '$2y$10$dk71CVag5j6iEppLlhg8sOOutXUF10tO41m9SEbmHxgvetvZ18HwS', 'vendor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-02 08:45:24', '2019-12-02 08:45:24'),
+(49, 'user ss', 'user', 'ss', 'user002@yopmail.com', '0', NULL, NULL, NULL, NULL, '$2y$10$HHw5htguFfOR4o4kBczkFO/8IIPUNRNMaAj6zuJk8CLUy05gN2slq', 'vendor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-02 08:49:58', '2019-12-02 08:49:58'),
+(50, 'rk s', 'rk', 's', 'user001@yopmail.com', '14523654', 'Canal Street, Chinatown, NY, USA', '40.7163437', '-73.99638620000002', '2019-12-03 05:54:47', '$2y$10$f.wzTKaKghDaxwbjyihnsO85DYrcL2A0WZ4cQnvEWXSvWwgXKmKHS', 'user', 'images/vendors/profile/1575380038swGGAXUHFFXwJ7yBwsyBonline.png', NULL, NULL, NULL, NULL, NULL, 'zsg204zx77P671xDkr78PI7u7tyhC2CpasRyT9g58ZfUeBYSWeo26d3UTmmj', '2019-12-03 05:54:27', '2019-12-11 05:20:46'),
+(51, 'Kanny Gill', 'Kanny', 'Gill', 'kanny786@yopmail.com', '9465470549', 'USC McCarthy Way, Los Angeles, CA, USA', '34.0205687', '-118.2813509', '2019-12-04 08:49:01', '$2y$10$htlgqwsz8x/H6OvnK0Ncfuc18z9RYQqJnRoEPGwMIzZdsEy54Y58G', 'user', 'images/vendors/profile/1575559734NrTSdag3NzPIqrP0wOzqt10_1435802609300solo019.jpg', NULL, NULL, NULL, NULL, NULL, '7iYGWhdrzqYrnhZvnI5FWXRrWMKISLNr17UiAzAwgRy02KKr5zhGVaP4dWB7', '2019-12-04 08:48:44', '2019-12-06 08:02:24'),
+(52, 'TEST sandha', 'TEST', 'sandha', 'TEST@yopmail.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$06n1888HwkEutLzgq3D2H.PyFrZgVzUFJmwldrC/QtkIGP1Yn1eEi', 'vendor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-05 00:35:01', '2019-12-05 00:35:01'),
+(53, 'karan JHJ', 'karan', 'JHJ', 'deft321@yopmail.com', NULL, NULL, NULL, NULL, '2019-12-05 00:39:13', '$2y$10$tB5.hjlH5HIUkZdbMnNBO.YVQ3rLra9rxvu4ndGqU8Fb0Xa/DjUka', 'user', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-05 00:38:47', '2019-12-05 00:39:13'),
+(54, 'Hycinth EV', 'Hycinth', 'EV', 'Hycinth12@yopmail.com', NULL, NULL, NULL, NULL, '2019-12-05 01:05:52', '$2y$10$kYEAJbTdlcv9Lgsai8c9m.rBv2fgiolwLfdY1TjJB6nopyZBUL39.', 'vendor', NULL, 1, NULL, NULL, NULL, NULL, 'YrniHT2AKfTlkEYfaWXec3GJCKNjzzIQP8DcpiBKVMdePIKGxgGcPV7blPwz', '2019-12-05 01:02:31', '2019-12-05 05:03:30'),
+(55, 'sandha Singh', 'sandha', 'Singh', 'sandha78@yopmail.com', NULL, NULL, NULL, NULL, '2019-12-05 03:18:23', '$2y$10$CLZDveG.QgNHnTnqiz7Q8eC.Eb/61sLyux2ITPD6RSBeCZ2OZRfqC', 'user', NULL, NULL, NULL, NULL, NULL, NULL, 'FYz1zlkl1UkJQCDtMyZfaJoLK7ZmaqlK1FfzCb5JKtOkNdgvcWoWJHAAsdZk', '2019-12-05 03:15:00', '2019-12-05 03:18:23'),
+(56, 'Inder Bajwa', 'Inder', 'Bajwa', 'qa2.defsoft@gmail.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$O2X.68/cxdnSWTjhO2cW5OsgLakNXhQDm3e4MYpk3zxX6lzDKsFUC', 'vendor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-05 03:28:52', '2019-12-05 03:28:52'),
+(57, 'pallavi toomar', 'pallavi', 'toomar', 'qa2.deftsoft@gmail.com', NULL, NULL, NULL, NULL, '2019-12-05 03:32:45', '$2y$10$NtsBEHLcUQG8nkSLtrUbQ.JTQpiefyrc7DIatcZV2ztayxs6ThEzG', 'vendor', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-05 03:32:21', '2019-12-05 03:32:45'),
+(58, 'Dkisisis Idiidisi', 'Dkisisis', 'Idiidisi', 'Ksksjsi@yopmail.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$HxQP976VGBBYIE9ABFGrSe/qVkRFqClYtL8dFDYjZ0UN/0fmSF6mC', 'user', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-12-05 04:20:35', '2019-12-05 04:20:35'),
+(59, 'Kanny Vendor', 'Kanny', 'Vendor', 'kannyv@yopmail.com', '9465470549', NULL, NULL, NULL, '2019-12-09 03:08:48', '$2y$10$Y0S0fTZR6g70BiaO84IYM.oApOraGM7iDFl9lpkAuiL.VMVj6xgkO', 'vendor', 'images/vendors/profile/1575882091j0GZOQCG6Q7AB3dlJFb2k.jpg', NULL, NULL, NULL, NULL, NULL, 'Tet5zXyepKHJQL8NbbqaARP8iF1zlk9CwcwYo1mQlkJLVd6VzCe5k16N8bgj', '2019-12-09 03:08:24', '2019-12-09 03:31:31'),
+(60, 'Kanny Customer', 'Kanny', 'Customer', 'kannyc@yopmail.com', NULL, NULL, NULL, NULL, '2019-12-09 03:10:12', '$2y$10$2NoI44RRR.M9N5YBuSHtu.LokV/LdI07LFfDouegVOPIbq8C5xWIy', 'user', NULL, NULL, NULL, NULL, NULL, NULL, 'Yg0HiDqAxMdx7ZAwNNMejTXyXaniQvuRVHIk1ejzhOgpYVZJJw1arlxPMahk', '2019-12-09 03:10:03', '2019-12-09 03:10:12');
 
 -- --------------------------------------------------------
 
@@ -1192,7 +1190,10 @@ CREATE TABLE `user_events` (
 
 INSERT INTO `user_events` (`id`, `user_id`, `slug`, `title`, `description`, `start_date`, `end_date`, `location`, `latitude`, `longitude`, `event_type`, `status`, `min_person`, `max_person`, `created_at`, `updated_at`) VALUES
 (17, 50, 'new', 'new', 'asd', '2019-12-08 18:30:00', '2019-12-13 18:30:00', 'Disneyland Drive, Anaheim, CA, USA', '33.8136287', '-117.92424490000002', '1', 0, 3, 5, '2019-12-09 10:50:14', '2019-12-10 01:53:33'),
-(18, 50, 'my-winter', 'my winter', 'description', '2019-12-12 18:30:00', '2019-12-27 18:30:00', 'Logan Airport Terminal B, East Boston, MA, USA', '42.3645508', '-71.01954490000003', '6', 0, 5, 12, '2019-12-10 00:25:18', '2019-12-10 01:53:42');
+(18, 50, 'my-winter', 'my winter', 'description', '2019-12-12 18:30:00', '2019-12-27 18:30:00', 'Logan Airport Terminal B, East Boston, MA, USA', '42.3645508', '-71.01954490000003', '6', 0, 5, 12, '2019-12-10 00:25:18', '2019-12-10 01:53:42'),
+(19, 32, 'my-birthbay-party', 'My Birthbay Party', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour', '2019-12-11 18:30:00', '2019-12-12 18:30:00', 'New York State Thruway, Central Valley, NY, USA', '42.9586191', '-76.90872790000003', '17', 0, 200, 500, '2019-12-11 06:51:19', '2019-12-11 06:51:19'),
+(20, 32, 'wedding-anniversary', 'Wedding Anniversary', 'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour', '2019-12-26 18:30:00', '2019-12-27 18:30:00', 'Newark International Airport Street, Newark, NJ, USA', '40.6921118', '-74.1828812', '2', 0, 50, 100, '2019-12-11 06:52:40', '2019-12-11 06:52:40'),
+(21, 60, 'birthday-bash', 'Birthday Bash', 'It\'s my Birthday Event', '2019-12-27 18:30:00', '2019-12-28 18:30:00', 'Miami Circle Northeast, Atlanta, GA, USA', '33.83015460000001', '-84.36332010000001', '17', 0, 100, 500, '2019-12-11 10:20:02', '2019-12-11 10:20:02');
 
 -- --------------------------------------------------------
 
@@ -1223,7 +1224,14 @@ INSERT INTO `user_event_meta_datas` (`id`, `parent`, `user_id`, `type`, `key`, `
 (12, 0, 50, 'events', 'category_id', '16', 16, '2019-12-09 10:00:23', '2019-12-09 10:00:23'),
 (19, 0, 50, 'events', 'category_id', '20', 17, '2019-12-10 01:53:33', '2019-12-10 01:53:33'),
 (20, 0, 50, 'events', 'category_id', '25', 17, '2019-12-10 01:53:33', '2019-12-10 01:53:33'),
-(21, 0, 50, 'events', 'category_id', '16', 18, '2019-12-10 01:53:42', '2019-12-10 01:53:42');
+(21, 0, 50, 'events', 'category_id', '16', 18, '2019-12-10 01:53:42', '2019-12-10 01:53:42'),
+(22, 0, 32, 'events', 'category_id', '11', 19, '2019-12-11 06:51:19', '2019-12-11 06:51:19'),
+(23, 0, 32, 'events', 'category_id', '6', 20, '2019-12-11 06:52:40', '2019-12-11 06:52:40'),
+(24, 0, 32, 'events', 'category_id', '11', 20, '2019-12-11 06:52:40', '2019-12-11 06:52:40'),
+(25, 0, 32, 'events', 'category_id', '16', 20, '2019-12-11 06:52:40', '2019-12-11 06:52:40'),
+(26, 0, 32, 'events', 'category_id', '18', 20, '2019-12-11 06:52:40', '2019-12-11 06:52:40'),
+(27, 0, 60, 'events', 'category_id', '1', 21, '2019-12-11 10:20:02', '2019-12-11 10:20:02'),
+(28, 0, 60, 'events', 'category_id', '11', 21, '2019-12-11 10:20:02', '2019-12-11 10:20:02');
 
 -- --------------------------------------------------------
 
@@ -1306,8 +1314,8 @@ CREATE TABLE `vendor_categories` (
   `sitting_capacity` int(11) NOT NULL,
   `standing_capacity` int(11) NOT NULL DEFAULT '0',
   `payment_status` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `paypal_email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `stripe_email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `paypal_account` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `stripe_account` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -1316,7 +1324,7 @@ CREATE TABLE `vendor_categories` (
 -- Dumping data for table `vendor_categories`
 --
 
-INSERT INTO `vendor_categories` (`id`, `parent`, `user_id`, `category_id`, `title`, `business_url`, `price`, `status`, `publish`, `business_location`, `latitude`, `longitude`, `travel_distaince`, `capacity_type`, `sitting_capacity`, `standing_capacity`, `payment_status`, `paypal_email`, `stripe_email`, `created_at`, `updated_at`) VALUES
+INSERT INTO `vendor_categories` (`id`, `parent`, `user_id`, `category_id`, `title`, `business_url`, `price`, `status`, `publish`, `business_location`, `latitude`, `longitude`, `travel_distaince`, `capacity_type`, `sitting_capacity`, `standing_capacity`, `payment_status`, `paypal_account`, `stripe_account`, `created_at`, `updated_at`) VALUES
 (1, 0, 31, 1, 'Prateek Dua Photography', 'prateek-dua-photography', 200, 3, 1, 'Miami Gardens Drive, Hialeah, FL, USA', '25.9409179', '-80.24732970000002', '0', 0, 0, 0, '2', 'photopaypal@gmail.com', 'photostripe@gmail.com', '2019-11-20 01:37:22', '2019-12-05 07:47:02'),
 (2, 0, 31, 18, 'SVA Fotografs', 'sva-fotografs', 0, 3, 1, NULL, '31.633980', '74.872261', '0', 0, 0, 0, NULL, NULL, NULL, '2019-11-20 01:45:40', '2019-11-25 08:33:58'),
 (3, 1, 31, 29, NULL, NULL, 0, 1, 0, NULL, NULL, NULL, '0', 0, 0, 0, NULL, NULL, NULL, '2019-11-20 02:32:09', '2019-11-20 02:32:09'),
@@ -1330,7 +1338,7 @@ INSERT INTO `vendor_categories` (`id`, `parent`, `user_id`, `category_id`, `titl
 (11, 0, 42, 1, 'Kanny Gill Photography', 'kanny-gill-photography', 1500, 3, 1, 'New York 112, North Patchogue, NY, USA', '40.78464160000001', '-73.00876929999998', '0', 0, 0, 0, NULL, NULL, NULL, '2019-11-20 03:23:14', '2019-11-27 06:35:23'),
 (12, 11, 42, 30, NULL, NULL, 0, 1, 0, NULL, NULL, NULL, '0', 0, 0, 0, NULL, NULL, NULL, '2019-11-20 03:32:20', '2019-11-20 03:32:20'),
 (13, 11, 42, 35, NULL, NULL, 0, 1, 0, NULL, NULL, NULL, '0', 0, 0, 0, NULL, NULL, NULL, '2019-11-20 03:32:20', '2019-11-20 03:32:20'),
-(14, 0, 34, 20, 'Photos', 'photos', 500, 3, 1, 'Korniv Drive, Charlotte, NC, USA', '35.3127194', '-80.93545039999998', '0', 0, 0, 0, '0', 'hospital@yopmail.com', 'st@sdf.cos', '2019-11-20 03:35:54', '2019-12-05 06:43:22'),
+(14, 0, 34, 20, 'Photos', 'photos', 500, 3, 1, 'Korniv Drive, Charlotte, NC, USA', '35.3127194', '-80.93545039999998', '0', 0, 0, 0, '0', 'hospital@yopmail.com', 'acct_1FlvGZCqcZPOBWPd', '2019-11-20 03:35:54', '2019-12-11 04:54:05'),
 (15, 0, 34, 25, 'Decoration', 'decoration', 500, 3, 1, 'USC McCarthy Way, Los Angeles, CA, USA', '34.0205687', '-118.2813509', '0', 0, 0, 0, NULL, NULL, NULL, '2019-11-20 03:35:54', '2019-12-06 01:46:46'),
 (16, 0, 34, 1, 'photos', 'photos-1', 25, 3, 1, 'Canal Street, Chinatown, NY, USA', '40.7163437', '-73.99638620000002', '0', 0, 0, 0, NULL, NULL, NULL, '2019-11-20 03:35:54', '2019-12-09 04:15:24'),
 (17, 0, 40, 6, NULL, NULL, 0, 1, 0, NULL, NULL, NULL, '0', 0, 0, 0, NULL, NULL, NULL, '2019-11-20 05:19:29', '2019-11-20 05:19:29'),
@@ -1754,14 +1762,14 @@ INSERT INTO `vendor_event_games` (`id`, `parent`, `user_id`, `event_id`, `catego
 (18, 0, 31, 5, 11, 24, NULL, '2019-11-27 02:13:55', '2019-11-27 02:13:55'),
 (19, 0, 31, 6, 11, 24, NULL, '2019-11-27 02:13:55', '2019-11-27 02:13:55'),
 (20, 0, 31, 11, 11, 24, NULL, '2019-11-27 02:13:55', '2019-11-27 02:13:55'),
-(21, 0, 34, 1, 11, 25, NULL, '2019-11-27 02:20:01', '2019-11-27 02:20:01'),
 (22, 0, 34, 5, 11, 25, NULL, '2019-11-27 02:20:01', '2019-11-27 02:20:01'),
 (25, 0, 34, 2, 20, 14, NULL, '2019-12-03 05:01:46', '2019-12-03 05:01:46'),
 (27, 0, 44, 11, 11, 26, NULL, '2019-12-06 05:40:14', '2019-12-06 05:40:14'),
 (28, 0, 44, 6, 11, 26, NULL, '2019-12-09 01:27:39', '2019-12-09 01:27:39'),
 (29, 0, 44, 9, 11, 26, NULL, '2019-12-09 01:27:39', '2019-12-09 01:27:39'),
 (30, 0, 59, 2, 1, 35, NULL, '2019-12-09 03:20:52', '2019-12-09 03:20:52'),
-(31, 0, 59, 3, 1, 35, NULL, '2019-12-09 03:20:52', '2019-12-09 03:20:52');
+(31, 0, 59, 3, 1, 35, NULL, '2019-12-09 03:20:52', '2019-12-09 03:20:52'),
+(32, 0, 34, 3, 11, 25, NULL, '2019-12-11 01:38:12', '2019-12-11 01:38:12');
 
 -- --------------------------------------------------------
 
@@ -2024,7 +2032,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `category_variations`
 --
 ALTER TABLE `category_variations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=597;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=641;
 --
 -- AUTO_INCREMENT for table `chats`
 --
@@ -2059,7 +2067,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `favourite_vendors`
 --
 ALTER TABLE `favourite_vendors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `f_a_qs`
 --
@@ -2074,12 +2082,12 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `package_meta_datas`
 --
 ALTER TABLE `package_meta_datas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=370;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=373;
 --
 -- AUTO_INCREMENT for table `page_meta_tags`
 --
@@ -2109,12 +2117,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_events`
 --
 ALTER TABLE `user_events`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `user_event_meta_datas`
 --
 ALTER TABLE `user_event_meta_datas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `vendor_amenities`
 --
@@ -2134,7 +2142,7 @@ ALTER TABLE `vendor_category_meta_datas`
 -- AUTO_INCREMENT for table `vendor_event_games`
 --
 ALTER TABLE `vendor_event_games`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `vendor_packages`
 --

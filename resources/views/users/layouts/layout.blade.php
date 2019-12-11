@@ -27,6 +27,8 @@
     <link rel="stylesheet" href="{{url('/admin-assets/css/style.css')}}">
     <link rel="stylesheet" href="{{url('/css/user.css')}}">
      <link rel="stylesheet" href="{{url('/css/chat.css')}}">
+     <link rel="stylesheet" href="{{url('/css/common-style.css')}}">
+     <link rel="stylesheet" href="{{url('/css/common-responsive.css')}}">
 
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 

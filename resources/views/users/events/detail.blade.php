@@ -242,7 +242,7 @@
           			@if(count($category->eventCategory->businesses) > 0)
                       @foreach($category->eventCategory->businesses as $business)
                       <div class="col-lg-4">
-                        <a href="javascript:void(0);" class="recommended-vedor">
+                        <a href="{{ route('vendor_detail_page', ['catslug' => $category->eventCategory->slug , 'bslug' => $business->business_url]) }}" class="recommended-vedor" target="_blank">
 
                          <figure> <img src="{{url(getBasicInfo($business->vendors->id, $business->category_id,'basic_information','cover_photo'))}}"/></figure>
                           <div class="rec-detail">

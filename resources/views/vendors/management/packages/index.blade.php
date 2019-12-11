@@ -54,53 +54,47 @@
   </div>
 
       <!-- rk package details start -->
-      @if(count($category->categoryAmenity) || count($category->categoryEvent) || count($category->CategoryGames))
+      @if(count($f->amenities) || count($f->games) || count($f->events))
 
      <div class="pricing-category">
-
       <div class="row">
-        @if(count($category->categoryAmenity))
-        <div class="col-md-6">
-      <label for="no_of_hours">Amenities</label>
-      @foreach($category->categoryAmenity as $cate)
-     @if(activePackageMetaData(\Auth::User()->id, $category->id, $cate->Amenity->id, 'amenities', $f->id)=='checked')
-     <ul class="pkg-listing-grp">  
-       <li class="pkg-listing">{{$cate->Amenity->name}}</li>
-     </ul>
-     
-     @endif
-   @endforeach
+@if(count($f->amenities))
+<div class="col-md-6">
+        <label for="no_of_hours">Amenities</label>
+        @foreach($f->amenities as $amenity)
+        <ul class="pkg-listing-grp"> 
+        <li class="pkg-listing">{{$amenity->amenity->name}}</li>
+      </ul>   
+      @endforeach
  </div>
  @endif
 
-@if(count($category->CategoryGames))
+@if(count($f->games))
 <div class="col-md-6">
   <label for="no_of_hours">Games</label>
-            @foreach($category->CategoryGames as $cate)  
-              @if(activePackageMetaData(\Auth::User()->id, $category->id, $cate->Amenity->id, 'games', $f->id)=='checked')
-        <ul class="pkg-listing-grp">  
-          <li class="pkg-listing">{{$cate->Amenity->name}}</li>
-        </ul>
-        @endif  
-                 @endforeach 
+            @foreach($f->games as $game)
+            <ul class="pkg-listing-grp">  
+              <li class="pkg-listing">{{$game->amenity->name}}</li>
+            </ul>
+            @endforeach 
              </div>
       @endif
 
- @if(count($category->categoryEvent))
+ @if(count($f->events))
 <div class="col-md-6">
   <label for="no_of_hours">Events</label>
-@foreach($category->categoryEvent as $cate)
-        @if(activePackageMetaData(\Auth::User()->id, $category->id, $cate->Event->id, 'events', $f->id)=='checked')
+ @foreach($f->events as $amenity)
         <ul class="pkg-listing-grp">  
-          <li class="pkg-listing">{{$cate->Event->name}}</li>
+          <li class="pkg-listing">{{$amenity->event->name}}</li>
         </ul>
-        @endif
      @endforeach
 </div>
  @endif
 </div>
 </div>
 @endif
+<!--  -->
+
  @if(count($f->package_addons))
 <div class="pricing-category">
   <label for="no_of_hours">Add Ons</label>

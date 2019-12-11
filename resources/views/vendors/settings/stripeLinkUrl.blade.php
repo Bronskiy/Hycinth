@@ -29,23 +29,34 @@
 
 
 @if(!empty($resp['stripe_user_id']))
+    <form action="{{ route('stripeSettings') }}" id="stripeForm" method="post">
+      {{csrf_field()}}
+      <input type="text" name="stripe_account" id="stripe_account"> value="<?php echo $resp['stripe_user_id']; ?>" 
+      class="form-control wdth" readonly>
 
+      @if(!empty(Auth::User()->stripe_account))
+        <div class="form-group label-floating is-focused">
+          <label class="control-label">Categories</label>
+          <select class="form-control valid" name="category" id="category">
+            <option value="">Select Category</option>
+            @foreach(Auth::User()->services as $cate)  
+              <option value="{{$cate->category->slug}}">{{$cate->category->label}}</option>
+            @endforeach
+          </select>
+        </div>
+      @endif
 
-                            <form action="" method="post">
-
-                              <input type="text" name="stripe_account_id" value="<?php echo $resp['stripe_user_id']; ?>" class="form-control wdth" readonly>
-                              {{csrf_field()}}
-
-                              <div class="col-md-6 col-sm-6 col-xs-12">
-                                <button class="btn btn-primary">Activate Account</button>
-                              </div>
-                              </form>
+      <div class="col-md-6 col-sm-6 col-xs-12">
+        <button id="stripeFormBtn" class="btn btn-primary">Activate Account</button>
+      </div>
+      </form>
 
 @endif
                             
 @elseif (isset($_GET['error'])) 
 
-                            echo $_GET['error_description'];
+                            <!-- echo $_GET['error_description']; -->
+                            {{ app('request')->input('error_description') }}
 
  @else                         
 <?php
@@ -69,18 +80,28 @@
 
    <table class="table">
      <tr>
-        <th width="200">Account Id</th><td>{{Auth::user()->stripe_account}}</td>
-     </tr><tr>
+        <th width="200">Global Account Id</th><td>{{Auth::user()->stripe_account}}</td>
+     </tr>
+
+    @foreach(Auth::User()->services as $cate)  
+    <tr>
+      <th width="200">{{$cate->category->label}}</th><td>{{ $cate->stripe_account ? $cate->stripe_account : Auth::user()->stripe_account }}</td>
+    </tr>
+    @endforeach
+
+     <tr>
         <th width="200">Account Status</th><td>Active</td>
      </tr>
    </table>
 
 
+
+
+
+    <a href='{{$url}}' class='btn btn-primary'>Connect with Stripe For Business</a> 
+
 @else
-
-
-                           
-                           <a href='{{$url}}' class='btn btn-primary'>Connect with Stripe</a> 
+  <a href='{{$url}}' class='btn btn-primary'>Connect with Stripe</a> 
 @endif
 
 

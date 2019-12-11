@@ -38,6 +38,8 @@
     <link rel="stylesheet" href="{{url('/AdminFILE/dist/css/jquery-ui.css')}}">
 <link href="{{ url('/css/vendors/vendor-custom.css') }}" rel="stylesheet">
 <link href="{{ url('/css/vendors/vendor-responsive.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{url('/css/common-style.css')}}">
+     <link rel="stylesheet" href="{{url('/css/common-responsive.css')}}">
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
 

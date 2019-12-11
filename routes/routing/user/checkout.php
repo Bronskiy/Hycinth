@@ -3,17 +3,20 @@
  Route::group(['prefix' => 'checkout'], function() {
 
  	// paypal payment
-     Route::post('/paypalAuth', 'Home\Checkout\PaypalController@paypalAuth')->name('user_paypalAuth');
-     Route::post('/payToVendor', 'Home\Checkout\PaypalController@payouts')->name('user_payToVendor');
 
-      Route::get('/buy-deal/{dealSlug}/{packageSlug}','Home\Checkout\CheckoutController@payWithDeal')->name('payWithDeal');
-      Route::post('/buy-deal/{dealSlug}/{packageSlug}','Home\Checkout\CheckoutController@payingWithDeal')->name('payWithDeal');
+
+
+
+  
+       Route::post('/paypalAuth', 'Home\Checkout\PaypalController@paypalAuth')->name('user_paypalAuth');
+       Route::post('/payToVendor', 'Home\Checkout\PaypalController@payouts')->name('user_payToVendor');
+
+       Route::get('/buy-deal/{dealSlug}/{packageSlug}','Home\Checkout\CheckoutController@payWithDeal')->name('payWithDeal');
+       Route::post('/buy-deal/{dealSlug}/{packageSlug}','Home\Checkout\CheckoutController@payingWithDeal')->name('payWithDeal');
 
 
       
       Route::get('buy-package/{packageSlug}','Home\Checkout\CheckoutController@payWithPackage')->name('payWithPackage');
-
-      Route::post('/check-coupon','Home\Checkout\CheckoutController@checkCouponCode')->name('checkCouponCode');
       //Route::post('{packageSlug}','Home\Checkout\CheckoutController@payingWithPackage')->name('payingWithPackage');
 
 #------------------------------------------------------------------------------------------------------
@@ -37,7 +40,7 @@
         Route::get('{packageSlug}/billing/address','Home\Checkout\StepController@billingType')->name('checkout.billingStep');
         Route::post('{packageSlug}/billing/address','Home\Checkout\StepController@billingTypePost')->name('checkout.billingStep');
 
- # package review for package only
+        # package review for package only
         Route::get('{packageSlug}/payment','Home\Checkout\StepController@paymentType')->name('checkout.paymentStep');
         Route::post('{packageSlug}/payment','Home\Checkout\StepController@paymentTypePost')->name('checkout.paymentStep');
 

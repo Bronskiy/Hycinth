@@ -17,7 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $fillable = [
         'first_name', 'last_name', 'name', 'phone_number', 'email', 'user_location', 'latitude', 'longitude', 'password', 
-        'role', 'payment_type', 'paypal_email', 'stripe_email', 'payment_status', 'email_verified_at', 'profile_image', 'status'
+        'role', 'payment_type', 'paypal_account', 'stripe_account', 'payment_status', 'email_verified_at', 'profile_image', 'status'
     ];
 
     /**
@@ -52,6 +52,14 @@ class User extends Authenticatable implements MustVerifyEmail
     public function chats()
     {
        return $this->hasMany('App\Models\Vendors\Chat')
+                   ->orderBy('updated_at','DESC');
+                   
+    }
+
+
+    public function UpcomingEvents()
+    {
+       return $this->hasMany('App\UserEvent')
                    ->orderBy('updated_at','DESC');
                    
     }

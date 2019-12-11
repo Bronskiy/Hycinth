@@ -61,7 +61,7 @@ $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) 
                                            
                                            <ul class="listing-action-btns">
                                              @if(Auth::check() && Auth::User()->role == 'user')
-                                             <li><a href="{{ route('user_add_favourite_vendors', $cate->id) }}" class="list-icon-btn {{ fav_vendor($cate->id) }}"><i class="fas fa-heart"></i></a>
+                                             <li><a id="fav_vendor_{{$cate->id}}" href="javascript:void(0)" data-url="{{ route('user_add_favourite_vendors', $cate->id) }}" class="list-icon-btn {{ fav_vendor($cate->id) }}"><i class="fas fa-heart"></i></a>
                                              </li>
                                              @endif
 
@@ -162,6 +162,52 @@ $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) 
          jQuery(val).slideDown('slow');
          jQuery(valHide).slideUp('slow');
    });
+
+$('a .fa-heart').click(function() {
+  const url = $(this).parent().data('url');
+  const fav_id = $(this).parent().attr('id');
+
+  $.ajax({
+     url : url,
+     type: 'GET',   
+     dataTYPE:'JSON',
+     headers: {
+       'X-CSRF-TOKEN': $('input[name=_token]').val()
+     },
+      beforeSend: function() {
+          $("body").find('.custom-loading').show();
+      },
+      success: function (res) {
+        // console.log(res.message);
+        if(res.status) {
+          $(`#${fav_id}`).addClass('fav-active');
+        } else {
+          $(`#${fav_id}`).removeClass('fav-active');
+        }
+        $('#suc_show').show();
+        $('#res_mess').html(res.message);
+
+        setTimeout(function() {
+            $('#suc_show').fadeOut('smooth');
+        }, 3000);
+     },
+     complete: function() {
+        $("body").find('.custom-loading').hide();
+        window.scrollTo({top: 300, behavior: 'smooth'});
+     },
+     error: function (jqXhr, textStatus, errorMessage) {
+          $('#err_show').show();
+          $('#err_mess').html(JSON.parse(err.responseText).message);
+
+          setTimeout(function() {
+              $('#err_show').fadeOut('smooth');
+          }, 3000);
+     }
+
+  });
+
+});
+
 
  
 </script>

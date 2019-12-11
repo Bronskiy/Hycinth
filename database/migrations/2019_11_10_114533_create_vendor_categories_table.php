@@ -11,8 +11,7 @@ class CreateVendorCategoriesTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('vendor_categories', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('parent')->nullable();
@@ -20,8 +19,8 @@ class CreateVendorCategoriesTable extends Migration
             $table->integer('category_id')->nullable();
             $table->integer('status')->nullable();
             $table->string('payment_status')->nullable();
-            $table->string('paypal_email')->nullable();
-            $table->string('stripe_email')->nullable();
+            $table->string('paypal_account')->nullable();
+            $table->string('stripe_account')->nullable();
             $table->timestamps();
         });
     }

@@ -20,7 +20,7 @@
 
 
 
-require __DIR__.'/routing/home/checkout.php';
+require __DIR__.'/routing/user/checkout.php';
 require __DIR__.'/routing/home/routes.php';
 require __DIR__.'/routing/home/ajax.php';
 require __DIR__.'/routing/admin/routes.php';

@@ -1,6 +1,6 @@
 <?php
 
-         Route::group(['middleware' => ['UserAuth'],'prefix' => 'user'], function() {
+ Route::group(['middleware' => ['UserAuth'],'prefix' => 'user'], function() {
          Route::get('/', 'Users\DashboardController@index')->name('user_dashboard'); 
          Route::get('/profile', 'Users\DashboardController@profile')->name('user_profile'); 
          Route::post('/profile', 'Users\DashboardController@updateProfile')->name('user_profile'); 
@@ -32,9 +32,5 @@
          #-----------------------------------------------------------------------------------
          #  Event Management ----------------------------------------------------------------
          #-----------------------------------------------------------------------------------
-
-         // payment
-         Route::post('/paypalAuth', 'Users\PaymentController@paypalAuth')->name('user_paypalAuth');
-         Route::post('/payToVendor', 'Users\PaymentController@payouts')->name('user_payToVendor');
 
 });

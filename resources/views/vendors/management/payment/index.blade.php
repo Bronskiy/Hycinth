@@ -38,8 +38,8 @@
         </div>
 
         <div class="form-group" id="stripe_email_div"  style="display: {{ $ven_cat->payment_status == '1' || $ven_cat->payment_status == '2' ? 'block' : 'none' }}">
-          <label for="stripe_email">Stripe Email</label>
-          <input type="email" value="{{$ven_cat->stripe_email}}" name="stripe_email" class="form-control" id="stripe_email" placeholder="Enter stripe email">
+          <label for="stripe_email">Stripe Account</label>
+          <input type="text" value="{{$ven_cat->stripe_account}}" name="stripe_account" class="form-control" id="stripe_email" placeholder="Enter stripe email">
         </div>
 
         </div>

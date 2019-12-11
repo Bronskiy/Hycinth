@@ -10,16 +10,8 @@
                       <div class="row">
 
                            <div class="col-md-12">
-
-                           	
-
-
                                   @include('vendors.settings.stripeLinkUrl')
- 
-
                            </div>
-
-
                       </div>
             </div>
         </div>
@@ -34,10 +26,9 @@
 @section('scripts')
 
 <script src="https://js.stripe.com/v2/"></script>
+<script src="{{url('/js/stripe/stripeValidation.js')}}"></script>
 
 <script type="text/javascript">
-
- 
  
 
 $(function() {

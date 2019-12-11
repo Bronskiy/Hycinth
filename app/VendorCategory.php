@@ -16,7 +16,7 @@ class VendorCategory extends Model
 
      protected $fillable = [
         'parent', 'title', 'user_id', 'category_id', 'status', 'business_url', 'publish',
-        'payment_status', 'paypal_email', 'stripe_email'
+        'payment_status', 'paypal_account', 'stripe_account',
     ];
     
     public function sluggable()
@@ -183,9 +183,8 @@ class VendorCategory extends Model
 
 
 
-    public function VendorEvents()
-    {
-       return $this->hasMany('App\VendorEventGame','vendor_category_id','id');
+    public function VendorEvents() {
+       return $this->hasMany('App\VendorEventGame', 'vendor_category_id', 'id');
     }
 
 

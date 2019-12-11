@@ -1,4 +1,433 @@
 
+
+/*reset css*/
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.23, autoprefixer: v9.7.3) */
+
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.23, autoprefixer: v9.7.3) */
+
+/*fonts included here*/
+
+/*@import url('https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900&display=swap');*/
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900&display=swap');
+/*********************/
+/* Google Material icons */
+
+a {
+    cursor: pointer;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+figure {
+    line-height: 0;
+}
+a:hover, a:focus{
+    text-decoration: none;
+  outline: none;
+}
+
+body {
+    /*font-family: 'Raleway', sans-serif !important;*/
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: normal;
+    overflow-x: hidden;
+    position: relative;
+}
+body.gray-bg{
+    background: #f6f7f8;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+    content: '';
+    content: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+a,
+button,
+.service-item {
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.d-f {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.d-i-f {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.f-d-c {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.f-d-r-r {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+}
+
+.a-i-c {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.a-i-f-e {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+}
+
+.j-c-c {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.j-c-s-b {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+.hide{
+    display: none;
+}
+.j-c-f-e {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+
+.j-c-s-e {
+    -webkit-box-pack: space-evenly;
+    -ms-flex-pack: space-evenly;
+    justify-content: space-evenly;
+}
+
+.no-gutters [class^="col-"] {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.color-white {
+    color: #fff;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.mr-tp-20 {
+    margin-top: 20px;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+.mob-block {
+    display: none;
+}
+
+/*a.normal-link {
+    font-size: 16px;
+    color: #FF1D25;
+    text-decoration: underline;
+}
+
+a.normal-link:hover {
+    text-decoration: none;
+    color: #FF1D25;
+}*/
+
+a,
+span {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
+
+strong {
+    font-weight: bold;
+}
+
+a {
+    color: #333333;
+}
+
+a,
+.main-button,
+.fa {
+    -webkit-transition: 0.3s ease;
+    -o-transition: 0.3s ease;
+    transition: 0.3s ease;
+    /*cursor:url(../images/cursor.png), auto !important;*/
+}
+
+a:hover,
+a:focus,
+button:focus {
+    text-decoration: none;
+    outline: none;
+    color: #f2b51e;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+input:focus {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+::-webkit-input-placeholder {
+    color: #525252 !important;
+    opacity: 1;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+::-moz-placeholder {
+    color: #525252 !important;
+    opacity: 1;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+:-ms-input-placeholder {
+    color: #525252 !important;
+    opacity: 1;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+::-ms-input-placeholder {
+    color: #525252 !important;
+    opacity: 1;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+::placeholder {
+    color: #525252 !important;
+    opacity: 1;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+form label {
+    font-size: 18px;
+    font-weight: 300;
+    color: #000;
+    margin-bottom: 17px;
+}
+
+img {
+    max-width: 100%;
+    -o-object-fit: contain;
+    object-fit: contain;
+}
+
+.dropdown-menu {
+    padding: 0;
+    overflow: hidden;
+    /*border-radius: 0;
+    min-width: 100px;*/
+}
+.dropdown-divider{
+    margin: 0px;
+}
+
+p {
+    font-size: 17px;
+    color: #4c4d50;
+    font-weight: 400;
+}
+
+.row::before,
+.row::after {
+    display: none;
+}
+
+h1 {
+    font-size: 36px;
+    line-height: normal;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 32px;
+    line-height: normal;
+    color: #333333;
+}
+
+h3 {
+    font-size: 20px;
+    line-height: bold;
+    color: #333333;
+}
+
+h4 {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333333
+}
+
+a {
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+ul {
+    list-style: none;
+}
+
+body.modal-open{
+    padding-right: 0px !important;
+    margin-right: 17px;
+}
+
+/***************/
 .form-group {
     position: relative;
     margin-bottom: 25px;
@@ -62,9 +491,9 @@ textarea.form-control {
     border: 2px solid #eda208;
     text-transform: uppercase;
     color: #eda208;
-    padding: 15px 40px;
+    padding: 11px 40px;
     text-align: center;
-    border-radius: 30px;
+    border-radius: 6px;
     line-height: normal;
     display: inline-block;
     cursor: pointer;
@@ -645,7 +1074,8 @@ nav#tool-nav #menus-list li a:hover {
     border-radius: 10px;
     padding: 30px 25px;
     margin-bottom: 50px;
-    overflow: hidden
+    overflow: hidden;
+    position: relative;
 }
 
 .tab-content {
@@ -1080,7 +1510,7 @@ nav#tool-nav #menus-list li a:hover {
     border-radius: 10px;
     margin: 0;
     margin-top: 10px;
-    padding: 15px 30px;
+    padding: 10px 30px;
     width: 100%;
 }
 
@@ -5789,16 +6219,136 @@ table.compere-table th {
 .deal-table.table td{
     font-size: 15px;
 }
-.mini-deal-card{
-    border: 2px solid #cecece;
+.upcomming-events {
+    background: #f7f7f7;
+    padding: 15px;
+    margin: 0px;
+    margin-bottom: 15px;
+    position: relative;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    text-align: left;
+}
+.checkbox-input-wrap {
+    padding: 15px;
+    background: #f2f2f3;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    position: relative;
+}
+.category-checkboxes.category-title {
+    font-size: 17px;
+}
+.category-checkboxes label {
+    padding-left: 50px;
+    line-height: 30px;
+    margin-bottom: 0px;
+    position: relative;
+}
+.category-checkboxes label:before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    background: #36496c;
+}
+.category-checkboxes input:checked ~ label:after {
+    display: block;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+}
+.category-checkboxes input {
+    opacity: 0;
+    position: absolute;
+}
+.category-checkboxes input:checked ~ label:before {
+    background: #eda208;
+}
+.category-checkboxes label::after {
+    height: 30px;
+    width: 30px;
+    content: "✔";
+    font-size: 18.6667px;
+    text-align: center;
+    line-height: 30px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    color: rgb(255, 255, 255);
+    display: none;
+}
+.payment-table label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 11px;
+}
+
+.payment-table .table tr th, .payment-table .table tr td {
+    border: none;
+    padding: 7px 0px;
+}
+.payment-table {
+    padding: 0px;
+    border-radius: 5px;
+    text-align: left;
+}
+.payment-card-detail{
+  background: #e8e8e8;
+  padding: 15px;
+  height: 100%;
+  margin: 15px 0px;
+  border-radius: 6px;
+}
+.flex-field-grp {
+    display: flex;
+    align-items: center;
+}
+.flex-field-grp .form-control{
+    height: 50px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-right:0px;
+}
+.flex-field-grp .cstm-btn.solid-btn{
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+}
+.pkg-ser-list label {
+    font-size: 20px;
+}
+.amt-list-wrap {
+    padding: 10px;
+    background: #ececec;
+    margin: 5px 0px;
+}
+.pkg-ser-list {
+    padding: 20px 0px;
+    display: block;
+}
+/*checkout page css*/
+.mini-deal-card {
+    max-width: 300px;
+    width: 100%;
+   flex-direction: column;
 }
 .mini-deal-card .detal-card-details {
-    width: calc(100% - 120px);
-    padding: 5px 10px;
+    width: 100%;
+    padding:15px;
 }
 .deals-card.mini-deal-card .deal-img {
-    width: 120px;
-    height: 100px;
+    width: 100%;
+    height: 200px;
+
     }
 .mini-deal-card .dealls-dis-head h4{
         font-size: 14px;
@@ -5812,11 +6362,366 @@ table.compere-table th {
 .mini-deal-card .deal-discription{
     font-size: 14px;
 }
-.mini-deal-card .deal-img .discount-per{
-    font-size: 11px;
-    width: 120px;
-    height: 20px;
+
+
+.multistep-form-card .button-grp-wrap{
+    justify-content: center;
 }
-.deal-img .discount-per small{
-    font-size: 10px;
+.thankyou-card .success-message__title{
+   font-size: 65px;
 }
+.thankyou-card .success-message {
+    padding: 25px;
+    max-width: 800px;
+    display: block;
+    margin: 0px auto;
+    background: transparent;
+}
+.success-message p {
+    color: #265624;
+}
+.thankyou-card .apporved-icon{
+    max-width: 90px;
+}
+/*multiselect form*/
+.multi_step_form #msform {
+  text-align: center;
+  position: relative;
+  padding-top: 0px;
+/*  min-height: 820px;*/
+  max-width: 100%;
+  margin: 0 auto;
+  background: #ffffff;
+  z-index: 1;
+}
+.multi_step_form #msform .tittle {
+  text-align: center;
+  padding-bottom: 55px;
+}
+.multi_step_form #msform .tittle h2 {
+  font: 500 24px/35px "Roboto", sans-serif;
+  color: #3f4553;
+  padding-bottom: 5px;
+}
+.multi_step_form #msform .tittle p {
+  font: 400 16px/28px "Roboto", sans-serif;
+  color: #5f6771;
+}
+.multi_step_form #msform fieldset {
+    border: 0;
+    padding: 20px;
+    position: relative;
+    width: 100%;
+    left: 0;
+    right: 0;
+    background: #fafafa;
+    border: 4px solid #d9d5d5;
+}
+.multi_step_form #msform fieldset:not(:first-of-type) {
+  display: none;
+}
+.multi_step_form #msform fieldset h6 {
+  font: 400 15px/28px "Roboto", sans-serif;
+  color: #5f6771;
+  padding-bottom: 30px;
+}
+.multi_step_form #msform fieldset .intl-tel-input {
+  display: block;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  outline: none;
+}
+.multi_step_form #msform fieldset .intl-tel-input .flag-container .selected-flag {
+  padding: 0 20px;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  outline: none;
+  width: 65px;
+}
+.multi_step_form #msform fieldset .intl-tel-input .flag-container .selected-flag .iti-arrow {
+  border: 0;
+}
+.multi_step_form #msform fieldset .intl-tel-input .flag-container .selected-flag .iti-arrow:after {
+  content: "\f35f";
+  position: absolute;
+  top: 0;
+  right: 0;
+  font: normal normal normal 24px/7px Ionicons;
+  color: #5f6771;
+}
+.multi_step_form #msform fieldset #phone {
+  padding-left: 80px;
+}
+/*.multi_step_form #msform fieldset .form-group {
+  padding: 0 10px;
+}*/
+.multi_step_form #msform fieldset .fg_2, .multi_step_form #msform fieldset .fg_3 {
+  padding-top: 10px;
+  display: block;
+  overflow: hidden;
+}
+.multi_step_form #msform fieldset .fg_3 {
+  padding-bottom: 70px;
+}
+/*.multi_step_form #msform fieldset .form-control, .multi_step_form #msform fieldset .product_select {
+  border-radius: 3px;
+  border: 1px solid #d8e1e7;
+  padding: 0 20px;
+  height: auto;
+  font: 400 15px/48px "Roboto", sans-serif;
+  color: #5f6771;
+  box-shadow: none;
+  outline: none;
+  width: 100%;
+}*/
+.multi_step_form #msform fieldset .form-control.placeholder, .multi_step_form #msform fieldset .product_select.placeholder {
+  color: #5f6771;
+}
+.multi_step_form #msform fieldset .form-control:-moz-placeholder, .multi_step_form #msform fieldset .product_select:-moz-placeholder {
+  color: #5f6771;
+}
+.multi_step_form #msform fieldset .form-control::-moz-placeholder, .multi_step_form #msform fieldset .product_select::-moz-placeholder {
+  color: #5f6771;
+}
+.multi_step_form #msform fieldset .form-control::-webkit-input-placeholder, .multi_step_form #msform fieldset .product_select::-webkit-input-placeholder {
+  color: #5f6771;
+}
+.multi_step_form #msform fieldset .form-control:hover, .multi_step_form #msform fieldset .form-control:focus, .multi_step_form #msform fieldset .product_select:hover, .multi_step_form #msform fieldset .product_select:focus {
+  border-color: #5cb85c;
+}
+.multi_step_form #msform fieldset .form-control:focus.placeholder, .multi_step_form #msform fieldset .product_select:focus.placeholder {
+  color: transparent;
+}
+.multi_step_form #msform fieldset .form-control:focus:-moz-placeholder, .multi_step_form #msform fieldset .product_select:focus:-moz-placeholder {
+  color: transparent;
+}
+.multi_step_form #msform fieldset .form-control:focus::-moz-placeholder, .multi_step_form #msform fieldset .product_select:focus::-moz-placeholder {
+  color: transparent;
+}
+.multi_step_form #msform fieldset .form-control:focus::-webkit-input-placeholder, .multi_step_form #msform fieldset .product_select:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+.multi_step_form #msform fieldset .product_select:after {
+  display: none;
+}
+.multi_step_form #msform fieldset .product_select:before {
+  content: "\f35f";
+  position: absolute;
+  top: 0;
+  right: 20px;
+  font: normal normal normal 24px/48px Ionicons;
+  color: #5f6771;
+}
+.multi_step_form #msform fieldset .product_select .list {
+  width: 100%;
+}
+.multi_step_form #msform fieldset .done_text {
+  padding-top: 40px;
+}
+.multi_step_form #msform fieldset .done_text .don_icon {
+  height: 36px;
+  width: 36px;
+  line-height: 36px;
+  font-size: 22px;
+  margin-bottom: 10px;
+  background: #5cb85c;
+  display: inline-block;
+  border-radius: 50%;
+  color: #ffffff;
+  text-align: center;
+}
+.multi_step_form #msform fieldset .done_text h6 {
+  line-height: 23px;
+}
+.multi_step_form #msform fieldset .code_group {
+  margin-bottom: 60px;
+}
+.multi_step_form #msform fieldset .code_group .form-control {
+  border: 0;
+  border-bottom: 1px solid #a1a7ac;
+  border-radius: 0;
+  display: inline-block;
+  width: 30px;
+  font-size: 30px;
+  color: #5f6771;
+  padding: 0;
+  margin-right: 7px;
+  text-align: center;
+  line-height: 1;
+}
+.multi_step_form #msform fieldset .passport {
+  margin-top: -10px;
+  padding-bottom: 30px;
+  position: relative;
+}
+.multi_step_form #msform fieldset .passport .don_icon {
+  height: 36px;
+  width: 36px;
+  line-height: 36px;
+  font-size: 22px;
+  position: absolute;
+  top: 4px;
+  right: 0;
+  background: #5cb85c;
+  display: inline-block;
+  border-radius: 50%;
+  color: #ffffff;
+  text-align: center;
+}
+.multi_step_form #msform fieldset .passport h4 {
+  font: 500 15px/23px "Roboto", sans-serif;
+  color: #5f6771;
+  padding: 0;
+}
+.multi_step_form #msform fieldset .input-group {
+  padding-bottom: 40px;
+}
+.multi_step_form #msform fieldset .input-group .custom-file {
+  width: 100%;
+  height: auto;
+}
+.multi_step_form #msform fieldset .input-group .custom-file .custom-file-label {
+  width: 168px;
+  border-radius: 5px;
+  cursor: pointer;
+  font: 700 14px/40px "Roboto", sans-serif;
+  border: 1px solid #99a2a8;
+  text-align: center;
+  transition: all 300ms linear 0s;
+  color: #5f6771;
+}
+.multi_step_form #msform fieldset .input-group .custom-file .custom-file-label i {
+  font-size: 20px;
+  padding-right: 10px;
+}
+.multi_step_form #msform fieldset .input-group .custom-file .custom-file-label:hover, .multi_step_form #msform fieldset .input-group .custom-file .custom-file-label:focus {
+  background: #5cb85c;
+  border-color: #5cb85c;
+  color: #fff;
+}
+.multi_step_form #msform fieldset .input-group .custom-file input {
+  display: none;
+}
+.multi_step_form #msform fieldset .file_added {
+  text-align: left;
+  padding-left: 190px;
+  padding-bottom: 60px;
+}
+.multi_step_form #msform fieldset .file_added li {
+  font: 400 15px/28px "Roboto", sans-serif;
+  color: #5f6771;
+}
+.multi_step_form #msform fieldset .file_added li a {
+  color: #5cb85c;
+  font-weight: 500;
+  display: inline-block;
+  position: relative;
+  padding-left: 15px;
+}
+.multi_step_form #msform fieldset .file_added li a i {
+  font-size: 22px;
+  padding-right: 8px;
+  position: absolute;
+  left: 0;
+  transform: rotate(20deg);
+}
+.multi_step_form #msform #progressbar {
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+.multi_step_form #msform #progressbar li {
+  list-style-type: none;
+  color: #99a2a8;
+  font-size: 9px;
+  width: calc(100%/5);
+  float: left;
+  position: relative;
+  font: 500 13px/1 "Roboto", sans-serif;
+}
+.multi_step_form #msform #progressbar li:nth-child(2):before {
+  content: "\f02c";
+}
+.multi_step_form #msform #progressbar li:nth-child(3):before {
+  content: "\f46d";
+}
+.multi_step_form #msform #progressbar li:before {
+  content: "\f073";
+  font: normal normal normal 30px/50px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  display: block;
+  background: #eaf0f4;
+  border-radius: 50%;
+  margin: 0 auto 10px auto;
+  font-family: 'Font Awesome 5 Free' !important;
+}
+.multi_step_form #msform #progressbar li:after {
+  content: '';
+  width: 100%;
+  height: 10px;
+  background: #eaf0f4;
+  position: absolute;
+  left: -50%;
+  top: 21px;
+  z-index: -1;
+}
+.multi_step_form #msform #progressbar li:last-child:after {
+  width: 150%;
+}
+.multi_step_form #msform #progressbar li.active {
+  color: #35486b;
+}
+.multi_step_form #msform #progressbar li.active:before, .multi_step_form #msform #progressbar li.active:after {
+  background: #35486b;
+  color: white;
+}
+.multi_step_form #msform .action-button {
+  background: #5cb85c;
+  color: white;
+  border: 0 none;
+  border-radius: 5px;
+  cursor: pointer;
+  min-width: 130px;
+  font: 700 14px/40px "Roboto", sans-serif;
+  border: 1px solid #5cb85c;
+  margin: 0 5px;
+  text-transform: uppercase;
+  display: inline-block;
+}
+.multi_step_form #msform .action-button:hover, .multi_step_form #msform .action-button:focus {
+  background: #405867;
+  border-color: #405867;
+}
+.multi_step_form #msform .previous_button {
+  background: transparent;
+  color: #99a2a8;
+  border-color: #99a2a8;
+}
+.multi_step_form #msform .previous_button:hover, .multi_step_form #msform .previous_button:focus {
+  background: #405867;
+  border-color: #405867;
+  color: #fff;
+}
+.event-detail-card {
+    max-width: 500px;
+    display: inline-block;
+    background: #fff;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+.multistep-form-card .event-detail-card p {
+    font-weight: 400 !important;
+}
+.multistep-form-card .card-heading {
+    display: block;
+    text-align: center;
+}
+.multistep-form-card .card-heading h3:after {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+}
+/********************/

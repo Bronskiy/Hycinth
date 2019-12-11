@@ -53,7 +53,7 @@ public function checkCategoryOfVendor()
 
 
    public function payment() {
-    return view('vendors.payment');
+    return view('vendors.settings.payment');
    }
 
    public function updatePayment(Request $request) {
