@@ -9,6 +9,7 @@ use App\UserEvent;
 use App\CategoryVariation;
 use App\Category;
 use App\UserEventMetaData;
+use App\Models\Order;
 use Auth;
 
 class UserEventController extends Controller

@@ -126,11 +126,11 @@ class DealController extends Controller
    #    edit
    #-----------------------------------------------------------------
   
-   public function edit($slug,$id)
+   public function edit($slug, $id)
    {
    	  $category = $this->getData($slug);
         $deals =DiscountDeal::where('category_id',$category->category_id)
-                           ->where('id',$id)
+                           ->where('id', $id)
                            ->where('user_id',Auth::user()->id);
 
       $packages = VendorPackage::where([
@@ -138,6 +138,7 @@ class DealController extends Controller
                       'user_id'=> Auth::User()->id,
                       'status'=> 1
                     ])->get();
+      // dd($packages);
 
         if($deals->count() == 0){
         	return redirect()->back()->with('error_message','Something Wrong!');

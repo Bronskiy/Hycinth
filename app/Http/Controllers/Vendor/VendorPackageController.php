@@ -61,7 +61,6 @@ class VendorPackageController extends Controller
                'title' => 'required',
                'description' => 'required',
                'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-
                'no_of_hours' => 'required',
                'no_of_days' => 'required',
                'price_type' => 'required',
@@ -69,9 +68,9 @@ class VendorPackageController extends Controller
                'max_person' => 'required'
           ]);
 
-         $category = $this->getData($slug);
-       $VendorCategory = VendorCategory::where('category_id',$category->id)
-                                       ->where('user_id',Auth::user()->id)
+       $category = $this->getData($slug);
+       $VendorCategory = VendorCategory::where('category_id', $category->id)
+                                       ->where('user_id', Auth::User()->id)
                                        ->first();  
         $user = Auth::User();
 

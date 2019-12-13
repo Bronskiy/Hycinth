@@ -1,55 +1,63 @@
 @extends('users.checkout.index1')
 @section('checkoutContent')
 
- 
-
-
-
-
-
-
-
-   <fieldset>
+<fieldset>
       <div class="card-heading">
-            <h3>Event Event</h3>                    
+         @if($UserEvent->count() > 0)
+            <h3>Event {{ $UserEvent->first()->title }}</h3>
+         @else
+            <h3>Event Details</h3>
+         @endif                       
         </div>
-          <div class="multistep-body">
-            <div class="event-detail-card">
+          <div class="multistep-body text-center">
+            <div class="event-detail-card text-center">
                  
-                 <!-- <p class="ser-text"> <span><i class="fas fa-calendar-alt"></i> </span> 10-12-2019 </p> -->
-                 <!-- <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p> -->
+            
+
+              @if($UserEvent->count() > 0)
+                  <?php $event = $UserEvent->first(); ?>
+                      <h3 class="evnt-title">{{$event->title}}</h3>
+                      <p><i class="fas fa-calendar-alt"></i> <span>{{date('D-M-Y',strtotime($event->start_date))}} To {{date('D-M-Y',strtotime($event->end_date))}}</span></p>
+                      <div class="evt-descripton mt-2">
+                      <p>{{$event->description}}</p>
+                    </div> 
+                        <ul class="button-grp-wrap text-center">
+                                  <li>
+                                    <a href="javascript:void(0)" class="icon-btn" data-toggle="modal" data-target="#myModal">
+                                      <i class="fas fa-edit"></i>
+                                    </a>
+                                  </li>                   
+                       </ul>
 
 
+              @else
+                  <span class="info-icon"><i class="fas fa-info-circle"></i></span>
+                   <h3><i class="fa fa-information-circle"></i>Please choose Event before proceeding to Next Step</h3>
+                  <ul class="button-grp-wrap text-center">
+                                  <li>
+                                      <a href="javascript:void(0)" class="icon-btn" data-toggle="modal" data-target="#myModal">
+                                         <i class="fas fa-plus"></i>
+                                       </a>
+                                  </li>                   
+                 </ul>
 
-
-@if($UserEvent->count() > 0)
-    <?php $event = $UserEvent->first(); ?>
-        <h3>{{$event->title}}</h3>
-        <p><i class="fas fa-calendar-alt"></i> <span>{{date('D-M-Y',strtotime($event->start_date))}} To {{date('D-M-Y',strtotime($event->end_date))}}</span></p>
-        <p>{{$event->description}}</p>
-
-          <ul class="button-grp-wrap text-center">
-                    <li><a href="javascript:void(0)" class="icon-btn" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus"></i></a>
- 
-                    </li>                   
-         </ul>
-@else
-
-    <ul class="button-grp-wrap text-center">
-                    <li><a href="javascript:void(0)" class="icon-btn" data-toggle="modal" data-target="#myModal"><i class="fas fa-plus"></i></a>
- 
-                    </li>                   
-   </ul>
-
-@endif
+              @endif
 
                  
             </div>
+
+             <div class="multistep-footer mt-4 text-right"> 
+              @if(!empty($backStepUrl))
+                 <a href="{{$backStepUrl}}" class="cstm-btn solid-btn previous_button">Back</a>
+              @endif
+
+              @if(!empty($newStepUrl))
+                
+              <a href="{{$newStepUrl}}" class="next cstm-btn solid-btn">NEXT</a>
+              @endif
+            </div>
            </div>
-        <div class="multistep-footer"> 
-         <!--  <button type="button" class="action-button previous_button">Back</button> -->
-          <button type="button" class="next action-button">Continue</button> 
-      </div>
+
     </fieldset>
 
 
@@ -68,7 +76,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">My Events</h4>
       </div>
       <div class="modal-body">
           @include('users.checkout.parts.user_events')      

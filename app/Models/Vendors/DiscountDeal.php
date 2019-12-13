@@ -33,7 +33,7 @@ class DiscountDeal extends Model
 
     public function dealPackage()
     {
-       return $this->belongsTo('App\VendorPackage','packages');
+       return $this->hasOne('App\VendorPackage','id','packages');
     }
 
 

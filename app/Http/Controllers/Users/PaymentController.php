@@ -26,8 +26,8 @@ class PaymentController extends Controller
             $req = json_decode(base64_decode( $str ));
             
             if($req->vendor_id) {
-                $username = 'AZD4IUxUgJ7dy4zCpAsbKcU6Jc7dQYZrblQwCslBki7-gCs54oJDEaakYz5rhl0W89Gbi-d96xosLNHL'; // Client ID
-                $password = 'EOsBBAJZgHx4RA7P5UImPCqbYm3Dqeox50LDn-pGk1RfoDhnhaBiCp6x-UcVgJJ8p6d4zEkUxHECCKCK'; // Secret
+                $username = 'ATM1-l4SIZt42mV4cWma2TQKjMXFFUF94dWEy-aaCjnqrqseiUYHlnrzF4-QDZlXq1TU4cLrToOlPBuS'; // Client ID
+                $password = 'ELjF2Vl_1rypi6xY-uZRZNJ9gl5Ey2_x14QZPy3Y4h-oEpYVC1h6qrQn6L0q9GYWpdP0xjtM7UkVSxHL'; // Secret
         
                 $adminAmount = ($req->amount*3.5)/100;
                 $vendorAmount = number_format($req->amount - $adminAmount, 1);
@@ -105,8 +105,8 @@ class PaymentController extends Controller
 
     public function batch_id_detatils(Request $req) {
         if($req->payout_batch_id) {
-            $username = 'AZD4IUxUgJ7dy4zCpAsbKcU6Jc7dQYZrblQwCslBki7-gCs54oJDEaakYz5rhl0W89Gbi-d96xosLNHL'; // Client ID
-            $password = 'EOsBBAJZgHx4RA7P5UImPCqbYm3Dqeox50LDn-pGk1RfoDhnhaBiCp6x-UcVgJJ8p6d4zEkUxHECCKCK';// Secret
+            $username = 'ATM1-l4SIZt42mV4cWma2TQKjMXFFUF94dWEy-aaCjnqrqseiUYHlnrzF4-QDZlXq1TU4cLrToOlPBuS'; // Client ID
+            $password = 'ELjF2Vl_1rypi6xY-uZRZNJ9gl5Ey2_x14QZPy3Y4h-oEpYVC1h6qrQn6L0q9GYWpdP0xjtM7UkVSxHL';// Secret
     
             $ch = curl_init();
     

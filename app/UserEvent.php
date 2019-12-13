@@ -27,4 +27,8 @@ class UserEvent extends Model
     public function eventCategories() {
         return $this->hasMany('App\UserEventMetaData', 'event_id')->where('key', 'category_id');
     }
+
+    public function order() {
+        return $this->hasMany('App\Models\Order', 'event_id');
+    }
 }

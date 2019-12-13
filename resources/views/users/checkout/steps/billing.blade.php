@@ -8,7 +8,7 @@
     </div>
                      
    <div class="checkout-billing-address ">
-      <form method="post" class="row">  
+      <form method="post" id="billingForm" class="row">  
         @csrf
         <div class="col-md-6">
                <!-- {{textbox($errors,'Name','name',$address->name)}} -->
@@ -27,8 +27,8 @@
             <div class="form-group">
               <input type="email" id="email" class="form-control" name="email" 
               value="{{$address->email}}" 
-              placeholder="Enter your Name">
-              <span class="input-icon"><i class="fas fa-user"></i></span>
+              placeholder="Enter your Email">
+              <span class="input-icon"><i class="fas fa-envelope"></i></span>
            </div>
 
         </div> 
@@ -37,8 +37,8 @@
                <div class="form-group">
               <input type="text" id="phone_number" class="form-control" name="phone_number" 
               value="{{$address->phone_number}}" 
-              placeholder="Enter your Name">
-              <span class="input-icon"><i class="fas fa-user"></i></span>
+              placeholder="Enter your Phone Number">
+              <span class="input-icon"><i class="fas fa-phone-alt"></i></span>
            </div>
         </div> 
         <div class="col-md-6">
@@ -46,8 +46,8 @@
                <div class="form-group">
               <input type="text" id="address" class="form-control" name="address" 
               value="{{$address->address}}" 
-              placeholder="Enter your Name">
-              <span class="input-icon"><i class="fas fa-user"></i></span>
+              placeholder="Enter your Address">
+              <span class="input-icon"><i class="fas fa-search-location"></i></span>
            </div>
         </div> 
         <div class="col-md-6">
@@ -55,8 +55,8 @@
                <div class="form-group">
               <input type="text" id="country" class="form-control" name="country" 
               value="{{$address->country}}" 
-              placeholder="Enter your Name">
-              <span class="input-icon"><i class="fas fa-user"></i></span>
+              placeholder="Enter your Country">
+              <span class="input-icon"><i class="fas fa-flag"></i></span>
            </div>
         </div> 
         <div class="col-md-6">
@@ -64,8 +64,8 @@
                <div class="form-group">
               <input type="text" id="state" class="form-control" name="state" 
               value="{{$address->state}}" 
-              placeholder="Enter your Name">
-              <span class="input-icon"><i class="fas fa-user"></i></span>
+              placeholder="Enter your State">
+              <span class="input-icon"><i class="fas fa-map-marker-alt"></i></span>
            </div>
         </div> 
         <div class="col-md-6">
@@ -73,8 +73,8 @@
                <div class="form-group">
               <input type="text" id="city" class="form-control" name="city" 
               value="{{$address->city}}" 
-              placeholder="Enter your Name">
-              <span class="input-icon"><i class="fas fa-user"></i></span>
+              placeholder="Enter your City">
+              <span class="input-icon"><i class="fas fa-city"></i></span>
            </div>
         </div> 
         <div class="col-md-6">
@@ -82,8 +82,8 @@
                <div class="form-group">
               <input type="text" id="zipcode" class="form-control" name="zipcode" 
               value="{{$address->zipcode}}" 
-              placeholder="Zipcode">
-              <span class="input-icon"><i class="fas fa-user"></i></span>
+              placeholder="Enter Your Zipcode">
+              <span class="input-icon"><i class="fas fa-mail-bulk"></i></span>
            </div>
         </div>
 
@@ -93,7 +93,11 @@
 
         <div class="col-md-12">
 
-           <button class="cstm-btn solid-btn">Continue</button>
+           <!-- <button class="cstm-btn solid-btn">Continue</button> -->
+           <div class="multistep-footer mt-4 text-right"> 
+            <a href="{{ !empty($backStepUrl) ? $backStepUrl : 'javascript:void(0)' }}" class="cstm-btn solid-btn previous_button">Back</a> 
+            <button id="billingFormBtn" type="submit" class="cstm-btn solid-btn">Continue</button>
+          </div>
 
         </div>
       </form>
@@ -106,7 +110,10 @@
 @endsection
 
 @section('scripts')
- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDULjv0UAVmj_zgc9GjBhJNh9fNuEj87LQ&libraries=places"></script>
+
+<script src="{{ asset('/js/checkout/billingValidation.js') }}" ></script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDULjv0UAVmj_zgc9GjBhJNh9fNuEj87LQ&libraries=places"></script>
 
  <script type="text/javascript">
    

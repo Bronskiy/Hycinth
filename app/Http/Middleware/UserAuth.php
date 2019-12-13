@@ -26,8 +26,8 @@ class UserAuth
                return redirect()->route('login');
             }
         }else{
-            if( \Auth::user()->role =="user" ){                       
-                        return $next($request);
+            if( \Auth::User()->role =="user" ){                       
+                return $next($request);
             }
         }
         return redirect()->route('login');

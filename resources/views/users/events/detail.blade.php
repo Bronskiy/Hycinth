@@ -30,6 +30,7 @@
         <!-- [ rating list ] end-->
                                 <div class="col-md-12 m-b-30">
                                     <div class="tab-content" id="myTabContent">
+
                                             <table class="table table-hover">               
                                                 <tbody>
                                                     <tr>
@@ -39,7 +40,6 @@
                                                             <p class="m-0">{{ $user_event->description }}</p>
                                                           </a>
                                                         </td>
-                                                        
                                                         <td class="text-right" style="white-space: nowrap;">
                                                           ({{ $user_event->min_person }} - {{ $user_event->max_person }}) Persons
                                                         </br>
@@ -64,101 +64,7 @@
                                             </table>
                                     </div>
                                 </div>
-                               <!--  @if(\Carbon\Carbon::parse($user_event->end_date) >= \Carbon\Carbon::today())
-                                <div class="col-xl-4 col-md-12 m-b-30">
-                                    <div class="card Upcoming-event-card">
-                                        <div class="card-block">
-                                          <div class="upcmg-evnt-head text-center">
-                                          <h2>Upcoming Events</h2>
-                                          <h3>{{$user_event->title}}</h3>
-                                          <p>{{$user_event->description}}</p>
-
-                                        </div>
-                                          <div class="countdown-timer-container">
-                                            <div class="countdown">
-                                            <div class="bloc-time hours" data-init-value="24">
-                                              <span class="count-title">Hours</span>
-
-                                              <div class="figure hours hours-1">
-                                                <span class="top">2</span>
-                                                <span class="top-back">
-                                                  <span>2</span>
-                                                </span>
-                                                <span class="bottom">2</span>
-                                                <span class="bottom-back">
-                                                  <span>2</span>
-                                                </span>
-                                              </div>
-
-                                              <div class="figure hours hours-2">
-                                                <span class="top">4</span>
-                                                <span class="top-back">
-                                                  <span>4</span>
-                                                </span>
-                                                <span class="bottom">4</span>
-                                                <span class="bottom-back">
-                                                  <span>4</span>
-                                                </span>
-                                              </div>
-                                            </div>
-
-                                            <div class="bloc-time min" data-init-value="0">
-                                              <span class="count-title">Minutes</span>
-
-                                              <div class="figure min min-1">
-                                                <span class="top">0</span>
-                                                <span class="top-back">
-                                                  <span>0</span>
-                                                </span>
-                                                <span class="bottom">0</span>
-                                                <span class="bottom-back">
-                                                  <span>0</span>
-                                                </span>        
-                                              </div>
-
-                                              <div class="figure min min-2">
-                                               <span class="top">0</span>
-                                                <span class="top-back">
-                                                  <span>0</span>
-                                                </span>
-                                                <span class="bottom">0</span>
-                                                <span class="bottom-back">
-                                                  <span>0</span>
-                                                </span>
-                                              </div>
-                                            </div>
-
-                                            <div class="bloc-time sec" data-init-value="0">
-                                              <span class="count-title">Seconds</span>
-
-                                                <div class="figure sec sec-1">
-                                                <span class="top">0</span>
-                                                <span class="top-back">
-                                                  <span>0</span>
-                                                </span>
-                                                <span class="bottom">0</span>
-                                                <span class="bottom-back">
-                                                  <span>0</span>
-                                                </span>          
-                                              </div>
-
-                                              <div class="figure sec sec-2">
-                                                <span class="top">0</span>
-                                                <span class="top-back">
-                                                  <span>0</span>
-                                                </span>
-                                                <span class="bottom">0</span>
-                                                <span class="bottom-back">
-                                                  <span>0</span>
-                                                </span>
-                                              </div>
-                                            </div>
-                                          </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                </div>
-                                @endif -->
+                               
 
       </div>
     </section>
@@ -188,16 +94,26 @@
             <table class="table event-table">
               @foreach($user_event->eventCategories as $category)
                <tr>
-                 <td><label>{{$category->eventCategory->label}}</label></td>
-                 <td><span class="event-status color-green"><i class="fas fa-check-circle"></i></span></td>
-                 <td class="action-td"><a href="javascript:void(0);" data-toggle="modal" data-target="#myModal" class="action-btn"><i class="fas fa-eye"></i></a></td>
+                 <td><label>{{$category->eventCategory->label}} </label></td>
+                 <td>
+                  @if(count( categoryOrders($category->eventCategory->id, $user_event->id) ) > 0)
+                  <span class="event-status color-green">
+                    <i class="fas fa-check-circle"></i>
+                  </span>
+                  @else
+                  <span class="event-status color-red">
+                    <i class="fas fa-times-circle"></i>
+                  </span>                    
+                  @endif
+               </td>
+               @if(count( categoryOrders($category->eventCategory->id, $user_event->id) ) > 0)
+                 <td class="action-td"><a href="javascript:void(0);" onclick="payments({{ categoryOrders($category->eventCategory->id, $user_event->id) }})" data-toggle="modal" data-target="#cat_Modal" class="action-btn"><i class="fas fa-eye"></i></a></td>
+               @else
+                 <td class="action-td"><a href="javascript:void(0);" class="action-btn"><i class="fas fa-eye-slash"></i></a></td>
+               @endif
                </tr>
+
                @endforeach
-                <tr>
-                 <td><label>Photographer</label></td>
-                 <td><span class="event-status  color-gray"><i class="fas fa-check-circle"></i></span></td>
-                 <td class="action-td"><a href="javascript:void(0);" class="action-btn"><i class="fas fa-eye"></i></a></td>
-               </tr>
             </table>
           </div>
         </div>
@@ -229,6 +145,7 @@
                                 @endif
 
 <div class="col-md-12">
+
 <div class="card"> 
       <div class="card-body">
         <div class="cstm-card-head">
@@ -242,8 +159,7 @@
           			@if(count($category->eventCategory->businesses) > 0)
                       @foreach($category->eventCategory->businesses as $business)
                       <div class="col-lg-4">
-                        <a href="{{ route('vendor_detail_page', ['catslug' => $category->eventCategory->slug , 'bslug' => $business->business_url]) }}" class="recommended-vedor" target="_blank">
-
+                        <a href="{{ route('vendor_detail_page', ['catslug' => $category->eventCategory->slug, 'bslug' => $business->business_url]) }}" class="recommended-vedor" target="_blank">
                          <figure> <img src="{{url(getBasicInfo($business->vendors->id, $business->category_id,'basic_information','cover_photo'))}}"/></figure>
                           <div class="rec-detail">
                           <h3>{{ $business->title }}</h3>
@@ -259,109 +175,42 @@
                     @endif
                     </div>
 
-                   <h3 class="rec-heading">Amenities</h3>
-                    <div class="row">
-                @if(count($category->eventCategory->CategoryAmenity) > 0)
+                  <div class="row">
+                     <div class="col-lg-4 col-md-6">
+                    <div class="amt-list-wrap">
+                     <label class="rec-heading">Amenities</label>
+                     <ul class="pkg-listing-grp">  
+                      @if(count($category->eventCategory->CategoryAmenity) > 0)
                       @foreach($category->eventCategory->CategoryAmenity as $amenity)
-                      <div class="col-lg-4">
-                        <a href="javascript:void(0);" class="recommended-vedor">
-                          <div class="rec-detail">
-                          <h3>{{ $amenity->Amenity->name }}</h3>
-                        </div>
-                        </a>
-                      </div>
-                    @endforeach
-                    @else
-                    <div class="col-lg-12">
-                      <h5>No Recommended Vendor Amenities</h5>
-                    </div>
+                          <li class="pkg-listing">{{ $amenity->Amenity->name }}</li>
+                      @endforeach
+                      @else
+                     <li class="pkg-listing">No Recommended Vendor Amenities</li>
                     @endif
-                    </div>
 
-                    <h3 class="rec-heading">Games</h3>
-                    <div class="row">
-                @if(count($category->eventCategory->CategoryGames) > 0)
+                     </ul>
+                   </div>
+                  </div>
+
+                    <div class="col-lg-4 col-md-6">
+                    <div class="amt-list-wrap">
+                     <label class="rec-heading">Games</label>
+                     <ul class="pkg-listing-grp">  
+                      @if(count($category->eventCategory->CategoryGames) > 0)
                       @foreach($category->eventCategory->CategoryGames as $game)
-                      <div class="col-lg-4">
-                        <a href="javascript:void(0);" class="recommended-vedor">
-                          <div class="rec-detail">
-                          <h3>{{ $game->Games->name }}</h3>
-                        </div>
-                        </a>
-                      </div>
-                    @endforeach
-                    @else
-                    <div class="col-lg-12">
-                      <h5>No Recommended Vendor Games</h5>
-                    </div>
+                          <li class="pkg-listing">{{ $game->Games->name }}</li>
+                      @endforeach
+                      @else
+                     <li class="pkg-listing">No Recommended Vendor Games</li>
                     @endif
-                    </div>
+
+                     </ul>
+                   </div>
+                  </div>
 
                 </div>
-                @endforeach
-
-                 <!-- 
-                 <div class="rec-card">
-                   <h3 class="rec-heading">Decoration</h3>
-                    <div class="row">
-                      <div class="col-lg-4">
-                        <a href="javascript:void(0);" class="recommended-vedor">
-                          <figure><img src="http://49.249.236.30:6633/images/vendors/deals/1575620736MC9WuXw7kH4028f5DVu5t10_dsc5356_15_1836831555326929.jpg"></figure>
-                          <div class="rec-detail">
-                          <h3>PRATEEK DUA PHOTOGRAPHY</h3>
-                          <p>Based Out Of Noida, Prateek Dua Photography Is A Photography Service</p>
-                        </div>
-                        </a>
-                      </div>
-                      <div class="col-lg-4">
-                        <a href="javascript:void(0);" class="recommended-vedor">
-                          <figure><img src="http://49.249.236.30:6633/images/vendors/deals/1575620736MC9WuXw7kH4028f5DVu5t10_dsc5356_15_1836831555326929.jpg"></figure>
-                          <div class="rec-detail">
-                          <h3>PRATEEK DUA PHOTOGRAPHY</h3>
-                          <p>Based Out Of Noida, Prateek Dua Photography Is A Photography Service</p>
-                        </div>
-                        </a>
-                      </div>
-                      <div class="col-lg-4">
-                        <a href="javascript:void(0);" class="recommended-vedor">
-                          <figure><img src="http://49.249.236.30:6633/images/vendors/deals/1575620736MC9WuXw7kH4028f5DVu5t10_dsc5356_15_1836831555326929.jpg"></figure>
-                          <div class="rec-detail">
-                          <h3>PRATEEK DUA PHOTOGRAPHY</h3>
-                          <p>Based Out Of Noida, Prateek Dua Photography Is A Photography Service</p>
-                        </div>
-                        </a>
-                      </div>
-                      <div class="col-lg-4">
-                        <a href="javascript:void(0);" class="recommended-vedor">
-                          <figure><img src="http://49.249.236.30:6633/images/vendors/deals/1575620736MC9WuXw7kH4028f5DVu5t10_dsc5356_15_1836831555326929.jpg"></figure>
-                          <div class="rec-detail">
-                          <h3>PRATEEK DUA PHOTOGRAPHY</h3>
-                          <p>Based Out Of Noida, Prateek Dua Photography Is A Photography Service</p>
-                        </div>
-                        </a>
-                      </div>
-                      <div class="col-lg-4">
-                        <a href="javascript:void(0);" class="recommended-vedor">
-                          <figure><img src="http://49.249.236.30:6633/images/vendors/deals/1575620736MC9WuXw7kH4028f5DVu5t10_dsc5356_15_1836831555326929.jpg"></figure>
-                          <div class="rec-detail">
-                          <h3>PRATEEK DUA PHOTOGRAPHY</h3>
-                          <p>Based Out Of Noida, Prateek Dua Photography Is A Photography Service</p>
-                        </div>
-                        </a>
-                      </div>
-                      <div class="col-lg-4">
-                        <a href="javascript:void(0);" class="recommended-vedor">
-                          <figure><img src="http://49.249.236.30:6633/images/vendors/deals/1575620736MC9WuXw7kH4028f5DVu5t10_dsc5356_15_1836831555326929.jpg"></figure>
-                          <div class="rec-detail">
-                          <h3>PRATEEK DUA PHOTOGRAPHY</h3>
-                          <p>Based Out Of Noida, Prateek Dua Photography Is A Photography Service</p>
-                        </div>
-                        </a>
-                      </div>
-                    </div>
-                </div> -->
-
-          </div>
+                </div>
+             @endforeach          
          </div>
       </div>
    </div>
@@ -370,24 +219,25 @@
 </section>
      
 
+
+
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="cat_Modal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h4 class="modal-title">Modal Header</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
-      <div class="modal-body">
-        <p>Some text in the modal.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
+      <div class="modal-body" id="modal_body">
 
+
+      </div>     
+    </div>
   </div>
 </div>
+
+
 
 @endsection
 
@@ -396,6 +246,120 @@
 <script type="text/javascript">
 comingsoon('end_date', 'days_{{$user_event->id}}', 'hours_{{$user_event->id}}', 'minutes_{{$user_event->id}}', 'seconds_{{$user_event->id}}');
 comingsoon('end_date', 'days-up_{{$user_event->id}}', 'hours-up_{{$user_event->id}}', 'minutes-up_{{$user_event->id}}', 'seconds-up_{{$user_event->id}}');
+
+function payments(paymentsData) {
+  console.log('paymentsData ', paymentsData);
+
+  let modal_data = '';
+for (var i = 0; i < paymentsData.length; i++) {
+  
+  modal_data += `<div class="order-booking-card">
+<div class="card-heading">
+<h3>Event Details</h3>
+</div>
+<div class="responsive-table">
+<table class="table table-striped order-list-table">
+<thead>
+<tr>
+<th>#</th>
+<th>Order Id</th>
+<th>Payment Type</th>
+<th>Price</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>INVORD28</td>
+<td>paypal</td>
+<td>$556</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="order-summary-wrap">
+<div class="row">
+<div class="col-lg-6">
+<div class="order-sum-card">
+<div class="billing-addres-detail">
+<h3 class="rec-heading">Billing Address</h3>
+
+<div class="billing-address-line">
+<p><span><i class="fas fa-user"></i></span>Narinder Singh</p>
+<p> <span> <i class="fas fa-map-marker-alt"></i> </span> sddsd, sdsdsd, Baretta, Punjab India wqewewe</p>
+<p> <span> <i class="fas fa-envelope"></i> </span> bajwa9876470491@gmail.com</p>
+<p><span><i class="fas fa-phone-volume"></i></span> 1212878777</p>
+<p></p> 
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-lg-6">
+<div class="order-sum-card">
+<div class="billing-addres-detail">
+
+<div class="payment-sidebar cstm-sidebar">
+<h3 class="rec-heading">Payment Details</h3>
+<table id="payment-table" class="table payment-table">
+<tbody><tr>
+<th>
+Price
+<p>(Gold)</p>
+</th>
+<td>$1000</td>
+</tr>
+<tr>
+<th colspan="2">
+Addons 
+<ul class="mini-inn-table">
+<li><span class="labl"> Add On for two Large Portrait </span><span> $50 </span></li>     
+</ul>
+</th>
+</tr>
+<tr>
+<th>Tax</th>
+<td> $ 3</td>
+</tr>
+<tr>
+<th>Service Fee</th>
+<td>$ 3</td>
+</tr>
+<tr class="total-price-row">
+<th>Total Payable Amount</th>
+<td>$<span id="packagePrice">556</span></td>
+</tr>
+</tbody></table>
+<section class="content-header">
+<div class="row" id="suc_show" style="display: none;">
+<div class="col-md-12">
+<div class="alert alert-success">
+<strong>Success! </strong>
+<span id="res_mess"></span>
+</div>
+</div>
+</div>              
+<div class="row" id="err_show" style="display: none;">
+<div class="col-md-12">
+<div class="alert alert-danger">
+<strong>Error! </strong>
+<span id="err_mess"></span>
+</div>         
+</div>
+</div>
+</section>                
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>`;
+paymentsData[i]
+}
+  $('#modal_body').html(modal_data);
+ } 
+
 </script>
 @endsection
 

@@ -57,11 +57,11 @@ $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) 
                                     <div class="col-lg-8">
                                         <div class="right-content">
                                           <div class="listing-head">
-                                    <a href="{{url( route('vendor_detail_page',[$cate->category->slug,$cate->business_url]))}}"> <h4 class="padding-rt">{{getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','business_name')}}</h4></a>
+                                    <a href="{{url( route('vendor_detail_page',[$cate->category->slug, $cate->business_url]))}}"> <h4 class="padding-rt">{{getBasicInfo($cate->vendors->id, $cate->category_id,'basic_information','business_name')}}</h4></a>
                                            
                                            <ul class="listing-action-btns">
                                              @if(Auth::check() && Auth::User()->role == 'user')
-                                             <li><a id="fav_vendor_{{$cate->id}}" href="javascript:void(0)" data-url="{{ route('user_add_favourite_vendors', $cate->id) }}" class="list-icon-btn {{ fav_vendor($cate->id) }}"><i class="fas fa-heart"></i></a>
+                                             <li><a id="fav_vendor_{{$cate->id}}" href="javascript:void(0)" data-url="{{ route('user_add_favourite_vendors', $cate->id) }}" class="list-icon-btn {{ fav_vendor($cate->id) }}"><i class="fa_heart fas fa-heart"></i></a>
                                              </li>
                                              @endif
 
@@ -163,7 +163,7 @@ $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) 
          jQuery(valHide).slideUp('slow');
    });
 
-$('a .fa-heart').click(function() {
+$('a .fa_heart').click(function() {
   const url = $(this).parent().data('url');
   const fav_id = $(this).parent().attr('id');
 
@@ -178,11 +178,17 @@ $('a .fa-heart').click(function() {
           $("body").find('.custom-loading').show();
       },
       success: function (res) {
+        let count = $('#fav_ven').text();
+        count = parseInt(count);
         // console.log(res.message);
         if(res.status) {
           $(`#${fav_id}`).addClass('fav-active');
+          $('#fav_ven').text(count + 1);
+          $('#fav_ven2').text(count + 1);
         } else {
           $(`#${fav_id}`).removeClass('fav-active');
+          $('#fav_ven').text(count - 1);
+          $('#fav_ven2').text(count - 1);
         }
         $('#suc_show').show();
         $('#res_mess').html(res.message);
@@ -197,7 +203,7 @@ $('a .fa-heart').click(function() {
      },
      error: function (jqXhr, textStatus, errorMessage) {
           $('#err_show').show();
-          $('#err_mess').html(JSON.parse(err.responseText).message);
+          $('#err_mess').html(JSON.parse(errorMessage.responseText).message);
 
           setTimeout(function() {
               $('#err_show').fadeOut('smooth');

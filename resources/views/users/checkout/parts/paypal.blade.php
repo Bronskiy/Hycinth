@@ -1,5 +1,7 @@
 
-<input type="hidden" id="pay_amount" value="{{ $obj->getTotalPrice($package) * 100 }}">
+<input type="hidden" id="expressCheckoutUrl" value="{{ route('checkout.expressCheckout') }}">
+
+<input type="hidden" id="pay_amount" value="{{ $obj->getPayableAmount($deal,$package) }}">
 <input type="hidden" id="pay_url" value="{{ route('user_payToVendor') }}">
 <input type="hidden" id="pay_email" value="{{ $package->business->vendors->email }}">
 <input type="hidden" id="pay_vendor_id" value="{{ $package->business->vendors->id  }}">
@@ -16,4 +18,8 @@
 <input type="hidden" id="pay_balance_transaction" value="Payement by Paypal">
 <input type="hidden" id="pay_success_url" value="{{ route('thank-you') }}">
 
-<div id="paypal-button-container"></div>
+<!-- <div id="paypal-button-container"></div> -->
+
+<div>
+	<button onclick="expressCheckout()" id="paypal_btn" type="button" class="cstm-btn solid-btn">Pay by Paypal</button>
+</div>

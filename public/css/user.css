@@ -189,9 +189,170 @@ table label {
     width: 80px;
 }
 
+.amt-list-wrap .rec-heading {
+    font-size: 16px;
+    margin-bottom: 3px;
+}
+.pkg-listing {
+    position: relative;
+    font-size: 14px;
+    color: #333;
+    margin: 10px 0px;
+    font-weight: 400;
+    padding-left: 20px;
+    line-height: 14px;
+}
+.pkg-listing:after {
+    position: absolute;
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #36496c;
+    top: 4px;
+    left: 0;
+}
+.amt-list-wrap {
+    padding: 10px;
+    background: #ececec;
+    margin: 5px 0px;
+    border-radius: 4px;
+    height: 100%;
+}
+
+/*payment css*/
+
+.order-list-table.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: bold;
+    color: #333;
+}
+.order-list-table {
+    border: 1px solid #d1d1d1;
+}
+.order-summary-wrap {
+    margin-top: 40px;
+    display: block;
+}
+.order-sum-card {
+    background: #f3f3f3;
+    padding: 10px 20px;
+    border-radius: 6px;
+    height: 100%;
+}
+.rec-heading {
+    font-size: 22px;
+    font-weight: 600;
+    color: #eda009;
+    margin-bottom: 20px;
+}
+
+.billing-address-line {
+    display: block;
+    position: relative;
+}
+.billing-address-line p {
+    position: relative;
+    display: block;
+    padding-left: 20px;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.payment-table {
+    padding: 0px;
+    border-radius: 5px;
+    text-align: left;
+}
+.payment-sidebar .table td, .payment-sidebar .table th {
+    border: 0;
+    padding: 9px 0px;
+}
+
+.payment-sidebar .table td {
+    text-align: right;
+}
+.payment-sidebar.cstm-sidebar th p {
+    font-size: 12px;
+    color: #999;
+}
+
+.table.payment-table th {
+    color: #555;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+.table.payment-table tr {
+    border-top: 1px solid #dedddd;
+}
+
+.payment-sidebar .total-price-row th, .payment-sidebar .total-price-row td {
+    font-weight: 600;
+    font-size: 16px;
+}
+#cat_Modal .modal-dialog {
+    max-width: 1000px;
+}
+.billing-address-line p span {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 20px;
+    font-size: 14px;
+}
+
+.card-heading h3 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    display: inline-block;
+    text-align: center;
+    padding-bottom: 15px;
+    position: relative;
+    text-transform: uppercase;
+}
+.order-booking-card .card-heading h3:after {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+}
+.card-heading h3:after {
+    position: absolute;
+    content: "";
+    left: 0;
+    height: 2px;
+    width: 100px;
+    background: #eda208;
+    bottom: 0;
+}
 /*responsive css*/
 @media(max-width:1199px){
     .card .card-block, .card .card-body {
     padding: 20px 15px;
 }
+}
+
+
+.modal-dialog button.close {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #d9534f;
+    top: -10px;
+    right: -1px;
+    opacity: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 0;
+    color: #fff;
+    z-index: 11;
 }

@@ -609,7 +609,7 @@ section.vendor-listing-sec .inner-content-detail {
     padding: 20px 15px;
 }
 .sec-card{
-        padding: 20px 15px;
+        padding: 20px 10px;
   }
   .dealls-dis-head h4{
     font-size: 15px;
@@ -636,6 +636,30 @@ section.vendor-listing-sec .inner-content-detail {
 #open_weather_modal{
     margin-bottom: 20px;
 }
+/*multistep css*/
+.multi_step_form #msform #progressbar li:before {
+    content: "1";
+    font-size: 10px;
+    width: 30px;
+    height: 30px;
+    line-height:30px;
+}
+.multi_step_form #msform #progressbar li:after{
+    top: 14px;
+    height: 4px;
+}
+.multi_step_form #msform #progressbar li{
+    font-size: 12px;
+}
+.multi_step_form #msform #progressbar {
+    margin-bottom: 7px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+.multistep-form-card{
+        padding: 15px 0px;
+}
+/******************/
 }
 
 @media(max-width:580px) {
@@ -871,7 +895,7 @@ section.vendor-listing-sec .inner-content-detail {
     #menus-list li h3 {
         font-size: 14px;
     }
-    #galleryTab li a {
+   #galleryTab li a, #Payment-tab li a {
     padding: 10px 10px;
     font-size: 15px;
 }

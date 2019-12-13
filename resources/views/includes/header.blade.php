@@ -39,10 +39,13 @@
 
                     @include('includes.messageCountHeader')
                       
+                      @if(Auth::Check() && Auth::User()->role === 'user')
                       <a href="javascript:void(0);" class="fav-list">
                             <i class="fas fa-heart"></i>
-                            <sup>2</sup>
+                            <sup id="fav_ven">{{Auth::User()->favouriteVendors->count()}}</sup>
                         </a>
+                      @endif
+
                   </div>
               </li>
 
@@ -64,12 +67,15 @@
             <li class="mob-hide"><a href="{{url(route('all_deals'))}}">Deals & Discount</a></li>
             <li class="mob-hide"><a href="/vendor/register">New Vendors</a></li>
             @include('includes.messageCountHeader')
+
+            @if(Auth::Check() && Auth::User()->role === 'user')
             <li class="mob-hide">
                <a href="javascript:void(0);" class="fav-list">
                <i class="fas fa-heart"></i>
-               <sup>2</sup>
+               <sup id="fav_ven2">{{ Auth::User()->favouriteVendors->count() }}</sup>
                </a>
             </li>
+            @endif
 
           @if(Auth::check())                       
              <li>                                       
@@ -109,7 +115,7 @@
          </ul>
       </div>
    </div>
-   <!--For Menu-->
+    <!--For Menu-->
    <nav id="main-navigation" class="">
       <div class="container">
          <ul id="menus-list" class="menu-list">
@@ -158,6 +164,18 @@
             <li>
                <a href="{{url('/vendor/register')}}" style="background:url(/frontend/images/menu-vendor.png)">
                   <span class="nav-item-icon"><i class="fas fa-star"></i></span>
+                  <h3>Businesses</h3>
+               </a>
+            </li>
+            <li>
+               <a href="{{url('/vendor/register')}}" style="background:url(/frontend/images/menu-vendor.png)">
+                  <span class="nav-item-icon"><i class="fas fa-star"></i></span>
+                  <h3>Deals & Discount</h3>
+               </a>
+            </li>
+            <li>
+               <a href="{{url('/vendor/register')}}" style="background:url(/frontend/images/menu-vendor.png)">
+                  <span class="nav-item-icon"><i class="fas fa-star"></i></span>
                   <h3>New Vendor</h3>
                </a>
             </li>
@@ -165,6 +183,12 @@
                <a href="{{url('/register')}}" style="background:url(/frontend/images/menu-sign.png)">
                   <span class="nav-item-icon"><i class="fas fa-star"></i></span>
                   <h3>SignUp</h3>
+               </a>
+            </li>
+            <li>
+               <a href="{{url('/register')}}" style="background:url(/frontend/images/menu-sign.png)">
+                  <span class="nav-item-icon"><i class="fas fa-star"></i></span>
+                  <h3>Login</h3>
                </a>
             </li>
          </ul>

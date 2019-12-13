@@ -483,8 +483,22 @@ textarea.form-control {
 .owl-theme .owl-nav [class*='owl-']:hover{
     background: transparent;
 }
+ .payment-type{
+     max-width: 300px;
+     margin: 0px auto;
+     display: block;
+ }
+.payment-type .stripe-button-el{
+    width: 100% !important;
+ }
+ .payment-type .stripe-button-el span {
+    height: 50px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
 /*cstm-btn*/
-.cstm-btn {
+.cstm-btn{
     background: transparent;
     font-size: 15px;
     font-weight: bold;
@@ -901,6 +915,9 @@ nav#tool-nav #menus-list li a:hover {
 .head-links > li {
     padding: 0px 20px;
 }
+.fav-list{
+    position: relative;
+}
 
 .fav-list i {
     font-size: 20px;
@@ -942,7 +959,7 @@ nav#tool-nav #menus-list li a:hover {
 
 .header-btns a {
     width: 95px;
-    padding: 10px 0px;
+    padding: 8px 0px;
     font-weight: bold !important;
     font-size: 13px !important;
 }
@@ -1009,7 +1026,7 @@ nav#tool-nav #menus-list li a:hover {
 
 /*banner css*/
 .main-banner {
-    height: 717px;
+    height: 700px;
     display: block;
     background-size: cover;
     background-position: center center;
@@ -2979,9 +2996,9 @@ nav#tool-nav #menus-list li a:before {
     font-size: 15px;
 }
 
-.top-bar.inner-header ul.inn-top-navigation > li > a i {
+/*.top-bar.inner-header ul.inn-top-navigation > li > a i {
     color: #eda208;
-}
+}*/
 
 .menu-toggle:hover,
 .toolbox:hover,
@@ -4103,16 +4120,16 @@ form label {
     margin-bottom: 20px;
 }
 /**/
-#galleryTab{
+#galleryTab, #Payment-tab{
     border: 0;
     margin: 0px -15px;
 }
-#galleryTab li {
+#galleryTab li, #Payment-tab li {
     width: 50%;
     border: 0px;
     padding: 0px 15px;
 }
-#galleryTab li a {
+#galleryTab li a, #Payment-tab li a {
     padding: 18px 20px;
     text-align: center;
     display: block;
@@ -4123,15 +4140,15 @@ form label {
     position: relative;
     border-radius: 0;
 }
-#galleryTab li a.active{
+#galleryTab li a.active, #Payment-tab li a.active{
     background: #03163b;
     color: #fff;
     border: 0;
 }
-#galleryTab li a.active:after{
+#galleryTab li a.active:after, #Payment-tab li a.active:after{
     background: #03163b;
 }
-#galleryTab li a:after {
+#galleryTab li a:after , #Payment-tab li a:after{
     content: "";
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%) rotate(-180deg);
@@ -5177,6 +5194,7 @@ table.compere-table th {
     height: 100vh;
     background: rgba(0,0,0,0.8) !important;
     text-align: center;
+    z-index: 9999999;
 }
 .custom-loading img{
     position: absolute;
@@ -5978,8 +5996,7 @@ table.compere-table th {
     display: inline-block;
     position: relative;
     overflow: hidden;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-radius: 0px;
 }
 .dealls-dis-head h4 {
     line-height: 26px;
@@ -6092,7 +6109,8 @@ table.compere-table th {
     margin-left: 20px;
 }
 .dropdown-menu{
-    min-width: auto;
+   right: 0 !important;
+   left: auto !important;
 }
 .dropdown-menu.navbar-dropdown .no-message {
     white-space: nowrap;
@@ -6299,19 +6317,91 @@ table.compere-table th {
     border-radius: 5px;
     text-align: left;
 }
+.table.payment-table tr {
+    border-top: 1px solid #dedddd;
+}
+.payment-table .fa{
+    font-size: 11px;s
+}
+.payment-table .fa.fa-plus{
+    color: green;
+}
+.payment-table .fa.fa-minus{
+    color: red;
+}
+.payment-sidebar label.error {
+    color: #d51c18;
+    font-size: 15px !important;
+    position: absolute;
+    font-weight: normal !important;
+    top: 100%;
+}
+
+
+
+  .payment-sidebar.cstm-sidebar {
+    background: #f7f7f7;
+}
+
+.table.payment-table th {
+    color: #555;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+.mini-inn-table li .fa {
+    margin-right: 5px;
+    margin-top: 2px;
+}
+
+
+.payment-sidebar.cstm-sidebar th p {
+    font-size: 12px;
+    color: #999;
+}
+
+
+.payment-sidebar .total-price-row th {
+    color: #252525;
+    font-size: 22px 
+}
+
+.table.payment-table td {
+    color: #212121;
+}
+
+
+.payment-sidebar.cstm-sidebar table th ul li {list-style: darkblue;list-style-type: upper-alpha;}
+
+.payment-sidebar.cstm-sidebar .mini-inn-table {
+    padding-left: 15px;
+    font-size: 11px;
+    text-transform: none;
+    color: #777;
+}
+.mini-inn-table li{
+  display: flex;
+  justify-content: space-between;
+}
+.payment-sidebar.cstm-sidebar .mini-inn-table li span.labl {
+    width: 88%;
+    display: inline-block;
+}
+
+
+
+
 .payment-card-detail{
-  background: #e8e8e8;
-  padding: 15px;
-  height: 100%;
-  margin: 15px 0px;
-  border-radius: 6px;
+ display: block;
 }
 .flex-field-grp {
     display: flex;
     align-items: center;
+    position: relative;
 }
 .flex-field-grp .form-control{
-    height: 50px;
+    height: 40px;
+    border-radius: 7px;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
     border-right:0px;
@@ -6319,9 +6409,10 @@ table.compere-table th {
 .flex-field-grp .cstm-btn.solid-btn{
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
-    height: 50px;
+    height: 40px;
     align-items: center;
     justify-content: center;
+    padding: 0px 10px;
 }
 .pkg-ser-list label {
     font-size: 20px;
@@ -6330,24 +6421,34 @@ table.compere-table th {
     padding: 10px;
     background: #ececec;
     margin: 5px 0px;
+    border-radius: 4px;
 }
 .pkg-ser-list {
     padding: 20px 0px;
     display: block;
 }
+.event-detail-card .info-icon {
+    display: block;
+    font-size: 50px;
+    color: #eda208;
+}
 /*checkout page css*/
 .mini-deal-card {
     max-width: 300px;
     width: 100%;
-   flex-direction: column;
+    flex-direction: column;
+    margin: 0px auto;
+    border-radius: 7px;
+    overflow: hidden;
 }
 .mini-deal-card .detal-card-details {
     width: 100%;
-    padding:15px;
+    padding: 15px;
+    background: rgba(53, 72, 107, 0.05);
 }
 .deals-card.mini-deal-card .deal-img {
     width: 100%;
-    height: 200px;
+    height: 170px;
 
     }
 .mini-deal-card .dealls-dis-head h4{
@@ -6367,6 +6468,10 @@ table.compere-table th {
 .multistep-form-card .button-grp-wrap{
     justify-content: center;
 }
+.multistep-footer {
+    border-top: 1px solid #e8e8e8;
+    padding-top: 20px;
+}
 .thankyou-card .success-message__title{
    font-size: 65px;
 }
@@ -6380,8 +6485,53 @@ table.compere-table th {
 .success-message p {
     color: #265624;
 }
-.thankyou-card .apporved-icon{
-    max-width: 90px;
+.thankyou-card .apporved-icon {
+    max-width: 327px;
+    height: 266px;
+}
+.thankyou-card .apporved-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.thankyou-card .success-message p {
+    color: #061638;
+    margin-top: 20px;
+}
+.multistep-form-card {
+    background: #fff;
+    padding: 10px 0px;
+}
+.multistep-form-card fieldset {
+    background: #f7f7f7;
+    padding: 20px 15px;
+}
+.payment-sidebar {
+    padding: 30px 15px;
+    background: #f7f7f7;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    border-radius: 8px;
+}
+.payment-sidebar .table td{
+    text-align: right;
+}
+.payment-sidebar .table td, .payment-sidebar .table th {
+    border: 0;
+    padding: 9px 0px;
+}
+.payment-sidebar .total-price-row th, .payment-sidebar .total-price-row td {
+	font-weight: 600;
+    font-size: 16px;
+}
+.payment-sidebar label {
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+#PaymentTabContent {
+    padding: 20px;
+    background: #fff;
+    margin-top: 20px;
 }
 /*multiselect form*/
 .multi_step_form #msform {
@@ -6415,7 +6565,7 @@ table.compere-table th {
     left: 0;
     right: 0;
     background: #fafafa;
-    border: 4px solid #d9d5d5;
+    /*border: 4px solid #d9d5d5;*/
 }
 .multi_step_form #msform fieldset:not(:first-of-type) {
   display: none;
@@ -6631,24 +6781,24 @@ table.compere-table th {
   margin-bottom: 30px;
   overflow: hidden;
 }
-.multi_step_form #msform #progressbar li {
+.multi_step_form #msform #progressbar li{
   list-style-type: none;
   color: #99a2a8;
   font-size: 9px;
-  width: calc(100%/5);
+  width: calc(100%/4);
   float: left;
   position: relative;
-  font: 500 13px/1 "Roboto", sans-serif;
+  font-size: 16px;
+  color: #333;
 }
-.multi_step_form #msform #progressbar li:nth-child(2):before {
-  content: "\f02c";
-}
-.multi_step_form #msform #progressbar li:nth-child(3):before {
-  content: "\f46d";
-}
+.multi_step_form.haveFiveSteps #msform #progressbar li {
+     width: calc(100%/5);
+    }
+
 .multi_step_form #msform #progressbar li:before {
-  content: "\f073";
-  font: normal normal normal 30px/50px;
+  content: "1";
+  /*font: normal normal normal 30px/50px;*/
+  font-size: 20px;
   width: 50px;
   height: 50px;
   line-height: 50px;
@@ -6656,7 +6806,21 @@ table.compere-table th {
   background: #eaf0f4;
   border-radius: 50%;
   margin: 0 auto 10px auto;
-  font-family: 'Font Awesome 5 Free' !important;
+  font-weight: 500;
+  color: #333;
+  /*font-family: 'Font Awesome 5 Free' !important;*/
+}
+.multi_step_form #msform #progressbar li:nth-child(2):before {
+  content: "2";
+}
+.multi_step_form #msform #progressbar li:nth-child(3):before {
+  content: "3";
+}
+.multi_step_form #msform #progressbar li:nth-child(4):before {
+  content: "4";
+}
+.multi_step_form #msform #progressbar li:nth-child(5):before {
+  content: "5";
 }
 .multi_step_form #msform #progressbar li:after {
   content: '';
@@ -6711,9 +6875,19 @@ table.compere-table th {
     background: #fff;
     padding: 30px;
     margin-bottom: 30px;
+    width: 100%;
+}
+.event-detail-card h3.evnt-title{
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 600;
 }
 .multistep-form-card .event-detail-card p {
     font-weight: 400 !important;
+}
+.multistep-form-card .event-detail-card .evt-descripton p{
+    font-size: 15px;
 }
 .multistep-form-card .card-heading {
     display: block;
@@ -6723,5 +6897,106 @@ table.compere-table th {
     left: 50%;
     transform: translateX(-50%);
     width: 60px;
+}
+.removeCoupon span{
+    color: #eda208; 
+    cursor: pointer;
+}
+.order-list-table.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: bold;
+}
+.order-list-table{
+    border: 1px solid #d1d1d1;
+}
+.rec-heading {
+    font-size: 22px;
+    font-weight: 600;
+    color: #eda009;
+    margin-bottom: 20px;
+}
+.order-sum-card {
+    background: #f3f3f3;
+    padding: 10px 20px;
+    border-radius: 6px;
+    height: 100%;
+}
+.table.billing-address-table tr th, .price-summary-table tr th {
+    font-weight: 600;
+}
+.order-summary-wrap {
+    margin-top: 40px;
+    display: block;
+}
+.price-total-row th, .price-total-row td {
+    font-size: 22px;
+    font-weight: bold;
+}
+.order-detail-view {
+    margin: 50px 0px;
+    background: #f3f3f3;
+    padding: 30px;
+    border-radius: 7px;
+}
+.order-view-card {
+    background: #fff;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    height: 100%;
+}
+.order-view-icon {
+    font-size: 30px;
+    color: #35486b;
+    margin-bottom: 13px;
+}
+.order-heading {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #eda009;
+}
+.order-view-card .button-grp-wrap{
+     justify-content: center;
+}
+.billing-address-line {
+    display: block;
+    position: relative;
+}
+.billing-address-line p{
+    position: relative;
+    display: block;
+    padding-left: 20px;
+    font-size: 16px;
+        margin-bottom: 5px;
+}
+
+.billing-address-line p span {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 20px;
+    font-size: 14px;
+}
+
+.billing-addres-detail .payment-sidebar.cstm-sidebar {
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
+}
+.order-view-card .evt-date {
+    font-size: 14px;
+}
+.order-view-card p{
+    font-size: 14px;
+}
+#paypal_btn {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 /********************/

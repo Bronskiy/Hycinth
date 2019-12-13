@@ -88,6 +88,7 @@
      <script type="text/javascript" src="{{url('frontend/js/flexslider.js')}}"></script>
     <script type="text/javascript" src="{{url('/frontend/js/owl.carousel.min.js')}}"></script>
     <script src="https://yauzer.com/js/validate.min.js"></script>
+    <script src="{{url('/admin-assets/js/validations/customValidation.js')}}"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.min.js"></script>
     <script type="text/javascript" src="{{url('/frontend/js/custom.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>

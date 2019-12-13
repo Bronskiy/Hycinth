@@ -1,5 +1,52 @@
 <?php 
 
+function categoryOrders($category_id, $event_id) {
+  return \App\Models\Order::where(['category_id'=> $category_id, 'event_id'=> $event_id])->get();
+}
+
+
+ function stepbarCheck($step,$deal=0)
+{
+
+
+
+      $stepEvent = $step >= 0 ? "active": "";
+      $stepDeal = $step >= 2 && $deal == 1 ? "active": "";
+      $stepPackage = ($step >= 2 && $deal == 0) || ($step >= 3 && $deal == 1) ? "active": "";
+      $stepBilling = ($step >= 3 && $deal == 0) || ($step >= 4 && $deal == 1) ? "active": "";
+      $stepPayment = ($step >= 4 && $deal == 0) || ($step >= 5 && $deal == 1) ? "active": "";
+     
+      $parentClass= $deal == 1 ? 'haveFiveSteps' : '';
+
+       $text  ='<div class="row">';
+       $text .='<div class="col-lg-12">';
+       $text .='<section class="multi_step_form '.$parentClass.'">  ';
+       $text .='<div id="msform"> ';
+       $text .='<ul id="progressbar">';
+       $text .='<li class="'.$stepEvent.'">Event Detail</li>';
+       if($deal== 1) {
+        $text .='<li class="'.$stepDeal.'">Deal Review</li> ';
+       }
+       $text .='<li class="'.$stepPackage.'">Package</li>';
+       $text .='<li class="'.$stepBilling.'">Billing</li>';
+       $text .='<li class="'.$stepPayment.'">Payment</li>';
+       $text .='</ul>';
+       $text .='</div>';
+       $text .='</section>';
+       $text .='</div>';
+       $text .='</div>';
+  return $text;
+}
+
+
+
+
+
+
+
+
+
+
 
 
  function getVendorNotifications()
@@ -2391,9 +2438,9 @@ function  OrderByIdOfCart($count){
 function SripeAccount(){
 	  
 	$array = array(
-		 'pk'         =>   'pk_test_dtD5WE757jp1zzxVXexp3BIx',
-		 'sk'         =>   'sk_test_kKoOOeRxs9N93l9t17qQBIza',
-		 'client_id'  => 'ca_CRS1oNfESdOlwL8loL9AgfpHtBv6Ucvc' 
+		 'pk'         =>'pk_test_7s4zephLlSBQHOqovi6w0XCK00U4UJ6WlO',//   'pk_test_dtD5WE757jp1zzxVXexp3BIx',
+		 'sk'         => 'sk_test_p8VlaYX68wQNoikV5b3eXawB00tVn2yhs2',//  'sk_test_kKoOOeRxs9N93l9t17qQBIza',
+		 'client_id'  => 'ca_GLAxBauXm8E4habSHJXBNiOWAixurQ2U' //'ca_CRS1oNfESdOlwL8loL9AgfpHtBv6Ucvc' 
 		 );
 	return $array;
 }

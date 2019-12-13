@@ -20,42 +20,49 @@
 
                 <div class="pkg-ser-list">
                     <div class="row">
-			             <div class="col-md-12">
+
+@if(count($package->amenities) > 0)
+			             <div class="col-lg-4 col-md-6">
                     <div class="amt-list-wrap">
 			               <label for="no_of_hours">Amenities</label>
-			               <ul class="pkg-listing-grp row">  
+			               <ul class="pkg-listing-grp">  
 			                  @foreach($package->amenities as $amenity)
-			                    <li class="pkg-listing col-lg-4 col-md-6">{{$amenity->amenity->name}}</li>
+			                    <li class="pkg-listing">{{$amenity->amenity->name}}</li>
 			                  @endforeach
 			               </ul>
                    </div>
 			            </div>
+                  @endif
 
-			            <div class="col-md-12 ">
+@if(count($package->events) > 0)
+			            <div class="col-lg-4 col-md-6">
                     <div class="amt-list-wrap">
 			                <label for="no_of_hours">Events</label>
                                                
-                           <ul class="pkg-listing-grp row">  
+                           <ul class="pkg-listing-grp">  
                             @foreach($package->events as $amenity)
-                               <li class="pkg-listing col-lg-4 col-md-6">{{$amenity->event->name}}</li>
+                               <li class="pkg-listing">{{$amenity->event->name}}</li>
                             @endforeach
                            </ul>
 			            </div>
                 </div>
+                @endif
 
-                    <div class="col-md-12">
+                @if(count($package->games) > 0)
+                    <div class="col-lg-4 col-md-6">
                       <div class="amt-list-wrap">
                              <label for="no_of_hours">Games</label>
                    
-                               <ul class="pkg-listing-grp row">  
+                               <ul class="pkg-listing-grp">  
                                 @foreach($package->games as $game)
-                                   <li class="pkg-listing col-lg-4 col-md-6">{{$game->amenity->name}}</li>
+                                   <li class="pkg-listing">{{$game->amenity->name}}</li>
                                 @endforeach
                                </ul>
                      </div>
                    </div>
+                   @endif
 
-                     <div class="col-md-12">
+                   <!--   <div class="col-md-12">
                       <div class="amt-list-wrap">
 		                      <label for="no_of_hours">Summery</label>
 		                      <ul class="pkg-listing-grp row">
@@ -64,7 +71,8 @@
 				            	<li class="pkg-listing col-lg-4 col-md-6"><span>Number of Person</span> ({{$package->min_person}} - {{$package->max_person}}) Persons</li>
 				            </ul>
                      </div>
-                   </div>
+                   </div> -->
+
                    </div>
                  </div>
 
@@ -75,17 +83,17 @@
                             
                                       @if(count($package->package_addons))
                                         
-                                              <label for="add-ons">Add Ons</label>
+                                              <label for="add-ons">Choose Add Ons <i data-toggle="tooltip" data-placement="top" title="Choose Add Ons listed below for this package" class="fas fa-info-circle"></i></label>
                                               <ul class="row">
-@foreach($package->package_addons as $package_addon)
+                                           @foreach($package->package_addons as $package_addon)
                                                 <li class="col-lg-6">
                                                      <div class="checkbox-input-wrap">
-                                                  <div class="category-checkboxes category-title">
-                                                  <input {{in_array($package_addon->id,$addons) ? 'checked' : ''}} type="checkbox" name="addons[]" class="checkboxess" data-value="{{$package_addon->key_value}}" value="{{$package_addon->id}}" id="add-ons{{$package_addon->id}}">
-                                                      <label for="add-ons{{$package_addon->id}}"><b>{{$package_addon->key}} </b> <span>${{$package_addon->key_value}}</span></label>
-                             
-                                                </div>
-                                           </div>
+                                                          <div class="category-checkboxes category-title">
+                                                          <input type="checkbox" name="addons[]" class="checkboxess" data-value="{{$package_addon->key_value}}" value="{{$package_addon->id}}" id="add-ons{{$package_addon->id}}" <?= in_array($package_addon->id,$addons) ? 'checked' : ''?>>
+                                                              <label for="add-ons{{$package_addon->id}}"><b>{{$package_addon->key}} </b> <span>${{$package_addon->key_value}}</span></label>
+                                     
+                                                        </div>
+                                                   </div>
                                                 </li>
                                                 @endforeach
 
@@ -111,20 +119,25 @@
                      	     </table>
                      </div> -->
 
-                     <div class="col-md-12"> @csrf
-	                     	    <button class="cstm-btn solid-btn">Continue</button>
+                     <div class="col-md-12"> 
+                      @csrf
+	                     	    <!-- <button class="cstm-btn solid-btn">Continue</button> -->
+
+                            <div class="multistep-footer mt-4 text-right"> 
+                              @if(!empty($backStepUrl))
+                                 <a href="{{$backStepUrl}}" class="cstm-btn solid-btn previous_button">Back</a>
+                              @endif
+
+                            
+                               <button class="next cstm-btn solid-btn">Next</button>
+                              
+                            </div>
+
                      </div>
 
 
+
                      </form>
-
-                
-			 
-
-			      
-
-           
-          
      </div>
 
 </div>
@@ -137,7 +150,10 @@
 @section('scripts')
 
 <script type="text/javascript">
-   getpriceWithAddons(packagePrice="<?= $package->price ?>");
+ 
+ $(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
 
    function getpriceWithAddons(packagePrice="<?= $package->price ?>") {
    	            var price = parseInt(packagePrice);
@@ -146,6 +162,8 @@
                 });
           
           $("body").find('#packagePrice').text(price);
+
+
 
    }
 

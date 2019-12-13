@@ -42,5 +42,11 @@ class VendorPackage extends Model
     public function business() {
         return $this->belongsTo('App\VendorCategory', 'vendor_category_id', 'id');
     }
+
+
+
+    //  public function assignedDeal() {
+    //     return $this->belongsTo('App\Models\Vendors\DiscountDeal','package_id');
+    // }
     
 }

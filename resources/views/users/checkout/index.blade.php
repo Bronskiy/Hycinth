@@ -23,14 +23,14 @@
 }
 </style>
 
-  <section class="main-banner" style="background:url('/frontend/images/banner-bg.png');">
-        <div class="container">
-            <div class="banner-content">
-                <h1 class="banner-heading">Checkout</h1>
-              
-            </div>
+<section class="log-sign-banner" style="background:url('/frontend/images/banner-bg.png');">
+    <div class="container">
+        <div class="page-title text-center">
+            <h1>Checkout</h1>
         </div>
-    </section>
+    </div>    
+</section> 
+    
     <section class="checklist-wrap">
         <div class="container lr-container">
             <div class="sec-card outer-wrap">
@@ -198,10 +198,10 @@
 
 
 @section('scripts')
- <script src="https://www.paypal.com/sdk/js?client-id=AZD4IUxUgJ7dy4zCpAsbKcU6Jc7dQYZrblQwCslBki7-gCs54oJDEaakYz5rhl0W89Gbi-d96xosLNHL"> 
+ <script src="https://www.sandbox.paypal.com/sdk/js?client-id=AZD4IUxUgJ7dy4zCpAsbKcU6Jc7dQYZrblQwCslBki7-gCs54oJDEaakYz5rhl0W89Gbi-d96xosLNHL"> 
   </script>
 <script src="{{ asset('/js/checkout/paypal.js') }}"></script>
-
+<script src="{{ asset('/js/checkout/coupon.js') }}"></script>
 <script type="text/javascript">
 
 (function($) {

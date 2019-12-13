@@ -151,82 +151,74 @@ a.pull-right {
 }
 </style>
 
- <section class="main-banner" style="background:url('/frontend/images/banner-bg.png');">
-        <div class="container">
-            <div class="banner-content">
-                <h1 class="banner-heading">Checkout</h1>
-              
-            </div>
+<section class="log-sign-banner" style="background:url('/frontend/images/banner-bg.png');">
+    <div class="container">
+        <div class="page-title text-center">
+            <h1>Checkout</h1>
         </div>
-    </section>  
+    </div>    
+</section> 
+
 <section class="checkout-wrap">
         <div class="container lr-container">
 <div class="sec-card">
-               <span class="aside-toggle">
-                                <i class="fa fa-bars"></i>
-                                <span class="cross-class">
-                                    <i class="fas fa-times" style="display: none;"></i>
-                                </span>
-                            </span>
-                <div class="row">
-
+        <span class="aside-toggle">
+            <i class="fa fa-bars"></i>
+            <span class="cross-class">
+                <i class="fas fa-times" style="display: none;"></i>
+            </span>
+        </span>
+        @if(!empty($stepNumber))
+                <?= stepbarCheck($stepNumber,$haveDeal) ?>
+        @endif
+ 
+ <div class="multistep-form-card"> 
+ <div class="row"> 
                     
-                    <div class="col-lg-12">
-                        <div class="inner-content">
+            <div class="col-lg-8">           
                            
-
-                       <!-- Multi step form --> 
-<section class="multi_step_form">  
-  <div id="msform"> 
-    <!-- Tittle -->
-
-    <!-- progressbar -->
-    <ul id="progressbar">
-      <li class="active">Event Detail</li>  
-      <li>Deal Review</li> 
-      <li>Package</li>
-       <li>Billing</li>
-       <li>Payment</li>
-    </ul>
+                                     @include('vendors.errors')
+              @if(!empty($error) && !is_numeric($error))
+                           {!!$error!!}
+              @endif
 
 
-           
+                                     @yield('checkoutContent')
+           </div>
 
-                 @include('vendors.errors')
-      <div class="multistep-form-card">          
-                 @yield('checkoutContent')
-
-
-
-
-
-
- 
-</div>
-  </div>
-</section>
- 
-       
-                 
-          </div>
+           <div class="col-lg-4">
+              @include('users.checkout.parts.sidebar')
+          </div> 
       </div>
-
-          <!-- <div class="col-lg-3">
-              @include('users.checkout.sidebar')
-          </div> -->
-
+      
+       
+          
+         
+          
 </div>
 </div>
 </section>
-
- 
 
 @endsection
 
 @section('scripts')
 
- <script src="https://www.paypal.com/sdk/js?client-id=AZD4IUxUgJ7dy4zCpAsbKcU6Jc7dQYZrblQwCslBki7-gCs54oJDEaakYz5rhl0W89Gbi-d96xosLNHL"> 
+ <script src="https://www.sandbox.paypal.com/sdk/js?client-id=ATM1-l4SIZt42mV4cWma2TQKjMXFFUF94dWEy-aaCjnqrqseiUYHlnrzF4-QDZlXq1TU4cLrToOlPBuS"> 
   </script>
 <script src="{{ asset('/js/checkout/paypal.js') }}"></script>
+<script src="{{ asset('/js/checkout/coupon.js') }}"></script>
+
+<script type="text/javascript">
+  // $('input[name="paymentby"]').change(function() {
+  //       const selectedPayby = $(this).val();
+  //       if(selectedPayby === 'paypal') {
+  //         $('#paymentStripe').css('display', 'none');
+  //         $('#paymentPaypal').css('display', 'block');
+  //       } else {
+  //         $('#paymentPaypal').css('display', 'none');
+  //         $('#paymentStripe').css('display', 'block');
+  //       }
+   // });  
+</script>
 
 @endsection

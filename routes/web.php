@@ -18,7 +18,7 @@
 
 
 
-
+error_reporting(E_ALL);
 
 require __DIR__.'/routing/user/checkout.php';
 require __DIR__.'/routing/home/routes.php';

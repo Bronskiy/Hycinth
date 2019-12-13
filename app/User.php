@@ -101,4 +101,8 @@ class User extends Authenticatable implements MustVerifyEmail
                        });
     }
 
+    public function favouriteVendors() {
+      return $this->hasMany('App\FavouriteVendor');
+    }
+
 }

@@ -8,7 +8,7 @@
     <nav class="pcoded-navbar">
         <div class="navbar-wrapper">
             <div class="navbar-brand header-logo">
-                <a href="{{url(route('user_dashboard'))}}" class="b-brand">
+                <a href="/" target="_blank" class="b-brand">
                     <div class="b-bg">
                         <img src="/frontend/images/logo.svg">
                     </div>

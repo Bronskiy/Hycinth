@@ -4,7 +4,7 @@
                         <div id="accordion">
                             <div class="card">
                                 <div class="card-header">
-                                    <a class="card-link collapsed" data-toggle="collapse" href="#collapseOne" aria-expanded="false">
+                                    <a class="card-link collapsed" data-toggle="collapse" href="#collapseOne" aria-expanded="true">
                                         category
                                     </a>
                                 </div>
@@ -13,7 +13,7 @@
                               
 
 
-                                <div id="collapseOne" class="collapse" data-parent="#accordion">
+                                <div id="collapseOne" class="collapse show" data-parent="#accordion">
 
                                  @foreach($categories as $category)
                                      <div class="card-body listing sub-head">
