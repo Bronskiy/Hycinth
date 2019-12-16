@@ -260,7 +260,10 @@ public function sendMessage($request,$deal)
 
 
 
-
+public function detail()
+{
+    return view('home.deals.detail');
+}
 
 
 

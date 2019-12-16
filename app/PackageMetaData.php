@@ -23,4 +23,15 @@ class PackageMetaData extends Model
        return $this->belongsTo('App\Event','key_value','id');
     }
 
+
+
+
+     public function categoryEvent()
+    {
+       
+     return $this->belongsTo('App\CategoryVariation','key_value', 'variant_id')
+                    ->where('type', 'events');
+    }
+
+
 }

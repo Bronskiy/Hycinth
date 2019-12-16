@@ -3,7 +3,7 @@
       <div class="sec-card">
          <div class="tab-wrap">
             <div class="form-tab-slider owl-carousel owl-theme">
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
+               <div class="item wow bounceInDown">
                   <div class="tab-button">
                      <div class="tab-item">
                         <a href="javascript:void();" data-tag="twenty-three" class="activelink getCategory" data-id="0"
@@ -17,7 +17,7 @@
                   </div>
                </div>
                @foreach($categories as $key => $category)
-               <div class="item" data-aos="fade-down" data-aos-duration="2000">
+               <div class="item wow bounceInDown" data-wow-delay="{{ $key*500+500}}ms">
                   <div class="tab-button">
                      <div class="tab-item">
                         <a href="javascript:void();" data-tag="twenty-three" class="getCategory" data-id="{{$category->id}}"

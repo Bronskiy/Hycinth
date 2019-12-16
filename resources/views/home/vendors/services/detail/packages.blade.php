@@ -57,25 +57,27 @@
                                                  <div class="col-md-6 border-rt">
                                                        <label for="no_of_hours">Amenities</label>
                                                        <ul class="pkg-listing-grp">  
-                                                          @foreach($package->amenities as $amenity)
+                                                            <?php $amenities = getPackageAmenities($package); ?>
+                                                          @foreach($amenities as $amenity)
                                                             <li class="pkg-listing">{{$amenity->amenity->name}}</li>
                                                           @endforeach
                                                        </ul>       
                                                   </div>
                                                   <div class="col-md-6">
                                                          <label for="no_of_hours">Events</label>
-                                               
-                                                           <ul class="pkg-listing-grp">  
-                                                            @foreach($package->events as $amenity)
-                                                               <li class="pkg-listing">{{$amenity->event->name}}</li>
-                                                            @endforeach
-                                                           </ul>
+                                                          <ul class="pkg-listing-grp">
+                                                            <?php $packageEvents = getPackageEvents($package); ?>
+                                                               @foreach($packageEvents as $amenity)
+                                                                    <li class="pkg-listing">{{$amenity->event->name}}</li>
+                                                                @endforeach
+                                                          </ul>
                                                  </div>
                                                  <div class="col-md-6">
                                                          <label for="no_of_hours">Games</label>
                                                
                                                            <ul class="pkg-listing-grp">  
-                                                            @foreach($package->games as $game)
+                                                            <?php $getPackageGames = getPackageGames($package); ?>
+                                                            @foreach($getPackageGames as $game)
                                                                <li class="pkg-listing">{{$game->amenity->name}}</li>
                                                             @endforeach
                                                            </ul>

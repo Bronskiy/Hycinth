@@ -178,6 +178,7 @@ return [
 
         Unisharp\Ckeditor\ServiceProvider::class,
         Chencha\Share\ShareServiceProvider::class,
+        Darryldecode\Cart\CartServiceProvider::class,
 
     ],
 
@@ -230,6 +231,7 @@ return [
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Share' => Chencha\Share\ShareFacade::class,
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
     ],
 
 ];

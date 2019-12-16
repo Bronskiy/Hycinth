@@ -69,6 +69,67 @@
 
 
 
+<!-- First User Modal -->
+<div class="modal fade" id="firstUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Why are you here?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card-heading">
+      <h3>Lets talk about your event.</h3>     
+    </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>Event Title <i class="fas fa-info-circle"></i></label>
+              <div class="input-field-wrap">
+              <input type="text" class="form-control" id="address">
+              <span class="input-icon"><i class="fas fa-pencil-alt"></i></span>
+            </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>Short description <i class="fas fa-info-circle"></i></label>
+              <div class="input-field-wrap">
+              <input type="text" class="form-control" id="description">
+              <span class="input-icon"><i class="fas fa-pencil-alt"></i></span>
+            </div>
+            </div>
+          </div>
+         <div class="col-lg-6">
+            <div class="form-group">
+              <label>Event Place <i class="fas fa-info-circle"></i></label>
+              <div class="input-field-wrap">
+              <input type="text" class="form-control" id="evt-place">
+              <span class="input-icon"><i class="fas fa-map-marker-alt"></i></span>
+            </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group">
+              <label>lorem ipsum <i class="fas fa-info-circle"></i></label>
+              <div class="input-field-wrap">
+              <input type="text" class="form-control" id="">
+              <span class="input-icon"><i class="fas fa-map-marker-alt"></i></span>
+            </div>
+            </div>
+          </div>
+      </div>
+    </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
 
 
 

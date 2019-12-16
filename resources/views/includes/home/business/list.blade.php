@@ -18,7 +18,7 @@ $pinterest_url = getBasicInfo($cate->vendors->id, $cate->category_id, 'basic_inf
 $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) && empty($instagram_url) && empty($pinterest_url) ? 'hide' : '';
 ?>
        
-                            <div class="detail-in-breif">
+                            <div class="detail-in-breif aos-init aos-animate" data-aos="fade-left" data-aos-duration="2000">
                                 <div class="row">
                                     <div class="col-lg-4">
                                         

@@ -40,7 +40,9 @@ div#Video-carousel li span {
                    <div class="row">
                      <div class="col-lg-7">
                   <div class="page-header">
-                     <figure class="head-logo"><img src="/frontend/images/vendor-03.png"></figure>
+                     <figure class="head-logo">
+                        <img src="{{url(getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','cover_photo'))}}">
+                     </figure>
                      <div class="heading-details">
                         <h2>{{getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','business_name')}}</h2>
                         <p class="address-line"><span class="location-icon"><i class="fas fa-map-marker-alt"></i></span><?= getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','address')?></p>
@@ -323,6 +325,22 @@ div#Video-carousel li span {
                      </div>
                   </form>
                </div>
+
+
+
+
+
+
+
+        @include('home.includes.business-detail.recomendedBusiness')
+
+
+
+
+
+
+
+
             </aside>
          </div>
       </div>

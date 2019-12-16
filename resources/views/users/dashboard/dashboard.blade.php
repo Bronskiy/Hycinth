@@ -1,6 +1,10 @@
 @extends('users.layouts.layout')
 @section('content')
 
+<style type="text/css">
+ 
+</style>
+
 <div class="page-header">
     <div class="page-block">
         <div class="row align-items-center">
@@ -19,6 +23,11 @@
 
        <section class="content">
       <div class="row">
+
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#firstUserModal">
+  Launch demo modal
+</button>
+
         <!-- [ rating list ] end-->
                                 <div class="col-xl-12 col-md-12 m-b-30">
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -29,6 +38,8 @@
                                     </ul>
                                     <div class="tab-content" id="myTabContent">
                                       <div class="row">
+
+
 @if(count($events) > 0)
                                       @foreach($events as $event)
                                         @php  
@@ -210,11 +221,155 @@
       </div>
       <!-- /.row -->
     </section>
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+<!-- First User Modal -->
+<div class="modal fade" id="firstUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Why are you here?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="card-heading">
+           <h3>Lets talk about your event.</h3>     
+        </div>
+
+        <div class="col-md-6">
+           <div class="stepOne" id="stepWelcomeForm">
+
+               <div class="row step1 stepForm">
+                      @include('users.includes.welcome_popup.step1')
+               </div>
+
+
+              <div class="row step2 stepForm">
+                 @include('users.includes.welcome_popup.step2')
+              </div>
+
+
+              <div class="row step3 stepForm">
+                 @include('users.includes.welcome_popup.step3')
+              </div>
+
+               <div class="row step3 stepForm">
+                 @include('users.includes.welcome_popup.step3')
+              </div>
+
+          </div>
+                
+        </div>
+
+       
+    </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
 @endsection
 
 
 @section('scripts')
+
 <script src="{{url('/js/comingsoon.js')}}"></script>
+<script src="{{url('/js/setLatLong.js')}}"></script>
+
+
+
+<script src="{{url('/js/welcome_popup.js')}}"></script>
+
+
+<script type="text/javascript">
+//     $('#event_categories').select2({ 
+//     closeOnSelect: false
+//    });
+
+// $('#event_categories').on('select2:select', function (e) {
+//     $(this).parent().find('label').eq(1).css('display', 'none');
+// });
+
+// $("body").on('change','select[name="event_type"]',function() {
+//     const selectedEvent = $(this).children("option:selected").val();
+//     $("body").find('#event_categories').empty();
+//      $.ajax({
+//         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+//         url: "{{route('user_get_event_categories')}}",
+//         type: "post",
+//         dataType: "JSON",
+//         data: { '_token': $('meta[name="csrf-token"]').attr('content'), 'id': selectedEvent },
+//         success: function(res)
+//         {
+//           $.each(res.category_variation, function(key, value) {
+//             $("body").find('#event_categories')
+//             .append($("<option></option>")
+//             .attr("value", value.category.id)
+//             .text(value.category.label)); 
+//           });
+//         },
+//         error: function(err) {
+//             console.log(err);
+//         }
+//     });
+// });
+
+
+//steps.second
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
 @endsection
 
 

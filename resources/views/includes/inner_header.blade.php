@@ -20,9 +20,10 @@
                         </a>
                     </li>
                     @endif
-                   <li>@include('includes.messageCountHeader')</li>
-                          @if(Auth::check())
-                       
+                   
+                   @include('includes.messageCountHeader')
+                  
+                  @if(Auth::check())
                    <li>                                       
                         <div class="nav-item nav-profile dropdown">
                           <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">

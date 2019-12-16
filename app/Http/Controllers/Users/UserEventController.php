@@ -35,7 +35,8 @@ class UserEventController extends Controller
     public function getEventCategories(Request $request) {
     	$event = Event::with(['categoryVariation' => function($q) {
             $q->groupBy('category_id');
-        }, 'categoryVariation.category'])->find($request->id);
+        }, 'categoryVariation.category'])
+        ->find($request->id);
     	return response()->json($event);
     }
 

@@ -59,7 +59,7 @@
 }
 .countdown-timer-container .count-down-timer li span {
     display: block;
-    font-size: 36px;
+    font-size: 24px;
     color: #eda108;
     font-weight: bold;
     background: #35486b;
@@ -69,10 +69,10 @@
 }
 .countdown-timer-container .count-down-timer li {
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-    width: 80px;
+    width: 70px;
     border-radius: 6px;
     margin-right: 10px;
-    padding: 10px;
+    padding: 5px;
     font-weight: bold;
     font-size: 12px;
 }
@@ -355,4 +355,221 @@ table label {
     padding: 0;
     color: #fff;
     z-index: 11;
+}
+
+.event-status.color-red {
+    color: red;
+}
+
+
+/*Event Planning css*/
+.event-planning-navigation{
+    min-height: 400px;
+    background: #fff;
+}
+
+.event-planning-navigation ul {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.event-planning-navigation li {
+    position: absolute;
+    -webkit-transition: all 2s linear;
+    -moz-transition: all 2s linear;
+    transition: all 2s linear;
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    background: #34486a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #eda009;
+}
+.event-planning-navigation li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #eda009;
+}
+.event-planning-navigation li .plan-nav-icon{
+    font-size: 20px;
+}
+
+
+
+#firstUserModal .modal-dialog {
+    max-width: 1100px;
+    width: 100%;
+}
+.modal-open #firstUserModal.modal{
+    display: flex !important;
+    align-items: center;
+}
+#firstUserModal.modal .modal-body{
+    padding:0px;
+}
+#firstUserModal .about-event-img {
+    height: 100%;
+    margin-bottom: 0;
+}
+#firstUserModal .modal-header{
+    border: none;
+}
+#firstUserModal .about-event-img {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    }
+    #firstUserModal .about-event-img:after{
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        background: rgba(0,0,0,0.5);
+        width: 100%;
+        height: 100%;
+    }
+ #firstUserModal .modal-dialog button.close{
+    top: -15px;
+       right: -15px;
+    }
+#firstUserModal .form-img-cont {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    z-index: 111;
+    padding: 15px;
+}
+.form-img-cont h2 {
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 36px;
+}
+#firstUserModal .about-event-img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.first-user-form {
+    padding: 20px;
+    padding-left: 0;
+}
+
+
+.input-field-wrap {
+    position: relative;
+}
+.form-group label {
+    margin-bottom: 7px;
+    font-weight: 600;
+}
+.input-field-wrap .form-control {
+    height: 50px;
+}
+.input-field-wrap .input-icon {
+    right: 5px;
+    top: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+.multi_step_form #msform #progressbar {
+  margin-bottom: 30px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+.multi_step_form #msform #progressbar li{
+  list-style-type: none;
+  color: #99a2a8;
+  font-size: 9px;
+  width: calc(100%/4);
+  float: left;
+  position: relative;
+  font-size: 16px;
+  color: #333;
+}
+.multi_step_form.haveFiveSteps #msform #progressbar li {
+     width: calc(100%/5);
+    }
+
+.multi_step_form #msform #progressbar li:before {
+  content: "1";
+  /*font: normal normal normal 30px/50px;*/
+  font-size: 20px;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  display: block;
+  background: #eaf0f4;
+  border-radius: 50%;
+  margin: 0 auto 10px auto;
+  font-weight: 500;
+  color: #333;
+  text-align: center;
+  /*font-family: 'Font Awesome 5 Free' !important;*/
+}
+.multi_step_form #msform #progressbar li:nth-child(2):before {
+  content: "2";
+}
+.multi_step_form #msform #progressbar li:nth-child(3):before {
+  content: "3";
+}
+.multi_step_form #msform #progressbar li:nth-child(4):before {
+  content: "4";
+}
+.multi_step_form #msform #progressbar li:nth-child(5):before {
+  content: "5";
+}
+.multi_step_form #msform #progressbar li:after {
+  content: '';
+  width: 100%;
+  height: 10px;
+  background: #eaf0f4;
+  position: absolute;
+  left: -50%;
+  top: 21px;
+  z-index: -1;
+}
+.multi_step_form #msform #progressbar li:last-child:after {
+  width: 150%;
+}
+.multi_step_form #msform #progressbar li.active {
+  color: #35486b;
+}
+.multi_step_form #msform #progressbar li.active:before, .multi_step_form #msform #progressbar li.active:after {
+  background: #35486b;
+  color: white;
+}
+.multi_step_form #msform .action-button {
+  background: #5cb85c;
+  color: white;
+  border: 0 none;
+  border-radius: 5px;
+  cursor: pointer;
+  min-width: 130px;
+  font: 700 14px/40px "Roboto", sans-serif;
+  border: 1px solid #5cb85c;
+  margin: 0 5px;
+  text-transform: uppercase;
+  display: inline-block;
 }

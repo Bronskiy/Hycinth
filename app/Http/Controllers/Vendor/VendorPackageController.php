@@ -81,9 +81,10 @@ class VendorPackageController extends Controller
         
         $vendor_category_id = $VendorCategory->id;
 
-       $vendorPack = VendorPackage::create($request->all());
+        $vendorPack = VendorPackage::create($request->all());
 
        if(!empty($request->amenity) && count($request->amenity)) {
+        $this->packageEventDelete($vendorPack->id,'amenities');
         foreach ($request->amenity as $key => $value) {
          PackageMetaData::create([
           'parent' => 0,
@@ -100,6 +101,9 @@ class VendorPackageController extends Controller
 
 
         if(!empty($request->games) && count($request->games)) {
+
+          $this->packageEventDelete($vendorPack->id,'games');
+
         foreach ($request->games as $key => $value) {
          PackageMetaData::create([
           'parent' => 0,
@@ -115,6 +119,9 @@ class VendorPackageController extends Controller
        }
 
        if(!empty($request->event_type) && count($request->event_type)) {
+          
+          $this->packageEventDelete($vendorPack->id,'events');
+
           foreach ($request->event_type as $key => $value) {
            PackageMetaData::create([
             'parent' => 0,
@@ -137,7 +144,10 @@ class VendorPackageController extends Controller
 #   Vendor Package edit
 #------------------------------------------------------------------------
 
-
+public function packageEventDelete($package_id,$type)
+{
+   return PackageMetaData::where('package_id',$package_id)->where('type',$type)->delete();
+}
 
 
 	public function packagesEdit(Request $request, $slug, $pack_slug) {
@@ -179,8 +189,7 @@ public function packagesUpdate(Request $request, $slug, $id) {
 
         $category = $this->getData($slug);
         $user = Auth::User();
-    
-	      $package = VendorPackage::find($id);
+          $package = VendorPackage::where('slug',$id)->first();
 
         if(!$package) {
           return redirect()->route('vendor_packages_management', $slug)->with('messages','Something Went Wrong.');
@@ -189,74 +198,63 @@ public function packagesUpdate(Request $request, $slug, $id) {
 
        $VendorCategory = VendorCategory::where('category_id',$category->id)
                                        ->where('user_id',Auth::user()->id)
-                                       ->first();  
+                                       ->first(); 
+
        $request['vendor_category_id'] =  $VendorCategory->id;
+
+       
+
        $package->update($request->all());
 
-       if(!empty($request->amenity) && count($request->amenity)) {
-            PackageMetaData::where([
-              'user_id' => $user->id,
-              'package_id' => $package->id,
-              'category_id' => $category->id,
-              'type' => 'amenities'
-            ])->delete();
-              
-
+       if(!empty($request->amenity)) {
+           
+           $this->packageEventDelete($package->id,'amenities');
+ 
         foreach ($request->amenity as $key => $value) {
-               PackageMetaData::create([
-                'parent' => 0,
-                'package_id' => $package->id,
-                'category_id' => $category->id,
-                'user_id' => $user->id,
-                'type' => 'amenities',
-                'key' => 'amenity',
-                'key_value' => $value 
-               ]); 
+               
+          $this->savePackageMetaData($package->id,$category->id,'amenities','amenity',$value);
+
         }
        }
 
-         if(!empty($request->games) && count($request->games)) {
+         if(!empty($request->games)) {
 
-               PackageMetaData::where([
-                  'user_id' => $user->id,
-                  'package_id' => $package->id,
-                  'category_id' => $category->id,
-                  'type' => 'games'
-                ])->delete();
+               
+           $this->packageEventDelete($package->id,'games');
                
         foreach ($request->games as $key => $value) {
-               PackageMetaData::create([
-                'parent' => 0,
-                'package_id' => $package->id,
-                'category_id' => $category->id,
-                'user_id' => $user->id,
-                'type' => 'games',
-                'key' => 'game',
-                'key_value' => $value 
-               ]); 
+              
+           $this->savePackageMetaData($package->id,$category->id,'games','game',$value);
         }
        }
 
-       if(!empty($request->event_type) && count($request->event_type)) {
-        PackageMetaData::where(['user_id' => $user->id, 'package_id' => $package->id, 'category_id' => $category->id, 'type' => 'events'])->delete();
+       if(!empty($request->event_type)) {
+
+       
+
+         $this->packageEventDelete($package->id,'events');
 
           foreach ($request->event_type as $key => $value) {
-               PackageMetaData::create([
-                'parent' => 0,
-                'package_id' => $package->id,
-                'category_id' => $category->id,
-                'user_id' => $user->id,
-                'type' => 'events',
-                'key' => 'event',
-                'key_value' => $value 
-               ]); 
+              
+            $this->savePackageMetaData($package->id,$category->id,'events','event',$value);
           }
        }
 
    return redirect()->route('vendor_packages_management', $slug)->with('messages','Package has updated successfully.');
 }
 
-
+ 
+public function savePackageMetaData($package_id,$category_id,$type,$key,$value){
+      $p = new PackageMetaData;
+      $p->package_id = $package_id;
+      $p->category_id = $category_id;
+      $p->type = $type;
+      $p->key = $key;
+      $p->user_id = Auth::user()->id;
+      $p->key_value = $value;
+      $p->save();
+ 
+}
 #------------------------------------------------------------------------
 #   Vendor Package Addons
 #------------------------------------------------------------------------

@@ -8,6 +8,16 @@
 <!-- side toggle calender sec starts here -->
 <!-- side toggle calender sec starts here -->
 <!-- banner section starts here here -->
+<!-- user status sidebar -->
+<a href="javascript:void(0);" id="user-status"><i class="fas fa-user-clock"></i></a>
+<aside class="user-status-content">
+  <div class="sidebar-header">
+  	 <h3>User Status</h3>
+  	 <a href="javascript:void(0);" class="close-sidebar"><i class="fas fa-times-circle"></i></a>
+  </div>	
+</aside>
+<!-- user status sidebar Ends here -->
+
 <section class="main-banner home-main-banner" style="background:url({{$slider_video_url ? url('/uploads').'/'.$slider_video_url : '/frontend/images/banner-bg.png'}});">
    <div class="container">
       <video src="{{$slider_video_url ? url('/uploads').'/'.$slider_video_url : '/frontend/videos/background-vdo.mp4'}}" autoplay muted loop></video>
@@ -15,6 +25,7 @@
          <h1>{{$slider_title}}</h1>
          <p>{{$slider_tagline}}</p>
          <a href="{{$slider_button_url}}" class="cstm-btn solid-btn">{{$slider_button_title}}</a>
+         <a href="javascript:void(0);" data-toggle="modal" data-target="#firstUserModal" class="cstm-btn solid-btn">First User</a>
       </div>
    </div>
 </section>
@@ -345,7 +356,7 @@
 <!-- Plan togather section starts here -->
 <section class="plan-togather-sec">
    <div class="budget-plan-banner" style="background: url({{ $section2_image ? url('/uploads').'/'.$section2_image : '/frontend/images/budget-plan-bg.png' }});">
-      <div class="container">
+      <div class="container aos-init aos-animate" data-aos="fade-up" data-aos-duration="3000">
          <div class="sec-heading text-center">
             <h4>{{ $section2_title }}</h4>
             <h2>{{ $section2_tagline }}</h2>
@@ -364,11 +375,11 @@
    <div class="budget-packages-container">
       <div class="container">
          <div class="sec-card">
-            <div class="tab-wrap">
+            <div class="tab-wrap aos-init aos-animate" data-aos="fade-down" data-aos-duration="3000">
                <div class="packages-slider owl-carousel owl-theme">
                   <div class="item">
                      <div class="tab-button">
-                        <div class="package-item">
+                        <div class="package-item wow bounceInDown" data-wow-delay="500ms">
                            <a href="javascript:void();" data-tag="t-one" class="activelink">
                               <span class="service-icon">                     
                                  <img class="category_icon" src="/frontend/images/venue.png">
@@ -380,7 +391,7 @@
                   </div>
                   <div class="item">
                      <div class="tab-button">
-                        <div class="package-item">
+                        <div class="package-item wow bounceInDown" data-wow-delay="1000ms">
                            <a href="javascript:void();" data-tag="t-two" class="">
                               <span class="service-icon">
                                  <img class="category_icon" src="/frontend/images/photography.png">
@@ -392,7 +403,7 @@
                   </div>
                   <div class="item">
                      <div class="tab-button">
-                        <div class="package-item">
+                        <div class="package-item wow bounceInDown" data-wow-delay="1500ms">
                            <a href="javascript:void();" data-tag="t-three" class="">
                               <span class="service-icon">
                                  <img class="category_icon" src="/frontend/images/catering.png">
@@ -407,7 +418,7 @@
             <div class="tab-content">
                <!-- tab 1 content -->
                <div class="tab-data" id="t-one">
-                  <div class="row packages-row">
+                  <div class="row packages-row aos-init aos-animate" data-aos="fade-left" data-aos-duration="3000">
                      <div class="col-lg-3 col-md-4">
                         <a href="javascript:void(0);" class="main-package-card">
                            <figure>
@@ -469,7 +480,7 @@
                         </a>
                      </div>
                   </div>
-                  <div class="price-card">
+                  <div class="price-card aos-init aos-animate" data-aos="fade-rigth" data-aos-duration="3000">
                      <div class="cal-content">
                         <div class="row">
                            <div class="col-lg-4">
@@ -888,7 +899,7 @@
 <!-- Plan togather section ends here -->
 <!-- How its work section starts here -->
 <section class="how-its-work-sec">
-   <div class="container">
+   <div class="container aos-init aos-animate" data-aos="fade-right" data-aos-duration="3000">
       <div class="sec-heading text-center">
          <h4>{{$section3_title}}</h4>
          <h2>{{$section3_tagline}}</h2>
@@ -913,10 +924,11 @@
 <!--Get to knw section starts here-->
 <section class="home-get" style="background: url( {{ $section4_image ? url('/uploads').'/'.$section4_image : '/frontend/images/budget-plan-bg.png' }});">
    <div class="container">
-      <div class="sec-heading text-center">
+      <div class="sec-heading text-center aos-init aos-animate" data-aos="fade-up" data-aos-duration="3000">
          <h4>{{$section4_title1}}</h4>
          <h2>{{$section4_tagline1}}</h2>
       </div>
+      <div class="aos-init aos-animate" data-aos="fade-up" data-aos-duration="2000">
       <p>{{$section4_description}}</p>
       <p class="get-text">
          <span>{{$section4_title2}}</span>{{$section4_tagline2}}
@@ -924,12 +936,13 @@
       <a href="{{$section4_button_url}}" class="cstm-btn solid-btn">
       {{$section4_button_title}}
       </a>
+     </div>
    </div>
 </section>
 <!--Get to knw section ends here-->
 <!--Testimonial Page starts here-->
 <section class="testimonial">
-   <div class="container" data-aos="fade-left" data-aos-duration="3000">
+   <div class="container aos-init aos-animate" data-aos="fade-left" data-aos-duration="3000">
       <div class="sec-heading text-center">
          <h2>{{$section5_title}}</h2>
       </div>
@@ -967,6 +980,8 @@
       </div>
    </div>
 </section>
+
+
 @endsection
 
 @section('scripts')

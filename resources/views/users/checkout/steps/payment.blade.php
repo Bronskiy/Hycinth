@@ -108,11 +108,21 @@
 
 
  <div class="col-md-12">
-           <div class="multistep-footer mt-4 text-right"> 
+  <div class="multistep-footer mt-4">
+  <div class="row">
+    <div class="col-md-4">
+  <figure class="card-accepted">
+     <img src="{{ asset('/frontend/images/payment-cards.png') }}">
+  </figure>
+</div>
+ <div class="col-md-8">
+           <div class="btn-wrap text-right"> 
             <a href="{{ !empty($backStepUrl) ? $backStepUrl : 'javascript:void(0)' }}" class="cstm-btn solid-btn previous_button">Back</a> 
           </div>
-
+</div>
         </div>
+      </div>
+    </div>
 
 <!-- <div class="col-lg-6 offset-lg-3">
 	<div class="payment-card-detail">

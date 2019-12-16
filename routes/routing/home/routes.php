@@ -44,10 +44,7 @@ Route::get('/vendor/register', 'HomeController@register')->name('vendor_register
 #  Vendor Listing Page
 #------------------------------------------------------------------------------------------
  Route::get('/deals-discounts', 'Home\Deals\DealsController@index')->name('all_deals');
-
-
-
-
+ Route::get('/deals-discount', 'Home\Deals\DealsController@detail')->name('get_deal_detail');
 
 
 

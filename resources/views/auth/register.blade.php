@@ -7,14 +7,14 @@
 @section('content')
 
 <!-- <app-header></app-header> -->
-<section class="log-sign-banner" style="background:url({{ url('/uploads').'/'.getAllValueWithMeta('signup_background_image', 'signup')}});">
+<section class="log-sign-banner aos-init aos-animate" data-aos="fade-up" data-aos-duration="3000" style="background:url({{ url('/uploads').'/'.getAllValueWithMeta('signup_background_image', 'signup')}});">
     <div class="container">
             <div class="page-title text-center">
                     <h1>{{ getAllValueWithMeta('signup_title', 'signup') }}</h1>
                 </div>
             </div>    
         </section>
-        <section class="form-sec">
+        <section class="form-sec aos-init aos-animate" data-aos="fade-down" data-aos-duration="3000">
                 <div class="container">         
                   <div class="signUp-form-wrap mr-top sec-card">  
                         <div class="row no-gutters">          
@@ -93,7 +93,7 @@
 </section>
 
 
-<section class="how-its-work-sec">
+<section class="how-its-work-sec aos-init aos-animate" data-aos="fade-right" data-aos-duration="3000">
    <div class="container">
       <div class="sec-heading text-center">
          <h4>{{ getAllValueWithMeta('section1_title', 'signup') }}</h4>

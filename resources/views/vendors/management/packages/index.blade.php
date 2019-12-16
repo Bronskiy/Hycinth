@@ -61,7 +61,11 @@
 @if(count($f->amenities))
 <div class="col-md-6">
         <label for="no_of_hours">Amenities</label>
-        @foreach($f->amenities as $amenity)
+
+    <?php $amenities = getPackageAmenities($f); ?>
+  <?php $packageEvents = getPackageEvents($f); ?>
+ <?php $getPackageGames = getPackageGames($f); ?>
+        @foreach($amenities as $amenity)
         <ul class="pkg-listing-grp"> 
         <li class="pkg-listing">{{$amenity->amenity->name}}</li>
       </ul>   
@@ -69,10 +73,10 @@
  </div>
  @endif
 
-@if(count($f->games))
+    @if(count($f->games))
 <div class="col-md-6">
   <label for="no_of_hours">Games</label>
-            @foreach($f->games as $game)
+            @foreach($getPackageGames as $game)
             <ul class="pkg-listing-grp">  
               <li class="pkg-listing">{{$game->amenity->name}}</li>
             </ul>
@@ -83,7 +87,7 @@
  @if(count($f->events))
 <div class="col-md-6">
   <label for="no_of_hours">Events</label>
- @foreach($f->events as $amenity)
+ @foreach($packageEvents as $amenity)
         <ul class="pkg-listing-grp">  
           <li class="pkg-listing">{{$amenity->event->name}}</li>
         </ul>

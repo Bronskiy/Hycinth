@@ -134,6 +134,15 @@ body {
     overflow-x: hidden;
     position: relative;
 }
+body.fixed-body {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
 body.gray-bg{
     background: #f6f7f8;
 }
@@ -603,6 +612,7 @@ section::after,
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;    
+        overflow-y: auto;
 }
 #tool-nav {
     overflow-y: auto;
@@ -829,7 +839,7 @@ nav#tool-nav #menus-list li a:hover {
     display: block;
     color: #333 !important;
 }
-#calender-toggle {
+#calender-toggle, #user-status {
     width: 49px;
     background: #b58ec3;
     border-top-right-radius: 50%;
@@ -850,6 +860,15 @@ nav#tool-nav #menus-list li a:hover {
     top: 150px;
     left: 0;
     z-index: 9999999;
+}
+#user-status{
+    left: auto;
+    right: 0;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    padding-right: 6px;
 }
 
 .top-bar {
@@ -6999,4 +7018,77 @@ table.compere-table th {
     align-items: center;
     justify-content: center;
 }
+.recom-vendor-card {
+    padding: 15px;
+    background: #fff;
+    display: inline-block;
+    margin: 15px 0px;
+    width: 100%;
+}
+.recom-vendor-card figure {
+    width: 100%;
+    height: 189px;
+    overflow: hidden;
+}
+.recom-vendor-card figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: all 0.3s ease;
+    }
+    .recom-vendor-card .rec-detail {
+    padding: 20px 0px;
+}
+.recom-vendor-card:hover figure img{
+   transform: scale(1.2);
+}
+.recom-vendor-card .rec-detail p{
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+}
+.rec-vendor-wrap {
+    padding: 30px 0px;
+    display: block;
+}
+.user-status-content {
+    position: fixed;
+    top: 130px;
+    right: 0;
+    max-height: calc(100vh - 130px);
+    background: #fff;
+    width: 293px;
+    height: 100%;
+    z-index: 9999999;
+    transform: translateX(100%);
+    transition: all 0.4s ease;
+    border-top-left-radius: 8px;
+    overflow: hidden;
+    color: #fff;
+    box-shadow: 0px 0px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+}
+.sidebar-header {
+    background: #b58dc3;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.user-status-content.show-sidebar {
+    transform: translateX(0);
+    transition: all 0.4s ease;
+}
+.sidebar-header h3 {
+    color: #fff;
+    text-transform: uppercase;
+}
+.sidebar-header .close-sidebar {
+    color: #ea2222;
+}
 /********************/
+
+

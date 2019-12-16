@@ -278,6 +278,7 @@ public function updateGlobal(Request $request) {
 // payment settings
 
 public function payments() {
+ 
 	return view('admin.settings.general.payment')->with(['title'=> 'Payment Settings']);
 }
 

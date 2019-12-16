@@ -35,11 +35,16 @@
   $arrStripe =  json_decode(getAllValueWithMeta('stripe_credentials', 'stripe-credentials'));
 
   $modeStripe = !empty($arrStripe) && !empty($arrStripe->mode) ? $arrStripe->mode : '';
-  $sandbox_secret = !empty($arrStripe) && !empty($arrStripe->sandbox_secret) ? $arrStripe->sandbox_secret : '';
-  $sandbox_public = !empty($arrStripe) && !empty($arrStripe->sandbox_public) ? $arrStripe->sandbox_public : '';
 
-  $live_secret = !empty($arrStripe) && !empty($arrStripe->live_secret) ? $arrStripe->live_secret : '';
-  $live_public = !empty($arrStripe) && !empty($arrStripe->live_public) ? $arrStripe->live_public : '';
+
+ 
+  $test_sk = !empty($arrStripe) && !empty($arrStripe->test_sk) ? $arrStripe->test_sk : '';
+  $test_pk = !empty($arrStripe) && !empty($arrStripe->test_pk) ? $arrStripe->test_pk : '';
+  $test_client_id = !empty($arrStripe) && !empty($arrStripe->test_client_id) ? $arrStripe->test_client_id : '';
+
+  $live_sk = !empty($arrStripe) && !empty($arrStripe->live_sk) ? $arrStripe->live_sk : '';
+  $live_pk = !empty($arrStripe) && !empty($arrStripe->live_pk) ? $arrStripe->live_pk : '';
+  $live_client_id = !empty($arrStripe) && !empty($arrStripe->live_client_id) ? $arrStripe->live_client_id : '';
 ?>
 
   <div class="row">
@@ -132,8 +137,9 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Sandbox Creadentials</h5>
-           {{textbox($errors,'Sandbox Secret*', 'sandbox_secret', $sandbox_secret)}}
-           {{textbox($errors,'Sandbox Public*', 'sandbox_public', $sandbox_public)}}
+           {{textbox($errors,'Sandbox Secret*', 'test_sk', $test_sk)}}
+           {{textbox($errors,'Sandbox Public*', 'test_pk', $test_pk)}}
+           {{textbox($errors,'Client Key*', 'test_client_id', $test_client_id)}}
         </div>
       </div>
     </div>
@@ -141,8 +147,9 @@
        <div class="card">
         <div class="card-body">
           <h5 class="card-title">Live Creadentials</h5>
-           {{textbox($errors,'Live Secret*', 'live_secret', $live_secret)}}
-           {{textbox($errors,'Live Public*', 'live_public', $live_public)}}
+           {{textbox($errors,'Live Secret*', 'live_sk', $live_sk)}}
+           {{textbox($errors,'Live Public*', 'live_pk', $live_pk)}}
+           {{textbox($errors,'Live Public*', 'live_client_id', $live_client_id)}}
         </div>
       </div>
     </div>

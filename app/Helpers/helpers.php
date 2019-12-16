@@ -5,6 +5,41 @@ function categoryOrders($category_id, $event_id) {
 }
 
 
+
+
+
+
+
+
+
+function getPackageEvents($package)
+{
+   $ids = $package->events->pluck('key_value')->toArray();
+   return $CategoryVariation =\App\CategoryVariation::whereIn('variant_id',$ids)
+   ->where('type','event')
+   ->where('category_id',$package->category_id)->get();
+}
+
+
+function getPackageAmenities($package)
+{
+   $ids = $package->amenities->pluck('key_value')->toArray();
+   return $CategoryVariation =\App\CategoryVariation::whereIn('variant_id',$ids)
+   ->where('type','amenity')
+   ->where('category_id',$package->category_id)->get();
+}
+
+function getPackageGames($package)
+{
+   $ids = $package->games->pluck('key_value')->toArray();
+   return $CategoryVariation =\App\CategoryVariation::whereIn('variant_id',$ids)
+   ->where('type','game')
+   ->where('category_id',$package->category_id)->get();
+}
+
+
+
+
  function stepbarCheck($step,$deal=0)
 {
 
@@ -2436,12 +2471,33 @@ function  OrderByIdOfCart($count){
 
 
 function SripeAccount(){
+$data = App\Models\Admin\PageMetaTag::where('type','stripe-credentials');
+
+if($data->count() > 0){
+
+   $json = !empty($data) ? json_decode($data->first()->keyValue) : [];
+
+
+   $mode = !empty($json->mode) ? 'live' : 'test';
+$sk = $mode.'_sk';
+$pk = $mode.'_pk';
+$client_id = $mode.'_client_id';
+   return [
+                 'pk'         => $json->$pk,//   'pk_test_dtD5WE757jp1zzxVXexp3BIx',
+                 'sk'         => $json->$sk,//  'sk_test_kKoOOeRxs9N93l9t17qQBIza',
+                 'client_id'  => $json->$client_id //'ca_CRS1oNfESdOlwL8loL9AgfpHtBv6Ucvc' 
+           ];
+}else{
+      return [
+                 'pk'         => '',//   'pk_test_dtD5WE757jp1zzxVXexp3BIx',
+                 'sk'         => '',//  'sk_test_kKoOOeRxs9N93l9t17qQBIza',
+                 'client_id'  => '' //'ca_CRS1oNfESdOlwL8loL9AgfpHtBv6Ucvc' 
+           ];
+}
+
+
 	  
-	$array = array(
-		 'pk'         =>'pk_test_7s4zephLlSBQHOqovi6w0XCK00U4UJ6WlO',//   'pk_test_dtD5WE757jp1zzxVXexp3BIx',
-		 'sk'         => 'sk_test_p8VlaYX68wQNoikV5b3eXawB00tVn2yhs2',//  'sk_test_kKoOOeRxs9N93l9t17qQBIza',
-		 'client_id'  => 'ca_GLAxBauXm8E4habSHJXBNiOWAixurQ2U' //'ca_CRS1oNfESdOlwL8loL9AgfpHtBv6Ucvc' 
-		 );
+
 	return $array;
 }
 

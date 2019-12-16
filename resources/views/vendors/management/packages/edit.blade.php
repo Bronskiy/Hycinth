@@ -168,7 +168,7 @@
                <div class="form-group">
            
 
-           <div class="custom-control custom-radio mb-1">
+         <!--   <div class="custom-control custom-radio mb-1">
         <input type="radio" id="status" name="status" value="per_person" class="custom-control-input" checked>
         <label class="custom-control-label" for="status">Price Per Person</label>
       </div>
@@ -176,7 +176,7 @@
        <div class="custom-control custom-radio">
         <input type="radio" id="status2" name="status" value="per_person" class="custom-control-input">
         <label class="custom-control-label" for="status2">Fix Price</label>
-      </div>
+      </div> -->
 
 
           </div>

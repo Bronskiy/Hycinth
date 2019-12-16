@@ -27,8 +27,9 @@
 <input type="hidden" id="end_date" value="{{$user_event->end_date}}">
 <section class="content">
       <div class="row">
+
         <!-- [ rating list ] end-->
-                                <div class="col-md-12 m-b-30">
+                                <div class="col-md-6 m-b-30">
                                     <div class="tab-content" id="myTabContent">
 
                                             <table class="table table-hover">               
@@ -64,6 +65,30 @@
                                             </table>
                                     </div>
                                 </div>
+
+
+                                 @if($result > 0)
+                                <div class="col-md-6 m-b-30">
+                                    <div class="card Upcoming-event-card">
+                                        <div class="card-block">
+                                          <div class="upcmg-evnt-head text-center">
+                                          <!-- <h2>Upcoming Events</h2> -->
+                                          <h3>{{$user_event->title}}</h3>
+                                          <!-- <p>{{$user_event->description}}</p> -->
+                                        </div>
+                                        <div class="countdown-timer-container">
+                                        <ul class="count-down-timer">
+                                          <li><span id="days-up_{{$user_event->id}}"></span>days</li>
+                                          <li><span id="hours-up_{{$user_event->id}}"></span>Hours</li>
+                                          <li><span id="minutes-up_{{$user_event->id}}"></span>Minutes</li>
+                                          <li><span id="seconds-up_{{$user_event->id}}"></span>Seconds</li>
+                                        </ul>
+                                      </div>
+                                        </div>
+                                      </div>
+                                </div>
+                                @endif
+
                                
 
       </div>
@@ -122,27 +147,22 @@
 </div>
 </div>
 
- @if($result > 0)
                                 <div class="col-md-6 m-b-30">
-                                    <div class="card Upcoming-event-card">
-                                        <div class="card-block">
-                                          <div class="upcmg-evnt-head text-center">
-                                          <h2>Upcoming Events</h2>
-                                          <h3>{{$user_event->title}}</h3>
-                                          <p>{{$user_event->description}}</p>
-                                        </div>
-                                        <div class="countdown-timer-container">
-                                        <ul class="count-down-timer">
-                                          <li><span id="days-up_{{$user_event->id}}"></span>days</li>
-                                          <li><span id="hours-up_{{$user_event->id}}"></span>Hours</li>
-                                          <li><span id="minutes-up_{{$user_event->id}}"></span>Minutes</li>
-                                          <li><span id="seconds-up_{{$user_event->id}}"></span>Seconds</li>
-                                        </ul>
-                                      </div>
-                                        </div>
-                                      </div>
-                                </div>
-                                @endif
+                                  <div class="event-planning-navigation">
+                                      <ul>
+                                        <li>Start<br> Planning</li>
+                                        <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-list-alt"></i></span>Guest List</a></li>
+                                       <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fab fa-chrome"></i></span>Create <br/> Website</a></li>
+                                       <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-gift"></i></span>Gift</a></li>
+                                       <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="far fa-edit"></i></span>Create <br/> Event</a></li>
+                                       <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-couch"></i></span>Seating <br/> Chart</a></li>
+                                       <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-dollar-sign"></i></span>Budget</a></li>
+                                       <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-tasks"></i></span>Checklist</a></li>
+                                        <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-comments"></i></span>Message <br/> Vendors</a></li>
+                                       
+                                     </ul>                                                              
+                                  </div>
+                               </div>
 
 <div class="col-md-12">
 
@@ -360,6 +380,25 @@ paymentsData[i]
   $('#modal_body').html(modal_data);
  } 
 
+</script>
+
+<script>
+  var type = 1, //circle type - 1 whole, 0.5 half, 0.25 quarter
+    radius = '10em', //distance from center
+    start = -90, //shift start from 0
+    $elements = $('.event-planning-navigation li:not(:first-child)'),
+    numberOfElements = (type === 1) ?  $elements.length : $elements.length - 1, //adj for even distro of elements when not full circle
+    slice = 360 * type / numberOfElements;
+
+$elements.each(function(i) {
+    var $self = $(this),
+        rotate = slice * i + start,
+        rotateReverse = rotate * -1;
+    
+    $self.css({
+        'transform': 'rotate(' + rotate + 'deg) translate(' + radius + ') rotate(' + rotateReverse + 'deg)'
+    });
+});
 </script>
 @endsection
 

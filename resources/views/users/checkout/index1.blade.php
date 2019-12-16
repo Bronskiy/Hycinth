@@ -169,7 +169,7 @@ a.pull-right {
             </span>
         </span>
         @if(!empty($stepNumber))
-                <?= stepbarCheck($stepNumber,$haveDeal) ?>
+                <?= stepbarCheck($stepNumber, $haveDeal) ?>
         @endif
  
  <div class="multistep-form-card"> 
@@ -177,7 +177,7 @@ a.pull-right {
                     
             <div class="col-lg-8">           
                            
-                                     @include('vendors.errors')
+            @include('vendors.errors')
               @if(!empty($error) && !is_numeric($error))
                            {!!$error!!}
               @endif

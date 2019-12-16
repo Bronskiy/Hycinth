@@ -8,6 +8,15 @@
 
 
 // =============
+//sidebar toggle
+$(document).ready(function() { 
+  $("#user-status").click(function(){
+      $(".user-status-content").addClass("show-sidebar");
+      });
+  $(".close-sidebar").click(function(){
+    $(".user-status-content").removeClass("show-sidebar");
+});
+  });
 
 //Toolbox animation
 $(document).ready(function() { 
@@ -21,21 +30,25 @@ $(document).ready(function() {
 
 //navigation js
 $(".menu-toggle").click(function () {
+    $('body').addClass('fixed-body');
     $(this).addClass("active");
     $("#main-navigation").addClass("active");
 });
 
 $(".nav-close-btn").click(function () {
+    $('body').removeClass('fixed-body');
     $("#main-navigation").removeClass("active");
     $(".menu-toggle").removeClass("active");
 });
 
 $(".toolbox").click(function () {
+     $('body').addClass('fixed-body');
     $(this).addClass("active");
     $("#tool-nav").addClass("active");
 });
 
 $(".nav-close-btn").click(function () {
+     $('body').removeClass('fixed-body');
     $("#tool-nav").removeClass("active");
     $(".toolbox").removeClass("active");
 });

@@ -36,59 +36,37 @@ public function index2(Request $request, $cateSlug, $vendorSlug)
 	 	'VendorPackage' => function($vp){
 	 		return $vp->where('status', 1)->get();
 	 	},
-	 	'basicInfo',
-	 	'faqs',
-	 	'DealsDiscount',
-	 	'ImageGallery',
-	 	'VideoGallery',
-	 	'description',
-	 ])->where('business_url',$vendorSlug)->where('publish', 1);
+	 	// 'basicInfo',
+	 	// 'faqs',
+	 	// 'DealsDiscount',
+	 	// 'ImageGallery',
+	 	// 'VideoGallery',
+	 	// 'description',
+	 ])->where('publish', 1);
 
 
 	 if($category->count() == 0 || $vendorCategory->count() == 0){
 	 	abort(404);
 	 }
 
-    $vendor =  $vendorCategory->first();
+      $vendor =  $vendorCategory->where('business_url',$vendorSlug)->where('status', 3)->first();
 
-  //   if(!empty($request->test)){
+      $recommendedVendor =  VendorCategory::where('category_id',$category->first()->id)
+											     ->where('id','!=',$vendor->id)
+											     ->where('publish', 1)
+											     ->where('status', 3)
+											     ->paginate(5);
 
+     $event = \App\VendorEventGame::with('Event')->where('category_id',$category->first()->id)->where('user_id',$vendor->user_id);
 
-  //   	 $vendorCategory = VendorCategory::with([
-	 // 	'basicInfo',
-	 // 	'VendorEvents',
-	 // 	'styles',
-	 // 	'styles.style',
-	 // 	'faqs',
-	 // 	'DealsDiscount',
-	 // 	'ImageGallery',
-	 // 	'VideoGallery',
-	 // 	'description'
-	 // ])->where('business_url',$vendorSlug)->where('publish',1)->first();
-
-		// return $vendorCategory;
-    	 
-  //   }
- 
-    $event = \App\VendorEventGame::with('Event')->where('category_id',$category->first()->id)->where('user_id',$vendor->user_id);
-    $amenities = \App\VendorAmenity::where('category_id',$category->first()->id)
+     $amenities = \App\VendorAmenity::where('category_id',$category->first()->id)
                                    ->where('type','amenity')
                                    ->where('user_id',$vendor->user_id);
 
-       $games = \App\VendorAmenity::where('category_id',$category->first()->id)
+     $games = \App\VendorAmenity::where('category_id',$category->first()->id)
                                    ->where('type','game')
                                    ->where('user_id',$vendor->user_id);
-
-// get weather by lat and long
-
-  //    $lowm = new LaravelOWM();
-
-  // 	 $query = array(
-	 // 	'lat' => $vendor->latitude,
-	 // 	'lon' => $vendor->longitude
-	 // );
-	 // $current_weather = $lowm->getCurrentWeather($query, $lang = 'en', $units = 'metric', $cache = false, $time = 600);
-
+ 
  
 return view($this->folderPath.'.index')
       ->with('games',$games)
@@ -98,6 +76,7 @@ return view($this->folderPath.'.index')
       ->with('services', $vendor->subcategory)
       ->with('VendorEvents', $vendor->VendorEvents)
       ->with('seasons',$vendor->seasons)
+      ->with('recommendedVendor',$recommendedVendor)
       ->with('vendor',$vendor);
 }
 

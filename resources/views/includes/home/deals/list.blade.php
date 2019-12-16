@@ -37,11 +37,13 @@ $businessDetailLink = url( route('vendor_detail_page',[$deal->Business->category
 
 $redirectLink = $deal->type_of_deal == 0 ? $businessDetailLink : url(route('payWithDeal',[$deal->slug,$deal->dealPackage->slug]));
 
+
+
 ?>
 
 
 
-  <div class="deals-card">
+  <div class="deals-card aos-init aos-animate" data-aos="fade-left" data-aos-duration="2000">
     <figure class="deal-img">
       <img src="{{url($deal->image)}}">
       <figcaption class="discount-per"><span class="blink-text">
@@ -86,7 +88,7 @@ $redirectLink = $deal->type_of_deal == 0 ? $businessDetailLink : url(route('payW
                           </a>
                         </li>
                         <li>
-                          <a href="{{$redirectLink}}" data-toggle="tooltip" title="Get Deal" class="icon-btn"><i class="fas fa-tags"></i>
+                          <a href="{{url(route('get_deal_detail'))}}" data-toggle="tooltip" title="Get Deal" class="icon-btn"><i class="fas fa-tags"></i>
                           </a>
                         </li>
                         <li>

@@ -32,7 +32,8 @@ class VendorPackage extends Model
     }
 
     public function events() {
-       return $this->hasMany('App\PackageMetaData', 'package_id')->where('type', 'events');
+       return $this->hasMany('App\PackageMetaData', 'package_id')
+                    ->where('package_meta_datas.type', 'events');
     }
 
     public function games() {
