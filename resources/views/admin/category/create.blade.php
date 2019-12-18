@@ -63,8 +63,9 @@
 
 <div class="col-md-4"> 
   <div class="form-group label-floating is-empty"><label class="control-label">Color*</label>
-<input type="color" value="#eda208" name="color" id="get" style="width: 46px; margin-left: -2px;" onchange="fetch()">
-    <input type="text" readonly value="#eda208" class="form-control valid" name="color" id="color"></div>
+    <input type="color" value="#eda208" name="color" id="get" style="width: 46px; margin-left: -2px;" onchange="fetch()">
+    <input type="text" readonly value="#eda208" class="form-control valid" name="color" id="color">
+  </div>
 </div>
 
 <div class="col-md-4">

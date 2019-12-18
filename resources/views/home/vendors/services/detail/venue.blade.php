@@ -39,9 +39,9 @@
 				                      </span> Styles:</h4>
 							 <ul class="detail-listing">
 							 	@foreach($styles as $k => $style)
-
+                                   
                                     <li>{{$style->style->title}}</li>
-
+                                   
                                     
 							 	@endforeach
 							 </ul>
@@ -57,7 +57,9 @@
 				                      </span> Events:</h4>
 							 <ul class="detail-listing">
 							 	@foreach($VendorEvents as $k => $event)
-                                    <li>{{$event->Event->name}}</li>                                    
+							 	    @if(getSeasonOfBusiness($event->event_id,$event->category_id,'event') > 0)
+                                    <li>{{$event->Event->name}}</li>    
+                                    @endif                                
 							 	@endforeach
 							 </ul>
 						</div>
@@ -72,12 +74,11 @@
 							<i class="fas fa-poo-storm"></i>
 				                      </span> Seasons:</h4>
 							 <ul class="detail-listing">
-							 	@foreach($seasons as $k => $season)
-
+							 	 @foreach($seasons as $k => $season)
+                                   @if(getSeasonOfBusiness($season->keyValue,$season->category_id,'seasons') > 0)
                                     <li>{{$season->season->name}}</li>
-
-                                    
-							 	@endforeach
+                                   @endif
+                                 @endforeach
 							 </ul>
 						</div>
 					</div>

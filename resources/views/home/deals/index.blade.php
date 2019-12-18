@@ -1,14 +1,14 @@
 @extends('layouts.home')
 @section('content')
 
-  <section class="main-banner" style="background:url('/frontend/images/banner-bg.png');">
-        <div class="container">
-            <div class="banner-content">
-                <h1 class="banner-heading">Deals & Discount</h1>
-              
-            </div>
-        </div>
-    </section>
+ 
+    <section class="log-sign-banner aos-init aos-animate" data-aos="fade-up" data-aos-duration="3000" "="" style="background:url(http://49.249.236.30:6633/uploads/1574318396.png);">
+    <div class="container">
+            <div class="page-title text-center">
+                     <h1>Deals & Discount</h1>
+                </div>
+            </div>    
+        </section>
     <section class="vendor-listing-sec checklist-wrap">
         <div class="container lr-container">
             <div class="sec-card outer-wrap">
@@ -21,7 +21,7 @@
                 <div class="row">
 
                      
-                    @include('includes.home.deals.sidebar')
+                    @include('home.includes.deals.sidebar')
                     <div class="col-lg-9">
                         <div class="inner-content">
                             <p>Showing Results <b id="categoryCount">Searching...</b></p>

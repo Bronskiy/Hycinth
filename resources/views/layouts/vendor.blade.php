@@ -41,11 +41,12 @@
 <link rel="stylesheet" href="{{url('/css/common-style.css')}}">
      <link rel="stylesheet" href="{{url('/css/common-responsive.css')}}">
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-
-
+<link rel="stylesheet" type="text/css" href="{{url('clockface/css/clockface.css')}}">
+ 
 <script src="{{url('/AdminFILE/plugins/jquery/jquery.min.js')}}"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="{{url('/bootstrap-fileinput-master/js/fileinput.js')}}" type="text/javascript"></script>
+<script src="{{url('clockface/js/clockface.js')}}" type="text/javascript"></script>
 
 </head>
 

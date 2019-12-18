@@ -63,56 +63,42 @@ class VendorCategory extends Model
        return $this->hasMany('App\Models\Vendors\Chat','business_id')
                     ->orderBy('updated_at','DESC');
     }
-
-
-
-
-
+ 
 
     public function category()
     {
        return $this->belongsTo('App\Category','category_id','id');
     }
-
-
-    
-
-
+ 
     public function subcategory()
     {
        return $this->hasMany('App\VendorCategory','parent');
     }
 
-   
 
+ 
     public function faqs()
     {
        return $this->hasMany('App\FAQs','vendor_category_id','id');
     }
-
-    
+ 
     public function VendorPackage()
     {
        return $this->hasMany('App\VendorPackage','vendor_category_id');
     }
-
-
-
-   
+ 
     public function vendors()
     {
        return $this->belongsTo('App\User','user_id')->where('role','vendor');
     }
-
-
-
+ 
     public function basicInfo()
     {
        return $this->hasMany('App\VendorCategoryMetaData','vendor_category_id','id')
                    ->where('type','basic_information');
     }
 
-
+ 
     public function profileImage()
     {
        return $this->hasOne('App\VendorCategoryMetaData','vendor_category_id','id')
@@ -150,15 +136,20 @@ class VendorCategory extends Model
     public function styles()
     {
        return $this->hasMany('App\VendorCategoryMetaData','vendor_category_id','id')
-                   ->where('type','styles');
+                   ->where('vendor_category_meta_datas.type','styles');
+                    
     }
+
+
 
 
      public function seasons()
     {
        return $this->hasMany('App\VendorCategoryMetaData','vendor_category_id','id')
-                   ->where('type','seasons');
+                    ->where('vendor_category_meta_datas.type','seasons');
+                                                                                                                    
     }
+    
 
 
     public function description()
@@ -185,6 +176,16 @@ class VendorCategory extends Model
 
     public function VendorEvents() {
        return $this->hasMany('App\VendorEventGame', 'vendor_category_id', 'id');
+    }
+
+
+
+    public function VendorGames() {
+       return $this->hasMany('App\VendorAmenity', 'vendor_category_id', 'id')->where('type','game');
+    }
+
+     public function VendorAmenity() {
+       return $this->hasMany('App\VendorAmenity', 'vendor_category_id', 'id')->where('type','amenity');
     }
 
 

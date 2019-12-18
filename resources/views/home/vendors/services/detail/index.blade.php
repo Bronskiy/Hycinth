@@ -230,21 +230,24 @@ div#Video-carousel li span {
                         <div class="col-lg-6">
                            <h4 class="faq-question">Amenities</h4>
                            <ul class="detail-listing">
-                              @if($amenities->count() > 0)                   
-                              @foreach($amenities->get() as $amen)
-                              <li>{{$amen->amenity->name}}</li>
+                            
+                              @foreach($vendor->VendorAmenity as $game)
+                              
+                                     @if(getSeasonOfBusiness($game->amenity_id,$game->category_id,'amenity') > 0)
+                                        <li>{{$game->amenity->name}}</li>
+                                     @endif
                               @endforeach
-                              @endif
                            </ul>
                         </div>
                         <div class="col-lg-6">
                            <h4 class="faq-question">Games</h4>
                            <ul class="detail-listing">
-                              @if($events->count() > 0)                  
-                              @foreach($games->get() as $event)
-                              <li>{{$event->amenity->name}}</li>
+                                @foreach($vendor->VendorGames as $game)   
+                                            @if(getSeasonOfBusiness($game->amenity_id,$game->category_id,'game') > 0)             
+                                              <li>{{$game->amenity->name}}</li>
+                                            @endif
                               @endforeach
-                              @endif                   
+
                            </ul>
                         </div>
                      </div>

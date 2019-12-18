@@ -50,7 +50,7 @@ class HomeController extends Controller
 
 
       $slug = 'homepage';
-      $categories = Category::where(['status'=> 1, 'parent'=> 0])->get();
+      $categories = Category::where(['status'=> 1, 'parent'=> 0])->orderBy('label','ASC')->get();
       return view('home', $this->getArrayValue($slug))->with(['categories' => $categories]);
     }
 

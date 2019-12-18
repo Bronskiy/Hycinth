@@ -80,15 +80,22 @@ $basicInfo = $vendor->basicInfo->count() > 0 ? 100 : 0;
 
 $prohibtion = $vendor->prohibtion != null && $vendor->prohibtion->count() > 0 ? 100 : 0;
 
-$per = 400 / 100;
 
-$overAll = round($photoVideogalery + $amenitiesAndGames + $venuesPercent + $basicInfo) / $per;
+$paymenMethod = $vendor->paypal_account !="" ? 50 : 0;
+$paymenMethod += $vendor->stripe_account !="" ? 50 : 0;
+
+$per = 500 / 100;
+
+$overAll = round($photoVideogalery + $amenitiesAndGames + $venuesPercent + $basicInfo + $paymenMethod) / $per;
+
+
+
  $percents =[
   'photoVideogalery' => $photoVideogalery,
   'amenitiesAndGames' => $amenitiesAndGames,
   'venuesPercent' => $venuesPercent,
   'basicInfo' => $basicInfo,
-  'paymenMethod' => 0,
+  'paymenMethod' => $paymenMethod,
   'overAll' => $overAll,
   'prohibtion' => $prohibtion
 ];

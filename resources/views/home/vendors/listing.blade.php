@@ -45,12 +45,12 @@
                                     <i class="fas fa-times" style="display: none;"></i>
                                 </span>
                             </span>
-              @include('admin.error_message')
-              @include('includes.ajaxMessage')
+                    @include('admin.error_message')
+                    @include('includes.ajaxMessage')
 
                 <div class="row">                      
 
-                      @include('includes.home.business.sidebar')
+                      @include('home.includes.business.sidebar')
                     
                     <div class="col-lg-9">
                         <div class="inner-content">
@@ -70,7 +70,7 @@
                                   
                                   <div id="inner-content-detail"></div>
                                   <div class="map-marker-placer" id="map-marker-placer" style="display: none;">
-                                          @include('includes.home.business.map')
+                                          @include('home.includes.business.map')
                                   </div>
                         </div>
 

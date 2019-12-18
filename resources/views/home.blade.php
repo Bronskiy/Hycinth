@@ -25,7 +25,6 @@
          <h1>{{$slider_title}}</h1>
          <p>{{$slider_tagline}}</p>
          <a href="{{$slider_button_url}}" class="cstm-btn solid-btn">{{$slider_button_title}}</a>
-         <a href="javascript:void(0);" data-toggle="modal" data-target="#firstUserModal" class="cstm-btn solid-btn">First User</a>
       </div>
    </div>
 </section>
@@ -34,7 +33,7 @@
 
 
 
-@include('includes.home.homepage.search')
+@include('home.includes.homepage_search')
 
 <!--Tabs Section ends here-->
 <!--Popular event starts here-->

@@ -59,15 +59,15 @@
 
 
 @if(\Request::route()->getName() =="homepage" || \Request::route()->getName() =="homepage2")
-@include('includes.header')
+@include('home.includes.header')
 @else
-@include('includes.inner_header')
+@include('home.includes.inner_header')
 
 @endif
 
 @yield('content')
 
-@include('includes.footer')
+@include('home.includes.footer')
 
   <!-- Scripting starts here -->
 <!--     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>

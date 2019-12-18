@@ -41,7 +41,7 @@ public function getVendorData($request)
                                ->groupBy('categories.id')
                                ->get();
 
-     return view('home.vendors.listing',[
+     return view('home.business.listing',[
         'categories' => $category,
         'businesses' => $business->get(),
         'vendors' => $business->get(),
@@ -177,7 +177,7 @@ public function getBusiness(Request $request)
      $business = $this->getBusinesAccordingToSearch($request);
 
 
-           $vv = view('includes.home.business.list',[
+           $vv = view('home.includes.business.list',[
                      'businesses' => $business->get(),
                      'categoryCount' => $business->count()
                    ])->render();

@@ -42,12 +42,47 @@
          <div class="col-md-12">
            {{textarea($errors, 'Description*', 'description')}}
            </div>
+
+           <div class="col-md-12">
+           {{textarea($errors, 'Long Description*', 'long_description')}}
+           </div>
+
+
          <div class="col-md-6">
            {{datebox($errors, 'Start Date*', 'start_date')}}
            </div>
          <div class="col-md-6">
            {{datebox($errors, 'End Date*', 'end_date')}}
            </div>
+
+
+
+
+          <div class="col-md-6">
+
+             <div class="form-group">
+                 <label>Event Anticipated Start Time </label>
+                    <input type="text" id="start_time" value="" data-format="hh:mm A" class="input-small form-control" name="start_time">
+                    <p class="error">{{$errors->first('start_time')}}</p>
+              </div>
+           </div>
+
+           <div class="col-md-6">
+              <div class="form-group">
+                 <label>Event Anticipated End Time </label>
+                    <input type="text" id="end_time" value="" data-format="hh:mm A" class="input-small form-control" name="end_time">
+                    <p class="error">{{$errors->first('end_time')}}</p>
+              </div>
+           </div>
+
+
+
+
+
+
+
+
+
            <div class="col-md-6">
            {{textbox($errors, 'Min Person*', 'min_person')}}
            </div>
@@ -82,8 +117,74 @@
             </div>
            <!-- {{textbox($errors, 'Categories*', 'categories')}} -->
          </div>
+
+
+
+
+
+
+
+
+           <div class="col-md-6">
+           {{textbox($errors, 'Event Budget*', 'event_budget')}}
+           </div>
+
+            <div class="col-md-6">
+           {{textbox($errors, 'Seasons*', 'seasons')}}
+           </div>
+           <div class="col-md-6">
+           {{textarea($errors, 'Notpad*', 'notepad')}}
+           </div>
+           <div class="col-md-6">
+           {{textarea($errors, 'Ideas*', 'ideas')}}
+           </div>
+         <div class="col-md-6">
+                
+
+                 <div class="form-group "><label class="control-label">Colour*</label>
+                     <input type="color" value="" name="color" id="get" style="width: 46px; margin-left: -2px;">
+                     <input type="text" readonly value="" class="form-control" name="colour" id="colour">
+                 </div>
+           </div>
+
+            <div class="col-md-6">
+           {{choosefile($errors, 'Event Image*', 'event_picture')}}
+           </div>
+
+
+
+
+
+
+
+
+  <div class="col-md-12">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="customCheck1" required name="agree" value="1">
+                  <label class="custom-control-label" for="customCheck1">I agree to the Terms and Conditions for sharing my Event details with vendors.</label>
+                </div>
+            </div>
+
+
+
       </div>
+
+                
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       <div class="card-footer">
         <button type="submit" id="UserEventFormBtn" class="btn btn-primary">Create</button>
@@ -110,9 +211,20 @@
 
 
 @section('scripts')
+  <script src="{{url('clockface/js/clockface.js')}}" type="text/javascript"></script>
 <script src="{{url('/js/setLatLong.js')}}"></script>
 <script src="{{url('/js/validations/userEventValidation.js')}}"></script>
 <script type="text/javascript">
+ $("body").on('change','#get',function(){
+     var val = $( this ).val();
+     $("body").find("#colour").val(val);
+});
+
+
+
+$('#start_time').clockface();
+$('#end_time').clockface();
+
   $('#event_categories').select2({ 
     closeOnSelect: false
    });

@@ -158,3 +158,134 @@
 	background: transparent;
 	color:#dc3545; 
 }
+
+/*cstm-checkboxes*/
+
+.checkbox-input-wrap {
+    padding: 15px;
+    background: #f2f2f3;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    position: relative;
+}
+.category-checkboxes.category-title {
+    font-size: 17px;
+}
+.category-checkboxes label {
+    padding-left: 50px;
+    line-height: 30px;
+    margin-bottom: 0px;
+    position: relative;
+}
+.category-checkboxes label:before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    background: #36496c;
+}
+.category-checkboxes input:checked ~ label:after {
+    display: block;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+}
+.category-checkboxes input {
+    opacity: 0;
+    position: absolute;
+}
+.category-checkboxes input:checked ~ label:before {
+    background: #eda208;
+}
+.category-checkboxes label::after {
+    height: 30px;
+    width: 30px;
+    content: "✔";
+    font-size: 18.6667px;
+    text-align: center;
+    line-height: 30px;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    color: rgb(255, 255, 255);
+    display: none;
+}
+.payment-table label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 11px;
+}
+
+
+
+.custom-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #11111169;
+    z-index: 99;
+    display: none;
+}
+.custom-loading {
+    position: fixed !important;
+    height: 100vh;
+    background: rgba(0,0,0,0.8) !important;
+    text-align: center;
+    z-index: 9999999;
+}
+
+
+
+.loader5 {
+  display:inline-block;
+  width: 0;
+    height:0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 30px solid #36496c;
+  border-top: 30px solid #eda208;
+   -webkit-animation: loader5 1.6s ease-in-out infinite alternate;
+   animation: loader5 1.6s ease-in-out infinite alternate;
+   position: absolute;
+   top: 50%;
+   left: 46%;
+   -webkit-transform: translate(-50%, -50%);
+       -ms-transform: translate(-50%, -50%);
+           transform: translate(-50%, -50%);
+}
+
+@keyframes loader5 {
+   from {-webkit-transform: rotate(0deg);transform: rotate(0deg);}
+   to {-webkit-transform: rotate(720deg);transform: rotate(720deg);}
+}
+@-webkit-keyframes loader5 {
+   from {-webkit-transform: rotate(0deg);}
+   to {-webkit-transform: rotate(720deg);}
+}
+.inn-form-group label{
+    color: #6d6d6d;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.error {
+    display: block;
+    color: #c22;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    font-weight: 400!important;
+    font-size:12px;
+}
+form .form-group {
+    margin-bottom: 20px;
+    position: relative;
+}

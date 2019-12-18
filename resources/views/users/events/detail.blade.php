@@ -29,51 +29,61 @@
       <div class="row">
 
         <!-- [ rating list ] end-->
-                                <div class="col-md-6 m-b-30">
-                                    <div class="tab-content" id="myTabContent">
 
-                                            <table class="table table-hover">               
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                          <a>
-                                                          <h4>{{ $user_event->title }} </h4>
-                                                            <p class="m-0">{{ $user_event->description }}</p>
-                                                          </a>
-                                                        </td>
-                                                        <td class="text-right" style="white-space: nowrap;">
-                                                          ({{ $user_event->min_person }} - {{ $user_event->max_person }}) Persons
-                                                        </br>
-                                                              <i class="fas fa-clock"></i> 
-                                                    @php  
-                                                      $start_time = \Carbon\Carbon::now();  
-                                                      $finish_time = \Carbon\Carbon::parse($user_event->end_date); 
-                                                      $result = $start_time->diffInDays($finish_time, false);
-                                                    @endphp
+                            @php  
+                              $start_time = \Carbon\Carbon::now();  
+                              $finish_time = \Carbon\Carbon::parse($user_event->end_date); 
+                              $result = $start_time->diffInDays($finish_time, false);
+                            @endphp
+                           
+                                <div class="{{$result <= 0 ? 'col-md-12' : 'col-md-6 mb-4'}}">
+                                    <div class="tab-content card equal-card" id="myTabContent">
+                                      <div class="card-block">
+                                      <div class="upcmg-evnt-head"><h3>Event Details</h3></div>
+                    <table class="table table-hover">               
+                        <tbody>
+                            <tr>
+                              <td width="100">
 
-                                                    @if($result <= 0)
-                                                      Past Event
-                                                    @else
-                                                      {{ $result }} Days left
-                                                    @endif
-                                                          
+                                     @if($user_event->event_picture !="")
+                                     <img src="{{url($user_event->event_picture)}}" width="100%">
+                                     @endif
+                                 
 
-                                                        </td>
-                                                    </tr>
-                                                   
-                                                </tbody>
-                                            </table>
+                              </td>
+                                <td>
+                                  <a>   <h4>{{ $user_event->title }} </h4>
+                                       <p class="m-0">{{ $user_event->description }}</p>
+                                  </a>
+                                </td>
+                                <td class="text-right" style="white-space: nowrap;">
+                                  ({{ $user_event->min_person }} - {{ $user_event->max_person }}) Persons
+                                </br>
+                                      <i class="fas fa-clock"></i> 
+                           
+                              @if($result <= 0)
+                              Past Event
+                            @else
+                              {{ $result }} Days left
+                            @endif
+
+                                </td>
+                            </tr>
+                           
+                        </tbody>
+                    </table>
                                     </div>
                                 </div>
+                              </div>
 
 
                                  @if($result > 0)
-                                <div class="col-md-6 m-b-30">
-                                    <div class="card Upcoming-event-card">
+                                <div class="col-md-6 mb-4">
+                                    <div class="Upcoming-event-card card equal-card">
                                         <div class="card-block">
                                           <div class="upcmg-evnt-head text-center">
                                           <!-- <h2>Upcoming Events</h2> -->
-                                          <h3>{{$user_event->title}}</h3>
+                                          <h3>Count-Down to your event is on</h3>
                                           <!-- <p>{{$user_event->description}}</p> -->
                                         </div>
                                         <div class="countdown-timer-container">
@@ -99,20 +109,10 @@
 
     
 
-         <div class="col-md-6">
-          <div class="card"> 
+         <div class="col-md-6 mb-4">
+          <div class="card equal-card"> 
       <div class="card-body">
-          <div class="cstm-card-head">
-          <h5 class="card-title">{{$user_event->title}}</h5>
-          @if($result > 0)
-          <ul class="count-down-timer">
-              <li><span id="days_{{$user_event->id}}"></span>days</li>
-              <li><span id="hours_{{$user_event->id}}"></span>Hours</li>
-              <li><span id="minutes_{{$user_event->id}}"></span>Minutes</li>
-              <li><span id="seconds_{{$user_event->id}}"></span>Seconds</li>
-            </ul>
-          @endif
-        </div>
+          <div class="upcmg-evnt-head"><h3>Vendors Services Related to your Event</h3></div>
 
         <div class="card-inn-content">
           <div class="table-responsive">
@@ -120,6 +120,7 @@
               @foreach($user_event->eventCategories as $category)
                <tr>
                  <td><label>{{$category->eventCategory->label}} </label></td>
+                 <td><p class="hire-status">Not Hired</p></td>
                  <td>
                   @if(count( categoryOrders($category->eventCategory->id, $user_event->id) ) > 0)
                   <span class="event-status color-green">
@@ -147,10 +148,13 @@
 </div>
 </div>
 
-                                <div class="col-md-6 m-b-30">
-                                  <div class="event-planning-navigation">
+                                <div class="col-md-6 mb-4">
+                                  <div class="event-planning-navigation card equal-card">
+                                    <div class="card-body">
+                                     <div class="upcmg-evnt-head"><h3>My Event Planning Tool Box</h3></div>
+                                     <nav class="evt-plan-navigation">
                                       <ul>
-                                        <li>Start<br> Planning</li>
+                                        <li>Welcome Back {{ Auth::user()->name }}! Lets continue Planning</li>
                                         <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-list-alt"></i></span>Guest List</a></li>
                                        <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fab fa-chrome"></i></span>Create <br/> Website</a></li>
                                        <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-gift"></i></span>Gift</a></li>
@@ -160,7 +164,9 @@
                                        <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-tasks"></i></span>Checklist</a></li>
                                         <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-comments"></i></span>Message <br/> Vendors</a></li>
                                        
-                                     </ul>                                                              
+                                     </ul>
+                                     </nav>  
+                                     </div>                                                            
                                   </div>
                                </div>
 

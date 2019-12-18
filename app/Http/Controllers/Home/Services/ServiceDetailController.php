@@ -11,7 +11,7 @@ use Gmopx\LaravelOWM\LaravelOWM;
 class ServiceDetailController extends Controller
 {
     
- public $folderPath ='home.vendors.services.detail';
+ public $folderPath ='home.business.services.detail';
 
 #-----------------------------------------------------------------------
 #     Service Page 
@@ -35,13 +35,7 @@ public function index2(Request $request, $cateSlug, $vendorSlug)
 	 $vendorCategory = VendorCategory::with([
 	 	'VendorPackage' => function($vp){
 	 		return $vp->where('status', 1)->get();
-	 	},
-	 	// 'basicInfo',
-	 	// 'faqs',
-	 	// 'DealsDiscount',
-	 	// 'ImageGallery',
-	 	// 'VideoGallery',
-	 	// 'description',
+	 	} 
 	 ])->where('publish', 1);
 
 
@@ -59,14 +53,23 @@ public function index2(Request $request, $cateSlug, $vendorSlug)
 
      $event = \App\VendorEventGame::with('Event')->where('category_id',$category->first()->id)->where('user_id',$vendor->user_id);
 
-     $amenities = \App\VendorAmenity::where('category_id',$category->first()->id)
-                                   ->where('type','amenity')
-                                   ->where('user_id',$vendor->user_id);
-
-     $games = \App\VendorAmenity::where('category_id',$category->first()->id)
-                                   ->where('type','game')
-                                   ->where('user_id',$vendor->user_id);
+     $amenities = \App\VendorAmenity::
+                                   join('category_variations','category_variations.category_id','=','vendor_amenities.category_id')
+                                   ->select('vendor_amenities.*')
+                                   ->where('vendor_amenities.category_id',$category->first()->id)
+                                   ->where('vendor_amenities.type','amenity')
+                                   ->where('vendor_amenities.user_id',$vendor->user_id)
+                                   ->groupBy('vendor_amenities.amenity_id');
  
+     $games = \App\VendorAmenity::join('category_variations','category_variations.category_id','=','vendor_amenities.category_id')                            ->select('vendor_amenities.*')
+                                   ->where('vendor_amenities.category_id',$category->first()->id)
+                                   ->where('vendor_amenities.type','game')
+                                   ->where('vendor_amenities.user_id',$vendor->user_id)
+                                   ->groupBy('vendor_amenities.amenity_id');
+
+
+                            
+  
  
 return view($this->folderPath.'.index')
       ->with('games',$games)
@@ -124,36 +127,6 @@ public function getweather(Request $req) {
     return response()->json($weather_json);
 }
 
-
-// public function getweather(Request $req) {
-// 	$headers = [
-//         'Content-Type: application/json',
-//         "Access-Control-Allow-Headers: x-requested-with"
-//    ];
-    
-//     $weather = curl_init();
-
-//     curl_setopt($weather, CURLOPT_URL, "http://api.openweathermap.org/data/2.5/forecast/daily?APPID=9b4bbf30228eb8528d36e79d05da1fac&lat=$req->latitude&lon=$req->longitude&units=metric&cnt=$req->ctn");
-//     curl_setopt($weather, CURLOPT_RETURNTRANSFER, true);
-//     curl_setopt($weather, CURLOPT_HTTPHEADER, $headers);
-//     $server_output = curl_exec($weather);
-//     curl_close ($weather);
-//     $weather_json = json_decode($server_output, true);
-
-//     return response()->json($weather_json);
-//  }
-
-// public function getOWMWeather(Request $req) {
-// 	$lowm = new LaravelOWM();
-
-// 	 $query = array(
-//  	'lat' => $req->latitude,
-//  	'lon' => $req->longitude
-//  );
-//  // $current_weather = $lowm->getCurrentWeather($query, $lang = 'en', $units = 'metric', $cache = false, $time = 600);
-//   $current_weather = $lowm->getCurrentWeather('london');
-//  return response()->json($current_weather);
-// }
  
 
 }

@@ -31,6 +31,8 @@ class DealsController extends Controller
                                ->orderBy('sorting','ASC')
                                ->groupBy('categories.id')
                                ->get();
+
+                               
    	 return view('home.deals.index')
    	 ->with('categories',$category);
    }
@@ -46,7 +48,7 @@ class DealsController extends Controller
 
 public function getDeals(Request $request)
 {
- $discount_deals = DiscountDeal::with('Business.getChatOfLoggedUser')
+          $discount_deals = DiscountDeal::with('Business.getChatOfLoggedUser')
                           ->join('vendor_categories','vendor_categories.id','=','discount_deals.vendor_category_id')
                           ->join('categories','categories.id','=','vendor_categories.category_id')
                           ->join('users','users.id','=','vendor_categories.user_id')
@@ -71,7 +73,7 @@ public function getDeals(Request $request)
 
      // return $discount_deals->get();
 
-    $vv = view('includes.home.deals.list', $this->getSesssionData())
+    $vv = view('home.includes.deals.list', $this->getSesssionData())
         ->with('discount_deals',$discount_deals->paginate(20));
    return response()->json([
        'status' => 1,
@@ -260,10 +262,79 @@ public function sendMessage($request,$deal)
 
 
 
-public function detail()
+public function detail($slug)
 {
-    return view('home.deals.detail');
+
+    $discount_deals = DiscountDeal::with('Business.getChatOfLoggedUser')
+                          ->join('vendor_categories','vendor_categories.id','=','discount_deals.vendor_category_id')
+                          ->join('categories','categories.id','=','vendor_categories.category_id')
+                          ->join('users','users.id','=','vendor_categories.user_id')
+                          ->select('discount_deals.*')
+                         
+                          ->where(function($t) {
+                             $data = $t->first();
+
+                             if($data->deal_life == 1) {
+                                  $data->whereDate('discount_deals.expiry_date', '>=', date('Y-m-d'));
+                             }
+                             
+                             
+
+                          })
+                          ->where('vendor_categories.status',3)
+                          ->where('vendor_categories.publish',1)
+                          ->where('discount_deals.slug',$slug)
+                          ->first();
+   if($discount_deals->type_of_deal == 0){
+         $vendor_category_id = $discount_deals->vendor_category_id;
+         $VendorPackage = \App\VendorPackage::where('vendor_category_id',$vendor_category_id)->get();
+
+   }else{
+         $VendorPackage = \App\VendorPackage::where('vendor_category_id',$vendor_category_id)
+                                 ->where('id',$discount_deals->package_id)->get();
+
+   }
+ 
+  $chats = $discount_deals->Business->getChatOfLoggedUser != null && $discount_deals->Business->getChatOfLoggedUser->count() > 0 ? 1 : 0;
+  $links = $this->getChatMessages($discount_deals);
+  return view('home.deals.detail',$this->getSesssionData())
+                                       ->with('deal',$discount_deals)
+                                       ->with('chats',$chats)
+                                       ->with('links',$links)
+                                       ->with('packages',$VendorPackage);
 }
+
+
+
+
+
+
+
+
+
+#--------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------
+
+
+public function getChatMessages($deal)
+{
+  if($deal->Business->getChatOfLoggedUser != null && $deal->Business->getChatOfLoggedUser->count() > 0){
+      $link = url(route('deal_discount_chats')).'?chat_id='.$deal->Business->getChatOfLoggedUser->id;
+      return $links = '<div class="deal-sucess-msg"><span class="suc-msg-icon"><i class="far fa-clock"></i></span>Your message has been sent to vendor, soon vendor will reply you.<div class="btn-wrap text-center mt-3"><a href="'.$link.'" class="cstm-btn">View chat</a>
+     </div>
+     </div>';
+  }
+}
+
+
+
+
+
+
+
+
+
 
 
 

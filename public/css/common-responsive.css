@@ -1,5 +1,38 @@
+@media (min-width: 1400px){
+.countdown-timer-container .count-down-timer li{
+       width: 100px;
+       margin-right: 20px;
+       font-size: 18px;
+   }
+   .countdown-timer-container .count-down-timer li span{
+   	font-size: 40px;
+   }
+}
 @media (max-width: 991px){
 	.custom-left-content {
 	    margin-bottom: 20px;
+	}
+	.first-user-form {
+    padding: 20px;
+   }
+   #firstUserModal .about-event-img {
+    height: 300px;
+}
+}
+
+@media (max-width: 767px){
+	.form-img-cont h2{
+		font-size: 24px;
+	}
+	#firstUserModal .form-img-cont p {
+    font-size: 16px;
+   }
+   .coming-evet-des{
+   	width: 100%;
+   }
+}
+@media (max-width: 480px){
+	#firstUserModal .about-event-img{
+		height: 200px;
 	}
 }

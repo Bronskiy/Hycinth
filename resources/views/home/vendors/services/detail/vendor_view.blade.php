@@ -122,40 +122,35 @@
 		<div class="card-heading">
 			<h3>Amenities and Games</h3>			
 		</div>		
-		<div class="Amenities-content">
-           <div class="row">
-           	<div class="col-lg-6">
-           		<h4 class="faq-question">Amenities</h4>
-           		  <ul class="detail-listing"> 
+		 
 
-           		  @if($amenities->count() > 0)          		  	 
+       <div class="Amenities-content">
+                     <div class="row">
+                        <div class="col-lg-6">
+                           <h4 class="faq-question">Amenities</h4>
+                           <ul class="detail-listing">
+                            
+                              @foreach($vendor->VendorAmenity as $game)
+                              
+                                     @if(getSeasonOfBusiness($game->amenity_id,$game->category_id,'amenity') > 0)
+                                        <li>{{$game->amenity->name}}</li>
+                                     @endif
+                              @endforeach
+                           </ul>
+                        </div>
+                        <div class="col-lg-6">
+                           <h4 class="faq-question">Games</h4>
+                           <ul class="detail-listing">
+                                @foreach($vendor->VendorGames as $game)   
+                                            @if(getSeasonOfBusiness($game->amenity_id,$game->category_id,'game') > 0)             
+                                              <li>{{$game->amenity->name}}</li>
+                                            @endif
+                              @endforeach
 
-                     @foreach($amenities->get() as $amen)
-                          <li>{{$amen->amenity->name}}</li>
-                     @endforeach
-           		  @endif
-           		  	 
-           		  </ul>
-           	</div>
-
-           	<div class="col-lg-6">
-           		<h4 class="faq-question">Games</h4>
-           		  <ul class="detail-listing"> 
-
-           		   @if($events->count() > 0)          		  	 
-
-                     @foreach($games->get() as $event)
-                             <li>{{$event->amenity->name}}</li>
-                     @endforeach
-
-           		  @endif          		  	 
-           		  	    
-
-           		  </ul>
-           	</div>
-
-           </div>
-      </div>
+                           </ul>
+                        </div>
+                     </div>
+                  </div>
    </div>
 </div>
 

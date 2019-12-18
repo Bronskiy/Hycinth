@@ -31,7 +31,7 @@
 @if(!empty($resp['stripe_user_id']))
     <form action="{{ route('stripeSettings') }}" id="stripeForm" method="post">
       {{csrf_field()}}
-      <input type="text" name="stripe_account" id="stripe_account"> value="<?php echo $resp['stripe_user_id']; ?>" 
+      <input type="text" name="stripe_account" id="stripe_account" value="<?php echo $resp['stripe_user_id']; ?>" 
       class="form-control wdth" readonly>
 
       @if(!empty(Auth::User()->stripe_account))

@@ -6,11 +6,15 @@ function categoryOrders($category_id, $event_id) {
 
 
 
-
-
-
-
-
+function getSeasonOfBusiness($session_id,$category_id,$type)
+{                   
+  return $seasons = \App\CategoryVariation::where('category_id',$category_id)
+                                   ->where('category_variations.type',$type)
+                                   ->where('variant_id',$session_id)
+                                   ->count();
+}
+ 
+ 
 
 function getPackageEvents($package)
 {
@@ -1814,7 +1818,7 @@ function selectMultiple($errors,$label,$name,$id,$colname,$array,$value=null){
 		$text = "";
 		$text .= "<div class='form-group is-empty '>";
 		$text .="<label class='label-file'>$label</label><div class='custom-file'>";
-		$text .= "<input type='file' class='form-control $border custom-file-input' name='$name' value='".$v."'><span class='custom-file-control'></span> </div>";
+		$text .= "<input type='file' class='form-control $border custom-file-input2' name='$name' value='".$v."'><span class='custom-file-control'></span> </div>";
 		$text .="<label for='$name' class='error'>".$errors->first($name)."&nbsp;".$ex."</label>";
 		$text .="</div>";
 

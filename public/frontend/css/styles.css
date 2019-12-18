@@ -452,6 +452,7 @@ body.modal-open{
     font-weight: 400;
     padding: 6px 25px;
     padding-right: 55px;
+    -webkit-appearance: none;
 }
 textarea.form-control {
     height: auto;
@@ -666,8 +667,8 @@ body.body-fixed {
 }
 
 #menus-list li a {
-    width: 180px;
-    height: 180px;
+    width: 130px;
+    height: 130px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -685,7 +686,7 @@ body.body-fixed {
         -ms-flex-direction: column;
             flex-direction: column;
     color: #fff;
-    border: 8px solid #2c3e5d
+    border: 4px solid #2c3e5d
 }
 
 #menus-list li a:hover {
@@ -697,7 +698,7 @@ body.body-fixed {
 }
 
 #menus-list li h3 {
-    font-size: 18px;
+    font-size: 16px;
     margin-top: 10px;
     text-transform: uppercase;
     color: #fff;
@@ -5285,37 +5286,6 @@ table.compere-table th {
 }
 .select2-choices{ display:-webkit-inline-box; max-width: 250px;   }
 
-.loader5 {
-  display:inline-block;
-  width: 0;
-    height:0;
-    border-left: 30px solid transparent;
-    border-right: 30px solid transparent;
-    border-bottom: 30px solid #36496c;
-  border-top: 30px solid #eda208;
-   -webkit-animation: loader5 1.6s ease-in-out infinite alternate;
-   animation: loader5 1.6s ease-in-out infinite alternate;
-   position: absolute;
-   top: 50%;
-   left: 46%;
-   -webkit-transform: translate(-50%, -50%);
-       -ms-transform: translate(-50%, -50%);
-           transform: translate(-50%, -50%);
-}
-
-@keyframes loader5 {
-   from {-webkit-transform: rotate(0deg);transform: rotate(0deg);}
-   to {-webkit-transform: rotate(720deg);transform: rotate(720deg);}
-}
-@-webkit-keyframes loader5 {
-   from {-webkit-transform: rotate(0deg);}
-   to {-webkit-transform: rotate(720deg);}
-}
-.inn-form-group label{
-    color: #6d6d6d;
-    font-weight: 500;
-    font-size: 15px;
-}
 
 /*custom range slider css*/
 
@@ -6266,6 +6236,8 @@ table.compere-table th {
     border-radius: 4px;
     text-align: left;
 }
+
+/*checkboxes css*/
 .checkbox-input-wrap {
     padding: 15px;
     background: #f2f2f3;
@@ -7090,5 +7062,252 @@ table.compere-table th {
     color: #ea2222;
 }
 /********************/
+
+
+.cart-modal .modal-dialog {
+    max-width: 1100px;
+    width: 100%;
+}
+/*.modal-open .cart-modal.modal{
+    display: flex !important;
+    align-items: center;
+}*/
+.cart-modal.modal .modal-body{
+    padding:0px;
+}
+.cart-modal .about-event-img {
+    height: 100%;
+    margin-bottom: 0;
+}
+.cart-modal .modal-header{
+    border: none;
+}
+.cart-modal .about-event-img {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    }
+    .first-user-form {
+    padding: 20px;
+    padding-left: 0;
+}
+   .cart-modal .about-event-img:after{
+        position: absolute;
+        content: "";
+        left: 0;
+        top: 0;
+        background: rgba(0,0,0,0.5);
+        width: 100%;
+        height: 100%;
+    }
+.cart-modal .modal-dialog button.close{
+    top: -15px;
+       right: -15px;
+    }
+.cart-modal .form-img-cont {
+    position: absolute;
+    width: 100%;
+    top: 70px;
+    color: #fff;
+    z-index: 111;
+    padding: 15px;
+    text-align: left;
+}
+.form-img-cont h2 {
+    color: #fff;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 36px;
+}
+.cart-modal .about-event-img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+select.form-control:not([size]):not([multiple]){
+    height: 60px;
+}
+.cart-modal .form-group>label {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.cart-modal .btn-wrap .cstm-btn {
+    width: 31%;
+    float: left;
+    font-size: 12px;
+    margin-left: 1px;
+    padding: 12px;
+}
+.cart-modal .btn-wrap .cstm-btn:last-child{
+    margin-right: 0px;
+}
+.vendor-category {
+    padding: 15px;
+    background: #f2f2f3;
+    border: 1px solid #ddd;
+    margin-bottom: 15px;
+    border-radius: 8px;
+}
+
+.cart-modal .form-img-cont p {
+    color: #fff;
+    line-height: normal;
+}
+
+
+
+/*detail*/
+.deal-discount-card .deals-card .deal-img {
+    width: 370px;
+    height: 255px;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0px;
+}
+.deal-discount-card figure.deal-img {
+    height: 400px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    font-size: 35px;
+}
+.deal-discount-card .coupon-code {
+    position: relative;
+    padding: 3px 15px;
+    margin-right: 4px;
+}
+.deal-discount-card figure.deal-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.deal-discount-card .deal-img .discount-per{
+    font-size: 30px;
+}
+.deal-discount-card .dealls-dis-head p.ser-text {
+    font-size: 18px;
+}
+
+.deal-discount-card .deal-img .discount-per {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: rgba(228, 154, 6, 0.8);
+}
+
+.deal-discount-card .side-btns-wrap {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+}
+
+
+.cart-table th {
+    border: none;
+    background-color: #f6f6f6;
+    text-align: left;
+    padding: 12px 20px;
+    color: #606060;
+    vertical-align: top;
+    font-size: 14px;
+    font-weight: 600;
+    border: none !important;
+}
+.cart-table td {
+    padding: 20px;
+    border-bottom: #eee 1px solid;
+    border-top: none;
+    border-right: none;
+    vertical-align: middle;
+}
+
+.cart-table.bottom .cart-btns {
+    float: right;
+}
+.cart-table.bottom {
+    width: 100%;
+}
+.apply-coupon input {
+    background-color: #fff;
+    display: inline-block;
+    float: left;
+    margin: 0;
+    border: 0;
+    height: 35px;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 4px;
+    border: 1px solid #d1d1d1;
+}
+.apply-coupon {
+    float: left;
+}
+.action-btn-wrap {
+    display: flex;
+    align-items: center;
+}
+.danger-btn {
+    background: #dc3545;
+    color: #fff;
+}
+
+
+.cart-totals .headline {
+    font-size: 20px;
+    background-color: #fff;
+    padding-right: 10px;
+    z-index: 5;
+    position: relative;
+    float: left;
+    text-transform: uppercase;
+}
+.cart-totals .line {
+    border-bottom: 1px solid #ebebeb;
+    width: 100%;
+    float: left;
+    height: 1px;
+    display: inline-block;
+    margin: -16px 0 25px;
+}
+table.cart-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: none;
+}
+.cart-totals .cart-table th {
+    vertical-align: middle;
+    border-bottom: 1px solid #fff;
+    width: 40%;
+    padding: 10px 15px;
+}
+.deal-discount-card .deal-starting-date strong {
+    background: #d0d0d0;
+    color: #333;
+    font-weight: normal;
+    padding: 0px 4px;
+    margin-left: 9px;
+    border-radius: 3px;
+    margin-right: 10px;
+    font-size: 14px;
+    line-height: 27px;
+}
+
+
+
+
+
+
+
 
 

@@ -44,7 +44,7 @@ class CategoryVariation extends Model
     }
 
 
-
+    
 
 
 }

@@ -11,6 +11,7 @@
     line-height: normal;
     display: inline-block;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 .cstm-btn:hover, .cstm-btn:focus {
     color: #35486b;
@@ -44,12 +45,11 @@
 }
 
 .upcmg-evnt-head h2 {
-    font-size: 27px;
+    font-size: 23px;
     font-weight: bold;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     color: #36496c;
 }
-
 
 /*countdown timer css*/
 .countdown-timer-container {
@@ -303,12 +303,12 @@ table label {
 }
 
 .card-heading h3 {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     display: inline-block;
     text-align: center;
-    padding-bottom: 15px;
+    padding-bottom: 10px;
     position: relative;
     text-transform: uppercase;
 }
@@ -325,6 +325,17 @@ table label {
     width: 100px;
     background: #eda208;
     bottom: 0;
+}
+.first-user-form select.form-control:not([size]):not([multiple]){
+    height: 40px;
+        padding: 6px 20px;
+}
+.first-user-form .input-field-wrap .form-control {
+    height: 40px;
+    padding: 6px 20px;
+}
+#thirdEventCreate {
+width: 100%;
 }
 /*responsive css*/
 @media(max-width:1199px){
@@ -370,8 +381,8 @@ table label {
 
 .event-planning-navigation ul {
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -379,6 +390,17 @@ table label {
     margin: 0;
     padding: 0;
 }
+.event-planning-navigation li:first-child {
+    width: 150px;
+    height: 150px;
+    background: #d1d1d1;
+    border: 2px solid #34476a;
+    left: -27px;
+    top: -25px;
+    padding: 10px;
+    color: #34486a;
+}
+
 .event-planning-navigation li {
     position: absolute;
     -webkit-transition: all 2s linear;
@@ -404,16 +426,16 @@ table label {
     font-size: 20px;
 }
 
-
-
 #firstUserModal .modal-dialog {
     max-width: 1100px;
-    width: 100%;
+    width: 90%;
+    margin: 0px auto;
+    margin-top: 30px;
 }
-.modal-open #firstUserModal.modal{
+/*.modal-open #firstUserModal.modal{
     display: flex !important;
     align-items: center;
-}
+}*/
 #firstUserModal.modal .modal-body{
     padding:0px;
 }
@@ -450,6 +472,10 @@ table label {
     color: #fff;
     z-index: 111;
     padding: 15px;
+}
+#firstUserModal .form-img-cont p {
+    font-size: 21px;
+    font-weight: 600;
 }
 .form-img-cont h2 {
     color: #fff;
@@ -493,7 +519,7 @@ table label {
 
 
 .multi_step_form #msform #progressbar {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   overflow: hidden;
   position: relative;
   z-index: 1;
@@ -515,10 +541,10 @@ table label {
 .multi_step_form #msform #progressbar li:before {
   content: "1";
   /*font: normal normal normal 30px/50px;*/
-  font-size: 20px;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
+  font-size: 13px;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
   display: block;
   background: #eaf0f4;
   border-radius: 50%;
@@ -543,11 +569,11 @@ table label {
 .multi_step_form #msform #progressbar li:after {
   content: '';
   width: 100%;
-  height: 10px;
+  height: 4px;
   background: #eaf0f4;
   position: absolute;
   left: -50%;
-  top: 21px;
+  top: 14px;
   z-index: -1;
 }
 .multi_step_form #msform #progressbar li:last-child:after {
@@ -573,3 +599,105 @@ table label {
   text-transform: uppercase;
   display: inline-block;
 }
+
+
+.pac-container.pac-logo{
+    z-index: 9999999;
+}
+
+
+.vendor-category {
+    padding: 6px;
+    background: #f2f2f3;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+.category-checkboxes.category-title {
+    font-size: 16px;
+}
+.formFileds {
+    min-height: 300px;
+}
+.card.equal-card {
+    height: 100%;
+    margin-bottom: 0;
+}
+.coming-event-img {
+    width: 135px;
+    height: 100px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-right: 20px;
+    background: #d9e1f1;
+    padding: 5px;
+}
+.upcmg-evnt-head {
+    display: flex;
+    border-bottom:1px solid #e2e2e2;
+}
+.coming-event-img img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.coming-evet-des {
+    width: calc(100% - 155px);
+}
+#myTabContent{
+    padding:0px;
+}
+#myTabContent table h4 {
+    font-size: 26px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+#myTabContent .upcmg-evnt-head{
+    border: none;
+}
+.hire-status {
+    background: transparent;
+    font-size: 11px;
+    font-weight: bold;
+    border: 2px solid #eda208;
+    text-transform: uppercase;
+    color: #eda208;
+    padding: 4px 11px;
+    text-align: center;
+    border-radius: 6px;
+    line-height: normal;
+    display: inline-block;
+    cursor: pointer;
+    white-space: nowrap;
+}
+nav.evt-plan-navigation {
+    min-height: 455px;
+    position: relative;
+}
+.custom-file{
+    height: auto;
+}
+.main-outer-tab .card-block {
+    min-height: 300px;
+}
+
+/*.select2-selection.select2-selection--multiple {
+    background: #f4f7fa;
+    padding: 10px 20px;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #f4f7fa;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    height: 42px;
+}*/
+

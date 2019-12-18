@@ -45,10 +45,10 @@
 <body>
 
   <!-- Main Sidebar Container -->
-@include('includes.admin.navbar')
+@include('admin.includes.navbar')
 
 <!-- Main Sidebar Container -->
-@include('includes.admin.header')
+@include('admin.includes.header')
 
 <div class="pcoded-main-container">
   <div class="pcoded-wrapper">
