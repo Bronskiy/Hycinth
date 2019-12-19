@@ -101,6 +101,7 @@
 @include('home.includes.deals.package')
 @include('home.includes.modals.cart_popup')
 @include('home.includes.modals.chat')
+@include('home.includes.modals.login')
 
  
 @endsection
@@ -112,7 +113,8 @@
 
 @section('scripts')
   
-<script type="text/javascript" src="{{url('/js/deals/deals.js')}}"></script>
+<!-- <script type="text/javascript" src="{{url('/js/deals/deals.js')}}"></script> -->
+<script type="text/javascript" src="{{url('/js/deals/cart.js')}}"></script>
 
 <script>
 $(document).ready(function(){

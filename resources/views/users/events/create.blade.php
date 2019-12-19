@@ -57,12 +57,14 @@
 
 
 
+ 
 
-          <div class="col-md-6">
+
+         <div class="col-md-6">
 
              <div class="form-group">
                  <label>Event Anticipated Start Time </label>
-                    <input type="text" id="start_time" value="" data-format="hh:mm A" class="input-small form-control" name="start_time">
+                    <input type="text" id="start_time" autocomplete="false"  data-format="hh:mm A" class="input-small form-control" name="start_time" value="{{old('start_time')}}">
                     <p class="error">{{$errors->first('start_time')}}</p>
               </div>
            </div>
@@ -70,14 +72,10 @@
            <div class="col-md-6">
               <div class="form-group">
                  <label>Event Anticipated End Time </label>
-                    <input type="text" id="end_time" value="" data-format="hh:mm A" class="input-small form-control" name="end_time">
+                    <input type="text" id="end_time" autocomplete="false" value="{{old('end_time')}}" data-format="hh:mm A" class="input-small form-control" name="end_time">
                     <p class="error">{{$errors->first('end_time')}}</p>
               </div>
            </div>
-
-
-
-
 
 
 
@@ -132,18 +130,14 @@
             <div class="col-md-6">
            {{textbox($errors, 'Seasons*', 'seasons')}}
            </div>
-           <div class="col-md-6">
-           {{textarea($errors, 'Notpad*', 'notepad')}}
-           </div>
-           <div class="col-md-6">
-           {{textarea($errors, 'Ideas*', 'ideas')}}
-           </div>
+
          <div class="col-md-6">
                 
 
                  <div class="form-group "><label class="control-label">Colour*</label>
-                     <input type="color" value="" name="color" id="get" style="width: 46px; margin-left: -2px;">
-                     <input type="text" readonly value="" class="form-control" name="colour" id="colour">
+                     <input type="color" value="" name="colour" id="get" style="width: 46px; margin-left: -2px;">
+                     <input type="text" readonly value="{{old('colour')}}" class="form-control" name="colour" id="colour">
+                       <p class="error">{{$errors->first('colour')}}</p>
                  </div>
            </div>
 

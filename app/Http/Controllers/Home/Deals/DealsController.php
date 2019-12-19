@@ -265,7 +265,7 @@ public function sendMessage($request,$deal)
 public function detail($slug)
 {
 
-    $discount_deals = DiscountDeal::with('Business.getChatOfLoggedUser')
+         $discount_deals = DiscountDeal::with('Business.getChatOfLoggedUser')
                           ->join('vendor_categories','vendor_categories.id','=','discount_deals.vendor_category_id')
                           ->join('categories','categories.id','=','vendor_categories.category_id')
                           ->join('users','users.id','=','vendor_categories.user_id')
@@ -290,8 +290,10 @@ public function detail($slug)
          $VendorPackage = \App\VendorPackage::where('vendor_category_id',$vendor_category_id)->get();
 
    }else{
-         $VendorPackage = \App\VendorPackage::where('vendor_category_id',$vendor_category_id)
-                                 ->where('id',$discount_deals->package_id)->get();
+     $vendor_category_id = $discount_deals->vendor_category_id;
+        $VendorPackage = \App\VendorPackage::where('vendor_category_id',$vendor_category_id)
+                                ->where('id',$discount_deals->packages)
+                                 ->get();
 
    }
  

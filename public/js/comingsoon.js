@@ -1,10 +1,10 @@
-function comingsoon(end_date, days, hours, minutes, seconds) {
+function comingsoon(start_date, days, hours, minutes, seconds) {
   const second = 1000,
       minute = second * 60,
       hour = minute * 60,
       day = hour * 24;
 
-const date_val = $(`#${end_date}`).val()
+const date_val = $(`#${start_date}`).val()
 let countDown = new Date(date_val).getTime(),
     x = setInterval(function() {
 

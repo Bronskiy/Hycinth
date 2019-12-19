@@ -116,7 +116,14 @@
                                         <div class="btn-area inn-card-footer" id="buy-content">
                                           <!--  <a href="{{url(route('payWithPackage',$package->slug))}}" class="cstm-btn">Buy</a> -->
 
-                                          <a href="javascript:void(0);"  data-toggle="modal" data-target="#cartModal" class="cstm-btn">Buy</a>
+                                          <a href="javascript:void(0);" 
+                                             class="cstm-btn cartModal" 
+                                             data-id="{{$package->id}}"
+                                             data-title="{{$package->title}}"
+                                             data-dealId="{{!empty($deal) ? $deal->id : 0}}"
+                                             data-description="{{$package->description}}"
+                                             data-action="{{url(route('cart.packageCheck'))}}"
+                                             >Buy</a>
                                           
                                             <div class="custom-control custom-checkbox hide">
                                                 <input type="checkbox" data-package="{{$package}}" class="custom-control-input" id="customCheck_{{$package->id}}">

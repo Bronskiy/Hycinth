@@ -11,12 +11,32 @@ use App\Category;
 use App\UserEventMetaData;
 use App\Models\Order;
 use Auth;
+use Redirect;
 
 class UserEventController extends Controller
 {
-    public function index() {
-    	$events = UserEvent::where(['user_id' => Auth::User()->id])->paginate(10);
-    	return view('users.events.index')->with('events', $events);
+    public function index($status='all') {
+     
+
+
+    	$events = UserEvent::where(['user_id' => Auth::User()->id])
+        ->where(function($t) use($status){
+            if($status == 'upcoming'){
+                $t->whereDate('start_date','>',date('Y-m-d'));
+            }elseif($status == 'past'){
+                $t->whereDate('end_date','<',date('Y-m-d'));
+            }elseif($status == 'ongoing'){
+                $t->whereDate('start_date','>=',date('Y-m-d'))->whereDate('end_date','<=',date('Y-m-d'));
+                $t->orWhereDate('start_date','<=',date('Y-m-d'));
+
+
+            }
+        })
+        ->OrderBy('start_date','ASC')
+        ->paginate(10);
+    	return view('users.events.index')
+        ->with('status',$status)
+        ->with('events', $events);
     }
 
     public function showCreateEvent() {
@@ -41,9 +61,8 @@ class UserEventController extends Controller
                  'max_person' => 'required',
                  'event_picture' => 'required|image',
                  'seasons' => 'required',
-                 'colour' => 'required',
-                 'notepad' => 'required',
-                 'ideas' => 'required',
+                 'colour' => 'required'
+                 
          ]);
 
         $path = 'images/events/';
@@ -65,8 +84,7 @@ class UserEventController extends Controller
         $e->max_person = trim($request->max_person);
         $e->seasons = trim($request->seasons);
         $e->colour = trim($request->colour);
-        $e->ideas = trim($request->ideas);
-        $e->notepad = trim($request->notepad);
+        
         $e->event_picture = $request->hasFile('event_picture') ? uploadFileWithAjax($path, $request->event_picture) : $e->event_picture;
         $e->save();
           
@@ -142,19 +160,7 @@ class UserEventController extends Controller
     }
 
     public function update(Request $request, $slug) {
-  //       $user = Auth::User();
-  //       $path = 'images/events/';
-		// $user_event = UserEvent::FindBySlugOrFail($slug);
-
-  //       UserEventMetaData::where('event_id', $user_event->id)->delete();
-
-  //       $this->save_event_meta_data($request->event_categories, $user, $user_event);
-
-  //       $request['event_picture'] = $request->has('event_picture') ? uploadFileWithAjax($path, $request->file('event_picture')) : $user_event->event_picture;
-
-  //   	$user_event->update($request->all());
-
-
+ 
 
         $this->validate($request,[
                  'title' => 'required',
@@ -172,8 +178,7 @@ class UserEventController extends Controller
                  'event_picture' => 'image',
                  'seasons' => 'required',
                  'colour' => 'required',
-                 'notepad' => 'required',
-                 'ideas' => 'required',
+                  
    ]);
 
 
@@ -199,8 +204,7 @@ class UserEventController extends Controller
         $e->max_person = trim($request->max_person);
         $e->seasons = trim($request->seasons);
         $e->colour = trim($request->colour);
-        $e->ideas = trim($request->ideas);
-        $e->notepad = trim($request->notepad);
+        
         $e->event_picture = $request->hasFile('event_picture') ? uploadFileWithAjax($path, $request->event_picture) : $e->event_picture;
         $e->save();
           
@@ -229,6 +233,13 @@ class UserEventController extends Controller
             $meta->key_value = $value;
             $meta->save();
         }
+    }
+
+    public function eventExtraDetail(Request $request, $slug){
+        $e = UserEvent::FindBySlugOrFail($slug);
+        $e->update($request->all());
+        $e->save();
+       return Redirect::back()->with('flash_message', 'User Event has been updated successfully');
     }
 
 }

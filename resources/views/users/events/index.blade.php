@@ -31,13 +31,16 @@
     <div class="col-xl-12 col-md-12 m-b-30">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active show" id="allevent-tab" data-toggle="tab" href="#allevent" role="tab" aria-controls="allevent" aria-selected="true">All Events</a>
+                <a href="{{url(route('user_events'))}}" class="nav-link  {{$status == 'all' ? 'active' : ''}} show">All Events</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="upcoming-tab" data-toggle="tab" href="#upcoming" role="tab" aria-controls="upcoming" aria-selected="false">Upcoming Events</a>
+                <a href="{{url(route('user_event','upcoming'))}}" class="nav-link {{$status == 'upcoming' ? 'active' : ''}}" id="upcoming-tab">Upcoming Events</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{url(route('user_event','ongoing'))}}" class="nav-link {{$status == 'ongoing' ? 'active' : ''}}" id="upcoming-tab">Ongoing Events</a>
             </li>
              <li class="nav-item">
-                <a class="nav-link" id="expred-tab" data-toggle="tab" href="#expired" role="tab" aria-controls="expred" aria-selected="false">Past Events</a>
+                <a href="{{url(route('user_event','past'))}}" class="nav-link {{$status == 'past' ? 'active' : ''}}" id="expred-tab">Past Events</a>
             </li>
         </ul>
         <div class="tab-content" id="myTabContent">
@@ -47,7 +50,7 @@
                     
                     <tbody>
                         
-                         @foreach($events as $event)
+                 @foreach($events as $event)
                         <tr>
                             <td width="30">
                             @if($event->event_picture)
@@ -63,90 +66,31 @@
                               </a>
                             </td>
                             
-                            <td class="text-right" style="white-space: nowrap;"><i class="fas fa-clock"></i>
-          @php  
-            $start_time = \Carbon\Carbon::today();  
-            $finish_time = \Carbon\Carbon::parse($event->end_date); 
-            $result = $start_time->diffInDays($finish_time, false);
-          @endphp
+                            <td class="text-right" style="white-space: nowrap;">
 
-          @if($result <= 0)
-            Past Event
-          @else
-            {{ $result }} Days left
-          @endif
-             </td>
-          </tr>
-          @endforeach
+                              <p><b>From {{date('d/m/Y',strtotime($event->start_date))}}</b> To <b>{{date('d/m/Y',strtotime($event->end_date))}}</b></p>
+
+                              <i class="fas fa-clock"></i>
+                               @php  
+                                $start_time = \Carbon\Carbon::today();  
+                                $finish_time = \Carbon\Carbon::parse($event->end_date); 
+                                $result = $start_time->diffInDays($finish_time, false);
+                               @endphp
+
+                               <?= EventCurrentStatus($event->start_date,$event->end_date) ?>
+                               
+                           </td>
+                      </tr>
+                    @endforeach
                     </tbody>
                 </table>
                 @else
                  No Events Found
                 @endif
             </div>
-            <div class="tab-pane fade" id="upcoming" role="tabpanel" aria-labelledby="upcoming-tab">
-                <table class="table table-hover">
-                    <tbody>
-                      @foreach($events as $event)
-                        @php  
-                          $start_time = \Carbon\Carbon::today();  
-                          $finish_time = \Carbon\Carbon::parse($event->end_date); 
-                          $result = $start_time->diffInDays($finish_time, false);
-                        @endphp
-                      @if($result > 0)
-                        <tr>
-                            <td width="30">
-                             @if($event->event_picture)
-                              <figure class="coming-event-img">
-                                  <img src="{{ url($event->event_picture) }} ">
-                              </figure>  
-                              @endif
-                            </td>
-                            <td>
-                              <a href="{{route('user_show_detail_event', $event->slug)}}">
-                              <h4>{{ $event->title }} </h4>
-                                <p class="m-0">{{ $event->description }}</p>
-                              </a>
-                            </td>
-                            <td class="text-right" style="white-space: nowrap;"><i class="fas fa-clock"></i> 
-                              {{ $result }} Days left
-                          </td>
-                        </tr>
-                        @endif
-                        @endforeach
-                       
-                    </tbody>
-                </table>
+    
 
-            </div>
-
-            <div class="tab-pane fade" id="expired" role="tabpanel" aria-labelledby="expred-tab">
-                <table class="table table-hover">
-                    
-                    <tbody>
-                      @foreach($events as $event)
-                        @php  
-                          $start_time = \Carbon\Carbon::today(); 
-                          $finish_time = \Carbon\Carbon::parse($event->end_date); 
-                          $result = $start_time->diffInDays($finish_time, false);
-                        @endphp
-                      @if($result <= 0)
-                        <tr>
-                            <td>
-                              <a href="{{route('user_show_detail_event', $event->slug)}}">
-                              <h4>{{ $event->title }} </h4>
-                                <p class="m-0">{{ $event->description }}</p>
-                              </a>
-                            </td>
-                            <td class="text-right" style="white-space: nowrap;"><i class="fas fa-clock"></i>
-                            Past Events {{ \Carbon\Carbon::parse($event->end_date)->format('Y-m-d') }}
-                            </td>
-                        </tr>
-                        @endif
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
+ 
         </div>
         {{ $events->links() }}
     </div>

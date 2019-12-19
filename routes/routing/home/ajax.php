@@ -22,6 +22,30 @@ Route::group(['prefix' => 'ajax'], function(){
 
 
 
+
+
+
+
+#------------------------------------------------------------------------------------------------------
+#  Cart page
+#------------------------------------------------------------------------------------------------------
+
+
+Route::get('/check-package-carttime','Users\Cart\CartController@packageCheck')->name('cart.packageCheck');
+Route::get('/get-event-categories','Users\Cart\CartController@eventCategories')->name('cart.eventCategories');
+Route::post('/add-to-cart','Users\Cart\CartController@addToCart')->name('cart.addToCart');
+
+
+
+#------------------------------------------------------------------------------------------------------
+#  Cart page
+#------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
 });
 
 

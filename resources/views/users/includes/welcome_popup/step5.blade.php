@@ -16,12 +16,7 @@
            <div class="col-md-6">
                {{choosefile($errors, 'Event Picture*', 'event_picture')}}
            </div>
-          <div class="col-md-6">
-               {{textarea($errors, 'Ideas*', 'ideas')}}
-           </div>
-           <div class="col-md-6">
-               {{textarea($errors, 'Notepad*', 'notepad')}}
-           </div>
+
            <div class="col-md-12">
                 <div class="custom-control custom-checkbox">
                   <input type="checkbox" class="custom-control-input" name="agree" value="1" id="customCheck1">

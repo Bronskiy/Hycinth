@@ -6,6 +6,32 @@ function categoryOrders($category_id, $event_id) {
 
 
 
+
+function EventCurrentStatus($start_date,$end_date)
+{
+
+  $start = strtotime($start_date);
+  $end = strtotime($end_date);
+  $today = strtotime(date('Y-m-d'));
+ 
+
+if($start <= $today && $end >= $today){
+  return 'On Going Event';
+}elseif($start > $today){
+  return 'Upcoming Event';
+}elseif($end < $today){
+  return 'Past Event';
+}
+
+ 
+}
+
+
+
+
+
+
+
 function getSeasonOfBusiness($session_id,$category_id,$type)
 {                   
   return $seasons = \App\CategoryVariation::where('category_id',$category_id)

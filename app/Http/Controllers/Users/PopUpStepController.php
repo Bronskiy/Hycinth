@@ -38,8 +38,7 @@ public function saveEventFromPopup(Request $request)
                  'event_picture' => 'required|image',
                  'seasons' => 'required',
                  'colour' => 'required',
-                 'notepad' => 'required',
-		         'ideas' => 'required',
+                 
    ]);
 //return $request->all();
 
@@ -65,8 +64,7 @@ public function saveEventFromPopup(Request $request)
         $e->max_person = trim($request->max_person);
         $e->seasons = trim($request->seasons);
         $e->colour = trim($request->colour);
-        $e->ideas = trim($request->ideas);
-        $e->notepad = trim($request->notepad);
+         
         $e->event_picture = uploadFileWithAjax($path, $request->event_picture);
         $e->save();
           

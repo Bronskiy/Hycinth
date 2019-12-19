@@ -65,6 +65,14 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
+     public function UpcomingUserEvents()
+    {
+       return $this->hasMany('App\UserEvent')
+                   ->whereDate('start_date','>=',date('Y-m-d'))->OrderBy('start_date','ASC');
+                   
+    }
+
+
     public function newMessages()
     {
        return $this->hasMany('App\Models\Vendors\Chat')

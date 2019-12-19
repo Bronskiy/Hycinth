@@ -166,7 +166,8 @@ public function userLoginPopup(Request $request,$role="user")
                                      'status' => 1,
                                      'message' => 'Please wait... Redirecting to your dashboard.',
                                      'redirectLink' => url(route('user_dashboard')),
-                                     'users' => Auth::user()
+                                     'users' => Auth::user(),
+                                     'upcoming_events' => Auth::user()->UpcomingUserEvents
                                 ];
 
                             } else {
@@ -241,7 +242,7 @@ public function login($request)
 
                $arr = [
                     'status' => 1,
-                     'message' => 'Please wait... Redirecting to your dashboard.',
+                    'message' => 'Please wait... Redirecting to your dashboard.',
                     'redirectLink' => $url
                 ];
 

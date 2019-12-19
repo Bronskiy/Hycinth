@@ -53,7 +53,7 @@
 
              <div class="form-group">
                  <label>Event Anticipated Start Time </label>
-                    <input type="text" id="start_time" value="{{$user_event->start_time}}" data-format="hh:mm A" class="input-small form-control" name="start_time">
+                    <input type="text" id="start_time" autocomplete="false"  data-format="hh:mm A" class="input-small form-control" name="start_time" value="{{$user_event->start_time != '' ? $user_event->start_time : old('start_time')}}">
                     <p class="error">{{$errors->first('start_time')}}</p>
               </div>
            </div>
@@ -61,7 +61,7 @@
            <div class="col-md-6">
               <div class="form-group">
                  <label>Event Anticipated End Time </label>
-                    <input type="text" id="end_time" value="{{$user_event->end_time}}" data-format="hh:mm A" class="input-small form-control" name="end_time">
+                    <input type="text" id="end_time" autocomplete="false" value="{{$user_event->end_time != '' ? $user_event->end_time : old('end_time')}}" data-format="hh:mm A" class="input-small form-control" name="end_time">
                     <p class="error">{{$errors->first('end_time')}}</p>
               </div>
            </div>
@@ -117,19 +117,15 @@
             <div class="col-md-6">
            {{textbox($errors, 'Seasons*', 'seasons', $user_event->seasons)}}
            </div>
-           <div class="col-md-6">
-           {{textarea($errors, 'Notpad*', 'notepad', $user_event->notepad)}}
-           </div>
-           <div class="col-md-6">
-           {{textarea($errors, 'Ideas*', 'ideas', $user_event->ideas)}}
-           </div>
          <div class="col-md-6">
                 
 
                  <div class="form-group "><label class="control-label">Colour*</label>
                      <input type="color" value="{{$user_event->colour}}" name="color" id="get" style="width: 46px; margin-left: -2px;">
-                     <input type="text" readonly value="{{$user_event->colour}}" class="form-control" name="colour" id="colour">
+                     <input type="text" readonly value="{{$user_event->colour !='' ? $user_event->colour : old('colour')}}" class="form-control" name="colour" id="colour">
                  </div>
+
+                 <p class="error">{{$errors->first('colour')}}</p>
            </div>
 
             <div class="col-md-6">

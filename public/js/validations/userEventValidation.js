@@ -27,6 +27,17 @@ $(document).ready(function() {
         required: true,
         minStartDate: true
       },
+      "start_time":{
+      	required: true
+      },
+      "end_time":{
+      	required: true
+      },
+      "event_budget":{
+      	required: true,
+      	number: true,
+      	min: 1
+      },
       "min_person": {
         required: true,
         digits: true,
@@ -52,6 +63,12 @@ $(document).ready(function() {
         required: true,
       },
       "event_type": {
+        required: true
+      },      
+      "seasons": {
+        required: true
+      },      
+      "colour": {
         required: true
       },
       "event_categories[]": {

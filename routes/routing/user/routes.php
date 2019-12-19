@@ -10,11 +10,13 @@
          #-----------------------------------------------------------------------------------
 
           Route::get('/events', 'Users\UserEventController@index')->name('user_events');
-          Route::get('/events/create', 'Users\UserEventController@showCreateEvent')->name('user_show_create_event');
-          Route::post('/events/create', 'Users\UserEventController@create')->name('user_show_create_event');
+          Route::get('/events/{id}', 'Users\UserEventController@index')->name('user_event');
+          Route::get('/event/create', 'Users\UserEventController@showCreateEvent')->name('user_show_create_event');
+          Route::post('/event/create', 'Users\UserEventController@create')->name('user_show_create_event');
           Route::get('/events/edit/{slug}', 'Users\UserEventController@showEditEvent')->name('user_show_edit_event');
           Route::get('/events/detail/{slug}', 'Users\UserEventController@showDetailEvent')->name('user_show_detail_event');
           Route::post('/events/edit/{slug}', 'Users\UserEventController@update')->name('user_show_edit_event');
+          Route::post('/events/update/{slug}', 'Users\UserEventController@eventExtraDetail')->name('eventExtraDetail');
 
 
          #-----------------------------------------------------------------------------------

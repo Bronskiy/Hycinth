@@ -10,20 +10,28 @@
                   <figure class="about-event-img">
                      <img src="{{ asset('/frontend/images/event-form-img.png') }}">
                      <div class="form-img-cont">
-                        <h2 class="modal-title">Lorem ipsum is simply</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing is simply dummy text of the printing</p>
+                        <h2 class="modal-title modal-package-title">Package Title</h2>
+                        <div class="modal-package-description">Description</div>
                      </div>
                   </figure>
                </div>
                <div class="col-lg-6">
                   <div class="first-user-form">
                      <div class="card-heading">
-                        <h3>Lorem ipsum is simply</h3>     
-                        </div>
+                        <h3>Choose Your Event.</h3>  
+                        <div class="messageNotofications"></div>   
+                    </div>
+                        <form data-action="" id="AddToCart">
                      <div class="row">
+
+                        <div class="messageNotofications"></div>
+                           <input type="hidden" name="package_id" id="package_id" value="0">
+                           <input type="hidden" name="deal_id" id="deal_id" value="0">
                         <div class="col-lg-12">
                            <div class="form-group">
-                              <select class="form-control select2 eventType" name="event_type[]" data-placeholder="Event Type" id="cart-select">
+                              <select class="form-control select2 eventType"
+
+                               name="event_type" data-placeholder="Event Type" id="cart-select" data-action="{{url(route('cart.eventCategories'))}}">
                                  <option></option>
                               </select>
                               <span class="input-icon"><i class="fas fa-glass-cheers"></i></span>
@@ -31,56 +39,11 @@
                         </div>
                         <div class="col-lg-12">
                            <div class="form-group">
-                              <label>Services</label>
-                              <div class="row ">
-                                 <div class="col-lg-6">
-                                    <div class="vendor-category">
-                                       <div class="category-checkboxes category-title">
-                                          <input type="checkbox" name="" value="1" id="ser-0" checked="" readonly="">
-                                          <label for="category-1">Photographer  </label>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col-lg-6">
-                                    <div class="vendor-category">
-                                       <div class="category-checkboxes category-title">
-                                          <input type="checkbox" name="styles[]" value="4" id="ser-1" checked="" readonly="">
-                                          <label for="category-4">Lorem ipsum  </label>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col-lg-6">
-                                    <div class="vendor-category">
-                                       <div class="category-checkboxes category-title">
-                                          <input type="checkbox" name="" value="4" id="ser-2" checked="" readonly="">
-                                          <label for="category-4">Lorem ipsum  </label>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col-lg-6">
-                                    <div class="vendor-category">
-                                       <div class="category-checkboxes category-title">
-                                          <input type="checkbox" name="" value="4" id="ser-3"  checked="" readonly="">
-                                          <label for="category-4">Lorem ipsum  </label>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col-lg-6">
-                                    <div class="vendor-category">
-                                       <div class="category-checkboxes category-title">
-                                          <input type="checkbox" name="" value="4" id="ser-4"  checked="" readonly="">
-                                          <label for="category-4">Lorem ipsum  </label>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="col-lg-6">
-                                    <div class="vendor-category">
-                                       <div class="category-checkboxes category-title">
-                                          <input type="checkbox" name="" value="4" id="ser-5"  checked="" readonly="">
-                                          <label for="category-4">Lorem ipsum  </label>
-                                       </div>
-                                    </div>
-                                 </div>
+                              
+                              <div class="row " id="eventAllCategories">
+
+                              
+                                   
                               </div>
                            </div>
                         </div>
@@ -91,22 +54,34 @@
                               <a href="javascript:void(0);" class="cstm-btn solid-btn">Buy</a>
                            </div> -->
 
-                           <ul class="button-grp-wrap">
-                  <li>
-                     <a href="javascript:void(0);" data-toggle="tooltip" title="Add to Cart" class="icon-btn add-to-cart" data-original-title="More Detail"><i class="fas fa-cart-plus"></i>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="javascript:void(0);" data-toggle="tooltip" title=" Add to wishlist" class="icon-btn" data-original-title="Get Deal"><i class="fas fa-heart"></i>
-                     </a>
-                  </li>
-                  <li>
-                     <a href="javascript:void(0);" class="icon-btn get_detail" data-title="Photos" data-message="Buy now" data-id="30" data-chat="0" data-chatmessage="" data-toggle="tooltip" title="Buy now" data-original-title="Chat"><i class="fas fa-money-check-alt"></i>
-                     </a>
-                  </li>
-               </ul>
-                        </div>
+
+                           <button 
+                           type="button" 
+                           class="btn btn-addCartButton"
+                           id="btn-addCartButton" 
+                           data-action="{{url(route('cart.addToCart'))}}">
+                           <i class="fas fa-cart-plus"></i> Add To Cart
+                           </button>
+
+                         <!--   <ul class="button-grp-wrap">
+                                 <li>
+                                    <a href="javascript:void(0);" data-toggle="tooltip" title="Add to Cart" class="icon-btn add-to-cart" data-original-title="More Detail"><i class="fas fa-cart-plus"></i>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="javascript:void(0);" data-toggle="tooltip" title=" Add to wishlist" class="icon-btn" data-original-title="Get Deal"><i class="fas fa-heart"></i>
+                                    </a>
+                                 </li>
+                                 <li>
+                                    <a href="javascript:void(0);" class="icon-btn get_detail" data-title="Photos" data-message="Buy now" data-id="30" data-chat="0" data-chatmessage="" data-toggle="tooltip" title="Buy now" data-original-title="Chat"><i class="fas fa-money-check-alt"></i>
+                                    </a>
+                                 </li>
+                              </ul>
+ -->                        </div>
+                        @csrf
                      </div>
+                     </form>
+
                   </div>
                </div>
             </div>

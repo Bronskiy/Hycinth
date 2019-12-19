@@ -337,6 +337,11 @@ table label {
 #thirdEventCreate {
 width: 100%;
 }
+.eventStatus{
+    font-size: 26px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
 /*responsive css*/
 @media(max-width:1199px){
     .card .card-block, .card .card-body {
