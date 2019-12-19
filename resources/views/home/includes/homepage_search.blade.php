@@ -23,7 +23,7 @@
                         <a href="javascript:void();" data-tag="twenty-three" class="getCategory" data-id="{{$category->id}}"
                            data-url="{{ url(route('get_homepage_formdata',$category->id)) }}">
                            <span class="service-icon">
-                           <img class="category_icon" src="{{ asset('').'/'.$category->image }}" />
+                           <img class="category_icon" src="{{url($category->image)}}" />
                            </span>
                            <h3>{{ $category->label }}</h3>
                         </a>

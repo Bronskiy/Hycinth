@@ -36,11 +36,12 @@
                               $result = $start_time->diffInDays($finish_time, false);
                             @endphp
                            
-                                <div class="{{$result <= 0 ? 'col-md-12' : 'col-md-6 mb-4'}}">
+                                <div class="{{$result <= 0 ? 'col-md-12' : 'col-lg-6 mb-4'}}">
                                     <div class="tab-content card equal-card" id="myTabContent">
                                       <div class="card-block">
                                       <div class="upcmg-evnt-head"><h3>Event Details</h3></div>
-                    <table class="table table-hover">               
+                                  <div class="table-responsive">
+                    <table class="table table-hover event-detail-table">               
                         <tbody>
                             <tr>
                               <td width="100">
@@ -72,13 +73,14 @@
                            
                         </tbody>
                     </table>
+                  </div>
                                     </div>
                                 </div>
                               </div>
 
 
                                  @if($result > 0)
-                                <div class="col-md-6 mb-4">
+                                <div class="col-lg-6 mb-4">
                                     <div class="Upcoming-event-card card equal-card">
                                         <div class="card-block">
                                           <div class="upcmg-evnt-head text-center">
@@ -109,7 +111,7 @@
 
     
 
-         <div class="col-md-6 mb-4">
+         <div class="col-lg-6 mb-4">
           <div class="card equal-card"> 
       <div class="card-body">
           <div class="upcmg-evnt-head"><h3>Vendors Services Related to your Event</h3></div>
@@ -148,7 +150,7 @@
 </div>
 </div>
 
-                                <div class="col-md-6 mb-4">
+                                <div class="col-lg-6 mb-4">
                                   <div class="event-planning-navigation card equal-card">
                                     <div class="card-body">
                                      <div class="upcmg-evnt-head"><h3>My Event Planning Tool Box</h3></div>

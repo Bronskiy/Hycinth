@@ -380,15 +380,12 @@ width: 100%;
 }
 
 .event-planning-navigation ul {
-    position: absolute;
-    width: 150px;
-    height: 150px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    width: 100px;
+    height: 100px;
     list-style-type: none;
-    margin: 0;
     padding: 0;
+    margin: 170px auto;
 }
 .event-planning-navigation li:first-child {
     width: 150px;
@@ -672,15 +669,18 @@ width: 100%;
     cursor: pointer;
     white-space: nowrap;
 }
-nav.evt-plan-navigation {
+/*nav.evt-plan-navigation {
     min-height: 455px;
     position: relative;
-}
+}*/
 .custom-file{
     height: auto;
 }
 .main-outer-tab .card-block {
     min-height: 300px;
+}
+.event-detail-table{
+	min-width: 500px;
 }
 
 /*.select2-selection.select2-selection--multiple {
@@ -700,4 +700,17 @@ nav.evt-plan-navigation {
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     height: 42px;
 }*/
+
+/*responsive css*/
+@media(max-width: 480px){
+ .countdown-timer-container .count-down-timer li {
+    width: 58px;
+    margin-right: 5px;
+    padding: 4px;
+    font-size: 10px;
+}
+nav.evt-plan-navigation {
+    transform: scale(0.7);
+}
+}
 
