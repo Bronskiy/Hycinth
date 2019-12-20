@@ -1630,6 +1630,9 @@ table.custom-table tr td {
 .dashboard-logo img{
   max-width: 100%;
 }
+.card-block select {
+    min-width: 58px;
+}
 /****************/
 
 /*Dashboard css*/

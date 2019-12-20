@@ -108,6 +108,52 @@
       </div>
    </div>
 </section>
+
+<section class="content">
+   <div class="row">
+      <div class="col-lg-6 mb-4">
+         <div class="tab-content card equal-card" id="myTabContent">
+            <div class="card-block">
+               <div class="upcmg-evnt-head">
+                  <h3>Event Theme</h3>
+               </div>
+               <div class="table-responsive">
+                  <div class="amt-list-wrap">
+                     <label class="rec-heading">Seasons</label>
+                     <ul class="pkg-listing-grp">
+                        <li class="pkg-listing">{{$user_event->seasons}}</li>
+                     </ul>
+                  </div>                  
+
+                  <div class="amt-list-wrap">
+                     <label class="rec-heading">Color</label>
+                     <ul class="pkg-listing-grp">
+                        <li style="background-color: {{$user_event->colour}}; height: 20px; width: 50px;"></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>      
+
+      <div class="col-lg-6 mb-4">
+         <div class="tab-content card equal-card" id="myTabContent">
+            <div class="card-block">
+               <div class="upcmg-evnt-head">
+                  <h3>To Do List</h3>
+               </div>
+               <div class="table-responsive">
+                  <div class="amt-list-wrap">
+                     <ul class="pkg-listing-grp">
+                        <li class="pkg-listing">Coming Soon</li>
+                     </ul>
+                  </div>                  
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
 <section class="content">
    <div class="row">
    <div class="col-lg-6 mb-4">
@@ -115,6 +161,7 @@
          <div class="card-body">
             <div class="upcmg-evnt-head">
                <h3>Vendors Services Related to your Event</h3>
+               <p class="text-right">Budget ${{$user_event->event_budget}}</p>
             </div>
             <div class="card-inn-content">
                <div class="table-responsive">
@@ -246,7 +293,7 @@
           <form method="Post" action="{{ route('eventExtraDetail', $user_event->slug) }}">
             @csrf
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12">
               <div class="recommended-vedors-wrap ">
                 <div class="rec-card">
                   <h3 class="rec-heading">Idea Tracker</h3>
@@ -259,7 +306,7 @@
               </div>  
             </div>
 
-          <div class="col-md-6">                
+          <div class="col-md-12">                
             <div class="recommended-vedors-wrap ">
                <div class="rec-card">
                   <h3 class="rec-heading">Event Diary</h3>
@@ -302,6 +349,10 @@
 @section('scripts')
 <script src="{{url('/js/comingsoon.js')}}"></script>
 <script type="text/javascript">
+
+CKEDITOR.replace('ideas');
+
+
    comingsoon('start_date', 'days_{{$user_event->id}}', 'hours_{{$user_event->id}}', 'minutes_{{$user_event->id}}', 'seconds_{{$user_event->id}}');
    comingsoon('start_date', 'days-up_{{$user_event->id}}', 'hours-up_{{$user_event->id}}', 'minutes-up_{{$user_event->id}}', 'seconds-up_{{$user_event->id}}');
    

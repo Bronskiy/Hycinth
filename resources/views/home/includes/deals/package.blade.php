@@ -2,7 +2,7 @@
    <div class="container">
       <div class="pannel-card1">
          <div class="card-heading">
-            <h3>Packages</h3>
+            <h3>Related Packages</h3>
          </div>
          <div class="packages-content">
             <div class="packages-wrap">
@@ -120,6 +120,7 @@
                                              class="cstm-btn cartModal" 
                                              data-id="{{$package->id}}"
                                              data-title="{{$package->title}}"
+                                             data-price="${{$package->price}}"
                                              data-dealId="{{!empty($deal) ? $deal->id : 0}}"
                                              data-description="{{$package->description}}"
                                              data-action="{{url(route('cart.packageCheck'))}}"

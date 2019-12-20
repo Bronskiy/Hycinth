@@ -53,7 +53,7 @@ $redirectLink = $deal->type_of_deal == 0 ? $businessDetailLink : url(route('payW
     </figure>
      <div class="detal-card-details">
       <div class="dealls-dis-head">
-        <a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec"> <h4>{{$deal->title}}</h4></a>
+        <a href="{{url(route('get_deal_detail',[$deal->slug]))}}"> <h4>{{$deal->title}}</h4></a>
 
         <p class="ser-text"> <span><i class="fas fa-calendar-alt"></i></span>
         @if($deal->deal_life == 0)

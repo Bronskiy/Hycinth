@@ -62,18 +62,19 @@ $("body").on('click','.cartModal',function(e){
 
 
                        if(parseInt(result.status) == 0){
-                       
+                            $("body").find('.custom-loading').hide();
                           $this.find('.messageNotofications').html(ErrorMsg('warning',result.errors));
                            
                        }else if(parseInt(result.status) == 1){
-
+                           $("body").find('.custom-loading').hide();
                           updateDataToCartModalPopup(result);
                        }else if(parseInt(result.status) == 4){
-                             $this.find('.messageNotofications').html(ErrorMsg('warning',result.message));
+                              $("body").find('.custom-loading').hide();
+                              $this.find('.messageNotofications').html(ErrorMsg('warning',result.message));
                              $("body").find('#LoginModel').modal({backdrop: 'static', keyboard: false});
                            
                        }
-                      $("body").find('.custom-loading').hide();
+                     
                },
                complete: function() {
                         $("body").find('.custom-loading').hide();
@@ -88,12 +89,14 @@ $("body").on('click','.cartModal',function(e){
 
 
 function updateDataToCartModalPopupBeforeLogin($this) {
-      var $modal = $("body").find('#cartModal');
+    var $modal = $("body").find('#cartModal');
     var package_id = $this.attr('data-id');
     var package_title = $this.attr('data-title');
+    var package_price = $this.attr('data-price');
     var package_description = $this.attr('data-description');
     var deal_id = $this.attr('data-dealId');
-
+    
+    $modal.find('.modal-package-price').text(package_price);
     $modal.find('#package_id').val(package_id);
     $modal.find('#deal_id').val(deal_id);
     $modal.find('.modal-package-title').text(package_title);
@@ -106,11 +109,13 @@ function updateDataToCartModalPopup(result) {
     var $modal = $("body").find('#cartModal');
     var package_id = result.package.id;
     var package_title = result.package.title;
+    var package_price = result.package.price;
     var package_description = result.package.description;
 
     $modal.find('#package_id').val(package_id);
 
     $modal.find('.modal-package-title').text(package_title);
+    $modal.find('.modal-package-price').text(package_price);
     $modal.find('.modal-package-description').html(package_description);
 
    userCategoryOptions(result.upcoming_events);
@@ -133,7 +138,7 @@ function userCategoryOptions(upcoming_events) {
 function getAllcategoriesAssigedToEvent(result) {
      var $modal = $("body").find('#cartModal');
 
-          txt ='';
+          txt ='<h5>Vendor Services related to your Event</h5>';
      $.each( result.records, function( key, value ) {
        
           txt +='<div class="col-lg-6">';
@@ -156,14 +161,29 @@ function getAllcategoriesAssigedToEvent(result) {
 
 
 $("body").on('change','#cart-select',function(){
-          var $this = $( this );
+           var $modal = $("body").find('#cartModal');
+           var $this = $( this );
            var $modal = $("body").find('#cartModal');
            var package_id = $modal.find('#package_id').val();
+           var $messageBox = $modal.find('#AddToCart').find('.messageNotofications');
+           $messageBox.html('');
+         if($this.val() == ''){
+                $("body").find('.custom-loading').hide();
+                                    $messageBox.html(ErrorMsg('warning','Please choose your Event.'));
+                                    $modal.find('#eventAllCategories').html('');
+                                    setTimeout(function () {
+                                            $messageBox.html('');
+                                    },15000);
+
+                                          
+         }else{
+
           $.ajax({
                url : $this.attr('data-action'),
                data : {
                 event_id:$this.val(),
-                package_id:package_id
+                package_id:package_id,
+                deal_id:$this.attr('deal-id')
                },
                type: 'GET',  // http method
                dataTYPE:'JSON',
@@ -180,18 +200,20 @@ $("body").on('change','#cart-select',function(){
 
 
                       if(parseInt(data.status) == 1){
-                           
+                            $("body").find('.custom-loading').hide();
                            getAllcategoriesAssigedToEvent(data);
 
                       }else{
                         $("body").find('.custom-loading').hide();
                         //$this.find('button.cstm-btn').removeAttr('disabled');
-                         $modal.find('#eventAllCategories').html(data.errors);
-                       setTimeout(function () {
-                                $modal.find('#eventAllCategories').html('');
-                         },15000);
+                         $modal.find('#eventAllCategories').html('');
                          
-                      }
+
+                         $messageBox.html(ErrorMsg('warning',data.errors));
+                         setTimeout(function () {
+                                        $messageBox.html('');
+                                 },15000);
+                         }
                     
                },
                complete: function() {
@@ -201,6 +223,7 @@ $("body").on('change','#cart-select',function(){
                } 
 
         });
+    }
 
 
 });
@@ -218,7 +241,7 @@ loginValidation();
 
 function login($this) {
    
-   var $dealModal = jQuery("body").find('#myModalDealDiscount');
+   var $modal = $("body").find('#cartModal');
 
             $.ajax({
                url : $this.attr('action'),
@@ -239,11 +262,17 @@ function login($this) {
                            $this[0].reset();
                            $("body").find('#LoginModel').modal('hide');
 
-                           jQuery("body").find('#myModalDealDiscount')
+                                    $modal.find('#AddToCart')
                                           .find('.messageNotofications')
-                                          .html(ErrorMsg('success','Login Successfully. Now you can sen message to vendor for deal & Discount.'));
+                                          .html(ErrorMsg('success','Login Successfully'));
                             
-                              userCategoryOptions(data.upcoming_events);
+                                    userCategoryOptions(data.upcoming_events);
+                             
+                                setTimeout(function () {
+                                         $modal.find('#AddToCart')
+                                          .find('.messageNotofications')
+                                          .html('');
+                                 },5000);
 
                             $("body").find('.custom-loading').hide();
 
@@ -361,19 +390,21 @@ $("body").on('click','#btn-addCartButton',function(e){
                       if(parseInt(result.status) == 0){
                         //  $('#cartModal').modal('show');
                           $this.find('.messageNotofications').html(ErrorMsg('warning',result.errors));
+                           $("body").find('.custom-loading').hide();
                            //$this.find('button.cstm-btn').removeAttr('disabled');
                        }else if(parseInt(result.status) == 1){
+                         $("body").find('.custom-loading').hide();
                         $this.find('.messageNotofications').html(ErrorMsg('success',result.errors));
                              
                              window.location.href = result.url;
 
                        }else if(parseInt(result.status) == 4){
-
+                              $("body").find('.custom-loading').hide();
                              $this.find('.messageNotofications').html(ErrorMsg('warning',result.message));
                              $("body").find('#LoginModel').modal({backdrop: 'static', keyboard: false});
                              //$this.find('button.cstm-btn').removeAttr('disabled');
                        }
-                      $("body").find('.custom-loading').hide();
+                       
                },
                complete: function() {
                         $("body").find('.custom-loading').hide();

@@ -4109,6 +4109,7 @@ form label {
 .feature-detail ul li {
     width: 32%;
     display: inline-block;
+    vertical-align: top;
 }
 #map{
     margin-top: 20px;
@@ -4131,7 +4132,7 @@ form label {
     border-radius: 50%;
     background: #333;
     left: 0;
-    top: 12px;
+    top: 15px;
 }
 .Deals-content .detail-in-breif {
     border: 2px solid #eeeeee;

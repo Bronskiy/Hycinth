@@ -48,5 +48,5 @@ Route::get('/vendor/register', 'HomeController@register')->name('vendor_register
 
 
 
-
+Route::get('/my-cart', 'Users\Cart\CartController@index')->name('my_cart'); 
 

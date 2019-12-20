@@ -11,6 +11,7 @@
                      <img src="{{ asset('/frontend/images/event-form-img.png') }}">
                      <div class="form-img-cont">
                         <h2 class="modal-title modal-package-title">Package Title</h2>
+                        <h2 class="modal-title-price modal-package-price">Package Price</h2>
                         <div class="modal-package-description">Description</div>
                      </div>
                   </figure>
@@ -30,8 +31,11 @@
                         <div class="col-lg-12">
                            <div class="form-group">
                               <select class="form-control select2 eventType"
-
-                               name="event_type" data-placeholder="Event Type" id="cart-select" data-action="{{url(route('cart.eventCategories'))}}">
+                                 name="event_type"
+                                 data-placeholder="Event Type"
+                                 id="cart-select"
+                                 deal-id="{{!empty($deal) ? $deal->id : 0}}"
+                                 data-action="{{url(route('cart.eventCategories'))}}">
                                  <option></option>
                               </select>
                               <span class="input-icon"><i class="fas fa-glass-cheers"></i></span>

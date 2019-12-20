@@ -72,7 +72,12 @@ class VendorCategory extends Model
  
     public function subcategory()
     {
-       return $this->hasMany('App\VendorCategory','parent');
+       return $this->hasMany('App\VendorCategory','parent')
+                    ->join('categories', 'categories.id', '=', 'vendor_categories.category_id')
+                    ->select('vendor_categories.*')
+                    ->where('categories.status', 1)
+                    ->groupBy('vendor_categories.category_id');
+       ;
     }
 
 
@@ -136,7 +141,11 @@ class VendorCategory extends Model
     public function styles()
     {
        return $this->hasMany('App\VendorCategoryMetaData','vendor_category_id','id')
-                   ->where('vendor_category_meta_datas.type','styles');
+                   ->join('styles', 'styles.id', '=', 'vendor_category_meta_datas.keyValue')
+                   ->select('vendor_category_meta_datas.*')
+                   ->where('styles.status', 1)
+                   ->where('vendor_category_meta_datas.type','styles')
+                   ->groupBy('vendor_category_meta_datas.keyValue');
                     
     }
 
@@ -146,7 +155,11 @@ class VendorCategory extends Model
      public function seasons()
     {
        return $this->hasMany('App\VendorCategoryMetaData','vendor_category_id','id')
-                    ->where('vendor_category_meta_datas.type','seasons');
+                    ->join('seasons', 'seasons.id', '=', 'vendor_category_meta_datas.keyValue')
+                    ->select('vendor_category_meta_datas.*')
+                    ->where('seasons.status', 1)
+                    ->where('vendor_category_meta_datas.type','seasons')
+                    ->groupBy('vendor_category_meta_datas.keyValue');
                                                                                                                     
     }
     
@@ -175,7 +188,13 @@ class VendorCategory extends Model
 
 
     public function VendorEvents() {
-       return $this->hasMany('App\VendorEventGame', 'vendor_category_id', 'id');
+       return $this->hasMany('App\VendorEventGame', 'vendor_category_id', 'id')
+                    ->join('category_variations', 'category_variations.variant_id', '=', 'vendor_event_games.event_id')
+                    ->join('events', 'events.id', '=', 'vendor_event_games.event_id')
+                    ->select('vendor_event_games.*')
+                    ->where('events.status', 1)
+                    ->where('category_variations.type','event')
+                    ->groupBy('vendor_event_games.event_id');
     }
 
 

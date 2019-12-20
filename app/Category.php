@@ -44,7 +44,7 @@ class Category extends Model
 
     public function subCategory()
     {
-         return $this->hasMany('App\Category','parent')->where('parent','>',0)->where('subparent',0);
+         return $this->hasMany('App\Category','parent')->where('parent','>',0)->where('subparent',0)->where('status', 1);
     }
 
     public function childCategory()
@@ -105,12 +105,25 @@ class Category extends Model
 
       public function CategoryEvent()
     {
-        return $this->hasMany('App\CategoryVariation','category_id')->where('type','event');
+        return $this->hasMany('App\CategoryVariation','category_id')
+                    ->join('events', 'events.id', '=', 'category_variations.variant_id')
+                    ->select('category_variations.*')
+                    ->where('events.status', 1)
+                    ->where('category_variations.type','event')
+                    ->groupBy('category_variations.variant_id');
     }
 
       public function CategorySeasons()
     {
-        return $this->hasMany('App\CategoryVariation','category_id','category_id')->where('type','seasons');
+        return $this->hasMany('App\CategoryVariation','category_id','category_id')
+
+                    ->join('seasons', 'seasons.id', '=', 'category_variations.variant_id')
+                    ->select('category_variations.*')
+                    ->where('seasons.status', 1)
+                    ->where('category_variations.type','seasons')
+                    ->groupBy('category_variations.variant_id')
+
+                    ->where('type','seasons');
     }
 
     public function businesses() {

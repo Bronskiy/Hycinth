@@ -62,7 +62,7 @@ class DealController extends Controller
    {
    	  $category = $this->getData($slug);
       $packages = VendorPackage::where([
-                      'category_id' => $category->id,
+                      'category_id' => $category->category_id,
                       'user_id'=> Auth::User()->id,
                       'status'=> 1
                     ])->get();
@@ -134,7 +134,7 @@ class DealController extends Controller
                            ->where('user_id',Auth::user()->id);
 
       $packages = VendorPackage::where([
-                      'category_id' => $category->id,
+                      'category_id' => $category->category_id,
                       'user_id'=> Auth::User()->id,
                       'status'=> 1
                     ])->get();
