@@ -67,6 +67,14 @@
                            <i class="fas fa-cart-plus"></i> Add To Cart
                            </button>
 
+                           <button 
+                           type="button" 
+                           class="btn btn-addCartButton"
+                           id="btn-addWishListButton" 
+                           data-action="{{url(route('cart.addToWishList'))}}">
+                           <i class="fas fa-cart-plus"></i> Add To WishList
+                           </button>
+
                          <!--   <ul class="button-grp-wrap">
                                  <li>
                                     <a href="javascript:void(0);" data-toggle="tooltip" title="Add to Cart" class="icon-btn add-to-cart" data-original-title="More Detail"><i class="fas fa-cart-plus"></i>

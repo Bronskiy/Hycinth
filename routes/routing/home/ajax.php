@@ -33,7 +33,12 @@ Route::group(['prefix' => 'ajax'], function(){
 
 Route::get('/check-package-carttime','Users\Cart\CartController@packageCheck')->name('cart.packageCheck');
 Route::get('/get-event-categories','Users\Cart\CartController@eventCategories')->name('cart.eventCategories');
+
+
+
+
 Route::post('/add-to-cart','Users\Cart\CartController@addToCart')->name('cart.addToCart');
+Route::post('/add-to-wishlist','Users\Cart\CartController@addToWishList')->name('cart.addToWishList');
 
 
 

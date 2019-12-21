@@ -364,10 +364,28 @@ function loginValidation() {
 //------------------------------------------------------------------------------------
 
 
+$("body").on('click','#btn-addWishListButton',function(e){
+
+    e.preventDefault();
+    CartAndWishList($(this));
+
+});
 $("body").on('click','#btn-addCartButton',function(e){
      e.preventDefault();
+     CartAndWishList($(this));
 
-     var actionUrl = $( this ).attr('data-action');
+});
+
+
+
+
+
+
+
+
+function CartAndWishList($btnThis) {
+
+  var actionUrl = $btnThis.attr('data-action');
      var $this = $("body").find('form#AddToCart');
      var package_id = $this.attr('data-id');
      
@@ -414,17 +432,8 @@ $("body").on('click','#btn-addCartButton',function(e){
                }
 
     });
-
-});
-
-
-
-
-
-
-
-
-
+  
+}
 
 
 

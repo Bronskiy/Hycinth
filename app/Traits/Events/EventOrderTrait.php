@@ -15,7 +15,7 @@ trait EventOrderTrait {
 #--------------------------------------------------------------------
 #--------------------------------------------------------------------
  
-public function checkCategoryExistAccordingToEvent($package,$events,$discounted)
+public function checkCategoryExistAccordingToEvent($package,$events,$discounted=null)
 {  
     
     $order = EventOrder::where('category_id',$package->id)
@@ -39,7 +39,7 @@ public function totalSpendEvent($events,$user_id,$type=null)
                        	    if($type != null){
                        	    	$t->where('type',$type);
                        	    }
-                       });
+                       })->where('type','!=','whishlist');
     return $order->sum('discounted_price');
    
 }

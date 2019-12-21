@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Users\Cart;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Traits\Events;
+use App\Traits\Events\EventConditionBeforeCart as EventCartConditions;
+ 
 use App\VendorPackage;
 use App\PackageMetaData;
 use App\Models\EventOrder;
@@ -12,7 +13,8 @@ use Auth;
 class CartController extends Controller
 {
 
-use \App\Traits\Events\EventConditionBeforeCart;
+use EventCartConditions;
+ 
 
 
 
@@ -110,9 +112,11 @@ public function index(Request $request)
 
 public function addToCart(Request $request)
 {
+	   
 	     $package_id = $request->package_id; 
          $loginStatus = $this->loginOrNot();
-	     $package = VendorPackage::find($package_id);
+	    $package = VendorPackage::find($package_id);
+
 
 		 $message =[];
 
@@ -122,9 +126,12 @@ public function addToCart(Request $request)
   	                               ->where('user_id',Auth::user()->id)
 			  	                   ->where('id',$request->event_type);
 
+
          if($event->count() > 0){
 	                  $events = $event->first();
                       $response = $this->checkAllConditionOfEvent($events,$request);
+		 // print_r($response);
+	  //   die;
   	                  if($response['status'] == 0){
 		                $message = $response;
 		              }else{

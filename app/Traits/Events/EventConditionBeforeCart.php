@@ -9,6 +9,7 @@ use App\Models\Vendors\DiscountDeal;
 trait EventConditionBeforeCart {
 
 use EventOrderTrait;
+use WishList;
 
 
 
@@ -89,7 +90,7 @@ public function dealHaveRelatedEventType($events,$package_id)
 #-----------------------------------------------------------------------------------------  
 
 
-public function checkAllConditionOfEvent($events,$request)
+public function checkAllConditionOfEvent($events,$request,$type=null)
 {     
 	  $msg ='';
       $status = 0;
@@ -97,9 +98,13 @@ public function checkAllConditionOfEvent($events,$request)
 	  
 	  # this function is check that the event type of package which are selected and your event's eventtype both are same
 	  $evenTypeStatus = $this->dealHaveRelatedEventType($events,$package_id);
+
+
+	 # this function is check that the category of package which is selected and your event's category both are same
+	 $cartStatus = $this->chackAlreadyBuyOrCart($evenTypeStatus,$events,$package_id,$type);
 	   
 	   # this function is check that the category of package which is selected and your event's category both are same
-	  $categoryStatus = $this->PackageAndEventHaveSameCategory($evenTypeStatus,$events,$package_id);
+	  $categoryStatus = $this->PackageAndEventHaveSameCategory($cartStatus,$events,$package_id);
 
 	   # this function is check that the category of package which is selected and your event's category both are same
 	  $capacityStatus = $this->PackageAndEventCapacity($categoryStatus,$events,$package_id);
@@ -110,6 +115,10 @@ public function checkAllConditionOfEvent($events,$request)
 	  if($evenTypeStatus == 0){
 	  	  $status = 0;
           $msg = $this->checkAllConditionBeforeAddingPackage('event_type');
+	  }elseif ($cartStatus == 0) {
+	  	  $status = 0;
+	  	  $type_message = $type == 'wishlist' ? 'event_category_exist_wishlist' : 'event_category_exist';
+	  	  $msg = $this->checkAllConditionBeforeAddingPackage($type_message,$request);
 	  }elseif ($categoryStatus == 0) {
 	  	  $status = 0;
 	  	  $msg = $this->checkAllConditionBeforeAddingPackage('event_category',$request);
@@ -119,6 +128,7 @@ public function checkAllConditionOfEvent($events,$request)
 	  }elseif ($budgetStatus == 2) {
 	  	  $status = 0;
 	  	  $msg = $this->checkAllConditionBeforeAddingPackage('package_exist',$request); 	  
+	    
 	  }elseif ($budgetStatus == 0) {
 	  	  $status = 0;
 	  	  $msg = $this->checkAllConditionBeforeAddingPackage('out_of_budget',$request);
@@ -136,6 +146,29 @@ public function checkAllConditionOfEvent($events,$request)
 #-----------------------------------------------------------------------------------------
 #  check deal package have related to user event
 #-----------------------------------------------------------------------------------------  
+
+public function chackAlreadyBuyOrCart($evenTypeStatus,$events,$package_id,$type)
+{
+	 if($evenTypeStatus == 1){
+	 	      $package = VendorPackage::find($package_id);
+
+            $order = $this->checkCategoryExistAccordingToEvent($package,$events);
+
+	          $exist = $order->where(function($t) use($type){
+	                   if($type != null){
+	                   	$t->where('type',$type);
+	                   }
+	          })->count();
+         
+         return $exist == 0 ? 1 : 0;
+	 }
+}
+
+
+#-----------------------------------------------------------------------------------------
+#  check deal package have related to user event
+#-----------------------------------------------------------------------------------------  
+
 
 
 public function PackageAndEventHaveSameCategory($evenTypeStatus,$events,$package_id)
@@ -202,6 +235,8 @@ public function PackageAndEventBudget($capacityStatus,$events,$request)
 
         $budgetStatus = $event_budget >= $includedWithPackage ? 1 : 0;
 
+        $order = $EvenOrder->where('type','!=','whistlist')->count();
+
         return $EvenOrder->count() == 0 ? $budgetStatus : 2;
         
 
@@ -255,16 +290,38 @@ public function checkAllConditionBeforeAddingPackage($errorType,$request=[])
 		    //$package = VendorPackage::find($request->package_id);
 			$msg= 'Guest Capacity does not matched with your Events Package.';
 			break;
-		case 'package_exist':
+		case 'wishlist_package_exist':
 		    //$package = VendorPackage::find($request->package_id);
 			$msg= 'You already have this package. Try with another Package.';
+			break;
+
+		case 'wishlist_package_success':
+		    //$package = VendorPackage::find($request->package_id);
+			$msg= 'The Package has been added successfully in your Wishlist.';
+			break;
+        case 'event_category_exist_wishlist':
+		    //$package = VendorPackage::find($request->package_id);
+			$msg= 'The Package already exist in your Wishlist.';
+			break;
+
+	     case 'event_category_exist':
+		    //$package = VendorPackage::find($request->package_id);
+			$msg= 'The Package has been added successfully in your Wishlist.';
+			break;
+
+
+		case 'wishlist_package':
+		    //$package = VendorPackage::find($request->package_id);
+			$msg= 'You already have this package in your wishlist. Try with another Package.';
 			break;
 		case 'out_of_budget':
 		     $package = VendorPackage::find($request->package_id);
              $packagePrice = $this->CheckDealRelatedPackage($package,$request);
-             $events = \App\UserEvent::where('id',$request->event_id)->first();
+             $event_id = !empty($request->event_type) ? $request->event_type : $request->event_id;
+             $events = \App\UserEvent::where('id',$event_id);
+             $event_budget = $events->count() > 0 ? $events->first()->event_budget : $request->event_type;
 
-			$msg= 'Your Event Budget <b>($'.$events->event_budget.')</b> is low for this package <b>($'.$packagePrice.')</b>. Please increase the budget of your Event to proceed further.';
+			$msg= 'Your Event Budget <b>($'.$event_budget.')</b> is low for this package <b>($'.$packagePrice.')</b>. Please increase the budget of your Event to proceed further.';
 			break;
 		
 		default:
