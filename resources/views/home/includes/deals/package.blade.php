@@ -1,5 +1,5 @@
 <div class="package-card" id="package-sec">
-   <div class="container">
+   <div class="container lr-container">
       <div class="pannel-card1">
          <div class="card-heading">
             <h3>Related Packages</h3>

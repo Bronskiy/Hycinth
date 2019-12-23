@@ -31,26 +31,17 @@ public function addToWishList(Request $request)
 
 
          if($event->count() > 0){
-	                  $events = $event->first();
-                      $response = $this->checkAllConditionOfEvent($events,$request);
-		              
-		              if($response['status'] == 0){
+	                           $events = $event->first();
+                               $response = $this->checkAllConditionOfEvent($events,$request,'wishlist');
+                      if($response['status'] == 0){
+                             $message = $response;
+                      }else{
+                          $status = $this->saveToCartAfterCheck($request,$events,$package,'wishlist');
+		                  $url = url(route('my_cart'));
+                          $msg = $status == 1 ? 'This item is added to your wishlist successfully, we redirecting to Wishlist Page' : 'Something wrong going on.';
+                          $message = ['status' => $status,'url'=> $url,'errors' => $msg];
 
-		                 $message = $response;
-
-		              }else{
-
-		              	   $wishlist = $this->CheckWishListExist($events,$package);
-
-		              	   if($wishlist->count() == 0){
-		              	     	$msg = $this->checkAllConditionBeforeAddingPackage('wishlist_package_success',$request);
-                                $message = ['status' => 1,'url'=> '/','errors' => $msg];
- 		              	   }else{
-		              	   	   $msg = $this->checkAllConditionBeforeAddingPackage('wishlist_package_exist',$request); 	
-
-		                       $message = ['status' => 0,'url'=> '','errors' => $msg];
-		              	   	
-		              	   }
+		              	   
 
 
 		              }

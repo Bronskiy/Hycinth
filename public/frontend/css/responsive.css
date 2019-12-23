@@ -71,6 +71,9 @@
     .dealls-dis-head{
         padding-right: 0px;
     }
+    .deal-discount-card .dealls-dis-head{
+    	padding-right: 180px;
+    }
     .deals-card .deal-img{
        height: 230px;
     }
@@ -658,6 +661,21 @@ section.vendor-listing-sec .inner-content-detail {
 }
 .multistep-form-card{
         padding: 15px 0px;
+}
+.deal-discount-card .side-btns-wrap{
+	position: static;
+}
+.deal-discount-card .coupon-code{
+	margin-top: 0px;
+}
+.deal-discount-card .dealls-dis-head{
+	padding-right: 0px;
+}
+.deal-discount-card figure.deal-img{
+	height: 250px;
+}
+.deal-discount-card .dealls-dis-head p.ser-text {
+    font-size: 15px;
 }
 /******************/
 }

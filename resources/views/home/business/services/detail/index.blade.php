@@ -349,8 +349,27 @@ div#Video-carousel li span {
       </div>
    </div>
 </div>
-@include('home.vendors.services.detail.packages')
+ 
+
+
+ 
+@include('home.includes.deals.package')
+@include('home.includes.modals.cart_popup')
+@include('home.includes.modals.chat')
+@include('home.includes.modals.login')
 @include('home.vendors.services.detail.compare')
+
+
+
+
+
+
+
+
+
+
+
+
 <!--Testimonial Page starts here-->
 <section class="testimonial" id="review-sec">
    <div class="container lr-container" data-aos="fade-left" data-aos-duration="3000">
@@ -398,6 +417,7 @@ div#Video-carousel li span {
 
 
 @section('scripts')
+<script type="text/javascript" src="{{url('/js/deals/cart.js')}}"></script>
 <script type="text/javascript" src="{{url('/js/deals/deals.js')}}"></script>
 <script>
 jQuery(function() {

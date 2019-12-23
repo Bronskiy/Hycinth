@@ -79,6 +79,7 @@ return view($this->folderPath.'.index')
       ->with('services', $vendor->subcategory)
       ->with('VendorEvents', $vendor->VendorEvents)
       ->with('seasons',$vendor->seasons)
+      ->with('packages',$vendor->VendorPackage)
       ->with('recommendedVendor',$recommendedVendor)
       ->with('vendor',$vendor);
 }

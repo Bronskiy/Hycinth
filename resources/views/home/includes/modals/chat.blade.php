@@ -1,5 +1,13 @@
 
+<?php
+$name = !empty($name) ? $name : '';
+$email = !empty($email) ? $email : '';
+$phone = !empty($phone) ? $phone : '';
+$event_date = !empty($event_date) ? $event_date : '';
 
+
+
+?>
 
 
 

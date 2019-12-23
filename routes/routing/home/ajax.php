@@ -46,7 +46,8 @@ Route::post('/add-to-wishlist','Users\Cart\CartController@addToWishList')->name(
 #  Cart page
 #------------------------------------------------------------------------------------------------------
 
-
+Route::get('/get-cart-items','Users\Cart\CartController@cartItems')->name('cart.getCartItems');
+Route::get('/apply-coupon','Users\Cart\CartController@applyCoupon')->name('cart.applyCoupon');
 
 
 

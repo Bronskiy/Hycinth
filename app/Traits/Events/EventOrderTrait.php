@@ -18,7 +18,7 @@ trait EventOrderTrait {
 public function checkCategoryExistAccordingToEvent($package,$events,$discounted=null)
 {  
     
-    $order = EventOrder::where('category_id',$package->id)
+    $order = EventOrder::where('package_id',$package->id)
                        ->where('user_id',Auth::user()->id)
                        ->where('event_id',$events->id);
     return $order;
@@ -39,7 +39,8 @@ public function totalSpendEvent($events,$user_id,$type=null)
                        	    if($type != null){
                        	    	$t->where('type',$type);
                        	    }
-                       })->where('type','!=','whishlist');
+                       })
+                       ->where('type','!=','whishlist');
     return $order->sum('discounted_price');
    
 }
@@ -83,7 +84,46 @@ public function getDealJson($request)
 
 
 
+#---------------------------------------------------------------------------
+# check Actual Cart WishList
+#---------------------------------------------------------------------------
 
+public function checkActualCartWishList($event_id,$package_id,$user_id)
+{
+      $order = EventOrder::where('user_id',$user_id)
+                          ->where('event_id',$event_id)
+                          ->where('package_id',$package_id);
+        $msg = '';
+        if($order->count()){
+            $order = $order->get();
+            
+            foreach ($order as $key => $ord) {
+               $msg .= $this->getMessageExistOrder($ord);
+            }
+            
+          
+        }                              
+            return $msg;
+}
+
+
+
+public function getMessageExistOrder($order)
+{  
+           $msg ='';
+           if($order->type == "cart"){
+              $msg .='<li>This Package already exist in your cart for <b>('.$order->event->title.')</b> Event.</li>';
+            }
+
+            if($order->type == "order"){
+              $msg .='<li>You have already buy this package for <b>('.$order->event->title.')</b> Event</li>';
+            }
+
+            if($order->type == "wishlist"){
+              $msg .='<li>This Package already exist in your wishlist for <b>('.$order->event->title.')</b> Event</li>';
+            }
+         return $msg;
+}
 
 
 

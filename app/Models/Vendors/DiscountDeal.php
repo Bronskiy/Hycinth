@@ -40,13 +40,7 @@ class DiscountDeal extends Model
 
      public function chats()
     {
-       // return $this->hasOne('App\Models\Vendors\Chat','deal_id')->where(function($t){
-       //    if(Auth::check() && Auth::user()->role == "user"){
-       //      $t->where('user_id',Auth::user()->id);
-       //    }else{
-       //      $t->where('user_id',0);
-       //    }
-       // })->where('deal_status',0);
+      
 
        return $this->hasOne('App\Models\Vendors\Chat','business_id','vendor_category_id')->where(function($t){
               if(Auth::check() && Auth::user()->role == "user"){
