@@ -22,7 +22,7 @@ use EventCartConditions;
 
 public function index(Request $request)
 {
-     $order = EventOrder::where('type','cart')->where(function($t){
+         $order = EventOrder::where('type','cart')->where(function($t){
                 $user_id = Auth::check() && Auth::user()->role == "user" ? Auth::user()->id : 0;
                 $t->where('user_id',$user_id);
           })
@@ -34,14 +34,15 @@ public function index(Request $request)
 
 public function wishlist(Request $request)
 {
-		 $order = EventOrder::where('type','wishlist')->where(function($t){
+		      $order = EventOrder::where('type','wishlist')->where(function($t){
                 $user_id = Auth::check() && Auth::user()->role == "user" ? Auth::user()->id : 0;
                 $t->where('user_id',$user_id);
 	        })
+          ->orderBy('created_at','DESC')
 	        ->get();
 
 	  if(!empty($request->test)){
-	  	return $order;
+	  	       return $order;
 	  }
 	return view('users.wishlist.index')->with('CartItems',$order);
 }
@@ -64,6 +65,26 @@ public function delete($id)
       $EventOrder->delete();
 
       return redirect()->route('my_cart')->with('messages','Cart iteam is deleted successfully!');
+
+}
+
+
+#----------------------------------------------------------------------------------------------
+#  cart delete
+#----------------------------------------------------------------------------------------------
+
+
+public function wishlistDelete($id)
+{
+      $EventOrder = EventOrder::where('user_id',Auth::user()->id)->where('id',$id);
+      
+      if($EventOrder->count() == 0){
+        abort(404);
+      }
+
+      $EventOrder->delete();
+
+      return redirect()->route('my_wishlist')->with('messages','Item is removed successfully from wishlist!');
 
 }
 
@@ -196,6 +217,7 @@ public function saveToCartAfterCheck($request,$events,$package,$type="cart")
     $order->package_price = $package->price;
     $order->discounted_price = $final_package_price;
     $order->subtotal = $final_package_price;
+    $order->discount = ($package->price - $final_package_price);
     $order->status = 0;
     $order->related_tableData = json_encode($this->orderRelatedTableBackup($events,$package,$request));
 
@@ -248,6 +270,33 @@ public function cartItems(Request $request)
             'items' => $items->render(),
             'amountDetail' => $amountDetail->render(),
            ];
+
+    return response()->json([
+            'status' => 1,
+            'data' => $data
+    ]);
+}
+#------------------------------------------------------------------------------------
+# check Login or not
+#------------------------------------------------------------------------------------
+ 
+
+
+public function getWishlistItems(Request $request)
+{
+
+
+   $order = EventOrder::where('type','wishlist')
+                ->where(function($t){
+                        $user_id = Auth::check() && Auth::user()->role == "user" ? Auth::user()->id : 0;
+                        $t->where('user_id',$user_id);
+                 });
+                   
+ 
+         $items = view('users.includes.wishlist.list')->with('CartItems',$order->get());
+         $data = [
+                   'items' => $items->render()
+                 ];
 
     return response()->json([
             'status' => 1,

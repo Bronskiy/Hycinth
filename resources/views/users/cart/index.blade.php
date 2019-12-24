@@ -17,6 +17,7 @@
 	      <div class="cart-card">
            <div class="card-heading">
                 <h3>Shopping Cart</h3>
+                 <div class="messageNotofications"></div>
             </div>
 
             <div class="responsive-table">
@@ -27,6 +28,7 @@
             				<th width="20%">Packages</th>
             				<th width="20%">Deals & Discount</th>
             				<th>Basic Price</th>
+                            <th>Discounted Price</th>
             				<th>Action</th>
             			</tr>
             		</thead>
@@ -36,25 +38,27 @@
 
                <table class="cart-table bottom">
 
-        				<tbody>
-                  <tr>
+        		     <tbody>
+                         <tr>
             				<th>
-            					<form action="{{url(route('cart.applyCoupon'))}}" 
-                            method="get"
-                            class="apply-coupon mini-btn-wrap"
-                            id="CouponApply">
+            			    <form action="{{url(route('cart.applyCoupon'))}}" 
+                                  method="get"
+                                  class="apply-coupon mini-btn-wrap"
+                                  id="CouponApply">
             						<input class="search-field" type="text" name="coupon_code" placeholder="Coupon Code" value="">
-            						<button class="cstm-btn">Apply Coupon</button>
-            					</form>
+            						<button class="cstm-btn"><span><img src="{{url('200.gif')}}"></span>Apply Coupon</button>
+                                    <p class="errorMSG"></p>
+            				 </form>
 
             					<div class="cart-btns mini-btn-wrap">
-            						<a href="checkout-billing-details.html" class="cstm-btn solid-btn">Proceed to Checkout</a>
-            						<a href="javascript:void(0);" class="cstm-btn solid-btn">Continue Shopping</a>
+                        @if(Auth::check() && Auth::User()->CartItems->count() > 0)
+            					     	<a href="{{url('/')}}" class="cstm-btn solid-btn">Proceed to Checkout</a>
+                        @endif
+            					     	<a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Continue Shopping</a>
             					</div>
             				</th>
         				</tr>
-
-        			</tbody>
+                     </tbody>
         		</table>
 
             <div class="row">

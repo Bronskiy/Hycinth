@@ -50,4 +50,5 @@ Route::get('/vendor/register', 'HomeController@register')->name('vendor_register
 
 Route::get('/my-cart', 'Users\Cart\CartController@index')->name('my_cart');
 Route::get('/my-cart-delete/{id}', 'Users\Cart\CartController@delete')->name('cart.delete');
+Route::get('/my-wishlist-delete/{id}', 'Users\Cart\CartController@wishlistDelete')->name('wishlist.delete');
 Route::get('/my-wishlist', 'Users\Cart\CartController@wishlist')->name('my_wishlist');

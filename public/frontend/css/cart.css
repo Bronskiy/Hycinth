@@ -151,3 +151,27 @@ h6.packageCategory {
     color: #fff;
     padding: 2px 7px;
 }
+
+button.cstm-btn{
+    position: relative;
+}
+
+button.cstm-btn span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0px;
+    background: #e0e1e1;
+    overflow: hidden;
+    display: none;
+}
+
+button.cstm-btn span img {
+    width: 100% !important;
+    height: 40px;
+    margin-top: -5px;
+}
+
+button.cstm-btn[disabled] span{
+    display: block;
+}

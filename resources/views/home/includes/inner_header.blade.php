@@ -19,6 +19,19 @@
                             <sup id="fav_ven">{{ Auth::User()->favouriteVendors->count() }}</sup>
                         </a>
                     </li>
+                     <li class="mob-hide">
+                         <a href="{{url(route('my_cart'))}}" class="fav-list">
+                         <i class="fas fa-cart-plus"></i>
+                         <sup id="fav_ven2">{{ Auth::User()->CartItems->count() }}</sup>
+                         </a>
+                      </li>
+
+                       <li class="mob-hide">
+                         <a href="{{url(route('my_wishlist'))}}" class="fav-list">
+                         <i class="fas fa-list"></i>
+                         <sup id="fav_ven2">{{ Auth::User()->CartItems->count() }}</sup>
+                         </a>
+                      </li>
                     @endif
                    
                     @include('home.includes.messageCountHeader')

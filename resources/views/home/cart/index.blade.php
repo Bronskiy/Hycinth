@@ -17,6 +17,8 @@
 	      <div class="cart-card">
            <div class="card-heading">
                 <h3>Shopping Cart</h3>
+
+                <div class="messageNotofications"></div>
             </div>
 
             <div class="responsive-table">

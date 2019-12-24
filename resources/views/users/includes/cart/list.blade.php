@@ -59,8 +59,13 @@
                                            <h4>{{$item->deal->title}}</h4>
                                             <h6 class="packageCategory">{{$item->deal->deal_off_type == 0 ? $item->deal->amount.'%' : '$'.custom_format($item->deal->amount,2)}} Discount</h6>
                                             <div class="deal_life">{!!$item->deal->deal_life == 1 ? 'From <b>'.date('d-m-Y',strtotime($item->deal->start_date)).'</b> To <b>'.date('d-m-Y',strtotime($item->deal->expiry_date)).' </b>' : 'Permanent' !!}</div>
-                                        @if($item->deal->type_of_deal == 0)
+                                         @if($item->deal->type_of_deal == 0)
+
+                                           @if($item->coupon_code != "")
+                                                 <p>Coupon Applied <span>{{$item->coupon_code}}</span></p>
+                                           @else
                                           <p>Discount will be applied after appling the <b>Promo Code</b></p>
+                                           @endif
                                         
                                         @endif
                                     </div>
@@ -68,17 +73,32 @@
                                     </div>
 
 
-                                    @else
+                     @else
 
-                                    <h4>N/A</h4>
+                      <h4>N/A</h4>
 
-                                    @endif
+                      @endif
 
 
                         </td>
-                				<td>${{custom_format($item->discounted_price,2)}}</td>
+                        <td>${{custom_format($item->package->price,2)}}</td>
+                        <td>${{custom_format($item->discounted_price,2)}}</td>
                 				<td><div class="action-btn-wrap">
-                					<a href="javascript:void(0);" class="icon-btn"><span><i class="fas fa-heart"></i></span></a>
+
+                          <form action="{{url(route('cart.addToWishList'))}}" id="addToWishListForm-{{$item->id}}">
+                            @csrf
+                              <input type="hidden" name="package_id" id="package_id" value="{{$item->package_id}}">
+                              <input type="hidden" name="deal_id" id="deal_id" value="{{$item->deal_id}}">
+                              <input type="hidden" name="event_type" id="event_type" value="{{$item->event_id}}">
+                            
+                				      	<button 
+                                 type="button"
+                                 data-form="#addToWishListForm-{{$item->id}}"
+                                 data-action="{{url(route('cart.addToWishList'))}}"
+                                 class="icon-btn wishlist-icon">
+                                  <span><i class="fas fa-heart"></i></span>
+                                </button>
+                          </form>
 
 
                                     <a href="{{url(route('cart.delete',$item->id))}}" class="icon-btn danger-btn ml-1" data-toggle="tooltip" title="" data-original-title="Delete"><i class="fas fa-trash-alt"></i></a>

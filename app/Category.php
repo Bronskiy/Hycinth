@@ -91,7 +91,13 @@ class Category extends Model
 # category variants CategoryMaterials
     public function CategoryAmenity()
     {
-        return $this->hasMany('App\CategoryVariation','category_id')->where('type','amenity');
+        // return $this->hasMany('App\CategoryVariation','category_id')->where('type','amenity');
+        return $this->hasMany('App\CategoryVariation','category_id')
+        ->join('amenities', 'amenities.id', '=', 'category_variations.variant_id')
+       ->where('amenities.type','amenity')
+       ->where('category_variations.type','amenity')
+       ->where('amenities.status',1)
+       ->groupBy('category_variations.variant_id');   
     }
 
 
@@ -99,7 +105,14 @@ class Category extends Model
     # category variants CategoryMaterials
     public function CategoryGames()
     {
-        return $this->hasMany('App\CategoryVariation','category_id')->where('type','game');
+        //return $this->hasMany('App\CategoryVariation','category_id')->where('type','game');
+
+       return $this->hasMany('App\CategoryVariation','category_id')
+        ->join('amenities', 'amenities.id', '=', 'category_variations.variant_id')
+       ->where('amenities.type','game')
+       ->where('category_variations.type','game')
+       ->where('amenities.status',1)
+       ->groupBy('category_variations.variant_id');        
     }
 
 

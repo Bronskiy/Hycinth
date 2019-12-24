@@ -37,51 +37,13 @@ function erorrMessage(errors) {
 
 // loading all cart items
 
-loadCartItems(0);
+loadWishlistItems(0);
 
 
 
 
 
-
-
-$("body").on('submit','#CouponApply',function(event){
-    event.preventDefault();
-    var $this = $( this );
-
-      $.ajax({
-               url : $this.attr('action'),
-               data : $this.serialize(),
-               type: 'GET',   
-               dataTYPE:'JSON',
-               headers: {
-                 'X-CSRF-TOKEN': $('input[name=_token]').val()
-               },
-                beforeSend: function() {
-                    $this.find('button.cstm-btn').attr('disabled','true');
-                 },
-                success: function (result) {
-                   if(result.status == 1){
-                		    $this.find('button.cstm-btn').removeAttr('disabled');
-                        $this[0].reset();
-                        $this.find('.errorMSG').text(result.messages);
-                        loadCartItems(0);
-                       
-                    }else{
-                        $this.find('.errorMSG').text(result.messages);
-                        $this.find('button.cstm-btn').removeAttr('disabled');
-                    }
-                 },
-                complete: function() {
-                        $("body").find('.custom-loading').hide();
-                },
-                error: function (jqXhr, textStatus, errorMessage) {
-                     
-                }
-
-        });
-});
-
+ 
 
 
 
@@ -98,12 +60,12 @@ $("body").on('submit','#CouponApply',function(event){
 //---------------------------------------------------------------------------------------------------------
 
 
- function loadCartItems(loader = 1) {
+ function loadWishlistItems(loader = 1) {
         
-        var $url = $("body").find('input[name=cartRoute]').val();
-        var $CartItems = $("body").find('#CartItems');
-        var $cartTotals = $("body").find('#cartTotals');
- 	  $.ajax({
+        var $url = $("body").find('input[name=wishlistRoute]').val();
+        var $CartItems = $("body").find('#wishlistItems');
+       // var $cartTotals = $("body").find('#cartTotals');
+ 	     $.ajax({
                url : $url,
               
                type: 'GET',   
@@ -120,7 +82,7 @@ $("body").on('submit','#CouponApply',function(event){
 
                 	if(result.status == 1){
                 		$CartItems.html(result.data.items);
-                		$cartTotals.html(result.data.amountDetail);
+                		// $cartTotals.html(result.data.amountDetail);
                 	}
                         
                 },

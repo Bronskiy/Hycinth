@@ -113,4 +113,12 @@ class User extends Authenticatable implements MustVerifyEmail
       return $this->hasMany('App\FavouriteVendor');
     }
 
+
+
+
+    public function CartItems()
+    {
+        return $this->hasMany('App\Models\EventOrder')->where('type','cart');
+    }
+
 }

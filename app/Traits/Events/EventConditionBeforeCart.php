@@ -279,7 +279,7 @@ public function CheckDealRelatedPackage($package,$request)
  
     if($deals->count() > 0 && $deals->first()->type_of_deal == 1){
        $deal = $deals->first();
-	   $price = $deal->deal_off_type == 0 ? round(($price - ($deal->amount * $percent))) : ($price);
+	   $price = $deal->deal_off_type == 0 ? round(($price - ($deal->amount * $percent))) : ($price - $deal->amount);
 	}
 
 	return $price;

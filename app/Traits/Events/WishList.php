@@ -27,24 +27,24 @@ public function addToWishList(Request $request)
 
             $event = \App\UserEvent::with('eventCategories','eventCategories.eventCategory')
   	                               ->where('user_id',Auth::user()->id)
-			  	                   ->where('id',$request->event_type);
+			  	                         ->where('id',$request->event_type);
 
 
          if($event->count() > 0){
-	                           $events = $event->first();
+	                             $events = $event->first();
                                $response = $this->checkAllConditionOfEvent($events,$request,'wishlist');
                       if($response['status'] == 0){
-                             $message = $response;
+                          $message = $response;
                       }else{
                           $status = $this->saveToCartAfterCheck($request,$events,$package,'wishlist');
-		                  $url = url(route('my_cart'));
+		                      $url = url(route('my_wishlist'));
                           $msg = $status == 1 ? 'This item is added to your wishlist successfully, we redirecting to Wishlist Page' : 'Something wrong going on.';
                           $message = ['status' => $status,'url'=> $url,'errors' => $msg];
 
 		              	   
 
 
-		              }
+		                  }
           }else{
 
     	             $message = ['status' => 0,'errors' => 'The Event is not found!' ];

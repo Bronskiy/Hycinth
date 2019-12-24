@@ -85,7 +85,8 @@
 
     @foreach(Auth::User()->services as $cate)  
     <tr>
-      <th width="200">{{$cate->category->label}}</th><td>{{ $cate->stripe_account ? $cate->stripe_account : Auth::user()->stripe_account }}</td>
+      <th width="200">{{$cate->category->label}}</th>
+      <td>{{ $cate->stripe_account ? $cate->stripe_account : Auth::user()->stripe_account }}</td>
     </tr>
     @endforeach
 
