@@ -77,9 +77,10 @@
 
 
 
-           <div class="row" id="getListing"> 
-       	                     
-          </div>
+<div class="row" id="getListing"> 
+</div>
+
+
 </div>
 </div>
 </div>
@@ -166,7 +167,11 @@
 
 
 
-
+$("body").on('click','a.page-link',function(e){
+    e.preventDefault();
+    var url = $( this ).attr('href');
+    getList(url);
+});
 
 
 

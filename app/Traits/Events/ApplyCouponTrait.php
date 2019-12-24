@@ -65,7 +65,8 @@ public function getCouponApplyingMessages($deal)
                  $msg = $this->checkDealWithLimitLife($deal);
                 #------------------------------------------------------------
            }else{
-           	     $msg = $this->dealMessageErrors('deal_have',$deal);
+                 $msg = $this->checkDealUnLimitedLife($deal);
+           	    // $msg = $this->dealMessageErrors('deal_have',$deal);
            }
 
 
@@ -79,13 +80,14 @@ public function getCouponApplyingMessages($deal)
 
 }
 
+
 #----------------------------------------------------------------------------
 #  check Deal With Limit Life
 #----------------------------------------------------------------------------
 
 public function checkDealWithLimitLife($deal)
 {
-  $deals = $deal->first();
+   $deals = $deal->first();
    $start_date = strtotime($deals->start_date);
    $expiry_date = strtotime($deals->expiry_date);
    $today = strtotime(date('Y-m-d'));
@@ -96,6 +98,23 @@ public function checkDealWithLimitLife($deal)
    }else{
      $msg = $this->dealMessageErrors('deal_expired',$deal);
    }
+
+
+   return $msg;
+
+
+
+}
+
+#----------------------------------------------------------------------------
+#  check Deal With Limit Life
+#----------------------------------------------------------------------------
+
+public function checkDealUnLimitedLife($deal)
+{
+   $deals = $deal->first();
+   $msg =$this->ExistAnyTypePackageInCart($deals);
+   
 
 
    return $msg;
@@ -118,7 +137,7 @@ public function ExistAnyTypePackageInCart($deal)
      	 $all_package_id_of_vendor = $deal->Business->VendorPackage->where('id',$deal->packages)->pluck('id');
      }
 
-	 $EventOrder = EventOrder::where('type','cart')
+	   $EventOrder = EventOrder::where('type','cart')
 	                                ->where('user_id',Auth::user()->id)
 	                                ->whereIn('package_id',$all_package_id_of_vendor);
 
@@ -126,7 +145,7 @@ public function ExistAnyTypePackageInCart($deal)
 
 	 if($EventOrder->count() > 0){
 
-	 	 $message = $this->applyingCouponToCartItems($deal,$EventOrder);
+	 	   $message = $this->applyingCouponToCartItems($deal,$EventOrder);
 
 	 }else{
           
@@ -150,13 +169,14 @@ public function applyingCouponToCartItems($deal,$EventOrder)
 	 $cartItems = $EventOrder->get();
 
     foreach ($cartItems as $item) {
+        if($item->deal_id == $deal->id){
             $price = $item->package_price;
-	        $percent = round($price / 100);
-	        $discount = $deal->deal_off_type == 0 ? round($deal->amount * $percent) :  $deal->amount;    
-
-	        $item->discount = $discount;
-	        $item->coupon_code = $deal->deal_code;
-	        $item->save();     
+	          $percent = round($price / 100);
+	          $discount = $deal->deal_off_type == 0 ? round($deal->amount * $percent) :  $deal->amount; 
+            $item->discount = $discount;
+	          $item->coupon_code = $deal->deal_code;
+	          $item->save();     
+        }
     }
 
     $response =[

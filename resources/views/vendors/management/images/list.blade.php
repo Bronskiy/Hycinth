@@ -25,9 +25,14 @@
             </div>
           @endforeach
 
-    {{$imagess->links()}}     
+
+
+<div class="col-md-12"> 
+    {{$imagess->links()}}
+    </div>     
 @else
                   <div class="col-md-12">
                     <div class="alert alert-warning" role="alert">Your Image Gallery have not images yet.</div>
                   </div>
 @endif
+

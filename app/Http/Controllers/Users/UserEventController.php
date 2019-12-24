@@ -45,23 +45,26 @@ class UserEventController extends Controller
     }
 
 	public function create(Request $request) {
-          
+  
+
+ 
+
         $this->validate($request,[
                  'title' => 'required',
                  'description' => 'required',
                  'start_date' => 'required',
                  'start_time' => 'required',
-                 'end_time' => 'required',
-                 'end_date' => 'required',
-                 'location' => 'required',
-                 'latitude' => 'required',
-                 'longitude' => 'required',
-                 'event_type' => 'required',
-                 'min_person' => 'required',
-                 'max_person' => 'required',
-                 'event_picture' => 'required|image',
-                 'seasons' => 'required',
-                 'colour' => 'required'
+                 // 'end_time' => 'required',
+                 // 'end_date' => 'required',
+                 // 'location' => 'required',
+                 // 'latitude' => 'required',
+                 // 'longitude' => 'required',
+                 // 'event_type' => 'required',
+                 // 'min_person' => 'required',
+                 // 'max_person' => 'required',
+                 // 'event_picture' => 'required|image',
+                 // 'seasons' => 'required',
+                 // 'colour' => 'required'
                  
          ]);
 

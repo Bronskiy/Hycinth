@@ -79,7 +79,9 @@
                 				<td>${{custom_format($item->discounted_price,2)}}</td>
                 				<td><div class="action-btn-wrap">
                 					<a href="javascript:void(0);" class="icon-btn"><span><i class="fas fa-heart"></i></span></a>
-                                    <a href="javascript:void(0)" class="icon-btn danger-btn ml-1" data-toggle="tooltip" title="" data-original-title="Delete"><i class="fas fa-trash-alt"></i></a>
+
+
+                                    <a href="{{url(route('cart.delete',$item->id))}}" class="icon-btn danger-btn ml-1" data-toggle="tooltip" title="" data-original-title="Delete"><i class="fas fa-trash-alt"></i></a>
                                 </div>
                             </td>
                 			</tr>

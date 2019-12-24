@@ -25,6 +25,20 @@ public function checkCategoryExistAccordingToEvent($package,$events,$discounted=
    
 }
 
+
+#--------------------------------------------------------------------
+#--------------------------------------------------------------------
+#--------------------------------------------------------------------
+ 
+public function checkCategoryExistAccordingToCategory($package,$events)
+{  
+    
+    $order = EventOrder::where('category_id',$package->category_id)
+                       ->where('user_id',Auth::user()->id)
+                       ->where('event_id',$events->id);
+    return $order;
+   
+}
 #--------------------------------------------------------------------
 # total Spend on the Event
 #--------------------------------------------------------------------
@@ -88,39 +102,47 @@ public function getDealJson($request)
 # check Actual Cart WishList
 #---------------------------------------------------------------------------
 
-public function checkActualCartWishList($event_id,$package_id,$user_id)
+public function checkActualCartWishList($event_id,$package_id,$user_id,$category_id = 0)
 {
       $order = EventOrder::where('user_id',$user_id)
-                          ->where('event_id',$event_id)
-                          ->where('package_id',$package_id);
+                          ->where('event_id',$event_id);
+                          //->orWhere(function($t) use($package_id,$c))
+                          if($category_id == 0){
+                             $order->where('package_id',$package_id);
+                          }else{
+                             $order->where('category_id',$category_id);
+                          }
         $msg = '';
         if($order->count()){
             $order = $order->get();
             
             foreach ($order as $key => $ord) {
-               $msg .= $this->getMessageExistOrder($ord);
+               $msg .= $this->getMessageExistOrder($ord,$category_id);
             }
             
           
         }                              
-            return $msg;
+     return $msg;
 }
 
 
 
-public function getMessageExistOrder($order)
+public function getMessageExistOrder($order,$category_id)
 {  
            $msg ='';
+            
+           $packageStatus = $category_id > 0 ? "The <b>".$order->category->label."'s Package</b>" : "The ".$order->package->title;
+
            if($order->type == "cart"){
-              $msg .='<li>This Package already exist in your cart for <b>('.$order->event->title.')</b> Event.</li>';
+               $msg .= "<li>$packageStatus already exist in your cart for <b>(".$order->event->title.")</b> Event.</li>";
             }
 
             if($order->type == "order"){
-              $msg .='<li>You have already buy this package for <b>('.$order->event->title.')</b> Event</li>';
+              $msg .="<li>You have already buy $packageStatus for <b>(".$order->event->title.")</b> Event</li>";
             }
 
             if($order->type == "wishlist"){
-              $msg .='<li>This Package already exist in your wishlist for <b>('.$order->event->title.')</b> Event</li>';
+              $msg .="<li>$packageStatus already exist in your wishlist for <b>(".$order->event->title.")</b> Event</li>";
             }
          return $msg;
 }

@@ -75,11 +75,11 @@ public function dealHaveRelatedEventType($events,$package_id)
 {
 	
 
-      $PackageMetaData = \App\PackageMetaData::
-          where('key_value',$events->event_type)
-         ->where('type','events')
-         ->where('package_id',$package_id)
-         ->count();
+       $PackageMetaData = \App\PackageMetaData::
+				          where('key_value',$events->event_type)
+				         ->where('type','events')
+				         ->where('package_id',$package_id)
+				         ->count();
 
       return $PackageMetaData > 0 ? 1 : 0;
 }
@@ -98,14 +98,17 @@ public function checkAllConditionOfEvent($events,$request,$type=null)
       $package_id = $request->package_id;
 	  
 	  # this function is check that the event type of package which are selected and your event's eventtype both are same
-	  $evenTypeStatus = $this->dealHaveRelatedEventType($events,$package_id);
+	 $evenTypeStatus = $this->dealHaveRelatedEventType($events,$package_id);
 
 
 	  # this function is check that the category of package which is selected and your event's category both are same
 	  $cartStatus = $this->chackAlreadyBuyOrCart($evenTypeStatus,$events,$package_id,$type);
+
+	   # this function is check that the category of package which is selected and your event's category both are same
+	  $cartCategoryStatus = $this->chackAlreadyBuyOrCart($cartStatus,$events,$package_id,$type,1);
 	   
 	   # this function is check that the category of package which is selected and your event's category both are same
-	  $categoryStatus = $this->PackageAndEventHaveSameCategory($cartStatus,$events,$package_id);
+	  $categoryStatus = $this->PackageAndEventHaveSameCategory($cartCategoryStatus,$events,$package_id);
 
 	   # this function is check that the category of package which is selected and your event's category both are same
 	  $capacityStatus = $this->PackageAndEventCapacity($categoryStatus,$events,$package_id);
@@ -118,8 +121,14 @@ public function checkAllConditionOfEvent($events,$request,$type=null)
           $msg = $this->checkAllConditionBeforeAddingPackage('event_type');
 	  }elseif($cartStatus == 0 && $type !="all") {
 	  	  $status = 0;
+	  	  $type_message = $type == 'wishlist' ? 'event_category_exist_with_package_wishlist' : 'event_category_with_package_exist';
+	  	  $msg = $this->checkAllConditionBeforeAddingPackage($type_message,$request);
+
+	  }elseif($cartCategoryStatus == 0 && $type !="all") {
+	  	  $status = 0;
 	  	  $type_message = $type == 'wishlist' ? 'event_category_exist_wishlist' : 'event_category_exist';
 	  	  $msg = $this->checkAllConditionBeforeAddingPackage($type_message,$request);
+
 	  }elseif ($categoryStatus == 0) {
 	  	  $status = 0;
 	  	  $msg = $this->checkAllConditionBeforeAddingPackage('event_category',$request);
@@ -148,14 +157,12 @@ public function checkAllConditionOfEvent($events,$request,$type=null)
 #  check deal package have related to user event
 #-----------------------------------------------------------------------------------------  
 
-public function chackAlreadyBuyOrCart($evenTypeStatus,$events,$package_id,$type)
+public function chackAlreadyBuyOrCart($evenTypeStatus,$events,$package_id,$type,$category=0)
 {
 	 if($evenTypeStatus == 1){
 	 	    $package = VendorPackage::find($package_id);
-
-            $order = $this->checkCategoryExistAccordingToEvent($package,$events);
-            
-	       $exist = $order->where(function($t) use($type){
+            $order = $category == 0 ? $this->checkCategoryExistAccordingToEvent($package,$events) : $this->checkCategoryExistAccordingToCategory($package,$events);
+            $exist = $order->where(function($t) use($type){
 	                   if($type != null){
 	                   	    $types = explode('&',$type);
 	                      	$t->whereIn('type',$types);
@@ -306,15 +313,29 @@ public function checkAllConditionBeforeAddingPackage($errorType,$request=[])
 		case 'wishlist_package_success':
 		    $msg= 'The Package has been added successfully in your Wishlist.';
 			break;
-        case 'event_category_exist_wishlist':
+        case 'event_category_exist_with_package_wishlist':
               $event_id = !empty($request->event_type) ? $request->event_type : $request->event_id;
               $msg = $this->checkActualCartWishList($event_id,$request->package_id,Auth::user()->id);
 		   // $msg= 'The Package already exist in your Wishlist.';
 			break;
 
-	     case 'event_category_exist':
+	     case 'event_category_with_package_exist':
 	        $event_id = !empty($request->event_type) ? $request->event_type : $request->event_id;
 	        $msg = $this->checkActualCartWishList($event_id,$request->package_id,Auth::user()->id);
+	        // $msg= 'This Package already Exist in your Cart or You have already buy this package for this event.';
+			break;
+
+        case 'event_category_exist_wishlist':
+              $package = VendorPackage::find($request->package_id);
+              $event_id = !empty($request->event_type) ? $request->event_type : $request->event_id;
+              $msg = $this->checkActualCartWishList($event_id,$request->package_id,Auth::user()->id,$package->category_id);
+		   // $msg= 'The Package already exist in your Wishlist.';
+			break;
+
+	     case 'event_category_exist':
+	           $package = VendorPackage::find($request->package_id);
+	        $event_id = !empty($request->event_type) ? $request->event_type : $request->event_id;
+	        $msg = $this->checkActualCartWishList($event_id,$request->package_id,Auth::user()->id,$package->category_id);
 	        // $msg= 'This Package already Exist in your Cart or You have already buy this package for this event.';
 			break;
 		case 'wishlist_package':

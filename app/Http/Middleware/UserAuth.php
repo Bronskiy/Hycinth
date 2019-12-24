@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
-
+ 
 class UserAuth
 {
     /**
@@ -26,7 +26,7 @@ class UserAuth
                return redirect()->route('login');
             }
         }else{
-            if( \Auth::User()->role =="user" ){                       
+            if( \Auth::User()->role =="user" && Auth::user()->status == 1){                       
                 return $next($request);
             }
         }

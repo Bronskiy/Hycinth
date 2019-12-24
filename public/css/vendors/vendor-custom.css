@@ -1459,6 +1459,7 @@ input.form-control.custom-file-input{
     line-height: normal;
     top: auto;
     bottom: -31px;
+    position: absolute;
 }
 i.fas.fa-pencil-alt.fa-minus.fa-plus:before{
   content: "\f303" !important;

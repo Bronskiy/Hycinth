@@ -205,7 +205,7 @@
  
  var login_count = $("body").find('#login_count').val();
 
- if(parseInt(login_count) >= 0){
+ if(parseInt(login_count) == 0){
       $('#firstUserModal').modal('show');
  }
 

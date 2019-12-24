@@ -27,7 +27,7 @@
                                 <div class="col-xl-12">
                                     <div class="card">
                                         <div class="card-header status-btns">
-                                            <h5>{{$title}}</h5>
+                                            <h5 class="mt-3 mb-3">{{$title}}</h5>
                                             <div>
                                 <button type="button" onclick="getBusinesses(2)" class="btn btn-warning"><i class="fas fa-eye"></i>View Pending Businesses</button>
                                 <button type="button" onclick="getBusinesses(3)" class="btn btn-success"><i class="fas fa-eye"></i>View Approved Businesses</button>

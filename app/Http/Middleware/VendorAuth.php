@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
-
+ 
 class VendorAuth
 {
     /**
@@ -27,7 +27,7 @@ class VendorAuth
             }
         }else{
 
-            if( \Auth::user()->role =="vendor" ){
+            if( \Auth::user()->role =="vendor" && Auth::user()->status == 1){
                     
                      
                         return $next($request);

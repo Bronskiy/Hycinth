@@ -200,11 +200,25 @@ class VendorCategory extends Model
 
 
     public function VendorGames() {
-       return $this->hasMany('App\VendorAmenity', 'vendor_category_id', 'id')->where('type','game');
+       return $this->hasMany('App\VendorAmenity', 'vendor_category_id', 'id')
+        ->join('category_variations', 'category_variations.variant_id', '=', 'vendor_amenities.amenity_id')
+       ->join('amenities', 'amenities.id', '=', 'vendor_amenities.amenity_id')
+       ->where('amenities.type','game')
+       ->where('category_variations.type','game')
+       ->where('vendor_amenities.type','game')
+       ->where('amenities.status',1)
+       ->groupBy('vendor_amenities.amenity_id');
     }
 
      public function VendorAmenity() {
-       return $this->hasMany('App\VendorAmenity', 'vendor_category_id', 'id')->where('type','amenity');
+       return $this->hasMany('App\VendorAmenity', 'vendor_category_id', 'id')
+       ->join('category_variations', 'category_variations.variant_id', '=', 'vendor_amenities.amenity_id')
+       ->join('amenities', 'amenities.id', '=', 'vendor_amenities.amenity_id')
+       ->where('amenities.type','amenity')
+       ->where('category_variations.type','amenity')
+       ->where('vendor_amenities.type','amenity')
+       ->where('amenities.status',1)
+       ->groupBy('vendor_amenities.amenity_id');
     }
 
 

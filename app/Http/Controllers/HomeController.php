@@ -161,14 +161,25 @@ public function userLoginPopup(Request $request,$role="user")
                     if (Auth::attempt(['email' => $request->email, 'password' => $request->password,'role' => 'user']))
                     {
                             if(Auth::check() && Auth::user()->email_verified_at){
+                               if(Auth::user()->status == 1):
+                                       $arr = [
+                                             'status' => 1,
+                                             'message' => 'Please wait... Redirecting to your dashboard.',
+                                             'redirectLink' => url(route('user_dashboard')),
+                                             'users' => Auth::user(),
+                                             'upcoming_events' => Auth::user()->UpcomingUserEvents
+                                        ];
+                                else:
 
-                               $arr = [
-                                     'status' => 1,
-                                     'message' => 'Please wait... Redirecting to your dashboard.',
-                                     'redirectLink' => url(route('user_dashboard')),
-                                     'users' => Auth::user(),
-                                     'upcoming_events' => Auth::user()->UpcomingUserEvents
-                                ];
+                                     Auth::logout();
+                                     
+                                         $arr = [
+                                             'status' => 2,
+                                             'message' => 'Your account is blocked by the Admin.'
+                                           
+                                        ];
+
+                                endif;
 
                             } else {
 
@@ -204,12 +215,25 @@ public function login($request)
 
            // return Auth::user();
             if(Auth::check() && Auth::user()->email_verified_at){
+
+                                if(Auth::user()->status == 1):
+                                      $arr = [
+                                                'status' => 1,
+                                                'message' => 'Please wait... Redirecting to your dashboard.',
+                                                'redirectLink' => url(route('vendor_dashboard'))
+                                            ];
+                                else:
+
+                                            Auth::logout();
+                                            $arr = [
+                                                'status' => 2,
+                                                'message' => 'Your account is blocked by the Admin.',
+                                                'redirectLink' => url(route('vendor_dashboard'))
+                                            ];
+
+                                endif;
                 
-                $arr = [
-                    'status' => 1,
-                    'message' => 'Please wait... Redirecting to your dashboard.',
-                    'redirectLink' => url(route('vendor_dashboard'))
-                ];
+                
 
             
             }else{
@@ -238,13 +262,26 @@ public function login($request)
            
             if(Auth::check() && Auth::user()->email_verified_at){
 
-                $url = !empty($request->redirectLink) ? $request->redirectLink : url(route('user_dashboard'));
+                         $url = !empty($request->redirectLink) ? $request->redirectLink : url(route('user_dashboard'));
 
-               $arr = [
-                    'status' => 1,
-                    'message' => 'Please wait... Redirecting to your dashboard.',
-                    'redirectLink' => $url
-                ];
+               
+
+                             if(Auth::user()->status == 1):
+                                            $arr = [
+                                                'status' => 1,
+                                                'message' => 'Please wait... Redirecting to your dashboard.',
+                                                'redirectLink' => $url
+                                            ];
+                                else:
+
+                                            Auth::logout();
+                                            $arr = [
+                                                'status' => 2,
+                                                'message' => 'Your account is blocked by the Admin.',
+                                                'redirectLink' =>  $url
+                                            ];
+
+                                endif;
 
 
 

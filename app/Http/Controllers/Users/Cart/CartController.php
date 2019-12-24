@@ -48,10 +48,24 @@ public function wishlist(Request $request)
 
 
 
+#----------------------------------------------------------------------------------------------
+#  cart delete
+#----------------------------------------------------------------------------------------------
 
 
+public function delete($id)
+{
+    $EventOrder = EventOrder::where('user_id',Auth::user()->id)->where('id',$id);
+      
+      if($EventOrder->count() == 0){
+        abort(404);
+      }
 
+      $EventOrder->delete();
 
+      return redirect()->route('my_cart')->with('messages','Cart iteam is deleted successfully!');
+
+}
 
 
 
