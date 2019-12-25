@@ -6,7 +6,7 @@
     <td>{{$item->event->title}}</td>
     <td>{{$item->package->title}}</td>
     <td>
-        @if($item->deal->count() > 0)
+        @if($item->deal != null && $item->deal->count() > 0)
              {{$item->deal->title}}
         @else
         N/A
@@ -24,12 +24,12 @@
                               <input type="hidden" name="event_type" id="event_type" value="{{$item->event_id}}">
                             
                                         <button 
-                                 type="button"
-                                 data-form="#addToWishListForm-{{$item->id}}"
-                                 data-action="{{url(route('cart.addToCart'))}}"
-                                 class="icon-btn wishlist-icon">
-                                  <span><i class="fas fa-cart-plus"></i></span>
-                                </button>
+                                         type="button"
+                                         data-form="#addToWishListForm-{{$item->id}}"
+                                         data-action="{{url(route('cart.addToCart'))}}"
+                                         class="icon-btn wishlist-icon">
+                                         <span><i class="fas fa-cart-plus"></i></span>
+                                        </button>
                           </form>
         <a href="{{url(route('wishlist.delete',$item->id))}}" class="icon-btn danger-btn">
             <i class="fas fa-trash-alt"></i>

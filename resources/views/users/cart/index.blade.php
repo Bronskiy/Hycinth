@@ -20,27 +20,73 @@
                  <div class="messageNotofications"></div>
             </div>
 
-            <div class="responsive-table">
-            	<table class="table cart-table">
-            		<thead>
-            			<tr>
-                            <th width="20%">Event</th>
-            				<th width="20%">Packages</th>
-            				<th width="20%">Deals & Discount</th>
-            				<th>Basic Price</th>
-                            <th>Discounted Price</th>
-            				<th>Action</th>
-            			</tr>
-            		</thead>
-            		<tbody id="CartItems"></tbody>
-            	</table>
 
 
+
+
+
+
+<!-- start Heading -->
+
+ <div class="cart-items-wrap">
+              <div class="row no-gutters">
+                <div class="col-lg-2">
+                  <div class="cart-col-wrap">
+                    <div class="cart-table-head">
+                      <h3>Event Image</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-5">
+                  <div class="cart-col-wrap">
+                    <div class="cart-table-head">
+                      <h3>Details</h3>
+                    </div>                    
+                  
+                  </div>
+                </div>
+                <div class="col-lg-3">
+                  <div class="cart-col-wrap">
+                    <div class="cart-table-head">
+                      <h3>AddOns</h3>
+                    </div>                    
+                    
+                  </div>
+                </div>
+                <div class="col-lg-2">
+                  <div class="cart-col-wrap">
+                    <div class="cart-table-head">
+                      <h3>Action</h3>
+                    </div>
+                     
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+
+
+<!-- start Heading -->
+
+
+            <div class="cart-items-wrap" id="CartItems">
+ 
+
+              
+            </div>
+
+
+
+
+
+ <div class="row">
+                <div class="col-lg-12 text-right">
                <table class="cart-table bottom">
 
         		     <tbody>
                          <tr>
-            				<th>
+            				<th align="right">
+                        @if(Auth::check() && Auth::User()->CartItems->count() > 0)
             			    <form action="{{url(route('cart.applyCoupon'))}}" 
                                   method="get"
                                   class="apply-coupon mini-btn-wrap"
@@ -49,24 +95,28 @@
             						<button class="cstm-btn"><span><img src="{{url('200.gif')}}"></span>Apply Coupon</button>
                                     <p class="errorMSG"></p>
             				 </form>
-
-            					<div class="cart-btns mini-btn-wrap">
-                        @if(Auth::check() && Auth::User()->CartItems->count() > 0)
-            					     	<a href="{{url('/')}}" class="cstm-btn solid-btn">Proceed to Checkout</a>
-                        @endif
-            					     	<a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Continue Shopping</a>
-            					</div>
+                     @endif
             				</th>
         				</tr>
                      </tbody>
         		</table>
+          </div>
+          </div>
 
             <div class="row">
-              	 <div class="col-lg-6 offset-lg-6" id="cartTotals"></div>
+              	             <div class="col-lg-6 offset-lg-6" id="cartTotals"></div>
+                             <div class="btn-outer-wrap text-right">
+                                      <div class="cart-btns mini-btn-wrap">
+                                          @if(Auth::check() && Auth::User()->CartItems->count() > 0)
+                                              <a href="{{url(route('checkout.billingAdress'))}}" class="cstm-btn solid-btn">Proceed to Checkout</a>
+                                          @endif
+                                              <a href="{{url(route('home_vendor_listing_page'))}}" class="cstm-btn solid-btn">Continue Shopping</a>
+                                      </div>
+                             </div>
             </div>
 
 
-        </div>
+    
 
 	      </div>
 	  </div>

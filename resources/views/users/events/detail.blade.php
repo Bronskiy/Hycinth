@@ -354,6 +354,7 @@ CKEDITOR.replace('ideas');
 
 
    comingsoon('start_date', 'days_{{$user_event->id}}', 'hours_{{$user_event->id}}', 'minutes_{{$user_event->id}}', 'seconds_{{$user_event->id}}');
+   
    comingsoon('start_date', 'days-up_{{$user_event->id}}', 'hours-up_{{$user_event->id}}', 'minutes-up_{{$user_event->id}}', 'seconds-up_{{$user_event->id}}');
    
    function payments(paymentsData) {

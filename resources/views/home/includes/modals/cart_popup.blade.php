@@ -7,11 +7,14 @@
          <div class="modal-body">
             <div class="row">
                <div class="col-lg-6">
+
                   <figure class="about-event-img">
                      <img src="{{ asset('/frontend/images/event-form-img.png') }}">
                      <div class="form-img-cont">
+                        <h1 class="pkg-pop-head text-center">Package Information</h1>
                         <h2 class="modal-title modal-package-title">Package Title</h2>
                         <h2 class="modal-title-price modal-package-price">Package Price</h2>
+                        <h2 class="modal-title-capacity">Package Capacity</h2>
                         <div class="modal-package-description">Description</div>
                      </div>
                   </figure>
@@ -23,6 +26,7 @@
                         <div class="messageNotofications"></div>   
                     </div>
                         <form data-action="" id="AddToCart">
+                     <div class="cart-pop-inn">      
                      <div class="row">
 
                         <div class="messageNotofications"></div>
@@ -44,53 +48,42 @@
                         <div class="col-lg-12">
                            <div class="form-group">
                               
-                              <div class="row " id="eventAllCategories">
-
-                              
-                                   
-                              </div>
+                              <div id="eventAllCategories"></div>
                            </div>
                         </div>
-                        <div class="col-lg-12">
-                           <!-- <div class="btn-wrap text-center">
-                              <a href="javascript:void(0);" class="cstm-btn solid-btn">Add to cart</a>
-                              <a href="javascript:void(0);" class="cstm-btn solid-btn">Add to wishlist</a>
-                              <a href="javascript:void(0);" class="cstm-btn solid-btn">Buy</a>
-                           </div> -->
-
-
-                           <button 
-                           type="button" 
-                           class="btn btn-addCartButton"
-                           id="btn-addCartButton" 
-                           data-action="{{url(route('cart.addToCart'))}}">
-                           <i class="fas fa-cart-plus"></i> Add To Cart
-                           </button>
-
-                           <button 
-                           type="button" 
-                           class="btn btn-addCartButton"
-                           id="btn-addWishListButton" 
-                           data-action="{{url(route('cart.addToWishList'))}}">
-                           <i class="fas fa-cart-plus"></i> Add To WishList
-                           </button>
-
-                         <!--   <ul class="button-grp-wrap">
-                                 <li>
-                                    <a href="javascript:void(0);" data-toggle="tooltip" title="Add to Cart" class="icon-btn add-to-cart" data-original-title="More Detail"><i class="fas fa-cart-plus"></i>
-                                    </a>
-                                 </li>
-                                 <li>
-                                    <a href="javascript:void(0);" data-toggle="tooltip" title=" Add to wishlist" class="icon-btn" data-original-title="Get Deal"><i class="fas fa-heart"></i>
-                                    </a>
-                                 </li>
-                                 <li>
-                                    <a href="javascript:void(0);" class="icon-btn get_detail" data-title="Photos" data-message="Buy now" data-id="30" data-chat="0" data-chatmessage="" data-toggle="tooltip" title="Buy now" data-original-title="Chat"><i class="fas fa-money-check-alt"></i>
-                                    </a>
-                                 </li>
-                              </ul>
- -->                        </div>
+                     
                         @csrf
+                     </div>
+                  </div>
+                     <div class="row">
+                           <div class="col-lg-12">                       
+
+                          <ul class="button-grp-wrap">
+                                <li class="mb-2"> <button 
+                                 type="button" 
+                                 class="btn CartButton cstm-btn solid-btn"
+                                 id="btn-addCartButton" 
+                                 data-action="{{url(route('cart.addToCart'))}}">
+                                 <i class="fas fa-cart-plus"></i> Add To Cart
+                                 </button>
+                                 </li>
+
+                                <li class="mb-2"> <button 
+                                 type="button" 
+                                 class="btn CartButton cstm-btn"
+                                 id="btn-addWishListButton" 
+                                 data-action="{{url(route('cart.addToWishList'))}}">
+                                 <i class="fas fa-heart"></i> Add To WishList
+                                 </button>
+                                 </li>
+                                 <li class="mb-2">
+                                    <button 
+                                 type="button" 
+                                 class="btn CartButton cstm-btn solid-btn"> <i class="fas fa-money-check-alt"></i> Direct Checkout</button></li>
+                                 
+                          </ul>
+
+                        </div>
                      </div>
                      </form>
 

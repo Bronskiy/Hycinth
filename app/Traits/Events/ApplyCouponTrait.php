@@ -34,6 +34,12 @@ public function applyCoupon(Request $request)
            'status' => 0,
            'messages' => 'Please Enter the Coupon Code!'
      	  ];
+   }elseif(!Auth::check() || Auth::check() && Auth::user()->role != "user"){
+      $msg = [
+           'status' => 0,
+           'messages' => 'Please Login with customer account.'
+        ];
+
    }else{
 
 
@@ -42,7 +48,7 @@ public function applyCoupon(Request $request)
 
     }
 
-     
+     sleep(1);
 
     return response()->json($msg);
 

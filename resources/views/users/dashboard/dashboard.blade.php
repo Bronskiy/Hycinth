@@ -67,7 +67,7 @@
 
                                         </div>
                                         <div class="countdown-timer-container">
-                                          <input type="hidden" value="{{$event->end_date}}" id="end_date_{{$event->id}}" />
+                                          <input type="hidden" value="{{$event->start_date}}" id="start_date{{$event->id}}" />
                                         <ul class="count-down-timer">
                                           <li><span id="days_{{$event->id}}"></span>days</li>
                                           <li><span id="hours_{{$event->id}}"></span>Hours</li>
@@ -77,7 +77,7 @@
 
                                         <script type="text/javascript">
                                           setTimeout(() => {
-                                            comingsoon('end_date_{{$event->id}}', 'days_{{$event->id}}', 'hours_{{$event->id}}', 'minutes_{{$event->id}}', 'seconds_{{$event->id}}');
+                                            comingsoon('start_date{{$event->id}}', 'days_{{$event->id}}', 'hours_{{$event->id}}', 'minutes_{{$event->id}}', 'seconds_{{$event->id}}');
                                           }, 500);
                                         </script>
 

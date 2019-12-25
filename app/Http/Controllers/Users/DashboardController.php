@@ -16,8 +16,15 @@ class DashboardController extends Controller {
 #    dashboard function
 #----------------------------------------------------------------------
  
-public function index() {
-	$events = UserEvent::where(['user_id' => Auth::User()->id])->paginate(10);
+public function index($status='upcoming') {
+        $events = UserEvent::where(['user_id' => Auth::User()->id])
+        ->where(function($t) use($status){
+            if($status == 'upcoming'){
+                $t->whereDate('start_date','>',date('Y-m-d'));
+            }
+        })
+        ->OrderBy('start_date','ASC')
+        ->paginate(10);
 	return view('users.dashboard.dashboard')->with('events', $events);
 }
 

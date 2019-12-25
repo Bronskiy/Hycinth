@@ -123,6 +123,7 @@
                                              data-price="${{$package->price}}"
                                              data-dealId="{{!empty($deal) ? $deal->id : 0}}"
                                              data-description="{{$package->description}}"
+                                             data-capacity="({{$package->min_person}} - {{$package->max_person}}) Persons"
                                              data-action="{{url(route('cart.packageCheck'))}}"
                                              >Buy</a>
                                           

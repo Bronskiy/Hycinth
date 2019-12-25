@@ -937,11 +937,16 @@ nav#tool-nav #menus-list li a:hover {
 }
 .fav-list{
     position: relative;
+
 }
+
 
 .fav-list i {
     font-size: 20px;
-    color: #d41;
+    
+}
+.fav-list i.fa-heart{
+   color: #d41;
 }
 .fav-list sup, .msg-front-count {
     border: 1px solid #fff;
@@ -1046,7 +1051,7 @@ nav#tool-nav #menus-list li a:hover {
 
 /*banner css*/
 .main-banner {
-    height: 700px;
+    height: 680px;
     display: block;
     background-size: cover;
     background-position: center center;
@@ -1065,7 +1070,7 @@ nav#tool-nav #menus-list li a:hover {
 
 .banner-content {
     padding: 10px;
-    margin-top: 250px;
+    margin-top: 245px;
     display: inline-block;
     width: 100%;
     text-align: center;
@@ -1074,12 +1079,12 @@ nav#tool-nav #menus-list li a:hover {
 }
 
 .banner-content h1 {
-    font-size: 75px;
+    font-size: 70px;
     color: #fff;
     line-height: 1;
     font-weight: 700;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .banner-content p {
@@ -1756,7 +1761,10 @@ nav#tool-nav #menus-list li a:hover {
 .eventside-bar {
     padding: 30px 20px;
     background: #f7f7f7;
+    max-height: 100vh;
+    overflow-y: auto;
 }
+
 
 .eventside-bar .form-group {
     display: block;
@@ -2441,7 +2449,7 @@ a.card-link {
 
 .collapse.show {
     display: block;
-    border-bottom: 1px solid #e5e5e5;
+    /*border-bottom: 1px solid #e5e5e5;*/
     background: #f7f7f7;
 }
 
@@ -5960,7 +5968,7 @@ table.compere-table th {
     margin-top: 20px;
 }
 .button-grp-wrap li{
-    margin-right: 10px;
+    margin-right: 5px;
 }
 .button-grp-wrap li:last-child{
     margin-right: 0px;
@@ -6018,6 +6026,8 @@ table.compere-table th {
             justify-content: center;
     color: #fff;
     border-radius: 4px;
+    box-shadow: none;
+    border: none;
 }
 .icon-btn:hover, .icon-btn:focus {
     background: #eda108;
@@ -6045,6 +6055,7 @@ table.compere-table th {
     right: 0;
     overflow: hidden;
     margin-bottom: 0px;
+    min-width: 100px;
 }
 .coupon-code:hover .get-code {
     -webkit-transform: translateX(-100%);
@@ -7108,7 +7119,7 @@ table.compere-table th {
 .cart-modal .form-img-cont {
     position: absolute;
     width: 100%;
-    top: 70px;
+    top: 10px;
     color: #fff;
     z-index: 111;
     padding: 15px;
@@ -7117,8 +7128,8 @@ table.compere-table th {
 .form-img-cont h2 {
     color: #fff;
     font-weight: bold;
-    margin-bottom: 10px;
-    font-size: 36px;
+    margin-bottom: 2px;
+    font-size: 24px;
 }
 .cart-modal .about-event-img img {
     height: 100%;
@@ -7155,6 +7166,11 @@ select.form-control:not([size]):not([multiple]){
 .cart-modal .form-img-cont p {
     color: #fff;
     line-height: normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
 }
 
 
@@ -7241,7 +7257,6 @@ select.form-control:not([size]):not([multiple]){
 .apply-coupon input {
     background-color: #fff;
     display: inline-block;
-    float: left;
     margin: 0;
     border: 0;
     height: 35px;
@@ -7250,9 +7265,9 @@ select.form-control:not([size]):not([multiple]){
     border-radius: 4px;
     border: 1px solid #d1d1d1;
 }
-.apply-coupon {
+/*.apply-coupon {
     float: left;
-}
+}*/
 .action-btn-wrap {
     display: flex;
     align-items: center;
@@ -7470,6 +7485,242 @@ table.cart-table {
 }
 
 
+/*sidebar css*/
+.event-status-info {
+    display: block;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.sidebar-body {
+    
+    display: block;
+}
+.event-status-info {
+    display: block;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 10px 6px;
+    padding-bottom: 10px;
+    background: #f3e8f7;
+}
+.side-upcm-img {
+    height: 70px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 7px;
+}
+.side-upcm-img img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+}
+.evt-overlay-heading {
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #36496c;
+}
+.start-ending-date p {
+    font-size: 14px;
+    color: #333;
+}
+ul.vendor_ser_list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    background: #efefef;
+}
+.vendor_ser_list li{
+    width: 50%;
+    display: inline-block;
+    padding-left: 20px;
+    position: relative;
+    margin: 5px 0px;
+}
+.vendor_ser_list li .left-check {
+    position: absolute;
+    left: 0;
+    font-size: 15px;
+    top: 5px;
+    color: #226b10;
+}
+.user-status-content .alert a {
+    color: #eda208;
+}
+.user-status-content .alert{
+    font-size: 14px;
+}
+#eventAllCategories h5 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.user-status-content .message-wrap {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.cart-pop-inn {
+    display: block;
+    min-height: 340px;
+}
+.first-user-form .button-grp-wrap{
+    justify-content: flex-end;
+
+}
+.first-user-form .button-grp-wrap .cstm-btn{
+    padding: 9px 12px;
+}
+.pkg-pop-head:after {
+    position: absolute;
+    content: "";
+    bottom: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: #eda208;
+}
+.pkg-pop-head {
+    color: #eda208;
+    margin-bottom: 20px;
+    position: relative;
+}
+.open-info-pop{
+    display: inline-block;
+    position: relative;
+}
+.open-info-pop .info-pop-box {
+    position: absolute;
+    width: 247px;
+    text-align: center;
+    top: 100%;
+    background: #fff;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    z-index: 11;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+}
+.open-info-pop:hover .info-pop-box{
+    display: block;
+}
+.cart-col-wrap {
+    width: 100%;
+    display: block;
+}
+.cart-table-head{
+    display: block;
+    padding: 10px;
+    border-bottom: 1px solid #d1d1d1;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.cart-table-head h3{
+font-size: 18px;
+    line-height: 56px;
+    font-weight: 500;
+    color: #000;
+}
+
+figure.cart-tab-img {
+    max-width: 125px;
+    max-height: 100px;
+}
+.car-col-body {
+    padding: 10px;
+    display: block;
+}
+.cart-item-link {
+    font-size: 17px;
+    color: #212121;
+    line-height: 1;
+    display: inline;
+    font-weight: 600;
+}
+.cart-item-des p {
+    display: inline-block;
+    color: #878787;
+    font-size: 14px;
+}
+.vendor-del-rating {
+    display: flex;
+}
+.vendor-del-rating {
+    display: flex;
+    align-items: center;
+}
+.inner-list.rating-stars li a {
+    color: #eea31e;
+    font-size: 14px;
+}
+.cart-price-line {
+    display: flex;
+    align-items: center;
+}
+.off-price {
+    font-size: 18px;
+    font-weight: 500;
+    color: #212121;
+}
+.main-price {
+    margin: 0px 7px;
+    color: #878787;
+}
+.cart-price-line p, .cart-price-line a {
+    color: #b58ec3;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+}
+.cart-price-line .demo-app {
+    margin-left: 10px;
+}
+.demo-app i {
+    margin-left: 2px;
+    font-size: 20px;
+    margin-bottom: 2px;
+}
+.icon-btn.add-pkg-icon {
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+}
+.color-highlight {
+    color: #eea31e !important;
+}
+.cart-addon-listing li{
+  position: relative;
+  padding-left:10px;
+  position: relative;
+  font-size: 14px;
+  color: #878787;
+}
+.cart-addon-listing li:after {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #35476b;
+    content: "";
+    border-radius: 50%;
+    left: 0;
+    top: 8px;
+}
+.btn-outer-wrap {
+    display: block;
+    width: 100%;
+}
+.cart-table.bottom th {
+    text-align: right;
+}
+/************/
 
 
 

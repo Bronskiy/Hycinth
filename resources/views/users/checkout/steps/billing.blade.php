@@ -1,10 +1,15 @@
-@extends('users.checkout.index1')
+@extends('users.layouts.checkout')
 @section('checkoutContent')
 
 
+
+ 
+
 <fieldset>
       <div class="card-heading">
-      <h3>Billing Address</h3>          
+      <h3><i class="fa fa-location-arrow" aria-hidden="true"></i> Billing Address</h3>     
+
+      <div id="messages"></div>
     </div>
                      
    <div class="checkout-billing-address ">
@@ -44,7 +49,7 @@
         <div class="col-md-6">
                <!-- {{textbox($errors,'Address','address',$address->address)}} -->
                <div class="form-group">
-              <input type="text" id="address" class="form-control" name="address" 
+              <input type="text" id="address" class="form-control" name="address" autocomplete="false" 
               value="{{$address->address}}" 
               placeholder="Enter your Address">
               <span class="input-icon"><i class="fas fa-search-location"></i></span>
@@ -95,8 +100,8 @@
 
            <!-- <button class="cstm-btn solid-btn">Continue</button> -->
            <div class="multistep-footer mt-4 text-right"> 
-            <a href="{{ !empty($backStepUrl) ? $backStepUrl : 'javascript:void(0)' }}" class="cstm-btn solid-btn previous_button">Back</a> 
-            <button id="billingFormBtn" type="submit" class="cstm-btn solid-btn">Continue</button>
+            
+            <button id="billingFormBtn" type="submit" class="cstm-btn solid-btn">Save & Continue</button>
           </div>
 
         </div>
@@ -105,6 +110,46 @@
    </div>
 
 </fieldset>
+
+
+
+
+
+
+
+
+<div class="upcomming-step">
+@include('users.checkout.completedSteps.orderSummary')
+@include('users.checkout.completedSteps.payment')
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  
 @endsection

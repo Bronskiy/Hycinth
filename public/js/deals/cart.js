@@ -95,12 +95,14 @@ function updateDataToCartModalPopupBeforeLogin($this) {
     var package_price = $this.attr('data-price');
     var package_description = $this.attr('data-description');
     var deal_id = $this.attr('data-dealId');
+    var package_capacity = $this.attr('data-capacity');
     
     $modal.find('.modal-package-price').text(package_price);
     $modal.find('#package_id').val(package_id);
     $modal.find('#deal_id').val(deal_id);
     $modal.find('.modal-package-title').text(package_title);
     $modal.find('.modal-package-description').html(package_description);
+    $modal.find('.modal-title-capacity').html(package_capacity);
   
 }
 
@@ -115,7 +117,7 @@ function updateDataToCartModalPopup(result) {
     $modal.find('#package_id').val(package_id);
 
     $modal.find('.modal-package-title').text(package_title);
-    $modal.find('.modal-package-price').text(package_price);
+    $modal.find('.modal-package-price').text('$'+package_price);
     $modal.find('.modal-package-description').html(package_description);
 
    userCategoryOptions(result.upcoming_events);
@@ -139,17 +141,14 @@ function getAllcategoriesAssigedToEvent(result) {
      var $modal = $("body").find('#cartModal');
 
           txt ='<h5>Vendor Services related to your Event</h5>';
+          txt +='<ul class="vendor_ser_list">';
      $.each( result.records, function( key, value ) {
        
-          txt +='<div class="col-lg-6">';
-          txt +='<div class="vendor-category">';
-          txt +='<div class="category-checkboxes category-title">';
-          txt +='<input type="checkbox" name="" value="1" id="ser-0" checked="" readonly="">';
-          txt +='<label for="category-1">'+value.event_category.label+'</label>';
-          txt +='</div>';
-          txt +='</div>';
-          txt +='</div>';
+             
+          txt +='<li> <span class="left-check"><i class="fas fa-check-square"></i></span>'+value.event_category.label+'</li>';
+         
      });
+     txt +='</ul>';
  
      $modal.find('#eventAllCategories').html(txt);
 }

@@ -9,25 +9,23 @@
                 </button>
                 
                 <ul class="inn-top-navigation">
-                    <li><a href="{{url('/')}}">Home</a></li>
                    <li><a href="javascript:void(0);" data-toggle="modal" data-target="#VenuesCategoriesModal">Businesses</a></li>
              <li><a href="{{url(route('all_deals'))}}">Deals & Discount</a></li>
-                    <li><a href="{{url('/vendor/register')}}">New Vendors</a></li>
                     @if(Auth::check())
                     <li>
-                        <a href="javascript:void(0);" class="fav-list"><i class="fas fa-heart"></i>
+                        <a href="javascript:void(0);" class="fav-list mr-2"><i class="fas fa-heart"></i>
                             <sup id="fav_ven">{{ Auth::User()->favouriteVendors->count() }}</sup>
                         </a>
                     </li>
                      <li class="mob-hide">
-                         <a href="{{url(route('my_cart'))}}" class="fav-list">
+                         <a href="{{url(route('my_cart'))}}" class="fav-list wt-btn mr-2">
                          <i class="fas fa-cart-plus"></i>
                          <sup id="fav_ven2">{{ Auth::User()->CartItems->count() }}</sup>
                          </a>
                       </li>
 
                        <li class="mob-hide">
-                         <a href="{{url(route('my_wishlist'))}}" class="fav-list">
+                         <a href="{{url(route('my_wishlist'))}}" class="fav-list wt-btn mr-2">
                          <i class="fas fa-list"></i>
                          <sup id="fav_ven2">{{ Auth::User()->CartItems->count() }}</sup>
                          </a>
