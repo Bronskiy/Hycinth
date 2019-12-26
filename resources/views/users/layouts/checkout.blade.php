@@ -1,26 +1,17 @@
 @extends('layouts.home')
 @section('content')
-
+<link rel="stylesheet" type="text/css" href="{{url('/frontend/css/cart.css')}}">
 
 <style type="text/css">
  body{
     background: #f7f7f7;
 }
-
-.sec-card {
-    display: block;
-    -webkit-box-shadow:  0px 0px 10px rgba(0,0,0,0.1);
-     box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-    margin-top:-125px;
-    background: #fff;
-    border-radius: 10px;
-    padding: 30px 25px;
+.multi_step_form {
     margin-bottom: 30px;
-    overflow: hidden;
-    position: relative;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
 }
+.sec-card {
+    margin-top:-125px;
+  }
 
 .multi_step_form #msform #progressbar {
     margin-bottom: 0px;
@@ -39,22 +30,19 @@
 .multistep-form-card {
     background: transparent;
 }
-
-.multistep-form-card fieldset {
-    background: #ffffff;
-    padding: 20px 0px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-    margin-bottom: 30px;
-    padding-top: 0px;
+.multistep-form-card fieldset{
+padding: 0px;
+margin-bottom: 15px;
 }
 
-.card-heading h3{
+
+.step-billing-heading h3{
   display: block;
     text-align: left;
     padding: 10px 15px;
     margin-left:0;
     margin-right:0;
-    background: #252525;
+    background: #eda108;
     border-bottom: 1px solid #ddd;
     margin-top:0px;
     
@@ -62,17 +50,17 @@
     margin-bottom: 0px;
 
 }
-.card-heading h3:after{
+.step-billing-heading  h3:after{
     display: none;
 }
 
-.card-heading h3 i {
+.step-billing-heading  h3 i {
     color: #ffffff;
     background: #eda208;
-    padding: 3px;
-    font-size: 17px;
-    width: 35px;
-    height: 35px;
+
+    font-size: 23px;
+ /*   width: 35px;
+    height: 35px;*/
     line-height: 31px;
     text-align: center;
 }
@@ -92,8 +80,6 @@ fieldset.complete .card-heading h3 {
 
 .checkout-billing-address {
     margin-top: 0;
-    padding: 20px;
-    padding-bottom: 20px;
 }
 
 
@@ -130,11 +116,7 @@ fieldset.complete {
                @if(!empty($stepNumber))
                 <?= stepbarCheck($stepNumber, $haveDeal) ?>
                 @endif
-           </div>
-        </div>
-
-
-<div class="container lr-container">
+           
  <div class="multistep-form-card"> 
           <div class="row"> 
                     
@@ -145,9 +127,10 @@ fieldset.complete {
                 @yield('checkoutContent')
            </div>
 
-           <div class="col-lg-4">
-              
-          </div> 
+              <div class="col-lg-4">
+                   @include('users.includes.cart.sidebar')
+           
+               </div>
       </div>
       
        
@@ -156,12 +139,13 @@ fieldset.complete {
           
 </div>
 </div>
+</div>
 </section>
-
+<input type="hidden" name="cartRoute" value="{{url(route('checkout.getOrderSummary'))}}">
 @endsection
 
 @section('scripts')
-
+<script type="text/javascript" src="{{url('/js/cartpage.js')}}"></script>
  <script src="https://www.sandbox.paypal.com/sdk/js?client-id=ATM1-l4SIZt42mV4cWma2TQKjMXFFUF94dWEy-aaCjnqrqseiUYHlnrzF4-QDZlXq1TU4cLrToOlPBuS"> 
   </script>
 <script src="{{ asset('/js/checkout/paypal.js') }}"></script>

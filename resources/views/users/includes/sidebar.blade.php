@@ -33,6 +33,10 @@
 
                 <li class="nav-item {{ ActiveMenu(['user_events', 'user_show_create_event', 'user_show_edit_event', 'user_show_detail_event'], 'active') }}">
                     <a href="{{ route('user_events') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-calendar"></i></span><span class="pcoded-mtext">My Events</span></a>
+                </li>              
+
+                <li class="nav-item {{ ActiveMenu(['user_orders'], 'active') }}">
+                    <a href="{{ route('user_orders') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-calendar"></i></span><span class="pcoded-mtext">My Orders</span></a>
                 </li> 
 
                 <li class="nav-item">

@@ -54,7 +54,7 @@
       </div>
 
        <div class="custom-control custom-radio">
-        <input type="radio" id="PriceType" name="price_type" value="per_person" class="custom-control-input">
+        <input type="radio" id="PriceType" name="price_type" value="fix" class="custom-control-input">
         <label class="custom-control-label" for="PriceType">Fix Price</label>
       </div>
 

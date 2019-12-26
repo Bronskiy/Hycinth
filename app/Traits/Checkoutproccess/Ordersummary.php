@@ -43,10 +43,32 @@ public function getCurentOrders()
 
 
 
+#------------------------------------------------------------------------------------------------------
+#  get Order Summary
+#------------------------------------------------------------------------------------------------------
 
 
+public function getOrderSummary()
+{
+	   $order = $this->getCurentOrders();
+                   
+ 
+    $items = view('users.includes.cart.list')->with('CartItems',$order->get());
+
+    $amountDetail = view('users.includes.cart.cart_total')->with('CartItems',$order);
 
 
+   
+    $data = [
+            'items' => $items->render(),
+            'amountDetail' => $amountDetail->render(),
+           ];
+
+    return response()->json([
+            'status' => 1,
+            'data' => $data
+    ]);
+}
 
 
 

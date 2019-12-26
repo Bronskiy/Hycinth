@@ -6,13 +6,13 @@
  
 
 <fieldset>
-      <div class="card-heading">
-      <h3><i class="fa fa-location-arrow" aria-hidden="true"></i> Billing Address</h3>     
+      <div class="card-heading step-billing-heading">
+      <h3><i class="fas fa-map-marker-alt"></i> Billing Address</h3>     
 
       <div id="messages"></div>
     </div>
                      
-   <div class="checkout-billing-address ">
+   <div class="checkout-billing-address p-4">
       <form method="post" id="billingForm" class="row">  
         @csrf
         <div class="col-md-6">
@@ -146,15 +146,12 @@
 
 
 
-
-
-
-
-
+<input type="hidden" name="cartRoute" value="{{url(route('checkout.getOrderSummary'))}}">
  
 @endsection
 
 @section('scripts')
+<script type="text/javascript" src="{{url('/js/cartpage.js')}}"></script>
 
 <script src="{{ asset('/js/checkout/billingValidation.js') }}" ></script>
 

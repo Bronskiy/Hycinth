@@ -13,13 +13,18 @@
 
 
 <fieldset>
-      <div class="card-heading">
-         <h3><i class="fa fa-location-arrow" aria-hidden="true"></i> Billing Address </h3>     
+      <div class="card-heading step-billing-heading">
+         <h3><i class="fas fa-money-check-alt"></i> Payment Method </h3>     
          <div id="messages"></div>
       </div>
 
    
-    <div class="checkout-billing-address">
+
+    <div class="checkout-billing-address p-4">
+
+      <div class="alert alert-info closer-step mb-3" role="alert">
+        <i class="fa fa-info-circle"></i> One Step closer to your event
+      </div>
 
       <div class="payment-table sidebar">
            <div class="row">
@@ -49,25 +54,6 @@
                         </div>
                </div>
           </div>
-
-
-         <div class="col-md-12">
-          <div class="multistep-footer mt-4">
-            <div class="row">
-                <div class="col-md-4">
-                  <figure class="card-accepted">
-                     <img src="{{ asset('/frontend/images/payment-cards.png') }}">
-                  </figure>
-                </div>
-                <div class="col-md-8">
-                   <div class="btn-wrap text-right"> 
-                    
-                  </div>
-                </div>
-             </div>
-          </div>
-        </div>
- 
     </div>
 </div>
 
@@ -86,6 +72,11 @@
 
 
 
+<input type="hidden" name="cartRoute" value="{{url(route('checkout.getOrderSummary'))}}">
+ 
+@endsection
 
+@section('scripts')
+<script type="text/javascript" src="{{url('/js/cartpage.js')}}"></script>
  
 @endsection

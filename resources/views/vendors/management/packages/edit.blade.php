@@ -42,12 +42,12 @@
                <label>Price status</label>
 
             <div class="custom-control custom-radio mb-1">
-        <input type="radio" id="PriceType1" name="price_type" value="per_person" class="custom-control-input" checked>
+        <input type="radio" id="PriceType1" name="price_type" value="per_person" class="custom-control-input" {{ $package->price_type === 'per_person' ? 'checked' : '' }}>
         <label class="custom-control-label" for="PriceType1">Price Per Person</label>
       </div>
 
        <div class="custom-control custom-radio">
-        <input type="radio" id="PriceType" name="price_type" value="per_person" class="custom-control-input">
+        <input type="radio" id="PriceType" name="price_type" value="fix" class="custom-control-input" {{ $package->price_type === 'fix' ? 'checked' : '' }}>
         <label class="custom-control-label" for="PriceType">Fix Price</label>
       </div>
 

@@ -6,6 +6,7 @@
     data-key="{{$stripe['pk']}}"
     data-amount="{{1000}}"
     data-name="Envision"
+    data-class="Envision"
     data-description="Shopping"
     data-email="{{Auth::user()->email}}"                              
     data-locale="auto">

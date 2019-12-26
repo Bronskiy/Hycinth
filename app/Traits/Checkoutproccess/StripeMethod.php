@@ -22,6 +22,8 @@ trait StripeMethod {
 
 public function payWithStripe(Request $request)
 {
+
+   return $this->stripePaymentToAccount($request);
      $error = '';
      if(empty($request->stripeToken)):
         
@@ -29,7 +31,7 @@ public function payWithStripe(Request $request)
 
      else:
                        
-	              $token = $request->stripeToken;
+	                $token = $request->stripeToken;
                   $total = 1000;
                        # create customer to stripe while payment
          try {
@@ -50,7 +52,7 @@ public function payWithStripe(Request $request)
                                    ]);
 
                                  if($charge){
-                                 	return $charge;
+                                 	///return $charge;
                                        //return $this->saveDataAfterPayment($deal,$package,$charge,'STRIPE');
                                  }else{
                                       $error .= '<li><b>Payment Failed</b> Something Wrong going on!</li>';
@@ -82,5 +84,53 @@ public function payWithStripe(Request $request)
 
 
 
+
+public function stripePaymentToAccount($request)
+{
+
+       $OrderID = '#ENV'.strtotime(date('y-m-d h:i:s'));
+
+          $token = $request->stripeToken;
+          $admin_fee =1000;
+          $total = 10000;
+          $account_id = 'acct_1Fu0uKGFWCumBAok';
+          $account2 ='acct_1Fu1UYIc310lkye2';
+   
+           $charge = \Stripe\Charge::create([
+            "amount" => 10000,
+            "currency" => "usd",
+            "source" => "tok_visa",
+            //"shipping" => $shipping,
+            "description" => "Customer for pay 2 to admin for 123",
+            "application_fee" => 123
+            ], 
+            ["amount" => 2000,"stripe_account" => $account_id], 
+            ["amount" => 2000,"stripe_account" => $account2]);
+
+        if($charge){
+            return $this->saveDataInEventOrder($charge,'STRIPE',$OrderID);
+        }
+ 
+}
+
+#--------------------------------------------------------------------------------------------
+#
+#--------------------------------------------------------------------------------------------
+
+public function saveDataInEventOrder($charge,$type,$OrderID)
+{
+       $order = $this->getCurentOrders();
+    
+       $orders = $order->update([
+          'payment_type' => $type,
+          'payment_status' => 1,
+          'pyayment_data' => json_encode($charge),
+          'type' => 'order',
+          'OrderID' => $OrderID
+
+       ]);
+ 
+}
+ 
 
 }

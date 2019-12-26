@@ -12,6 +12,7 @@ trait EventConditionBeforeCart {
 use EventOrderTrait;
 use WishList;
 use ApplyCouponTrait;
+use PackageAddons;
 
 
 
@@ -300,7 +301,7 @@ public function checkAllConditionBeforeAddingPackage($errorType,$request=[])
 
 		case 'event_category':
 		    $package = VendorPackage::find($request->package_id);
-			$msg= 'You did not choosed <b>'.$package->title.'</b> category, In your current selected event!';
+			$msg= 'You did not choosed <b>'.$package->business->category->label.'</b> category, In your current selected event!';
 			break;
 		
 		case 'event_capacity':

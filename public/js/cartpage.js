@@ -213,12 +213,130 @@ function CartAndWishList($btnThis,$formID) {
 
 
 
+//##################################################################################################
 
 
+$("body").on('click','.package-addons-modal',function(e){
+    e.preventDefault();
+    var $this = $( this );
+    var actionUrl = $this.attr('data-action');
+    var orderID = $this.attr('data-orderID');
+    var $modal = $('#PackagePopupWithAddons');
+    var total = $("body").find('#CurrentCartTotal').val();
+    $modal.modal({backdrop: 'static', keyboard: false});
+     
+        $.ajax({
+               url : actionUrl,
+               type: 'GET',  
+               data:{
+                total:total,
+                orderID:orderID
+               }, 
+               dataTYPE:'JSON',
+               headers: {
+                 'X-CSRF-TOKEN': $('input[name=_token]').val()
+               },
+                beforeSend: function() {
+                      $("body").find('.custom-loading').show();
+                      $("body").find('.messageNotofications').html('');
+                     //$this.find('button.cstm-btn').attr('disabled','true');
 
+                },
+                success: function (result) {
+                      if(parseInt(result.status) == 1){
+                           // $("body").find('.messageNotofications').html(ErrorMsg('warning',result.errors));
+                           $("body").find('.custom-loading').hide();
+                           $modal.find('.modal-body').html(result.addonsHtml);
+                           //$this.find('button.cstm-btn').removeAttr('disabled');
+                       } 
+                       
+               },
+               complete: function() {
+                        $("body").find('.custom-loading').hide();
+               },
+               error: function (jqXhr, textStatus, errorMessage) {
+                     
+               }
 
+    });
+
+});
+
+$("body").on('click','.addonPkg',function(){
+  if($(this).is(':checked')){
+        addonPrice();
+  }else if(!$(this).is(':checked')){
+    var val = parseInt($(this).data('price'));
+    var total = $("body").find('#CurrentCartTotal').val();
+    var totalPrice = parseInt(total) - val;
+     $("body").find('#addonTotal').text(totalPrice);
+
+  }
+});
 
 //###################################################################################################
 
 
+function addonPrice() {
+  var total = $("body").find('#CurrentCartTotal').val();
+  var totalPrice = parseInt(total);
+   $("body").find('.addonPkg:checked').each(function() {
+       totalPrice += parseInt($(this).data('price'));
+   });
+
+  $("body").find('#addonTotal').text(totalPrice);
+    
+}
+
+//###############################################################################################
+
+$("body").on('submit','form#AddonSubmit',function(e){
+   e.preventDefault();
+  var $this = $( this );
+  var $modal = $('#PackagePopupWithAddons');
+  var actionUrl = $this.attr('action');
+   $.ajax({
+               url : actionUrl,
+               type: 'POST',  
+               data:$this.serialize(), 
+               dataTYPE:'JSON',
+               headers: {
+                 'X-CSRF-TOKEN': $('input[name=_token]').val()
+               },
+                beforeSend: function() {
+                      
+                      $this.find('.alertMessage').html('');
+                      $this.find('button.cstm-btn').attr('disabled','true');
+
+                  
+
+
+                },
+                success: function (result) {
+                      if(parseInt(result.status) == 1){
+                                $this.find('.alertMessage').html(ErrorMsg('success',result.messages));
+                              $this.find('button.cstm-btn').removeAttr('disabled');
+                                  loadCartItems(1);
+                                   $modal.modal('hide');
+                       }else{
+                           $this.find('.alertMessage').html(result.messages);
+
+                            $this.find('button.cstm-btn').removeAttr('disabled');
+                       }
+                       
+               },
+               complete: function() {
+                        $("body").find('.custom-loading').hide();
+               },
+               error: function (jqXhr, textStatus, errorMessage) {
+                     
+               }
+
+    });
+
+
+});
+
+
+//###############################################################################################
 });

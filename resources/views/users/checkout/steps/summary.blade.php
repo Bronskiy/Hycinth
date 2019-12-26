@@ -1,37 +1,115 @@
 
-<table class="table">
+ 
 
 @if($orders->count() > 0)
  @foreach($orders->get() as $item)
 
+ <div class="row no-gutters" data=id="{{$item->id}}">
+                <div class="col-lg-2">
+                  <div class="cart-col-wrap">
+                     
+                    <div class="car-col-body">
+                      <figure class="cart-tab-img">
+                        <img src="{{asset($item->event->event_picture)}}">
+                      </figure>
+                    </div>
 
+                  </div>
+                </div>
+                <div class="{{$item->addons !='' ? 'col-lg-7' : 'col-lg-10'}}">
+                  <div class="cart-col-wrap">
+                                      
+                    <div class="car-col-body">
+                      <a href="javascript:void(0);" class="cart-item-link">{{$item->event->title}}</a>
+                      <div class="cart-item-des">
+                        <p class="color-highlight">Package: <strong>{{$item->package->title}}</strong></p>
+                         
+                          @if($item->package->package_addons->count() > 0)
+                               <a 
+                               href="javascript:void(0);" 
+                               data-toggle="tooltip" 
+                               title="Create Event" 
+                               class="icon-btn add-pkg-icon package-addons-modal" 
+                               data-orderID="{{$item->id}}" 
+                               data-action="{{url(route('getPackageAddons',$item->package->id))}}"
+                               data-id="{{$item->package->id}}">
+                                    <i class="fas fa-plus"></i>
+                               </a> 
+                          @endif                 
+                         
+                        <div class="vendor-del-rating right-content">
+                        <p>Vendor: <strong>{{$item->vendor->title}}</strong></p>
+                         <ul class="inner-list rating-stars">
+                              <li><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
+                              <li><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
+                              <li><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
+                              <li><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
+                              <li><a href="javascript:void(0);"><i class="far fa-star"></i></a>
+                              </li>
+                          </ul>
+                        </div>
+                        
+              
+              
            
 
+                          <div class="cart-price-line">
+                           <span class="off-price"> ${{custom_format($item->discounted_price,2)}} 
+
+                              @if($item->discounted_price < $item->package->price && $item->deal != null && $item->deal->count() > 0) 
+                                    <del class="main-price">${{custom_format($item->package->price,2)}} {{$item->addon_price > 0 ? '+ $'.$item->addon_price : ''}}</del> 
+                                  @endif
+                           </span> 
+                                
+                          
 
 
-<tr>
-	<td  data-item="{{$item->id}}">
-
-          <h4>{{$item->event->title}}</h4>
-          <h6 class="table-price">{{$item->package->title}}</h6>
-          <h6 class="table-price">
-          	  ${{custom_format($item->discounted_price,2)}}
-          	  @if($item->discounted_price < $item->package->price && $item->deal != null && $item->deal->count() > 0) 
-          	    <span class="offer_discount">${{custom_format($item->package->price,2)}}</span>
-          	  @endif
-              @if($item->deal != null && $item->deal->count() > 0)
-                 {{$item->deal->deal_off_type == 0 ? $item->deal->amount.'%' : '$'.custom_format($item->deal->amount,2)}}
-                  Off 1 Deal applied     
-              @endif
-
-          </h6>
-          
-	</td>
-</tr>
+                       @if($item->deal != null && $item->deal->count() > 0)
+                       
+                         
+                            
+                              
+                             <p> {!! dealInfoInCart($item) !!}
+                                
+                               <div class="demo-app hasToggle"> 
+                                  <i class=" blink-text fas fa-info-circle"></i> 
+                                  <span class="toggle-info-dropdown">
+                                        {!! dealToggledownBox($item) !!}
+                                  </span>
+                              </div>
+                             </p> 
+                          
+                             
+                        @endif
  
 
+
+
+
+                          </div>
+
+
+              
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                @if($item->addons !="")
+                <div class="col-lg-3">
+                  <div class="cart-col-wrap">
+                                      
+                    <div class="car-col-body">
+                        {!!addonsInCarts($item)!!}
+                    </div>
+                  </div>
+                </div>
+                @endif
+               
+              </div>
+
   @endforeach
-</table>
+ 
 
 
 

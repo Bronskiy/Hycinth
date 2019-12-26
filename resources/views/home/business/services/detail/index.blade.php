@@ -410,6 +410,24 @@ div#Video-carousel li span {
       </div>
    </div>
 </section>
+
+
+
+
+
+
+@include('home.includes.business-detail.chatbox')
+
+
+
+
+
+
+
+
+
+
+
 @endsection
 
 

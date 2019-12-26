@@ -17,6 +17,8 @@ Route::group(['prefix' => 'ajax'], function(){
 
 
     Route::post('/get-step-2', 'Users\PopUpStepController@saveEventFromPopup')->name('steps.second');  
+    Route::get('/get-package-addons/{id}', 'Users\Cart\CartController@getAddons')->name('getPackageAddons');  
+    Route::post('/add-package-addons', 'Users\Cart\CartController@addAddons')->name('addPackageAddons');  
 
 });
 

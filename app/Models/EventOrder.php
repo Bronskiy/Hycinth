@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Vendors\DiscountDeal;
 class EventOrder extends Model
 {
-    
+ protected $fillable = [   
+'payment_type',
+'payment_status',
+'pyayment_data',
+'type',
+'OrderID'];
 
     public function deal()
     {

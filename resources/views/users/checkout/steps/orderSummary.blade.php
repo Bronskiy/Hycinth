@@ -8,23 +8,44 @@
 @include('users.checkout.completedSteps.billing')
 
 
-
-
-
-
-
 <fieldset>
-      <div class="card-heading">
+      <div class="card-heading step-billing-heading">
       <h3><i class="fa fa-cart-plus" aria-hidden="true"></i> Order Summary</h3>     
 
       <div id="messages"></div>
     </div>
                      
-   <div class="checkout-billing-address ">
+   <div class="checkout-billing-address" id="checkout-order-summary">
+       
+ 
+                  <div class="cart-items-wrap" style="display: none;">
+                     <div class="row no-gutters">
+                        <div class="col-lg-2">
+                           <div class="cart-col-wrap">
+                              <div class="cart-table-head">
+                                 <h3>Event Image</h3>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-lg-10">
+                           <div class="cart-col-wrap">
+                              <div class="cart-table-head">
+                                 <h3>Details</h3>
+                              </div>
+                           </div>
+                        </div>
+                        
+                     </div>
+                  </div>
+                  <!-- start Heading -->
+                  <div class="cart-items-wrap" id="CartItems">
+                             
+                  </div>
 
 
+                  <div class="col-md-12 text-right mb-4"><a href="{{url(route('checkout.paymentPage'))}}" class="cstm-btn solid-btn pull-right">Continue</a></div>
+      
 
-      @include('users.checkout.steps.summary')
 
 
 
@@ -35,4 +56,13 @@
 <div class="upcomming-step">
  @include('users.checkout.completedSteps.payment')
 </div>
+
+@include('users.includes.cart.addonsPop')
+
+<input type="hidden" name="cartRoute" value="{{url(route('checkout.getOrderSummary'))}}">
+
+@endsection
+
+@section('scripts')
+<script type="text/javascript" src="{{url('/js/cartpage.js')}}"></script>
 @endsection

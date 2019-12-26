@@ -1,17 +1,21 @@
-<fieldset class="complete">
-      <div class="card-heading">
-      <h3><i class="fa fa-location-arrow" aria-hidden="true"></i> Billing Address
-             <a href="{{url(route('checkout.billingAdress'))}}" class="btn btn-info pull-right">Change</a>
-      </h3>     
-
-      <div id="messages"></div>
-    </div>
-
-    @if(Session::has('billingAddress'))
+<fieldset class="complete p-3">
+<div class="complete-card">
+  <div class="row">
+    <div class="col-lg-8">
+       <h3>Billing Address <span class="check-add-icon"> <i class="fas fa-check"></i></span> </h3>
+       @if(Session::has('billingAddress'))
     <div class="checkout-billing-address">
     <?php $address = json_decode(Session::get('billingAddress')); ?>
     <p><strong>{{$address->name}}</strong> {{$address->address}}, {{$address->city}}, {{$address->state}}, {{$address->country}} ({{$address->zipcode}})</p>
  
    </div>
     @endif
- </fieldset>
+    </div>
+    <div class="col-lg-4">
+      <div class="mini-btn-wrap mt-4 text-right">
+      <a href="{{url(route('checkout.billingAdress'))}}" class="cstm-btn solid-btn">Change</a>
+    </div>
+    </div>
+  </div>
+</div>
+</fieldset>

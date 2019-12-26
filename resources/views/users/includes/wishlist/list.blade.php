@@ -1,23 +1,97 @@
+@if(Auth::check() && Auth::user()->role == 'user') @if(empty($CartItems))
+     <h4>Your Cart is Empty.</h4>
+@endif 
 
-
+ 
 @foreach($CartItems as $item)
 
-<tr>
-    <td>{{$item->event->title}}</td>
-    <td>{{$item->package->title}}</td>
-    <td>
-        @if($item->deal != null && $item->deal->count() > 0)
-             {{$item->deal->title}}
-        @else
-        N/A
-        @endif
-    </td>
-    <td>${{$item->package->price}}</td>
-     
-    <td width="150">
-    <div class="action-btn-wrap ">
+ <div class="row no-gutters" data=id="{{$item->id}}">
+                <div class="col-lg-2">
+                  <div class="cart-col-wrap">
+                     
+                    <div class="car-col-body">
+                      <figure class="cart-tab-img">
+                        <img src="{{asset($item->event->event_picture)}}">
+                      </figure>
+                    </div>
 
-          <form action="{{url(route('cart.addToWishList'))}}" id="addToWishListForm-{{$item->id}}">
+                  </div>
+                </div>
+                <div class="col-lg-8">
+                  <div class="cart-col-wrap">
+                                      
+                    <div class="car-col-body">
+                      <a href="javascript:void(0);" class="cart-item-link">{{$item->event->title}}</a>
+                      <div class="cart-item-des">
+                        <p class="color-highlight">Package: <strong>{{$item->package->title}}</strong></p>
+                         
+                                  
+                         
+                        <div class="vendor-del-rating right-content">
+                        <p>Vendor: <strong>{{$item->vendor->title}}</strong></p>
+                         <ul class="inner-list rating-stars">
+                              <li><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
+                              <li><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
+                              <li><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
+                              <li><a href="javascript:void(0);"><i class="fas fa-star"></i></a></li>
+                              <li><a href="javascript:void(0);"><i class="far fa-star"></i></a>
+                              </li>
+                          </ul>
+                        </div>
+                        
+              
+              
+           
+
+                          <div class="cart-price-line">
+                           <span class="off-price"> ${{custom_format($item->discounted_price,2)}} 
+
+                              @if($item->discounted_price < $item->package->price && $item->deal != null && $item->deal->count() > 0) 
+                                    <del class="main-price">${{custom_format($item->package->price,2)}} {{$item->addon_price > 0 ? '+ $'.$item->addon_price : ''}}</del> 
+                                  @endif
+                           </span> 
+                                
+                          
+
+
+                       @if($item->deal != null && $item->deal->count() > 0)
+                       
+                         
+                            
+                              
+                             <p> {!! dealInfoInCart($item) !!}
+                                
+                               <div class="demo-app hasToggle"> 
+                                  <i class=" blink-text fas fa-info-circle"></i> 
+                                  <span class="toggle-info-dropdown">
+                                        {!! dealToggledownBox($item) !!}
+                                  </span>
+                              </div>
+                             </p> 
+                          
+                             
+                        @endif
+ 
+
+
+
+
+                          </div>
+
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                 <div class="col-lg-2">
+                  <div class="cart-col-wrap">
+                     <div class="car-col-body">
+                     
+                         <div class="action-btn-wrap">
+
+                       <form action="{{url(route('cart.addToWishList'))}}" id="addToWishListForm-{{$item->id}}">
                             @csrf
                               <input type="hidden" name="package_id" id="package_id" value="{{$item->package_id}}">
                               <input type="hidden" name="deal_id" id="deal_id" value="{{$item->deal_id}}">
@@ -31,11 +105,59 @@
                                          <span><i class="fas fa-cart-plus"></i></span>
                                         </button>
                           </form>
-        <a href="{{url(route('wishlist.delete',$item->id))}}" class="icon-btn danger-btn">
-            <i class="fas fa-trash-alt"></i>
-        </a>
-    </div>
-    </td>
-</tr>
+                          <a href="{{url(route('wishlist.delete',$item->id))}}" class="icon-btn danger-btn">
+                              <i class="fas fa-trash-alt"></i>
+                          </a>
 
-@endforeach
+
+                    </div>
+                  </div>
+                </div>
+
+                 </div>
+                @if($item->addons !="")
+                <div class="col-lg-3">
+                  <div class="cart-col-wrap">
+                                      
+                    <div class="car-col-body">
+                        {!!addonsInCarts($item)!!}
+                    </div>
+                  </div>
+                </div>
+                @endif
+               
+              </div>
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+@endforeach 
+
+
+
+ 
+
+
+@if(empty($CartItems))
+        <h4>Your Cart is Empty.</h4> </td>
+ 
+@endif @else
+ 
+        <h4>Your Cart is Empty.</h4>
+        <p> You are not logged in with customer Account.</p>
+     
+
+@endif

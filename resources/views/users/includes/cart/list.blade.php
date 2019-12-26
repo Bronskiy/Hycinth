@@ -1,15 +1,11 @@
 @if(Auth::check() && Auth::user()->role == 'user') @if(empty($CartItems))
-
- 
-        <h4>Your Cart is Empty.</h4>
- 
-
+     <h4>Your Cart is Empty.</h4>
 @endif 
 
-
+ 
 @foreach($CartItems as $item)
 
- <div class="row no-gutters">
+ <div class="row no-gutters" data=id="{{$item->id}}">
                 <div class="col-lg-2">
                   <div class="cart-col-wrap">
                      
@@ -21,14 +17,26 @@
 
                   </div>
                 </div>
-                <div class="col-lg-5">
+                <div class="{{$item->addons !='' ? 'col-lg-7' : 'col-lg-10'}}">
                   <div class="cart-col-wrap">
                                       
                     <div class="car-col-body">
                       <a href="javascript:void(0);" class="cart-item-link">{{$item->event->title}}</a>
                       <div class="cart-item-des">
                         <p class="color-highlight">Package: <strong>{{$item->package->title}}</strong></p>
-                          <a href="javascrtpt:void(0);" data-toggle="tooltip" title="Create Event" class="icon-btn add-pkg-icon" data-original-title="Get Deal"><i class="fas fa-plus"></i></a>                   
+                         
+                          @if($item->package->package_addons->count() > 0)
+                               <a 
+                               href="javascript:void(0);" 
+                               data-toggle="tooltip" 
+                               title="Create Event" 
+                               class="icon-btn add-pkg-icon package-addons-modal" 
+                               data-orderID="{{$item->id}}" 
+                               data-action="{{url(route('getPackageAddons',$item->package->id))}}"
+                               data-id="{{$item->package->id}}">
+                                    <i class="fas fa-plus"></i>
+                               </a> 
+                          @endif                 
                          
                         <div class="vendor-del-rating right-content">
                         <p>Vendor: <strong>{{$item->vendor->title}}</strong></p>
@@ -47,43 +55,42 @@
            
 
                           <div class="cart-price-line">
-                           <span class="off-price"> ${{custom_format($item->discounted_price,2)}} </span> 
-                                 @if($item->discounted_price < $item->package->price && $item->deal != null && $item->deal->count() > 0) 
-                                    <del class="main-price">${{custom_format($item->package->price,2)}}</del> 
+                           <span class="off-price"> ${{custom_format($item->discounted_price,2)}} 
+
+                              @if($item->discounted_price < $item->package->price && $item->deal != null && $item->deal->count() > 0) 
+                                    <del class="main-price">${{custom_format($item->package->price,2)}} {{$item->addon_price > 0 ? '+ $'.$item->addon_price : ''}}</del> 
                                   @endif
+                           </span> 
+                                
                           
 
 
-                  @if($item->deal != null && $item->deal->count() > 0)
+                       @if($item->deal != null && $item->deal->count() > 0)
                        
                          
-                        <p> {{$item->deal->deal_off_type == 0 ? $item->deal->amount.'%' : '$'.custom_format($item->deal->amount,2)}} Off <a href="javascript:void(0);" class="demo-app"> {{$item->deal->title}} Deal Applied 
-                            <i class="fas fa-info-circle"></i></a></p> 
-                  @endif
+                            
+                              
+                             <p> {!! dealInfoInCart($item) !!}
+                                
+                               <div class="demo-app hasToggle"> 
+                                  <i class=" blink-text fas fa-info-circle"></i> 
+                                  <span class="toggle-info-dropdown">
+                                        {!! dealToggledownBox($item) !!}
+                                  </span>
+                              </div>
+                             </p> 
+                          
+                             
+                        @endif
+ 
 
 
 
 
                           </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-3">
-                  <div class="cart-col-wrap">
-                                      
-                    <div class="car-col-body">
-                        <ul class="cart-addon-listing">
-                          <li>IceCream: $20</li>
-                          <li>IceCream: $20</li>
-                        </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-2">
-                  <div class="cart-col-wrap">
-                     <div class="car-col-body">
-                       <div class="action-btn-wrap">
+
+
+                   <div class="action-btn-wrap mt-2">
 
                         <form action="{{url(route('cart.addToWishList'))}}" id="addToWishListForm-{{$item->id}}">
                             @csrf
@@ -91,7 +98,7 @@
                               <input type="hidden" name="deal_id" id="deal_id" value="{{$item->deal_id}}">
                               <input type="hidden" name="event_type" id="event_type" value="{{$item->event_id}}">
                             
-                                        <button 
+                               <button 
                                  type="button"
                                  data-form="#addToWishListForm-{{$item->id}}"
                                  data-action="{{url(route('cart.addToWishList'))}}"
@@ -105,9 +112,22 @@
 
 
                     </div>
-                     </div>
+
+                      </div>
+                    </div>
                   </div>
                 </div>
+                @if($item->addons !="")
+                <div class="col-lg-3">
+                  <div class="cart-col-wrap">
+                                      
+                    <div class="car-col-body">
+                        {!!addonsInCarts($item)!!}
+                    </div>
+                  </div>
+                </div>
+                @endif
+               
               </div>
 
 
@@ -126,8 +146,14 @@
 
 
  
-@endforeach @if(empty($CartItems))
+@endforeach 
+
+
+
  
+
+
+@if(empty($CartItems))
         <h4>Your Cart is Empty.</h4> </td>
  
 @endif @else

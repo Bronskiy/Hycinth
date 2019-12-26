@@ -1,10 +1,128 @@
 <?php 
 
+
+function addonsInCarts($order)
+{
+  $text ="<strong>N/A</strong>";
+  if($order->addons != ""):
+
+  $addons = explode(",",$order->addons);
+  $adddons = \App\PackageMetaData::whereIn('id',$addons)
+                   ->where('package_id',$order->package->id)
+                   ->get();
+  $text ='<h3 class="cart-item-link">Addons</h3>';
+  $text .='<ul class="cart-addon-listing">';
+                         
+                           
+                         
+  foreach ($adddons as $key => $value) {
+     $text .='<li><span>'.$value->key.'</span><span>$'.$value->key_value.'</span></li>';
+  }
+  $text .='</ul>';
+
+  endif;
+return $text;
+
+}
+
+// get rates for location
+function ratesForLocation($zipcode, $city, $country) {
+  // $key = '44c806666dc16411480b001f747a598f';
+  $key = getAllValueWithMeta('taxjar_api_key', 'global-settings');
+  $client = TaxJar\Client::withApiKey($key);
+  // $client->setApiConfig('api_url', TaxJar\Client::SANDBOX_API_URL);
+  if (in_array($country, ['US', 'CA'])) {
+  try {
+    $rates = $client->ratesForLocation($zipcode, [
+      'city' => $city,
+      'country' => $country
+    ]);
+     return round($rates->combined_rate * 100, 2);
+   } catch (Exception $e) {
+       return 0;
+    }
+  }
+  return 0;
+}
+
+// get commission or Service fee
+function getFee($amount, $fee_type, $fee_amount) {
+  $type = getAllValueWithMeta($fee_type, 'global-settings');
+  $admin_amount = getAllValueWithMeta($fee_amount, 'global-settings');
+  
+  if($type === '0') {
+    return $amount - (($amount * $admin_amount) / 100);
+  } else {
+    return $amount - $admin_amount;
+  }
+
+}
+
+
 function categoryOrders($category_id, $event_id) {
   return \App\Models\Order::where(['category_id'=> $category_id, 'event_id'=> $event_id])->get();
 }
 
 
+
+function dealInfoInCart($item)
+{
+   $text = "";
+  $dealType =$item->deal->deal_off_type == 0 ? $item->deal->amount.'% OFF  ' : '$'.custom_format($item->deal->amount,2).' OFF ';
+  if($item->deal->type_of_deal == 0){
+    $text = ($item->coupon_code != "") ? $dealType.$item->deal->title." Deal Applied " : "<p> This Package have a &nbsp; <strong> ".$item->deal->title."</strong>&nbsp;deal</p>";
+  }else{
+     $text =$dealType.$item->deal->title." Deal Applied ";
+  }
+
+  return $text;                                        
+}
+
+
+
+function dealToggledownBox($item)
+{
+   $text = '';
+
+  $dealType =$item->deal->deal_off_type == 0 ? $item->deal->amount.'% OFF' : '$'.custom_format($item->deal->amount,2).' OFF';
+  $discounted = $item->discount > 0 ? 'discounted-price' : '';
+$dealLife = $item->deal->deal_life == 1 ? 'Applicable From <b>'.date('d-m-Y',strtotime($item->deal->start_date)).'</b> To <b>'.date('d-m-Y',strtotime($item->deal->expiry_date)).' </b>' : 'Permanent';
+  $text .='<h4 class="mb-2">'.$item->deal->title.'</h4>';
+
+  $text .='<div class="deal_life">'.$dealLife.'</div>';
+  $text .='<table class="table">';
+  $text .='<tr>';
+  $text .='<th>Package Name</th>';
+  $text .='<td class="'.$discounted .'">'.$item->package->title.'</td>';
+  $text .='</tr>';  
+  $text .='<tr>';
+  $text .='<th>Package Amount</th>';
+  $text .='<td class="'.$discounted .'">$'.custom_format($item->package->price,2).'</td>';
+  $text .='</tr>';
+  $text .='<tr>';
+  $text .='<th>Discount</th>';
+  $text .='<td class="'.$discounted .'">'.$dealType.' <span>$'.$item->discount.'</span></td>';
+  $text .='</tr>';
+  $text .='<tr class="'.$discounted .'">';
+  $text .='<th>Special Price</th>';
+  $text .='<td>$'.custom_format($item->discounted_price,2).'</td>';
+  $text .='</tr>';
+  $text .='</table>';
+
+  if($item->deal->type_of_deal == 0){
+      $promoCode ='<b>'.$item->deal->deal_code.'</b></p>';
+      $text .="<div class='promoCode'>";
+      $text .= ($item->coupon_code != "") ? "<p>Coupon Applied <strong>Promo Code ".$item->coupon_code."</strong>" : "<p>Discount will be applied after appling the <strong>Promo Code ".$promoCode."</strong>";
+      $text .="</div>";
+  }
+   
+
+ 
+return $text;
+
+
+
+}
 
 
 function EventCurrentStatus($start_date,$end_date)
@@ -73,13 +191,9 @@ function getPackageGames($package)
  function stepbarCheck($step,$deal=0)
 {
 
-
-
-      $stepEvent = $step >= 0 ? "active": "";
-      $stepDeal = $step >= 2 && $deal == 1 ? "active": "";
-      $stepPackage = ($step >= 2 && $deal == 0) || ($step >= 3 && $deal == 1) ? "active": "";
-      $stepBilling = ($step >= 3 && $deal == 0) || ($step >= 4 && $deal == 1) ? "active": "";
-      $stepPayment = ($step >= 4 && $deal == 0) || ($step >= 5 && $deal == 1) ? "active": "";
+      $step1 = ($step >= 1) ? "active": "";
+      $step2 = ($step >= 2) ? "active": "";
+      $step3 = ($step >= 3) ? "active": "";
      
       $parentClass= $deal == 1 ? 'haveFiveSteps' : '';
 
@@ -88,13 +202,11 @@ function getPackageGames($package)
        $text .='<section class="multi_step_form '.$parentClass.'">  ';
        $text .='<div id="msform"> ';
        $text .='<ul id="progressbar">';
-       $text .='<li class="'.$stepEvent.'">Event Detail</li>';
-       if($deal== 1) {
-        $text .='<li class="'.$stepDeal.'">Deal Review</li> ';
-       }
-       $text .='<li class="'.$stepPackage.'">Package</li>';
-       $text .='<li class="'.$stepBilling.'">Billing</li>';
-       $text .='<li class="'.$stepPayment.'">Payment</li>';
+       $text .='<li class="'.$step1.'">Billing Address</li>';
+      
+       $text .='<li class="'.$step2.'">Order Summary</li>';
+       $text .='<li class="'.$step3.'">Payment</li>';
+        
        $text .='</ul>';
        $text .='</div>';
        $text .='</section>';

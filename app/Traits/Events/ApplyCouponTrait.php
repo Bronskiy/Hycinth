@@ -44,6 +44,7 @@ public function applyCoupon(Request $request)
 
 
             $deal = $this->getDealWithCoupCode($request->coupon_code);
+
             $msg = $this->getCouponApplyingMessages($deal);
 
     }
@@ -116,13 +117,14 @@ public function checkDealWithLimitLife($deal)
 
 
    if($today >= $start_date && $today <= $expiry_date){
-      $msg =$this->ExistAnyTypePackageInCart($deals);
+      $response =$this->ExistAnyTypePackageInCart($deals);
    }else{
-     $msg = $this->dealMessageErrors('deal_expired',$deal);
+      $msg = $this->dealMessageErrors('deal_expired',$deal);
+      $response = ['status' => 0, 'messages' => $msg];
    }
 
 
-   return $msg;
+   return $response;
 
 
 
@@ -274,7 +276,7 @@ public function dealMessageErrors($type,$deals)
             $msg = 'Invalid Coupon, Please try another one.';
 			break;
 		case 'deal_expired':
-          $msg = 'Invalid Coupon, Please try another one.';
+          $msg = 'This deal coupon is expired, Please try another one.';
       break;
 
       case 'coupon_code_exists':

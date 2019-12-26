@@ -9,6 +9,7 @@
 
 
  	Route::get('/order-summary','Users\Checkout\CheckoutController@orderSummary')->name('checkout.orderSummary');
+ 	Route::get('/order-summary-data','Users\Checkout\CheckoutController@getOrderSummary')->name('checkout.getOrderSummary');
 
 
  	Route::get('/payment','Users\Checkout\CheckoutController@paymentPage')->name('checkout.paymentPage');

@@ -40,6 +40,8 @@ class VendorPackage extends Model
        return $this->hasMany('App\PackageMetaData', 'package_id')->where('type', 'games');
     } 
 
+     
+
     public function business() {
         return $this->belongsTo('App\VendorCategory', 'vendor_category_id', 'id');
     }

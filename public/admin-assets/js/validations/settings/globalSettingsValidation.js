@@ -16,6 +16,19 @@ $(document).ready(function(){
       "weather_api_key": { 
           required: true,
       },
+      "taxjar_api_key": { 
+          required: true,
+      },
+      "commission_fee_amount" :{
+        required: true,
+        amount: true,
+        min: 1
+      },
+      "service_fee_amount" :{
+        required: true,
+        amount: true,
+        min: 1
+      },
       valueToBeTested: {
           required: true,
       }

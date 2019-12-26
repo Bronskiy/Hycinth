@@ -127,6 +127,11 @@ trait GeneralSettingTrait {
           return [
                   'google_api_key' => getAllValueWithMeta('google_api_key', $slug),
                   'weather_api_key' => getAllValueWithMeta('weather_api_key', $slug),
+                  'taxjar_api_key' => getAllValueWithMeta('taxjar_api_key', $slug),
+                  'commission_fee_type' => getAllValueWithMeta('commission_fee_type', $slug),
+                  'commission_fee_amount' => getAllValueWithMeta('commission_fee_amount', $slug),
+                  'service_fee_type' => getAllValueWithMeta('service_fee_type', $slug),
+                  'service_fee_amount' => getAllValueWithMeta('service_fee_amount', $slug),
           ];
       case 'paypal-credentials': 
           return [
