@@ -14,11 +14,11 @@
     <div class="message-input">
       <div class="wrap">
                   <form id="sendMessage" action="{{url(route('deal_discount_sendMessages',$chats->id))}}">
-                               <div class="chat-input-box">
-                                    <textarea id="textarea" name="message" required placeholder="Write your message.." class="chat-input"></textarea>
-                                    <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
-                                    <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
-                                  </div>
+                      <div class="chat-input-box">
+                          <textarea id="textarea" name="message" required placeholder="Write your message.." class="chat-input"></textarea>
+                          <i class="fa fa-paperclip attachment" aria-hidden="true"></i>
+                          <button class="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                        </div>
                       </form>
    </div>
 </div>

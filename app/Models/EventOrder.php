@@ -7,16 +7,27 @@ use App\Models\Vendors\DiscountDeal;
 class EventOrder extends Model
 {
  protected $fillable = [   
-'payment_type',
-'payment_status',
-'pyayment_data',
-'type',
-'OrderID'];
+                'payment_type',
+                'payment_status',
+                'pyayment_data',
+                'type',
+                'paymentDetails',
+                'OrderID',
+                'order_id'
+            ];
 
     public function deal()
     {
     	return $this->belongsTo('App\Models\Vendors\DiscountDeal');
     }
+
+
+
+    public function order()
+    {
+        return $this->belongsTo('App\Models\Order');
+    }
+
 
 
 

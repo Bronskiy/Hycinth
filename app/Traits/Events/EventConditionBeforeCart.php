@@ -6,6 +6,7 @@ use App\PackageMetaData;
 use App\UserEventMetaData;
 use Auth;
 use App\Models\Vendors\DiscountDeal;
+use App\Models\EventOrder;
 use Carbon\Carbon;
 trait EventConditionBeforeCart {
 
@@ -85,6 +86,32 @@ public function dealHaveRelatedEventType($events,$package_id)
       return $PackageMetaData > 0 ? 1 : 0;
 }
 
+#-----------------------------------------------------------------------------------------
+#  check order item
+#-----------------------------------------------------------------------------------------
+
+public function checkAvailableDates($evenTypeStatus,$events,$request)
+{
+	if($evenTypeStatus == 1){
+	$package_id = $request->package_id;
+	$event_id = $events->id;
+	$package = VendorPackage::find($package_id);
+	$vendor_category_id = $package->vendor_category_id;
+
+     $order =  \App\Models\EventOrder::where('event_orders.vendor_id',$vendor_category_id)
+                       ->join('user_events','user_events.id','=','event_orders.event_id')
+                       ->orWhere(function($t) use($events){
+                       	  $event = $t->first();
+                          $t->whereBetween('user_events.start_date',[$events->start_date,$events->end_date]);
+                          $t->whereBetween('user_events.end_date',[$events->start_date,$events->end_date]);
+                       })
+                       ->where('event_orders.type','order')
+                       ->count();
+
+      return $order > 0 ? 0 : 1;
+
+	}
+}
 
 
 #-----------------------------------------------------------------------------------------
@@ -99,10 +126,11 @@ public function checkAllConditionOfEvent($events,$request,$type=null)
       $package_id = $request->package_id;
 	  
 	  # this function is check that the event type of package which are selected and your event's eventtype both are same
-	 $evenTypeStatus = $this->dealHaveRelatedEventType($events,$package_id);
+	  $evenTypeStatus = $this->dealHaveRelatedEventType($events,$package_id);
 
-
-	  # this function is check that the category of package which is selected and your event's category both are same
+	  $datesSataus = $this->checkAvailableDates($evenTypeStatus,$events,$request);
+     
+      # this function is check that the category of package which is selected and your event's category both are same
 	  $cartStatus = $this->chackAlreadyBuyOrCart($evenTypeStatus,$events,$package_id,$type);
 
 	   # this function is check that the category of package which is selected and your event's category both are same
@@ -114,12 +142,15 @@ public function checkAllConditionOfEvent($events,$request,$type=null)
 	   # this function is check that the category of package which is selected and your event's category both are same
 	  $capacityStatus = $this->PackageAndEventCapacity($categoryStatus,$events,$package_id);
 
-	   # this function is check that the category of package which is selected and your event's category both are same
+	  # this function is check that the category of package which is selected and your event's category both are same
 	  $budgetStatus = $this->PackageAndEventBudget($capacityStatus,$events,$request,$type);
 
 	  if($evenTypeStatus == 0){
 	  	  $status = 0;
           $msg = $this->checkAllConditionBeforeAddingPackage('event_type');
+	  }elseif($datesSataus == 0){
+	  	  $status = 0;
+          $msg = $this->checkAllConditionBeforeAddingPackage('hiedOnThesedate',$request);
 	  }elseif($cartStatus == 0 && $type !="all") {
 	  	  $status = 0;
 	  	  $type_message = $type == 'wishlist' ? 'event_category_exist_with_package_wishlist' : 'event_category_with_package_exist';
@@ -297,6 +328,15 @@ public function checkAllConditionBeforeAddingPackage($errorType,$request=[])
 	switch ($errorType) {
 		case 'event_type':
 			$msg= 'Your event type is not related to this package.';
+			break;
+        case 'hiedOnThesedate':
+              $package = VendorPackage::find($request->package_id);
+              $event_id = !empty($request->event_type) ? $request->event_type : $request->event_id;
+              $event = \App\UserEvent::find($event_id);
+
+             $dates = '(From <strong>'.$event->start_date.'</strong> To <strong>'.$event->end_date.'</strong>)';
+
+			$msg= '<b>'.$package->business->title.'</b> is not availble on these dates '.$dates;
 			break;
 
 		case 'event_category':

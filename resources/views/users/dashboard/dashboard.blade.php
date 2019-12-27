@@ -67,19 +67,33 @@
 
                                         </div>
                                         <div class="countdown-timer-container">
-                                          <input type="hidden" value="{{$event->start_date}}" id="start_date{{$event->id}}" />
+                                          <!-- <input type="hidden" value="{{$event->start_date}}" id="start_date{{$event->id}}" />
                                         <ul class="count-down-timer">
                                           <li><span id="days_{{$event->id}}"></span>days</li>
                                           <li><span id="hours_{{$event->id}}"></span>Hours</li>
                                           <li><span id="minutes_{{$event->id}}"></span>Minutes</li>
                                           <li><span id="seconds_{{$event->id}}"></span>Seconds</li>
-                                        </ul>
+                                        </ul> -->
 
-                                        <script type="text/javascript">
-                                          setTimeout(() => {
-                                            comingsoon('start_date{{$event->id}}', 'days_{{$event->id}}', 'hours_{{$event->id}}', 'minutes_{{$event->id}}', 'seconds_{{$event->id}}');
-                                          }, 500);
-                                        </script>
+                                         <ul class="count-down-timer">
+                                               <input 
+                                               type="hidden" 
+                                               value="{{$event->start_date}}" 
+                                               id="start_date_{{$event->id}}"
+                                               class="timerWatch" 
+                                               data-days="#days_{{$event->id}}"
+                                               data-hours="#hours_{{$event->id}}"
+                                               data-minutes="#minutes_{{$event->id}}"
+                                               data-seconds="#seconds_{{$event->id}}"
+                                                />
+                                               <li><span id="days_{{$event->id}}"></span>days</li>
+                                               <li><span id="hours_{{$event->id}}"></span>Hours</li>
+                                               <li><span id="minutes_{{$event->id}}"></span>Minutes</li>
+                                               <li><span id="seconds_{{$event->id}}"></span>Seconds</li>
+                                         </ul>
+
+
+                                        
 
                                       </div>
                                         </div>

@@ -13,7 +13,7 @@
 
 
  	Route::get('/payment','Users\Checkout\CheckoutController@paymentPage')->name('checkout.paymentPage');
- 	Route::post('/payment/stripe','Users\Checkout\CheckoutController@payWithStripe')->name('checkout.payWithStripe');
+ 	Route::post('/payment','Users\Checkout\CheckoutController@payWithStripe')->name('checkout.payWithStripe');
  
       
        //Route::get('buy-package/{packageSlug}','Home\Checkout\CheckoutController@payWithPackage')->name('payWithPackage');

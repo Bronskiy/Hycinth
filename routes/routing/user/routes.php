@@ -42,5 +42,6 @@
 
 
           Route::get('/orders', 'Users\UserOrderController@index')->name('user_orders'); 
+          Route::get('/order/{orderID}/detail', 'Users\UserOrderController@orderDetail')->name('order_details'); 
 
 });

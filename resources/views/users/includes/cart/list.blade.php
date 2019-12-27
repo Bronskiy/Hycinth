@@ -1,8 +1,4 @@
-@if(Auth::check() && Auth::user()->role == 'user') @if(empty($CartItems))
-     <h4>Your Cart is Empty.</h4>
-@endif 
-
- 
+@if(Auth::check() && Auth::user()->role == 'user' && $CartItems->count() > 0) 
 @foreach($CartItems as $item)
 
  <div class="row no-gutters" data=id="{{$item->id}}">
@@ -129,37 +125,5 @@
                 @endif
                
               </div>
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
- 
-@endforeach 
-
-
-
- 
-
-
-@if(empty($CartItems))
-        <h4>Your Cart is Empty.</h4> </td>
- 
-@endif @else
- 
-        <h4>Your Cart is Empty.</h4>
-        <p> You are not logged in with customer Account.</p>
-     
-
-@endif
+@endforeach  
+@endif 

@@ -89,11 +89,22 @@
                <div class="countdown-timer-container">
                   @if(strpos('Upcoming Event', $eventStatus) !== false)  
                   <ul class="count-down-timer">
-                     <li><span id="days-up_{{$user_event->id}}"></span>days</li>
-                     <li><span id="hours-up_{{$user_event->id}}"></span>Hours</li>
-                     <li><span id="minutes-up_{{$user_event->id}}"></span>Minutes</li>
-                     <li><span id="seconds-up_{{$user_event->id}}"></span>Seconds</li>
-                  </ul>
+                     <input 
+                     type="hidden" 
+                     value="{{$user_event->start_date}}" 
+                     id="start_date_{{$user_event->id}}"
+                     class="timerWatch" 
+                     data-days="#days_{{$user_event->id}}"
+                     data-hours="#hours_{{$user_event->id}}"
+                     data-minutes="#minutes_{{$user_event->id}}"
+                     data-seconds="#seconds_{{$user_event->id}}"
+                      />
+                     <li><span id="days_{{$user_event->id}}"></span>days</li>
+                     <li><span id="hours_{{$user_event->id}}"></span>Hours</li>
+                     <li><span id="minutes_{{$user_event->id}}"></span>Minutes</li>
+                     <li><span id="seconds_{{$user_event->id}}"></span>Seconds</li>
+               </ul>
+
                   @elseif(strpos('Past Event', $eventStatus) !== false)
                   <img style="height: 50px;" src="{{ asset('images/tick.png') }}">
                   <h4 class="eventStatus">Completed</h4>
@@ -170,7 +181,7 @@
                      <tr>
                         <td><label>{{$category->eventCategory->label}} </label></td>
                         <td>
-                           <p class="hire-status">Not Hired</p>
+                           <p class="hire-status">{{(count( categoryOrders($category->eventCategory->id, $user_event->id)) > 0) ? 'Hired' :'Not Hired'}}</p>
                         </td>
                         <td>
                            @if(count( categoryOrders($category->eventCategory->id, $user_event->id) ) > 0)
@@ -353,9 +364,7 @@
 CKEDITOR.replace('ideas');
 
 
-   comingsoon('start_date', 'days_{{$user_event->id}}', 'hours_{{$user_event->id}}', 'minutes_{{$user_event->id}}', 'seconds_{{$user_event->id}}');
-   
-   comingsoon('start_date', 'days-up_{{$user_event->id}}', 'hours-up_{{$user_event->id}}', 'minutes-up_{{$user_event->id}}', 'seconds-up_{{$user_event->id}}');
+  
    
    function payments(paymentsData) {
      console.log('paymentsData ', paymentsData);

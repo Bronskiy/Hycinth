@@ -63,12 +63,28 @@
                             <span class="get-code">Get Code</span>
                           </a>
                          @endif
-                   
-                   <a href="javascript:void(0);" class="icon-btn get_detail" data-title="{{$deal->Business->title}}"
-                                                           data-message="{{$deal->message_text}}"
-                                                           data-id="{{$deal->id}}"
-                                                           data-chat="{{$chats}}"
-                                                           data-chatMessage="{{$links}}" data-toggle="tooltip" title="Chat"><i class="fa fa-comment-dots"></i></a>
+  
+
+
+                          <a href="javascript:void(0);" 
+                             class="icon-btn get_detail" 
+                             data-title="{{$deal->Business->title}}" 
+                             data-message="{{$deal->message_text}}"
+                             data-id="{{$deal->id}}"
+                             data-chat="{{$chats}}"
+                             data-chatMessage="{{$links}}"
+                             data-toggle="tooltip"
+                             title="Chat">
+                             <i class="fa fa-comment-dots"></i>
+                          </a>
+
+
+
+
+
+
+
+
 
                   </div>
                   
@@ -102,7 +118,7 @@
 @include('home.includes.modals.cart_popup')
 @include('home.includes.modals.chat')
 @include('home.includes.modals.login')
-
+@include('home.includes.business-detail.chatbox')
  
 @endsection
 
@@ -115,7 +131,7 @@
   
 <!-- <script type="text/javascript" src="{{url('/js/deals/deals.js')}}"></script> -->
 <script type="text/javascript" src="{{url('/js/deals/cart.js')}}"></script>
-
+<script type="text/javascript" src="{{url('/js/deals/deals.js')}}"></script>
 <script>
 $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();

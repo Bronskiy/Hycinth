@@ -95,32 +95,7 @@
                 </div>
             </div>
             
-            <div class="message">
-            	<img src="/frontend/images/girl.png" />
-                <div class="bubble">
-                	Yeah, hold on
-                    <div class="corner"></div>
-                    <span>Now</span>
-                </div>
-            </div>
-            
-            <div class="message right">
-            	<img src="/frontend/images/girl.png" />
-                <div class="bubble">
-                	Can you share a link for the tutorial?
-                    <div class="corner"></div>
-                    <span>1 min</span>
-                </div>
-            </div>
-            
-            <div class="message">
-            	<img src="/frontend/images/girl.png" />
-                <div class="bubble">
-                	Yeah, hold on
-                    <div class="corner"></div>
-                    <span>Now</span>
-                </div>
-            </div>
+             
             
         </div>
     	

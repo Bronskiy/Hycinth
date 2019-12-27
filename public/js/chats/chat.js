@@ -59,7 +59,7 @@ jQuery("body").on('submit','#sendMessage',function(e){
                  'X-CSRF-TOKEN': $('input[name=_token]').val()
                },
                 beforeSend: function() {
-                    $("body").find('.custom-loading').show();
+                    //$("body").find('.custom-loading').show();
                      $this.find('.messageNotofications').html('');
                      $this.find('button.cstm-btn').attr('disabled','true');
                      $this[0].reset();

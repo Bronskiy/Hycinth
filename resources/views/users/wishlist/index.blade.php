@@ -17,6 +17,7 @@
                <div class="messageNotofications"></div>
             </div>
             <!-- start Heading -->
+            @if(Auth::check() && Auth::user()->role == 'user' && $CartItems->count() > 0)
             <div class="row">
                <div class="col-lg-12">
                   <div class="cart-items-wrap">
@@ -52,6 +53,11 @@
                </div>
              
             </div>
+            @else
+                  <div class="alert alert-info closer-step mb-3" role="alert">
+                     <i class="fa fa-info-circle"></i> Your Wishlist is Empty
+                  </div>
+            @endif 
          </div>
       </div>
    </div>

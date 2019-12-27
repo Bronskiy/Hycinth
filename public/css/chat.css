@@ -31,6 +31,9 @@ img{
 .chatbox-manage .card-body {
     padding: 0 !important;
 }
+#ChatMessages {
+    margin: 0;
+}
 @media screen and (max-width: 360px) {
   .chatBox-frame {
     width: 100%;
@@ -466,16 +469,19 @@ img{
   font-weight: 600;
 }
 .chatBox-frame .chatBox-sidepanel #contacts ul li.contact .wrap .meta .preview {
-  margin: 2px 0 0 0;
-  padding: 0 0 1px;
-  font-weight: 400;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -moz-transition: 1s all ease;
-  -o-transition: 1s all ease;
-  -webkit-transition: 1s all ease;
-  transition: 1s all ease;
+    margin: 2px 0 0 0;
+    padding: 0 0 1px;
+    font-weight: 400;
+    white-space: nowrap;
+    -moz-transition: 1s all ease;
+    -o-transition: 1s all ease;
+    -webkit-transition: 1s all ease;
+    transition: 1s all ease;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 .chatBox-frame .chatBox-sidepanel #contacts ul li.contact .wrap .meta .preview span {
   position: initial;

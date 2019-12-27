@@ -1,7 +1,9 @@
   <div class="sidebar-header">
      <h3>User Stats Bar</h3>
-     <a href="javascript:void(0);" class="close-sidebar"><i class="fas fa-times-circle"></i></a>
+     <a href="javascript:void(0);" class="close-sidebar" id="closeUpcomSidebar"><i class="fas fa-times-circle"></i></a>
   </div>
+
+
 
     @if(Auth::check() && Auth::user()->role == 'user')
        @php  
@@ -11,7 +13,8 @@
        @endphp
 
       @if($currentUser->UpcomingUserEvents->count() > 0)
-        @foreach($currentUser->UpcomingUserEvents as $loopingEvents)
+          
+        @foreach($currentUser->UpcomingUserEvents as $ky =>  $loopingEvents)
 
           <div class="sidebar-body">
            <div class="event-status-info">
@@ -42,18 +45,24 @@
             <div class="countdown-timer-container">
                                                
               <ul class="count-down-timer">
-                     <input type="hidden" value="{{$loopingEvents->start_date}}" id="start_date_{{$loopingEvents->id}}" />
+                     <input 
+                     type="hidden" 
+                     value="{{$loopingEvents->start_date}}" 
+                     id="start_date_{{$loopingEvents->id}}"
+                     class="timerWatch" 
+                     data-days="#days_{{$loopingEvents->id}}"
+                     data-hours="#hours_{{$loopingEvents->id}}"
+                     data-minutes="#minutes_{{$loopingEvents->id}}"
+                     data-seconds="#seconds_{{$loopingEvents->id}}"
+                      />
                      <li><span id="days_{{$loopingEvents->id}}"></span>days</li>
                      <li><span id="hours_{{$loopingEvents->id}}"></span>Hours</li>
                      <li><span id="minutes_{{$loopingEvents->id}}"></span>Minutes</li>
                      <li><span id="seconds_{{$loopingEvents->id}}"></span>Seconds</li>
                </ul>
 
-                <script type="text/javascript">
-                  setTimeout(() => {
-                  comingsoon('start_date_{{$loopingEvents->id}}', 'days_{{$loopingEvents->id}}', 'hours_{{$loopingEvents->id}}', 'minutes_{{$loopingEvents->id}}', 'seconds_{{$loopingEvents->id}}');
-                  }, 1000);
-                </script>                              
+
+                                           
 
             </div>
            

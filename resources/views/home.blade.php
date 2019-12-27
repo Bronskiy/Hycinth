@@ -10,13 +10,72 @@
 <!-- banner section starts here here -->
 <!-- user status sidebar -->
 @if(Auth::check() && Auth::user()->role == 'user')
-	<a href="javascript:void(0);" id="user-status"><i class="fas fa-user-clock"></i></a>
-	<aside class="user-status-content">
-	   @include('includes.user_stats')
-	</aside>
+   <a href="javascript:void(0);" id="user-status"><i class="fas fa-user-clock"></i></a>
+   <aside class="user-status-content" id="UserUpcmStatus">
+      @include('includes.user_stats')
+   </aside>
 @endif
 <!-- user status sidebar Ends here -->
+<!-- Weather report sidebar -->
+<aside class="user-status-content" id="weather-sidebar">
+    <div class="sidebar-header">
+     <h3>Book a Date</h3>
+     <a href="javascript:void(0);" class="close-sidebar" id="calendarSidebar-close"><i class="fas fa-times-circle"></i></a>
+  </div>
 
+ <div class="calendar-section">
+        <div class="row">
+
+          <div class="col-sm-12">
+
+            <div class="calendar calendar-first" id="calendar_first">
+              <div class="calendar_header">
+                <button class="switch-month switch-left">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <h2></h2>
+                <button class="switch-month switch-right">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+              <div class="calendar_weekdays"></div>
+              <div class="calendar_content"></div>
+            </div>
+
+          </div>
+         
+
+        </div> <!-- End Row -->
+            
+      </div> <!-- End Calendar -->
+
+
+<input type="hidden" value="{{ route('get_venue_weather') }}" id="weather_route" />
+
+
+  <div class="weather-mini-card" id="sidebar-weather" style="display: none">
+  <div class="weather-info">
+    <div class="weather-info-wrapper">
+      <div class="info-date">
+        <h1 id="sidebar-localTime"></h1>
+        <h5><span id="sidebar-localDate"></span></h5>
+      </div>
+      
+      <div class="info-weather">
+        <div class="weather-wrapper">
+          <span class="weather-temperature" id="sidebar-mainTemperature"></span>
+          <div class="weather-sunny"><img id="sidebar-main-icon" src="{{ asset('/frontend/DarkSky-icons/SVG/clear-day.svg') }}"></div>
+        </div>        
+        <h5><span class="weather-city" id="sidebar-cityName"></span> <spam id="sidebar-cityCode"></spam></h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</aside>
+
+<!-- ============================== -->
 <section class="main-banner home-main-banner" style="background:url({{$slider_video_url ? url('/uploads').'/'.$slider_video_url : '/frontend/images/banner-bg.png'}});">
    <div class="container">
       <video src="{{$slider_video_url ? url('/uploads').'/'.$slider_video_url : '/frontend/videos/background-vdo.mp4'}}" autoplay muted loop></video>
@@ -984,14 +1043,19 @@
 
 @section('scripts')
 
+
+
 <script src="{{url('/js/comingsoon.js')}}"></script>
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDULjv0UAVmj_zgc9GjBhJNh9fNuEj87LQ&libraries=places"></script>
 
 <script type="text/javascript" src="{{url('js/validations/home_searching.js')}}"></script>
 
-<script>
- 
+<script type="text/javascript" src="{{url('js/validations/home_searching.js')}}"></script>  
+
+<script src="{{url('/js/weather-custom.js')}}"></script>
+
+<script> 
    $( document ).ready(function() {
 
       setTimeout(() => {
@@ -999,6 +1063,16 @@
          $('#event-slider-1').css('display', 'block');   
       }, 1500)
 });
+
+// check user for weather
+@if(Auth::check() && Auth::User()->role == 'user')
+  initMap();
+@endif
+
 </script>
+
+
+
+
 
 @endsection

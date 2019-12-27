@@ -1,15 +1,5 @@
 <style type="text/css">
- .MessageChat{
-  display: none;
-  text-align: center;
- } 
 
-  .modal-body.aleadyRequested form{
-    display: none;
-  }
-   .modal-body.aleadyRequested .MessageChat{
-    display: block;
-  }
 
 
 </style>
@@ -47,9 +37,8 @@ $redirectLink = $deal->type_of_deal == 0 ? $businessDetailLink : url(route('payW
     <figure class="deal-img">
       <img src="{{url($deal->image)}}">
       <figcaption class="discount-per"><span class="blink-text">
-      {{($deal->deal_off_type == 0) ? $deal->amount.'%' : '$'.$deal->amount }}
-         
-        <small> OFF  </small></span> </figcaption>      
+        {{($deal->deal_off_type == 0) ? $deal->amount.'%' : '$'.$deal->amount }}
+         <small> OFF  </small></span> </figcaption>      
     </figure>
      <div class="detal-card-details">
       <div class="dealls-dis-head">
@@ -83,7 +72,7 @@ $redirectLink = $deal->type_of_deal == 0 ? $businessDetailLink : url(route('payW
              <?php $description =  $deal->description; ?>
                                                {{substr($description,0,100)}} {{strlen($description) > 100 ? '...' : ''}}
         </p>
-        <ul class="button-grp-wrap">
+         <ul class="button-grp-wrap">
                         <li>
                           <a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec" data-toggle="tooltip" title="More Detail" class="icon-btn"><i class="fa fa-eye"></i>
                           </a>
@@ -94,13 +83,18 @@ $redirectLink = $deal->type_of_deal == 0 ? $businessDetailLink : url(route('payW
                           </a>
                         </li>
                         <li>
-                          <a href="javascript:void(0);" class="icon-btn get_detail" data-title="{{$deal->Business->title}}"
-                                                           data-message="{{$deal->message_text}}"
-                                                           data-id="{{$deal->id}}"
-                                                           data-chat="{{$chats}}"
-                                                           data-chatMessage="{{$links}}" data-toggle="tooltip" title="Chat"><i class="fa fa-comment-dots"></i>
+                          <a href="javascript:void(0);" 
+                             class="icon-btn get_detail" 
+                             data-title="{{$deal->Business->title}}" 
+                             data-message="{{$deal->message_text}}"
+                             data-id="{{$deal->id}}"
+                             data-chat="{{$chats}}"
+                             data-chatMessage="{{$links}}"
+                             data-toggle="tooltip"
+                             title="Chat">
+                             <i class="fa fa-comment-dots"></i>
                           </a>
-                       </li>
+          </li>
         </ul>
      </div>
 
@@ -160,32 +154,7 @@ $redirectLink = $deal->type_of_deal == 0 ? $businessDetailLink : url(route('payW
   </div>
 </div>
 
-<script>
-$(document).ready(function(){
-  $('[data-toggle="tooltip"]').tooltip();
-});
-
-$('.coupon-code').click(function() {
-  /* Get the text field */
-  var text = $(this).parent().find('.code-text').text();
-  var copyText = document.createElement("textarea");
-  document.body.appendChild(copyText);
-  copyText.value = text;
-  /* Select the text field */
-  copyText.select(); 
-  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-  /* Copy the text inside the text field */
-  document.execCommand("copy");
-  document.body.removeChild(copyText);
-  $(this).attr('data-original-title', `Copied ${copyText.value}`);
-});
-
-$('.coupon-code').mouseover(function() {
- $(this).attr('data-original-title', `Copy to clipboard`);
-});
-
-</script>
-
+ 
 
 
 

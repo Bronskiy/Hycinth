@@ -56,4 +56,10 @@ class UserEvent extends Model
     public function eventType() {
         return $this->belongsTo('App\Event', 'event_type');
     }
+
+
+    public function eventOrder() {
+        return $this->belongsTo('App\Models\EventOrder')
+                                 ->where('type','order');
+    }
 }

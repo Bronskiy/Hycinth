@@ -19,6 +19,9 @@ trait Ordersummary {
 
 public function orderSummary()
 {
+
+	//return $this->CommissionFeeServiceAccordingVendor('STRIPE',1);
+
 	$this->checkStep(2);
 
 	 Session::put('OrderSummary',1);
@@ -50,12 +53,11 @@ public function getCurentOrders()
 
 public function getOrderSummary()
 {
-	   $order = $this->getCurentOrders();
-                   
- 
-    $items = view('users.includes.cart.list')->with('CartItems',$order->get());
-
-    $amountDetail = view('users.includes.cart.cart_total')->with('CartItems',$order);
+	 $order = $this->getCurentOrders();
+     $items = view('users.includes.cart.list')
+     ->with('CartItems',$order->get());
+     $amountDetail = view('users.includes.cart.cart_total')
+     ->with('CartItems',$order)->with('checkout',1)->with('obj',$this);
 
 
    

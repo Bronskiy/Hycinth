@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Traits\Checkoutproccess\Ordersummary;
 use App\Traits\Checkoutproccess\CheckoutPayment;
 use App\Traits\Checkoutproccess\StripeMethod;
+use App\Traits\Checkoutproccess\TotalOrderCalulation;
 use App\VendorPackage;
 use App\PackageMetaData;
 use App\UserEventMetaData;
@@ -16,6 +17,7 @@ trait Billing {
 use Ordersummary;
 use CheckoutPayment;
 use StripeMethod;
+use TotalOrderCalulation;
 
 
 
@@ -27,9 +29,13 @@ use StripeMethod;
 #---------------------------------------------------------------------------------
 public function billingAddress()
 {
+
+	//Session::forget('billingAddress');
    return view('users.checkout.steps.billing')
    ->with('stepNumber',1)
    ->with('haveDeal',1)
+   ->with('checkout',1)
+   ->with('obj',$this)
    ->with('orders',$this->getCurentOrders())
    ->with('address',$this->getBillingAddress());
 }
@@ -57,11 +63,15 @@ public function postAddress(Request $request)
              'latitude.required' => 'Please choose address from dropdown'
      ]);
 
+     $tax = ratesForLocation($request->zipcode, $request->city, $request->country_short_code);
      if($v->fails()){
-     	return response()->json(['status' => 0,'errors' => $v->errors()]);
+     	 return response()->json(['status' => 0,'errors' => $v->errors()]);
+     }elseif($tax['status'] == 0 || $tax['val'] == 0){
+         $errors = (object)['tax' => $tax['messages']];
+         return response()->json(['status' => 0,'errors' => $errors]);
      }else{
 
-     	 $arr = [
+        $arr = [
 	         'name' => $request->name,
 	         'email' => $request->email,
 	         'phone_number' => $request->phone_number,
@@ -72,14 +82,12 @@ public function postAddress(Request $request)
 	         'zipcode' => $request->zipcode,
 	         'latitude' => $request->latitude,
 	         'longitude' =>$request->longitude,
+	         'country_short_code' =>$request->country_short_code,
+	         'tax'=> $tax['val']
          ];
-
-          
          Session::put('billingAddress',json_encode($arr));
-
          return response()->json(['status' => 1,'errors' => 'Billing Address is saved', 'redirectLink' => url(route('checkout.orderSummary'))]);
-
-
+ 
      }
 }
 
@@ -97,6 +105,7 @@ public function getBillingAddress()
 	  'state' => '',
 	  'city' => '',
 	  'zipcode' => '',
+	  'country_short_code' => '',
 	  'latitude' => '',
 	  'longitude' => ''
 	];

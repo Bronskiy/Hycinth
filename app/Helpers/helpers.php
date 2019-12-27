@@ -1,6 +1,60 @@
 <?php 
 
 
+
+function getOrderExtraFees($arr,$package_id = 0)
+{
+   $data = json_decode($arr->first()->paymentDetails);
+   $tax = 0;
+   $service =0;
+   $commission =0;
+
+
+  foreach ($data as $key => $value) {
+
+      $commission = ($value->commission_fee + $commission);
+      $service = ($value->service_fee + $service);
+      $tax = $value->tax;
+  }
+
+  return [
+    'tax' => $tax,
+    'commission' => $commission,
+    'service' => $service
+    
+  ];
+  
+}
+
+ 
+function getOrderExtraFeess($item)
+{
+   $data = json_decode($item->paymentDetails);
+   $tax = 0;
+   $service =0;
+   $commission =0;
+
+
+  foreach ($data as $key => $value) {
+  if($key == $item->vendor_id){
+      $commission = ($value->commission_fee + $commission);
+      $service = ($value->service_fee + $service);
+      $tax = $value->tax;
+    }
+  }
+  
+     
+  return [
+    'tax' => $tax,
+    'commission' => $commission,
+    'service' => $service
+    
+  ];
+  
+}
+
+
+
 function addonsInCarts($order)
 {
   $text ="<strong>N/A</strong>";
@@ -26,23 +80,30 @@ return $text;
 }
 
 // get rates for location
-function ratesForLocation($zipcode, $city, $country) {
-  // $key = '44c806666dc16411480b001f747a598f';
+function ratesForLocation($zipcode, $city=null, $country=null) {
   $key = getAllValueWithMeta('taxjar_api_key', 'global-settings');
   $client = TaxJar\Client::withApiKey($key);
-  // $client->setApiConfig('api_url', TaxJar\Client::SANDBOX_API_URL);
+  $val =0;
+  $status = 0;
+  $msg = 'Invalid Address, Please check.';
+ 
   if (in_array($country, ['US', 'CA'])) {
-  try {
-    $rates = $client->ratesForLocation($zipcode, [
-      'city' => $city,
-      'country' => $country
-    ]);
-     return round($rates->combined_rate * 100, 2);
-   } catch (Exception $e) {
-       return 0;
-    }
+          try {
+            $rates = $client->ratesForLocation($zipcode, [
+              'city' => $city,
+              'country' => $country
+            ]);
+               $val = round($rates->combined_rate * 100, 2);
+               $status = 1;
+               $msg = 'Valid Address';
+           } catch (Exception $e) {
+               $msg = $e->getMessage();
+               $status = 0;
+                
+            }
   }
-  return 0;
+
+  return ['status' => $status,'messages' => $msg,'val'=> $val];
 }
 
 // get commission or Service fee
@@ -51,16 +112,21 @@ function getFee($amount, $fee_type, $fee_amount) {
   $admin_amount = getAllValueWithMeta($fee_amount, 'global-settings');
   
   if($type === '0') {
-    return $amount - (($amount * $admin_amount) / 100);
+      $per = round($amount / 100);
+    return ($per * $admin_amount);
   } else {
-    return $amount - $admin_amount;
+    return $admin_amount;
   }
 
 }
 
 
 function categoryOrders($category_id, $event_id) {
-  return \App\Models\Order::where(['category_id'=> $category_id, 'event_id'=> $event_id])->get();
+  return \App\Models\EventOrder::where([
+    'category_id'=> $category_id,
+    'event_id'=> $event_id,
+    'type' => 'order'
+  ])->get();
 }
 
 

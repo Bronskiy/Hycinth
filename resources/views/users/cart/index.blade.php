@@ -11,11 +11,14 @@
 <section class="cart-sec">
    <div class="container lr-container">
       <div class="sec-card">
+   
          <div class="cart-card">
             <div class="card-heading">
                <h3>Shopping Cart</h3>
                <div class="messageNotofications"></div>
             </div>
+
+            @if(Auth::check() && Auth::user()->role == 'user' && $CartItems->count() > 0)
             <div class="row">
             <!-- start Heading -->
                <div class="col-lg-8">
@@ -47,7 +50,13 @@
            
                </div>
             </div>
+            @else
+                  <div class="alert alert-info closer-step mb-3" role="alert">
+                     <i class="fa fa-info-circle"></i> Your Cart is Empty
+                  </div>
+            @endif 
          </div>
+
       </div>
    </div>
 </section>

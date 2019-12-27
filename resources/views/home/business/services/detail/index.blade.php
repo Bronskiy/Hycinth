@@ -2,22 +2,7 @@
 @section('stylesheet')
 
  <style type="text/css">
-    div#Video-carousel li {
-    position: relative;
-    cursor: pointer;
-}
 
- 
-
-div#Video-carousel li span {
-    position: absolute;
-    color: #fff;
-    font-size: 47px;
-    text-align: center !important;
-    left: 77px;
-    /* right: 0px; */
-    top: 27px;
-}
 
 
  </style>
@@ -274,7 +259,15 @@ div#Video-carousel li span {
                   </div>
                   <div class="Deals-content">
                      @if($vendor->DealsDiscount->count() > 0)
-                        @include('home.vendors.services.detail.deals')
+                     @php $discount_deals = $vendor->DealsDiscount; @endphp
+                       <?php
+                           $name = Auth::check() && Auth::user()->role == "user" ? Auth::user()->name : '';
+                            $email = Auth::check() && Auth::user()->role == "user" ? Auth::user()->email : '';
+                            $phone = Auth::check() && Auth::user()->role == "user" ? Auth::user()->phone_number : '';
+                            $event_date = '';
+                         ?>
+                        @include('home.includes.deals.list')
+
                      @endif
                   </div>
                </div>

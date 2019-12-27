@@ -43,6 +43,14 @@ class User extends Authenticatable implements MustVerifyEmail
     {
        return $this->hasMany('App\VendorCategory')->where('parent',0);
     }
+
+
+    public function orders()
+    {
+       return $this->hasMany('App\Models\Order');
+    }
+
+
     public function faqs()
     {
        return $this->hasMany('App\Models\Vendors\FAQ');
@@ -68,7 +76,7 @@ class User extends Authenticatable implements MustVerifyEmail
      public function UpcomingUserEvents()
     {
        return $this->hasMany('App\UserEvent')
-                   ->whereDate('start_date','>=',date('Y-m-d'))->OrderBy('start_date','ASC');
+                   ->whereDate('start_date','>',date('Y-m-d'))->OrderBy('start_date','ASC');
                    
     }
 

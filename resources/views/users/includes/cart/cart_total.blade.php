@@ -7,13 +7,9 @@
 		<span class="line"></span><div class="clearfix"></div>
 
 		<table class="cart-table margin-top-5">
-<?php
-
-$Discount = ($CartItems->sum('package_price') - $CartItems->sum('discounted_price'));
-
-
-
-?>
+				<?php
+					$Discount = ($CartItems->sum('package_price') - $CartItems->sum('discounted_price'));
+				?>
 
 
 			<tbody>
@@ -22,28 +18,29 @@ $Discount = ($CartItems->sum('package_price') - $CartItems->sum('discounted_pric
 				  <td><strong>${{custom_format($CartItems->sum('package_price'),2)}}</strong></td>
 		  	</tr>
 
-		  	 <tr>
-				   <th>Service Fee</th>
-				  <td><strong><span class="plus-sign">+</span> $30.00</strong></td>
-		  	 </tr>		  	 		  	 
 
-		  	 <tr>
-				   <th>Tax</th>
-				  <td><strong><span class="plus-sign">+</span> $20.00</strong></td>
-		  	 </tr>
+             @if($CartItems->sum('discount') > 0)
 		  	 <tr>
 				   <th>Discount</th>
 				  <td><strong><span class="minus-sign">-</span>  ${{custom_format($CartItems->sum('discount'),2)}}</strong></td>
-		  	 </tr>		  	 
+		  	 </tr>	
+		  	 @endif	 
+		  	  	 
+		  	 @if(!empty($checkout))	  	 		  	 
+			  	{!! $obj->getTotalWithTr() !!}
+			 @else
+
+			    <tr>
+					<th>Order Total</th>
+					<td><strong>${{custom_format($CartItems->sum('discounted_price'),2)}}</strong></td>
+				</tr>
+                <input type="hidden" id="CurrentCartTotal" value="{{$CartItems->sum('discounted_price')}}">
+		  	 @endif
 
 
 			 
 
-			<tr>
-				<th>Order Total</th>
-				<td><strong>${{custom_format($CartItems->sum('discounted_price'),2)}}</strong></td>
-			</tr>
-<input type="hidden" id="CurrentCartTotal" value="{{$CartItems->sum('discounted_price')}}">
+				
            @if($Discount > 0)
                 
                 <tr>

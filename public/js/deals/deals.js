@@ -2,7 +2,28 @@ jQuery(function(){
 
 
 
+ 
+  $('[data-toggle="tooltip"]').tooltip();
+ 
 
+$("body").on('click','.coupon-code',function() {
+  /* Get the text field */
+  var text = $(this).parent().find('.code-text').text();
+  var copyText = document.createElement("textarea");
+  document.body.appendChild(copyText);
+  copyText.value = text;
+  /* Select the text field */
+  copyText.select(); 
+  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+  document.body.removeChild(copyText);
+  $(this).attr('data-original-title', `Copied ${copyText.value}`);
+});
+
+$("body").on('mouseover','.coupon-code',function() {
+ $(this).attr('data-original-title', `Copy to clipboard`);
+});
  
   
 

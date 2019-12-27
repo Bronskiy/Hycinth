@@ -22,115 +22,113 @@ trait StripeMethod {
 
 public function payWithStripe(Request $request)
 {
-
-   return $this->stripePaymentToAccount($request);
+  
      $error = '';
      if(empty($request->stripeToken)):
-        
          $error .= '<li>Stripe token Expired!</li>';
-
      else:
-                       
-	                $token = $request->stripeToken;
-                  $total = 1000;
+                 
                        # create customer to stripe while payment
-         try {
+             try {
     
-                      $customer = \Stripe\Customer::create(array(
-                              "email" => Auth::user()->email,
-                              "description" => "Customer for pay to admin for ",
-                              "source" => $token,
-                       ));
- 
-                      if($customer){
-                                  $charge = \Stripe\Charge::create([
-	                                     'amount' => round($total * 100),
-	                                     'currency' => 'usd',
-	                                     'description' => 'description',
-	                                     'receipt_email' => Auth::user()->email,
-	                                     'customer' => $customer->id,
-                                   ]);
+                           $AccountWithPayment= $this->CommissionFeeServiceAccordingVendor('STRIPE',1);
 
-                                 if($charge){
-                                 	///return $charge;
-                                       //return $this->saveDataAfterPayment($deal,$package,$charge,'STRIPE');
-                                 }else{
+
+                            $OrderID = '#ENV'.strtotime(date('y-m-d h:i:s'));
+                            $token = $request->stripeToken;
+                            $application_fee =$this->getCommissionFee();
+                            $total = $this->getTotalOrderCurrent();
+                            $description = 'Customer for pay for '.$OrderID;
+                            $charge = \Stripe\Charge::create([
+                              "amount" => ($total * 100),
+                              "currency" => "usd",
+                              "source" => $request->stripeToken,
+                              //"shipping" => $shipping,
+                              "description" => $description,
+                              //"application_fee" => $application_fee,
+                              ],$AccountWithPayment);
+
+                              if($charge){
+                                    return $this->saveDataInEventOrder($charge,'STRIPE',$OrderID);
+                              }else{
                                       $error .= '<li><b>Payment Failed</b> Something Wrong going on!</li>';
-                                 } 
+                              } 
 
                         
-                      }else{
-                         $error .= '<li><b>Payment Failed</b> Something Wrong going on!</li>';
-                      }
+                     
          } catch (Exception $e) {
              echo 'Caught exception: ',  $e->getMessage(), "\n";
          }
 
 
-        // else:  # check if customer not created
-        
-
-        // endif; 
+       
 
 	   endif; 
 
      return $error;
-      # check if request has Token 
+     
 }
-
-#---------------------------------------------------------------------------------
-#  comming response after paying with Stripe Method
-#---------------------------------------------------------------------------------
-
-
-
-
-public function stripePaymentToAccount($request)
-{
-
-       $OrderID = '#ENV'.strtotime(date('y-m-d h:i:s'));
-
-          $token = $request->stripeToken;
-          $admin_fee =1000;
-          $total = 10000;
-          $account_id = 'acct_1Fu0uKGFWCumBAok';
-          $account2 ='acct_1Fu1UYIc310lkye2';
-   
-           $charge = \Stripe\Charge::create([
-            "amount" => 10000,
-            "currency" => "usd",
-            "source" => "tok_visa",
-            //"shipping" => $shipping,
-            "description" => "Customer for pay 2 to admin for 123",
-            "application_fee" => 123
-            ], 
-            ["amount" => 2000,"stripe_account" => $account_id], 
-            ["amount" => 2000,"stripe_account" => $account2]);
-
-        if($charge){
-            return $this->saveDataInEventOrder($charge,'STRIPE',$OrderID);
-        }
  
-}
-
 #--------------------------------------------------------------------------------------------
-#
+# save Data In EventOrder
 #--------------------------------------------------------------------------------------------
 
 public function saveDataInEventOrder($charge,$type,$OrderID)
 {
        $order = $this->getCurentOrders();
-    
+      
+       return $this->CreateOrder($charge,$OrderID,$type);
+
+ 
+}
+
+#--------------------------------------------------------------------------------------------
+# save Data In EventOrder
+#--------------------------------------------------------------------------------------------
+
+
+public function CreateOrder($charge,$OrderID,$type)
+{
+   $order = $this->getCurentOrders();
+   $paymentDetails= json_encode($this->CommissionFeeServiceAccordingVendor($type));
+   $o = new \App\Models\Order;
+   $o->user_id = Auth::user()->id;
+   $o->amount = $this->getTotalOrderCurrent();
+   $o->orderID= $OrderID;
+   $o->payment_by= $type;
+   $o->balance_transaction= $paymentDetails;
+   $o->billing_address= json_encode($this->getBillingAddress());
+   $o->status=1;
+   if($o->save()){
+
        $orders = $order->update([
           'payment_type' => $type,
           'payment_status' => 1,
           'pyayment_data' => json_encode($charge),
           'type' => 'order',
-          'OrderID' => $OrderID
+          'paymentDetails' => $paymentDetails,
+          'OrderID' => $OrderID,
+          'order_id' => $o->id,
+        ]);
+      if($orders){
+             Session::forget('billingAddress');
+             return redirect()->route('thank-you', ['order_id' => $o->id]);
+       }
 
-       ]);
- 
+   }
+
 }
- 
+
+
+#--------------------------------------------------------------------------------------------
+# save Data In EventOrder
+#--------------------------------------------------------------------------------------------
+
+
+public function thankyou(Request $request) {
+  $order = App\Models\Order::find($request->order_id);
+  return view('users.checkout.thankyou')->with('order',$order);
+}
+
 
 }

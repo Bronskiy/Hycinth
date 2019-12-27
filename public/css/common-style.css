@@ -1,4 +1,79 @@
+.d-f {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
 
+.d-i-f {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+
+.f-d-c {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.f-d-r-r {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+}
+
+.a-i-c {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.a-i-f-e {
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+}
+
+.j-c-c {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.j-c-s-b {
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+.hide{
+    display: none;
+}
+.j-c-f-e {
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+}
+
+.j-c-s-e {
+    -webkit-box-pack: space-evenly;
+    -ms-flex-pack: space-evenly;
+    justify-content: space-evenly;
+}
+
+.no-gutters [class^="col-"] {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+/****************/
 
 .custom-left-content img {
     width: 100% !important;
@@ -547,7 +622,7 @@ table.cart-table {
     vertical-align: middle;
     border-bottom: 1px solid #fff;
     width: 40%;
-    padding: 10px 15px;
+    padding: 8px 10px;
 }
 .deal-discount-card .deal-starting-date strong {
     background: #d0d0d0;
@@ -852,7 +927,50 @@ figure.cart-tab-img {
     margin-bottom: 0px;
 }
 /**************************/
-
+.cart-col-wrap .cart-table th {
+    background-color: transparent;
+    text-align: left;
+    padding: 3px 0px;
+    color: #333;
+}
+.cart-col-wrap .cart-table td {
+    padding: 3px 0px;
+    border-bottom: 0;
+    color: #333;
+}
+.cart-col-wrap .cart-table th:first-child, .cart-col-wrap .cart-table td:first-child{
+    padding-top: 0px;
+}
+.thankyou-sec .action-btn-wrap {
+    display: none;
+}
+.cart-col-wrap .cart-table .price-row th, tr.price-row td {
+    color: #333;
+    font-weight: bold;
+    font-size: 17px;
+    vertical-align: bottom;
+}
+.cart-col-wrap .table-box-wrap {
+    padding: 10px;
+    background: #ececec;
+    border-radius: 5px;
+}
+.minus-sign {
+    color: #bf1c1c;
+}
+.plus-sign{
+    color:green;
+}
+.full-invoice .cart-totals .headline{
+   font-size: 26px;
+}
+.full-invoice .cart-totals .cart-table th, .full-invoice .cart-totals .cart-table td{
+   font-size: 16px;
+   color: #333;
+}
+strong{
+    font-weight: bold;
+}
 
 
 
@@ -889,9 +1007,12 @@ figure.cart-tab-img {
 #chatbox.chatbox-active{
   transform: translateY(0);
 }
+#chatbox.chatbox-active .fa-comment-alt:before {
+    content: "\f00d";
+}
 
 /**********************/
-#chatbox {
+.live-chatbox-wrap #chatbox {
     width: 290px;
     background: #fff;
     border-radius: 6px;
@@ -902,48 +1023,49 @@ figure.cart-tab-img {
     right: 90px;
     transform: translateY(100%);
     transition: all 0.5s ease;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
 }
 
-#friendslist{
+.live-chatbox-wrap #friendslist{
     position:absolute;
     top:0;
     left:0;
     width:290px;
     height:484px;
 }
-#topmenu{
+.live-chatbox-wrap #topmenu{
     height:69px;
     width:290px;
     border-bottom:1px solid #d8dfe3;    
 }
-#topmenu span{
+.live-chatbox-wrap #topmenu span{
     float:left; 
     width: 96px;
     height: 70px;
     background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/top-menu.png") -3px -118px no-repeat;
 }
-#topmenu span.friends{margin-bottom:-1px;}
-#topmenu span.chats{background-position:-95px 25px; cursor:pointer;}
-#topmenu span.chats:hover{background-position:-95px -46px; cursor:pointer;}
-#topmenu span.history{background-position:-190px 24px; cursor:pointer;}
-#topmenu span.history:hover{background-position:-190px -47px; cursor:pointer;}
-.friend{
+.live-chatbox-wrap #topmenu span.friends{margin-bottom:-1px;}
+.live-chatbox-wrap #topmenu span.chats{background-position:-95px 25px; cursor:pointer;}
+.live-chatbox-wrap #topmenu span.chats:hover{background-position:-95px -46px; cursor:pointer;}
+.live-chatbox-wrap #topmenu span.history{background-position:-190px 24px; cursor:pointer;}
+.live-chatbox-wrap #topmenu span.history:hover{background-position:-190px -47px; cursor:pointer;}
+.live-chatbox-wrap .friend{
     height:70px;
     border-bottom:1px solid #e7ebee;        
     position:relative;
     float: left;
 }
-.friend:hover{
+.live-chatbox-wrap .friend:hover{
     background:#f1f4f6;
     cursor:pointer;
 }
-.friend img{
+.live-chatbox-wrap .friend img{
     width:40px;
     border-radius:50%;
     margin:15px;
     float:left;
 }
-.floatingImg{
+.live-chatbox-wrap .floatingImg{
     width:40px;
     border-radius:50%;
     position:absolute;
@@ -951,23 +1073,23 @@ figure.cart-tab-img {
     left:12px;
     border:3px solid #fff;
 }
-.friend p{
-    padding:15px 0 0 0;         
+.live-chatbox-wrap .friend p{
+    padding:9px 0 0 0;         
     float:left;
     width:220px;
 }
-.friend p strong{
+.live-chatbox-wrap .friend p strong{
   font-weight:600;
   font-size:15px;
     color:#597a96;  
 
 }
-.friend p span{
+.live-chatbox-wrap .friend p span{
     font-size:13px;
     font-weight:400;
     color:#aab8c2;
 }
-.friend .status{
+.live-chatbox-wrap .friend .status{
     background:#26c281;
     border-radius:50%;  
     width:9px;
@@ -976,9 +1098,9 @@ figure.cart-tab-img {
     top:31px;
     right:17px;
 }
-.friend .status.away{background:#ffce54;}
-.friend .status.inactive{background:#eaeef0;}
-#search{
+.live-chatbox-wrap .friend .status.away{background:#ffce54;}
+.live-chatbox-wrap .friend .status.inactive{background:#eaeef0;}
+.live-chatbox-wrap #search{
     background:#e3e9ed url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/search.png") -11px 0 no-repeat;
     height:60px;
     width:290px;
@@ -986,7 +1108,7 @@ figure.cart-tab-img {
     bottom:0;
     left:0;
 }
-#searchfield{
+.live-chatbox-wrap #searchfield{
     background:#e3e9ed;
     margin:21px 0 0 55px;
     border:none;
@@ -996,10 +1118,10 @@ figure.cart-tab-img {
     font-weight:400px;
     color:#8198ac;
 }
-#searchfield:focus{
+ .live-chatbox-wrap #searchfield:focus{
      outline: 0;
 }
-#chatview{
+.live-chatbox-wrap #chatview{
     width:290px;
     height:484px;
     position:absolute;
@@ -1008,22 +1130,22 @@ figure.cart-tab-img {
     display:none;
     background:#fff;
 }
-#profile{
+.live-chatbox-wrap #chatbox #profile{
     height:153px;
     overflow:hidden;
     text-align:center;
     color:#fff;
 }
-.p1 #profile{
+.live-chatbox-wrap #chatbox .p1 #profile{
     background:#fff url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/timeline1.png") 0 0 no-repeat;
 }
-#profile .avatar{
+.live-chatbox-wrap #chatbox #profile .avatar{
     width:68px;
     border:3px solid #fff;
     margin:23px 0 0;
     border-radius:50%;
 }
-#profile  p{
+.live-chatbox-wrap #chatbox #profile  p{
     font-weight:600;
     font-size:15px;
     margin:118px 0 -1px;
@@ -1034,7 +1156,8 @@ figure.cart-tab-img {
          -o-transition: all 200ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
             transition: all 200ms cubic-bezier(0.000, 0.995, 0.990, 1.000); 
 }
-#profile  p.animate{
+.live-chatbox-wrap #chatbox #profile  p.animate{
+    color: #fff;
     margin-top:97px;
     opacity:1;
     -webkit-transition: all 200ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
@@ -1043,11 +1166,11 @@ figure.cart-tab-img {
          -o-transition: all 200ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
             transition: all 200ms cubic-bezier(0.000, 0.995, 0.990, 1.000); 
 }
-#profile  span{
+.live-chatbox-wrap #chatbox #profile  span{
     font-weight:400;
     font-size:11px;
 }
-#chat-messages{
+.live-chatbox-wrap #chat-messages{
     opacity:0;
     margin-top:30px;
     width:290px;
@@ -1061,11 +1184,11 @@ figure.cart-tab-img {
          -o-transition: all 200ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
             transition: all 200ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
 }
-#chat-messages.animate{
+.live-chatbox-wrap #chat-messages.animate{
     opacity:1;
     margin-top:0;
 }
-#chat-messages label{
+.live-chatbox-wrap #chat-messages label{
     color:#aab8c2;
     font-weight:600;
     font-size:12px;
@@ -1074,29 +1197,29 @@ figure.cart-tab-img {
     width:290px;
     display:block;  
 }
-#chat-messages div.message{
+.live-chatbox-wrap #chat-messages div.message{
     padding:0 0 30px 58px;
     clear:both;
     margin-bottom:45px;
 }
-#chat-messages div.message.right{
+.live-chatbox-wrap #chat-messages div.message.right{
       padding: 0 58px 30px 0;
       margin-right: -19px;
       margin-left: 19px;
 }
-#chat-messages .message img{
+.live-chatbox-wrap #chat-messages .message img{
       float: left;
       margin-left: -38px;
       border-radius: 50%;
       width: 30px;
       margin-top: 12px;
 }
-#chat-messages div.message.right img{
+.live-chatbox-wrap #chat-messages div.message.right img{
     float: right;   
     margin-left: 0;
     margin-right: -38px;    
 }
-.message .bubble{   
+.live-chatbox-wrap .message .bubble{   
     background:#f0f4f7;
     font-size:13px;
     font-weight:600;
@@ -1106,11 +1229,11 @@ figure.cart-tab-img {
     position:relative;
     float:left;
 }
-#chat-messages div.message.right .bubble{
+.live-chatbox-wrap #chat-messages div.message.right .bubble{
     float:right;
     border-radius:5px 5px 0px 5px ;
 }
-.bubble .corner{
+.live-chatbox-wrap .bubble .corner{
     background:url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/bubble-corner.png") 0 0 no-repeat;
     position:absolute;
     width:7px;
@@ -1118,19 +1241,19 @@ figure.cart-tab-img {
     left:-5px;
     bottom:0;
 }
-div.message.right .corner{
+.live-chatbox-wrap .message.right .corner{
     background:url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/bubble-cornerR.png") 0 0 no-repeat;
     left:auto;
     right:-5px;
 }
-.bubble span{
+.live-chatbox-wrap .bubble span{
       color: #aab8c2;
       font-size: 11px;
       position: absolute;
       right: 0;
       bottom: -22px;
 }
-#sendmessage{
+.live-chatbox-wrap #sendmessage{
     height:60px;
     border-top:1px solid #e7ebee;   
     position:absolute;
@@ -1140,10 +1263,10 @@ div.message.right .corner{
     background:#fff;
     padding-bottm:50px;
 }
-#sendmessage input{
+.live-chatbox-wrap #sendmessage input{
     border
 }
-#sendmessage input{
+.live-chatbox-wrap #sendmessage input{
     background:#fff;
     margin:21px 0 0 21px;
     border:none;
@@ -1153,10 +1276,10 @@ div.message.right .corner{
     font-weight:400px;
     color:#aab8c2;
 }
-#sendmessage input:focus{
+.live-chatbox-wrap #sendmessage input:focus{
      outline: 0;
 }
-#sendmessage button{
+.live-chatbox-wrap #sendmessage button{
     background:#fff url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/send.png") 0 -41px no-repeat;
     width:30px;
     height:30px;
@@ -1165,15 +1288,15 @@ div.message.right .corner{
     top: 23px;
     border:none;
 }
-#sendmessage button:hover{
+.live-chatbox-wrap #sendmessage button:hover{
     cursor:pointer;
     background-position: 0 0 ;
 }
-#sendmessage button:focus{
+.live-chatbox-wrap #sendmessage button:focus{
      outline: 0;     
 }
 
-#close{
+.live-chatbox-wrap #close{
     position:absolute;
     top: 8px;   
     opacity:0.8;
@@ -1182,7 +1305,7 @@ div.message.right .corner{
     height:20px;
     cursor:pointer;
 }
-#close:hover{
+.live-chatbox-wrap #close:hover{
     opacity:1;
 }
 .cx, .cy{
@@ -1256,7 +1379,7 @@ div.message.right .corner{
          -o-transition: all 100ms ease-out;
             transition: all 100ms ease-out;
 }
-#chatview, #sendmessage { 
+.live-chatbox-wrap #chatview, .live-chatbox-wrap #sendmessage { 
 overflow:hidden; 
 border-radius:6px; 
 }

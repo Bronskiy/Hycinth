@@ -260,7 +260,9 @@
       </div>
       <a href="javascript:void(0);" (click)="close_nav()" class="nav-close-btn"><i class="fas fa-times"></i></a>
    </nav>
-   <a href="javascript:void(0);" id="calender-toggle"><span><i class="fas fa-calendar-alt"></i></span></a>
-
+   
+   @if(Auth::check() && Auth::user()->role == 'user')
+     <a href="javascript:void(0);" id="calender-toggle"><span><i class="fas fa-calendar-alt"></i></span></a>
+   @endif
  
 </header>

@@ -93,6 +93,7 @@
         </div>
 
         
+        <input type="hidden" id="country_short_code" name="country_short_code" value="{{ $address->country_short_code }}">
         <input type="hidden" id="latitude" name="latitude" value="{{ $address->latitude }}">
         <input type="hidden" id="longitude" name="longitude" value="{{ $address->longitude }}">
 
@@ -182,10 +183,7 @@ function initialize()
           var addressType = place.address_components[i].types[0];
           if (componentForm[addressType]) {
             var val = place.address_components[i][componentForm[addressType]];
-
-
             var addressType = addressType;
-            console.log(addressType);
             switch (addressType) { 
               case 'locality': 
                 document.getElementById('city').value = val;
@@ -198,6 +196,7 @@ function initialize()
                 break;               
               case 'country': 
                 document.getElementById('country').value = val;
+                document.getElementById('country_short_code').value = place.address_components[i].short_name;
                 break;                  
             }            
           }
