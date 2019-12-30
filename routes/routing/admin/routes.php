@@ -178,4 +178,12 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
         Route::get('/email-management', 'Admin\EmailManagementController@index')->name('admin.emails.index');
         Route::post('/email-management/{id}', 'Admin\EmailManagementController@update')->name('admin.emails.update');
 
+        #-------------------------------------------------------------------------------------------------------------
+        #  admin.orders
+        #-------------------------------------------------------------------------------------------------------------
+
+        Route::get('/orders','Admin\OrderController@index')->name('admin.orders');
+        Route::get('/orders/detail/{id}','Admin\OrderController@detail')->name('admin.orderDetail');
+        Route::get('/orders/ajax','Admin\OrderController@ajax')->name('admin.ajaxOrders');
+
 });

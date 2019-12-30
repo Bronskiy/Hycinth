@@ -26,6 +26,11 @@
                         <a href="{{url(route('admin_dashboard'))}}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                     </li>
 
+      <li class="nav-item {{ \Request::route()->getName() === 'admin.orders'
+                 ? 'nav-item active' : 'nav-item' }}">
+                        <a href="{{url(route('admin.orders'))}}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Orders</span></a>
+     </li>
+
                     <li class="nav-item {{ \Request::route()->getName() === 'admin.business.index'
                  ? 'nav-item active' : 'nav-item' }}">
                         <a href="{{url(route('admin.business.index'))}}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-briefcase"></i></span><span class="pcoded-mtext">Businesses Listing</span></a>
@@ -117,7 +122,7 @@
                 </ul>
                 </li>
 
-                 <li class="nav-item pcoded-hasmenu <?= ActiveMenu(['admin.emails.index'],'pcoded-trigger') ?>" >
+                <li class="nav-item pcoded-hasmenu <?= ActiveMenu(['admin.emails.index'],'pcoded-trigger') ?>" >
                     <a href="javascript:" class="nav-link "><span class="pcoded-micon">
                         <i class="feather icon-box"></i></span><span class="pcoded-mtext">Email Management</span></a>
                     <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['admin.emails.index'], 'block') ?>;">

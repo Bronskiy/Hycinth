@@ -111,7 +111,7 @@
 
                                 @endforeach
                             @else
-                              <div class="alert alert-info closer-step mb-3" role="alert">
+                              <div class="alert alert-info closer-step mb-3 mt-4" role="alert">
                                  <i class="fa fa-info-circle"></i> No Orders Found
                               </div>
                             @endif

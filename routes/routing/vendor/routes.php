@@ -230,7 +230,7 @@ require __DIR__.'/ajax.php';
         #-----------------------------------------------------------------------------------
 
         Route::get('/category/{slug}/orders', 'Vendor\OrderController@index')->name('vendor.orders');
-        Route::get('/category/{slug}/orders/{id}', 'Vendor\OrderController@detail')->name('vendor.orderDetail');
+        Route::get('/category/{slug}/order/{id}', 'Vendor\OrderController@detail')->name('vendor.orderDetail');
 
 
 });

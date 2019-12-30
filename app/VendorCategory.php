@@ -119,10 +119,6 @@ class VendorCategory extends Model
                    });
                    
     }
-
-
-
-
     public function ImageGallery()
     {
        return $this->hasMany('App\VendorCategoryMetaData','vendor_category_id','id')
@@ -229,6 +225,16 @@ class VendorCategory extends Model
                     ->join('chat_messages','chat_messages.chat_id','=','chats.id')
                     ->where('chat_messages.receiver_id',\Auth::user()->id)
                     ->where('chat_messages.receiver_status',0);
+    }
+
+
+
+
+    public function orders()
+    {
+      return $this->hasMany('App\Models\EventOrder','vendor_id')
+                    ->where('type','order')
+                    ->groupBy('order_id');
     }
 
 

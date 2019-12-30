@@ -33,6 +33,7 @@ function getOrderExtraFeess($item)
    $tax = 0;
    $service =0;
    $commission =0;
+   $payable =0;
 
 
   foreach ($data as $key => $value) {
@@ -40,6 +41,7 @@ function getOrderExtraFeess($item)
       $commission = ($value->commission_fee + $commission);
       $service = ($value->service_fee + $service);
       $tax = $value->tax;
+      $payable = $value->payable_amount;
     }
   }
   
@@ -47,7 +49,8 @@ function getOrderExtraFeess($item)
   return [
     'tax' => $tax,
     'commission' => $commission,
-    'service' => $service
+    'payable' => $payable,
+    'service' => $service,
     
   ];
   
