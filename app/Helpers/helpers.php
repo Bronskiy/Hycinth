@@ -110,16 +110,37 @@ function ratesForLocation($zipcode, $city=null, $country=null) {
 function getFee($amount, $fee_type, $fee_amount) {
   $type = getAllValueWithMeta($fee_type, 'global-settings');
   $admin_amount = getAllValueWithMeta($fee_amount, 'global-settings');
+
+if($fee_type == "commission_fee_type"){
+
+return get_commission_according_slab($amount);
   
+}else{
+
   if($type === '0') {
       $per = round($amount / 100);
     return ($per * $admin_amount);
   } else {
     return $admin_amount;
   }
+}
+  
 
 }
 
+
+function get_commission_according_slab($amount)
+{
+    $fee = \App\Commission::where('slab_from','<=',$amount)->where('slab_to','>=',$amount);
+    $per = ($amount / 100);
+    if($fee->count() > 0){
+       $fees = $fee->first();
+       return ($fees->commission_fee * $per);
+    }else{
+       return (3 * $per);
+    }
+
+}
 
 function categoryOrders($category_id, $event_id) {
   return \App\Models\EventOrder::where([

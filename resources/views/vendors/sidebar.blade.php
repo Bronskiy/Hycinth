@@ -25,23 +25,34 @@
             <li class="nav-item pcoded-menu-caption">
                <label>Management</label>
             </li>
-            <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item {{ \Request::route()->getName() === 'vendor_category_assign2'
+            <li class="nav-item {{ \Request::route()->getName() === 'vendor_category_assign2'
                ? 'nav-item active' : 'nav-item' }}">
                <a href="{{ route('vendor_category_assign2') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-briefcase"></i></span><span class="pcoded-mtext">Add New Business</span></a>
             </li>            
-            <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu pcoded-trigger">
+            <li class="nav-item pcoded-hasmenu pcoded-trigger">
                <a href="javascript:" class="nav-link "><span class="pcoded-micon">
                <i class="feather icon-briefcase"></i></span><span class="pcoded-mtext">My Business</span></a>
                <ul class="pcoded-submenu" style="display: block">
                   @if(Auth::User()->services->count() > 0) 
                   @foreach(Auth::User()->services as $cate)  
-                  <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu {{ ActiveRouteMenu($cate->category->slug, [], 'pcoded-trigger', 1)}}" >
+                  <li class="nav-item pcoded-hasmenu {{ ActiveRouteMenu($cate->category->slug, [], 'pcoded-trigger', 1)}}" >
                      <a href="javascript:" class="nav-link"  style="color: {{$cate->category->color}};" ><span class="pcoded-micon">
                      <i class="feather icon-box"></i></span><span class="pcoded-mtext">{{$cate->category->label}}</span></a>
                      <ul class="pcoded-submenu" style="display: {{ ActiveRouteMenu($cate->category->slug, [], 'block', 1)}}">
                         <li class="<?= ActiveRouteMenu($cate->category->slug, ['vendor_category_management', 'vendor_basic_category_management'], 'active')?>">
                            <a style="color: <?= ActiveRouteMenu($cate->category->slug, ['vendor_category_management', 'vendor_basic_category_management'], $cate->category->color)?>;" href="{{url(route('vendor_category_management',$cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Basic Information</a>
                         </li>
+
+
+                         <li>
+                           <a href="{{url(route('vendor.orders', $cate->category->slug))}}">
+                              <span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
+                               Orders
+                            </a>
+                        </li>
+
+
+
                         <li class="<?= ActiveRouteMenu($cate->category->slug, ['vendor_category__image_management','vendor_category_add_image_management'],'active')?>">
                            <a style="color: <?= ActiveRouteMenu($cate->category->slug,['vendor_category__image_management','vendor_category_add_image_management'], $cate->category->color)?>;" href="{{url(route('vendor_category__image_management', $cate->category->slug))}}"><span class="arrow-before"><i class="fa fa-arrow-right" aria-hidden="true"></i></span> Photo Gallery</a>
                         </li>

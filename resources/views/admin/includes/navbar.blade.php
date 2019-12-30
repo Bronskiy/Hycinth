@@ -131,9 +131,7 @@
                     <a href="javascript:" class="nav-link "><span class="pcoded-micon">
                         <i class="feather icon-box"></i></span><span class="pcoded-mtext">Commission Fee</span></a>
                     <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['admin.commission','admin.commissionSlabs'], 'block') ?>;">
-                        <li class="<?= ActiveMenu(['admin.commission'],'active') ?>">
-                            <a href="{{ route('admin.commissionSlabs') }}" class="">Commission's Slabs</a>
-                        </li>
+                       
                         <li class="<?= ActiveMenu(['admin.commission'],'active') ?>">
                             <a href="{{ route('admin.commission') }}" class="">Fee</a>
                         </li>

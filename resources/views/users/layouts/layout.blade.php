@@ -23,6 +23,8 @@
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link href="/bootstrap-fileinput-master/css/fileinput.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="/bootstrap-fileinput-master/themes/explorer-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/michalsnik/aos/2.0.4/dist/aos.css">
+ <link rel="stylesheet" type="text/css" href="{{url('/frontend/css/animate.css')}}">
     <link rel="stylesheet" href="{{url('/AdminFILE/dist/css/jquery-ui.css')}}">
     <link rel="stylesheet" href="{{url('/admin-assets/css/style.css')}}">
     <link rel="stylesheet" href="{{url('/css/user.css')}}">
@@ -38,6 +40,8 @@
 <script src="{{url('/bootstrap-fileinput-master/js/fileinput.js')}}" type="text/javascript"></script>
 
 
+   <script src="https://cdn.rawgit.com/michalsnik/aos/2.0.4/dist/aos.js"></script>
+ 
 </head>
 
 <body>
@@ -69,6 +73,12 @@
 <script src="//cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
 <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 <script src="{{url('/admin-assets/js/validations/customValidation.js')}}"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/0.1.12/wow.min.js"></script>
+ <script> 
+        AOS.init();
+
+        new WOW().init();
+    </script>
 <script type="text/javascript">
 $(document).ready(function(){
 $('#action_menu_btn').click(function(){

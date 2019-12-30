@@ -224,4 +224,13 @@ require __DIR__.'/ajax.php';
         Route::post('/payment/settings/stripe', 'Vendor\StripePaymentSettingController@store')->name('stripeSettings');
 
 
+
+        #-----------------------------------------------------------------------------------
+        #
+        #-----------------------------------------------------------------------------------
+
+        Route::get('/category/{slug}/orders', 'Vendor\OrderController@index')->name('vendor.orders');
+        Route::get('/category/{slug}/orders/{id}', 'Vendor\OrderController@detail')->name('vendor.orderDetail');
+
+
 });
