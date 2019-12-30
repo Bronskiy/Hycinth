@@ -19,7 +19,7 @@
 
 
          <div class="card-heading">
-                     <h3>winter deal</h3>
+                     <h3>{{ $deal->title }}</h3>
                   </div>
 
            

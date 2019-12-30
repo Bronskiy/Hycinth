@@ -23,11 +23,13 @@ $(document).ready(function(){
       },
       "deal_code": {
         required: true,
+        alphanumeric: true,
         maxlength: 10
       },
       "amount": {
         required: true,
-        amount: true,
+        positiveNumber: true,
+        minlength: 1,
         maxlength: 10
       },
       "deal_life": {
@@ -67,5 +69,11 @@ $(document).ready(function(){
         return false;
       }
     });
+
+
+    $.validator.addMethod('positiveNumber',
+    function (value) { 
+        return Number(value) > 0;
+    }, 'Please enter a valid number.');
     
 });

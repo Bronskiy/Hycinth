@@ -21,12 +21,12 @@
                     <li class="nav-item pcoded-menu-caption">
                         <label>Dashboard</label>
                     </li>
-                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item {{ \Request::route()->getName() === 'admin_dashboard'
+                    <li class="nav-item {{ \Request::route()->getName() === 'admin_dashboard'
                  ? 'nav-item active' : 'nav-item' }}">
                         <a href="{{url(route('admin_dashboard'))}}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
                     </li>
 
-                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item {{ \Request::route()->getName() === 'admin.business.index'
+                    <li class="nav-item {{ \Request::route()->getName() === 'admin.business.index'
                  ? 'nav-item active' : 'nav-item' }}">
                         <a href="{{url(route('admin.business.index'))}}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-briefcase"></i></span><span class="pcoded-mtext">Businesses Listing</span></a>
                     </li>
@@ -35,7 +35,7 @@
                     <label>Management</label>
                 </li>
 
-                <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_category', 'category_variations', 'create_category','edit_category'],'pcoded-trigger') ?>" >
+                <li class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_category', 'category_variations', 'create_category','edit_category'],'pcoded-trigger') ?>" >
                 <a href="javascript:" class="nav-link "><span class="pcoded-micon">
                     <i class="feather icon-box"></i></span><span class="pcoded-mtext">Category Management</span></a>
                 <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['list_category', 'category_variations', 'create_category','edit_category'],'block') ?>;">
@@ -43,7 +43,7 @@
                 </ul>
                 </li>
 
-                <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_events', 'create_event_type', 'edit_event'],'pcoded-trigger') ?>" >
+                <li class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_events', 'create_event_type', 'edit_event'],'pcoded-trigger') ?>" >
                 <a href="javascript:" class="nav-link "><span class="pcoded-micon">
                     <i class="feather icon-box"></i></span><span class="pcoded-mtext">Event/Celebration Types</span></a>
                 <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['list_events', 'create_event_type', 'edit_event'],'block') ?>;">
@@ -51,7 +51,7 @@
                 </ul>
                 </li>
 
-                <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_amenities', 'list_games', 'create_amenities_type', 'edit_amenity'],'pcoded-trigger') ?>" >
+                <li class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_amenities', 'list_games', 'create_amenities_type', 'edit_amenity'],'pcoded-trigger') ?>" >
                 <a href="javascript:" class="nav-link "><span class="pcoded-micon">
                     <i class="feather icon-box"></i></span><span class="pcoded-mtext">Amenities/Games Types</span></a>
                 <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['list_amenities', 'list_games', 'create_amenities_type', 'edit_amenity'],'block') ?>;">
@@ -61,33 +61,38 @@
                 </li>
 
 
-<li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_seasons', 'create_seasons', 'edit_seasons'],'pcoded-trigger') ?>" >
-                <a href="javascript:" class="nav-link "><span class="pcoded-micon">
-                    <i class="feather icon-box"></i></span><span class="pcoded-mtext"> Manage Seasons</span></a>
-                <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['list_seasons', 'create_seasons', 'edit_seasons', 'create_seasons', 'edit_seasons'],'block') ?>;">
-                    <li class="<?= ActiveMenu(['list_seasons', 'create_seasons', 'edit_seasons'],'active') ?>"><a href="{{ route('list_seasons') }}" class="">Seasons</a></li>
-                </ul>
+                 <li class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_seasons', 'create_seasons', 'edit_seasons'],'pcoded-trigger') ?>" >
+                       <a href="javascript:" class="nav-link "><span class="pcoded-micon">
+                            <i class="feather icon-box"></i></span><span class="pcoded-mtext"> Manage Seasons</span></a>
+                        <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['list_seasons', 'create_seasons', 'edit_seasons', 'create_seasons', 'edit_seasons'],'block') ?>;">
+                            <li class="<?= ActiveMenu(['list_seasons', 'create_seasons', 'edit_seasons'],'active') ?>"><a href="{{ route('list_seasons') }}" class="">Seasons</a></li>
+                        </ul>
                 </li>
 
 
-                <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_users', 'list_vendors', 'admin_vendor_business'],'pcoded-trigger') ?>" >
+                <li class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_users', 'list_vendors', 'admin_vendor_business'],'pcoded-trigger') ?>" >
                 <a href="javascript:" class="nav-link "><span class="pcoded-micon">
                     <i class="feather icon-box"></i></span><span class="pcoded-mtext">User/Vendor Management</span></a>
                 <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['list_users', 'list_vendors', 'admin_vendor_business'], 'block') ?>;">
-                    <li class="<?= ActiveMenu(['list_users'],'active') ?>"><a href="{{ route('list_users') }}" class="">User Management</a></li>
-                    <li class="<?= ActiveMenu(['list_vendors', 'admin_vendor_business'],'active') ?>"><a href="{{ route('list_vendors') }}" class="">Vendor Management</a></li>
+                    <li class="<?= ActiveMenu(['list_users'],'active') ?>">
+                        <a href="{{ route('list_users') }}" class="">User Management</a>
+                    </li>
+                    <li class="<?= ActiveMenu(['list_vendors', 'admin_vendor_business'],'active') ?>">
+                        <a href="{{ route('list_vendors') }}" class="">Vendor Management</a>
+                    </li>
                 </ul>
                 </li>
 
-                <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['admin.venues.list', 'admin.venues.showCreate', 'admin.venues.showEdit'],'pcoded-trigger') ?>" >
-                <a href="javascript:" class="nav-link "><span class="pcoded-micon">
-                    <i class="feather icon-box"></i></span><span class="pcoded-mtext">Venues Management</span></a>
+                <li  class="nav-item pcoded-hasmenu <?= ActiveMenu(['admin.venues.list', 'admin.venues.showCreate', 'admin.venues.showEdit'],'pcoded-trigger') ?>" >
+                     <a href="javascript:" class="nav-link "><span class="pcoded-micon">
+                           <i class="feather icon-box"></i></span><span class="pcoded-mtext">Venues Management</span>
+                     </a>
                 <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['admin.venues.list', 'admin.venues.showCreate', 'admin.venues.showEdit'], 'block') ?>;">
                     <li class="<?= ActiveMenu(['admin.venues.list', 'admin.venues.showCreate', 'admin.venues.showEdit'],'active') ?>"><a href="{{ route('admin.venues.list') }}" class="">Venues Management</a></li>
                 </ul>
                 </li>
 
-                <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['admin.styles.list', 'admin.styles.showCreate', 'admin.styles.showEdit'],'pcoded-trigger') ?>" >
+                <li class="nav-item pcoded-hasmenu <?= ActiveMenu(['admin.styles.list', 'admin.styles.showCreate', 'admin.styles.showEdit'],'pcoded-trigger') ?>" >
                 <a href="javascript:" class="nav-link "><span class="pcoded-micon">
                     <i class="feather icon-box"></i></span><span class="pcoded-mtext">Styles Management</span></a>
                 <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['admin.styles.list', 'admin.styles.showCreate', 'admin.styles.showEdit'], 'block') ?>;">
@@ -96,17 +101,23 @@
                 </li>
 
 
-             <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_general_settings', 'add_general_settings', 'list_payment_settings', 'global_settings'],'pcoded-trigger') ?>" >
+             <li class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_general_settings', 'add_general_settings', 'list_payment_settings', 'global_settings'],'pcoded-trigger') ?>" >
                 <a href="javascript:" class="nav-link "><span class="pcoded-micon">
                     <i class="feather icon-box"></i></span><span class="pcoded-mtext">Settings</span></a>
                 <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['list_general_settings', 'add_general_settings', 'list_payment_settings', 'global_settings'], 'block') ?>;">
                     <li class="<?= ActiveMenu(['list_general_settings', 'add_general_settings'],'active') ?>"><a href="{{ route('list_general_settings') }}" class="">Page Settings</a></li>
                     <li class="<?= ActiveMenu(['list_payment_settings'],'active') ?>"><a href="{{ route('list_payment_settings') }}" class="">Payment Settings</a></li>
-                    <li class="<?= ActiveMenu(['global_settings'],'active') ?>"><a href="{{ route('global_settings') }}" class="">Global Settings</a></li>
+                    <li class="<?= ActiveMenu(['global_settings'],'active') ?>">
+                        <a href="{{ route('global_settings') }}" class="">Global Settings</a>
+                    </li>
+
+                     <li class="<?= ActiveMenu(['admin.commission'],'active') ?>">
+                        <a href="{{ route('admin.commission') }}" class="">Commisson Settings</a>
+                    </li>
                 </ul>
                 </li>
 
-                 <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['admin.emails.index'],'pcoded-trigger') ?>" >
+                 <li class="nav-item pcoded-hasmenu <?= ActiveMenu(['admin.emails.index'],'pcoded-trigger') ?>" >
                     <a href="javascript:" class="nav-link "><span class="pcoded-micon">
                         <i class="feather icon-box"></i></span><span class="pcoded-mtext">Email Management</span></a>
                     <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['admin.emails.index'], 'block') ?>;">
@@ -114,9 +125,37 @@
                     </ul>
                 </li>
 
+
+
+               <li class="nav-item pcoded-hasmenu <?= ActiveMenu(['admin.commission','admin.commissionSlabs'],'pcoded-trigger') ?>" >
+                    <a href="javascript:" class="nav-link "><span class="pcoded-micon">
+                        <i class="feather icon-box"></i></span><span class="pcoded-mtext">Commission Fee</span></a>
+                    <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['admin.commission','admin.commissionSlabs'], 'block') ?>;">
+                        <li class="<?= ActiveMenu(['admin.commission'],'active') ?>">
+                            <a href="{{ route('admin.commissionSlabs') }}" class="">Commission's Slabs</a>
+                        </li>
+                        <li class="<?= ActiveMenu(['admin.commission'],'active') ?>">
+                            <a href="{{ route('admin.commission') }}" class="">Fee</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
+
+
+
+
+
+
                 <li class="nav-item <?= ActiveMenu(['admin.cms-pages.list', 'admin.cms-pages.showCreate', 'admin.cms-pages.edit'],'active') ?>">
                     <a href="{{url(route('admin.cms-pages.list'))}}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Cms Pages</span></a>
                 </li>
+
+
+
+
 
 
                <!--  <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['admin_settings'],'pcoded-trigger') ?>" >

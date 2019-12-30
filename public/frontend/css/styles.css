@@ -4091,6 +4091,7 @@ form label {
     font-size: 20px;
     position: relative;
     border-radius: 0;
+    background-color: #fff;
 }
 #galleryTab li a.active, #Payment-tab li a.active{
     background: #03163b;
@@ -7365,6 +7366,9 @@ ul.vendor_ser_list {
     margin-bottom: 6px;
     color: #b58ec3;
     font-weight: 600;
+}
+.notCompleted .complete-card h3{
+      color: #5a5a5a;
 }
 .checkout-billing-address p {
     font-size: 16px;

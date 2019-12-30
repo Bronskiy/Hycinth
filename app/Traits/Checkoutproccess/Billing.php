@@ -30,7 +30,8 @@ use TotalOrderCalulation;
 public function billingAddress()
 {
 
-	//Session::forget('billingAddress');
+	 //Session::forget('billingAddress');
+	 Session::forget('OrderSummary');
    return view('users.checkout.steps.billing')
    ->with('stepNumber',1)
    ->with('haveDeal',1)

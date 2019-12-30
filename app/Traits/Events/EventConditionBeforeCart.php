@@ -108,8 +108,10 @@ public function checkAvailableDates($evenTypeStatus,$events,$request)
                        ->where('event_orders.type','order')
                        ->count();
 
-      return $order > 0 ? 0 : 1;
+      return 1; $order > 0 ? 0 : 1;
 
+	}else{
+		return 1;
 	}
 }
 
@@ -334,7 +336,7 @@ public function checkAllConditionBeforeAddingPackage($errorType,$request=[])
               $event_id = !empty($request->event_type) ? $request->event_type : $request->event_id;
               $event = \App\UserEvent::find($event_id);
 
-             $dates = '(From <strong>'.$event->start_date.'</strong> To <strong>'.$event->end_date.'</strong>)';
+             $dates = '(From <strong>'.date('Y-m-d',strtotime($event->start_date)).'</strong> To <strong>'.date('Y-m-d',strtotime($event->end_date)).'</strong>)';
 
 			$msg= '<b>'.$package->business->title.'</b> is not availble on these dates '.$dates;
 			break;

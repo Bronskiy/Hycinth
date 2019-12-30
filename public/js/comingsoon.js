@@ -48,8 +48,9 @@ setTimeout(() => {
     let countDown = parseInt(new Date(date_val).getTime());
                
         x = setInterval(function() {
-
-          let now = new Date().getTime(),
+          var date = new Date();
+              date.setDate(date.getDate());
+          let now = date.getTime(),
               distance = parseInt(countDown) - now;
 
 

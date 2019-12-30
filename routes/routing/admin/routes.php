@@ -172,6 +172,9 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
         Route::get('/my-business/{slug}/{vendorSlug}', 'Vendor\MyBusinessController@index')->name('vendorBusinessView');
 
         // Email Management
+        Route::get('/commission/settings', 'Admin\CommissionController@fee')->name('admin.commission');
+        Route::get('/commission/slabs/settings', 'Admin\CommissionController@index')->name('admin.commissionSlabs');
+        Route::post('/commission/settings', 'Admin\CommissionController@store')->name('admin.commission');
         Route::get('/email-management', 'Admin\EmailManagementController@index')->name('admin.emails.index');
         Route::post('/email-management/{id}', 'Admin\EmailManagementController@update')->name('admin.emails.update');
 

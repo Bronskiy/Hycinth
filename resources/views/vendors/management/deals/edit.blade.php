@@ -39,6 +39,7 @@
 
                            <div class="col-lg-6">
                             <label class="control-label">Type Of Deal's </label>
+                             <div class="form-group">	
                              <select class="form-control" id="type_of_deal" class="form-control" 
                             name="type_of_deal">
                             <option value="">Select</option>
@@ -47,7 +48,9 @@
                             </select>
                               <!-- {{selectsimple($errors, "Type Of Deal's", 'type_of_deal',[0 => 'Universal',1 => 'Assign Packages', $deal->type_of_deal])}} -->
                           </div>
+                          </div>
                           <div class="col-lg-6" style="display: {{ $deal->type_of_deal == '1' ? 'block' : 'none' }}">
+                          	<div class="form-group">
                             <label class="control-label">Packages </label>
                             <select class="form-control" id="packages" class="form-control" 
                             name="packages">
@@ -56,6 +59,7 @@
                                 <option {{ $deal->packages == $package->id ? 'selected' : '' }} value="{{$package->id}}">{{$package->title}}</option>
                                 @endforeach
                             </select>
+                          	</div>
                           </div>
                           
                           <div class="col-lg-6" style="display: {{ $deal->type_of_deal == '0' ? 'block' : 'none' }}"> 

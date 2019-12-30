@@ -3,8 +3,7 @@
      <a href="javascript:void(0);" class="close-sidebar" id="closeUpcomSidebar"><i class="fas fa-times-circle"></i></a>
   </div>
 
-
-
+ 
     @if(Auth::check() && Auth::user()->role == 'user')
        @php  
               $currentUser = \App\User::with([
@@ -15,11 +14,11 @@
       @if($currentUser->UpcomingUserEvents->count() > 0)
           
         @foreach($currentUser->UpcomingUserEvents as $ky =>  $loopingEvents)
-
+         @if(strtotime($loopingEvents->start_date) > strtotime(date('Y-m-d 00:00:00')))
           <div class="sidebar-body">
            <div class="event-status-info">
            <div class="row">  
-           <div class="col-3">    
+           <div class="col-3"> 
             <a target="_blank" href="{{route('user_show_detail_event', $loopingEvents->slug)}}">
             <figure class="side-upcm-img"><img src="{{ $loopingEvents->event_picture }}">          
             </figure></a>
@@ -68,6 +67,7 @@
            
            </div>
           </div>
+          @endif
         @endforeach  
       @else
       <div class="message-wrap">

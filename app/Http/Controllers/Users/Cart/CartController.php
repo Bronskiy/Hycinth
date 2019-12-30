@@ -222,6 +222,8 @@ public function saveToCartAfterCheck($request,$events,$package,$type="cart")
     $order->related_tableData = json_encode($this->orderRelatedTableBackup($events,$package,$request));
 
     if($order->save()){
+      Session::forget('billingAddress');
+      Session::forget('OrderSummary');
     	return 1;
     }
 
