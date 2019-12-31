@@ -1,5 +1,8 @@
 $(function(){
 
+
+
+
  function ErrorMsg(type,message){
 
       var txt  ='';
@@ -11,10 +14,10 @@ $(function(){
   }
 
 
-/*----------------------------------------------------------------------------
-|
-|   Business filter
-|_____________________________________________________________________________
+/*
+------------------------------------------------------------------------------
+|Business filter
+|-----------------------------------------------------------------------------
 */
 
 function erorrMessage(errors) {
@@ -87,6 +90,26 @@ $("body").on('click','.cartModal',function(e){
 
 });
 
+
+//###########################################################################################
+
+
+$("body").on('hidden.bs.modal','#cartModal', function (e) {
+  
+    var $modal = $("body").find('#cartModal');;
+    $modal.find('.modal-package-price').text('');
+    $modal.find('#package_id').val('');
+     
+    $modal.find('.modal-package-title').text('');
+    $modal.find('.modal-package-description').html('');
+    $modal.find('#eventAllCategories').html('');
+    $modal.find('.modal-title-capacity').html('');
+})
+
+
+
+//###########################################################################################
+ 
 
 function updateDataToCartModalPopupBeforeLogin($this) {
     var $modal = $("body").find('#cartModal');

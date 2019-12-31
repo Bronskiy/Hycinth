@@ -759,13 +759,12 @@ function sendEmail($templateID,$userID,$orderID=0,$preview='',$data_array='')
           if($preview=='preview'){
             return view('emails.custom_email',$data);  
           }
-    //    return view('emails.custom_email',$data);
+   
 
            \Mail::send('emails.custom_email',$data, function($message) use($arr) {
                $message->to($arr['email'], $arr['name'])
                ->subject($arr['subject']);
-               //$message->from('xyz@gmail.com','Virat Gandhi');
-            });
+           });
 
    }
 }
@@ -806,6 +805,11 @@ function getEmailDetailIfGuestOrNot($user,$orderID,$email)
   return $arr;
 //1565962114ieaZtd3jSufQQX176cJ7-1551857355VMhRytlJvfv6MY1rkhhn-logo-_1_.png
 }
+
+
+
+
+
 
 function sendEmail2($templateID,$userArray,$orderID=0)
 {
@@ -858,7 +862,7 @@ function sendEmail2($templateID,$userArray,$orderID=0)
            \Mail::send('emails.custom_email',$data, function($message) use($arr) {
                $message->to($arr['email'], $arr['name'])
                ->subject($arr['subject']);
-               //$message->from('xyz@gmail.com','Virat Gandhi');
+               
             });
 
    }
@@ -2045,8 +2049,8 @@ function selectMultiple($errors,$label,$name,$id,$colname,$array,$value=null){
         }
 		$text = "";
 		$text .= "<div class='form-group is-empty '>";
-		$text .="<label class='label-file'>$label</label><div class='custom-file'>";
-		$text .= "<input type='file' class='form-control $border custom-file-input2' name='$name' value='".$v."'><span class='custom-file-control'></span> </div>";
+		$text .="<label class='label-file'>$label</label>";
+		$text .= "<input type='file' class='form-control $border custom-file-input2' name='$name' value='".$v."'> ";
 		$text .="<label for='$name' class='error'>".$errors->first($name)."&nbsp;".$ex."</label>";
 		$text .="</div>";
 

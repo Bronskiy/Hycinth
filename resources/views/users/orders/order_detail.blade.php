@@ -88,17 +88,16 @@
                                         @endif   
                                           </span>
 
-										@if($item->deal != null && $item->deal->count() > 0)
-											<p> {!! dealInfoInCart($item) !!}
-
-											<div class="demo-app hasToggle"> 
-											<i class=" blink-text fas fa-info-circle"></i> 
-											<span class="toggle-info-dropdown">
-											{!! dealToggledownBox($item) !!}
-											</span>
-											</div>
-											</p> 
-										@endif
+                            										@if($item->deal != null && $item->deal->count() > 0)
+                            											<p> {!! dealInfoInCart($item) !!}
+                                                     <div class="demo-app hasToggle"> 
+                              											    <i class=" blink-text fas fa-info-circle"></i> 
+                              											    <span class="toggle-info-dropdown">
+                              											    {!! dealToggledownBox($item) !!}
+                              											    </span>
+                              											 </div>
+                            											</p> 
+                            										@endif
                                        </div>
                                        @else
                                     	<div class="cart-price-line">

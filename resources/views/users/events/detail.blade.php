@@ -1,58 +1,6 @@
 @extends('users.layouts.layout')
 @section('content')
-<style type="text/css">
-   .main-header {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    height: 250px;
-    color: #FFF;
-    background-size: cover;
-    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1609106/lake-shadow-water.jpg);
-    margin-bottom: 20px;
-}
-.main-header__intro-wrapper {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: space-between;
-    height: 160px;
-    padding: 12px 30px;
-    background: rgba(255, 255, 255, 0.12);
-    font-size: 26px;
-    letter-spacing: 1px;
-}
-.main-header__welcome {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.quickview {
-    display: grid;
-    grid-auto-flow: column;
-    grid-gap: 60px;
-}
-.main-header__welcome-title {
-    margin-bottom: 8px;
-    font-size: 26px;
-}
-.main-header__welcome-subtitle {
-    font-size: 18px;
-}
-.quickview__item {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-.quickview__item-total {
-    margin-bottom: 2px;
-    font-size: 32px;
-}
-.quickview__item-description {
-    font-size: 16px;
-    text-align: center;
-}
-</style>
+
 
 <div class="pcoded-content p-0">
 <div class="main-header">

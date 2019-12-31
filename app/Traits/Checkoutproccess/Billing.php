@@ -5,6 +5,7 @@ use App\Traits\Checkoutproccess\Ordersummary;
 use App\Traits\Checkoutproccess\CheckoutPayment;
 use App\Traits\Checkoutproccess\StripeMethod;
 use App\Traits\Checkoutproccess\TotalOrderCalulation;
+use App\Traits\EmailTraits\EmailNotificationTrait;
 use App\VendorPackage;
 use App\PackageMetaData;
 use App\UserEventMetaData;
@@ -12,16 +13,15 @@ use Auth;
 use App\Models\Vendors\DiscountDeal;
 use App\Models\EventOrder;
 use Session;
+
+
 trait Billing {
 
-use Ordersummary;
-use CheckoutPayment;
-use StripeMethod;
-use TotalOrderCalulation;
-
-
-
-
+	use Ordersummary;
+	use CheckoutPayment;
+	use StripeMethod;
+	use TotalOrderCalulation;
+	use EmailNotificationTrait;
 
 
 #---------------------------------------------------------------------------------
@@ -29,16 +29,17 @@ use TotalOrderCalulation;
 #---------------------------------------------------------------------------------
 public function billingAddress()
 {
-
-	 //Session::forget('billingAddress');
-	 Session::forget('OrderSummary');
-   return view('users.checkout.steps.billing')
-   ->with('stepNumber',1)
-   ->with('haveDeal',1)
-   ->with('checkout',1)
-   ->with('obj',$this)
-   ->with('orders',$this->getCurentOrders())
-   ->with('address',$this->getBillingAddress());
+     // jassi91@yopmail.com
+	 
+       //Session::forget('billingAddress');
+	   Session::forget('OrderSummary');
+	   return view('users.checkout.steps.billing')
+	   ->with('stepNumber',1)
+	   ->with('haveDeal',1)
+	   ->with('checkout',1)
+	   ->with('obj',$this)
+	   ->with('orders',$this->getCurentOrders())
+	   ->with('address',$this->getBillingAddress());
 }
 
 #---------------------------------------------------------------------------------

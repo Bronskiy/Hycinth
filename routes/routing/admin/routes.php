@@ -175,7 +175,15 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
         Route::get('/commission/settings', 'Admin\CommissionController@fee')->name('admin.commission');
         Route::get('/commission/settings/{id}', 'Admin\CommissionController@delete')->name('admin.commissionDelete');
         Route::post('/commission/settings', 'Admin\CommissionController@store')->name('admin.commission');
+
+        #-------------------------------------------------------------------------------------------------------------
+        #  Email Templates
+        #-------------------------------------------------------------------------------------------------------------
+
+
         Route::get('/email-management', 'Admin\EmailManagementController@index')->name('admin.emails.index');
+        Route::post('/email-management', 'Admin\EmailManagementController@create')->name('admin.emails.index');
+        Route::get('/email-management/{id}', 'Admin\EmailManagementController@edit')->name('admin.emails.update');
         Route::post('/email-management/{id}', 'Admin\EmailManagementController@update')->name('admin.emails.update');
 
         #-------------------------------------------------------------------------------------------------------------

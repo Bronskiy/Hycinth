@@ -16,7 +16,9 @@ class UserOrderController extends Controller
 
     public function orderDetail($orderID)
     {
-    	$currentOrder = Order::where('id', $orderID)->where('user_id', Auth::user()->id)->first();
+    	 $currentOrder = Order::with('orderItems','orderItems.package')->where('id', $orderID)
+        ->where('user_id', Auth::user()->id)
+        ->first();
     	if(!empty($currentOrder)){
     		return view('users.orders.order_detail', compact('currentOrder'));
     	}else{

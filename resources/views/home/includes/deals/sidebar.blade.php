@@ -2,6 +2,34 @@
 <div class="col-lg-3 range eventside-bar">
     <form id="formBusinessDisountDeals" action="{{url(route('get_all_dealAndDiscount'))}}">
                         <div id="accordion">
+
+
+                            <div class="card">
+                                <div class="card-header">                                
+                                     <a class="card-link" data-toggle="collapse" href="#collapseSix" aria-expanded="false">
+                                     Location
+                                    </a>
+                                </div>
+                                 <div id="collapseSix" class="collapse b-0" data-parent="#accordion" style="">
+                                    <div class="card-body p-0">
+                                        
+                                           <div class="form-group">  
+                                                <input type="search" name="address" id="address" value="" class="form-control" placeholder="Location" autocomplete="off">
+
+                                                  
+                                                       <input type="hidden" name="latitude" id="latitude" value="">
+                                                   
+                                                   
+                                                    <input type="hidden" name="longitude" id="longitude" value="">
+                                                   
+                                           </div>
+                                            
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            
+
                             <div class="card">
                                 <div class="card-header">
                                     <a class="card-link collapsed" data-toggle="collapse" href="#collapseOne" aria-expanded="true">
@@ -13,7 +41,7 @@
                               
 
 
-                                <div id="collapseOne" class="collapse show" data-parent="#accordion">
+                                <div id="collapseOne" class="scroll-sidebar collapse show" data-parent="#accordion">
 
                                  @foreach($categories as $category)
                                      <div class="card-body listing sub-head">
@@ -42,30 +70,7 @@
                                 </div>
                             </div>
 
-                            <div class="card">
-                                <div class="card-header">                                
-                                     <a class="card-link" data-toggle="collapse" href="#collapseSix" aria-expanded="false">
-                                     Location
-                                    </a>
-                                </div>
-                                 <div id="collapseSix" class="collapse b-0" data-parent="#accordion" style="">
-                                    <div class="card-body p-0">
-                                        
-                                           <div class="form-group">  
-                                                <input type="search" name="address" id="address" value="" class="form-control" placeholder="Location" autocomplete="off">
 
-                                                  
-                                                       <input type="hidden" name="latitude" id="latitude" value="">
-                                                   
-                                                   
-                                                    <input type="hidden" name="longitude" id="longitude" value="">
-                                                   
-                                           </div>
-                                            
-                                    </div>
-                                </div>
-                               
-                            </div>
 
                             
                         </div>

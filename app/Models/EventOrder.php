@@ -33,25 +33,25 @@ class EventOrder extends Model
 
      public function package()
     {
-    	return $this->belongsTo('App\VendorPackage');
+    	return $this->belongsTo('App\VendorPackage','package_id','id');
     }
 
 
      public function event()
     {
-    	return $this->belongsTo('App\UserEvent');
+    	return $this->belongsTo('App\UserEvent','event_id');
     }
 
 
      public function category()
     {
-    	return $this->belongsTo('App\Category');
+    	return $this->belongsTo('App\Category','category_id');
     }
 
 
      public function user()
     {
-    	return $this->belongsTo('App\User');
+    	return $this->belongsTo('App\User','user_id');
     }
 
      public function vendor()

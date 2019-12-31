@@ -64,6 +64,8 @@
 
     <?php $amenities = getPackageAmenities($f); ?>
   <?php $packageEvents = getPackageEvents($f); ?>
+
+
  <?php $getPackageGames = getPackageGames($f); ?>
         @foreach($amenities as $amenity)
         <ul class="pkg-listing-grp"> 
@@ -84,14 +86,14 @@
              </div>
       @endif
 
- @if(count($f->events))
+ @if(count($f->events) && !empty($packageEvents))
 <div class="col-md-6">
   <label for="no_of_hours">Events</label>
  @foreach($packageEvents as $amenity)
         <ul class="pkg-listing-grp">  
           <li class="pkg-listing">{{$amenity->event->name}}</li>
         </ul>
-     @endforeach
+ @endforeach
 </div>
  @endif
 </div>
@@ -158,7 +160,7 @@ Status</th>
           <li>          
             <a href="javascript:void(0);" class="action_btn btn-primary" id="addOns" onclick="openModel()" data-toggle="modal" data-target="#Addons_{{$f->id}}" data-toggle="tooltip" title="Add Ons"><i class="fas fa-plus"></i></a>
           </li>
-          <li><a onclick="deleteItem(this)" href="javascript:void(0)" data-delurl="{{ route('vendor_packages_delete_management', ['slug' => $category->slug, 'id' => $f->id]) }}" class="action_btn danger-btn" data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></a></li>   
+     <!--      <li><a onclick="deleteItem(this)" href="javascript:void(0)" data-delurl="{{ route('vendor_packages_delete_management', ['slug' => $category->slug, 'id' => $f->id]) }}" class="action_btn danger-btn" data-toggle="tooltip" title="Delete"><i class="fas fa-trash-alt"></i></a></li>    -->
         </ul>
       </div>
 

@@ -1,3 +1,6 @@
+<a href="javascript:void(0);" id="user-status" data-toggle="tooltip" data-placement="left" title="My Event Bar"><i class="fas fa-user-clock"></i></a>
+ <aside class="user-status-content" id="UserUpcmStatus">
+
   <div class="sidebar-header">
      <h3>User Stats Bar</h3>
      <a href="javascript:void(0);" class="close-sidebar" id="closeUpcomSidebar"><i class="fas fa-times-circle"></i></a>
@@ -78,3 +81,5 @@
           
       @endif
     @endif  
+
+   </aside>    

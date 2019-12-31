@@ -1268,9 +1268,8 @@ public function descriptionStore(Request $request,$slug)
   public function style(Request $request,$slug)
   {
 
-      $styles = Style::where('status', 1);
+      $styles = Style::where('status', 1)->where('user_id', Auth::user()->id)->orWhere('added_by', 'admin');
       $category = $this->getData($slug);
-
       return view('vendors.management.styles.index',[
         'styles' => $this->getAllValueWithMeta('style','styles', $category->category_id)
       ])
@@ -1285,7 +1284,7 @@ public function descriptionStore(Request $request,$slug)
 #------------------------------------------------------------------------------------------
 
 
-    public function styleAdd(Request $request,$slug)
+  public function styleAdd(Request $request,$slug)
   {
       $category = $this->getData($slug);
 
@@ -1331,6 +1330,121 @@ public function styleStore(Request $request, $slug)
           
     return redirect()->route('vendor_style_management', $slug)->with('flash_message', 'Styles has been saved successfully!');
                                      
+}
+
+
+
+public function newStyle($slug)
+{
+  $category = $this->getData($slug);
+  return view('vendors.management.styles.create')
+      ->with('slug',$slug)
+      ->with('category',$category)
+      ->with('title',$category->label.' Management :: Styles');
+}
+
+
+public function storeStyle(Request $request, $slug) {
+  $validatedData = $request->validate([
+        'title' => ['required', 'string', 'max:20'],
+        'description' => ['required', 'string'],
+        'image' => ['required','image','mimes:jpeg,png,jpg,gif,svg','max:2048']
+    ]);
+
+  if ($request->hasFile('image')) {
+      $image = $request->file('image');
+      $filename = time().'.'.$image->getClientOriginalExtension();
+      $destinationPath = public_path('/uploads');
+      $image->move($destinationPath, $filename);
+  }
+
+  Style::create([
+    'user_id' => Auth::user()->id,
+    'added_by' => 'vendor',
+    'title' => $request['title'],
+    'description' => $request['description'],
+    'image' => $filename,
+  ]);
+  return redirect()->route('vendor_style_management', $slug)->with('flash_message', 'Style has been created successfully!');
+}
+
+
+public function listingStyles($slug)
+{
+      $styles = Style::where('status', 1)->where('user_id', Auth::user()->id)->get();
+      $category = $this->getData($slug);
+
+      return view('vendors.management.styles.listingStyles',[
+        'styles' => $this->getAllValueWithMeta('style','styles', $category->category_id)
+      ])
+      ->with('slug', $slug)
+      ->with('category', $category)
+      ->with('styles', $styles)
+      ->with('title', $category->label.' Management :: Listing Styles');
+}
+
+public function deleteStyles($slug, $id)
+{
+     $style = Style::where('slug', $slug)->first();
+        
+     // $v = VendorCategoryMetaData::where('id',$id)
+     // ->where('user_id',Auth::user()->id)
+     // ->whereIn('type',$this->restrictions)->first();
+
+     if(empty($style)){
+         return redirect()->back()->with('error_message','Something Went Wrong!');
+      }
+
+     $style->delete();
+
+     return redirect()->back()->with('error_message','Deleted!');
+}
+
+
+public function editStyles(Request $request, $catslug, $slug, $id)
+{
+
+    $style = Style::where('slug', $slug)->first();
+    if ($request->isMethod('post'))
+    {
+        $validatedData = $request->validate([
+                    'title' => ['required', 'string', 'max:20'],
+                    'description' => ['required', 'string'],
+                    'image' => ['image','mimes:jpeg,png,jpg,gif,svg','max:2048']
+                ]);
+
+              $style = Style::FindBySlugOrFail($slug);
+
+              $filename = $style->image;
+
+              if ($request->hasFile('image')) {
+                  $image = $request->file('image');
+                  $filename = time().'.'.$image->getClientOriginalExtension();
+                  $destinationPath = public_path('/uploads');
+                  $img_path = public_path().'/uploads/'.$style->image;
+                  if (file_exists($img_path)) {
+                    unlink($img_path);
+                }
+                  $image->move($destinationPath, $filename);
+              }
+              $style->update([
+                'user_id' => Auth::user()->id,
+                'added_by' => 'vendor',
+                'title' => $request['title'],
+                'description' => $request['description'],
+                'image' => $filename,
+              ]);
+
+              return redirect()->route('vendor_style_management',$catslug)->with('flash_message', 'Style has been updated successfully!');
+
+    }else{
+      
+     return view('vendors.management.styles.edit')
+        ->with('catSlug',$catslug)
+        ->with('slug',$slug)
+        ->with('style',$style)
+        ->with('title',$style->label.' Management :: Edit Style');   
+    }
 }
 
 

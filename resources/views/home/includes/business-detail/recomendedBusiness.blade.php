@@ -2,7 +2,7 @@
      
 
 </div>
-<div class="rec-vendor-wrap">
+<div class="rec-vendor-wrap mt-5">
 <h3 class="form-heading">Recommended Vendor</h3>
 
 @foreach($recommendedVendor as $business)
@@ -13,7 +13,7 @@
            <figure> 
            	<img src="{{url(getBasicInfo($business->vendors->id, $business->category_id,'basic_information','cover_photo'))}}"/>
            </figure>
-            <div class="rec-detail">
+            <div class="rec-vend-detail">
             <h3 class="mb-2">{{ $business->title }}</h3>
                 <p>{{ getBasicInfo($business->vendors->id, $business->category_id,'basic_information','short_description') }}</p>
           </div>

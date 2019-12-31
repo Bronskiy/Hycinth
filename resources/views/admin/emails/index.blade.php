@@ -26,98 +26,54 @@
         <div class="card-body">
           <h5 class="card-title">Vendor Submit Business</h5>
           <div class="col-md-12">
-            <form role="form" method="post" action="{{ route('admin.emails.update', $emails[0]->id) }}" id="businessSubForm" enctype="multipart/form-data">
-            @csrf
-              <div class="card-body">
-              <div class="form-group label-floating is-focused">
-                <label class="control-label">Subject*</label>
-                <input type="text" class="form-control " name="subject" value="{{$emails[0]->subject}}" id="subject1">
-              </div>
-
-              <div class="form-group label-floating is-focused">
-                <label class="control-label">Title*</label>
-                <input type="text" class="form-control " name="title" value="{{$emails[0]->title}}" id="title">
-              </div>
-
-              <div class="form-group">
-                <label>Body*</label>
-                <textarea class="form-control" id="body" name="body">{{$emails[0]->body}}</textarea>
-              </div>
-              </div>
-              <div class="card-footer">
-              <button type="submit" id="businessSubFormBtn" class="btn btn-primary">Update</button>
-              </div>
-            </form>
+           <form class="row" method="post">
+              @csrf
+               <div class="col-md-5 text-right"><label>Enter Email Template Title</label></div>
+               <div class="col-md-5"><input type="text" name="title" class="form-control" required></div>
+               <div class="col-md-2"><button class="btn btn-warning">Submit</button></div>
+           </form>
           </div>
-        </div>
-      </div>
-    </div>
-
-
-<div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Approve Business</h5>
           <div class="col-md-12">
-            <form role="form" method="post" action="{{ route('admin.emails.update', $emails[1]->id) }}" id="emailAppForm" enctype="multipart/form-data">
-            @csrf
-              <div class="card-body">              
-              <div class="form-group label-floating is-focused">
-                <label class="control-label">Subject*</label>
-                <input type="text" class="form-control " name="subject" value="{{$emails[1]->subject}}" id="subject1">
-              </div>
 
-              <div class="form-group label-floating is-focused">
-                <label class="control-label">Title*</label>
-                <input type="text" class="form-control " name="title" value="{{$emails[1]->title}}" id="title1">
-              </div>
+       
+           
 
-              <div class="form-group">
-                <label>Body*</label>
-                <textarea class="form-control" id="body1" name="body">{{$emails[1]->body}}</textarea>
-              </div>
+            
+            <table class="table">
+                 <tr>
+                     <th>Template ID</th>
+                     <th>Title</th>
+                     <th>Action</th>
+                 </tr>
 
-              </div>
-              <div class="card-footer">
-              <button type="submit" id="emailAppFormBtn" class="btn btn-primary">Update</button>
-              </div>
-            </form>
+                 @foreach($emails as $email)
+
+                       <tr>
+                         <td>{{$email->id}}</td>
+                         <td>{{$email->title}}</td>
+                         <td>
+                           <a href="{{url(route('admin.emails.update',$email->id))}}" class="btn btn-danger">Edit</a>
+                         </td>
+                       </tr>
+
+                 @endforeach
+            </table>
+
+
+
+
+
+
+ 
           </div>
         </div>
       </div>
     </div>
 
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Reject Business</h5>
-          <div class="col-md-12">
-            <form role="form" method="post" action="{{ route('admin.emails.update', $emails[2]->id) }}" id="emailRejForm" enctype="multipart/form-data">
-            @csrf
-              <div class="card-body">
-              <div class="form-group label-floating is-focused">
-                <label class="control-label">Subject*</label>
-                <input type="text" class="form-control " name="subject" value="{{$emails[2]->subject}}" id="subject2">
-              </div>
 
-              <div class="form-group label-floating is-focused">
-                <label class="control-label">Title*</label>
-                <input type="text" class="form-control " name="title" value="{{$emails[2]->title}}" id="title2">
-              </div>
+ 
 
-              <div class="form-group">
-                <label>Body*</label>
-                <textarea class="form-control" id="body2" name="body">{{$emails[2]->body}}</textarea>
-              </div>
-              </div>
-              <div class="card-footer">
-              <button type="submit" id="emailRejFormBtn" class="btn btn-primary">Update</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+ 
 
   </div>
 </section>

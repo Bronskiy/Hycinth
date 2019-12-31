@@ -75,20 +75,22 @@ $.validator.addMethod('amount', function(value, element, param) {
 
 $.validator.addMethod("minDate", function(value, element) {
     const curDate = new Date();
-    const inputDate = new Date(value);    
+    const inputDate = new Date(value); 
 
-    const curDatemonth = curDate.getMonth() + 1; 
-    const curDatedate = curDate.getDate() - 1; 
-    const curDateyear = curDate.getFullYear();
 
-    const inputDatemonth = inputDate.getMonth() + 1; 
-    const inputDatedate = inputDate.getDate(); 
-    const inputDateyear = inputDate.getFullYear();
 
-    const current = curDatedate + '-' + curDatemonth + '-' + curDateyear;
-    const input = inputDatedate + '-' + inputDatemonth + '-' + inputDateyear;
+    // const curDatemonth = curDate.getMonth() + 1; 
+    // const curDatedate = curDate.getDate() - 1; 
+    // const curDateyear = curDate.getFullYear();
 
-    if (inputDate == 'Invalid Date' || ( inputDateyear >= curDateyear && inputDatemonth >= curDatemonth && inputDatedate >= curDatedate)) {
+    // const inputDatemonth = inputDate.getMonth() + 1; 
+    // const inputDatedate = inputDate.getDate(); 
+    // const inputDateyear = inputDate.getFullYear();
+
+    // const current = curDatedate + '-' + curDatemonth + '-' + curDateyear;
+    // const input = inputDatedate + '-' + inputDatemonth + '-' + inputDateyear;
+
+    if ((parseInt(curDate.getTime()) < parseInt(inputDate.getTime()))) {
       return true; 
     }
     return false;

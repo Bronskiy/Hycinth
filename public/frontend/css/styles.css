@@ -740,9 +740,9 @@ nav#tool-nav #menus-list li a:hover {
     display: inline-block;
     margin-bottom: 0;
     padding:0px 4px;
-   text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+        max-width: 150px;
         display: -webkit-box;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
@@ -1685,6 +1685,8 @@ nav#tool-nav #menus-list li a:hover {
 .eventside-bar {
     padding: 30px 20px;
     background: #f7f7f7;
+}
+.eventside-bar .scroll-sidebar{
     max-height: 100vh;
     overflow-y: auto;
 }
@@ -6924,13 +6926,13 @@ table.compere-table th {
     object-position: center;
     transition: all 0.3s ease;
     }
-    .recom-vendor-card .rec-detail {
+    .recom-vendor-card .rec-vend-detail {
     padding: 20px 0px;
 }
 .recom-vendor-card:hover figure img{
    transform: scale(1.2);
 }
-.recom-vendor-card .rec-detail p{
+.recom-vendor-card .rec-vend-detail p{
         text-overflow: ellipsis;
         overflow: hidden;
         display: -webkit-box;

@@ -1,3 +1,6 @@
+figure{
+margin: 0px;
+}
 .cstm-btn {
     background: #35486b;
     font-size: 15px;
@@ -37,18 +40,18 @@
 	white-space: normal;
 }
 
-.upcmg-evnt-head h3 {
+.upcmg-evnt-head h3, .event-card-head h3 {
     font-size: 20px;
     font-weight: bold;
-    color: #eda208;
+    color: #35486b;
     margin-bottom: 10px;
 }
 
-.upcmg-evnt-head h2 {
+.upcmg-evnt-head h2, .event-card-head h2 {
     font-size: 23px;
     font-weight: bold;
     margin-bottom: 8px;
-    color: #36496c;
+    color: #35486b;
 }
 
 /****************/
@@ -276,17 +279,33 @@ width: 100%;
     height: 100px;
     list-style-type: none;
     padding: 0;
-    margin: 170px auto;
+    margin: 250px auto;
 }
 .event-planning-navigation li:first-child {
     width: 150px;
     height: 150px;
     background: #d1d1d1;
-    border: 2px solid #34476a;
     left: -27px;
     top: -25px;
     padding: 10px;
-    color: #34486a;
+    color: #fff;
+    background-image: linear-gradient(to right, #6389ca 0%, #34486a 100%);
+    animation: avatar-pulse 2s infinite;
+    transition: background-color 0.5s;
+    transition: 0.5s ease all;
+}
+
+/*.event-planning-navigation li:first-child:hover {
+ 
+}*/
+
+@keyframes avatar-pulse {
+  0% {
+    box-shadow: 0 0 0 0 #6389ca;
+  }
+  100% {
+    box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+  }
 }
 
 .event-planning-navigation li {
@@ -303,12 +322,26 @@ width: 100%;
     align-items: center;
     justify-content: center;
     color: #eda009;
+
+}
+.event-planning-navigation li:hover{
+   animation: planning-pulse 2s infinite;
+  transition: background-color 0.5s;
+  transition: 0.5s ease all;
+}
+@keyframes planning-pulse {
+  0% {
+    box-shadow: 0 0 0 0 #34486a;
+  }
+  100% {
+    box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+  }
 }
 .event-planning-navigation li a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #eda009;
+    color: #fff;
 }
 .event-planning-navigation li .plan-nav-icon{
     font-size: 20px;
@@ -521,7 +554,7 @@ width: 100%;
     background: #d9e1f1;
     padding: 5px;
 }
-.upcmg-evnt-head {
+.upcmg-evnt-head, .event-card-head{
     display: flex;
     border-bottom:1px solid #e2e2e2;
 }
@@ -905,17 +938,215 @@ width: 100%;
     color: #fff;
 }
 
-/*.card-media-body .count-down-timer li span:after {
-    position: absolute;
-    content: ":";
-    left: 100%;
-    top: 45%;
-    transform: translateY(-50%);
-}*/
-.card-media-body .count-down-timer li:last-child span:after{
-  display: none;
-} 
 /**********************/
+/*Event detail css*/
+   .main-header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 250px;
+    color: #FFF;
+    background-size: cover;
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1609106/lake-shadow-water.jpg);
+    margin-bottom: 20px;
+}
+.main-header__intro-wrapper {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    height: 160px;
+    padding: 12px 30px;
+    background: rgba(255, 255, 255, 0.12);
+    font-size: 26px;
+    letter-spacing: 1px;
+}
+.main-header__welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.quickview {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 60px;
+}
+.main-header__welcome-title {
+    margin-bottom: 8px;
+    font-size: 26px;
+}
+.main-header__welcome-subtitle {
+    font-size: 18px;
+}
+.quickview__item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.quickview__item-total {
+    margin-bottom: 2px;
+    font-size: 32px;
+}
+.quickview__item-description {
+    font-size: 16px;
+    text-align: center;
+}
+
+.order-status-row article.delivered {
+    background: #1c9638;    
+    color: #fff;
+}
+.order-status-row article{
+	padding: 10px;
+	border-radius: 5px;
+}
+.order-status-row article {
+    padding: 12px;
+    background-color: #1a649c;
+    color: #fff;
+    align-items: center;
+}
+.order-status-row .media-left, .order-status-row .media-right {
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+.order-status-row .media-content {
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+    text-align: left;
+}
+.order-status-row .media-content h3{
+	color: #fff;
+}
+.order-status-row .media-content small{
+	font-size: 14px;
+}
+.order-status-row .media-right {
+    line-height: 48px;
+    padding-top: 11px;
+     margin-left: 1rem;
+}
+.order-status-row .media-left {
+    margin-right: 15px;
+    font-size: 25px;
+}
+.order-status-row .tags {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.order-status-row .tags.has-addons .tag:not(:last-child) {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+.order-status-row .tags.has-addons .tag:not(:first-child) {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+}
+.order-status-row .tag:not(body).is-delivered {
+    background-color: #00b558;
+    color: white;
+}
+.order-status-row .tag:not(body).is-success {
+    background-color: #53a5e2;
+    color: #fff;
+}
+.order-status-row .tags .tag:not(:last-child) {
+    margin-right: 0.5rem;
+}
+.order-status-row .tags.has-addons .tag {
+    margin-right: 0;
+}
+.order-status-row .tag:not(body).is-light {
+    background-color: whitesmoke;
+    color: #363636;
+}
+.order-status-row .tags .tag {
+    margin-bottom: 0.5rem;
+}
+.order-status-row .tag:not(body) {
+    align-items: center;
+    background-color: whitesmoke;
+    border-radius: 4px;
+    color: #4a4a4a;
+    display: inline-flex;
+    font-size: 0.75rem;
+    height: 2em;
+    justify-content: center;
+    line-height: 1.5;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    white-space: nowrap;
+}
+
+.evt-theme-card {
+    border: none;
+    min-height: 170px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    color: white;
+    padding: 20px 15px;
+    position: relative;
+}
+.evt-theme-card .title {
+    font-size: 20px;
+    display: inline-block;
+}
+.evt-theme-card .value {
+    font-size: 28px;
+    font-weight: 600;
+}
+.card .animated{
+	border: none;
+	box-shadow: none;
+}
+.event-card-head .bdgt-amout {
+    font-size: 18px;
+    color: #35486b;
+    font-weight: bold;
+}
+.todo-item {
+    position: relative;
+    width: 100%;
+    height: 45px;
+    padding: 0 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    background: #34486a;
+    display: flex;
+    color: #fff;
+    align-items: center;
+    font-size: 18px;
+}
+.todo-item .todo-check {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #fff;
+}
+.todo-item .todo-delete {
+    position: absolute;
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #fff;
+}
+.recommended-vedors-wrap .rec-card{
+   box-shadow: none;
+   padding: 0px;
+}
+/*=====================*/
 
 /*responsive css*/
 @media(max-width: 480px){

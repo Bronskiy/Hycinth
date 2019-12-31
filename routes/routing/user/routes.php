@@ -15,6 +15,7 @@
           Route::post('/event/create', 'Users\UserEventController@create')->name('user_show_create_event');
           Route::get('/events/edit/{slug}', 'Users\UserEventController@showEditEvent')->name('user_show_edit_event');
           Route::get('/events/detail/{slug}', 'Users\UserEventController@showDetailEvent')->name('user_show_detail_event');
+          Route::get('/hitesh-event', 'Users\UserEventController@hiteshEvent')->name('hitesh_event');
           Route::post('/events/edit/{slug}', 'Users\UserEventController@update')->name('user_show_edit_event');
           Route::post('/events/update/{slug}', 'Users\UserEventController@eventExtraDetail')->name('eventExtraDetail');
 

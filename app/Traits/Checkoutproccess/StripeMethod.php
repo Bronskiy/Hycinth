@@ -110,8 +110,10 @@ public function CreateOrder($charge,$OrderID,$type)
           'OrderID' => $OrderID,
           'order_id' => $o->id,
         ]);
-      if($orders){
+      if($orders && $this->userOrderSuccessOrderSuccess($o->id) == 1){
              Session::forget('billingAddress');
+             $this->VendorOrderSuccessOrderSuccess($o->id);
+             $this->AdminOrderSuccessOrderSuccess($o->id);
              return redirect()->route('thank-you', ['order_id' => $o->id]);
        }
 
@@ -127,6 +129,7 @@ public function CreateOrder($charge,$OrderID,$type)
 
 public function thankyou(Request $request) {
   $order = App\Models\Order::find($request->order_id);
+
   return view('users.checkout.thankyou')->with('order',$order);
 }
 

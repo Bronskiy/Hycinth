@@ -10,10 +10,7 @@
 <!-- banner section starts here here -->
 <!-- user status sidebar -->
 @if(Auth::check() && Auth::user()->role == 'user')
-   <a href="javascript:void(0);" id="user-status"><i class="fas fa-user-clock"></i></a>
-   <aside class="user-status-content" id="UserUpcmStatus">
-      @include('includes.user_stats')
-   </aside>
+   @include('includes.user_stats')
 @endif
 <!-- user status sidebar Ends here -->
 <!-- Weather report sidebar -->
@@ -1056,12 +1053,16 @@
 <script src="{{url('/js/weather-custom.js')}}"></script>
 
 <script> 
-   $( document ).ready(function() {
+$( document ).ready(function() {
 
-      setTimeout(() => {
-     // jQuery().find('.custom-loading').hide();
-         $('#event-slider-1').css('display', 'block');   
-      }, 1500)
+   setTimeout(() => {
+  // jQuery().find('.custom-loading').hide();
+      $('#event-slider-1').css('display', 'block');   
+   }, 1500)
+
+// ToolTip Js
+   $('[data-toggle="tooltip"]').tooltip();   
+
 });
 
 // check user for weather

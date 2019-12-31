@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Style;
+use Auth;
 
 class StyleController extends Controller
 {
@@ -32,6 +33,8 @@ class StyleController extends Controller
     	}
 
     	Style::create([
+            'user_id' => Auth::user()->id,
+            'added_by' => 'admin',
     		'title' => $request['title'],
     		'description' => $request['description'],
     		'image' => $filename,
@@ -65,6 +68,8 @@ class StyleController extends Controller
 	        $image->move($destinationPath, $filename);
     	}
     	$style->update([
+            'user_id' => Auth::user()->id,
+            'added_by' => 'admin',
     		'title' => $request['title'],
     		'description' => $request['description'],
     		'image' => $filename,

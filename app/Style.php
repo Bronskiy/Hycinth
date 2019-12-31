@@ -13,7 +13,7 @@ class Style extends Model
     
 
     protected $fillable = [
-        'slug', 'title', 'description', 'image', 'status'
+        'slug', 'title', 'description', 'image', 'status', 'user_id', 'added_by'
     ];
 
      public function sluggable() {

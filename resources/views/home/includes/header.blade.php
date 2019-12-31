@@ -20,13 +20,15 @@
                             <i class="fas fa-user"></i>
                         </span>
                         <div class="dropdown">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}} </a>
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->first_name}} {{ Auth::User()->role === 'user' ? 'Customer' : 'Vendor' }}  </a>
                              <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 36px, 0px); top: 0px; left: 0px; will-change: transform;">
                       <a class="dropdown-item" href="{{url(route(Auth::user()->role.'_dashboard'))}}"><span><i class="far fa-user"></i></span> Profile</a>
                          <a class="dropdown-item" href="/logout"><span><i class="fas fa-sign-out-alt"></i></span> Logout</a>
                      </div>
                         </div>
                     </li>
+
+                    
                @endif
                 <li>
                 <button class="toolbox" type="button">
@@ -77,12 +79,19 @@
                </a>
             </li>
 
-             <li class="mob-hide">
-               <a href="{{url(route('my_cart'))}}" class="fav-list">
-               <i class="fas fa-cart-plus"></i>
-               <sup id="fav_ven2">{{ Auth::User()->CartItems->count() }}</sup>
-               </a>
-            </li>
+              <li class="mob-hide">
+                 <a href="{{url(route('my_cart'))}}" class="fav-list wt-btn mr-2">
+                 <i class="fas fa-cart-plus"></i>
+                 <sup id="fav_ven2">{{ Auth::User()->CartItems->count() }}</sup>
+                 </a>
+              </li>
+
+               <li class="mob-hide">
+                 <a href="{{url(route('my_wishlist'))}}" class="fav-list wt-btn mr-2">
+                 <i class="fas fa-list"></i>
+                 <sup id="fav_ven2">{{ Auth::User()->MyWishlist->count() }}</sup>
+                 </a>
+              </li>
             @endif
 
           @if(Auth::check())                       
@@ -93,7 +102,7 @@
                         <i class="fas fa-user-circle"></i>
                       </span>
                       <div class="nav-profile-text">
-                        <p class="user-name-text">{{Auth::user()->name}}</p>
+                        <p class="user-name-text">{{Auth::user()->first_name}} {{ Auth::User()->role === 'user' ? 'Customer' : 'Vendor' }} </p>
                       </div>
                     </a>
                     <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 36px, 0px); top: 0px; left: 0px; will-change: transform;">
@@ -261,8 +270,6 @@
       <a href="javascript:void(0);" (click)="close_nav()" class="nav-close-btn"><i class="fas fa-times"></i></a>
    </nav>
    
-   @if(Auth::check() && Auth::user()->role == 'user')
-     <a href="javascript:void(0);" id="calender-toggle"><span><i class="fas fa-calendar-alt"></i></span></a>
-   @endif
+    @include('includes.user_calender')
  
 </header>

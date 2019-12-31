@@ -134,6 +134,11 @@ require __DIR__.'/ajax.php';
 
         Route::get('/category/{slug}/style', 'Vendor\ManagementController@style')->name('vendor_style_management');
         Route::post('/category/{slug}/style', 'Vendor\ManagementController@styleStore')->name('vendor_styleStore_management');
+        Route::get('/category/{slug}/create-style', 'Vendor\ManagementController@newStyle')->name('vendor_new_style');
+        Route::post('/category/{slug}/store-style', 'Vendor\ManagementController@storeStyle')->name('vendor_store_style');
+        Route::get('/category/{slug}/list-styles', 'Vendor\ManagementController@listingStyles')->name('vendor_listing_style');
+        Route::get('/category/{slug}/styles/delete/{id}', 'Vendor\ManagementController@deleteStyles')->name('vendor_delete_styles_management');
+        Route::any('/category/{catSlug}/{slug}/styles/edit/{id}', 'Vendor\ManagementController@editStyles')->name('vendor_edit_styles_management');
         // Route::post('/category/{slug}/style', 'Vendor\ManagementController@styleAdd')->name('vendor_styleAdd_management');
         // Route::get('/category/{slug}/style/add', 'Vendor\ManagementController@styleAdd')->name('vendor_styleadd_management');
         // Route::post('/category/{slug}/style/add', 'Vendor\ManagementController@styleStore')->name('vendor_styleadd_management');

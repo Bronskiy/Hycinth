@@ -79,7 +79,7 @@
                 
                              
                                     <div class="btn-wrap">
-                                            <button class="cstm-btn solid-btn"> {{ __('Send Password Reset Link') }}</button>
+                                            <button class="cstm-btn solid-btn"> {{ __('Save Changes') }}</button>
 
                                              <img  class="pl-3 loading hide" src="{{url('/images/small-loader.gif')}}" style="display: none;" />
                                             

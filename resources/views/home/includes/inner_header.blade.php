@@ -27,7 +27,7 @@
                        <li class="mob-hide">
                          <a href="{{url(route('my_wishlist'))}}" class="fav-list wt-btn mr-2">
                          <i class="fas fa-list"></i>
-                         <sup id="fav_ven2">{{ Auth::User()->CartItems->count() }}</sup>
+                         <sup id="fav_ven2">{{ Auth::User()->MyWishlist->count() }}</sup>
                          </a>
                       </li>
                     @endif
@@ -42,7 +42,7 @@
                               <i class="fas fa-user-circle"></i>
                             </span>
                             <div class="nav-profile-text">
-                              <p class="user-name-text">{{Auth::user()->name}}</p>
+                              <p class="user-name-text">{{Auth::user()->first_name}} {{ Auth::User()->role === 'user' ? 'Customer' : 'Vendor' }}</p>
                             </div>
                           </a>
                           <div class="dropdown-menu navbar-dropdown" aria-labelledby="profileDropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 36px, 0px); top: 0px; left: 0px; will-change: transform;">

@@ -245,4 +245,9 @@ class UserEventController extends Controller
        return Redirect::back()->with('flash_message', 'User Event has been updated successfully');
     }
 
+
+    public function hiteshEvent(){
+        return view('users.events.hitesh_event');
+    }
+
 }

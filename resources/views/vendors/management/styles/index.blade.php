@@ -10,6 +10,8 @@
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('vendor_dashboard') }}"><i class="fa fa-home" aria-hidden="true"></i></a></li>
                 <li class="breadcrumb-item"><a href="javascript:void(0)">Styles</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('vendor_listing_style', $slug) }}">List Styles</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('vendor_new_style', $slug) }}">Add New Styles</a></li>
             </ul>
         </div>
   </div>
