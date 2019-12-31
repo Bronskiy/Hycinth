@@ -1,5 +1,96 @@
 @extends('users.layouts.layout')
 @section('content')
+<style type="text/css">
+   .main-header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    height: 250px;
+    color: #FFF;
+    background-size: cover;
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1609106/lake-shadow-water.jpg);
+    margin-bottom: 20px;
+}
+.main-header__intro-wrapper {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    height: 160px;
+    padding: 12px 30px;
+    background: rgba(255, 255, 255, 0.12);
+    font-size: 26px;
+    letter-spacing: 1px;
+}
+.main-header__welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.quickview {
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 60px;
+}
+.main-header__welcome-title {
+    margin-bottom: 8px;
+    font-size: 26px;
+}
+.main-header__welcome-subtitle {
+    font-size: 18px;
+}
+.quickview__item {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.quickview__item-total {
+    margin-bottom: 2px;
+    font-size: 32px;
+}
+.quickview__item-description {
+    font-size: 16px;
+    text-align: center;
+}
+</style>
+
+<div class="pcoded-content p-0">
+<div class="main-header">
+<div class="main-header__intro-wrapper">
+<div class="main-header__welcome">
+<div class="main-header__welcome-title text-light">Welcome, <strong>John</strong></div>
+<div class="main-header__welcome-subtitle text-light">How are you today?</div>
+</div>
+<div class="quickview">
+<div class="quickview__item">
+<div class="quickview__item-total">41</div>
+<div class="quickview__item-description">
+<i class="far fa-calendar-alt"></i>
+<span class="text-light">Events</span>
+</div>
+</div>
+<div class="quickview__item">
+<div class="quickview__item-total">64</div>
+<div class="quickview__item-description">
+<i class="far fa-comment"></i>
+<span class="text-light">Messages</span>
+</div>
+</div>
+<div class="quickview__item">
+<div class="quickview__item-total">27°</div>
+<div class="quickview__item-description">
+<i class="fas fa-map-marker-alt"></i>
+<span class="text-light">Austin</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
 <div class="page-header">
    <div class="page-block">
       <div class="row align-items-center">
@@ -331,7 +422,7 @@
           </div>
 
           <div class="card-footer">
-            <button type="submit" id="UserEventFormBtn" class="btn btn-primary">Update</button>
+            <button type="submit" id="UserEventFormBtn" class="cstm-btn">Update</button>
           </div>
 
         </form>

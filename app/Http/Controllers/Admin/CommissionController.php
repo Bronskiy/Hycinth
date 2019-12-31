@@ -77,27 +77,18 @@ public function valdateRules($type)
 
 public function saveSlabs($request)
 {
-return $this->getSlabAll($request);
-        
-        $slab = Commission::where(function($t) use($request){
-                         $data = $t->first();
-                         
-                    	 //$t->whereBetween('slab_from',[$request->slab_from,$request->slab_to]);
-                    	   //$t->whereBetween('slab_from',[$request->slab_from,$request->slab_to]);
+ 
+     
+        if($request->slab_from >= $request->slab_to){
 
-                    	 //$t->orWhere('slab_to','>=',$request->slab_to);
+          $msg = 'Commission Slab must be greater than from start';
+          return redirect()->back()->with('messages',$msg)->withInput();
 
-                          if(in_array($data->slab_from, range($request->slab_from,$request->slab_to)) || in_array($data->slab_to, range($request->slab_from,$request->slab_to))) {
-                                
-                           }else{
-                             $t->where('id',0);
+        }elseif(count($this->getSlabAll($request)) > 0){
 
-                           }
-         });
-       return $slab->get();
-        if($slab->count() > 0){
         	$msg = 'This slab range already used in another slab';
-        	return redirect()->back()->with('messages',$msg);
+        	return redirect()->back()->with('messages',$msg)->withInput();
+
         }else{
 
 
@@ -126,11 +117,13 @@ public function getSlabAll($request)
     $slab = Commission::get();
     $array = [];
     foreach ($slab as $key => $data) {
-       if(in_array($data->slab_from, range($request->slab_from,$request->slab_to)) || in_array($data->slab_to, range($request->slab_from,$request->slab_to))) 
+       if(in_array($request->slab_from, range($data->slab_from,$data->slab_to)))
        {
-                   array_push($array,$data->id);
-                                
-        }
+        array_push($array,$data->id);
+       }
+       if(in_array($request->slab_to, range($data->slab_from,$data->slab_to))){
+                array_push($array,$data->id);
+       }
     }
 
     return $array;
