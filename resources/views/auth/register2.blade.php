@@ -18,7 +18,7 @@
                 <div class="container">         
                   <div class="signUp-form-wrap mr-top sec-card">  
                         <div class="row no-gutters">          
-                                 <div class="col-lg-6">
+                                 <!-- <div class="col-lg-5">
                                     <figure class="form-img-wrap">
                                         <img src="{{ url('/uploads').'/'.getAllValueWithMeta('signup_banner', 'vendor-signup') }}">
                                         <figcaption class="overlay-text">
@@ -26,29 +26,130 @@
                                                 <p>{{ getAllValueWithMeta('description', 'vendor-signup') }}</p>
                                             </figcaption>
                                     </figure>
-                                 </div>
-                            <div class="col-lg-6">
-                            <form class="signUp-form" action="{{url(route('ajax_register'))}}" method="POST"  id="registerForm">
+                                 </div> -->
+                            <div class="col-lg-12">
+                            <form class="signUp-form" action="{{url(route('ajax_register'))}}" method="POST"  id="registerVendorForm">
                               @csrf
                               <input type="hidden" name="type" value="1">
                                <div class="row">
-                                   <div class="col-lg-12">                          
+                                   <div class="col-lg-6">                          
+                                           <label>First Name</label>
                                        <div class="form-group">
                                            <input type="text" name="first_name" formControlName="firstName" placeholder="First Name" class="form-control" />
                                            <span class="input-icon"><i class="fas fa-user"></i></span>
                                        </div>                              
                                    </div>
-                                   <div class="col-lg-12">                          
+
+
+
+                                   <div class="col-lg-6">                          
+                                         <label>Last Name</label>
                                        <div class="form-group">
                                            <input type="text" name="last_name" formControlName="lastName" placeholder="Last Name" class="form-control"  />
                                               <span class="input-icon"><i class="fas fa-user"></i></span>
                                             
                                        </div>                              
                                    </div>
+
+
+
+                                  <div class="col-lg-6">                          
+                                         <label>Address</label>
+                                       <div class="form-group">
+                                           <input type="text" name="location" formControlName="location" placeholder="Location" class="form-control"  />
+                                              <span class="input-icon"><i class="fas fa-map-marker"></i></span>
+                                            
+                                       </div>                              
+                                   </div>
+ 
+
+
+                                  <div class="col-lg-6">                          
+                                         <label>Provide Your Business Website</label>
+                                       <div class="form-group">
+                                           <input type="text" name="website_url" placeholder="Provide External Website" class="form-control"  />
+                                              <span class="input-icon"><i class="fas fa-link"></i></span>
+                                            
+                                       </div>                              
+                                   </div>
+
+
+
+
+                                  <div class="col-lg-6">                          
+                                         <label>Phone Number</label>
+                                       <div class="form-group">
+                                           <input type="text" name="phone_number" formControlName="location" placeholder="Phone Number" class="form-control"/><span class="input-icon"><i class="fas fa-phone"></i></span>
+                                            
+                                       </div>                              
+                                   </div>
+
+
+                                   <div class="col-lg-6"> 
+                                      <label>Provide EIN # if available for US and BS No for Canada</label>                         
+                                       <div class="form-group">
+                                            <input type="text" name="ein_bs_number" formControlName="email" placeholder="Email Id" class="form-control"/>
+                                            <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                                        </div>                              
+                                   </div>
+                                   
+                                   <div class="col-lg-6">                          
+                                           <label>Your Age</label>
+                                           <div class="form-group">
+                                               <input type="text" name="age" formControlName="location" placeholder="Age" class="form-control"/>
+                                               <span class="input-icon"><i class="fas fa-life-ring"></i></span>
+                                           </div>                              
+                                   </div>
+
+                                   <div class="col-lg-6">                          
+                                        <label>Provide your valid ID Proof.</label>
+                                       <div class="form-group">
+                                           <input type="file" name="id_proof" class="form-control"/>
+                                              <span class="input-icon"><i class="fas fa-id-card"></i></span>
+                                            
+                                       </div>                              
+                                   </div>
+
+                                  <!--  <div class="col-lg-6">                          
+                                        <label>2 x proof of business address </label>
+                                       <div class="form-group">
+                                           <input type="file" name="business_address_proof" formControlName="location" placeholder="Age" class="form-control"/>
+                                              <span class="input-icon"><i class="fas fa-id-card"></i></span>
+                                            
+                                       </div>                              
+                                   </div>
+
+                                   <div class="col-lg-6">                          
+                                        <label>Proof to show business is registered</label>
+                                       <div class="form-group">
+                                           <input type="file" name="business" formControlName="location" placeholder="Age" class="form-control"/>
+                                              <span class="input-icon"><i class="fas fa-id-card"></i></span>
+                                            
+                                       </div>                              
+                                   </div> -->
+ 
+                                  <div class="col-lg-12">  
+                                    <label>Choose Business Types</label>                        
+                                       <div class="form-group">
+                                        <?php $category = \App\Category::where('status',1)->where('parent',0)->orderBy('sorting','ASC')->get(); ?>
+                               
+                                            <select class="form-control" name="categories[]" multiple="">
+                                              <option value="">select</option>
+                                              @foreach($category as $cate)
+                                                       <option value="{{$cate->id}}">{{$cate->label}}</option>
+                                              @endforeach
+                                            </select>
+                                              <span class="input-icon"><i class="fas fa-map-marker"></i></span>
+                                            
+                                       </div>                              
+                                   </div>
                 
                                   
                 
-                                   <div class="col-lg-12">                          
+
+
+                                    <div class="col-lg-12">  
+                                      <label>Email</label>                        
                                        <div class="form-group">
                                            
                                            <input type="text" name="email" formControlName="email" placeholder="Email Id" class="form-control"  />
@@ -57,29 +158,33 @@
                                        </div>                              
                                    </div>
                 
-                                   <div class="col-lg-12">
+                                   <div class="col-lg-6">
+                                     <label>Password</label>
                                        <div class="form-group">
                                         <input type="password" name="password" formControlName="password" placeholder="Password" id="password" class="form-control"  />
-                                        <span class="input-icon"><i class="fas fa-lock"></i></span>
+                                        <span class="input-icon"><i class="fas fa-key"></i></span>
                                         
                                        </div>
                                    </div>
-                
-                                   <div class="col-lg-12">
+              
+                                 <div class="col-lg-6">
+                                    <label>Confirm Password</label>
                                     <div class="form-group">
                                      <input type="password" name="password_confirmation" formControlName="confirm_password"  placeholder="Confirm Password" class="form-control" />
-                                     <span class="input-icon"><i class="fas fa-lock"></i></span>
+                                     <span class="input-icon"><i class="fas fa-key"></i></span>
                                     
                                     </div>
-                                </div>
+                                </div>  
+
+
+
                                </div>
                 
                                
                                  
                                     <div class="form-group btn-wrap">
-                                        <button class="cstm-btn solid-btn register-Submit">Register</button>
-                                        <!-- <a routerLink="/login" class="cstm-btn">Login</a> -->
-                                        <img  class="pl-3 loading hide" src="{{url('/images/small-loader.gif')}}" style="display: none;" />
+                                        <button class="cstm-btn solid-btn register-Submit"><span><img src="{{url('200.gif')}}"></span>Register</button>
+                                        
                                     </div>
                                     <div class="messages">
                                         </div>

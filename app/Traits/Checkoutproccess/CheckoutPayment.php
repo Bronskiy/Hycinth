@@ -20,6 +20,7 @@ trait CheckoutPayment {
 	 return view('users.checkout.steps.payment')
 	 ->with('stepNumber',3)
 	 ->with('orders',$this->getCurentOrders())
+	 ->with('obj',$this)
      ->with('haveDeal',1);
  }
  

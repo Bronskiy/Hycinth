@@ -30,7 +30,7 @@ $(document).ready(function(){
         required: true,
         positiveNumber: true,
         minlength: 1,
-        maxlength: 10
+        maxlength: 5
       },
       "deal_life": {
         required: true

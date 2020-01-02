@@ -71,9 +71,8 @@ class User extends Authenticatable implements MustVerifyEmail
                    ->orderBy('updated_at','DESC');
                    
     }
-
-
-     public function UpcomingUserEvents()
+    
+    public function UpcomingUserEvents()
     {
        return $this->hasMany('App\UserEvent')
                    ->whereDate('start_date','>',date('Y-m-d'))->OrderBy('start_date','ASC');

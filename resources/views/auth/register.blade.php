@@ -78,9 +78,9 @@
                                
                                  
                                     <div class="form-group btn-wrap">
-                                        <button class="cstm-btn solid-btn register-Submit">Register</button>
-                                        <!-- <a routerLink="/login" class="cstm-btn">Login</a> -->
-                                        <img  class="pl-3 loading hide" src="{{url('/images/small-loader.gif')}}" style="display: none;" />
+                                         
+                                          <button class="cstm-btn solid-btn register-Submit"><span><img src="{{url('200.gif')}}"></span>Register</button>
+                                         
 
                                         
                                     </div>

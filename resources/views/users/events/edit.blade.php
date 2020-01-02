@@ -129,14 +129,20 @@
            </div>
 
             <div class="col-md-6">
-           {{choosefile($errors, 'Event Image*', 'event_picture')}}
+             <!-- {{choosefile($errors, 'Event Image*', 'event_picture')}} -->
+             <div class="profile-image">
+                <label class="label-file">Event Image*</label>
+                         <input type="file" name="event_picture" accept="image/*" onchange="ValidateSingleInput(this, 'image_src')" id="event_picture" class="form-control">
+                          @if ($errors->has('event_picture'))
+                              <div class="error">{{ $errors->first('event_picture') }}</div>
+                          @endif
+                   </div>
            </div>
+
 @if($user_event->event_picture !="")
 <div class="col-md-12">
- <img src="{{url($user_event->event_picture)}}" width="120">
-
+ <img src="{{url($user_event->event_picture)}}" id="image_src" width="120">
 </div>
-
 @endif
 
 
@@ -176,19 +182,16 @@
 <script src="{{url('clockface/js/clockface.js')}}" type="text/javascript"></script>
 <script src="{{url('/js/setLatLong.js')}}"></script>
 <script src="{{url('/js/validations/userEventValidation.js')}}"></script>
-<script type="text/javascript">
+<script src="{{url('/js/validations/imageShow.js')}}"></script>
 
+<script type="text/javascript">
   $("body").on('change','#get',function(){
      var val = $( this ).val();
      $("body").find("#colour").val(val);
-});
+  });
 
-
-
-$('#start_time').clockface();
-$('#end_time').clockface();
-
-
+  $('#start_time').clockface();
+  $('#end_time').clockface();
 
   $('#event_categories').select2({ 
     closeOnSelect: false

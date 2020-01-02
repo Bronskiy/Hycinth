@@ -77,10 +77,7 @@ $venuesPercent += $vendor->VendorEvents->count() > 0 ? 25 : 0;
 $venuesPercent += $vendor->styles->count() > 0 ? 25 : 0;
 $venuesPercent += $vendor->seasons->count() > 0 ? 25 : 0;
 $basicInfo = $vendor->basicInfo->count() > 0 ? 100 : 0;
-
 $prohibtion = $vendor->prohibtion != null && $vendor->prohibtion->count() > 0 ? 100 : 0;
-
-
 $paymenMethod = $vendor->paypal_account !="" ? 50 : 0;
 $paymenMethod += $vendor->stripe_account !="" ? 50 : 0;
 
@@ -88,9 +85,7 @@ $per = 500 / 100;
 
 $overAll = round($photoVideogalery + $amenitiesAndGames + $venuesPercent + $basicInfo + $paymenMethod) / $per;
 
-
-
- $percents =[
+$percents =[
   'photoVideogalery' => $photoVideogalery,
   'amenitiesAndGames' => $amenitiesAndGames,
   'venuesPercent' => $venuesPercent,

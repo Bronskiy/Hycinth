@@ -77,8 +77,6 @@ $.validator.addMethod("minDate", function(value, element) {
     const curDate = new Date();
     const inputDate = new Date(value); 
 
-
-
     // const curDatemonth = curDate.getMonth() + 1; 
     // const curDatedate = curDate.getDate() - 1; 
     // const curDateyear = curDate.getFullYear();
@@ -106,6 +104,36 @@ $.validator.addMethod("minStartDate", function(value, element) {
     return false;
 }, "Please select date greater than of Start Date!");
 
+// minimum time
+$.validator.addMethod("timeValidator", function(value, element, params) {
+    let start_date = $('#start_date').val();
+    let end_date = $('#end_date').val();
+
+    if(start_date || end_date) {
+      start_date = new Date($('#start_date').val());
+      end_date = new Date($('#end_date').val());
+
+      console.log('start_date ', start_date);
+      console.log('end_date ', end_date);
+
+      const startDate = start_date.getFullYear() + '-' + start_date.getMonth() + 1 + '-' + start_date.getDate();
+      const endDate = end_date.getFullYear() + '-' + end_date.getMonth() + 1 + '-' + end_date.getDate();
+
+      console.log('startDate ', startDate);
+      console.log('endDate ', endDate);
+
+      const val = new Date(startDate + ' ' + value);
+      const par = new Date(endDate + ' ' + $(params).val());
+      console.log('val ', val);
+      console.log('par ', par);
+      // return isNaN(val) && isNaN(par) || (Number(val) > Number(par));
+      return new Date(val) < new Date(par);
+    } else {
+      return false;
+    }
+    
+}, "Please select time greater than of Start Date and Time!");
+
 $.validator.addMethod('minPerson', function(value, element) {
   const minPer = $('#min_person').val();
   if(!minPer || parseInt(minPer) > parseInt(value)) {
@@ -113,4 +141,7 @@ $.validator.addMethod('minPerson', function(value, element) {
   }
    return true; 
 }, `Must be greater than or equal to field min Person`);
+
+
+
 

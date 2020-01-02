@@ -22,8 +22,6 @@ trait ApplyCouponTrait {
 
 public function applyCoupon(Request $request)
 {
-
-	 
    $v = \Validator::make($request->all(),[
        'coupon_code' => 'required'
    ]);
@@ -41,11 +39,8 @@ public function applyCoupon(Request $request)
         ];
 
    }else{
-
-
-            $deal = $this->getDealWithCoupCode($request->coupon_code);
-
-            $msg = $this->getCouponApplyingMessages($deal);
+           $deal = $this->getDealWithCoupCode($request->coupon_code);
+           $msg = $this->getCouponApplyingMessages($deal);
 
     }
 
@@ -208,7 +203,7 @@ public function applyingCouponToCartItems($deal,$EventOrder)
 
         $response =[
            'status' => 1,
-           'messages' => 'the Coupon has been applied successfully'
+           'messages' => 'The Coupon has been applied successfully'
         ];
     }else{
 

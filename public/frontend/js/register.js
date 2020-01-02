@@ -83,6 +83,97 @@ $('#registerForm').on('submit',function(e){
 });
 
 
+//Submisson-Form
+$('#registerVendorForm').on('submit',function(e){
+   e.preventDefault();
+
+  if($('#registerVendorForm').valid()){
+     registerVendorForm();
+  }
+
+});
+
+
+
+
+
+
+$('#registerVendorForm').validate({
+onfocusout: function (valueToBeTested) {
+  $(valueToBeTested).valid();
+},
+
+highlight: function(element) {
+  $('element').removeClass("error");
+},
+
+rules: {
+  
+  "first_name": {
+      required: true,
+      character_with_space: true,
+      maxlength: 50, 
+  },
+   "last_name": {
+      required: true,
+      character_with_space: true,
+      maxlength: 50, 
+  },
+  'email': {
+      required: true,
+      customemail: true,
+  },
+
+  'location': {
+      required: true,
+       
+  },
+
+  'website_url': {
+      
+      url: true,
+  },
+
+  'phone_number': {
+      required: true,
+      number: true,
+  },
+
+  'ein_bs_number': {
+      required: true,
+      
+  },
+  'age': {
+      required: true,
+      number: true,
+  },
+  'id_proof': {
+      required: true,
+      
+  },
+  'categories': {
+      required: true,
+      
+  },
+  'password': {
+      required: true,
+      minlength: 6,
+      maxlength: 12,
+  },
+  'password_confirmation': {
+      equalTo: "#password",
+      minlength: 6,
+      maxlength: 12,
+  },
+
+  valueToBeTested: {
+      required: true,
+  }
+
+},
+});
+
+
 
 
 
@@ -101,8 +192,6 @@ $('#loginForm').on('submit',function(e){
 /// register function
 
 function login($this) {
-  
-
             $.ajax({
                url : $this.attr('action'),
                data : $this.serialize(),
@@ -168,6 +257,81 @@ function login($this) {
 }
 
 
+
+
+
+
+
+
+
+
+function registerVendorForm() {
+    var $this = $('body').find('#registerVendorForm');
+    var form = $('body').find('#registerVendorForm')[0]; // You need to use standard javascript object here
+        var formData = new FormData(form);
+        var percent = $('body').find('.percent');
+        var bar = $('.bar');
+
+ 
+
+         $.ajax({
+
+           url:$this.attr('action'),
+           method:"POST",
+           data:formData,
+           dataType:'JSON',
+           contentType: false,
+           cache: false,
+           processData: false,
+           beforeSend: function() {
+                    $this.find('.loading').show();
+                    $("body").find('.custom-loading').show();
+                    $this.find('button.cstm-btn').attr('disabled','true');
+                    $('.progress').find('span.sr-only').text('0%');
+
+          },
+           xhr: function () {
+            var xhr = new window.XMLHttpRequest();
+            xhr.upload.addEventListener("progress", function (evt) {
+                if (evt.lengthComputable) {
+                    var percentComplete = evt.loaded / evt.total;
+                    percentComplete = parseInt(percentComplete * 100);
+                    $('.progress').find('span.sr-only').text(percentComplete + '%');
+                    $('.progress .progress-bar').css('width', percentComplete + '%');
+                }
+            }, false);
+            return xhr;
+          },
+           success:function(data)
+           {
+                    if(parseInt(data.status) == 1){
+                           $this[0].reset();
+
+                           $this.find('.messages').html(ErrorMsg('success',data.message));
+                           $this.find('button.cstm-btn').removeAttr('disabled');
+                            $("body").find('.custom-loading').hide();
+                            setTimeout(function () {
+                                 $this.find('.messages').html('');
+                            },8000);
+
+                      }else{
+
+                        $this.find('.loading').hide();
+                         $("body").find('.custom-loading').hide();
+                        $this.find('button.cstm-btn').removeAttr('disabled');
+                        $this.find('.messages').html(erorrMessage(data.errors));
+
+                        setTimeout(function () {
+                                 $this.find('.messages').html('');
+                        },8000);
+                         
+                      }
+           }
+
+          });
+}
+
+
 /// register function
 
 function register($this) {
@@ -183,7 +347,7 @@ function register($this) {
                },
                 beforeSend: function() {
                     $this.find('.loading').show();
-                     $("body").find('.custom-loading').show();
+                    $("body").find('.custom-loading').show();
                     $this.find('button.cstm-btn').attr('disabled','true');
                 },
 

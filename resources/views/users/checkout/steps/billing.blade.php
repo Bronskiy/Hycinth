@@ -125,29 +125,8 @@
 
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<input type="hidden" name="cartRoute" value="{{url(route('checkout.getOrderSummary'))}}">
+ 
+<input type="hidden" name="cartRoute" value="{{$submitBillingForm}}">
  
 @endsection
 

@@ -2,43 +2,6 @@
 @section('content')
 
 
-<div class="pcoded-content p-0">
-<div class="main-header">
-<div class="main-header__intro-wrapper">
-<div class="main-header__welcome">
-<div class="main-header__welcome-title text-light">Welcome, <strong>John</strong></div>
-<div class="main-header__welcome-subtitle text-light">How are you today?</div>
-</div>
-<div class="quickview">
-<div class="quickview__item">
-<div class="quickview__item-total">41</div>
-<div class="quickview__item-description">
-<i class="far fa-calendar-alt"></i>
-<span class="text-light">Events</span>
-</div>
-</div>
-<div class="quickview__item">
-<div class="quickview__item-total">64</div>
-<div class="quickview__item-description">
-<i class="far fa-comment"></i>
-<span class="text-light">Messages</span>
-</div>
-</div>
-<div class="quickview__item">
-<div class="quickview__item-total">27°</div>
-<div class="quickview__item-description">
-<i class="fas fa-map-marker-alt"></i>
-<span class="text-light">Austin</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-
-
-
 <div class="page-header">
    <div class="page-block">
       <div class="row align-items-center">
@@ -61,161 +24,229 @@
    </div>
 </div>
 <input type="hidden" id="start_date" value="{{$user_event->start_date}}">
-<section class="content">
+
+<div class="pcoded-content p-0">
+<div class="main-header">
+<div class="main-header__intro-wrapper">
+<div class="main-header__welcome">
+<div class="main-header__welcome-title text-light">Welcome, {{ Auth::user()->first_name }}<strong></strong></div>
+<div class="main-header__welcome-subtitle text-light">How are you today?</div>
+</div>
+<div class="quickview">
+<div class="quickview__item">
+<div class="quickview__item-total">{{ Auth::user()->UpcomingEvents->count() }}</div>
+<div class="quickview__item-description">
+<i class="far fa-calendar-alt"></i>
+<span class="text-light">Events</span>
+</div>
+</div>
+<!-- <div class="quickview__item">
+<div class="quickview__item-total">64</div>
+<div class="quickview__item-description">
+<i class="far fa-comment"></i>
+<span class="text-light">Messages</span>
+</div>
+</div>
+<div class="quickview__item">
+<div class="quickview__item-total">27°</div>
+<div class="quickview__item-description">
+<i class="fas fa-map-marker-alt"></i>
+<span class="text-light">Austin</span>
+</div>
+</div> -->
+</div>
+</div>
+</div>
+</div>
+
+
+<div class="order-status-row mb-4">
+   <article class="media order shadow delivered wow bounceInRight" data-wow-delay="350ms">
+      <figure class="media-left">
+         <i class="fas fa-thumbs-up"></i>
+      </figure>
+      <div class="media-content">
+         <div class="content">
+            <h3>
+               <strong>{{$user_event->title}}</strong>
+               <br>
+               <small>{{$user_event->description}}
+               </small>
+            </h3>
+         </div>
+      </div>
+      <div class="media-right">
+         <div class="tags has-addons">
+            <span class="tag is-light">Status:</span>
+            <span class="tag is-delivered">Completed</span>
+         </div>
+      </div>
+   </article>
+</div>
+
+
+<section class="events-detail-sec">
    <div class="row">
-      <!-- [ rating list ] end-->
-      @php  
-        $start_time = \Carbon\Carbon::now();  
-        $finish_time = \Carbon\Carbon::parse($user_event->start_date); 
-        $result = $start_time->diffInDays($finish_time, false);
-        $eventStatus= EventCurrentStatus($user_event->start_date,$user_event->end_date);
-      @endphp
-      <div class="col-lg-6 mb-4">
-         <div class="tab-content card equal-card" id="myTabContent">
+      <div class="col-lg-12 mb-30">
+         <div class="card">
             <div class="card-block">
-               <div class="upcmg-evnt-head">
+               <div class="event-card-head">
                   <h3>Event Details</h3>
                </div>
-               <div class="table-responsive">
-                  <table class="table table-hover event-detail-table">
-                     <tbody>
-                        <tr>
-                           <td width="100">
-                              @if($user_event->event_picture !="")
-                              <img src="{{url($user_event->event_picture)}}" width="100%">
-                              @endif
-                           </td>
-                           <td>
-                              <a>
-                                 <h4>{{ $user_event->title }} </h4>
-                                 <p class="m-0">{{ $user_event->description }}</p>
-                              </a>
-                           </td>
-                           <td class="text-right" style="white-space: nowrap;">
-                              ({{ $user_event->min_person }} - {{ $user_event->max_person }}) Persons
-                              </br>
-                              <i class="fas fa-clock"></i> 
-                              @if(strpos('Past Event', $eventStatus) !== false)
-                                Past Event
-                              @elseif(strpos('On Going Event', $eventStatus) !== false)
-                                On Going Event
-                              @elseif(strpos('Upcoming Event', $eventStatus) !== false)
-                                {{ $result }} Days left
-                              @endif
-                              </br>
-                              <i class="fas fa-tags"></i>
-                              {{ $user_event->eventType->name }}  
-                           </td>
-                        </tr>
-                     </tbody>
-                  </table>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="col-lg-6 mb-4">
-         <div class="Upcoming-event-card card equal-card">
-            <div class="card-block">
-               <div class="upcmg-evnt-head text-center">
-                  <!-- <h2>Upcoming Events</h2> -->
-                  @if(strpos('Upcoming Event', $eventStatus) !== false)
-                  <h3>Count-Down to your event is on</h3>
-                  @else
-                  <h3>Event Status</h3>
-                  @endif
-                  <!-- <p>{{$user_event->description}}</p> -->
-               </div>
-               <div class="countdown-timer-container">
-                  @if(strpos('Upcoming Event', $eventStatus) !== false)  
-                  <ul class="count-down-timer">
-                     <input 
-                     type="hidden" 
-                     value="{{$user_event->start_date}}" 
-                     id="start_date_{{$user_event->id}}"
-                     class="timerWatch" 
-                     data-days="#days_{{$user_event->id}}"
-                     data-hours="#hours_{{$user_event->id}}"
-                     data-minutes="#minutes_{{$user_event->id}}"
-                     data-seconds="#seconds_{{$user_event->id}}"
-                      />
-                     <li><span id="days_{{$user_event->id}}"></span>days</li>
-                     <li><span id="hours_{{$user_event->id}}"></span>Hours</li>
-                     <li><span id="minutes_{{$user_event->id}}"></span>Minutes</li>
-                     <li><span id="seconds_{{$user_event->id}}"></span>Seconds</li>
-               </ul>
-
-                  @elseif(strpos('Past Event', $eventStatus) !== false)
-                  <img style="height: 50px;" src="{{ asset('images/tick.png') }}">
-                  <h4 class="eventStatus">Completed</h4>
-
-                  @elseif(strpos('On Going Event', $eventStatus) !== false)
-                  <img style="height: 80px;" src="{{ asset('images/in-progress.png') }}">
-                  <h4 class="eventStatus">Ongoing Event</h4>
-                  @endif 
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</section>
-
-<section class="content">
-   <div class="row">
-      <div class="col-lg-6 mb-4">
-         <div class="tab-content card equal-card" id="myTabContent">
-            <div class="card-block">
-               <div class="upcmg-evnt-head">
-                  <h3>Event Theme</h3>
-               </div>
-               <div class="table-responsive">
-                  <div class="amt-list-wrap">
-                     <label class="rec-heading">Seasons</label>
-                     <ul class="pkg-listing-grp">
-                        <li class="pkg-listing">{{$user_event->seasons}}</li>
-                     </ul>
-                  </div>                  
-
-                  <div class="amt-list-wrap">
-                     <label class="rec-heading">Color</label>
-                     <ul class="pkg-listing-grp">
-                        <li style="background-color: {{$user_event->colour}}; height: 20px; width: 50px;"></li>
-                     </ul>
+               <div class="card-media  mt-4 wow bounceInRight" data-wow-delay="350ms">
+                  <!-- media container -->
+                  <div class="card-media-object-container">
+                     <div class="card-media-object" style="background-image: url({{$user_event->event_picture !='' ? url($user_event->event_picture) : '' }});">
+                        <div class="date-ribbon">
+                           <h2>Dec</h2>
+                           <h1>31</h1>
+                        </div>
+                     </div>
+                     <span class="card-media-object-tag subtle {{ str_slug(EventCurrentStatus($user_event->start_date,$user_event->end_date)) }}">{{ EventCurrentStatus($user_event->start_date,$user_event->end_date)}}</span>
+                  </div>
+                  <!-- body container -->
+                  <div class="card-media-body">
+                     <div class="card-media-body-top">
+                        <span class="subtle">
+                        <strong>{{ ucfirst($user_event->title) }}</strong><br>
+                        {{ \Carbon\Carbon::parse($user_event->start_date)->format('l') }}, {{ \Carbon\Carbon::parse($user_event->start_date)->formatLocalized('%b') }} {{ \Carbon\Carbon::parse($user_event->start_date)->formatLocalized('%d') }}, {{ \Carbon\Carbon::parse($user_event->start_time)->format('g:i A') }}
+                        </span>
+                        <div class="card-media-body-top-icons u-float-right">
+                        </div>
+                     </div>
+                     <span class="card-media-body-heading">{{ $user_event->description }}</span>
+                     <div class="card-media-body-supporting-bottom">
+                        <span class="card-media-body-supporting-bottom-text subtle">{{ $user_event->location }}</span>
+                        <span class="card-media-body-supporting-bottom-text subtle u-float-right">Event Budget &ndash; ${{ $user_event->event_budget }}</span>
+                     </div>
+                     <div class="card-media-body-supporting-bottom card-media-body-supporting-bottom-reveal">
+                        <span class="card-media-body-supporting-bottom-text subtle ">@foreach($user_event->eventCategories as $loopingTags)#{{ $loopingTags->eventCategory->label }} @if (!$loop->last), @endif @endforeach</span>
+                     </div>
                   </div>
                </div>
             </div>
          </div>
-      </div>      
+      </div>
 
-      <div class="col-lg-6 mb-4">
-         <div class="tab-content card equal-card" id="myTabContent">
+      <div class="col-lg-12 mb-30">
+         <div class="card">
             <div class="card-block">
-               <div class="upcmg-evnt-head">
-                  <h3>To Do List</h3>
+               <div class="event-card-head">
+                  <h3>Event Theme</h3>
                </div>
-               <div class="table-responsive">
-                  <div class="amt-list-wrap">
-                     <ul class="pkg-listing-grp">
-                        <li class="pkg-listing">Coming Soon</li>
-                     </ul>
-                  </div>                  
+               <div class="row">
+                  <div class="col-6">
+                     <div class="evt-theme-card bs mt-4 wow bounceInLeft" data-wow-delay="500ms" style="background-image: url(https://cdn1.radikalno.ru/uploads/2019/12/24/285ee8833fce0dc1c3aaac9f1b008312-full.png)">
+                        <div class="title">Seasons</div>
+                        <div class="value">{{$user_event->seasons}}</div>
+                     </div>
+                  </div>
+                  <div class="col-6">
+                     <div class="evt-theme-card bs mt-4 wow bounceInRight animated" data-wow-delay="800ms" style="background-color: {{$user_event->colour}}">
+                        <div class="title">Theme Color</div>
+                        <div class="value">{{$user_event->colour}}</div>
+                     </div>
+                  </div>
                </div>
             </div>
          </div>
-      </div>
+      </div>   
+
+  <!--  todo list html -->
+   <div class="col-lg-12 mb-30">
+         <div class="card">
+            <div class="card-block">
+               <div class="event-card-head j-c-s-b">
+                  <h3>Todo List</h3>
+                  <p class="bdgt-amout">Budget ${{$user_event->event_budget}}</p>
+               </div>
+               <div class="todo-listing-wrap mt-4">
+                  <ul class="Todo-item-list row wow bounceInRight" data-wow-delay="800ms">
+                   <li class="col-lg-4">
+                     <div class="todo-item">
+                        <span>Lorem ipsum</span>
+                       <span class="todo-check"><i class="far fa-check-circle"></i></span>
+                        <span class="todo-delete"><i class="fas fa-trash-alt"></i></span>
+                    </div>
+                    </li>
+                    <li class="col-lg-4">
+                       <div class="todo-item">
+                        <span>Lorem ipsum</span>
+                        <span class="todo-check"><i class="far fa-check-circle"></i></span>
+                        <span class="todo-delete"><i class="fas fa-trash-alt"></i></span>
+                    </div>
+                    </li>
+                    <li class="col-lg-4">
+                       <div class="todo-item">
+                        <span>Lorem ipsum</span>
+                        <span class="todo-check"><i class="far fa-check-circle"></i></span>
+                        <span class="todo-delete"><i class="fas fa-trash-alt"></i></span>
+                    </div>
+                    </li>
+                    <li class="col-lg-4">
+                       <div class="todo-item">
+                        <span>Lorem ipsum</span>
+                        <span class="todo-check"><i class="far fa-check-circle"></i></span>
+                        <span class="todo-delete"><i class="fas fa-trash-alt"></i></span>
+                    </div>
+                    </li>
+                    <li class="col-lg-4">
+                       <div class="todo-item">
+                        <span>Lorem ipsum</span>
+                        <span class="todo-check"><i class="far fa-check-circle"></i></span>
+                        <span class="todo-delete"><i class="fas fa-trash-alt"></i></span>
+                    </div>
+                    </li>
+                    <li class="col-lg-4">
+                       <div class="todo-item">
+                        <span>Lorem ipsum</span>
+                        <span class="todo-check"><i class="far fa-check-circle"></i></span>
+                        <span class="todo-delete"><i class="fas fa-trash-alt"></i></span>
+                    </div>
+                    </li>
+                    </ul>
+               </div>
+           </div>
+       </div>
    </div>
-</section>
-<section class="content">
-   <div class="row">
-   <div class="col-lg-6 mb-4">
-      <div class="card equal-card">
-         <div class="card-body">
-            <div class="upcmg-evnt-head">
-               <h3>Vendors Services Related to your Event</h3>
-               <p class="text-right">Budget ${{$user_event->event_budget}}</p>
-            </div>
-            <div class="card-inn-content">
-               <div class="table-responsive">
-                  <table class="table event-table">
+
+ <!--  Event Planning tool -->
+  <div class="col-lg-12 mb-30">
+         <div class="card">
+            <div class="card-block">
+               <div class="event-card-head j-c-s-b">
+                  <h3>My Event Planning Tool Box</h3>
+               </div>
+               <div class="event-planning-navigation">
+               <nav class="evt-plan-navigation">
+               <ul>
+                  <li>Welcome Back {{ Auth::user()->name }}! Lets continue Planning</li>
+                  <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-list-alt"></i></span>Guest List</a></li>
+                  <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fab fa-chrome"></i></span>Create <br/> Website</a></li>
+                  <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-gift"></i></span>Gift</a></li>
+                  <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="far fa-edit"></i></span>Create <br/> Event</a></li>
+                  <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-couch"></i></span>Seating <br/> Chart</a></li>
+                  <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-dollar-sign"></i></span>Budget</a></li>
+                  <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-tasks"></i></span>Checklist</a></li>
+                  <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-comments"></i></span>Message <br/> Vendors</a></li>
+               </ul>
+            </nav>
+        </div>
+           </div>
+       </div>
+   </div>
+<!-- ======================= -->
+
+
+<!-- ======================= -->
+      <div class="col-lg-12 mb-30">
+         <div class="card">
+            <div class="card-block">
+               <div class="event-card-head j-c-s-b">
+                  <h3>Vendors Services Related to your Event</h3>
+                  <p class="bdgt-amout">Budget ${{$user_event->event_budget}}</p>
+               </div>
+                    <table class="table event-table">
                      @foreach($user_event->eventCategories as $category)
                      <tr>
                         <td><label>{{$category->eventCategory->label}} </label></td>
@@ -241,38 +272,18 @@
                      </tr>
                      @endforeach
                   </table>
-               </div>
-            </div>
-         </div>
+           </div>
+       </div>
       </div>
-   </div>
-   <div class="col-lg-6 mb-4">
-      <div class="event-planning-navigation card equal-card">
-         <div class="card-body">
-            <div class="upcmg-evnt-head">
-               <h3>My Event Planning Tool Box</h3>
-            </div>
-            <nav class="evt-plan-navigation">
-               <ul>
-                  <li>Welcome Back {{ Auth::user()->name }}! Lets continue Planning</li>
-                  <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-list-alt"></i></span>Guest List</a></li>
-                  <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fab fa-chrome"></i></span>Create <br/> Website</a></li>
-                  <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-gift"></i></span>Gift</a></li>
-                  <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="far fa-edit"></i></span>Create <br/> Event</a></li>
-                  <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-couch"></i></span>Seating <br/> Chart</a></li>
-                  <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-dollar-sign"></i></span>Budget</a></li>
-                  <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-tasks"></i></span>Checklist</a></li>
-                  <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-comments"></i></span>Message <br/> Vendors</a></li>
-               </ul>
-            </nav>
-         </div>
-      </div>
-   </div>
-   <div class="col-md-12">
+
+
+ <div class="col-md-12">
       <div class="card">
          <div class="card-body">
             <div class="cstm-card-head">
                <h5 class="card-title">Recommended Vendors for {{$user_event->title}}</h5>
+
+          
             </div>
             <div class="recommended-vedors-wrap">
                @foreach($user_event->eventCategories as $category)
@@ -281,9 +292,19 @@
                   <div class="row">
                      @if(count($category->eventCategory->businesses) > 0)
                      @foreach($category->eventCategory->businesses as $business)
+
+                     @php 
+                        if(!empty(getBasicInfo($business->vendors->id, $business->category_id,'basic_information','cover_photo')))
+                        {
+                          $businessImage =  url(getBasicInfo($business->vendors->id, $business->category_id,'basic_information','cover_photo'));
+                        }else{
+                          $businessImage = url("images/vendors/settings/default.png");
+                        } 
+                     @endphp
+
                      <div class="col-lg-4">
                         <a href="{{ route('vendor_detail_page', ['catslug' => $category->eventCategory->slug, 'bslug' => $business->business_url]) }}" class="recommended-vedor" target="_blank">
-                           <figure> <img src="{{url(getBasicInfo($business->vendors->id, $business->category_id,'basic_information','cover_photo'))}}"/></figure>
+                           <figure> <img src="{{ $businessImage }}"/></figure>
                            <div class="rec-detail">
                               <h3>{{ $business->title }}</h3>
                               <p>{{ getBasicInfo($business->vendors->id, $business->category_id,'basic_information','short_description') }}</p>
@@ -332,9 +353,9 @@
             </div>
          </div>
       </div>
-   </div>
+ </div>
 
-   <div class="col-md-12">
+    <div class="col-md-12">
       <div class="card">
          <div class="card-body">
             <div class="cstm-card-head">
@@ -378,10 +399,11 @@
         </div>
          </div>
       </div>
-   </div>   
 
 
+   </div>
 </section>
+
 <!-- Modal -->
 <div id="cat_Modal" class="modal fade" role="dialog">
    <div class="modal-dialog">
@@ -521,7 +543,7 @@ CKEDITOR.replace('ideas');
 </script>
 <script>
    var type = 1, //circle type - 1 whole, 0.5 half, 0.25 quarter
-     radius = '10em', //distance from center
+     radius = '15em', //distance from center
      start = -90, //shift start from 0
      $elements = $('.event-planning-navigation li:not(:first-child)'),
      numberOfElements = (type === 1) ?  $elements.length : $elements.length - 1, //adj for even distro of elements when not full circle

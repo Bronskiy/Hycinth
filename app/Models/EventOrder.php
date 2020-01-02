@@ -12,6 +12,7 @@ class EventOrder extends Model
                 'pyayment_data',
                 'type',
                 'paymentDetails',
+                'checkout_type',
                 'OrderID',
                 'order_id'
             ];

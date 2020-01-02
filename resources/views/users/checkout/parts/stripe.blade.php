@@ -1,10 +1,10 @@
- <form action="{{url(route('checkout.payWithStripe'))}}" method="POST">
+ <form action="{{$obj->nextStepRoute('checkout.payWithStripe')}}" method="POST">
   <?php $stripe = SripeAccount();  ?>
   @csrf
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button new-main-button"
     data-key="{{$stripe['pk']}}"
-    data-amount="{{1000}}"
+    data-amount="{{$obj->getTotalOrderCurrent() * 100}}"
     data-name="Envision"
     data-class="Envision"
     data-description="Shopping"
@@ -12,3 +12,6 @@
     data-locale="auto">
   </script>
 </form>
+
+
+ 

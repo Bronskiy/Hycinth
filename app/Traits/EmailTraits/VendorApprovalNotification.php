@@ -1,7 +1,7 @@
 <?php
 namespace App\Traits\EmailTraits;
 use Illuminate\Http\Request;
-use App\VendorPackage;
+use App\User;
 use App\PackageMetaData;
 use App\UserEventMetaData;
 use Auth;
@@ -10,7 +10,10 @@ use App\Models\Order;
 use App\Models\EventOrder;
 use Session;
 use App\Models\Admin\EmailTemplate;
-trait UserOrderSuccess {
+trait VendorApprovalNotification {
+
+
+
 
 
 
@@ -20,11 +23,11 @@ trait UserOrderSuccess {
 #---------------------------------------------------------------------------------------------------
 
 
-public function userOrderSuccessOrderSuccess($order_id)
+public function VendorApprovalNotification($vendor)
 {
-	$template_id = $this->emailTemplate['UserOrderSuccessFullNotification'];
-	$order = Order::with('orderItems','orderItems.package','user')->where('id',$order_id)->first();
-	return $this->userOrderSuccessSendEmail($order,$template_id);
+	$template_id = $this->emailTemplate['VendorApprovalNotificationFullNotification'];
+	 
+	return $this->VendorApprovalNotificationSendEmail($vendor,$template_id);
 }
 
 
@@ -34,17 +37,17 @@ public function userOrderSuccessOrderSuccess($order_id)
 
 
 
-public function userOrderSuccessSendEmail($order,$template_id)
+public function VendorApprovalNotificationSendEmail($vendor,$template_id)
 {
 	$template = EmailTemplate::find($template_id);
     $view= 'emails.custom_email';
     $arr = [
            'title' => $template->title,
            'subject' => $template->subject,
-           'name' => $order->user->name,
-           'email' => $order->user->email
+           'name' => $vendor->name,
+           'email' => $vendor->email
     ];
-    $data = $this->userOrderSuccessHtml($order,$template);
+    $data = $this->VendorApprovalNotificationHtml($vendor,$template);
 
     $ar= ['data' => $data];
    return $this->sendNotification($view,$ar,$arr);
@@ -57,23 +60,16 @@ public function userOrderSuccessSendEmail($order,$template_id)
 
 
 
-public function userOrderSuccessHtml($order,$template)
+public function VendorApprovalNotificationHtml($vendor,$template)
 { 
 		$text2 = $template->body;
-		$orderDetail = $this->getOrderDetail($order);
-		$text = str_replace("{OrderDetail}",$orderDetail,$text2);
-		$text = str_replace("{name}",$order->user->name,$text);
+	    $text = str_replace("{name}",$vendor->name,$text2);
  return $text;
 }
 
 
 
-public function getOrderDetail($order)
-{
-   return $vv = view('emails.order.detail')->with('order',$order)->render();
-}
 
- 
 
 
 
@@ -81,4 +77,15 @@ public function getOrderDetail($order)
 }
 
 
- 
+
+
+
+
+
+
+
+
+
+
+
+

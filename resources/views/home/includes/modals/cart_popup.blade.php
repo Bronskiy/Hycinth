@@ -78,8 +78,15 @@
                                  </li>
                                  <li class="mb-2">
                                     <button 
-                                 type="button" 
-                                 class="btn CartButton cstm-btn solid-btn"> <i class="fas fa-money-check-alt"></i> Direct Checkout</button></li>
+                                      type="button" 
+                                      class="btn CartButton cstm-btn"
+                                      id="btn-addWishListButton" 
+                                      data-action="{{url(route('cart.directToBuy'))}}"
+                                      > <i class="fas fa-money-check-alt"></i> 
+                                      Direct Checkout
+                                    </button>
+                                    
+                                 </li>
                                  
                           </ul>
 

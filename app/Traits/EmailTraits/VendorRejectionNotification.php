@@ -1,7 +1,7 @@
 <?php
 namespace App\Traits\EmailTraits;
 use Illuminate\Http\Request;
-use App\VendorPackage;
+use App\User;
 use App\PackageMetaData;
 use App\UserEventMetaData;
 use Auth;
@@ -10,21 +10,18 @@ use App\Models\Order;
 use App\Models\EventOrder;
 use Session;
 use App\Models\Admin\EmailTemplate;
-trait UserOrderSuccess {
+trait VendorRejectionNotification {
 
-
-
-
+ 
 #---------------------------------------------------------------------------------------------------
 #  Order Success
 #---------------------------------------------------------------------------------------------------
 
 
-public function userOrderSuccessOrderSuccess($order_id)
+public function VendorRejectionNotification($vendor,$detail)
 {
-	$template_id = $this->emailTemplate['UserOrderSuccessFullNotification'];
-	$order = Order::with('orderItems','orderItems.package','user')->where('id',$order_id)->first();
-	return $this->userOrderSuccessSendEmail($order,$template_id);
+  $template_id = $this->emailTemplate['VendorRejectionNotificationFullNotification'];
+	return $this->VendorRejectionNotificationSendEmail($vendor,$template_id,$detail);
 }
 
 
@@ -34,17 +31,17 @@ public function userOrderSuccessOrderSuccess($order_id)
 
 
 
-public function userOrderSuccessSendEmail($order,$template_id)
+public function VendorRejectionNotificationSendEmail($vendor,$template_id,$detail)
 {
 	$template = EmailTemplate::find($template_id);
     $view= 'emails.custom_email';
     $arr = [
            'title' => $template->title,
            'subject' => $template->subject,
-           'name' => $order->user->name,
-           'email' => $order->user->email
+           'name' => $vendor->name,
+           'email' => $vendor->email
     ];
-    $data = $this->userOrderSuccessHtml($order,$template);
+    $data = $this->VendorRejectionNotificationHtml($vendor,$template,$detail);
 
     $ar= ['data' => $data];
    return $this->sendNotification($view,$ar,$arr);
@@ -57,23 +54,18 @@ public function userOrderSuccessSendEmail($order,$template_id)
 
 
 
-public function userOrderSuccessHtml($order,$template)
+public function VendorRejectionNotificationHtml($vendor,$template,$detail)
 { 
-		$text2 = $template->body;
-		$orderDetail = $this->getOrderDetail($order);
-		$text = str_replace("{OrderDetail}",$orderDetail,$text2);
-		$text = str_replace("{name}",$order->user->name,$text);
- return $text;
+      $text ='';
+      $text2 = $template->body;
+      $text = str_replace("{detail}",$detail,$text2);
+	    $text = str_replace("{name}",$vendor->name,$text);
+      return $text;
 }
 
 
 
-public function getOrderDetail($order)
-{
-   return $vv = view('emails.order.detail')->with('order',$order)->render();
-}
 
- 
 
 
 
@@ -81,4 +73,15 @@ public function getOrderDetail($order)
 }
 
 
- 
+
+
+
+
+
+
+
+
+
+
+
+

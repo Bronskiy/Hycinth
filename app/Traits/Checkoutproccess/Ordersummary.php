@@ -21,12 +21,12 @@ public function orderSummary()
 {
 
 	//return $this->CommissionFeeServiceAccordingVendor('STRIPE',1);
-
+//return $this->getCurentOrders()->get();
 	$this->checkStep(2);
-
-	 Session::put('OrderSummary',1);
+    Session::put('OrderSummary',1);
 	return view('users.checkout.steps.orderSummary') 
 	->with('orders',$this->getCurentOrders())
+    ->with('obj',$this)
 	->with('stepNumber',2)
     ->with('haveDeal',1);
 }
@@ -42,6 +42,19 @@ public function getCurentOrders()
      $checkoutType = $this->checkDirectOrNot();
      return $orderEvent = EventOrder::where('user_id',Auth::user()->id)->where('type','cart')->where('checkout_type',$checkoutType);
 	 
+}
+
+
+#-------------------------------------------------------------------------------------------------------
+#  Order Summary Listing Page
+#-------------------------------------------------------------------------------------------------------
+
+
+public function nextStepRoute($route)
+{  
+     $checkoutType = $this->checkDirectOrNot();
+     return $checkoutType == "direct" ? url(route("direct.".$route)) : url(route($route));
+     
 }
 
 

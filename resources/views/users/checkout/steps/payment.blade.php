@@ -66,13 +66,7 @@
 
 
 
-
- 
-
-
-
-
-<input type="hidden" name="cartRoute" value="{{url(route('checkout.getOrderSummary'))}}">
+<input type="hidden" name="cartRoute" value="{{$obj->nextStepRoute('checkout.getOrderSummary')}}">
  
 @endsection
 

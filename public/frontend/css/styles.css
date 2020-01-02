@@ -7581,7 +7581,23 @@ button.stripe-button-el:hover span{
  /* ========================*/
 
 
+.cstm-btn{
+    position: relative;
+    overflow: hidden;
+}
 
+button.cstm-btn span {
+    position: absolute;
+    left: -11px;
+    top: -2px;
+    bottom: -3px;
+    overflow: hidden;
+    right: -11px;
+    opacity: 0;
 
+}
 
+button.cstm-btn:disabled span{
+    opacity: 1;
+}
 

@@ -142,10 +142,22 @@
            </div>
 
             <div class="col-md-6">
-           {{choosefile($errors, 'Event Image*', 'event_picture')}}
+              <!-- {{choosefile($errors, 'Event Image*', 'event_picture')}} -->
+              <div class="profile-image">
+                <label class="label-file">Event Image*</label>
+                         <input type="file" name="event_picture" accept="image/*" onchange="ValidateSingleInput(this, 'image_src')" id="event_picture" class="form-control">
+                         
+                         <!-- <img id="image_src" class="img-radius" style="display: none; width: 100px; height: 100px; margin-top: 6px;" src="{{ asset('/images/user.jpg') }}"> -->
+
+                          @if ($errors->has('event_picture'))
+                              <div class="error">{{ $errors->first('event_picture') }}</div>
+                          @endif
+                   </div>
            </div>
 
-
+<div class="col-md-12">
+ <img src="" id="image_src" style="display: none;" width="120">
+</div>
 
 
 
@@ -205,9 +217,11 @@
 
 
 @section('scripts')
-  <script src="{{url('clockface/js/clockface.js')}}" type="text/javascript"></script>
+<script src="{{url('clockface/js/clockface.js')}}" type="text/javascript"></script>
 <script src="{{url('/js/setLatLong.js')}}"></script>
 <script src="{{url('/js/validations/userEventValidation.js')}}"></script>
+<script src="{{url('/js/validations/imageShow.js')}}"></script>
+
 <script type="text/javascript">
  $("body").on('change','#get',function(){
      var val = $( this ).val();

@@ -14,7 +14,8 @@
     <div class="col-lg-4">
       @if(Session::has('billingAddress'))
       <div class="mini-btn-wrap mt-4 text-right">
-      <a href="{{url(route('checkout.billingAdress'))}}" class="cstm-btn solid-btn">Change</a>
+        
+      <a href="{{$obj->nextStepRoute('checkout.billingAdress')}}" class="cstm-btn solid-btn">Change</a>
     </div>
     @endif
     </div>

@@ -1,5 +1,6 @@
 <?php
 
+ 
  Route::group([['middleware' => 'Checkout'],'prefix' => 'checkout'], function() {
 
  	// paypal payment
@@ -28,6 +29,24 @@
 		#------------------------------------------------------------------------------------------------------
 		#------------------------------------------------------------------------------------------------------
 
+ });
+
+
+
+  Route::group([['middleware' => 'Checkout'],'prefix' => 'direct/checkout'], function() {
+
+ 	// paypal payment
+
+ 	Route::get('/billing-address','Users\Checkout\CheckoutController@billingAddress')->name('direct.checkout.billingAdress');
+ 	Route::post('/billing-address','Users\Checkout\CheckoutController@postAddress')->name('direct.checkout.billingAdress');
+
+
+ 	Route::get('/order-summary','Users\Checkout\CheckoutController@orderSummary')->name('direct.checkout.orderSummary');
+ 	Route::get('/order-summary-data','Users\Checkout\CheckoutController@getOrderSummary')->name('direct.checkout.getOrderSummary');
+
+
+ 	Route::get('/payment','Users\Checkout\CheckoutController@paymentPage')->name('direct.checkout.paymentPage');
+ 	Route::post('/payment','Users\Checkout\CheckoutController@payWithStripe')->name('direct.checkout.payWithStripe');
  });
 
 

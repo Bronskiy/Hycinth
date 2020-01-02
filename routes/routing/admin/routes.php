@@ -194,4 +194,17 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
         Route::get('/orders/detail/{id}','Admin\OrderController@detail')->name('admin.orderDetail');
         Route::get('/orders/ajax','Admin\OrderController@ajax')->name('admin.ajaxOrders');
 
+
+       #--------------------------------------------------------------------------------------------------------------
+       #  Vendors
+       #--------------------------------------------------------------------------------------------------------------
+
+
+         Route::get('/vendors/new','Admin\VendersController@index')->name('admin.vendor.list');
+         Route::get('/vendors/ajax-new-vendors','Admin\VendersController@ajax_getVendors')->name('ajax-new-vendors');
+
+          Route::get('/vendors/new/{id}','Admin\VendersController@detail')->name('admin.vendor.detail');
+
+          Route::get('/vendors/approved/{id}','Admin\VendersController@approved')->name('admin.vendor.approved');
+          Route::post('/vendors/rejected/{id}','Admin\VendersController@rejected')->name('admin.vendor.rejected');
 });

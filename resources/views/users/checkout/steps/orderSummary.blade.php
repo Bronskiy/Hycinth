@@ -43,7 +43,7 @@
                   </div>
 
 
-                  <div class="col-md-12 text-right mb-4"><a href="{{url(route('checkout.paymentPage'))}}" class="cstm-btn solid-btn pull-right">Continue</a></div>
+                  <div class="col-md-12 text-right mb-4"><a href="{{$obj->nextStepRoute('checkout.paymentPage')}}" class="cstm-btn solid-btn pull-right">Continue</a></div>
       
 
 
@@ -59,7 +59,8 @@
 
 @include('users.includes.cart.addonsPop')
 
-<input type="hidden" name="cartRoute" value="{{url(route('checkout.getOrderSummary'))}}">
+
+<input type="hidden" name="cartRoute" value="{{$obj->nextStepRoute('checkout.getOrderSummary')}}">
 
 @endsection
 

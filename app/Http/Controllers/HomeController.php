@@ -10,6 +10,7 @@ use App\Traits\GeneralSettingTrait;
 use App\User;
 use App\Models\Admin\CmsPage;
 use App\Category;
+use App\VendorCategory;
 
 class HomeController extends Controller
 {
@@ -71,13 +72,20 @@ public function userRegister(Request $request)
             'password' => ['required','min:6','confirmed']
         ]);
 
+
+        // print_r($request->all());
+        // die;
+
         if($v->fails()){
              return response()->json(['status' => 0,'errors' => $v->errors()]);
         }else{
 
-            $role = !empty($request->type) ? 'vendor' : 'user';
+            if(!empty($request->type)){
+              $status = $this->saveNewVendor($request);
+            }else{
+              $status = $this->saveNewUser($request,'user');
+            }
           
-            $status = $this->saveNewUser($request,$role);
 
             return response()->json(['status' => 1,'message' => 'We sent you an activation code. Check your Email and click on the link to verify.']);
 
@@ -88,6 +96,83 @@ public function userRegister(Request $request)
 
 
 
+
+#-----------------------------------------------------------------------
+#  save new user
+#-----------------------------------------------------------------------
+
+
+public function saveNewVendor($request)
+{
+
+
+    $id_proof = uploadFileWithAjax('videos/vendors/cover/',$request->file('id_proof'));
+    $u = new \App\User;
+    $u->first_name = $request->first_name;
+    $u->last_name = $request->last_name;
+    $u->name = $request->first_name.' '.$request->last_name;
+    $u->email = $request->email;
+    $u->user_location = $request->user_location;
+    $u->phone_number = $request->phone_number;
+    $u->user_location = $request->location;
+    $u->latitude = $request->latitude;
+    $u->longitude = $request->longitude;
+    $u->website_url = $request->website_url;
+    $u->ein_bs_number = $request->ein_bs_number;
+    $u->age = $request->age;
+    $u->id_proof = $id_proof;
+    $u->status = 0;
+    $u->role = 'vendor';
+    $u->password = \Hash::make($request->password);
+    if($u->save() && $this->addBusinessCategories($request,$u->id) == 1) {
+         $user->sendEmailVerificationNotification();
+
+         return 1;
+    }
+
+}
+
+#-----------------------------------------------------------------------
+#  save new user
+#-----------------------------------------------------------------------
+
+
+public function addBusinessCategories($request,$user_id)
+{
+             foreach ($request->categories as $key => $value) {
+                    
+                 $parent = $this->categorySave($value,0,$user_id);
+             }
+             return 1;
+}
+
+
+
+#-----------------------------------------------------------------------
+#  save new user
+#-----------------------------------------------------------------------
+
+
+
+public function categorySave($value,$parent=0,$user_id)
+{
+        $v= VendorCategory::where('parent',$parent)->where('category_id',$value)->where('user_id',$user_id);
+        $id = 0;
+        if($v->count() == 0){
+            $vCate = new VendorCategory;
+            $vCate->parent = $parent;
+            $vCate->category_id = $value;
+            $vCate->user_id = $user_id;
+            $vCate->status = 1;
+            $vCate->save();
+            $id = $vCate->id;
+
+        }else{
+            $category = $v->first();
+            $id = $category->id;
+        }
+        return $id;
+}
 
 #-----------------------------------------------------------------------
 #  save new user
@@ -205,6 +290,9 @@ public function userLoginPopup(Request $request,$role="user")
         }
 }
 
+#-----------------------------------------------------------------------
+#  save new user
+#-----------------------------------------------------------------------
 
 
 public function login($request)
@@ -217,6 +305,10 @@ public function login($request)
             if(Auth::check() && Auth::user()->email_verified_at){
 
                                 if(Auth::user()->status == 1):
+                                            $u = User::find(Auth::user()->id);
+                                            $u->login_count = ($u->login_count + 1);
+                                            $u->save();
+
                                       $arr = [
                                                 'status' => 1,
                                                 'message' => 'Please wait... Redirecting to your dashboard.',
@@ -227,7 +319,7 @@ public function login($request)
                                             Auth::logout();
                                             $arr = [
                                                 'status' => 2,
-                                                'message' => 'Your account is blocked by the Admin.',
+                                                'message' => 'Your account is under verification process.',
                                                 'redirectLink' => url(route('vendor_dashboard'))
                                             ];
 

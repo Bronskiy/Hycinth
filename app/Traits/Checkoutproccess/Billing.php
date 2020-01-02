@@ -32,11 +32,15 @@ public function billingAddress()
      // jassi91@yopmail.com
 	 
        //Session::forget('billingAddress');
+	 //return $checkoutType = $this->checkDirectOrNot();
 	   Session::forget('OrderSummary');
+
+
 	   return view('users.checkout.steps.billing')
 	   ->with('stepNumber',1)
 	   ->with('haveDeal',1)
 	   ->with('checkout',1)
+	   ->with('submitBillingForm',$this->nextStepRoute('checkout.getOrderSummary'))
 	   ->with('obj',$this)
 	   ->with('orders',$this->getCurentOrders())
 	   ->with('address',$this->getBillingAddress());
@@ -88,7 +92,8 @@ public function postAddress(Request $request)
 	         'tax'=> $tax['val']
          ];
          Session::put('billingAddress',json_encode($arr));
-         return response()->json(['status' => 1,'errors' => 'Billing Address is saved', 'redirectLink' => url(route('checkout.orderSummary'))]);
+         $url = $this->nextStepRoute('checkout.orderSummary');
+         return response()->json(['status' => 1,'errors' => 'Billing Address is saved', 'redirectLink' => $url]);
  
      }
 }

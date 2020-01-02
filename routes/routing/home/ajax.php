@@ -39,6 +39,7 @@ Route::get('/get-event-categories','Users\Cart\CartController@eventCategories')-
 
 Route::post('/add-to-cart','Users\Cart\CartController@addToCart')->name('cart.addToCart');
 Route::post('/add-to-wishlist','Users\Cart\CartController@addToWishList')->name('cart.addToWishList');
+Route::post('/direct-to-buy','Users\Cart\CartController@directToWishList')->name('cart.directToBuy');
 
 
 

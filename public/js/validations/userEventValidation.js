@@ -18,6 +18,10 @@ $(document).ready(function() {
       "description": {
         required: true,
         maxlength: 300
+      },      
+      "long_description": {
+        required: true,
+        maxlength: 500
       },
       "start_date": {
         required: true,
@@ -28,10 +32,11 @@ $(document).ready(function() {
         minStartDate: true
       },
       "start_time":{
-      	required: true
+      	required: true,
       },
       "end_time":{
-      	required: true
+      	required: true,
+        timeValidator: '#start_time'
       },
       "event_budget":{
       	required: true,
@@ -71,6 +76,9 @@ $(document).ready(function() {
       "colour": {
         required: true
       },
+      "event_picture": {
+        required: true
+      },
       "event_categories[]": {
         required: true
       },
@@ -82,12 +90,14 @@ $(document).ready(function() {
     });   
   
     // UserEvent Submitting Form 
-    $('#UserEventForm').click(function() {
-      if($('#profileForm').valid())
+    $('#UserEventFormBtn').click(function()
+    {
+      if($('#UserEventForm').valid())
       {
         $('#UserEventFormBtn').prop('disabled', true);
         $('#UserEventForm').submit();
       } else {
+        window.scrollTo({top: 0, behavior: 'smooth'});
         return false;
       }
     });

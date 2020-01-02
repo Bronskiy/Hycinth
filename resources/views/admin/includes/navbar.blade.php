@@ -36,6 +36,7 @@
                         <a href="{{url(route('admin.business.index'))}}" class="nav-link "><span class="pcoded-micon"><i class="fas fa-briefcase"></i></span><span class="pcoded-mtext">Businesses Listing</span></a>
                     </li>
 
+            
                 <li class="nav-item pcoded-menu-caption">
                     <label>Management</label>
                 </li>
@@ -75,15 +76,19 @@
                 </li>
 
 
-                <li class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_users', 'list_vendors', 'admin_vendor_business'],'pcoded-trigger') ?>" >
+                <li class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_users', 'list_vendors', 'admin_vendor_business','admin.vendor.list'],'pcoded-trigger') ?>" >
                 <a href="javascript:" class="nav-link "><span class="pcoded-micon">
                     <i class="feather icon-box"></i></span><span class="pcoded-mtext">User/Vendor Management</span></a>
-                <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['list_users', 'list_vendors', 'admin_vendor_business'], 'block') ?>;">
+                <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['list_users', 'list_vendors', 'admin_vendor_business','admin.vendor.list'], 'block') ?>;">
                     <li class="<?= ActiveMenu(['list_users'],'active') ?>">
                         <a href="{{ route('list_users') }}" class="">User Management</a>
                     </li>
                     <li class="<?= ActiveMenu(['list_vendors', 'admin_vendor_business'],'active') ?>">
                         <a href="{{ route('list_vendors') }}" class="">Vendor Management</a>
+                    </li>
+
+                      <li class="<?= ActiveMenu(['admin.vendor.list'],'active') ?>">
+                        <a href="{{ route('admin.vendor.list') }}" class="">New Vendors</a>
                     </li>
                 </ul>
                 </li>

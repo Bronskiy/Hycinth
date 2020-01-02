@@ -78,8 +78,8 @@
                                         </p>
                                 </div>
                                     <div class="btn-wrap">
-                                            <button class="cstm-btn solid-btn">Login</button>
-
+                                           
+                                          <button class="cstm-btn solid-btn "><span><img src="{{url('200.gif')}}"></span>Login</button>
                                              <img  class="pl-3 loading hide" src="{{url('/images/small-loader.gif')}}" style="display: none;" />                                            
 
                                             

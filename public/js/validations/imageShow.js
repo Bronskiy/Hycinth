@@ -2,7 +2,7 @@
 var _validFileExtensions = [".jpg", ".jpeg", ".gif", ".png"];
 
 function ValidateSingleInput(oInput, img_id) {
-  $(oInput).parent().find('label').css('display', 'none');
+  $(oInput).parent().find('label .error').css('display', 'none');
 
   $("label[for='" + oInput.id + "']").css('display', 'none');
 

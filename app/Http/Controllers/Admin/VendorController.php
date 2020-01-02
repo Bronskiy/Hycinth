@@ -18,15 +18,18 @@ class VendorController extends Controller
 
    	public function ajax_getVendors(Request $request)
    	{
-   		$vendors = User::where('role', 'vendor')->get();
-		return datatables()->of($vendors)
-		->addColumn('action', function ($t) {
-			return $this->createAction($t, 'admin_vendor_business', 'admin_vendor_changeStatus');
-		})
-		->editColumn('status', function($t) {
-			return $t->status == 1 ? 'Active' : 'In-Active';
-		})
-		->make(true);
+   		$vendors = User::where('role', 'vendor')
+                     ->where('login_count','>',0)
+                     ->get();
+
+		  return datatables()->of($vendors)
+		         ->addColumn('action', function ($t) {
+			              return $this->createAction($t, 'admin_vendor_business', 'admin_vendor_changeStatus');
+	           	})
+        		 ->editColumn('status', function($t) {
+        			      return $t->status == 1 ? 'Active' : 'In-Active';
+        		 })
+        		 ->make(true);
    	}
 
    	public function changeStatus($id) {
