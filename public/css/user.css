@@ -921,21 +921,31 @@ width: 100%;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
 }
-.card-media-body .count-down-timer{
+.sm-countdown-wrap .count-down-timer{
   margin-bottom: 6px;
 }
-.card-media-body .count-down-timer li{
+.sm-countdown-wrap .count-down-timer li{
       padding: 0px 2px;
       font-size: 10px;
       width: 50px;
+      line-height: normal;
 }
-.card-media-body .count-down-timer li span{
+.wt-countdown.sm-countdown-wrap .count-down-timer li{
+  color: #fff;
+  }
+  .wt-countdown.sm-countdown-wrap .count-down-timer li span{
+    background: #fff;
+    color: #35486b;
+  }
+.sm-countdown-wrap .count-down-timer li span{
   position: relative;
     position: relative;
     background: #eda208;
     border-radius: 3px;
     margin-bottom: 4px;
+    padding: 0px 3px;
     color: #fff;
+    line-height: normal;
 }
 
 /**********************/
@@ -1092,6 +1102,29 @@ width: 100%;
     color: white;
     padding: 20px 15px;
     position: relative;
+    overflow: hidden;
+}
+.evt-theme-card:after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    top: 0;
+    left: 0;
+}
+.theme-color-box {
+    width: 40px;
+    height: 26px;
+    background: green;
+    display: inline-block;
+    border-radius: 4px;
+    margin-left: 10px;
+    margin-top: 3px;
+}
+.evt-theme-card .evt-theme-body{
+  position: relative;
+  z-index: 11;
 }
 .evt-theme-card .title {
     font-size: 20px;

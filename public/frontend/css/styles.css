@@ -383,6 +383,15 @@ textarea.form-control {
     resize: none;
     padding-right: 20px;
 }
+input[type="file"].form-control {
+    height: auto;
+    padding: 13px 25px;
+    padding-right: 55px;
+}
+.signUp-form-wrap form label{
+    font-size: 16px;
+    font-weight: 400;
+}
 
 .form-control:focus {
     border-color: #36496c;
@@ -3567,6 +3576,9 @@ font-size: 14px;
     position: relative;
     overflow: hidden;
 }
+.vendorRegister-img{
+    max-height: 300px;
+}
 .form-img-wrap .overlay-text{
     position:absolute;
     left: 0;
@@ -3838,7 +3850,7 @@ font-size: 14px;
 }
 label.error {
     color: #d51c18;
-    font-size: 14px;
+    font-size: 14px !important;
     position: absolute;
     font-weight: normal;
 }
@@ -7579,6 +7591,27 @@ button.stripe-button-el:hover span{
     top: 27px;
 }
  /* ========================*/
+ /*mini countdown*/
+ .sm-countdown-wrap .count-down-timer li span {
+    position: relative;
+    position: relative;
+    background: #eda208;
+    border-radius: 3px;
+    margin-bottom: 4px;
+    padding: 0px 3px;
+    color: #fff;
+    line-height: normal;
+}
+.sm-countdown-wrap .count-down-timer li {
+    padding: 0px 2px;
+    font-size: 10px;
+    width: 50px;
+    line-height: normal;
+}
+.sm-countdown-wrap .count-down-timer {
+    margin-bottom: 6px;
+}
+ /***************/
 
 
 .cstm-btn{

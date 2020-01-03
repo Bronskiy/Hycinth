@@ -18,15 +18,18 @@
                 <div class="container">         
                   <div class="signUp-form-wrap mr-top sec-card">  
                         <div class="row no-gutters">          
-                                 <!-- <div class="col-lg-5">
-                                    <figure class="form-img-wrap">
+                                 <div class="col-lg-12">
+                                    <figure class="form-img-wrap vendorRegister-img">
                                         <img src="{{ url('/uploads').'/'.getAllValueWithMeta('signup_banner', 'vendor-signup') }}">
                                         <figcaption class="overlay-text">
+                                          <div class="row">
+                                            <div class="col-lg-6 offset-lg-3 j-c-c">
                                                 <h1>{{ getAllValueWithMeta('heading', 'vendor-signup') }}</h1>
                                                 <p>{{ getAllValueWithMeta('description', 'vendor-signup') }}</p>
+                                              </div>
                                             </figcaption>
                                     </figure>
-                                 </div> -->
+                                 </div>
                             <div class="col-lg-12">
                             <form class="signUp-form" action="{{url(route('ajax_register'))}}" method="POST"  id="registerVendorForm">
                               @csrf
@@ -128,7 +131,7 @@
                                        </div>                              
                                    </div> -->
  
-                                  <div class="col-lg-12">  
+                                  <div class="col-lg-6">  
                                     <label>Choose Business Types</label>                        
                                        <div class="form-group">
                                         <?php $category = \App\Category::where('status',1)->where('parent',0)->orderBy('sorting','ASC')->get(); ?>
@@ -148,7 +151,7 @@
                 
 
 
-                                    <div class="col-lg-12">  
+                                    <div class="col-lg-6">  
                                       <label>Email</label>                        
                                        <div class="form-group">
                                            

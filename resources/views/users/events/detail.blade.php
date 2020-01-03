@@ -26,7 +26,7 @@
 <input type="hidden" id="start_date" value="{{$user_event->start_date}}">
 
 <div class="pcoded-content p-0">
-<div class="main-header">
+<div class="main-header" style="background-image: url({{ asset('images/event-bg.jpg') }}">
 <div class="main-header__intro-wrapper">
 <div class="main-header__welcome">
 <div class="main-header__welcome-title text-light">Welcome, {{ Auth::user()->first_name }}<strong></strong></div>
@@ -76,10 +76,25 @@
          </div>
       </div>
       <div class="media-right">
-         <div class="tags has-addons">
-            <span class="tag is-light">Status:</span>
-            <span class="tag is-delivered">Completed</span>
-         </div>
+        @php $eventStatus = EventCurrentStatus($user_event->start_date,$user_event->end_date) @endphp
+         @if($eventStatus == 'Upcoming Event')        
+          <div class="card-media-body-top-icons u-float-right">
+            <div class="sm-countdown-wrap wt-countdown">
+              <ul class="count-down-timer">
+                  <input type="hidden" value="{{$user_event->start_date}}" id="start_date_{{$user_event->id}}" class="timerWatch" data-days="#days_{{$user_event->id}}" data-hours="#hours_{{$user_event->id}}" data-minutes="#minutes_{{$user_event->id}}" data-seconds="#seconds_{{$user_event->id}}" />
+                  <li><span id="days_{{$user_event->id}}"></span>days</li>
+                  <li><span id="hours_{{$user_event->id}}"></span>Hours</li>
+                  <li><span id="minutes_{{$user_event->id}}"></span>Minutes</li>
+                  <li><span id="seconds_{{$user_event->id}}"></span>Seconds</li>
+              </ul>
+            </div>
+          </div>
+         @else  
+           <div class="tags has-addons">
+              <span class="tag is-light">Status:</span>
+              <span class="tag is-delivered">{{ $eventStatus }}</span>
+           </div>
+         @endif
       </div>
    </article>
 </div>
@@ -98,8 +113,8 @@
                   <div class="card-media-object-container">
                      <div class="card-media-object" style="background-image: url({{$user_event->event_picture !='' ? url($user_event->event_picture) : '' }});">
                         <div class="date-ribbon">
-                           <h2>Dec</h2>
-                           <h1>31</h1>
+                           <h2>{{ \Carbon\Carbon::parse($user_event->start_date)->formatLocalized('%b') }}</h2>
+                           <h1>{{ \Carbon\Carbon::parse($user_event->start_date)->formatLocalized('%d') }}</h1>
                         </div>
                      </div>
                      <span class="card-media-object-tag subtle {{ str_slug(EventCurrentStatus($user_event->start_date,$user_event->end_date)) }}">{{ EventCurrentStatus($user_event->start_date,$user_event->end_date)}}</span>
@@ -136,16 +151,20 @@
                </div>
                <div class="row">
                   <div class="col-6">
-                     <div class="evt-theme-card bs mt-4 wow bounceInLeft" data-wow-delay="500ms" style="background-image: url(https://cdn1.radikalno.ru/uploads/2019/12/24/285ee8833fce0dc1c3aaac9f1b008312-full.png)">
+                     <div class="evt-theme-card bs mt-4 wow bounceInLeft" data-wow-delay="500ms" style="background-image: url({{ asset('images/event-theme-bg.jpg') }})">
+                      <div class="evt-theme-body">
                         <div class="title">Seasons</div>
                         <div class="value">{{$user_event->seasons}}</div>
                      </div>
+                    </div>
                   </div>
                   <div class="col-6">
-                     <div class="evt-theme-card bs mt-4 wow bounceInRight animated" data-wow-delay="800ms" style="background-color: {{$user_event->colour}}">
+                     <div class="evt-theme-card bs mt-4 wow bounceInRight animated" data-wow-delay="800ms" style="background-image: url({{ asset('images/event-theme-bg-2.jpg') }})">
+                      <div class="evt-theme-body">
                         <div class="title">Theme Color</div>
-                        <div class="value">{{$user_event->colour}}</div>
+                        <div class="value">{{$user_event->colour}}<span class="theme-color-box" style="background: {{$user_event->colour}}"></span></div>
                      </div>
+                   </div>
                   </div>
                </div>
             </div>

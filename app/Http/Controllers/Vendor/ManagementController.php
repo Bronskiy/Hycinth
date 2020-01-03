@@ -143,7 +143,6 @@ class ManagementController extends VendorController
       
        $validation = [
             'business_name' => 'required',
-            
             'website' => 'required',
             'phone_number' => 'required',
             'company' => 'required',
@@ -248,6 +247,28 @@ if($request->hasFile('cover_photo') && $this->DeleteMetaImages('cover_photo',$ca
 if($request->hasFile('cover_video_image') && $this->DeleteMetaImages('cover_video_image',$category->category_id,$request->type)){
     $image = uploadFileWithAjax('images/vendors/settings/',$request->file('cover_video_image'));
     $this->saveCategoryMetaData('cover_video_image',$request->type,$image,$category->category_id);
+}
+
+
+
+
+
+
+if($request->hasFile('bessiness_address_proof_1') && $this->DeleteMetaImages('bessiness_address_proof_1',$category->category_id,$request->type)){
+    $image = uploadFileWithAjax('images/vendors/settings/',$request->file('bessiness_address_proof_1'));
+    $this->saveCategoryMetaData('bessiness_address_proof_1',$request->type,$image,$category->category_id);
+}
+
+
+if($request->hasFile('bessiness_address_proof_2') && $this->DeleteMetaImages('bessiness_address_proof_2',$category->category_id,$request->type)){
+    $image = uploadFileWithAjax('images/vendors/settings/',$request->file('bessiness_address_proof_2'));
+    $this->saveCategoryMetaData('bessiness_address_proof_2',$request->type,$image,$category->category_id);
+}
+
+
+if($request->hasFile('business_registation_proof') && $this->DeleteMetaImages('business_registation_proof',$category->category_id,$request->type)){
+    $image = uploadFileWithAjax('images/vendors/settings/',$request->file('business_registation_proof'));
+    $this->saveCategoryMetaData('business_registation_proof',$request->type,$image,$category->category_id);
 }
 
 return redirect()->route('vendor_category_management',$slug)->with('messages','Basic Information has been saved successfully.');     

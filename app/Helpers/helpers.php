@@ -235,6 +235,22 @@ if($start <= $today && $end >= $today){
 }
 
 
+function DealCurrentStatus($start_date,$end_date)
+{
+  $start = strtotime($start_date);
+  $end = strtotime($end_date);
+  $today = strtotime(date('Y-m-d')); 
+  
+  if($start <= $today && $end >= $today){
+    return 'On Going Deal';
+  }elseif($start > $today){
+    return 'Upcoming Deal';
+  }elseif($end < $today){
+    return 'Expired Deal';
+  }   
+}
+
+
 
 
 
@@ -2188,8 +2204,7 @@ function selectsimple($errors,$label,$name,$array,$value=null){
 		$text = "";
 		$text .= "<div class='form-group label-floating is-focused' id=".$name.">";
 		$text .="<label class='control-label'>$label</label>";
-        $text .= "<select class='form-control $border' name='$name'>";
-         $text .="<option value=''>Select</option>";    
+        $text .= "<select class='form-control $border' name='$name'>";   
           foreach ($array as $key => $val) {
                   if($key == $v || $old == $key){
 

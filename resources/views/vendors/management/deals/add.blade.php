@@ -35,6 +35,7 @@
                               {{selectsimple($errors, "Type Of Deal's", 'type_of_deal',[0 => 'Universal',1 => 'Assign Packages'])}}
                           </div>
                           <div class="col-lg-6" style="display: none;">
+                            <div class="form-group">
                             <label>Packages</label>
                           	<select class="form-control" id="packages" class="form-control" 
                             name="packages">
@@ -44,6 +45,7 @@
                                 @endforeach
                             </select>
                           </div>
+                        </div>
 
                            <div class="col-lg-6"> 
                             {{textbox($errors, 'Deal Code*', 'deal_code')}}

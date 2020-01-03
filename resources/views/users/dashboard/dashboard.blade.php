@@ -57,6 +57,7 @@
                                 <strong>{{ ucfirst($event->title) }}</strong></br>
                                  {{ \Carbon\Carbon::parse($event->start_date)->format('l') }}, {{ \Carbon\Carbon::parse($event->start_date)->formatLocalized('%b') }} {{ \Carbon\Carbon::parse($event->start_date)->formatLocalized('%d') }}, {{ \Carbon\Carbon::parse($event->start_time)->format('g:i A') }}</span>
                             <div class="card-media-body-top-icons u-float-right">
+                                <div class="sm-countdown-wrap">
                                 <ul class="count-down-timer">
                                     <input type="hidden" value="{{$event->start_date}}" id="start_date_{{$event->id}}" class="timerWatch" data-days="#days_{{$event->id}}" data-hours="#hours_{{$event->id}}" data-minutes="#minutes_{{$event->id}}" data-seconds="#seconds_{{$event->id}}" />
                                     <li><span id="days_{{$event->id}}"></span>days</li>
@@ -64,6 +65,7 @@
                                     <li><span id="minutes_{{$event->id}}"></span>Minutes</li>
                                     <li><span id="seconds_{{$event->id}}"></span>Seconds</li>
                                 </ul>
+                            </div>
 
                             </div>
                         </div>

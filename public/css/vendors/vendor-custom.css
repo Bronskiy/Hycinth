@@ -1697,6 +1697,7 @@ label.error:after, label.error:before {
     right: 0;
     overflow: hidden;
     margin-bottom: 0px;
+    min-width: 114px;
 }
 .coupon-code:hover .get-code {
     transform: translateX(-100%);

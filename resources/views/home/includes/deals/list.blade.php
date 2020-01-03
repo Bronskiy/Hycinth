@@ -6,31 +6,38 @@
 
 
 @foreach($discount_deals as $dealDisount)
+
+
+
+  @php
+
+  $deal = \App\Models\Vendors\DiscountDeal::find($dealDisount->id);
+
+    $chats = $deal->Business->getChatOfLoggedUser != null && $deal->Business->getChatOfLoggedUser->count() > 0 ? 1 : 0;
+    $links = '';
+    if($deal->Business->getChatOfLoggedUser != null && $deal->Business->getChatOfLoggedUser->count() > 0){
+       
+       $link = url(route('deal_discount_chats')).'?chat_id='.$deal->Business->getChatOfLoggedUser->id;
+       $links = '<div class="deal-sucess-msg"><span class="suc-msg-icon"><i class="far fa-clock"></i></span>Your message has been sent to vendor, soon vendor will reply you.<div class="btn-wrap text-center mt-3"><a href="'.$link.'" class="cstm-btn">View chat</a>
+       </div>
+       </div>';
+    }
+
+
+  $businessDetailLink = url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url])).'#deals-sec';
+
+
+  $redirectLink = $deal->type_of_deal == 0 ? $businessDetailLink : url(route('payWithDeal',[$deal->slug,$deal->dealPackage->slug]));
+
+
+
+  @endphp
+
+
+  @php 
+    $dealStatus = DealCurrentStatus($deal->start_date, $deal->expiry_date) 
+  @endphp 
  
- 
-<?php
-$deal = \App\Models\Vendors\DiscountDeal::find($dealDisount->id);
-
-  $chats = $deal->Business->getChatOfLoggedUser != null && $deal->Business->getChatOfLoggedUser->count() > 0 ? 1 : 0;
-  $links = '';
-  if($deal->Business->getChatOfLoggedUser != null && $deal->Business->getChatOfLoggedUser->count() > 0){
-     
-     $link = url(route('deal_discount_chats')).'?chat_id='.$deal->Business->getChatOfLoggedUser->id;
-     $links = '<div class="deal-sucess-msg"><span class="suc-msg-icon"><i class="far fa-clock"></i></span>Your message has been sent to vendor, soon vendor will reply you.<div class="btn-wrap text-center mt-3"><a href="'.$link.'" class="cstm-btn">View chat</a>
-     </div>
-     </div>';
-  }
-
-
-$businessDetailLink = url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url])).'#deals-sec';
-
-
-$redirectLink = $deal->type_of_deal == 0 ? $businessDetailLink : url(route('payWithDeal',[$deal->slug,$deal->dealPackage->slug]));
-
-
-
-?>
-
 
 
   <div class="deals-card aos-init aos-animate" data-aos="fade-left" data-aos-duration="2000">
@@ -72,6 +79,23 @@ $redirectLink = $deal->type_of_deal == 0 ? $businessDetailLink : url(route('payW
              <?php $description =  $deal->description; ?>
                                                {{substr($description,0,100)}} {{strlen($description) > 100 ? '...' : ''}}
         </p>
+
+         
+
+         @if($dealStatus == "Upcoming Deal")
+
+          <div class="sm-countdown-wrap">
+            <ul class="count-down-timer button-grp-wrap">
+                <input type="hidden" value="{{$deal->start_date}}" id="start_date_{{$deal->id}}" class="timerWatch" data-days="#days_{{$deal->id}}" data-hours="#hours_{{$deal->id}}" data-minutes="#minutes_{{$deal->id}}" data-seconds="#seconds_{{$deal->id}}" />
+                <li><span id="days_{{$deal->id}}"></span>days</li>
+                <li><span id="hours_{{$deal->id}}"></span>Hours</li>
+                <li><span id="minutes_{{$deal->id}}"></span>Minutes</li>
+                <li><span id="seconds_{{$deal->id}}"></span>Seconds</li>
+            </ul>
+          </div>         
+
+         @else
+          
          <ul class="button-grp-wrap">
                         <li>
                           <a href="{{url( route('vendor_detail_page',[$deal->Business->category->slug,$deal->Business->business_url]))}}#deals-sec" data-toggle="tooltip" title="More Detail" class="icon-btn"><i class="fa fa-eye"></i>
@@ -96,14 +120,15 @@ $redirectLink = $deal->type_of_deal == 0 ? $businessDetailLink : url(route('payW
                           </a>
           </li>
         </ul>
+        @endif
+
+
      </div>
 
   </div>
  
   <hr class="hr-break">
  
-
-
  
 @endforeach
 
