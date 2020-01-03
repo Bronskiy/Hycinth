@@ -298,18 +298,18 @@ public function CheckDealRelatedPackage($package,$request)
 	$percent = round($price / 100);
 	$deal_id = !empty($request->deal_id) && $request->deal_id > 0 ? $request->deal_id : 0;
 
-	$deals = DiscountDeal::where('id',$deal_id)
-	                     ->orWhere(function($t){
-                               $d = $t->first();
-                               if($d->deal_life == 1){
-			                     $t->whereDate('start_date','<=',Carbon::now());
-			                     $t->whereDate('expiry_date','>=',Carbon::now());
-			                   }
-	                     	
-	                         
-	                     })
-	                     ->where('type_of_deal',1)
-	                     ->where('packages',$package->id);
+	 
+    $deals = DiscountDeal::where('id',$deal_id)
+                    ->orWhere(function($t) use($deal_id){
+                               $d = $t->where('id',$deal_id)->first();
+                              if($d->deal_life == 1){
+                                       $t->whereDate('start_date','<=',Carbon::now());
+                                       $t->whereDate('expiry_date','>=',Carbon::now());
+                               }
+                    
+                    })
+                    //->where('type_of_deal',1)
+                    ->where('packages',$package->id);
  
     if($deals->count() > 0 && $deals->first()->type_of_deal == 1){
        $deal = $deals->first();
