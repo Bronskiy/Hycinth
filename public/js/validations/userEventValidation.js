@@ -76,9 +76,6 @@ $(document).ready(function() {
       "colour": {
         required: true
       },
-      "event_picture": {
-        required: true
-      },
       "event_categories[]": {
         required: true
       },

@@ -308,7 +308,7 @@ public function CheckDealRelatedPackage($package,$request)
 	                     	
 	                         
 	                     })
-	                    // ->where('type_of_deal',1)
+	                     ->where('type_of_deal',1)
 	                     ->where('packages',$package->id);
  
     if($deals->count() > 0 && $deals->first()->type_of_deal == 1){

@@ -106,7 +106,7 @@ class DealController extends Controller
       $d->title = trim($request->title);
       
       $d->type_of_deal = trim($request->type_of_deal);
-      $d->packages = trim($request->packages);
+      $d->packages = $request->type_of_deal == 0 ? 0 : trim($request->packages);
       $d->start_date = trim($request->start_date);
       $d->amount = trim($request->amount);
       $d->deal_off_type = trim($request->deal_off_type);

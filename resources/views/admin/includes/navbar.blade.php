@@ -76,10 +76,10 @@
                 </li>
 
 
-                <li class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_users', 'list_vendors', 'admin_vendor_business','admin.vendor.list'],'pcoded-trigger') ?>" >
+                <li class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_users', 'list_vendors', 'admin_vendor_business','admin.vendor.list','admin.vendor.invite'],'pcoded-trigger') ?>" >
                 <a href="javascript:" class="nav-link "><span class="pcoded-micon">
                     <i class="feather icon-box"></i></span><span class="pcoded-mtext">User/Vendor Management</span></a>
-                <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['list_users', 'list_vendors', 'admin_vendor_business','admin.vendor.list'], 'block') ?>;">
+                <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['list_users', 'list_vendors', 'admin_vendor_business','admin.vendor.list','admin.vendor.invite'], 'block') ?>;">
                     <li class="<?= ActiveMenu(['list_users'],'active') ?>">
                         <a href="{{ route('list_users') }}" class="">User Management</a>
                     </li>
@@ -89,6 +89,10 @@
 
                       <li class="<?= ActiveMenu(['admin.vendor.list'],'active') ?>">
                         <a href="{{ route('admin.vendor.list') }}" class="">New Vendors</a>
+                    </li>
+
+                     <li class="<?= ActiveMenu(['admin.vendor.invite'],'active') ?>">
+                        <a href="{{ route('admin.vendor.invite') }}" class="">Inviting Vendor List</a>
                     </li>
                 </ul>
                 </li>

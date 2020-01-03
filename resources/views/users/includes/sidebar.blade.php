@@ -47,15 +47,11 @@
                     <a href="{{ route('user_show_favourite_vendors') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-inbox"></i></span><span class="pcoded-mtext">My Favourite Vendors</span></a>
                 </li> 
 
-
-               <!--  <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_category', 'category_variations', 'create_category','edit_category'],'pcoded-trigger') ?>" >
-                <a href="javascript:" class="nav-link "><span class="pcoded-micon">
-                    <i class="feather icon-box"></i></span><span class="pcoded-mtext">Category Management</span></a>
-                <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['list_category', 'category_variations', 'create_category','edit_category'],'block') ?>;">
-                    <li class="<?= ActiveMenu(['list_category', 'category_variations', 'create_category','edit_category'],'active') ?>"><a href="{{ route('list_category') }}" class="">Categories</a></li>
-                </ul>
+                <li class="nav-item {{ ActiveMenu(['user.inviting.vendors'], 'active') }}">
+                    <a href="{{ route('user.inviting.vendors') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-inbox"></i></span><span class="pcoded-mtext">Invite Vendors</span></a>
                 </li>
-                -->
+
+ 
 
                 
 

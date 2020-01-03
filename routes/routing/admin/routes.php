@@ -198,10 +198,13 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
        #--------------------------------------------------------------------------------------------------------------
        #  Vendors
        #--------------------------------------------------------------------------------------------------------------
-
+         Route::get('/inviting/vendors','Admin\VendersController@invite')->name('admin.vendor.invite');
+         Route::get('/inviting/vendor/{id}','Admin\VendersController@inviteDetail')->name('admin.vendor.inviting');
+         Route::get('/inviting/vendor/request/{id}','Admin\VendersController@vendorInvite')->name('admin.vendorInvite');
 
          Route::get('/vendors/new','Admin\VendersController@index')->name('admin.vendor.list');
          Route::get('/vendors/ajax-new-vendors','Admin\VendersController@ajax_getVendors')->name('ajax-new-vendors');
+         Route::get('/vendors/ajax-inviting-vendors','Admin\VendersController@ajax_getInvitingVendors')->name('ajax_getInvitingVendors');
 
           Route::get('/vendors/new/{id}','Admin\VendersController@detail')->name('admin.vendor.detail');
 

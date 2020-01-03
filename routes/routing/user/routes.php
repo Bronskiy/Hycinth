@@ -45,4 +45,12 @@
           Route::get('/orders', 'Users\UserOrderController@index')->name('user_orders'); 
           Route::get('/order/{orderID}/detail', 'Users\UserOrderController@orderDetail')->name('order_details'); 
 
+         #-----------------------------------------------------------------------------------
+         #  Inviting Vendors ----------------------------------------------------------------
+         #-----------------------------------------------------------------------------------
+ 
+          Route::get('/inviting-vendors', 'Users\VendorsController@index')->name('user.inviting.vendors'); 
+          Route::get('/inviting-vendor', 'Users\VendorsController@add')->name('users.invite.newVendor'); 
+          Route::post('/inviting-vendor', 'Users\VendorsController@store')->name('users.invite.newVendor'); 
+
 });

@@ -18,7 +18,8 @@ protected $emailTemplate = [
       'AdminOrderSuccessFullNotification' => 5,
       'VendorOrderSuccessFullNotification' => 6,
       'VendorApprovalNotificationFullNotification' => 7,
-      'VendorRejectionNotificationFullNotification' => 8
+      'VendorRejectionNotificationFullNotification' => 8,
+      'VendorInvitingRequestNotificationFullNotification' => 9,
 ];
 
 

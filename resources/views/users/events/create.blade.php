@@ -145,7 +145,7 @@
               <!-- {{choosefile($errors, 'Event Image*', 'event_picture')}} -->
               <div class="profile-image">
                 <label class="label-file">Event Image*</label>
-                         <input type="file" name="event_picture" accept="image/*" onchange="ValidateSingleInput(this, 'image_src')" id="event_picture" class="form-control">
+                         <input type="file" required name="event_picture" accept="image/*" onchange="ValidateSingleInput(this, 'image_src')" id="event_picture" class="form-control">
                          
                          <!-- <img id="image_src" class="img-radius" style="display: none; width: 100px; height: 100px; margin-top: 6px;" src="{{ asset('/images/user.jpg') }}"> -->
 

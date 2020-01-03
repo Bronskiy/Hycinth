@@ -15,13 +15,15 @@ use App\Traits\EmailTraits\AdminOrderSuccess;
 use App\Traits\EmailTraits\VendorOrderSuccess;
 use App\Traits\EmailTraits\VendorApprovalNotification;
 use App\Traits\EmailTraits\VendorRejectionNotification;
+use App\Traits\EmailTraits\VendorInvitingRequestNotification;
 trait UserNotificationTrait {
 
-use UserOrderSuccess;
-use AdminOrderSuccess;
-use VendorOrderSuccess;
-use VendorApprovalNotification;
-use VendorRejectionNotification;
+	use UserOrderSuccess;
+	use AdminOrderSuccess;
+	use VendorOrderSuccess;
+	use VendorApprovalNotification;
+	use VendorRejectionNotification;
+	use VendorInvitingRequestNotification;
 
 
 

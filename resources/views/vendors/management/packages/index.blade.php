@@ -39,7 +39,7 @@
       <span class="pkg-amount">{{ $f->price }}</span>
     </div>
     <div class="content">
-      <h3 class="price-table-heading">Title {{$f->title}}</h3>
+      <h3 class="price-table-heading">{{$f->title}}</h3>
       <div class="pricing-category">
       <div class="pkg-summary">
        <label>Decription</label> 

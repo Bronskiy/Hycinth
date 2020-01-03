@@ -113,9 +113,6 @@
                               <div class="col-md-6">
                                  <?php if($cover_video != ""):?>
 
-                                     
-
-
                                     <video width="100%" height="340" controls>
                                          <source src="<?= url($cover_video) ?>" type="video/mp4">
                                          <source src="movie.ogg" type="video/ogg">
@@ -128,9 +125,38 @@
                         </div>
                      </div>
 
-
-
+ 
                      @endif
+                     <div class="panel panel-default">
+                        <div class="panel-heading">Business Document</div>
+                        <div class="panel-body">
+                           <div class="row">
+                              <div class="col-md-6">
+                                  {{choosefile($errors,'Business address proof 1','bessiness_address_proof_1')}}
+                              </div>
+                              <div class="col-md-6">
+                                @if($bessiness_address_proof_1 !="")
+                                <a href="javascript::void(0)" data-href="{{url($bessiness_address_proof_1)}}"  class="viewDocument cstm-btn">View Business address proof 1</a>
+                              @else N/A @endif</div>
+                             <div class="col-md-6">
+                                  {{choosefile($errors,'Business address proof 2','bessiness_address_proof_2')}}
+                              </div>
+                              <div class="col-md-6">@if($bessiness_address_proof_2 !="")
+                                <a href="javascript::void(0)" data-href="{{url($bessiness_address_proof_2)}}" class="viewDocument cstm-btn">View Business address proof 2</a>
+                              @else N/A @endif</div>
+
+                              <div class="col-md-6">
+                                  {{choosefile($errors,'Business Registration proof','business_registation_proof')}}
+                              </div>
+                              <div class="col-md-6">
+                                @if($business_registation_proof !="")
+                                <a href="javascript::void(0)" data-href="{{url($business_registation_proof)}}" class="viewDocument cstm-btn">View Business address proof 1</a>@else N/A @endif</div>
+
+
+                           </div>
+                        </div>
+                     </div>
+
                      <div class="panel panel-default">
                         <div class="panel-heading">Travelling Range</div>
                         <div class="panel-body">

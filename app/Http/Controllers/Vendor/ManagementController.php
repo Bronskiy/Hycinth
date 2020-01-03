@@ -63,7 +63,12 @@ class ManagementController extends VendorController
            'cover_photo' => $this->getAllValueWithMeta('cover_photo','basic_information',$category->category_id),
            'short_description' => $this->getAllValueWithMeta('short_description','basic_information',$category->category_id),
            'facebook_url' => $this->getAllValueWithMeta('facebook_url','basic_information',$category->category_id),
+           'bessiness_address_proof_1' => $this->getAllValueWithMeta('bessiness_address_proof_1','basic_information',$category->category_id),
+           'bessiness_address_proof_2' => $this->getAllValueWithMeta('bessiness_address_proof_2','basic_information',$category->category_id),
+           'business_registation_proof' => $this->getAllValueWithMeta('business_registation_proof','basic_information',$category->category_id)
+            
       ];
+ 
 
       return view('vendors.management.basicInfo.index',$info)
       ->with('slug', $slug)
@@ -99,6 +104,9 @@ class ManagementController extends VendorController
            'twitter_url' => $this->getAllValueWithMeta('twitter_url','basic_information',$category->category_id),
            'instagram_url' => $this->getAllValueWithMeta('instagram_url','basic_information',$category->category_id),
            'pinterest_url' => $this->getAllValueWithMeta('pinterest_url','basic_information',$category->category_id),
+           'bessiness_address_proof_1' => $this->getAllValueWithMeta('bessiness_address_proof_1','basic_information',$category->category_id),
+           'bessiness_address_proof_2' => $this->getAllValueWithMeta('bessiness_address_proof_2','basic_information',$category->category_id),
+           'business_registation_proof' => $this->getAllValueWithMeta('business_registation_proof','basic_information',$category->category_id)
       ];
        
        if(!empty($request->test)){
