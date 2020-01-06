@@ -12,28 +12,28 @@
                   <div class="col-lg-12">
                      <div class="cart-items-wrap my-order-detail-card">
                         <div class="row no-gutters">
-                           <div class="col-lg-2">
+                           <div class="col-lg-2 col-md-2">
                               <div class="cart-col-wrap">
                                  <div class="cart-table-head">
                                     <h3>Event Image</h3>
                                  </div>
                               </div>
                            </div>
-                           <div class="col-lg-5">
+                           <div class="col-lg-5 col-md-4">
                               <div class="cart-col-wrap">
                                  <div class="cart-table-head">
                                     <h3>Details</h3>
                                  </div>
                               </div>
                            </div>
-                           <div class="col-lg-2">
+                           <div class="col-lg-2 col-md-2">
                               <div class="cart-col-wrap">
                                  <div class="cart-table-head">
                                     <h3>AddOns</h3>
                                  </div>
                               </div>
                            </div>
-                           <div class="col-lg-3">
+                           <div class="col-lg-3 col-md-4">
                               <div class="cart-col-wrap">
                                  <div class="cart-table-head">
                                     <h3>Price details
@@ -53,7 +53,7 @@
                      
                      <div class="cart-items-wrap my-order-detail-card" id="CartItems">
                         <div class="row no-gutters">
-                           <div class="col-lg-2 mb-4">
+                           <div class="col-lg-2 col-md-2 mb-4">
                               <div class="cart-col-wrap">
                                  <div class="car-col-body">
                                     <figure class="cart-tab-img">
@@ -62,7 +62,7 @@
                                  </div>
                               </div>
                            </div>
-                           <div class="col-lg-5 mb-4">
+                           <div class="col-lg-5 col-md-4 mb-4">
                               <div class="cart-col-wrap">
                                  <div class="car-col-body">
                                     <a href="javascript:void(0);" class="cart-item-link">{{ $item->event->title }}</a>
@@ -109,7 +109,7 @@
                               </div>
                            </div>
                            
-                           <div class="col-lg-2 mb-4">
+                           <div class="col-lg-2 col-md-3 mb-4">
                               <div class="cart-col-wrap">
                                  <div class="car-col-body">
                                     <ul class="cart-addon-listing">
@@ -123,7 +123,7 @@
                               </div>
                            </div>
                           
-                           <div class="col-lg-3 mb-4">
+                           <div class="col-lg-3 col-md-3 mb-4">
                               <div class="cart-col-wrap">
                                  <div class="car-col-body">
 

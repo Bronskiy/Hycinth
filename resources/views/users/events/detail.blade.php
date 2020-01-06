@@ -62,9 +62,9 @@
 
 <div class="order-status-row mb-4">
    <article class="media order shadow delivered wow bounceInRight" data-wow-delay="350ms">
-      <figure class="media-left">
+     <!--  <figure class="media-left">
          <i class="fas fa-thumbs-up"></i>
-      </figure>
+      </figure> -->
       <div class="media-content">
          <div class="content">
             <h3>
@@ -150,7 +150,7 @@
                   <h3>Event Theme</h3>
                </div>
                <div class="row">
-                  <div class="col-6">
+                  <div class="col-md-6">
                      <div class="evt-theme-card bs mt-4 wow bounceInLeft" data-wow-delay="500ms" style="background-image: url({{ asset('images/event-theme-bg.jpg') }})">
                       <div class="evt-theme-body">
                         <div class="title">Seasons</div>
@@ -158,7 +158,7 @@
                      </div>
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-md-6">
                      <div class="evt-theme-card bs mt-4 wow bounceInRight animated" data-wow-delay="800ms" style="background-image: url({{ asset('images/event-theme-bg-2.jpg') }})">
                       <div class="evt-theme-body">
                         <div class="title">Theme Color</div>
@@ -265,6 +265,7 @@
                   <h3>Vendors Services Related to your Event</h3>
                   <p class="bdgt-amout">Budget ${{$user_event->event_budget}}</p>
                </div>
+                  <div class="table-responsive">
                     <table class="table event-table">
                      @foreach($user_event->eventCategories as $category)
                      <tr>
@@ -291,6 +292,7 @@
                      </tr>
                      @endforeach
                   </table>
+                </div>
            </div>
        </div>
       </div>
@@ -409,7 +411,7 @@
             </div>
           </div>
 
-          <div class="card-footer">
+          <div class="card-footer w-100">
             <button type="submit" id="UserEventFormBtn" class="cstm-btn">Update</button>
           </div>
 
@@ -561,8 +563,13 @@ CKEDITOR.replace('ideas');
    
 </script>
 <script>
+   var radius = '';
+    if(window.innerWidth < 767) {
+      radius = '10em';
+    } else {
+     radius = '15em'; //distance from center
+    }
    var type = 1, //circle type - 1 whole, 0.5 half, 0.25 quarter
-     radius = '15em', //distance from center
      start = -90, //shift start from 0
      $elements = $('.event-planning-navigation li:not(:first-child)'),
      numberOfElements = (type === 1) ?  $elements.length : $elements.length - 1, //adj for even distro of elements when not full circle

@@ -2145,10 +2145,10 @@ section.main-banner .padding-left-0 {
 section.main-banner .cstm-btn.solid-btn.banner-btn {
     margin-top: 0;
     height: 60px;
-    padding: 20px 30px;
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
+    padding: 20px 25px;
+    border-radius: 0px 30px 30px 0px;
     text-align: center;
+    line-height: 1;
     width: 100%;
 }
 
@@ -2282,14 +2282,10 @@ hr.hr-break {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-}
-
-.right-content ul.inner-list {
-
     position: relative;
     padding: 0 6px 0 15px;
-}
 
+}
 .right-content ul.inner-list::before {
     position: absolute;
     content: "";
@@ -7633,4 +7629,10 @@ button.cstm-btn span {
 button.cstm-btn:disabled span{
     opacity: 1;
 }
-
+.dsk-hide{
+    display: none !important;
+   }
+   .errorMSG.cart-error-msz {
+     position: static;
+     padding: 10px;
+}

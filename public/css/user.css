@@ -900,6 +900,8 @@ width: 100%;
     padding: 30px 30px;
     min-height: 500px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    float: left;
+    width: 100%;
 }
 .content-main-wrap .tab-content{
     background: transparent;

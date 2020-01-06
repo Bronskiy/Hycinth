@@ -20,17 +20,24 @@
  
                   <div class="cart-items-wrap" style="display: none;">
                      <div class="row no-gutters">
-                        <div class="col-lg-2">
+                        <div class="col-lg-2 col-md-3">
                            <div class="cart-col-wrap">
                               <div class="cart-table-head">
                                  <h3>Event Image</h3>
                               </div>
                            </div>
                         </div>
-                        <div class="col-lg-10">
+                        <div class="col-lg-7 col-md-6">
                            <div class="cart-col-wrap">
                               <div class="cart-table-head">
                                  <h3>Details</h3>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3">
+                           <div class="cart-col-wrap">
+                              <div class="cart-table-head">
+                                 <h3>Addons</h3>
                               </div>
                            </div>
                         </div>

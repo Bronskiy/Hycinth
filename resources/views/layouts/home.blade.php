@@ -104,6 +104,7 @@
         AOS.init();
 
         new WOW().init();
+        AOS.init({disable: 'mobile'});
     </script>
 
     <script>

@@ -7,8 +7,9 @@
                         id="CouponApply">
                         <input class="search-field" type="text" name="coupon_code" placeholder="Coupon Code" value="">
                         <button class="cstm-btn"><span><img src="{{url('200.gif')}}"></span>Apply</button>
-                        <p class="errorMSG"></p>
+                        
                      </form>
+                     <p class="errorMSG cart-error-msz"></p>
                      @endif
                   </div>
                     

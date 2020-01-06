@@ -163,6 +163,10 @@
     position: relative;
     padding: 0 6px 0 15px;
 }
+.vendor-del-rating.right-content ul.inner-list{
+ padding: 0px;
+}
+
 .right-content ul.rating li a {
     color: #eea31e;
     font-size: 14px;
@@ -463,7 +467,6 @@ form .form-group {
 .cstm-card-head .card-title {
     font-size: 22px;
     color: #333333;
-    text-transform: uppercase;
     font-weight: bold;
 }
 .count-down-timer li {
@@ -747,12 +750,13 @@ figure.cart-tab-img {
     color: #878787;
     font-size: 14px;
 }
-.vendor-del-rating {
-    display: flex;
+.vendor-del-rating p {
+    margin-right: 10px;
 }
 .vendor-del-rating {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 }
 .inner-list.rating-stars li a {
     color: #eea31e;

@@ -1,7 +1,7 @@
 <fieldset class="complete p-3">
 <div class="complete-card">
   <div class="row">
-    <div class="col-lg-8">
+    <div class="col-md-8">
        <h3>Billing Address <span class="check-add-icon"> <i class="fas fa-check"></i></span> </h3>
        @if(Session::has('billingAddress'))
     <div class="checkout-billing-address">
@@ -11,7 +11,7 @@
    </div>
     @endif
     </div>
-    <div class="col-lg-4">
+    <div class="col-md-4">
       @if(Session::has('billingAddress'))
       <div class="mini-btn-wrap mt-4 text-right">
         

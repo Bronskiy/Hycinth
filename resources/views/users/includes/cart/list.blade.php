@@ -2,9 +2,11 @@
 @foreach($CartItems as $item)
 
  <div class="row no-gutters" data=id="{{$item->id}}">
-                <div class="col-lg-2">
+                <div class="col-lg-2 col-md-3">
                   <div class="cart-col-wrap">
-                     
+                   <div class="cart-table-head dsk-hide">
+                                 <h3>Event Image</h3>
+                              </div>  
                     <div class="car-col-body">
                       <figure class="cart-tab-img">
                         <img src="{{asset($item->event->event_picture)}}">
@@ -13,9 +15,11 @@
 
                   </div>
                 </div>
-                <div class="{{$item->addons !='' ? 'col-lg-7' : 'col-lg-10'}}">
+                <div class="{{$item->addons !='' ? 'col-lg-7 col-md-6' : 'col-lg-10 col-md-9'}}">
                   <div class="cart-col-wrap">
-                                      
+                               <div class="cart-table-head dsk-hide">
+                                 <h3>Event detail</h3>
+                              </div> 
                     <div class="car-col-body">
                       <a href="javascript:void(0);" class="cart-item-link">{{$item->event->title}}</a>
                       <div class="cart-item-des">
@@ -114,9 +118,11 @@
                   </div>
                 </div>
                 @if($item->addons !="")
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-md-3">
                   <div class="cart-col-wrap">
-                                      
+                      <div class="cart-table-head dsk-hide">
+                                 <h3>Add Ons</h3>
+                              </div>               
                     <div class="car-col-body">
                         {!!addonsInCarts($item)!!}
                     </div>

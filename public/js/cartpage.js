@@ -64,12 +64,12 @@ $("body").on('submit','#CouponApply',function(event){
                    if(result.status == 1){
                 		    $this.find('button.cstm-btn').removeAttr('disabled');
                         $this[0].reset();
-                        $this.find('.errorMSG').text(ErrorMsg('success',result.messages));
+                        $this.next('.cart-error-msz').html(ErrorMsg('success',result.messages));
 
                         loadCartItems(0);
                        
                     }else{
-                        $this.find('.errorMSG').text(ErrorMsg('warning',result.messages));
+                        $this.next('.cart-error-msz').html(ErrorMsg('warning',result.messages));
                         $this.find('button.cstm-btn').removeAttr('disabled');
                     }
                  },

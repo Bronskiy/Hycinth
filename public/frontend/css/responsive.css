@@ -677,6 +677,9 @@ section.vendor-listing-sec .inner-content-detail {
 .deal-discount-card .dealls-dis-head p.ser-text {
     font-size: 15px;
 }
+.checkout-billing-address{
+    padding: 20px 10px !important;
+}
 /******************/
 }
 

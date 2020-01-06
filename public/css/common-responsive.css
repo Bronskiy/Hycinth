@@ -30,9 +30,90 @@
    .coming-evet-des{
    	width: 100%;
    }
+   .card-media-object-container{
+      width: 100%;
+      min-height: 200px;
+   }
+   .card-media-body{
+    width: 100%;
+    height: auto;
+   }
+   .card-media-body-heading{
+    margin-bottom: 20px;
+   }
+   .card-media-body-top .subtle{
+    width: 100%;
+   }
+   .card-media-body-supporting-bottom{
+    position: static;
+    padding: 0px;
+    justify-content: space-between;
+   }
+   .order-status-row article{
+        flex-direction: column;
+    align-items: flex-start;
+   }
+   .order-status-row .media-right{
+    margin-left: 0px;
+   }
+   .main-header__intro-wrapper{
+    flex-direction: column;
+   }
+   .card-media{
+    height: auto;
+   }
+   .cart-totals .cart-table th{
+    width: 50%;
+   }
+   .mobile-hide{
+    display: none !important;
+   }
+   .dsk-hide{
+    display: block !important;
+   }
+   .complete-card .mini-btn-wrap {
+    text-align: left !important;
+    margin-top: 10px !important;
+}
+.complete-card .checkout-billing-address{
+   padding: 0px !important;
+}
+.event-planning-navigation ul{
+      margin: 165px auto;
+}
+.event-planning-navigation {
+    min-height: auto;
+  }
+  .amt-list-wrap{
+    height: auto;
+  }
+  .cstm-card-head .card-title{
+    font-size: 17px;
+  }
+.rec-heading{
+  font-size: 18px;
+}
+.card .card-footer{
+  padding: 10px 15px;
+}
+.card .animated{
+  margin-bottom: 0px;
+}
 }
 @media (max-width: 480px){
 	#firstUserModal .about-event-img{
 		height: 200px;
 	}
+  .content-main-wrap{
+      padding: 14px 8px;
+  }
+  .content-main-wrap .nav-tabs .nav-link {
+    margin-right: 1px;
+    font-size: 10px;
+    padding: 6px 4px;
+}
+.event-planning-navigation ul{
+      margin: 100px auto;
+}
+
 }

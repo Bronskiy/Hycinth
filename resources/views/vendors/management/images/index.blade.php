@@ -23,7 +23,7 @@
        <div class="col-lg-12">
           <div class="card vendor-dash-card">
        <div class="card-header">
-            <h3>Added images </h3>
+            <h3>Added Images </h3>
        </div>
            <div class="card-body">
 
