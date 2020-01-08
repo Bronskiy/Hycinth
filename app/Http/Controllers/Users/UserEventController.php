@@ -263,12 +263,26 @@ class UserEventController extends Controller
     {
         $event = UserEvent::where('id',$id)->where('user_id',Auth::user()->id)->first();
 
+        $EventOrder = \App\Models\EventOrder::where('category_id',$request->category_id)
+                                ->where('type','order')
+                                ->where('user_id',Auth::user()->id)
+                                ->where('event_id',$id)
+                                ->first();
+
         if(empty($event)){
             abort(404);
         }
-
-
         
+        $vv = view('users.events.order')
+              ->with('order',$EventOrder)
+              ->with('event',$event);
+
+        return response()->json([
+            'status' => 1,
+            'htm' => $vv->render()
+        ]);
+
+
     }
 
 

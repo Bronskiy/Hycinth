@@ -602,6 +602,12 @@ p.errorMSG {
     color: #eea31e;
     font-weight: 600;
 }
+.cart-totals .color-green .headline{
+    color: green;
+}
+.cart-totals .color-danger .headline{
+    color: red;
+}
 .headline-wrap.cart-totals{
     width: 100%;
 }

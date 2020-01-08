@@ -184,7 +184,6 @@
             <div class="card-block">
                <div class="event-card-head j-c-s-b">
                   <h3>Todo List</h3>
-                  <p class="bdgt-amout">Budget ${{$user_event->event_budget}}</p>
                </div>
                <div class="todo-listing-wrap mt-4">
                   <ul class="Todo-item-list row wow bounceInRight" data-wow-delay="800ms">
@@ -271,34 +270,55 @@
     <span class="line"></span><div class="clearfix"></div>
 
               <table class="cart-table margin-top-5">
-
+                    @php  $b = getEventBudget($user_event) @endphp
                 <tbody>
+ 
                   <tr>
                     <th>Total Budget</th>
-                    <td><strong>${{$user_event->event_budget}}</strong></td>
+                    <td><strong>${{custom_format($user_event->event_budget,2)}}</strong></td>
                   </tr>
 
 
                   <tr>
-                    <th>Total Expenses on Vendor</th>
-                    <td><strong><span class="minus-sign">-</span>  $200.00</strong></td>
+                    <th>Expenses on Vendor</th>
+                    <td><strong><span class="minus-sign">-</span> ${{custom_format($b['spend'],2)}} </strong></td>
                   </tr>  
 
                   <tr>
                     <th>Remaining Balance</th>
-                    <td><strong>$800.00</strong></td>
+                    <td><strong>${{custom_format($b['remain'],2)}}</strong></td>
                   </tr>              
 
                   <tr>
                     <th>Extra Expenses</th>
-                    <td><strong>$800.00</strong></td>
+                    <td><strong>${{custom_format($b['over'],2)}}</strong></td>
                   </tr>
 
                 </tbody>
               </table>
     <br>
+    @if($b['over'] == 0)
+    <div class="headline-wrap color-green text-center">
+       <h3 class="headline">On Budget</h3>
+       <span class="line"></span><div class="clearfix"></div>
+    </div>
+
+  @else
+
+   <div class="headline-wrap color-danger text-center">
+     <h3 class="headline">Over Budget</h3>
+     <span class="line"></span><div class="clearfix"></div>
+   </div>
+   @endif
     <!-- <a href="#" class="calculate-shipping"><i class="fa fa-arrow-circle-down"></i> Calculate Shipping</a> -->
   </div>
+
+
+
+
+
+
+
 </div>
         </div>
         </div>
@@ -320,7 +340,8 @@
                   <div class="table-responsive">
                     <table class="table event-table">
                      @foreach($user_event->eventCategories as $category)
-                     <tr>
+
+                     <tr class="{{count( categoryOrders($category->eventCategory->id, $user_event->id) ) > 0 ? 'bg-success' : ''}}">
                         <td><label>{{$category->eventCategory->label}} </label></td>
                         <td>
                            <p class="hire-status">{{(count( categoryOrders($category->eventCategory->id, $user_event->id)) > 0) ? 'Hired' :'Not Hired'}}</p>
@@ -338,10 +359,11 @@
                         </td>
                         @if(count( categoryOrders($category->eventCategory->id, $user_event->id) ) > 0)
                         <td class="action-td">
-                          <a href="{{url(route('getOrderDetailOfEvent',$user_event->id))}}?category_id={{$category->eventCategory->id}}" 
+                          <a href="javascript:void(0);" 
+                             data-url="{{url(route('getOrderDetailOfEvent',$user_event->id))}}?category_id={{$category->eventCategory->id}}"
                              data-categoryID="{{$category->eventCategory->id}}"
                              data-eventID="{{$category->eventCategory->id}}"
-                             data-title="{{$category->eventCategory->label}}"
+                             data-title="Hired Vendor Detail for {{$category->eventCategory->label}} Service"
                              class="action-btn detail-btn"><i class="fas fa-eye"></i>
                            </a>
                         </td>
@@ -651,25 +673,27 @@ CKEDITOR.replace('ideas');
 //###############################################################################################################
 
 
-$("body").on('click','.detail-btn',function(){
-        var $model = $('#cat_Modal');
-        var eventID = $(this).attr('data-eventID');
-        var categoryID = $(this).attr('data-categoryID');
-        var title = $(this).attr('data-title');
-        $model.find('.modal-title').text(title);
-        $model.modal('show');
+$("body").on('click','.detail-btn',function(e){
+      e.preventDefault();
+      var $this = $(this);
+      getDetail($this);
 });
 
 //################################################################################################################
 
 
-function getDetail(eventID,categoryID,$model) {
+function getDetail($this) {
+
+        var $model = $('#cat_Modal');
+        var eventID = $this.attr('data-eventID');
+        var categoryID = $this.attr('data-categoryID');
+        var url = $this.attr('data-url');
+        var title = $this.attr('data-title');
+        $model.find('.modal-title').text(title);
+        
+
      $.ajax({
                url : url,
-               data : {
-                 event_id : eventID,
-                 category_id : categoryID
-               },
                type: 'GET',   
                dataTYPE:'JSON',
                headers: {
@@ -683,10 +707,11 @@ function getDetail(eventID,categoryID,$model) {
                 success: function (result) {
                        if(parseInt(result.status) == 1){
                            
-                           $model.find('#modal_body').html(result.htm);
+                            $model.find('#modal_body').html(result.htm);
+                            $model.modal('show');
+                        $("body").find('.custom-loading').hide();
                        } 
 
-                        $("body").find('.custom-loading').show();
                },
                complete: function() {
                         $("body").find('.custom-loading').hide();

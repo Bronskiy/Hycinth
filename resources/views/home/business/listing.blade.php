@@ -94,7 +94,7 @@
 @endsection
 
 @section('scripts')
- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDULjv0UAVmj_zgc9GjBhJNh9fNuEj87LQ&libraries=places"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDULjv0UAVmj_zgc9GjBhJNh9fNuEj87LQ&libraries=places"></script>
 <script type="text/javascript" src="{{url('/js/validations/businessListingFilter.js')}}"></script>
 <script type="text/javascript" src="{{url('/js/validations/quotes.js')}}"></script>
 <script type="text/javascript">
@@ -103,8 +103,7 @@
            var bounds = new google.maps.LatLngBounds();
 
            var mapOptions = {
-               mapTypeId: 'roadmap' 
-               
+               mapTypeId: 'roadmap'
            };
             // Display a map on the web page
            map = new google.maps.Map(document.getElementById("mapCanvas"), mapOptions);

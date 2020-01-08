@@ -1,14 +1,11 @@
- @if(empty($discount_deals))
-
-    <h1>No Deal</h1>
-
- @endif
+@php $i=0; @endphp 
 
 @foreach($discount_deals as $dealDisount)
 
 
 
   @php
+  $i++;
 
   $deal = \App\Models\Vendors\DiscountDeal::find($dealDisount->id);
 
@@ -130,6 +127,13 @@
  
  
 @endforeach
+
+
+@if($i == 0)
+
+  @include('includes.not_found')
+
+ @endif
 
 
 <!-- Modal -->

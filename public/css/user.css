@@ -60,6 +60,12 @@ margin: 0px;
     color: #fff;
     border-radius: 4px;
 }
+.action-btn.detail-btn {
+    background: #008000;
+}
+.bg-success {
+    background-color: #dbf9e2!important;
+}
 table label {
     font-size: 18px;
     font-weight: bold;
@@ -592,6 +598,11 @@ width: 100%;
     display: inline-block;
     cursor: pointer;
     white-space: nowrap;
+}
+.bg-success .hire-status{
+   background: #008000;
+   color: #fff;
+   border-color: #008000;
 }
 /*nav.evt-plan-navigation {
     min-height: 455px;

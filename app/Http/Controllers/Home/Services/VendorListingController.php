@@ -60,7 +60,7 @@ public function getVendorData($request)
 public function getBusinesAccordingToSearch($request)
 {
    $ids = $this->getVendorIds($request);
- $businesses = VendorCategory::whereIn('id',$ids);
+ $businesses = VendorCategory::whereIn('id', $ids);
  return $businesses;
 }
 

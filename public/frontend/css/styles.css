@@ -4940,6 +4940,19 @@ display: flex;
     font-size: 15px;
 }
 /*Worning message*/
+.invite-vendor-box .warning-text{
+    background: #34486a;
+    color: #fff;
+}
+.invite-vendor-box .warning-text h4, .invite-vendor-box  .warning-text p{
+  color: #fff;
+}
+.invite-vendor-box .warning-box .info-tab{
+    background: #b58dc3;
+}
+.invite-vendor-box .warning-box .tip-icon i::before {
+    background: #b58dc3;
+}
 .warning-box {
     margin: 15px 0;
     padding-left: 20px;

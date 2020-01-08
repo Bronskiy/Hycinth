@@ -2,6 +2,30 @@
 
 
 
+function getEventBudget($user_event)
+{
+  $order = \App\Models\EventOrder::where('type','order')
+                         ->where('user_id',$user_event->user_id)
+                         ->where('event_id',$user_event->id)
+                         ->groupBy('event_id')
+                         ->get();
+  $total = 0;
+
+  foreach ($order as $k) {
+     $total = ($k->order->amount + $total);
+  }
+
+  $remain = $user_event->event_budget > $total ? ($user_event->event_budget - $total) : 0;
+  $over = $user_event->event_budget < $total ? ($total - $user_event->event_budget) : 0;
+
+  return [
+     'spend' => $total,
+     'remain' => $remain,
+     'over' => $over,
+  ];
+}
+
+
 function getOrderExtraFees($arr,$package_id = 0)
 {
    $data = json_decode($arr->first()->paymentDetails);

@@ -137,7 +137,11 @@ $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) 
                                 </div>
                             </div>
                             <hr class="hr-break">
+
                        @endforeach 
+
+
+
 
 
 
@@ -147,6 +151,22 @@ $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) 
                     <div class="pagination-container">
                          
                     </div>
+
+                    <div class="invite-vendor-box">                  
+                       <div class="warning-box space">
+                                  <div class="shadow-box">                                  
+                                      <div class="info-tab tip-icon" title="Useful Tips"><span class="fas fa-user-plus"> </span> <i></i></div>
+                                      <div class="warning-text">
+                                        <h4>Invite Vendor</h4>
+                                        <p>Is there a Vendor you have worked in the past and not listed here please click below Invite Button</p>
+                                        <div class="btn-wrap mini-btn-wrap mt-2">
+                                          <a href="{{ route('users.invite.newVendor') }}" class="cstm-btn solid-btn">Invite Vendor</a>
+                                        </div>
+                                  </div>
+                              </div>
+                          </div>       
+                    </div>
+
 </div>
 
 
@@ -154,6 +174,11 @@ $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) 
 @include('home.includes.quotes')
  
 <script type="text/javascript">
+
+  setTimeout(() => {
+    $('.invite-vendor-box').addClass('wow bounceInRight');
+    new WOW().init();
+  },2000);
    
    jQuery("body").on('click','.view-mapper',function(e){
         e.preventDefault();
