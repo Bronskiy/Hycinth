@@ -250,4 +250,36 @@ class UserEventController extends Controller
         return view('users.events.hitesh_event');
     }
 
+
+
+
+#------------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------
+
+
+
+    public function getOrderDetailOfEvent(Request $request,$id)
+    {
+        $event = UserEvent::where('id',$id)->where('user_id',Auth::user()->id)->first();
+
+        if(empty($event)){
+            abort(404);
+        }
+
+
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }

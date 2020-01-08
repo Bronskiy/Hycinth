@@ -193,6 +193,9 @@
     font-size: 11px;
     padding: 7px 17px;
 }
+.mini-btn-wrap .cstm-btn.resetRadio {
+padding: 3px 10px;
+}
 .social-links li:first-child {
     padding-left: 0;
 }

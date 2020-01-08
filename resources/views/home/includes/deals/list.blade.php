@@ -1,4 +1,4 @@
- @if($dealCount == 0)
+ @if(empty($discount_deals))
 
     <h1>No Deal</h1>
 

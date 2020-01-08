@@ -81,8 +81,8 @@ jQuery("body").on('click','.resetRadio',function(){
      $this = $('input[name=price_range]:checked');
     if($this.is(':checked')) { 
         $this.prop('checked', false);
-        
     } 
+         getAllBusinessAccordingToFilter();
 });
 
 

@@ -337,7 +337,14 @@
                            @endif
                         </td>
                         @if(count( categoryOrders($category->eventCategory->id, $user_event->id) ) > 0)
-                        <td class="action-td"><a href="javascript:void(0);" onclick="payments({{ categoryOrders($category->eventCategory->id, $user_event->id) }})" data-toggle="modal" data-target="#cat_Modal" class="action-btn"><i class="fas fa-eye"></i></a></td>
+                        <td class="action-td">
+                          <a href="{{url(route('getOrderDetailOfEvent',$user_event->id))}}?category_id={{$category->eventCategory->id}}" 
+                             data-categoryID="{{$category->eventCategory->id}}"
+                             data-eventID="{{$category->eventCategory->id}}"
+                             data-title="{{$category->eventCategory->label}}"
+                             class="action-btn detail-btn"><i class="fas fa-eye"></i>
+                           </a>
+                        </td>
                         @else
                         <td class="action-td"><a href="javascript:void(0);" class="action-btn"><i class="fas fa-eye-slash"></i></a></td>
                         @endif
@@ -535,12 +542,12 @@ CKEDITOR.replace('ideas');
    <div class="col-lg-6">
    <div class="order-sum-card">
    <div class="billing-addres-detail">
-   <h3 class="rec-heading">Billing Address</h3>
+   <h3 class="rec-heading">Billings Address</h3>
    
    <div class="billing-address-line">
    <p><span><i class="fas fa-user"></i></span>Narinder Singh</p>
    <p> <span> <i class="fas fa-map-marker-alt"></i> </span> sddsd, sdsdsd, Baretta, Punjab India wqewewe</p>
-   <p> <span> <i class="fas fa-envelope"></i> </span> bajwa9876470491@gmail.com</p>
+   <p> <span> <i class="fas fa-envelope"></i> </span> bajwa987647ss0491@gmail.com</p>
    <p><span><i class="fas fa-phone-volume"></i></span> 1212878777</p>
    <p></p> 
    </div>
@@ -636,5 +643,62 @@ CKEDITOR.replace('ideas');
          'transform': 'rotate(' + rotate + 'deg) translate(' + radius + ') rotate(' + rotateReverse + 'deg)'
      });
    });
+
+
+
+
+
+//###############################################################################################################
+
+
+$("body").on('click','.detail-btn',function(){
+        var $model = $('#cat_Modal');
+        var eventID = $(this).attr('data-eventID');
+        var categoryID = $(this).attr('data-categoryID');
+        var title = $(this).attr('data-title');
+        $model.find('.modal-title').text(title);
+        $model.modal('show');
+});
+
+//################################################################################################################
+
+
+function getDetail(eventID,categoryID,$model) {
+     $.ajax({
+               url : url,
+               data : {
+                 event_id : eventID,
+                 category_id : categoryID
+               },
+               type: 'GET',   
+               dataTYPE:'JSON',
+               headers: {
+                 'X-CSRF-TOKEN': $('input[name=_token]').val()
+               },
+                beforeSend: function() {
+                    $("body").find('.custom-loading').show();
+                      
+
+                },
+                success: function (result) {
+                       if(parseInt(result.status) == 1){
+                           
+                           $model.find('#modal_body').html(result.htm);
+                       } 
+
+                        $("body").find('.custom-loading').show();
+               },
+               complete: function() {
+                        $("body").find('.custom-loading').hide();
+               },
+               error: function (jqXhr, textStatus, errorMessage) {
+                     
+               }
+
+        });
+}
+
+
+
 </script>
 @endsection
