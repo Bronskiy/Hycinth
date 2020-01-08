@@ -29,7 +29,6 @@
 
   <form role="form" method="post" id="UserEventForm" enctype="multipart/form-data">
     @csrf
-      <div class="card-body">
         <div class="row">
           <div class="col-md-12">
            {{textbox($errors, 'Title*', 'title', $user_event->title)}}
@@ -141,7 +140,9 @@
 
 @if($user_event->event_picture !="")
 <div class="col-md-12">
+    <div class="form-group ">
  <img src="{{url($user_event->event_picture)}}" id="image_src" width="120">
+</div>
 </div>
 @endif
 
@@ -153,10 +154,9 @@
 
 
       </div>
-    </div>
 
-      <div class="card-footer">
-        <button type="submit" id="UserEventFormBtn" class="btn btn-primary">Update</button>
+      <div class="card-footer cstm-card-ftr">
+        <button type="submit" id="UserEventFormBtn" class="cstm-btn">Update</button>
       </div>
  </form>
 

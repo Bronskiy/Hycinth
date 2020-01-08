@@ -269,7 +269,7 @@ width: 100%;
 
 /*Event Planning css*/
 .event-planning-navigation{
-    min-height: 400px;
+    /*min-height: 400px;*/
     background: #fff;
 }
 
@@ -279,7 +279,7 @@ width: 100%;
     height: 100px;
     list-style-type: none;
     padding: 0;
-    margin: 250px auto;
+    margin: 165px auto;
 }
 .event-planning-navigation li:first-child {
     width: 150px;
@@ -956,11 +956,22 @@ width: 100%;
     position: relative;
     display: flex;
     justify-content: space-between;
-    height: 250px;
+    flex-direction: column;
+    min-height: 250px;
     color: #FFF;
     background-size: cover;
     background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/1609106/lake-shadow-water.jpg);
     margin-bottom: 20px;
+    position: relative;
+}
+.main-header:after{
+  position: absolute;
+  content: "";
+  background: rgba(0,0,0,0.5);
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
 }
 .main-header__intro-wrapper {
     display: flex;
@@ -968,10 +979,12 @@ width: 100%;
     align-items: center;
     justify-content: space-between;
     height: 160px;
-    padding: 12px 30px;
+    padding: 12px 15px;
     background: rgba(255, 255, 255, 0.12);
     font-size: 26px;
     letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
 }
 .main-header__welcome {
     display: flex;
@@ -1003,20 +1016,20 @@ width: 100%;
     font-size: 16px;
     text-align: center;
 }
-
-.order-status-row article.delivered {
-    background: #1c9638;    
-    color: #fff;
+.order-status-row{
+  position: relative;
+  z-index: 11;
 }
 .order-status-row article{
 	padding: 10px;
 	border-radius: 5px;
 }
 .order-status-row article {
-    padding: 12px;
-    background-color: #1a649c;
+    padding: 10px 15px;
+    background:rgba(255, 255, 255, 0.12);
     color: #fff;
     align-items: center;
+    border-radius: 0px;
 }
 .order-status-row .media-left, .order-status-row .media-right {
     flex-basis: auto;
@@ -1180,6 +1193,23 @@ width: 100%;
 .recommended-vedors-wrap .rec-card{
    box-shadow: none;
    padding: 0px;
+}
+.event-planning-table-wrap {
+    background: #f6f6f6;
+    padding: 15px;
+    border-radius: 4px;
+}
+.event-planning-table-wrap .cart-totals .cart-table th{
+  width: auto;
+      padding: 15px 10px;
+}
+.event-planning-table-wrap .cart-totals .line{
+      margin: -13px 0 29px;
+}
+.right-col-table {
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 /*=====================*/
 

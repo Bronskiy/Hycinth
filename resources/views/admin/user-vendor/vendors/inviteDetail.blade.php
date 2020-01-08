@@ -58,11 +58,11 @@
                                   </tr>
 
                                    <tr>
-                                      <th>Requested By for inviting</th><td>{{$vendor->user->name}}, {{$vendor->user->email}}</td>
+                                      <th>Requested By</th><td>{{$vendor->user->name}}, {{$vendor->user->email}}</td>
                                   </tr>
 
                                   <tr>
-                                    <th>Invite Status</th>
+                                    <th>Invitation Status</th>
                                     <td>
                                         {{$vendor->status == 0 ? 'Pending' : 'Invited'}}  
                                     </td>
@@ -70,8 +70,8 @@
 
 
                                   <tr>
-                                      <th>Invite To that Business</th><td>
-                                        <a href="{{url(route('admin.vendorInvite',$vendor->id))}}" class="btn btn-warning">Invite</a></td>
+                                      <th>Action</th><td>
+                                        <a href="{{url(route('admin.vendorInvite',$vendor->id))}}" class="btn btn-warning">Request Invite</a></td>
                                   </tr>
 
                                   

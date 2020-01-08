@@ -11,11 +11,14 @@ use App\User;
 use App\Models\Admin\CmsPage;
 use App\Category;
 use App\VendorCategory;
+use Carbon\Carbon;
 
+use App\Traits\EmailTraits\EmailNotificationTrait;
 class HomeController extends Controller
 {
     use RegistersUsers;
     use GeneralSettingTrait;
+    use EmailNotificationTrait;
 
     /**
      * Create a new controller instance.
@@ -119,13 +122,14 @@ public function saveNewVendor($request)
     $u->longitude = $request->longitude;
     $u->website_url = $request->website_url;
     $u->ein_bs_number = $request->ein_bs_number;
-    $u->age = $request->age;
+    $u->age = Carbon::parse($request->age)->format('Y-m-d');
     $u->id_proof = $id_proof;
     $u->status = 0;
     $u->role = 'vendor';
     $u->password = \Hash::make($request->password);
     if($u->save() && $this->addBusinessCategories($request,$u->id) == 1) {
-         $user->sendEmailVerificationNotification();
+
+         $u->sendEmailVerificationNotification();
 
          return 1;
     }
@@ -431,7 +435,27 @@ public function contact()
 }
 
 
+ 
+#-------------------------------------------------------------------------
+# email for email template testing
+#-----------------------------------------------------------------------
 
+
+
+public function email()
+{
+   return $this->VendorOrderSuccessOrderSuccess(11);
+             $o = \App\Models\Order::find(10);
+             $order = \App\Models\EventOrder::where('order_id',$o->id)
+                               //->where('vendor_id',35)
+                                ->where('type','order')->get();
+    return view('emails.customEmail')->with('order',$order)->with('o',$o);
+}
+
+
+public function faq() {
+    return view('home.faq.faq');
+}
 
 
 

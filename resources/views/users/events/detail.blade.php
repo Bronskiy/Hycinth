@@ -56,12 +56,9 @@
 </div> -->
 </div>
 </div>
-</div>
-</div>
 
-
-<div class="order-status-row mb-4">
-   <article class="media order shadow delivered wow bounceInRight" data-wow-delay="350ms">
+<div class="order-status-row">
+   <article class="media order shadow delivered">
      <!--  <figure class="media-left">
          <i class="fas fa-thumbs-up"></i>
       </figure> -->
@@ -97,6 +94,16 @@
          @endif
       </div>
    </article>
+</div>
+
+
+
+
+
+
+
+
+</div>
 </div>
 
 
@@ -236,6 +243,8 @@
                <div class="event-card-head j-c-s-b">
                   <h3>My Event Planning Tool Box</h3>
                </div>
+               <div class="row">
+                <div class="col-lg-7">
                <div class="event-planning-navigation">
                <nav class="evt-plan-navigation">
                <ul>
@@ -250,7 +259,50 @@
                   <li><a href="javascript:void(0);"><span class="plan-nav-icon"><i class="fas fa-comments"></i></span>Message <br/> Vendors</a></li>
                </ul>
             </nav>
+          </div>
         </div>
+        <div class="col-lg-5">
+          <div class="right-col-table">
+          <div class="event-planning-table-wrap">
+          <div class="cart-totals mt-2">
+    <div class="headline-wrap text-center">
+    <h3 class="headline">My Budget</h3>
+  </div>
+    <span class="line"></span><div class="clearfix"></div>
+
+              <table class="cart-table margin-top-5">
+
+                <tbody>
+                  <tr>
+                    <th>Total Budget</th>
+                    <td><strong>${{$user_event->event_budget}}</strong></td>
+                  </tr>
+
+
+                  <tr>
+                    <th>Total Expenses on Vendor</th>
+                    <td><strong><span class="minus-sign">-</span>  $200.00</strong></td>
+                  </tr>  
+
+                  <tr>
+                    <th>Remaining Balance</th>
+                    <td><strong>$800.00</strong></td>
+                  </tr>              
+
+                  <tr>
+                    <th>Extra Expenses</th>
+                    <td><strong>$800.00</strong></td>
+                  </tr>
+
+                </tbody>
+              </table>
+    <br>
+    <!-- <a href="#" class="calculate-shipping"><i class="fa fa-arrow-circle-down"></i> Calculate Shipping</a> -->
+  </div>
+</div>
+        </div>
+        </div>
+      </div>
            </div>
        </div>
    </div>
@@ -262,7 +314,7 @@
          <div class="card">
             <div class="card-block">
                <div class="event-card-head j-c-s-b">
-                  <h3>Vendors Services Related to your Event</h3>
+                  <h3>Vendors Services you choosed for your Event</h3>
                   <p class="bdgt-amout">Budget ${{$user_event->event_budget}}</p>
                </div>
                   <div class="table-responsive">
@@ -567,7 +619,7 @@ CKEDITOR.replace('ideas');
     if(window.innerWidth < 767) {
       radius = '10em';
     } else {
-     radius = '15em'; //distance from center
+     radius = '10em'; //distance from center
     }
    var type = 1, //circle type - 1 whole, 0.5 half, 0.25 quarter
      start = -90, //shift start from 0

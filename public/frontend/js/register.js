@@ -145,7 +145,7 @@ rules: {
   },
   'age': {
       required: true,
-      number: true,
+      minAge: 18
   },
   'id_proof': {
       required: true,
@@ -164,6 +164,9 @@ rules: {
       equalTo: "#password",
       minlength: 6,
       maxlength: 12,
+  },
+  "agree": {
+    required: true
   },
 
   valueToBeTested: {

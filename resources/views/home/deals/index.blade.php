@@ -85,9 +85,12 @@
 @endsection
 
 @section('scripts')
-  
 <script type="text/javascript" src="{{url('/js/deals/deals.js')}}"></script>
-<script src="http://49.249.236.30:6633/js/comingsoon.js"></script>
+<script src="{{url('/js/comingsoon.js')}}"></script>
+ <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDULjv0UAVmj_zgc9GjBhJNh9fNuEj87LQ&libraries=places"></script>  
+<script type="text/javascript">
+ 
 
+</script>
 @endsection
 

@@ -24,11 +24,27 @@ p.error {
   color: red;
   font-size: 12px;
 }
-body.login-page {
+.admin-login-wrap{
     background: #1e2d4a;
+    background-size: cover !important;
+    background-position: center, center !important;
+    position: relative;
+    min-height: 100vh;
 }
+.admin-login-wrap:after{
+  position: absolute;
+  content: "";
+  background: rgba(53, 71, 107, 0.8);
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
 .login-page .card {
     border-radius: 12px;
+    position: relative;
+    z-index: 11;
 }
 
 .login-logo a {
@@ -40,6 +56,8 @@ body.login-page {
 }
 .login-logo, .register-logo{
   margin-bottom: 10px;
+  position: relative;
+  z-index: 11;
 }
 
 
@@ -1620,7 +1638,8 @@ table.custom-table tr td {
 .login-box{
   max-width: 500px;
   width: 100%;
-  margin:2% auto;
+  margin:0px auto;
+  padding: 17px 0px;
 }
 .dashboard-logo {
     display: block;
@@ -1634,6 +1653,7 @@ table.custom-table tr td {
     min-width: 58px;
 }
 /****************/
+
 
 /*Dashboard css*/
 

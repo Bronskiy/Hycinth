@@ -104,7 +104,7 @@ class DealController extends Controller
       $d->vendor_category_id = $this->getVendorCategoryID($category->category_id);
       $d->image = $request->hasFile('image') ? uploadFileWithAjax($this->path,$request->file('image')) : '';
       $d->title = trim($request->title);
-      
+      $d->min_price =$request->deal_off_type == 1 ? $request->min_amount : 0;
       $d->type_of_deal = trim($request->type_of_deal);
       $d->packages = $request->type_of_deal == 0 ? 0 : trim($request->packages);
       $d->start_date = trim($request->start_date);
@@ -188,7 +188,7 @@ class DealController extends Controller
       $d->deal_life = trim($request->deal_life);
       $d->image = $request->hasFile('image') ? uploadFileWithAjax($this->path,$request->file('image')) : $d->image;
       $d->title = trim($request->title);
-
+      $d->min_price =$request->deal_off_type == 1 ? $request->min_amount : 0;
       $d->type_of_deal = trim($request->type_of_deal);
       $d->packages = trim($request->packages);
       $d->start_date = trim($request->start_date);

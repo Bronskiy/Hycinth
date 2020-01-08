@@ -1,9 +1,8 @@
-<style type="text/css">
+ @if($dealCount == 0)
 
+    <h1>No Deal</h1>
 
-
-</style>
-
+ @endif
 
 @foreach($discount_deals as $dealDisount)
 

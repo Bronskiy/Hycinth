@@ -75,9 +75,7 @@ public function getAllUpcommingEventUser()
 
 public function dealHaveRelatedEventType($events,$package_id)
 {
-	
-
-       $PackageMetaData = \App\PackageMetaData::
+	 $PackageMetaData = \App\PackageMetaData::
 				          where('key_value',$events->event_type)
 				         ->where('type','events')
 				         ->where('package_id',$package_id)
@@ -129,8 +127,10 @@ public function checkAllConditionOfEvent($events,$request,$type=null)
 	  
 	  # this function is check that the event type of package which are selected and your event's eventtype both are same
 	  $evenTypeStatus = $this->dealHaveRelatedEventType($events,$package_id);
-
-	  $datesSataus = $this->checkAvailableDates($evenTypeStatus,$events,$request);
+ 
+	  $checkDealMinAmountStatus = $this->checkDealMinAmountAccordingToPackage($evenTypeStatus,$request);
+      #
+	  $datesSataus = $this->checkAvailableDates($checkDealMinAmountStatus,$events,$request);
      
       # this function is check that the category of package which is selected and your event's category both are same
 	  $cartStatus = $this->chackAlreadyBuyOrCart($evenTypeStatus,$events,$package_id,$type);
@@ -150,7 +150,10 @@ public function checkAllConditionOfEvent($events,$request,$type=null)
 	  if($evenTypeStatus == 0){
 	  	  $status = 0;
           $msg = $this->checkAllConditionBeforeAddingPackage('event_type');
-	  }elseif($datesSataus == 0){
+	  }elseif($checkDealMinAmountStatus == 0){
+	  	  $status = 0;
+          $msg = $this->checkAllConditionBeforeAddingPackage('priceNotApplicable',$request);
+      }elseif($datesSataus == 0){
 	  	  $status = 0;
           $msg = $this->checkAllConditionBeforeAddingPackage('hiedOnThesedate',$request);
 	  }elseif($cartStatus == 0 && $type !="all") {
@@ -319,6 +322,35 @@ public function CheckDealRelatedPackage($package,$request)
 	return $price;
  
 }
+
+#----------------------------------------------------------------------------------------------------#
+# check deal min package amount
+#----------------------------------------------------------------------------------------------------#
+
+public function checkDealMinAmountAccordingToPackage($pastStatus,$request)
+{   
+	$status = 0;
+	if($pastStatus == 1){
+		$package = VendorPackage::find($request->package_id);
+		$price = $package->price;
+		$deal_id = !empty($request->deal_id) && $request->deal_id > 0 ? $request->deal_id : 0;
+
+		 
+	    $deals = DiscountDeal::where('id',$deal_id);
+	                          //->where('min_price','<',$price);
+
+	    $d = $deals->first();
+        if( $deal_id == 0){
+         $status = 1;
+        }elseif($deals->count() > 0 && $d->deal_off_type == 0){
+          $status = 1;
+        }elseif($deals->count() > 0 && $d->deal_off_type == 1 && $d->min_price <= $price){
+          $status = 1;
+        } 
+		return $status;
+   }
+}
+
  
 #-----------------------------------------------------------------------------------------
 #  check deal package have related to user event
@@ -383,6 +415,14 @@ public function checkAllConditionBeforeAddingPackage($errorType,$request=[])
 			break;
 		case 'wishlist_package':
 		    $msg= 'You already have this package in your wishlist. Try with another Package.';
+			break;
+
+	    case 'priceNotApplicable':
+	               $deal_id = !empty($request->deal_id) && $request->deal_id > 0 ? $request->deal_id : 0;
+                   $deals = DiscountDeal::where('id',$deal_id)->first();
+
+                   $text = 'The <b>'.$deals->title.'</b> only for greater than amount: <b>$'.$deals->min_price.'</b>';
+	        $msg= 'This deal is not applicable for this package. '.$text;
 			break;
 		case 'out_of_budget':
 		     $package = VendorPackage::find($request->package_id);

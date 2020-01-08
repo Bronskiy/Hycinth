@@ -112,11 +112,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
 
         $("#chatbox-btn").click(function(){
             $(this).toggleClass("active");
-             $(this).find($(".fas")).removeClass('fa-comment-alt').addClass('fa-times');
           $("#chatbox").toggleClass("chatbox-active");
         });
 

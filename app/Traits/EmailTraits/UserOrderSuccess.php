@@ -37,7 +37,7 @@ public function userOrderSuccessOrderSuccess($order_id)
 public function userOrderSuccessSendEmail($order,$template_id)
 {
 	$template = EmailTemplate::find($template_id);
-    $view= 'emails.custom_email';
+    $view= 'emails.customEmail';
     $arr = [
            'title' => $template->title,
            'subject' => $template->subject,
@@ -59,21 +59,32 @@ public function userOrderSuccessSendEmail($order,$template_id)
 
 public function userOrderSuccessHtml($order,$template)
 { 
-		$text2 = $template->body;
-		$orderDetail = $this->getOrderDetail($order);
-		$text = str_replace("{OrderDetail}",$orderDetail,$text2);
-		$text = str_replace("{name}",$order->user->name,$text);
- return $text;
+    $banner = view('emails.order.shoppingBanner')->render();
+    $text2 = $template->body;
+    $orderDetail = $this->userOrderSuccessOrderDetail($order);
+    $total = $this->userOrderSuccessTotals($order);
+    $text = str_replace("{OrderDetail}",$orderDetail,$text2);
+    $text = str_replace("{name}",$order->user->name,$text);
+ 
+ return $banner.$text.$total;
 }
 
 
 
-public function getOrderDetail($order)
+public function userOrderSuccessOrderDetail($order)
 {
-   return $vv = view('emails.order.detail')->with('order',$order)->render();
+   return $vv = view('emails.order.detail')->with('order',$order->orderItems)->render();
 }
 
  
+public function userOrderSuccessTotals($order)
+{
+   return  view('emails.order.user_total')
+   ->with('o',$order)
+   ->with('order',$order->orderItems)
+   ->render();
+}
+
 
 
 

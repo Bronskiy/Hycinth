@@ -52,6 +52,17 @@ $.validator.addMethod('ge', function(value, element, param) {
   return this.optional(element) || value >= param;
 }, `Must be greater than or equal to field min value`);
 
+$.validator.addMethod('greaterThan', function(value, element, param) {
+  var amount = parseInt($(param).val());
+  var percent = (amount / 100);
+  var extra = (percent * 20);
+  var amountWithMoreThan20 = parseInt(amount + extra);
+  return this.optional(element) || parseInt(value) >= amountWithMoreThan20;
+}, `Must be greater than direct deal amount with 20% extra amount.`);
+
+
+
+
  // greater than equals to
 $.validator.addMethod('res_number', function(value, element, param) {
   return this.optional(element) || !/\d/.test(value);
@@ -143,5 +154,22 @@ $.validator.addMethod('minPerson', function(value, element) {
 }, `Must be greater than or equal to field min Person`);
 
 
-
+// minimum age validation
+$.validator.addMethod("minAge", function(value, element, min) {
+    var today = new Date();
+    var birthDate = new Date(value);
+    var age = today.getFullYear() - birthDate.getFullYear();
+ 
+    if (age > min+1) {
+        return true;
+    }
+ 
+    var m = today.getMonth() - birthDate.getMonth();
+ 
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+ 
+    return age >= min;
+}, "You must be at least 18 years old!");
 

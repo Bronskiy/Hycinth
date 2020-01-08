@@ -18,6 +18,9 @@
    #firstUserModal .about-event-img {
     height: 300px;
 }
+.cart-col-wrap .cart-table .price-row th, tr.price-row td{
+  font-size: 14px;
+}
 }
 
 @media (max-width: 767px){
@@ -98,6 +101,9 @@
 }
 .card .animated{
   margin-bottom: 0px;
+}
+.my-order-detail-card .cart-col-wrap{
+  height: auto;
 }
 }
 @media (max-width: 480px){

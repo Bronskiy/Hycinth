@@ -150,14 +150,17 @@
                             <a href="{{ route('admin.commission') }}" class="">Fee</a>
                         </li>
                     </ul>
+               </li>
+
+                <!-- Faqs Management -->
+                <li class="nav-item pcoded-hasmenu <?= ActiveMenu(['admin.faqs.lists', 'admin.faqs.showCreate', 'admin.faqs.edit'], 'pcoded-trigger') ?>" >
+                    <a href="javascript:" class="nav-link "><span class="pcoded-micon">
+                    <i class="feather icon-box"></i></span><span class="pcoded-mtext">Faqs Management</span></a>
+                    <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['admin.faqs.lists', 'admin.faqs.showCreate', 'admin.faqs.edit'], 'block') ?>;">
+                        <li class="{{ ((\Request::route()->getName() === 'admin.faqs.lists' || \Request::route()->getName() === 'admin.faqs.showCreate' || \Request::route()->getName() === 'admin.faqs.edit') && Request::route('type') === 'user' ) ? 'active' : '' }}"><a href="{{ route('admin.faqs.lists', ['type' => 'user']) }}" class="">User Faqs</a></li>
+                        <li class="{{ ((\Request::route()->getName() === 'admin.faqs.lists' || \Request::route()->getName() === 'admin.faqs.showCreate' || \Request::route()->getName() === 'admin.faqs.edit') && Request::route('type') === 'vendor' ) ? 'active' : '' }}"><a href="{{ route('admin.faqs.lists', ['type' => 'vendor']) }}" class="">Vendor Faqs</a></li>
+                    </ul>
                 </li>
-
-
-
-
-
-
-
 
 
 

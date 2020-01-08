@@ -75,7 +75,7 @@
       @else
       <div class="message-wrap">
       <div class="alert alert-info" role="alert">
-  Didn't found any upcoming Events Click <a href="">Add New Event</a> for creating a one
+  Didn't found any upcoming Events Click <a href="{{ route('user_show_create_event') }}">Add New Event</a> for creating a one
 </div>
 </div>
           

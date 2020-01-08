@@ -17,8 +17,6 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
 		#  Category Management
 		#----------------------------------------------------------------
 
-
-
 		Route::get('/category/index','Admin\CategoryController@index')->name('list_category');
 		Route::get('/category/index/sorting','Admin\CategoryController@sortingIndex')->name('index_sorting_category');
 		Route::post('ajax/category/index/sorting','Admin\CategoryController@sorting')->name('sorting_category');
@@ -157,19 +155,22 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
         Route::post('/pages/{slug}', 'Admin\CmsPageController@update')->name('admin.cms-pages.update');
         Route::get('/pages/status/{slug}', 'Admin\CmsPageController@changeStatus')->name('admin.cms-pages.status');
 
+
         #------------------------------------------------------------------------------------
         #  Faq
         #------------------------------------------------------------------------------------
+        Route::get('/{type}/faqs', 'Admin\FaqController@index')->name('admin.faqs.lists');
+        // Route::get('/faqs/ajaxData/{type}', 'Admin\FaqController@ajaxData')->name('admin.faqs.ajaxData');
+        Route::get('/{type}/faqs/create', 'Admin\FaqController@showCreate')->name('admin.faqs.showCreate');
+        Route::post('/{type}/faqs/create', 'Admin\FaqController@create')->name('admin.faqs.create');
+        Route::get('/{type}/faqs/{id}', 'Admin\FaqController@edit')->name('admin.faqs.edit');
+        Route::post('/{type}/faqs/{id}', 'Admin\FaqController@update')->name('admin.faqs.update');
+        Route::get('/{type}/faqs/delete/{id}', 'Admin\FaqController@delete')->name('admin.faqs.delete');
+        Route::get('/{type}/faqs/status/{id}', 'Admin\FaqController@changeStatus')->name('admin.faqs.status');
 
-        Route::get('/faqs', 'Admin\FaqController@index')->name('admin.faqs.list');
-        Route::get('/faqs/ajaxData', 'Admin\FaqController@ajaxData')->name('admin.faqs.ajaxData');
-        Route::get('/faqs/create', 'Admin\FaqController@showCreate')->name('admin.faqs.showCreate');
-        Route::post('/faqs/create', 'Admin\FaqController@create')->name('admin.faqs.create');
-        Route::get('/faqs/{slug}', 'Admin\FaqController@edit')->name('admin.faqs.edit');
-        Route::post('/faqs/{slug}', 'Admin\FaqController@update')->name('admin.faqs.update');
-        Route::get('/faqs/status/{slug}', 'Admin\FaqController@changeStatus')->name('admin.faqs.status');
-
+        
         Route::get('/my-business/{slug}/{vendorSlug}', 'Vendor\MyBusinessController@index')->name('vendorBusinessView');
+
 
         // Email Management
         Route::get('/commission/settings', 'Admin\CommissionController@fee')->name('admin.commission');
@@ -193,7 +194,6 @@ Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
         Route::get('/orders','Admin\OrderController@index')->name('admin.orders');
         Route::get('/orders/detail/{id}','Admin\OrderController@detail')->name('admin.orderDetail');
         Route::get('/orders/ajax','Admin\OrderController@ajax')->name('admin.ajaxOrders');
-
 
        #--------------------------------------------------------------------------------------------------------------
        #  Vendors

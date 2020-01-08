@@ -6,23 +6,22 @@
 
                             <div class="card">
                                 <div class="card-header">                                
-                                     <a class="card-link" data-toggle="collapse" href="#collapseSix" aria-expanded="false">
-                                     Location
-                                    </a>
+                                     <a class="card-link collapsed" data-toggle="collapse" href="#collapseSix" aria-expanded="true">Location</a>
                                 </div>
-                                 <div id="collapseSix" class="collapse b-0" data-parent="#accordion" style="">
+                                 <div id="collapseSix" class="scroll-sidebar collapse show b-0" data-parent="#accordion" style="">
                                     <div class="card-body p-0">
                                         
                                            <div class="form-group">  
                                                 <input type="search" name="address" id="address" value="" class="form-control" placeholder="Location" autocomplete="off">
 
                                                   
-                                                       <input type="hidden" name="latitude" id="latitude" value="">
-                                                   
-                                                   
-                                                    <input type="hidden" name="longitude" id="longitude" value="">
+                                                       <input type="hidden" name="latitude" id="latitude" value="" class="businesses">
+                                                       <input type="hidden" name="longitude" id="longitude" value="" class="businesses">
                                                    
                                            </div>
+
+
+                                                   
                                             
                                     </div>
                                 </div>
@@ -35,12 +34,7 @@
                                     <a class="card-link collapsed" data-toggle="collapse" href="#collapseOne" aria-expanded="true">
                                         category
                                     </a>
-                                </div>
-
-
-                              
-
-
+                                </div>                       
                                 <div id="collapseOne" class="scroll-sidebar collapse show" data-parent="#accordion">
 
                                  @foreach($categories as $category)

@@ -57,7 +57,7 @@ class OrderController extends Controller
 	public function detail($slug,$id)
 	{
 		$business = $this->getData($slug);
-        $order = EventOrder::where('order_id',$id)
+             $order = EventOrder::where('order_id',$id)
                                 ->where('vendor_id',$business->id)
                                 ->where('type','order');
         if($order->count() == 0){

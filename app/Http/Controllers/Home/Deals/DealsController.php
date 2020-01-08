@@ -48,39 +48,111 @@ class DealsController extends Controller
 
 public function getDeals(Request $request)
 {
-          $discount_deals = DiscountDeal::with('Business.getChatOfLoggedUser')
+
+        $IDs = $this->dealFilterIds($request);
+        $discount_deals = DiscountDeal::with('Business.getChatOfLoggedUser')
                           ->join('vendor_categories','vendor_categories.id','=','discount_deals.vendor_category_id')
                           ->join('categories','categories.id','=','vendor_categories.category_id')
                           ->join('users','users.id','=','vendor_categories.user_id')
                           ->select('discount_deals.*')
-                         
-                          ->where(function($t) use($request) {
-                             $data = $t->first();
-
-                             if($data->deal_life == 1) {
-                                  $data->whereDate('discount_deals.expiry_date', '>=', date('Y-m-d'));
-                             }
-                             
-                             if(!empty($request->categories)) {
-                                $data->whereIn('categories.id', $request->categories);
-                             }
-
-                          })
+                          
+                          
+                          ->whereIn('discount_deals.id',$IDs)
                           ->where('vendor_categories.status',3)
                           ->where('vendor_categories.publish',1)
-                         
                           ->orderBy('discount_deals.id','DESC');
-
-     // return $discount_deals->get();
+ 
+      
 
     $vv = view('home.includes.deals.list', $this->getSesssionData())
-        ->with('discount_deals',$discount_deals->paginate(20));
+         ->with('dealCount',$discount_deals->count())
+         ->with('discount_deals',$discount_deals->paginate(20));
    return response()->json([
        'status' => 1,
        'deals' => $vv->render(),
        'dealCount' => $discount_deals->count()
    ]);
 }
+
+
+
+
+
+
+public function dealFilterIds($request)
+{
+    $latitude = $request->latitude;
+    $longitude = $request->longitude;
+
+      $haversine = "(3959 * acos(cos(radians($latitude)) 
+                                                * cos(radians(vendor_categories.latitude)) 
+                                                * cos(radians(vendor_categories.longitude) 
+                                                - radians($longitude)) 
+                                                + sin(radians($latitude)) 
+                                                * sin(radians(vendor_categories.latitude))))";
+   
+    $discount_deals = DiscountDeal::join('vendor_categories','vendor_categories.id','=','discount_deals.vendor_category_id')
+                          ->join('categories','categories.id','=','vendor_categories.category_id')
+                          ->join('users','users.id','=','vendor_categories.user_id')
+                          ->select('discount_deals.*',
+                            'vendor_categories.travel_distaince',
+                            'vendor_categories.latitude',
+                            'vendor_categories.longitude' 
+                          )
+                          ->where(function($t) use($request) {
+                              if(!empty($request->categories)) {
+                                   $t->whereIn('categories.id', $request->categories);
+                             }
+                          })
+                          ->where('vendor_categories.status',3)
+                          ->where('vendor_categories.publish',1);
+                          //->orderBy('discount_deals.id','DESC');
+
+
+
+                           if(!empty($latitude) && !empty($longitude)){
+                                 
+
+                                 $deals =$discount_deals->selectRaw("{$haversine} AS distance")
+                                            ->join('vendor_categories as t2', function ($join) use($haversine){
+                                                              $join->on('discount_deals.vendor_category_id', '=', 't2.id')
+                                                              ->where('vendor_categories.travel_distaince' ,'>',\DB::Raw($haversine));
+                                             })
+                                            ->get();
+
+                             }else{
+                                  $deals = $discount_deals->get();
+                              
+                             }
+
+
+
+
+
+
+                  $discount_deals = $deals->filter(function($d){
+                               if($d->deal_life == 1 ){
+                                    $cDate = strtotime(date('Y-m-d'));
+                                    $start = strtotime($d->start_date);
+                                    $end = strtotime($d->expiry_date);
+                                    if($cDate >= $start && $cDate <= $end){
+                                         return $d;
+                                    }
+                                }elseif($d->deal_life == 0){
+                                    return $d;
+                                }
+                               
+       });
+
+       return $discount_deals->pluck('id');
+}
+
+
+
+
+
+
+
 
 
 

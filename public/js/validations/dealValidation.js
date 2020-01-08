@@ -1,5 +1,40 @@
 
 $(document).ready(function(){
+
+
+
+
+
+
+
+selectOptionDirectAmount();
+
+  $('select[name="deal_off_type"]').change(function() {
+         selectOptionDirectAmount();
+    });
+
+
+  function selectOptionDirectAmount() {
+        const selectedDealLife = $('select[name="deal_off_type"]').children("option:selected").val();
+        if(selectedDealLife === '1') {
+           $('#min_rs').css('display', 'block');
+        } else {
+           $('#min_rs').css('display', 'none');
+        }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  
    // deal Form
   $('#dealForm').validate({
     onfocusout: function (valueToBeTested) {
@@ -30,7 +65,15 @@ $(document).ready(function(){
         required: true,
         positiveNumber: true,
         minlength: 1,
-        maxlength: 5
+        maxlength: function(element){
+          // if Off type is Percent
+                    if($('#deal_off_type').find('select').val() == 0){
+                        return 3;
+                    }
+                    else{
+                        return 5;
+                    }
+                }
       },
       "deal_life": {
         required: true
@@ -45,6 +88,20 @@ $(document).ready(function(){
       },
       "deal_off_type": {
         required: true
+      },
+       "min_amount": {
+        required: function(element){
+         
+                    if($('#deal_off_type').find('select').val() == 1){
+                        return true;
+                    }
+                    else{
+                        return true;
+                    }
+                },
+        number:true,
+        greaterThan:'#amount'
+
       },
        "description": {
           required: true,

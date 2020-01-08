@@ -101,10 +101,16 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
      
     <script> 
-        AOS.init();
 
         new WOW().init();
-        AOS.init({disable: 'mobile'});
+
+        AOS.init({
+  disable: function() {
+    var maxWidth = 1025;
+    return window.innerWidth < maxWidth;
+  }
+});
+
     </script>
 
     <script>

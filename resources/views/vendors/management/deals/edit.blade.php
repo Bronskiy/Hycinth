@@ -84,6 +84,10 @@
                           <div class="col-lg-6">
                             {{textbox($errors, 'Percent/Amount*', 'amount', $deal->amount)}}
                            </div>
+
+                            <div class="col-lg-12" style="display: none;" id="min_rs">
+                            {{textbox($errors, 'Apply on Min Order Amount*', 'min_amount',$deal->min_price)}}
+                           </div>
                           <div class="col-lg-6">
                              {{textarea($errors,'Description*','description',$deal->description)}}
                           </div>

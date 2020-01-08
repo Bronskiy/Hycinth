@@ -11,10 +11,8 @@ use App\Models\EventOrder;
 use Session;
 use App\Models\Admin\EmailTemplate;
 trait VendorOrderSuccess {
-
-
-
-
+ 
+ 
 #---------------------------------------------------------------------------------------------------
 #  Order Success
 #---------------------------------------------------------------------------------------------------
@@ -26,9 +24,15 @@ public function VendorOrderSuccessOrderSuccess($order_id)
   $orderItems = EventOrder::where('order_id',$order_id)->where('type','order')
                           ->groupBy('vendor_id')
                           ->get();
+   
   $var= 0;
   foreach ($orderItems as $item) {
-    $var = $this->VendorOrderSuccessSendEmail($item,$template_id);
+        $order = EventOrder::where('order_id',$order_id)
+                           ->where('type','order')
+                           ->where('vendor_id',$item->vendor_id)
+                           ->get();
+
+        $var = $this->VendorOrderSuccessSendEmail($item,$template_id,$order);
     
   }
 
@@ -42,21 +46,24 @@ public function VendorOrderSuccessOrderSuccess($order_id)
 
 
 
-public function VendorOrderSuccessSendEmail($order,$template_id)
+public function VendorOrderSuccessSendEmail($order,$template_id,$o)
 {   
+
     $template = EmailTemplate::find($template_id);
-    $view= 'emails.custom_email';
+    $view= 'emails.customEmail';
     $arr = [
            'title' => $template->title,
            'subject' => str_replace("{orderID}",$order->OrderID,$template->subject),
            'name' => $order->vendor->vendors->name,
            'email' => $order->vendor->vendors->email
     ];
-    
-    $data = $this->VendorOrderSuccessHtml($order,$template);
+     $data = $this->VendorOrderSuccessHtml($o,$template,$order);
     $ar= ['data' => $data];
-   return $this->sendNotification($view,$ar,$arr);
+    return $this->sendNotification($view,$ar,$arr);
 }
+
+
+
 
 
 #---------------------------------------------------------------------------------------------------
@@ -65,23 +72,44 @@ public function VendorOrderSuccessSendEmail($order,$template_id)
 
 
 
-public function VendorOrderSuccessHtml($order,$template)
-{ 
-		$text2 = $template->body;
-		$orderDetail = $this->VendorOrderSuccessDetail($order);
-		$text = str_replace("{OrderDetail}",$orderDetail,$text2);
-		$text = str_replace("{name}",$order->user->name,$text);
- return $text;
+  public function VendorOrderSuccessHtml($order,$template,$o)
+  { 
+      
+      $banner = view('emails.order.shoppingBanner')->render();
+      $text2 = $template->body;
+      $orderDetail = $this->VendorOrderSuccessDetail($order);
+      $total = $this->VendorOrderSuccessTotals($o);
+      $text = str_replace("{OrderDetail}",$orderDetail,$text2);
+      $text = str_replace("{name}",$o->user->name,$text);
+      return $banner.$text.$total;
+  }
+
+#---------------------------------------------------------------------------------------------------
+#  Order Success
+#---------------------------------------------------------------------------------------------------
+
+
+  public function VendorOrderSuccessDetail($order)
+  {
+     return  view('emails.order.vendors.order_detail')
+           ->with('order',$order) 
+          ->render();
+  }
+
+   
+
+  public function VendorOrderSuccessTotals($order)
+  {
+      return view('emails.order.vendor_total')
+            ->with('order',$order) 
+            ->render();
+  }
+
+
+
+
 }
 
-
-
-public function VendorOrderSuccessDetail($order)
-{
-   return $vv = view('emails.order.vendors.order_detail')->with('item',$order)->render();
-}
 
  
-
-
-}
+ 

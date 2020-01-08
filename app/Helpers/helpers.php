@@ -82,6 +82,29 @@ return $text;
 
 }
 
+
+function addonsInEMail($order)
+{
+  $text ="<strong>N/A</strong>";
+  if($order->addons != ""):
+
+  $addons = explode(",",$order->addons);
+  $adddons = \App\PackageMetaData::whereIn('id',$addons)
+                   ->where('package_id',$order->package->id)
+                   ->get();
+  $text ='';
+  foreach ($adddons as $key => $value) {
+         $text .='<tr>
+                     <td style="font-family: Verdana, Times New Roman, Arial; font-size: 13px; line-height: 18px; color: #0c0c0c; padding-top: 2px; padding-bottom: 2px; font-weight: 400; padding-left: 0px; padding-right: 10px;" align="left">'.$value->key;
+
+         $text .='</td><td style="font-family: Verdana,Times New Roman, Arial; font-size: 14px; line-height: 18px; color: #0c0c0c; padding-top: 2px; padding-bottom: 2px; font-weight: 400; padding-left: 0px; padding-right: 0px;" align="left">$'.$value->key_value.'</td>
+                  </tr>';
+ }
+  endif;
+return $text;
+
+}
+
 // get rates for location
 function ratesForLocation($zipcode, $city=null, $country=null) {
   $key = getAllValueWithMeta('taxjar_api_key', 'global-settings');

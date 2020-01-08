@@ -102,13 +102,13 @@
                                  type="button"
                                  data-form="#addToWishListForm-{{$item->id}}"
                                  data-action="{{url(route('cart.addToWishList'))}}"
-                                 class="icon-btn wishlist-icon">
+                                 class="icon-btn wishlist-icon" data-toggle="tooltip" data-placement="top" title="Add to Wishlist">
                                   <span><i class="fas fa-heart"></i></span>
                                 </button>
                           </form>
 
 
-                       <a href="{{url(route('cart.delete',$item->id))}}" class="icon-btn danger-btn ml-1" data-toggle="tooltip" title="" data-original-title="Delete"><i class="fas fa-trash-alt"></i></a>
+                       <a data-toggle="tooltip" data-placement="top" title="Remove from Cart" href="{{url(route('cart.delete',$item->id))}}" class="icon-btn danger-btn ml-1"><i class="fas fa-trash-alt"></i></a>
 
 
                     </div>
@@ -133,3 +133,9 @@
               </div>
 @endforeach  
 @endif 
+
+<script type="text/javascript">
+   $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();   
+   });
+</script>

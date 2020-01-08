@@ -78,6 +78,10 @@
 <script src="//cdn.ckeditor.com/4.6.2/full/ckeditor.js"></script>
 <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 <script src="{{url('/admin-assets/js/validations/customValidation.js')}}"></script>
+
+<!-- delete data js -->
+<script src="{{ asset('js/deleteData.js') }}"></script>
+
 @yield('scripts')
 
 </body>

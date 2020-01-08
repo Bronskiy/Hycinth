@@ -79,14 +79,8 @@
 <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 <script src="{{url('/admin-assets/js/validations/customValidation.js')}}"></script>
 
-<script type="text/javascript">
-function deleteItem(item) {
-  const url = $(item).data('delurl');
-  if (confirm("Are you sure you want to delete it!")) {
-    window.location.href = url;
-  }
-}
-</script>
+<!-- delete data js -->
+<script src="{{ asset('js/deleteData.js') }}"></script>
 
 @yield('scripts')
 

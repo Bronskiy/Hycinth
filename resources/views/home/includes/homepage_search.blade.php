@@ -16,6 +16,7 @@
                      </div>
                   </div>
                </div>
+
                @foreach($categories as $key => $category)
                <div class="item wow bounceInDown" data-wow-delay="{{ $key*500+500}}ms">
                   <div class="tab-button">
@@ -23,7 +24,7 @@
                         <a href="javascript:void();" data-tag="twenty-three" class="getCategory" data-id="{{$category->id}}"
                            data-url="{{ url(route('get_homepage_formdata',$category->id)) }}">
                            <span class="service-icon">
-                           <img class="category_icon" src="{{url($category->image)}}" />
+                           <img class="category_icon" src="{{url($category->image)}}"/>
                            </span>
                            <h3>{{ $category->label }}</h3>
                         </a>

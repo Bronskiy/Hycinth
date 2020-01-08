@@ -76,14 +76,19 @@ jQuery("body").on('change','.businesses',function(){
 
 });
 
-jQuery("body").on('change','.Capacity',function(){
+jQuery("body").on('click','.resetRadio',function(){
 
-  getAllBusinessAccordingToFilter();
-
+     $this = $('input[name=price_range]:checked');
+    if($this.is(':checked')) { 
+        $this.prop('checked', false);
+        
+    } 
 });
 
 
-
+jQuery("body").on('change','.businesses',function(){
+    getAllBusinessAccordingToFilter();
+});
  
 
 

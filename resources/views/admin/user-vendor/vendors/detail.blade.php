@@ -28,11 +28,37 @@
                                 <div class="col-xl-12">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h5>{{$title}}</h5>
+                                            <h5>Vendor Verification Section</h5>
                                         </div>
                                         <div class="card-block table-border-style">
                                                  @include('admin.error_message')
-                                            <table class="table">
+                                            <div class="row">
+                                              <div class="col-lg-7">
+                                              <table class="table admin_dashboard-table">
+                                                  <tr>
+                                                      <th class="">Sr.no</th><th class="">Document</th><th class="">Link</th>
+                                                  </tr>
+                                                   <tr>
+                                                      <td>1</td>
+                                                      <td>EIN|BS Number</td>
+                                                      <td>{{$vendor->ein_bs_number}}</td>
+                                                  </tr>
+
+                                                 @if($vendor->id_proof != "")
+                                                  <tr>
+                                                      <td>2</td><td>ID Proof</td>
+                                                      <td><a class="action-btn btn-primary" href="{{url($vendor->id_proof)}}"><i class="fas fa-eye"></i></a></td>
+                                                  </tr>
+                                                  @endif
+                                              </table>
+                                              
+                                              <div class="btn-wra[">
+                                                <a href="{{url(route('admin.vendor.approved',$vendor->id))}}" class="btn btn-primary">Approve</a>
+                                              </div>
+
+                                            </div>
+                                             <div class="col-lg-5">
+                                              <table class="table vendorUser-detail-table">
                                                 <tr>
                                                     <th width="150">Name</th><th>{{$vendor->name}}</th>
                                                 </tr>
@@ -59,62 +85,27 @@
 
                                                 
                                             </table>
-                                              <table class="table">
-                                                  <tr>
-                                                      <th class="bg-warning">Sr.no</th><th class="bg-warning">Document</th><th class="bg-warning">Link</th>
-                                                  </tr>
-                                                   <tr>
-                                                      <td>1</td>
-                                                      <td>EIN|BS Number</td>
-                                                      <td>{{$vendor->ein_bs_number}}</td>
-                                                  </tr>
-
-                                                 @if($vendor->id_proof != "")
-                                                  <tr>
-                                                      <td>2</td><td>ID Proof</td>
-                                                      <td><a href="{{url($vendor->id_proof)}}">View</a></td>
-                                                  </tr>
-                                                  @endif
-                                              </table>
+                                          </div>
+                                        </div>
 
                                           <div class="row">
-                                               <div class="col-md-12">
-                                                 
-                                                     <div class="panel panel-default">
-                                                      <div class="panel-heading">
-                                                        <h3 class="panel-title">Approval Section</h3>
-                                                      </div>
-                                                      <div class="panel-body">
-                                                        <a href="{{url(route('admin.vendor.approved',$vendor->id))}}" class="btn btn-primary">Approve</a>
-                                                      </div>
-                                                    </div>
-
-                                                </div>
                                                 <div class="col-md-12">
 
 
                                                     <div class="panel panel-default">
                                                       <div class="panel-heading">
-                                                        <h3 class="panel-title">Rejection Section</h3>
+                                                        <label class="panel-title">Rejection Section</label>
                                                       </div>
                                                       <div class="panel-body">
                                                          <form method="post" action="{{url(route('admin.vendor.rejected',$vendor->id))}}">
                                                         @csrf
                                                         <textarea class="form-control cheditor" name="detail" required></textarea>
+                                                        <div class="btn-wrap mt-2">
                                                         <button class="btn btn-primary">Rejected</button>
-
+                                                       </div>
                                                    </form>
                                                       </div>
                                                     </div>
-
-
-
-
-
-
-                                                    
-                                                   
-
                                                 </div>
                                             </div>
                                         </div>

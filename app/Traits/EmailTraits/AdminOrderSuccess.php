@@ -37,7 +37,7 @@ public function AdminOrderSuccessOrderSuccess($order_id)
 public function AdminOrderSuccessSendEmail($order,$template_id)
 {
 	$template = EmailTemplate::find($template_id);
-    $view= 'emails.custom_email';
+    $view= 'emails.customEmail';
     $arr = [
            'title' => $template->title,
            'subject' => $template->subject,
@@ -59,11 +59,14 @@ public function AdminOrderSuccessSendEmail($order,$template_id)
 
 public function AdminOrderSuccessHtml($order,$template)
 { 
+    $banner = view('emails.order.shoppingBanner')->render();
 		$text2 = $template->body;
 		$orderDetail = $this->AdminOrderSuccessDetail($order);
+    $total = $this->AdminOrderSuccessTotals($order);
+
 		$text = str_replace("{OrderDetail}",$orderDetail,$text2);
 		$text = str_replace("{name}",$order->user->name,$text);
- return $text;
+ return $banner.$text.$total;
 }
 
 #---------------------------------------------------------------------------------------------------
@@ -73,10 +76,18 @@ public function AdminOrderSuccessHtml($order,$template)
 
 public function AdminOrderSuccessDetail($order)
 {
-   return $vv = view('emails.order.detail')->with('order',$order)->render();
+   return  view('emails.order.detail')->with('order',$order->orderItems)->render();
 }
 
  
+
+public function AdminOrderSuccessTotals($order)
+{
+   return  view('emails.order.admin_total')
+   ->with('o',$order)
+   ->with('order',$order->orderItems)
+   ->render();
+}
 
 
 

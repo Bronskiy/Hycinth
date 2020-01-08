@@ -41,7 +41,6 @@
                                                         <th>Business Name</th>
                                                         <th>Business Type</th>
                                                         <th>Email</th>      
-                                                        <th>Phone Number</th>
                                                         <th>Date</th>
                                                            
                                                         <th width="120">Action</th>                                              
@@ -77,7 +76,6 @@ $(function() {
              { data: 'business_name', name: 'business_name' },
              { data: 'label', name: 'label' },
              { data: 'email', name: 'email' },
-             { data: 'phone_number', name: 'phone_number' },
              { data: 'created_at', name: 'created_at' },
             //{ data: 'status', name: 'status' },
              { data: 'action', name: 'action' },

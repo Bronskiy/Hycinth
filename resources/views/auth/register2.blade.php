@@ -89,17 +89,26 @@
 
 
                                    <div class="col-lg-6"> 
-                                      <label>Provide EIN # if available for US and BS No for Canada</label>                         
+                                      <label>Provide EIN# or BS# 
+
+                                        <div class="demo-app hasToggle"> 
+                                            <i class="fas fa-info-circle"></i> 
+                                            <span class="toggle-info-dropdown">
+                                              <ul class="form-info-toggle">
+                                                 <li><p>EIN# is tax registeration ID in the US For Businesses</p></li>
+                                                 <li><p>BS# is tax registeration ID in the Canada For Businesses</p></li>
+                                            </span>
+                                        </div>
+                                      </label>                         
                                        <div class="form-group">
-                                            <input type="text" name="ein_bs_number" formControlName="email" placeholder="Email Id" class="form-control"/>
+                                            <input type="text" name="ein_bs_number" formControlName="email" placeholder="Provide EIN# or BS#" class="form-control"/>
                                             <span class="input-icon"><i class="fas fa-envelope"></i></span>
                                         </div>                              
                                    </div>
-                                   
                                    <div class="col-lg-6">                          
-                                           <label>Your Age</label>
+                                           <label>Age</label>
                                            <div class="form-group">
-                                               <input type="text" name="age" formControlName="location" placeholder="Age" class="form-control"/>
+                                               <input type="date" id="age" name="age" formControlName="location" placeholder="Age" class="form-control"/>
                                                <span class="input-icon"><i class="fas fa-life-ring"></i></span>
                                            </div>                              
                                    </div>
@@ -134,13 +143,12 @@
                                   <div class="col-lg-6">  
                                     <label>Choose Business Types</label>                        
                                        <div class="form-group">
-                                        <?php $category = \App\Category::where('status',1)->where('parent',0)->orderBy('sorting','ASC')->get(); ?>
-                               
-                                            <select class="form-control" name="categories[]" multiple="">
-                                              <option value="">select</option>
-                                              @foreach($category as $cate)
-                                                       <option value="{{$cate->id}}">{{$cate->label}}</option>
-                                              @endforeach
+                                        <?php $category = \App\Category::where('status',1)->where('parent',0)->orderBy('sorting','ASC')->get(); ?>                               
+                                            <select class="form-control select2" multiple="multiple" name="categories[]" id="categories" data-placeholder="Select Categories">
+                                              <option value="">Select Categories</option>
+                                               @foreach($category as $cate)
+                                                <option value="{{$cate->id}}">{{$cate->label}}</option>
+                                               @endforeach
                                             </select>
                                               <span class="input-icon"><i class="fas fa-map-marker"></i></span>
                                             
@@ -152,10 +160,10 @@
 
 
                                     <div class="col-lg-6">  
-                                      <label>Email</label>                        
+                                      <label>Email Address</label>                        
                                        <div class="form-group">
                                            
-                                           <input type="text" name="email" formControlName="email" placeholder="Email Id" class="form-control"  />
+                                           <input type="text" name="email" formControlName="email" placeholder="Email Address" class="form-control"  />
                                            <span class="input-icon"><i class="fas fa-envelope"></i></span>
                                           
                                        </div>                              
@@ -179,13 +187,26 @@
                                     </div>
                                 </div>  
 
+                               <div class="col-md-12">
+                                    <div class="custom-control custom-checkbox mb-4">
+                                      <input type="checkbox" class="custom-control-input" name="agree" value="1" id="customCheck1">
+                                      <label class="custom-control-label" for="customCheck1">I agree to the Terms and Conditions. <div class="demo-app hasToggle"> 
+                                            <i class="fas fa-info-circle"></i> 
+                                            <span class="toggle-info-dropdown">
+                                              <ul class="form-info-toggle">
+                                                 <li><p>Allow us 48 hours to verify your business while you complete your profile and settle in. if we need any other information will shall be reaching out and if nothing else is needed you will be reviewing approving your business</p></li>
+                                            </span>
+                                        </div></label>
+                                    </div>
+                               </div>                                
+
 
 
                                </div>
                 
                                
                                  
-                                    <div class="form-group btn-wrap">
+                                    <div class="form-group btn-wrap text-center">
                                         <button class="cstm-btn solid-btn register-Submit"><span><img src="{{url('200.gif')}}"></span>Register</button>
                                         
                                     </div>
@@ -304,6 +325,12 @@
 @section('scripts')
 
 <script type="text/javascript" src="{{url('/frontend/js/register.js')}}"></script>
+ 
+<script type="text/javascript">
+  $('#categories').select2({ 
+    closeOnSelect: false
+   });
+</script> 
 
 @endsection
 

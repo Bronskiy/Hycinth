@@ -83,7 +83,7 @@
                                               <label for="add-ons">Add Ons</label>
 
                                               @foreach($package->package_addons as $package_addon)
-                                                <div class="vendor-category">
+                                                <div class="vendor-category blue-bg">
                                                   <div class="category-checkboxes category-title">
                                                     {{$package_addon->key}} 
                                                     ${{$package_addon->key_value}}
@@ -115,7 +115,6 @@
                                  @if(empty($reviewing))
                                         <div class="btn-area inn-card-footer" id="buy-content">
                                           <!--  <a href="{{url(route('payWithPackage',$package->slug))}}" class="cstm-btn">Buy</a> -->
- 
                                           <a href="javascript:void(0);" 
                                              class="cstm-btn cartModal" 
                                              data-id="{{$package->id}}"

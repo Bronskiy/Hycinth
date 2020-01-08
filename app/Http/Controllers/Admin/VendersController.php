@@ -192,7 +192,7 @@ public function vendorInvite($id)
         $vendor->status = 1; 
         $vendor->save();
 
-    return redirect()->back()->with('messages','Inviting email has been sent successfully.');
+    return redirect()->back()->with('flash_message','Invitation Email has been sent successfully.');
     }
 }
 

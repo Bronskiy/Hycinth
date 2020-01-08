@@ -72,11 +72,15 @@
                               </div> -->
                            </div>
 
-                            <div class="col-lg-6">
+                          <div class="col-lg-6">
                               {{selectsimple($errors, "Deal's Off Type", 'deal_off_type',[0 => 'Percent',1 => 'Direct'])}}
                           </div>
                           <div class="col-lg-6">
                             {{textbox($errors, 'Percent/Amount*', 'amount')}}
+                           </div>
+
+                           <div class="col-lg-12" style="display: none;" id="min_rs">
+                            {{textbox($errors, 'Apply on Min Order Amount*', 'min_amount')}}
                            </div>
 
                            
@@ -148,6 +152,8 @@
 <script src="{{url('/js/validations/dealValidation.js')}}"></script>
 <script src="{{url('/js/validations/imageShow.js')}}"></script>
 <script type="text/javascript">
+
+
   $('select[name="deal_life"]').change(function() {
         const selectedDealLife = $(this).children("option:selected").val();
         if(selectedDealLife === '1') {

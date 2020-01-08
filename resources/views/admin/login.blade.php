@@ -31,6 +31,7 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 </head>
 <body class="hold-transition login-page">
+  <div class="admin-login-wrap" style="background: url(/frontend/images/login-bg.jpg);">
  <div class="login-box">
   <div class="login-logo">
 
@@ -85,6 +86,7 @@
     
   </div>
 </div>  
+</div>
 
 <!-- /.login-box -->
 <script src="{{url('/AdminFILE/plugins/jquery/jquery.min.js')}}"></script>

@@ -764,7 +764,7 @@ figure.cart-tab-img {
 }
 .cart-price-line {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: wrap;
 }
 .off-price {
@@ -848,6 +848,7 @@ figure.cart-tab-img {
 
         .hasToggle{
         position: relative;
+        display: inline-block;
     }
 
 .toggle-info-dropdown {
@@ -859,6 +860,9 @@ figure.cart-tab-img {
     z-index: 999;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
     display: none;
+}
+.toggle-info-dropdown p{
+    font-size: 14px;
 }
     .hasToggle:hover .toggle-info-dropdown{
         display: block;
@@ -880,6 +884,26 @@ figure.cart-tab-img {
   display: inline-block;
   font-size: 14px;
 }
+.toggle-info-dropdown .form-info-toggle li {
+    margin-bottom: 10px;
+    padding-left: 10px;
+    position: relative;
+}
+.toggle-info-dropdown .form-info-toggle li:after{
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    content: "";
+    background: #333;
+    left: 0px;
+    top: 7.5px;
+    border-radius: 50%;
+}
+.toggle-info-dropdown .form-info-toggle li:last-child {
+    margin-bottom: 0px;
+    }
+
+
 .promoCode strong {
     color: #b58ec3;
 }
@@ -999,8 +1023,8 @@ strong{
     margin: 25px auto 0;
     box-shadow: 0 0 4px rgba(0, 0, 0, .14), 0 4px 8px rgba(0, 0, 0, .28);
     cursor: pointer;
-    -webkit-transition: all .1s ease-out;
-    transition: all .1s ease-out;
+    -webkit-transition: all .3s ease-out;
+    transition: all .3s ease-out;
     position: fixed;
     z-index: 998;
     overflow: hidden;
@@ -1008,10 +1032,14 @@ strong{
     bottom: 20px;
     right: 20px;
 }
-#chatbox.chatbox-active{
-  transform: translateY(0);
+.live-chatbox-btn:hover, .live-chatbox-btn:focus{
+    color: #fff;
 }
-#chatbox.chatbox-active .fa-comment-alt:before {
+.live-chatbox-btn.active{
+    transform: rotate(360deg);
+}
+
+.live-chatbox-btn.active .fa-comment-alt:before {
     content: "\f00d";
 }
 
@@ -1029,7 +1057,9 @@ strong{
     transition: all 0.5s ease;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
 }
-
+.live-chatbox-wrap #chatbox.chatbox-active{
+  transform: translateY(0);
+}
 .live-chatbox-wrap #friendslist{
     position:absolute;
     top:0;
@@ -1387,8 +1417,132 @@ strong{
 overflow:hidden; 
 border-radius:6px; 
 }
+.dsk-hide{
+    display: none !important;
+   }
 
 /*********************/
+
+/*cstm accordion*/
+.faq-accordion {
+    max-width: 100%;
+    width: 100%;
+    margin: 0px auto;    
+}
+.acrdn-card {
+    margin-bottom: 20px;
+    border: 1px solid #36496c;
+    border-radius: 12px;
+    background: #dfeaff;
+   /* overflow: hidden;*/
+}
+.faq-accordion .acrdn-card,
+.faq-accordion .acrdn-card:last-child .acrdn-header {
+  border: none;
+}
+
+.faq-accordion .acrdn-header {
+  border-bottom-color: #EDEFF0;
+  background: transparent;
+  position: relative;
+}
+
+.faq-accordion .fa-stack {
+    font-size: 18px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.faq-accordion .btn {
+    width: 100%;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+    background: #36496c;
+    color: #fff;
+    padding-right: 100px;
+}
+.faq-accordion .btn:focus{
+    outline: none;
+    box-shadow: none;
+}
+.acrdn-header h3 {
+    font-size: 18px;
+    min-height: 36px;
+    position: relative;
+    padding-left: 45px;
+    align-items: center;
+    display: flex;
+    white-space: normal;
+    text-align: left;
+    color: #fff;
+    margin-bottom: 0px;
+}
+.faq-accordion .btn-link:hover,
+.faq-accordion .btn-link:focus {
+  text-decoration: none;
+}
+
+
+.faq-accordion .fa-inverse {
+    color: #36496c;
+}
+.acrdn-action-btns {
+    display: inline-flex;
+    align-items: center;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    list-style: none;
+    padding: 0;
+}
+.acrdn-action-btns li {
+    margin-right: 6px;
+}
+.acrdn-action-btns li:last-child {
+    margin-right: 0px;
+}
+
+.action_btn {
+    width: 30px;
+    height: 30px;
+    background: #36496c;
+    color: #fff;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.primary-btn {
+    background: #fff;
+    color: #36496c;
+}
+.primary-btn:hover{
+    color: #36496c;
+    opacity: 0.8;
+}
+.danger-btn {
+    background: #dc3545;
+    color: #fff;
+}
+.danger-btn:hover {
+    color: #fff;
+    opacity: 0.8;
+}
+.btn-warning{
+    background: #ecb50c;
+    color: #fff;
+}
+.btn-warning:hover{
+     color: #fff;
+    opacity: 0.8;
+}
+
 
 
 

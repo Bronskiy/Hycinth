@@ -7,7 +7,7 @@
         <div class="row align-items-center">
             <div class="col-md-12">
                 <div class="page-header-title">
-                    <h5 class="m-b-10">Create Event</h5>
+                    <h5 class="m-b-10">My new  Create Event</h5>
                 </div>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{url(route('admin_dashboard'))}}"><i class="feather icon-home"></i></a></li>
@@ -34,7 +34,7 @@
 
   <form role="form" method="post" id="UserEventForm" enctype="multipart/form-data">
     @csrf
-      <div class="card-body">
+  
         <div class="row">
           <div class="col-md-12">
            {{textbox($errors, 'Title*', 'title')}}
@@ -156,7 +156,9 @@
            </div>
 
 <div class="col-md-12">
+   <div class="form-group ">
  <img src="" id="image_src" style="display: none;" width="120">
+</div>
 </div>
 
 
@@ -175,8 +177,6 @@
 
       </div>
 
-                
-    </div>
 
 
 
@@ -191,9 +191,8 @@
 
 
 
-
-      <div class="card-footer">
-        <button type="submit" id="UserEventFormBtn" class="btn btn-primary">Create</button>
+      <div class="card-footer cstm-card-ftr">
+        <button type="submit" id="UserEventFormBtn" class="cstm-btn">Create</button>
       </div>
  </form>
 

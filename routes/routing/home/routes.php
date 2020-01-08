@@ -34,8 +34,12 @@ Route::get('/vendor/register', 'HomeController@register')->name('vendor_register
  Route::get('/page/{slug}', 'HomeController@showCmsPage')->name('cmsPage');
  Route::get('/venues', 'Home\Services\VendorListingController@venue')->name('get_all_venues');
 
+ Route::get('/faq', 'HomeController@faq')->name('home.faq');
+
  // weather api
  Route::get('/venue/getweather', 'Home\Services\ServiceDetailController@getweather')->name('get_venue_weather');
+
+
 
 
 
@@ -52,3 +56,15 @@ Route::get('/my-cart', 'Users\Cart\CartController@index')->name('my_cart');
 Route::get('/my-cart-delete/{id}', 'Users\Cart\CartController@delete')->name('cart.delete');
 Route::get('/my-wishlist-delete/{id}', 'Users\Cart\CartController@wishlistDelete')->name('wishlist.delete');
 Route::get('/my-wishlist', 'Users\Cart\CartController@wishlist')->name('my_wishlist');
+
+
+
+
+
+
+#---------------------------------------------------------------------------------------------------
+#  email template testing
+#---------------------------------------------------------------------------------------------------
+
+
+ Route::get('/email/testing', 'HomeController@email')->name('email.test');

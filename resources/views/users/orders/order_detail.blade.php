@@ -10,7 +10,7 @@
             <div class="card-body">
                <div class="row">
                   <div class="col-lg-12">
-                     <div class="cart-items-wrap my-order-detail-card">
+                     <div class="cart-items-wrap my-order-detail-card mobile-hide">
                         <div class="row no-gutters">
                            <div class="col-lg-2 col-md-2">
                               <div class="cart-col-wrap">
@@ -55,6 +55,10 @@
                         <div class="row no-gutters">
                            <div class="col-lg-2 col-md-2 mb-4">
                               <div class="cart-col-wrap">
+                                 <div class="cart-table-head dsk-hide">
+                                    <h3>Event Image</h3>
+                                 </div>
+                  
                                  <div class="car-col-body">
                                     <figure class="cart-tab-img">
                                        <img src="{{ asset($item->event->event_picture) }}">
@@ -63,7 +67,11 @@
                               </div>
                            </div>
                            <div class="col-lg-5 col-md-4 mb-4">
-                              <div class="cart-col-wrap">
+                              <div class="cart-col-wrap">                                
+                                 <div class="cart-table-head dsk-hide">
+                                    <h3>Details</h3>
+                                 </div>
+                         
                                  <div class="car-col-body">
                                     <a href="javascript:void(0);" class="cart-item-link">{{ $item->event->title }}</a>
                                     <div class="cart-item-des">
@@ -111,6 +119,10 @@
                            
                            <div class="col-lg-2 col-md-3 mb-4">
                               <div class="cart-col-wrap">
+                                 <div class="cart-table-head dsk-hide">
+                                    <h3>AddOns</h3>
+                                 </div>
+                      
                                  <div class="car-col-body">
                                     <ul class="cart-addon-listing">
                                     @if($item->addons !="")	
@@ -124,7 +136,11 @@
                            </div>
                           
                            <div class="col-lg-3 col-md-3 mb-4">
-                              <div class="cart-col-wrap">
+                              <div class="cart-col-wrap ">                               
+                                 <div class="cart-table-head dsk-hide">
+                                    <h3>Price details
+                                    </h3>                               
+                              </div>
                                  <div class="car-col-body">
 
                                  	<div class="table-box-wrap">

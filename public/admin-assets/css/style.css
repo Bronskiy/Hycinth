@@ -266,7 +266,7 @@ p.text-muted {
 .card .card-footer {
   border-top: 1px solid #f1f1f1;
   background: transparent;
-  padding: 25px;
+  padding: 25px 0px;
 }
 .card .card-block,
 .card .card-body {
@@ -10853,4 +10853,16 @@ input[type="checkbox"].switch_btn{
 }
   
 /* Switch 1 Specific Style End */
+
+.vendorUser-detail-table {
+    background: #f2f2f2;
+}
+.admin_dashboard-table tr th {
+    background: #eea31e;
+    color: #fff;
+}
+.table td, .table th{
+  padding: 10px;
+  color: #333;
+}
 
