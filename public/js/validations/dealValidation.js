@@ -68,7 +68,7 @@ selectOptionDirectAmount();
         maxlength: function(element){
           // if Off type is Percent
                     if($('#deal_off_type').find('select').val() == 0){
-                        return 3;
+                        return 2;
                     }
                     else{
                         return 5;

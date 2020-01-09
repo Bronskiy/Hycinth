@@ -12,6 +12,7 @@ use App\Models\Admin\CmsPage;
 use App\Category;
 use App\VendorCategory;
 use Carbon\Carbon;
+use App\FAQs;
 
 use App\Traits\EmailTraits\EmailNotificationTrait;
 class HomeController extends Controller
@@ -454,7 +455,8 @@ public function email()
 
 
 public function faq() {
-    return view('home.faq.faq');
+    $faqs = FAQs::whereIn('type', ['user', 'vendor'])->get();
+    return view('home.faq.faq')->with(['faqs' => $faqs]);
 }
 
 
