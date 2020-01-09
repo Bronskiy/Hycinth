@@ -40,7 +40,7 @@ public function VendorInvitingRequestNotification($vendor)
 public function VendorInvitingRequestNotificationSendEmail($vendor,$template_id)
 {
 	 $template = EmailTemplate::find($template_id);
-    $view= 'emails.custom_email';
+    $view= 'emails.customEmail';
     $arr = [
            'title' => $template->title,
            'subject' => $template->subject,
@@ -63,12 +63,13 @@ public function VendorInvitingRequestNotificationSendEmail($vendor,$template_id)
 public function VendorInvitingRequestNotificationHtml($vendor,$template)
 { 
 		  $text2 = $template->body;
-      $link ='<a href="'.url(route('vendor_register')).'">Sign Up</a>';
+     
       $text = str_replace("{name}",$vendor->name,$text2);
-      $text = str_replace("{link}",$link,$text);
       $text = str_replace("{business}",$vendor->business_name,$text);
+
+      $vv = view('emails.invite.index')->with('data',$text)->render();
 	     
- return $text;
+ return $vv;
 }
 
 

@@ -1,6 +1,34 @@
 <?php 
 
 
+function errorMessages($type)
+{
+ switch ($type) {
+   case 'account-updated':
+      return 'Your information is updated successfully, Please wait for admin approval.';
+     break;
+
+    case 'token-expired':
+      return 'The token has been expired.';
+     break;
+   
+   default:
+      return 'Not found!';
+     break;
+ }
+}
+
+
+
+
+
+
+
+function createToken()
+{
+  return uniqid(base64_encode(str_random(40).date('Y-m-d')));
+}
+
 
 function getEventBudget($user_event)
 {

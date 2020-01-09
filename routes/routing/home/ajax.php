@@ -15,6 +15,7 @@ Route::group(['prefix' => 'ajax'], function(){
     Route::post('/get-deals-discounts-request','Home\Deals\DealsController@getDealRequest')->name('get-deal-request');
 
    Route::post('/ajax/register', 'HomeController@userRegister')->name('ajax_register');
+   Route::post('/ajax/register/update/{id}', 'HomeController@userRegisterUpdate')->name('ajax_register_update');
    Route::post('/ajax/login', 'HomeController@userLogin')->name('ajax_login');
    Route::post('/ajax/login/popup', 'HomeController@userLoginPopup')->name('ajax_login_popup');
 

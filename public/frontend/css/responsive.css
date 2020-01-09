@@ -392,6 +392,15 @@
 
 
 @media(max-width: 767px) {
+    #profileDropdown p {
+        max-width: 100px;
+    }
+.nav-profile.dropdown .dropdown-menu{
+    min-width: 100px;
+}
+.mob-side-menus .dropdown-item:after{
+    display: none;
+}
     h1 {
         font-size: 28px;
     }

@@ -16,6 +16,7 @@ use App\Traits\EmailTraits\VendorOrderSuccess;
 use App\Traits\EmailTraits\VendorApprovalNotification;
 use App\Traits\EmailTraits\VendorRejectionNotification;
 use App\Traits\EmailTraits\VendorInvitingRequestNotification;
+use App\Traits\EmailTraits\NewVendorEmail;
 trait UserNotificationTrait {
 
 	use UserOrderSuccess;
@@ -24,6 +25,7 @@ trait UserNotificationTrait {
 	use VendorApprovalNotification;
 	use VendorRejectionNotification;
 	use VendorInvitingRequestNotification;
+	use NewVendorEmail;
 
 
 

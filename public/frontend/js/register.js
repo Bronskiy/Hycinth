@@ -317,6 +317,17 @@ function registerVendorForm() {
                                  $this.find('.messages').html('');
                             },8000);
 
+                      }else if(parseInt(data.status) == 8){
+                           $this[0].reset();
+
+                           //$this.find('.messages').html(ErrorMsg('success',data.message));
+                           //$this.find('button.cstm-btn').removeAttr('disabled');
+                            setTimeout(function () {
+                                 window.location.href = data.redirectLink;
+                                 return true;
+                            },1000);
+                            $("body").find('.custom-loading').hide();
+
                       }else{
 
                         $this.find('.loading').hide();

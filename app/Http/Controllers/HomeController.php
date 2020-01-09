@@ -66,6 +66,76 @@ class HomeController extends Controller
 #----------------------------------------------------------------------
 
 
+public function userRegisterUpdate(Request $request,$token)
+{
+        $v= \Validator::make($request->all(), [
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'id_proof' => ['required', 'image']
+            
+        ],[
+            'id_proof.image' => 'Please upload image format of document'
+        ]);
+
+
+          $user = User::where('role','vendor')
+                  ->where('custom_token',$token);
+                    
+
+
+ 
+        if($v->fails()){
+             return response()->json(['status' => 0,'errors' => $v->errors()]);
+        }elseif($user->count() == 0){
+             return response()->json(['status' => 0,'errors' => ['Token has been Expired.']]);
+        }else{
+            
+            $status = $this->updateAccount($request,$user->first());
+            $url = url(route('request.messages')).'?type=account-updated';
+            return response()->json([
+                'status' => 8,
+                'redirectLink' => $url
+            ]);
+
+        }
+}
+
+
+
+
+#---------------------------------------------------------------------
+# ajax register
+#----------------------------------------------------------------------
+
+public function updateAccount($request,$u)
+{
+    $id_proof = uploadFileWithAjax('videos/vendors/cover/',$request->file('id_proof'));
+     
+    $u->first_name = $request->first_name;
+    $u->last_name = $request->last_name;
+    $u->name = $request->first_name.' '.$request->last_name;
+    $u->phone_number = $request->phone_number;
+    $u->user_location = $request->location;
+    $u->website_url = $request->website_url;
+    $u->ein_bs_number = $request->ein_bs_number;
+    $u->age = Carbon::parse($request->age)->format('Y-m-d');
+    $u->id_proof = $id_proof;
+    $u->status = 0;
+    //$u->custom_token = null;
+     $u->updated_status = 1;
+    if($u->save()) {
+
+        $this->NewVendorEmailSuccess($u);
+         return 1;
+    }
+}
+
+
+#---------------------------------------------------------------------
+# ajax register
+#----------------------------------------------------------------------
+
+
 public function userRegister(Request $request)
 {
         $v= \Validator::make($request->all(), [
@@ -130,8 +200,8 @@ public function saveNewVendor($request)
     $u->password = \Hash::make($request->password);
     if($u->save() && $this->addBusinessCategories($request,$u->id) == 1) {
 
-         $u->sendEmailVerificationNotification();
-
+          $u->sendEmailVerificationNotification();
+          $this->NewVendorEmailSuccess($u);
          return 1;
     }
 
@@ -417,6 +487,18 @@ public function login($request)
 
 
 
+public function requestMessages(Request $request)
+{
+    return view('auth.requestMessages');
+}
+
+
+#-------------------------------------------------------------------------
+#
+#-----------------------------------------------------------------------
+
+
+
 public function about()
 {
     return view('home.cms.about_us');
@@ -453,15 +535,30 @@ public function email()
     return view('emails.customEmail')->with('order',$order)->with('o',$o);
 }
 
+#-------------------------------------------------------------------------
+# email for email template testing
+#-----------------------------------------------------------------------
+
 
 public function faq() {
     $faqs = FAQs::whereIn('type', ['user', 'vendor'])->get();
     return view('home.faq.faq')->with(['faqs' => $faqs]);
 }
 
+#-------------------------------------------------------------------------
+# email for email template testing
+#-----------------------------------------------------------------------
 
 
 
+public function vendorUpdate($token)
+{
+   $user = User::where('role','vendor')
+                  ->where('custom_token',$token)
+                  ->first();
+
+   return view('auth.updateVendor')->with('user',$user);
+}
 
 
 

@@ -55,9 +55,10 @@ class VendersController extends Controller
 
     public function rejected(Request $request,$id)
     {
-
+       
     	$u = User::find($id);
-    	$u->status = 0;
+      $u->status = 0;
+    	$u->custom_token = createToken();
     	$u->save();
         $this->VendorRejectionNotification($u,$request->detail);
         $msg = 'This Accpunt has been Rejected successfully.';

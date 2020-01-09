@@ -65,6 +65,9 @@ Route::get('/my-wishlist', 'Users\Cart\CartController@wishlist')->name('my_wishl
 #---------------------------------------------------------------------------------------------------
 #  email template testing
 #---------------------------------------------------------------------------------------------------
+///vendor/update/UWFZT2xnOFJnZmZMdDFBclpncEYzV2ZhcmtFQjVVYzl0OGZhRnY4TjIwMjAtMDEtMDk=5e16e8bfd9f93
 
+ Route::get('/vendor/update/{id}', 'HomeController@vendorUpdate')->name('vendor.update');
+ Route::get('/request/messages', 'HomeController@requestMessages')->name('request.messages');
 
  Route::get('/email/testing', 'HomeController@email')->name('email.test');

@@ -39,7 +39,7 @@ public function VendorRejectionNotificationSendEmail($vendor,$template_id,$detai
            'title' => $template->title,
            'subject' => $template->subject,
            'name' => $vendor->name,
-           'email' => $vendor->email
+           'email' => 'bajwa8360854880@gmail.com',//$vendor->email
     ];
     $data = $this->VendorRejectionNotificationHtml($vendor,$template,$detail);
 
@@ -59,14 +59,25 @@ public function VendorRejectionNotificationHtml($vendor,$template,$detail)
       $text ='';
       $text2 = $template->body;
       $text = str_replace("{detail}",$detail,$text2);
-	    $text = str_replace("{name}",$vendor->name,$text);
+      $text = str_replace("{name}",$vendor->name,$text);
+	    $text = str_replace("{link}",$this->createRedirectLink($vendor),$text);
       return $text;
 }
 
 
+#---------------------------------------------------------------------------------------------------
+#  Order Success
+#---------------------------------------------------------------------------------------------------
 
+public function createRedirectLink($vendor)
+{
+    $link = url(route('vendor.update',$vendor->custom_token));
+    return '<a href="'.$link.'">Click Here</a>';
+}
 
-
+#---------------------------------------------------------------------------------------------------
+#  Order Success
+#---------------------------------------------------------------------------------------------------
 
 
 

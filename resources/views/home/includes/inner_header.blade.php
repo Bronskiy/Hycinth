@@ -145,7 +145,7 @@
                </a>
             </li>
             <li>
-               <a href="javascript:void(0);" style="background:url(/frontend/images/menu-faq.png)">
+               <a href="{{ route('home.faq') }}" style="background:url(/frontend/images/menu-faq.png)">
                   <span class="nav-item-icon"><i class="fas fa-comment-dots"></i></span>
                   <h3>FAQ</h3>
                </a>

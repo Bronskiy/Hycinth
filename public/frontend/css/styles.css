@@ -2993,10 +2993,13 @@ nav#tool-nav #menus-list li a:before {
 }
 
 .top-bar.inner-header .dropdown-item:focus,
-.top-bar.inner-header .dropdown-item:hover {
+.top-bar.inner-header .dropdown-item:hover,
+ .mob-side-menus .dropdown-item:hover,
+ .mob-side-menus .dropdown-item:focus {
     background-color: #eda108 !important;
     color: #fff;
 }
+
 
 .top-bar.inner-header ul.inn-top-navigation > li.user i {
     margin: auto;
@@ -3416,7 +3419,7 @@ h3.category {
     border:none;
     font-weight: normal;
 }
-.log-sign-btns a:first-child:after{
+.log-sign-btns a.cstm-btn.solid-btn:after{
     content: "/";
     margin:0px 3px;
 

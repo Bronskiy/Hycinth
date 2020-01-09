@@ -1,4 +1,29 @@
+                          <tr style="background-color: #fff;">
+                           <td style="">
+                              <table align="center" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+                                 <tbody>
+                                    <tr>
+                                       <td style="background-color: #fff; padding-top: 10px;  padding-bottom: 10px; padding-left: 10px; padding-right: 10px; border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px;">
+                                          <table align="center" cellpadding="0" cellspacing="0" width="100%" style="border-collapse: collapse;">
+                                             <tbody>
+                                                <tr>
+                                                   <td style="text-align: center;"><img style="width:100%;" src="{{url('/email-template/images/invited.jpg')}}"></td>
+                                                </tr>
+                                             </tbody>
+                                          </table>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </td>
+                        </tr>
+                        <!-- welcom text here -->
+
+
  
+
+
+
                         <!-- welcom text here -->
                         <tr style="background-color: #fff;">
                            <td style="">
@@ -18,7 +43,7 @@
                                                 </tr>
                                                 <tr>
                                                    <td style="padding-top: 20px;" align="left">
-                                                      <a href="{{url(route('vendor_register'))}}" target="_blank" style="background-color: #36496c; color: #fff; text-transform: capitalize; padding-top: 12px; padding-right: 20px; padding-bottom: 12px; padding-left: 20px; text-decoration: none; display: inline-block; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; font-family: 'Maven Pro', sans-serif; font-size: 14px; font-weight: 600; text-transform: uppercase;">lorem ipsum</a></td>
+                                                      <a href="{{url(route('vendor_register'))}}" target="_blank" style="background-color: #36496c; color: #fff; text-transform: capitalize; padding-top: 12px; padding-right: 20px; padding-bottom: 12px; padding-left: 20px; text-decoration: none; display: inline-block; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; font-family: 'Maven Pro', sans-serif; font-size: 14px; font-weight: 600; text-transform: uppercase;">JOIN WITH US</a></td>
                                                 </tr>
                                              </tbody>
                                           </table>

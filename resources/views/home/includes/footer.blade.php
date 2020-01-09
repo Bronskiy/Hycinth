@@ -13,7 +13,7 @@
                             @foreach($pages as $page)
                             <li><a href="{{ route('cmsPage', ['slug' => $page->slug]) }}">{{ $page->title }}</a></li>
                             @endforeach
-                            <li><a href="javascript:void(0);">FAQ</a></li>
+                            <li><a href="{{ route('home.faq') }}">FAQ</a></li>
                             <li><a href="javascript:void(0);">Contact Us</a></li>
                         </ul>
                     </div>
