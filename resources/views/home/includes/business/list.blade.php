@@ -156,7 +156,7 @@ $followus = empty($facebook_url) && empty($linkedin_url) && empty($twitter_url) 
                        <div class="warning-box space">
                                   <div class="shadow-box">                                  
                                       <div class="info-tab tip-icon" title="Useful Tips"><span class="fas fa-user-plus"> </span> <i></i></div>
-                                      <div class="warning-text">
+                                      <div class="warning-text" style="background: url('/frontend/images/invite-vendor-bg.png');">
                                         <h4>Invite Vendor</h4>
                                         <p>Is there a Vendor you have worked in the past and not listed here please click below Invite Button</p>
                                         <div class="btn-wrap mini-btn-wrap mt-2">

@@ -30,6 +30,12 @@
                  </tr>
                  <tr><td colspan="2"><?= ProgressBar($paymenMethod) ?></td></tr>
 
+
+                 <tr>
+                   <th>6.</th><th> Business Proof. ({{$proof}}%)</th>
+                 </tr>
+                 <tr><td colspan="2"><?= ProgressBar($proof) ?></td></tr>
+
                  
 
                  <tr>
@@ -43,13 +49,13 @@
             </table> 
 
              
-            @if($overAll > 75 &&  $vendor->status == 1 && $paymenMethod >= 50)
+            @if($overAll > 75 && $proof == 100 &&  $vendor->status == 1 && $paymenMethod >= 50)
                    
                     <form method="post">
                         @csrf
                           <button class="btn btn-block btn-success">Submit for Approval</button>
                     </form>
-            @elseif($overAll > 75 &&  $vendor->status == 4 && $paymenMethod >= 50)
+            @elseif($overAll > 75 && $proof == 100 &&  $vendor->status == 4 && $paymenMethod >= 50)
                    
                     <form method="post">
                         @csrf

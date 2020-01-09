@@ -88,7 +88,6 @@
                                             @if(count($package->package_addons))
                                         <div class="pricing-category">
                                               <label for="add-ons">Add Ons</label>
-
                                               @foreach($package->package_addons as $package_addon)
                                                 <div class="vendor-category">
                                                   <div class="category-checkboxes category-title">

@@ -73,13 +73,20 @@
                         <div class="col-lg-12">
                             <div class="cart-items-wrap my-order-detail-card">
                                 <div class="row no-gutters">
-                                    <div class="col-lg-2 col-md-2">
+                                    <div class="col-lg-1 col-md-1">
                                         <div class="cart-col-wrap">
                                             <div class="cart-table-head">
                                                 <h3>Sr No</h3>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-lg-2 col-md-2">
+                                        <div class="cart-col-wrap">
+                                            <div class="cart-table-head">
+                                                <h3>Category Image</h3>
+                                            </div>
+                                        </div>
+                                    </div>                                    
                                     <div class="col-lg-4 col-md-4">
                                         <div class="cart-col-wrap">
                                             <div class="cart-table-head">
@@ -87,7 +94,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6">
+                                    <div class="col-lg-5 col-md-5">
                                         <div class="cart-col-wrap">
                                             <div class="cart-table-head">
                                                 <h3>Details</h3>
@@ -105,9 +112,9 @@
 
                       @if(@sizeof($vendors))
                         @foreach($vendors as $k => $v)
-                        <div class="cart-items-wrap my-order-detail-card" id="CartItems">
+                        <div class="cart-items-wrap my-order-detail-card wow bounceInRight" data-wow-delay="{{100 * ($k + 0.5)}}ms" id="CartItems">
                                 <div class="row no-gutters">
-                                    <div class="col-lg-2 col-md-2">
+                                    <div class="col-lg-1 col-md-1">
                                         <div class="cart-col-wrap">
 
                                             <div class="car-col-body">
@@ -116,7 +123,16 @@
 
                                         </div>
                                     </div>
-                                  <div class="col-lg-4 col-md-4">
+                                    <div class="col-lg-2 col-md-2">
+                                        <div class="cart-col-wrap">
+                                            <div class="car-col-body">
+                                                <img src="{{ url($v->category->image) }}">
+                                            </div>
+                                        </div>
+
+                                    </div>                                    
+
+                                    <div class="col-lg-4 col-md-4">
                                         <div class="cart-col-wrap">
                                             <div class="car-col-body">
                                                 <h4>{{$v->business_name}} ({{$v->category->label}})</h4>
@@ -124,13 +140,16 @@
                                         </div>
 
                                     </div>
-                                     <div class="col-lg-6 col-md-6">
+                                      <div class="col-lg-5 col-md-5">
                                         <div class="cart-col-wrap">
                                             <div class="car-col-body">
-                                            <h6><b>Name :</b> {{$v->name}}</h6>
-                                            <h6><b>Email :</b> {{$v->email}}</h6>
-                                            <h6><b>Phone Number :</b> {{$v->phone_number}}</h6>
-                                            </div>
+                                                <div class="invite-ven-det-table">
+                                                  <h6><b><span class="table-icons"><i class="fas fa-user"></i></span> Name :</b> {{$v->name}}</h6>
+                                                  <h6><b><span class="table-icons"><i class="fas fa-envelope"></i></span> Email :</b> {{$v->email}}</h6>
+                                                  <h6><b><span class="table-icons"><i class="fas fa-phone"></i></span> Phone Number :</b> {{$v->phone_number}}</h6>
+                                                  <h6><b><span class="table-icons"><i class="fas fa-map-marker-alt"></i></span> Location :</b> {{$v->address}}</h6>
+                                                  </div>
+                                                </div>
                                         </div>
                                     </div>                                    
                                 </div>
@@ -138,8 +157,9 @@
                           @endforeach
                           {{$vendors->links()}}
                         @else
-
-                                                                            
+                          <div class="alert alert-info closer-step mb-3" role="alert">
+                               <i class="fa fa-info-circle"></i> No Results Found
+                          </div>                                                                            
                         @endif                                                                            
                         </div>
 

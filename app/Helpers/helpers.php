@@ -1,5 +1,23 @@
 <?php 
 
+// rj cd start
+  function getPackAEM($id) {
+   return \App\PackageMetaData::find($id);
+  }
+// rj cd end
+
+function getBusinessData($key,$type,$category_id,$user_id,$business_id,$count=0)
+{
+        $chk = \App\VendorCategoryMetaData::
+                where('user_id',$user_id)
+               ->where('key',$key)
+               ->where('type',$type)
+               ->where('category_id',$category_id)
+               ->where('keyValue','!=','')
+               ->where('vendor_category_id',$business_id);
+
+  return $count == 0 ?  $chk->first() : $chk->count();
+}
 
 function errorMessages($type)
 {
@@ -11,6 +29,9 @@ function errorMessages($type)
     case 'token-expired':
       return 'The token has been expired.';
      break;
+    case 'logged':
+      return 'Your request is not fullfilled right now because already you are logged in.';
+     break;
    
    default:
       return 'Not found!';
@@ -21,6 +42,22 @@ function errorMessages($type)
 
 
 
+function errorMessagePageTitle($type)
+{
+ switch ($type) {
+   case 'account-updated':
+      return 'Your information is updated successfully';
+     break;
+
+    case 'token-expired':
+      return 'Token expired';
+     break;
+   
+   default:
+      return 'Not found!';
+     break;
+ }
+}
 
 
 

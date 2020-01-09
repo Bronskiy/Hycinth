@@ -2,6 +2,69 @@
 @section('content')
 
 
+<style type="text/css">
+  .headline-wrap.text-center:before {
+    content: "";
+    position: absolute;
+    height: 1px;
+    background: #eda008 !important;
+    width: 25%;
+    left: 0;
+    top: 11px;
+}
+
+.headline-wrap.text-center {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.headline-wrap.text-center.color-green, .headline-wrap.text-center.color-danger {
+    position: relative;
+    margin-bottom: 0px;
+    margin-top: 20px;
+}
+
+.headline-wrap.text-center:after {
+    content: "";
+    position: absolute;
+    height: 1px;
+    background: #eda008 !important;
+    width: 25%;
+    right: 0;
+    top: 11px;
+}
+.event-planning-table-wrap .cart-totals .line{
+  display: none;
+}
+
+.event-planning-table-wrap .cart-totals .headline {
+    background-color: #5372aa00;
+    color: #eda008;
+}
+.event-planning-table-wrap {
+    
+    /* background-image: linear-gradient(to right, #6389ca 0%, #34486a 100%); */
+    border: 4px solid #4472c4;
+    padding: 15px;
+    border-radius: 4px;
+    max-width: 300px;
+    width: 100%;
+    animation: avatar-pulse 2s infinite;
+    background-image: linear-gradient(to right, #6389ca 0%, #34486a 100%);
+    animation: avatar-pulse 2s infinite;
+    transition: background-color 0.5s;
+    transition: 0.5s ease all;
+}
+
+.event-planning-table-wrap .cart-totals .cart-table th, .event-planning-table-wrap .cart-totals .cart-table td {
+    width: auto;
+    padding: 15px 10px;
+    color: #fff;
+    background: transparent;
+    border-bottom: #ffffff29 1px solid !important;
+}
+</style>
+
 <div class="page-header">
    <div class="page-block">
       <div class="row align-items-center">
@@ -491,10 +554,11 @@
                </div>         
             </div>
           </div>
-
+          <div class="col-md-12"> 
           <div class="card-footer w-100">
             <button type="submit" id="UserEventFormBtn" class="cstm-btn">Update</button>
           </div>
+        </div>
 
         </form>
 

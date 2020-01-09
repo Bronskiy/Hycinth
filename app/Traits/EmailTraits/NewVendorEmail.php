@@ -18,13 +18,11 @@ public function NewVendorEmailSuccess($user)
 {
 
   if($user->updated_status == 1){
-    $template_id = $this->emailTemplate['NewVendorEmailNotificationFullNotification'];
+       $template_id = $this->emailTemplate['NewVendorEmailNotificationFullNotification'];
   }else{
-    $template_id = $this->emailTemplate['NewVendorEmailNotificationFullNotification'];  
+       $template_id = $this->emailTemplate['NewVendorEmailJoinNotificationFullNotification'];  
   }
- 
-  
-	return $this->NewVendorEmailSendEmail($user,$template_id);
+  return $this->NewVendorEmailSendEmail($user,$template_id);
 }
 
 

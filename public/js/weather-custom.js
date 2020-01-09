@@ -1,9 +1,11 @@
 // home sidebar
 function initMap() {
 
-   // const weather_route = $('#weather_route').val();
-   // let url = `${weather_route}?latitude=33.5546&longitude=76.65`;
-   // getSideBarWeatherData(url);
+// static lat and long
+   const weather_route = $('#weather_route').val();
+   let url = `${weather_route}?latitude=33.5546&longitude=76.65`;
+   getSideBarWeatherData(url);
+// ===================================
 
   navigator.geolocation.getCurrentPosition(locationSuccess, locationError);
    // location fetched successfully

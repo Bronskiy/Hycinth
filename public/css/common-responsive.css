@@ -24,6 +24,10 @@
 }
 
 @media (max-width: 767px){
+  form .form-group {
+    margin-bottom: 30px;
+    position: relative;
+}
 	.form-img-cont h2{
 		font-size: 24px;
 	}
@@ -104,6 +108,9 @@
 }
 .my-order-detail-card .cart-col-wrap{
   height: auto;
+}
+.content-main-wrap .nav-tabs .nav-link{
+  padding: 10px 18px;
 }
 }
 @media (max-width: 480px){

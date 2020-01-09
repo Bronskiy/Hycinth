@@ -52,6 +52,7 @@ class MyBusinessController extends Controller
 
 	       $vendor =  $vendorCategory->first();
 
+         $proof = $this->getProofData($category,$vendor);
     
  
             $event = \App\VendorEventGame::with('Event')->where('category_id',$category->first()->id)->where('user_id',$vendor->user_id);
@@ -81,9 +82,11 @@ $prohibtion = $vendor->prohibtion != null && $vendor->prohibtion->count() > 0 ? 
 $paymenMethod = $vendor->paypal_account !="" ? 50 : 0;
 $paymenMethod += $vendor->stripe_account !="" ? 50 : 0;
 
-$per = 500 / 100;
 
-$overAll = round($photoVideogalery + $amenitiesAndGames + $venuesPercent + $basicInfo + $paymenMethod) / $per;
+
+$per = 600 / 100;
+
+$overAll = round($photoVideogalery + $amenitiesAndGames + $venuesPercent + $basicInfo + $paymenMethod + $proof) / $per;
 
 $percents =[
   'photoVideogalery' => $photoVideogalery,
@@ -91,11 +94,10 @@ $percents =[
   'venuesPercent' => $venuesPercent,
   'basicInfo' => $basicInfo,
   'paymenMethod' => $paymenMethod,
-  'overAll' => $overAll,
+  'overAll' => round($overAll),
+  'proof' => $proof,
   'prohibtion' => $prohibtion
 ];
-
-
  
  $types = Auth::user()->role == "vendor" ? 'vendor' : 'admin';
 
@@ -109,7 +111,7 @@ $percents =[
 	      ->with('services', $vendor->subcategory)
 	      ->with('VendorEvents', $vendor->VendorEvents)
 	      ->with('seasons',$vendor->seasons)
-	      ->with('currentStatus',$this->statusMessages($vendor->status,$overAll))
+	      ->with('currentStatus',$this->statusMessages($vendor->status,$overAll,$proof))
 	      ->with('vendor',$vendor);
 }
  
@@ -146,11 +148,12 @@ public function submitForApproval(Request $request, $slug, $vendorSlug)
 # status messages
 #---------------------------------------------------------------------------------
 
-public function statusMessages($status,$overAll)
+public function statusMessages($status,$overAll,$proof=0)
 {
 	switch ($status) {
 		case 1:
-			return $overAll > 80 ? 'Click Submit Button for Business Approval'  : 'Complete your profile aleast 80% for Business Submission';
+			  $msg = $overAll > 80 ? 'Click Submit Button for Business Approval'  : 'Complete your profile aleast 80% for Business Submission';
+         return $proof < 100 &&  $overAll > 80 ? 'Business Proof is pending.' : $msg;
 			break;
 
 	    case 2:
@@ -168,6 +171,30 @@ public function statusMessages($status,$overAll)
 			break;
 	}
 }
+
+#--------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------
+
+ 
+
+ public function getProofData($cate,$vendor)
+ {
+
+       $category = $cate->first();
+       $one = getBusinessData('bessiness_address_proof_1','basic_information',$category->id,$vendor->user_id,$vendor->id,1);
+       $two = getBusinessData('bessiness_address_proof_2','basic_information',$category->id,$vendor->user_id,$vendor->id,1);
+       $three = getBusinessData('business_registation_proof','basic_information',$category->id,$vendor->user_id,$vendor->id,1);
+      
+
+      $total = 0;
+      $total = $one > 0 ? ($total + 33) : $total;
+      $total = $two > 0 ? ($total + 33) : $total;
+      $total = $three > 0 ? ($total + 34) : $total;
+      return $total;
+ }
+
+
 
 
 

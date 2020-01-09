@@ -15,42 +15,14 @@
 <!-- user status sidebar Ends here -->
 <!-- Weather report sidebar -->
 <aside class="user-status-content" id="weather-sidebar">
-    <div class="sidebar-header">
+   <div class="sidebar-header">
      <h3>Book a Date</h3>
      <a href="javascript:void(0);" class="close-sidebar" id="calendarSidebar-close"><i class="fas fa-times-circle"></i></a>
-  </div>
+   </div>
 
- <div class="calendar-section">
-        <div class="row">
-
-          <div class="col-sm-12">
-
-            <div class="calendar calendar-first" id="calendar_first">
-              <div class="calendar_header">
-                <button class="switch-month switch-left">
-                  <i class="fas fa-chevron-left"></i>
-                </button>
-                <h2></h2>
-                <button class="switch-month switch-right">
-                  <i class="fas fa-chevron-right"></i>
-                </button>
-              </div>
-              <div class="calendar_weekdays"></div>
-              <div class="calendar_content"></div>
-            </div>
-
-          </div>
-         
-
-        </div> <!-- End Row -->
-            
-      </div> <!-- End Calendar -->
-
-
+<!-- weather section -->
 <input type="hidden" value="{{ route('get_venue_weather') }}" id="weather_route" />
-
-
-  <div class="weather-mini-card" id="sidebar-weather" style="display: none">
+<div class="weather-mini-card mt-2" id="sidebar-weather" style="display: none">
   <div class="weather-info">
     <div class="weather-info-wrapper">
       <div class="info-date">
@@ -68,7 +40,29 @@
     </div>
   </div>
 </div>
+<!-- weather section end -->
 
+<!-- calendar section -->
+
+ <div class="calendar-section">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="calendar calendar-first" id="calendar_first">
+              <div class="calendar_header">
+                <button class="switch-month switch-left">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <h2></h2>
+                <button class="switch-month switch-right">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+              <div class="calendar_weekdays"></div>
+              <div class="calendar_content"></div>
+            </div>
+          </div>
+        </div> <!-- End Row -->
+      </div> <!-- End Calendar -->
 
 </aside>
 

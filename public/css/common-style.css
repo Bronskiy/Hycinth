@@ -366,6 +366,8 @@ padding: 3px 10px;
     top: 100%;
     font-weight: 400!important;
     font-size:12px;
+    line-height: 1;
+    margin-top: 3px;
 }
 form .form-group {
     margin-bottom: 20px;

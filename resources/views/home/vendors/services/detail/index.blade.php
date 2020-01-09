@@ -444,6 +444,7 @@ $("body").find('#Video-Modal').on('hidden.bs.modal', function () {
    
  let comp_pack_arr = [];
  $('.custom-control-input').click(function() {
+       console.log('com pack ', this);
        
        const package = $(this).data('package');
        const pack_index = $.inArray(package, comp_pack_arr);

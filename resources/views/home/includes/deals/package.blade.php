@@ -67,7 +67,6 @@
                                                  </div>
                                                  <div class="col-md-6">
                                                          <label for="no_of_hours">Games</label>
-                                               
                                                            <ul class="pkg-listing-grp">  
                                                             <?php $getPackageGames = getPackageGames($package); ?>
                                                             @foreach($getPackageGames as $game)
@@ -126,16 +125,18 @@
                                              data-action="{{url(route('cart.packageCheck'))}}"
                                              >Buy</a>
                                           
-                                            <div class="custom-control custom-checkbox hide">
-                                                <input type="checkbox" data-package="{{$package}}" class="custom-control-input" id="customCheck_{{$package->id}}">
-                                                <label class="custom-control-label" for="customCheck_{{$package->id}}">Compare</label>
-                                              </div>
-
                                          @if(!empty($vendor) && count($vendor->VendorPackage) >= 2)
                                            <div class="custom-control custom-checkbox">
-                                               <input type="checkbox" data-package="{{$package}}" class="custom-control-input" id="customCheck_{{$package->id}}">
+                                               <input 
+                                               type="checkbox" 
+                                               value="{{$package->id}}"
+                                               data-package="{{$package}}"
+                                               class="custom-control-input comparePackages"
+                                               id="customCheck_{{$package->id}}"
+                                               >
                                                 <label class="custom-control-label" for="customCheck_{{$package->id}}">Compare</label>
                                           </div>
+
                                         @endif
                                              
                                         </div>
@@ -150,7 +151,8 @@
 @endforeach
 
 
-
+<input type="hidden" id="getPackageBox" value="{{url(route('ajax.compare.package'))}}">
+<input type="hidden" id="getCompareInformation" value="{{url(route('ajax.compare.package'))}}">
 
                </div>
             </div>
@@ -161,7 +163,7 @@
 
 
 
-
+<div class="container lr-container" id="com_pack_headings"></div>
 
 
 

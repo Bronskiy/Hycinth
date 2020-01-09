@@ -53,7 +53,8 @@ Route::get('/get-wishlist-items','Users\Cart\CartController@getWishlistItems')->
 Route::get('/apply-coupon','Users\Cart\CartController@applyCoupon')->name('cart.applyCoupon');
 
 
-
+Route::post('/get-package-boxes','Home\PackageCompareController@index')->name('ajax.compare.package');
+//Route::post('/get-package-boxes','Home\PackageCompareController@index')->name('ajax.compare.package');
 
 });
 

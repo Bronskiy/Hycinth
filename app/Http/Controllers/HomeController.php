@@ -33,6 +33,10 @@ class HomeController extends Controller
 
     public function register()
     {
+        if(Auth::check()){
+              $url = url(route('request.messages')).'?type=logged';
+              return redirect($url);
+        }
         return view('auth.register2');
     }
 
@@ -121,8 +125,8 @@ public function updateAccount($request,$u)
     $u->age = Carbon::parse($request->age)->format('Y-m-d');
     $u->id_proof = $id_proof;
     $u->status = 0;
-    //$u->custom_token = null;
-     $u->updated_status = 1;
+    $u->custom_token = null;
+    $u->updated_status = 1;
     if($u->save()) {
 
         $this->NewVendorEmailSuccess($u);
@@ -489,7 +493,9 @@ public function login($request)
 
 public function requestMessages(Request $request)
 {
-    return view('auth.requestMessages');
+    $type = !empty($request->type) ? $request->type : 1;
+     return view('auth.requestMessages')
+          ->with('type',$type);
 }
 
 
@@ -554,10 +560,12 @@ public function faq() {
 public function vendorUpdate($token)
 {
    $user = User::where('role','vendor')
-                  ->where('custom_token',$token)
-                  ->first();
-
-   return view('auth.updateVendor')->with('user',$user);
+                  ->where('custom_token',$token);
+   if($user->count() == 0){
+    return redirect(route('request.messages').'?type=token-expired');
+   }
+  
+   return view('auth.updateVendor')->with('user',$user->first());
 }
 
 

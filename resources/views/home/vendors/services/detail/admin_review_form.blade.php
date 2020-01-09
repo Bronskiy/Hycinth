@@ -25,6 +25,17 @@
                  </tr>
                  <tr><td><?= ProgressBar($amenitiesAndGames) ?></td></tr>
 
+                   <tr>
+                   <th>5. Payment Method. ({{$paymenMethod}}%)</th>
+                 </tr>
+                 <tr><td colspan="2"><?= ProgressBar($paymenMethod) ?></td></tr>
+
+
+                 <tr>
+                   <th>6. Business Proof. ({{$proof}}%)</th>
+                 </tr>
+                 <tr><td colspan="2"><?= ProgressBar($proof) ?></td></tr>
+
                  
 
                  <tr>
@@ -37,7 +48,20 @@
                   
             </table> 
 
-             
+   
+
+             <h3 class="form-heading">Business Proof</h3>
+              <div>
+              <a href="{{url(getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','bessiness_address_proof_1'))}}" 
+              class="viewDocument cstm-btn" target="_blank">View Business address proof 1</a></div>
+
+              <div>
+              <a href="{{url(getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','bessiness_address_proof_2'))}}" 
+              class="viewDocument cstm-btn" target="_blank">View Business address proof 2</a></div>
+
+              <div>
+              <a href="{{url(getBasicInfo($vendor->vendors->id, $vendor->category_id,'basic_information','business_registation_proof'))}}"  
+              class="viewDocument cstm-btn" target="_blank">View Business Registration Proof</a></div>
            
 			 
 				 	</div>

@@ -16,6 +16,10 @@ class AdminController extends Controller
 
 	public function index()
 	{
+        if(Auth::check()){
+              $url = url(route('request.messages')).'?type=logged';
+              return redirect($url);
+        }
 		return view('admin.login');
 	}
 

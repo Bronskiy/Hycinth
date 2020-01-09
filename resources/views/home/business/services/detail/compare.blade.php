@@ -23,7 +23,11 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
-      <div class="modal-body" id="com_pack_modal_table"></div>
+      <div class="modal-body">
+
+ 
+
+      </div>
       
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
