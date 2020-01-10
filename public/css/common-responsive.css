@@ -21,6 +21,15 @@
 .cart-col-wrap .cart-table .price-row th, tr.price-row td{
   font-size: 14px;
 }
+
+.card-media-object-container{
+  width: 30%;
+}
+.card-media-body{
+   width: 70%;
+}
+.card-media-body-top .subtle {
+    width: calc(100% - 205px);
 }
 
 @media (max-width: 767px){
@@ -40,6 +49,9 @@
    .card-media-object-container{
       width: 100%;
       min-height: 200px;
+   }
+     .card-media-object-container .card-media-object{
+        height: 200px;
    }
    .card-media-body{
     width: 100%;
@@ -101,7 +113,7 @@
   font-size: 18px;
 }
 .card .card-footer{
-  padding: 10px 15px;
+  padding: 10px 0px;
 }
 .card .animated{
   margin-bottom: 0px;

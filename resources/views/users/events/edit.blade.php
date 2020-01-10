@@ -129,6 +129,7 @@
 
             <div class="col-md-6">
              <!-- {{choosefile($errors, 'Event Image*', 'event_picture')}} -->
+             <div class="form-group ">
              <div class="profile-image">
                 <label class="label-file">Event Image*</label>
                          <input type="file" name="event_picture" accept="image/*" onchange="ValidateSingleInput(this, 'image_src')" id="event_picture" class="form-control">
@@ -136,6 +137,7 @@
                               <div class="error">{{ $errors->first('event_picture') }}</div>
                           @endif
                    </div>
+                 </div>
            </div>
 
 @if($user_event->event_picture !="")

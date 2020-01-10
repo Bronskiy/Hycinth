@@ -73,6 +73,19 @@
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
 }
+.form-control-wrap {
+    display: block;
+    position: relative;
+}
+.right-radius-none{
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
+.left-radius-none{
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}
+
 /****************/
 
 .custom-left-content img {
@@ -545,6 +558,9 @@ form .form-group {
 
 .cart-table.bottom .cart-btns {
     float: right;
+}
+.cart-btns.mini-btn-wrap .cstm-btn {
+    margin-bottom: 10px;
 }
 .cart-table.bottom {
     width: 100%;

@@ -27,7 +27,7 @@
                         <div class="col-lg-2 col-md-3">
                            <div class="cart-col-wrap">
                               <div class="cart-table-head">
-                                 <h3>Event Image</h3>
+                                 <h3>Image</h3>
                               </div>
                            </div>
                         </div>

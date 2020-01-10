@@ -23,13 +23,13 @@
                   <div class="first-user-form">
                      <div class="card-heading">
                         <h3>Choose Your Event.</h3>  
-                        <div class="messageNotofications"></div>   
                     </div>
                         <form data-action="" id="AddToCart">
                      <div class="cart-pop-inn">      
                      <div class="row">
+                       <div class="col-md-12"><div class="messageNotofications"></div></div>
 
-                        <div class="messageNotofications"></div>
+                      <!--   <div class="messageNotofications"></div> -->
                            <input type="hidden" name="package_id" id="package_id" value="0">
                            <input type="hidden" name="deal_id" id="deal_id" value="0">
                         <div class="col-lg-12">

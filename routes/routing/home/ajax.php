@@ -54,7 +54,10 @@ Route::get('/apply-coupon','Users\Cart\CartController@applyCoupon')->name('cart.
 
 
 Route::post('/get-package-boxes','Home\PackageCompareController@index')->name('ajax.compare.package');
-//Route::post('/get-package-boxes','Home\PackageCompareController@index')->name('ajax.compare.package');
+ 
+
+
+Route::post('/send-message-to-vendor/{id}','Home\PackageCompareController@sendMessages')->name('ajax.requestForQuote');
 
 });
 

@@ -1,6 +1,17 @@
 figure{
 margin: 0px;
 }
+.form-control{
+  height: 45px;
+  -webkit-appearance: none;
+}
+textarea .form-control{
+  height: auto;
+}
+input[type="file"].form-control{
+  height: auto;
+  padding: 8px 20px;
+}
 .cstm-btn {
     background: #35486b;
     font-size: 15px;
@@ -19,6 +30,7 @@ margin: 0px;
 .cstm-btn:hover, .cstm-btn:focus {
     color: #35486b;
     background: transparent;
+    outline: none;
 }
 
 .nav-tabs .nav-link {

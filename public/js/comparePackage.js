@@ -20,18 +20,20 @@ function getAllPackageIds() {
 
 
 $("body").on('change','.comparePackages',function(){
-     getDataWithRequest($getPackageBox);
+	 var $div = $("body").find('#com_pack_headings');
+     getDataWithRequest($getPackageBox,$div);
 });
 
 
 
 
-function getDataWithRequest(url) {
+function getDataWithRequest(url,$div,type=0) {
 	
 	      $.ajax({
                url : url,
                data : {
                	categories : getAllPackageIds(),
+               	type:type
                },
                type: 'POST',   
                dataTYPE:'JSON',
@@ -46,10 +48,14 @@ function getDataWithRequest(url) {
                 },
                 success: function (result) {
                        if(parseInt(result.status) == 1){
+                          if(type == 0){
+                          	$("body").find('#com_pack_headings').html(result.htm);
+                          }else{
+                             $div.find('.modal-body').html(result.htm);
+                             $div.modal('show');
+                          } 
 
-                       	$("body").find('#com_pack_headings').html(result.htm);
-                         
-                       } 
+                        } 
                },
                complete: function() {
                         $("body").find('.custom-loading').hide();
@@ -79,7 +85,13 @@ $("body").on('click','.remove_fields',function(e){
 
 
 
+$("body").on('click','#open_com_modal',function(e){
+ e.preventDefault();
+ var $div = $("body").find('#compModal');
+ 
+ getDataWithRequest($getPackageBox,$div,1);
 
+});
 
 
 

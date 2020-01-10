@@ -12,25 +12,58 @@ $Persons = '';
 $Hours = '';
 $Days = '';
  
- $header = '<th></th>';
+
+ $count = $packages->count() + 1;
+ $width = ceil(100 / $count);
+ $header = '<th width="'.$width.'%">Feature List</th>';
 ?>
 
 
 
-@foreach($packages as $p)
+@foreach($packages->get() as $p)
 <?php
-$header .='<th>'.$p->title.'</th>';
+#-------------------------------------------------
+$amty='';
+foreach ($p->amenities as $k => $a) {
+   $amty .=$k > 0 ? ', ': '';
+   $amty .=$a->amenity->name;
+}
+#--------------------------------------------------
+$event='';
+foreach ($p->events as $k => $a) {
+   $event .=$k > 0 ? ', ': '';
+   $event .=$a->event->name;
+}
+#-------------------------------------------------
+$game='';
+foreach ($p->games as $k => $a) {
+   $game .=$k > 0 ? ', ': '';
+   $game .=$a->amenity->name;
+}
+#-------------------------------------------------
+$package_addons='<ul>';
+ 
+
+foreach ($p->package_addons as $k => $a) {
+   $package_addons .=$k > 0 ? ', ': '';
+   $package_addons .="<li>".$a->key." : $".$a->key_value."</li>";
+}
+$package_addons .='</ul>';
+#-------------------------------------------------
+
+$type = $p->price_type == 'fix' ? 'Fix Price' : 'Per Person';
+$header .='<th width="'.$width.'%">'.$p->title.'</th>';
 $Price .='<td>'.custom_format($p->price,2).'</td>';
 $Description .='<td>'.$p->description.'</td>';
-$Menus .='<td>'.$p->menu.'</td>';
-$Amenities .='<td></td>';
-$Events .='<td></td>';
-$Games .='<td></td>';
-$Ons .='<td></td>';
-$Type .='<td></td>';
-$Persons .='<td></td>';
-$Hours .='<td></td>';
-$Days .='<td></td>';
+$Menus .='<td>'.$p->menus.'</td>';
+$Amenities .='<td>'.$amty.'</td>';
+$Events .='<td>'.$event.'</td>';
+$Games .='<td>'.$game.'</td>';
+$Ons .='<td>'.$package_addons.'</td>';
+$Type .='<td>'.$type.'</td>';
+$Persons .='<td>'.$p->max_person.'</td>';
+$Hours .='<td>'.$p->no_of_hours.'</td>';
+$Days .='<td><'.$p->no_of_days.'/td>';
 
 ?>
 @endforeach

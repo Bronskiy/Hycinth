@@ -1,17 +1,4 @@
-<div class="container lr-container" id="com_pack_heading" style="display: none;">
-	<div class="compare-box">
-		<div class="compare-head text-left">
-			<div class="card-heading">
-    		  <h3>Compare Packages</h3>			
-     		</div>
-		</div> 
-<div class="row" id="compare-div"></div>
-
-<div class="btn-wrap mt-5 text-right">
-<button type="button" style="display: none;" class="cstm-btn" id="open_com_modal" data-toggle="modal" data-target="#compModal">Compare</button>
-</div>
-</div>
-</div>
+ 
 
 
 <!-- Modal -->

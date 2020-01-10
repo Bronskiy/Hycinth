@@ -259,12 +259,29 @@
                   </div>
                   <div class="Deals-content">
                      @if($vendor->DealsDiscount->count() > 0)
-                     @php $discount_deals = $vendor->DealsDiscount; @endphp
+                    
                        <?php
                            $name = Auth::check() && Auth::user()->role == "user" ? Auth::user()->name : '';
                             $email = Auth::check() && Auth::user()->role == "user" ? Auth::user()->email : '';
                             $phone = Auth::check() && Auth::user()->role == "user" ? Auth::user()->phone_number : '';
                             $event_date = '';
+
+
+
+                            $discount_deals = $vendor->DealsDiscount->filter(function($d){
+                               if($d->deal_life == 1 ){
+                                    $cDate = strtotime(date('Y-m-d'));
+                                    $start = strtotime($d->start_date);
+                                    $end = strtotime($d->expiry_date);
+                                    if($cDate >= $start && $cDate <= $end){
+                                         return $d;
+                                    }
+                                   }elseif($d->deal_life == 0){
+                                    return $d;
+                                   }
+                              
+                               
+                          });
                          ?>
                         @include('home.includes.deals.list')
 
@@ -278,49 +295,7 @@
          </div>
          <div class="col-lg-4">
             <aside>
-               <div class="side-form-wrap">
-                  <span class="side-form-icon"><i class="fas fa-envelope-open-text"></i></span>
-                  <form class="side-form">
-                     <h3 class="form-heading">Contact Vendor</h3>
-                     <div class="form-group">
-                        <input type="text" id="" class="form-control" placeholder="Enter your Name">
-                        <span class="input-icon"><i class="fas fa-user"></i></span>
-                     </div>
-                     <div class="form-group">
-                        <input type="text" id="" class="form-control" placeholder="Email">
-                        <span class="input-icon"><i class="fas fa-user"></i></span>
-                     </div>
-                     <div class="form-group">
-                        <input type="text" id="" class="form-control" placeholder="Phone">
-                        <span class="input-icon"><i class="fas fa-phone"></i></span>
-                     </div>
-                     <div class="form-group">
-                        <input type='text' class="form-control" id='datetimepicker1' placeholder="select date" />
-                        <span class="input-icon"><i class="fas fa-calendar-alt"></i></span>
-                     </div>
-                     <div class="form-group">
-                        <input type="text" id="" class="form-control" placeholder="Number of guests">
-                        <span class="input-icon"><i class="fas fa-user-friends"></i></span>
-                     </div>
-                     <div class="form-group">
-                        <textarea class="form-control" rows="4" id="comment" placeholder="Write your message"></textarea>                        
-                     </div>
-                     <div class="form-group">
-                        <label>Preferred contact method:</label>
-                        <div class="custom-control custom-radio">
-                           <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input" checked>
-                           <label class="custom-control-label" for="customRadio1">Email</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                           <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
-                           <label class="custom-control-label" for="customRadio2">Phone number</label>
-                        </div>
-                     </div>
-                     <div class="btn-wrap text-center">
-                        <a href="javascript:void(0);" class="cstm-btn solid-btn">Request Pricing</a>
-                     </div>
-                  </form>
-               </div>
+       
 
 
 
@@ -328,6 +303,7 @@
 
 
 
+        @include('home.includes.business-detail.requestForm')
         @include('home.includes.business-detail.recomendedBusiness')
 
 
@@ -432,9 +408,9 @@
 <script type="text/javascript" src="{{url('/js/deals/cart.js')}}"></script>
 <script type="text/javascript" src="{{url('/js/deals/deals.js')}}"></script>
 <script type="text/javascript" src="{{url('/js/comparePackage.js')}}"></script>
+<script type="text/javascript" src="{{url('/js/business/requestForm.js')}}"></script>
 <script>
-
-jQuery("body").on('click','.play-model-video2',function(e) {
+ jQuery("body").on('click','.play-model-video2',function(e) {
 
    e.preventDefault();
 
@@ -444,7 +420,7 @@ jQuery("body").on('click','.play-model-video2',function(e) {
    $("body").find('#Video-Modal').find('.modal-title').html(title);
    $("body").find('#Video-Modal').find('iframe').attr('src',url+'?autoplay=1');
    $("body").find('#Video-Modal').modal('show').css('display','block');
-});
+ });
 
 // modal view video popup
  
@@ -452,177 +428,7 @@ $("body").find('#Video-Modal').on('hidden.bs.modal', function () {
        $('#Video-Modal').find('iframe').attr('src','');
 });
 
- // let comp_pack_arr = [];
- // $('.comp_pack').click(function() {
- //       const package = $(this).data('package');
- //       const pack_index = $.inArray(package, comp_pack_arr);
-       
- //       let pack = `<div class="col-lg-4" id="com_pack_id_${package.id}">
- //    <div class="pkg-compare-card">
- //          <div class="package-card">
- //                    <div class="inn-card">
- //                      <div class="title">     
- //                        <div class="icon">
- //                          <i class="fas fa-hand-holding-usd"></i>
- //                        </div>
- //                        <span class="pkg-amount">${package.price}.00</span>
- //                      </div>
- //                      <div class="content">
- //                      <h3 class="price-table-heading">${package.title}</h3>
- //                      <ul class="acrdn-action-btns single-row">
- //             <li><a href="javascript:void(0);" class="remove_field action_btn danger-btn" data-pack="${package.id}"><i class="fas fa-trash-alt"></i></a></li>   
- //           </ul>
- //                      </div>
- //                  </div>
- //              </div>
- //        </div>
- //    </div>`;
-   
  
-   
- //       if($(this).is(':checked')) {
- //         comp_pack_arr.push(package);
- //         $('#compare-div').append(pack);
- //       } else {
- //         comp_pack_arr.splice(pack_index, 1);
- //         $(`#com_pack_id_${package.id}`).remove();
- //       }   
-    
- //        if(comp_pack_arr.length > 0 ) {
- //          $('#com_pack_heading').css('display', 'block');
- //        } else {
- //          $('#com_pack_heading').css('display', 'none');
- //        }
- //        if(comp_pack_arr.length >= 2 ) {
- //          $('#open_com_modal').css('display', 'inline-block');
- //        } else {
- //          $('#open_com_modal').css('display', 'none');
- //        }
- // });
-   
- // $('#compare-div').on("click",".remove_field", function(e) {
- //      e.preventDefault();
- //       const pid = $(this).data('pack');
- //       comp_pack_arr = comp_pack_arr.filter(f => f.id !== pid);
- //       $(`#customCheck_${pid}`).prop("checked", false);
-       
- //       $(`#com_pack_id_${pid}`).remove();
-   
- //       if(comp_pack_arr.length > 0 ) {
- //          $('#com_pack_heading').css('display', 'block');
- //        } else {
- //          $('#com_pack_heading').css('display', 'none');
- //        }
- //       if(comp_pack_arr.length >= 2 ) {
- //          $('#open_com_modal').css('display', 'inline-block');
- //        } else {
- //          $('#open_com_modal').css('display', 'none');
- //        }
-        
- //     });
-   
- //    $('#com_pack_modal_body').on("click",".remove_field", function(e) {
- //       e.preventDefault();
- //       $(this).parent('div').remove();
- //     });
-   
- //     $('#open_com_modal').click(function() {
- //      let com_pack = `
- //         <table class="table table-bordered compere-table">
- //            <thead>
- //               <tr></tr>
- //            </thead>
- //            <tbody>
- //               <tr>
- //                  <td><label>Price</label></td>
- //               </tr>
- //               <tr>
- //                  <td><label>Description</label></td>
- //               </tr>
- //               <tr>
- //                  <td><label>Menus</label></td>
- //               </tr>
- //               <tr>
- //                  <td><label>Amenities</label></td>
- //               </tr>
- //               <tr>
- //                  <td><label>Events</label></td>
- //               </tr>
- //               <tr>
- //                  <td><label>Games</label></td>
- //               </tr>
- //               <tr>
- //                  <td><label>Add Ons</label></td>
- //               </tr>
- //               <tr>
- //                  <td><label>Price Type</label></td>
- //               </tr>
- //               <tr>
- //                  <td><label>Persons</label></td>
- //               </tr>
- //               <tr>
- //                  <td><label>Number Of Hours</label></td>
- //               </tr>
- //               <tr>
- //                  <td><label>Number Of Days</label></td>
- //               </tr>
- //            </tbody>
-
- //         </table>
- //      `;
-
- //      $('#com_pack_modal_table').empty();
- //      $('#com_pack_modal_table').append(com_pack);
-
- //    $('.compere-table >thead tr').empty();
- //    $('.compere-table >thead tr').append(`<th>Feature List</th>`);
-
- //      comp_pack_arr.forEach((e, i) => {
- //    // console.log('a ', e);
- //        $('.compere-table').find('tr').each(function(ti) { 
- //        $(this).find('th').eq(-1).after(`<th>${e.title}</th>`);
- //        let td = '';
- //        if(ti === 1) {
- //          td = e.price;
- //        }
- //        if(ti === 2) {
- //          td = e.description;
- //        }
- //        if(ti === 3) {
- //          td = e.menus ? e.menus : '--' ;
- //        }
- //        if(ti === 4) {
- //          td = e.amenities && e.amenities.length > 0 ? e.amenities.map(e => "{{ getPackAEM(732)->amenity->name }}") : '--';
- //        }
- //        if(ti === 5) {
- //          td = e.events && e.events.length > 0 ? e.events.map(e => "{{ getPackAEM(732)->event->name }}") : '--';
- //        }
- //        if(ti === 6) {
- //          td = e.games && e.games.length > 0 ? e.games.map(e => "{{ getPackAEM(732)->amenity->name }}") : '--';
- //        }
- //        if(ti === 7) {
- //          td = e.package_addons && e.package_addons.length > 0 ? '<ul class="table-list">'+e.package_addons.map(e => `<li>${e.key}: $${e.key_value}</li>`)+'</ul>' : '--';
- //          td = td.replace(',', '');
- //        }
- //        if(ti === 8) {
- //          td = e.price_type ? e.price_type === 'fix' ? 'Fix Price' : 'Per Person' : '--';
- //        }
- //        if(ti === 9) {
- //          td = `(${e.min_person} - ${e.max_person})`;
- //        }
- //        if(ti === 10) {
- //          td = e.no_of_hours ? `${e.no_of_hours} Hours` : '--';
- //        }
- //        if(ti === 11) {
- //          td = e.no_of_days ? `${e.no_of_days} Days` : '--';
- //        }
- //        $(this).find('td').eq(-1).after(`<td>${td}</td>`);
- //      });
-   
-     
- //      });
-      
- //     });
    
     /*----------------------------------------------   
     -Simple Scroll To Anchor

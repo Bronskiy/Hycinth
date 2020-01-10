@@ -142,7 +142,7 @@ public function dealFilterIds($request)
                                     return $d;
                                 }
                                
-       });
+                  });
 
        return $discount_deals->pluck('id');
 }

@@ -959,8 +959,11 @@ nav#tool-nav #menus-list li a:hover {
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease
 }
-#VenuesCategoriesModal .modal-dialog {
+#VenuesCategoriesModal .modal-dialog, #CstmPackage .modal-dialog{
     max-width: 1000px;
+}
+#CstmPackage .modal-dialog .modal-content{
+    border: none;
 }
 #VenuesCategoriesModal .modal-dialog .modal-content{
     min-height: 500px;
@@ -7744,3 +7747,62 @@ button.cstm-btn:disabled span{
 }
 
 /****************/
+.cstm-pkg-checkbox-wrap {
+    border: 2px solid #dfdfdf;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    padding: 0px 20px;
+    margin-top: 10px;
+}
+.cstm-pkg-checkbox-wrap .category-checkboxes label:before{
+    width: 22px;
+    height: 23px;
+}
+.cstm-pkg-checkbox-wrap .category-checkboxes label::after {
+    height: 23px;
+    width: 23px;
+    font-size: 13px;
+    line-height: 24px;
+    }
+.cstm-pkg-checkbox-wrap .category-checkboxes label {
+    padding-left: 32px;
+    line-height: 23px;
+    margin-bottom: 0px;
+    position: relative;
+    font-size: 16px;
+    font-weight: 500;
+}
+.cstm-pkg-checkbox-wrap .form-label {
+    position: relative;
+    top: -15px;
+    background: #fff;
+    padding: 0px 10px;
+}
+.cstm-pkg-banner {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    position: relative;
+    border-radius: 14px 14px 0px 0px;
+    overflow: hidden;
+}
+.cstm-pkg-banner:after{
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+}
+.cstm-pkg-content{
+    padding: 10px;
+    position: relative;
+    z-index: 11;
+}
+.cstm-pkg-content h2 {
+    font-weight: 500;
+    color: #fff;
+}
