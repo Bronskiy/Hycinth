@@ -1,7 +1,7 @@
 $(function(){
 
    // deal Form
-  $('#sendMessageFormToVendor').validate({
+  $("body").find('#sendMessageFormToVendor').validate({
 	    onfocusout: function (valueToBeTested) {
 	      $(valueToBeTested).valid();
 	    },
@@ -57,7 +57,60 @@ $(function(){
     
 });
 
+//---------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
 
+ // deal Form
+  function formValidationRuleManage() {
+  $("body").find('#cstm-pkg-form').validate({
+	    onfocusout: function (valueToBeTested) {
+	      $(valueToBeTested).valid();
+	    },
+	  
+	    highlight: function(element) {
+	      $('element').removeClass("error");
+	    },
+       rules: {
+		      "title": {
+		          required: true,
+		          maxlength: 150
+		      },"event": {
+		          required: true,
+		          maxlength: 150
+		      },
+		      "min_person":{
+		        required: true,
+		        number:true
+		      },
+		      "max_person":{
+		        required: true,
+		        number:true
+		      },
+		      "price": {
+		        required:true,
+		        number: true
+		      },
+		      "games": {
+		        required: true
+		       },
+		       "events": {
+		        required: true
+		       },
+		       'amitity': {
+		           required: true,
+		       },
+		      valueToBeTested: {
+		          required: true,
+              }
+         } 
+       });
+  }
+//---------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
+
+formValidationRuleManage();
 
 function showHideFieldAccordingToRequestType($this) {
 	 
@@ -73,6 +126,9 @@ function showHideFieldAccordingToRequestType($this) {
 
 
 
+//---------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
 
 
 
@@ -83,31 +139,77 @@ $("body").on('click change','.requestFor',function(){
 
 
 
+//---------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
 
 
 
 
+    var $url = $("body").find('#getUserUpcomingEvent').val();
 $("body").on('submit','#sendMessageFormToVendor',function(e){
     e.preventDefault();
-    var val = $("body").find('input[name=request_for]').val();
-    if(val == 1){
-    	submitMessageRequestForm();
+    var val = parseInt($("body").find('input[name=request_for]').val());
+    var $logged = jQuery("body").find('#dataLogged').val(1);
+    var $this = $(this);
+    if($logged == 1 && val == 1){
+    	submitMessageRequestForm($this,$url,$this.serialize());
     }else{
-
+        submitMessageRequestForm($this,$url,$this.serialize());
     }
 });
 
 
+//---------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
+
+
+// function createCustomPackageFunction($this) {
+
+// 	var $url = $("body").find('#getUserUpcomingEvent').val();
+//     $.ajax({
+//                url : $url,
+//                type: 'GET',   
+//                dataTYPE:'JSON',
+//                headers: {
+//                  'X-CSRF-TOKEN': $('input[name=_token]').val()
+//                },
+//                 beforeSend: function() {
+//                        $("body").find('.custom-loading').show();
+//                  },
+//                 success: function (result) {
+
+//                          var $modal = $("body").find('#CstmPackage');
+//                          $modal.find('.modal-body').html(result.htm);
+// 	                     $modal.modal({backdrop: 'static', keyboard: false});
+
+//                  },
+//                 complete: function() {
+//                         $("body").find('.custom-loading').hide();
+//                 },
+//                 error: function (jqXhr, textStatus, errorMessage) {
+                     
+//                 }
+
+//       });
+
+// }
+
+
+
+//---------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------
 
 
 
 
-
-function submitMessageRequestForm() {
-	 var $this = $("body").find('#sendMessageFormToVendor');
+function submitMessageRequestForm($this,$url,$data) {
+	  
      $.ajax({
-               url : $this.attr('action'),
-               data : $this.serialize(),
+               url : $url,
+               data : $data,
                type: 'POST',   
                dataTYPE:'JSON',
                headers: {
@@ -115,17 +217,47 @@ function submitMessageRequestForm() {
                },
                 beforeSend: function() {
                     $this.find('button.cstm-btn').attr('disabled','true');
-                 },
+                     $("body").find('.custom-loading').show();
+                },
                 success: function (result) {
                    if(result.status == 1){
                 		    $this.find('button.cstm-btn').removeAttr('disabled');
                             $this[0].reset();
-                            $this.next('.cart-error-msz').html(ErrorMsg('success',result.messages));
+                            $("body").find('#sendMessageFormToVendor')[0].reset();
+                            $("body").find('#cstm-pkg-form')[0].reset();
+                             var $modal = $("body").find('#CstmPackage');
+                             $modal.find('.modal-body').html(ErrorMsg('success',result.message));
+                             $this.find('.messageNotofications').html(ErrorMsg('success',result.message));
+                             $("body").find('.custom-loading').hide();
+                            setTimeout(function () {
+                                 $this.find('.messageNotofications').html('');
+                                 $("body").find('#CstmPackage').modal('hide');
+                                 window.location.reload();
+                            },4000);
+ 
+                    }else if(result.status == 2){
+                		   
+                           $("body").find('#LoginModel').modal({backdrop: 'static', keyboard: false});
+                           $this.find('button.cstm-btn').removeAttr('disabled');
 
+                           $this.find('.messageNotofications').html(ErrorMsg('warning',result.message));
+                            $("body").find('.custom-loading').hide();
+                            setTimeout(function () {
+                                 $this.find('.messageNotofications').html('');
+                            },3000);
+                         
+                       
+                    }else if(result.status == 4){
+                		   
+                         var $modal = $("body").find('#CstmPackage');
+                         $modal.find('.modal-body').html(result.htm);
+	                     $modal.modal({backdrop: 'static', keyboard: false});
+	                      $("body").find('.custom-loading').hide();
                          
                        
                     }else{
                         $this.find('.messageNotofications').html(ErrorMsg('warning',result.messages));
+                         $("body").find('.custom-loading').hide();
                         $this.find('button.cstm-btn').removeAttr('disabled');
                     }
                  },
@@ -140,17 +272,66 @@ function submitMessageRequestForm() {
 }
 
 
+ 
+
+/*----------------------------------------------------------------------------
+|
+|   Business filter
+|_____________________________________________________________________________
+*/
+
+
+$("body").on('submit','#cstm-pkg-form',function(e){
+	e.preventDefault();
+		var $this = $(this);
+        formValidationRuleManage();
+	if($(this).valid()){
+submitMessageRequestForm($this,$url,$this.serialize());
+	}
+});
+
+ 
+
+/*----------------------------------------------------------------------------
+|
+|   Business filter
+|_____________________________________________________________________________
+*/
 
 
 
+function ErrorMsg(type,message){
+
+      var txt  ='';
+          txt +='<div class="alert alert-'+type+'" role="alert">';
+          txt +=message;
+          txt +='</div>';
+
+          return txt;
+}
 
 
+/*----------------------------------------------------------------------------
+|
+|   Business filter
+|_____________________________________________________________________________
+*/
 
+function erorrMessage(errors) {
 
+      var txt ="";
+      $.each(errors, function( index, value ) {
+        txt += ErrorMsg('warning',value);
+          
+      });
+      return txt;
+}
 
-
-
-
+/*----------------------------------------------------------------------------
+|
+|   Business filter
+|_____________________________________________________________________________
+*/
 
 
 });

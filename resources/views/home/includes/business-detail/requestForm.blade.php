@@ -47,18 +47,26 @@
                      <div class="form-group">
                         <label>Preferred contact method:</label>
                         <div class="custom-control custom-radio">
-                           <input type="radio" id="customRadio3" class="custom-control-input" name="contact_type" checked>
+                           <input type="radio" id="customRadio3" class="custom-control-input" name="contact_type" value="0" checked>
                            <label class="custom-control-label" for="customRadio3">Email</label>
                         </div>
                         <div class="custom-control custom-radio">
-                           <input type="radio" id="customRadio4" class="custom-control-input" name="contact_type">
+                           <input type="radio" id="customRadio4" class="custom-control-input" name="contact_type" value="1">
                            <label class="custom-control-label" for="customRadio4">Phone number</label>
                         </div>
                      </div>
+
+
+
+
                      <div class="btn-wrap text-center">
                         <button class="cstm-btn solid-btn">Send Request</button>
                      </div>
 
                      <div class="messageNotofications"></div>
                   </form>
+@if(!empty($vendor))
+   <input type="hidden" id="getUserUpcomingEvent" value="{{url(route('ajax.requestForQuote',$vendor->id))}}">
+@endif
+                  <input type="hidden" id="dataLogged" value="{{Auth::check() && Auth::user()->role == 'user' ? 1 : 0}}">
                </div>

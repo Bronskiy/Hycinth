@@ -3747,11 +3747,7 @@ font-size: 14px;
  .cstm-category-modal .modal-dialog {
     max-width: 700px;
 }
-.modal-content{
-    border: 5px solid #36496c;
-    border-radius: 14px;
-    position: relative;
-}
+
 .modal-header {
     background: #36496c;
 }
@@ -3853,7 +3849,7 @@ font-size: 14px;
 }
 label.error {
     color: #d51c18;
-    font-size: 14px !important;
+    font-size: 12px !important;
     position: absolute;
     font-weight: normal;
 }
@@ -7088,6 +7084,9 @@ table.compere-table th {
 select.form-control:not([size]):not([multiple]){
     height: 60px;
 }
+.cstm-pkg-checkbox-wrap select.form-control:not([size]):not([multiple]){
+    height: 44px;
+    }
 .cart-modal .form-group>label {
     font-size: 20px;
     font-weight: 600;
@@ -7747,6 +7746,23 @@ button.cstm-btn:disabled span{
 }
 
 /****************/
+.cstm-pkg-checkbox-wrap .form-control {
+    border: none;
+    border-bottom: 2px solid #dfdfdf;
+    border-radius: 0;
+    height: 44px;
+    padding: 6px 8px;
+   color: #36496c;
+}
+.cstm-pkg-checkbox-wrap .input-icon {
+    background: transparent;
+    top: 1px;
+    right: 0;
+}
+.cstm-pkg-checkbox-wrap .form-control:focus + .input-icon {
+    background: transparent;
+    color: #36496c;
+}
 .cstm-pkg-checkbox-wrap {
     border: 2px solid #dfdfdf;
     border-radius: 10px;
@@ -7754,22 +7770,27 @@ button.cstm-btn:disabled span{
     padding: 0px 20px;
     margin-top: 10px;
 }
+.cstm-pkg-checkbox-wrap .pkg-ckeck-list {
+    display: block;
+    margin-bottom: 5px;
+}
 .cstm-pkg-checkbox-wrap .category-checkboxes label:before{
-    width: 22px;
-    height: 23px;
+    width: 18px;
+    height:18px;
+    background: #9d9c9c;
 }
 .cstm-pkg-checkbox-wrap .category-checkboxes label::after {
-    height: 23px;
-    width: 23px;
+    height: 18px;
+    width: 18px;
     font-size: 13px;
-    line-height: 24px;
+    line-height: 20px;
     }
 .cstm-pkg-checkbox-wrap .category-checkboxes label {
-    padding-left: 32px;
-    line-height: 23px;
+    padding-left: 27px;
+    line-height: 20px;
     margin-bottom: 0px;
     position: relative;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
 }
 .cstm-pkg-checkbox-wrap .form-label {
@@ -7777,6 +7798,7 @@ button.cstm-btn:disabled span{
     top: -15px;
     background: #fff;
     padding: 0px 10px;
+    margin-bottom: 0px;
 }
 .cstm-pkg-banner {
     height: 200px;
@@ -7805,4 +7827,9 @@ button.cstm-btn:disabled span{
 .cstm-pkg-content h2 {
     font-weight: 500;
     color: #fff;
+}
+
+.pkg-mod-heading {
+    background: rgba(34, 50, 170, 0.5);
+    padding: 6px 20px;
 }

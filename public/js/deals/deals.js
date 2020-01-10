@@ -251,7 +251,7 @@ function login($this) {
                            jQuery("body").find('#myModalDealDiscount')
                                           .find('.messageNotofications')
                                           .html(ErrorMsg('success','Login Successfully. Now you can sen message to vendor for deal & Discount.'));
-                            
+                             jQuery("body").find('#dataLogged').val(1);
                             // $dealModal.find('input[name=name]').val();
                             // $dealModal.find('input[name=email]').val();
                             // $dealModal.find('input[name=phone_number]').val();

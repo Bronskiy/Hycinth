@@ -16,7 +16,10 @@
                   <img src="{{ProfileImage($c->user->profile_image)}}" alt="" />
                   <div class="meta">
                     <p class="name">{{$c->user->name}}</p>
-                    <p class="preview">{!! $chat->message !!}</p>
+
+
+                    <p class="preview">{!! $chat->type == 0 ? $chat->message : "Request for Custom Package" !!}</p>
+                     
                   </div>
                 </div>
               </a>

@@ -32,7 +32,8 @@ $activeList1 = Request::has('chat_id') ? Request::get('chat_id') : $activeLists;
                                         alt="" />
                                         <div class="meta">
                                           <p class="name">{{$c->business->title}}</p>
-                                          <p class="preview">{!! $chat->message !!}</p>
+
+                                          <p class="preview">{!! $chat->type == 0 ? $chat->message : "Requested for Custom Package" !!}</p>
                                         </div>
                                       </div>
                                     </a>

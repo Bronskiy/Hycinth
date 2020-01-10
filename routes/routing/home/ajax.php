@@ -59,6 +59,10 @@ Route::post('/get-package-boxes','Home\PackageCompareController@index')->name('a
 
 Route::post('/send-message-to-vendor/{id}','Home\PackageCompareController@sendMessages')->name('ajax.requestForQuote');
 
+
+
+Route::get('/get-upcomming-event-of-current-user/{id}','Home\PackageCompareController@upcomingEvents')->name('ajax.user.upcomingEvents');
+
 });
 
 
