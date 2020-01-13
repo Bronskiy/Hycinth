@@ -3,6 +3,71 @@ jQuery(function(){
 
 
 
+
+$("body").on('click','a.btn-accepted',function(e){
+    e.preventDefault();
+    var parent = $(this).attr('data-chatID');
+    var pid = $(this).attr('data-id');
+    var msg = "Your Custom Package Request is Accepted";
+    sendMessage(msg,parent,pid,2);
+});
+
+
+
+//----------------------------------------------------------------------
+
+function sendMessage(msg,parent=0,pid=0,type=0){
+  
+    var $this = jQuery("body").find('#sendMessage');
+    var url = $this.attr('action');
+      $.ajax({
+               url : url,
+               data : {
+                message : msg,
+                parent : parent,
+                package_id : pid,
+                type: type
+               },
+               type: 'POST',   
+               dataTYPE:'JSON',
+               headers: {
+                 'X-CSRF-TOKEN': $('input[name=_token]').val()
+               },
+                beforeSend: function() {
+                   //$("body").find('.custom-loading').show();
+                     $this.find('.messageNotofications').html('');
+                     $this.find('button.cstm-btn').attr('disabled','true');
+                     $this[0].reset();
+
+
+                },
+                success: function (result) {
+                        if(parseInt(result.status) == 1){
+                            $("body").find('#ChatMessages').append(result.message);
+                            $this.find('button.cstm-btn').removeAttr('disabled');
+                             scrollingTop();
+                             getChatListOfUser('all');
+                       }
+               },
+               complete: function() {
+                        $("body").find('.custom-loading').hide();
+               },
+               error: function (jqXhr, textStatus, errorMessage) {
+                     
+               }
+
+        });
+   
+}
+
+
+
+
+
+
+
+
+
 /*----------------------------------------------------------------------------
 |
 |   Business filter
@@ -89,7 +154,7 @@ getDealAndDiscountChat();
 setInterval(function(){ 
    getDealAndDiscountChat('onlyNewMessages');
    getChatListOfUser();
- }, 5000);
+}, 5000);
 
 
 

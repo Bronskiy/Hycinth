@@ -1,5 +1,154 @@
 <?php 
 
+
+
+
+
+function messageAccordingType($msg,$class)
+{
+  $text  ='<li class="'.$class.'">';
+  $text .='<img src="'.ProfileImage($msg->sender->profile_image).'" alt="" />';
+  $text .= MessageOfChatWithType($msg);
+  $text .='</li>';
+  return $text;
+}
+
+
+function MessageOfChatWithType($msg)
+{
+   switch ($msg->type) {
+     case 0:
+        return '<p>'.$msg->message.'</p>';
+       break;
+
+      case 1:
+        return '<div class="ctm-msg-pkg-wrap">'.getMessageHtmlCustomPkg($msg->message,$msg).'</div>';
+       break;
+
+      case 2:
+        return '<div class="ctm-msg-pkg-wrap-tag">'.messageWithTag($msg->message,$msg).'</div>';
+       break;
+     
+     default:
+       
+       break;
+   }
+}
+
+
+function getMessageHtmlCustomPkg($message,$msg)
+{
+
+$arr = json_decode($message);
+$request = (array)$arr->message;
+$text = '';
+$request_for = $request['request_for'] == 1 ? 'Pricing' : 'Custom Package';
+$contact_type = $request['contact_type'] == 1 ? 'By Phone Call' : 'Via Email';
+$text = '';
+$text .='<div class="custom-chat-card">';
+$text .='<p>I am '.$request['name'].'</p>';
+$text .='<p><b>Requested for :</b> '.$request_for.'</p>';
+if($request['request_for'] == 1){
+              $text .='<p><b>Event Dated : </b>'.$request['start_date'].'</p>';
+              $text .='<p><b>Guest Capacity : </b>'.$request['no_of_guest'].' guest</p>';
+}
+$text .='<p><b>Preferred Contact Method</b>'.$contact_type.'</p>';
+$text .='<p><b>Contacts :</b></p>';
+$text .='<p><span><i class="fa fa-phone"></i> '.$request['phone_number'].'</span></p>';
+$text .='<p><span> <i class="fa fa-envelope"></i> '.$request['email'].'</span></p>';
+$text .='<p>'.$request['message'].'</p>';
+$text .='</div>';
+
+$text .=customPackage($arr->pkg,$msg);
+
+return $text;
+
+   
+}
+
+
+
+
+
+
+function customPackage($pkg,$msg)
+{
+   $page = App\Models\Vendors\CustomPackage::where('id',$pkg);
+  if($page->count() > 0){
+   $c = $page->first();
+   
+  $text  ='<div class="cstm-pkg-card">';
+  $text .='<div class="cstm-pkg-btn"><span class="blink-text">Custom Package</span></div>';
+  $text .='<div class="cstm-pkg-heading">'.$c->title.'</div>';
+  $text .='<div class="cstm-pkg-inn-detail">';
+  $text .='<ul>';
+  $text .='<li>'.$c->category->label.'</li>';
+  $text .='<li><i class="fa fa-users"></i> Guest Capacity <b>'.$c->min_person.' To '.$c->max_person.'</b></li>';
+  // $text .='<li>2-3 Games with Prizes</li>';
+  // $text .='<li>Sadh for Bride</li>';
+  $text .='<li><h1 class="cstmpkg-price">$'.custom_format($c->price,2).' / BUDGET</h1></li>';
+  $text .='</ul>';
+  $text .='</div>';
+  $text .='<ul class="button-grp-wrap mt-3">';
+  $text .='<li>';
+  $text .='<a href="'.url("/").'" data-toggle="tooltip" title="More Detail" class="icon-btn"><i class="fa fa-eye"></i>';
+  $text .='</a>';
+  $text .='</li>';
+
+
+
+  $text .='</ul>';
+  $text .='<div class="cstm-pkg-fotter text-center">';
+  if($c->status == 1){
+          if(Auth::check() && Auth::user()->role == "user"){
+             $text .='<a href="javascript:void(0)" class="btn btn-info">Waiting For Approval</a>';
+          }else{
+           
+       $text .='<a href="javascript:void(0)" class="btn btn-info btn-accepted" data-chatID="'.$msg->id.'" data-id="'.$c->id.'">Accept</a>';
+       $text .='<a href="javascript:void(0)" class="btn btn-danger btn-delined" data-chatID="'.$msg->id.'" data-id="'.$c->id.'">Deline</a>';
+
+          }
+  }elseif($c->status == 2){
+       $text .='<span class="text-info text-success">Accepted</span>';
+  }else{
+       $text .='<span class="text-info text-danger">Delined</span>';
+  }
+  $text .='</div>';
+  $text .='</div>';
+  return $text;
+  
+  }
+
+}
+
+
+
+
+
+
+function messageWithTag($message,$msg){
+  if($msg->parentMsg->count() > 0){
+      $arr = json_decode($msg->parentMsg->message);
+    //  $text = 
+
+      $pkg = App\Models\Vendors\CustomPackage::where('id',$arr->pkg);
+      $class = $pkg->count() > 0 && $pkg->first()->status == 2 ? 'accepted-pkgs' : 'delined-pkgs';
+      $text ="<div class='cMessagePkgStatus ".$class."'>";
+      $text =customPackage($arr->pkg,$msg);
+      $text .="<p>".$message."</p></div>";
+     return $text;
+  }else{
+    return $message;
+  }
+}
+
+
+
+
+
+
+
+
 // rj cd start
   function getPackAEM($id) {
    return \App\PackageMetaData::find($id);

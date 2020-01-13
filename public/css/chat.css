@@ -34,6 +34,17 @@ img{
 #ChatMessages {
     margin: 0;
 }
+.custom-chat-card {
+    max-width: 500px;
+    display: inline-flex;
+    background: #435f7a;
+    border-radius: 30px;
+    flex-direction: column;
+    padding: 10px 20px;
+}
+.custom-chat-card p {
+    padding: 5px 0px !important;
+}
 @media screen and (max-width: 360px) {
   .chatBox-frame {
     width: 100%;
@@ -638,6 +649,9 @@ img{
 .chatBox-frame .content .messages ul li.sent p {
   background: #435f7a;
   color: #f5f5f5;
+}
+.chatBox-frame .content .messages ul li.sent p:empty{
+  display: none;
 }
 .chatBox-frame .content .messages ul li.replies img {
   float: right;

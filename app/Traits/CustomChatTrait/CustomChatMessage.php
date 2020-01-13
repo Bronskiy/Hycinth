@@ -28,23 +28,38 @@ public function sendCustomChatMessage($request)
 
 public function CustomChatMessageBox($request)
 {
-	 $request_for = $request->request_for == 1 ? 'Pricing' : 'Custom Package';
-	 $contact_type = $request->contact_type == 1 ? 'By Phone Call' : 'Via Email';
-	 $text = '';
-	 $text .='<div class="custom-chat-message">';
-	 $text .='<p><b>Requested for :</b> '.$request_for.'<p>';
-	 $text .='<p>I am '.$request->name.'<p>';
-	 if($request->request_for == 1){
-	              $text .='<p><b>Event Dated : </b>'.$request->start_date.'<p>';
-	              $text .='<p><b>Guest Capacity : </b>'.$request->no_of_guest.' guest<p>';
-	 }
-	 $text .='<p><b>Preferred Contact Method</b>'.$contact_type.'<p>';
-	 $text .='<p><b>Contacts</b><span><i class="fa fa-phone"></i> '.$request->phone_number.'</span> <span><i class="fa fa-envelope"></i> '.$request->email.'</span><p>';
-	 $text .='<div class="cmessage">'.$request->message_text.'</div>';
-	 $text .='</div>';
+	 // $request_for = $request->request_for == 1 ? 'Pricing' : 'Custom Package';
+	 // $contact_type = $request->contact_type == 1 ? 'By Phone Call' : 'Via Email';
+	 // $text = '';
+	 // $text .='<div class="custom-chat-card">';
+  //    $text .='<p>I am '.$request->name.'<p>';
+	 // $text .='<p><b>Requested for :</b> '.$request_for.'<p>';
+	 // if($request->request_for == 1){
+	 //              $text .='<p><b>Event Dated : </b>'.$request->start_date.'<p>';
+	 //              $text .='<p><b>Guest Capacity : </b>'.$request->no_of_guest.' guest<p>';
+	 // }
+	 // $text .='<p><b>Preferred Contact Method</b>'.$contact_type.'<p>';
+	 // $text .='<p><b>Contacts</b><span><i class="fa fa-phone"></i> '.$request->phone_number.'</span> <span><i class="fa fa-envelope"></i> '.$request->email.'</span><p>';
+	 // $text .='<p>'.$request->message_text.'</p>';
+	 // $text .='</div>';
 
-	 return $text;
-	  
+	 // return $text;
+
+
+
+    return [
+          'name' => $request->name,
+          'request_for' => $request->request_for,
+          'contact_type' => $request->contact_type,
+          'start_date' => $request->start_date,
+          'no_of_guest' => $request->no_of_guest,
+          'phone_number' => $request->phone_number,
+          'email' => $request->email,
+          'message' => $request->message_text
+    ];
+
+
+   
 }
 
 
@@ -84,7 +99,7 @@ public function CustomChatMessageSend($request)
           }else{
           
                 $chat = new Chat;
-                $chat->user_id = $request['user_id'];
+                $chat->user_id = $request['sender_id'];
                 $chat->business_id = $request['business_id'];
                 $chat->deal_id = $request['deal_id'];
                 $chat->vendor_id =$request['vendor_id'];

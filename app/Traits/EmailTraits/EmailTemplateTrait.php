@@ -23,6 +23,7 @@ protected $emailTemplate = [
       'NewVendorEmailNotificationFullNotification' => 10,
       'NewVendorEmailJoinNotificationFullNotification' => 11,
       'PricingRequestEmailNotificationFullNotification' => 12,
+      'CustomPackageRequestEmailNotificationFullNotification' => 13,
 ];
 
 

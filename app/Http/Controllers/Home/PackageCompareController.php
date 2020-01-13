@@ -11,10 +11,12 @@ use App\VendorPackage;
 use App\VendorCategory;
 use Auth;
 use App\Models\Vendors\CustomPackage;
+use App\Traits\EmailTraits\EmailNotificationTrait;
 class PackageCompareController extends Controller
 {
     
 use CustomChat;
+use EmailNotificationTrait;
 
 #-----------------------------------------------------------------------------------
 # index 
@@ -94,7 +96,10 @@ public function createMessageforChat($business,$request)
 {
        $msg = "Your Pricing request has been sent successfully!";
        $box = $this->CreateCustomPackage($request,$business);
-       $message = $this->CustomChatMessageBox($request);
+       $message = [
+                    'message' => $this->CustomChatMessageBox($request),
+                    'pkg' => 0
+                  ];
        $emailType = 0;
        $emaiData = [
           'vendor_name' => $business->vendors->name,
@@ -103,42 +108,38 @@ public function createMessageforChat($business,$request)
           'user_email' => Auth::user()->email
        ];
 
+
+
+        
        $data = [
            'vendor_id' => $business->user_id,
            'sender_id' => Auth::user()->id,
            'receiver_id' => $business->user_id,
            'deal_id' => 0,
            'business_id' => $business->id,
-           'type' => 0,
-           'message' => $message
-       ];
-
-       $chat_id = $this->sendCustomChatMessage($data);
-
+           'type' => 1,
+        ];
 
        if($request->request_for == 2){
            $box = $this->CreateCustomPackage($request,$business);
-           $data = [
-             'vendor_id' => $business->user_id,
-             'sender_id' => Auth::user()->id,
-             'receiver_id' => $business->user_id,
-             'deal_id' => 0,
-             'type' => 1,
-             'business_id' => $business->id,
-             'message' => $box
-           ];
-          $message = $this->sendCustomChatMessage($data);
-          $msg = "Your Custom package is created successfully and sent to vendor, please wait for vendor revert.";
-          $emailType = 1;
+           $msg = "Your Custom package is created successfully and sent to vendor, please wait for vendor revert.";
+           $emailType = 1;
+           $message['pkg'] = $box;
        }
 
-       $emaiData['message'] = $message;
+       $data['message'] = json_encode($message);
+
+       $chat_id = $this->sendCustomChatMessage($data);
+       $url = url(route('myCategoryChat',$business->category->slug)).'?activeList='.$chat_id;
+
+       $emaiData['message'] = json_encode($message);
+       $emaiData['url'] = $url;
        $emaiData['type'] = $emailType;
 
+       $status = $this->PricingRequestEmailSuccess($emaiData);
 
-
-
- return $status = ['status' => 1, 'message' => $msg];
+        $link = url(route('deal_discount_chats')).'?chat_id='.$chat_id;
+ return $status = ['status' => $status, 'message' => $msg, 'url' => $link];
 
 }
 
@@ -171,7 +172,7 @@ public function CreateCustomPackage($request,$vendor)
     $c->games = $games;
     $c->save();
 
-    return $this->createCustomPackageBox($c);
+    return $c->id;
 
 }
 

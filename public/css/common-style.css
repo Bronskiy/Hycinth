@@ -1581,7 +1581,7 @@ border-radius:6px;
 
 /*cstm pkg card*/
 .cstm-pkg-card {
-    background: url('../frontend/images/status-info-bg.jpg');
+    background: url('../frontend/images/status-info-bg.jpg') !important;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -1594,6 +1594,19 @@ border-radius:6px;
     border: 20px solid #fff;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
     align-items: center;
+}
+.ctm-msg-pkg-wrap-tag .cstm-pkg-card{
+    background: #435f7a !important;
+}
+.ctm-msg-pkg-wrap-tag .cstm-pkg-inn-detail{
+    background: transparent;
+}
+.ctm-msg-pkg-wrap-tag {
+    display: flex;
+    flex-direction: column;
+}
+.replies .ctm-msg-pkg-wrap-tag {
+    align-items: flex-end;
 }
 .cstm-pkg-card .cstm-pkg-btn {
     width: 100px;
@@ -1610,7 +1623,8 @@ border-radius:6px;
     font-weight: bold;
 }
 .cstm-pkg-heading {
-    font-size: 34px;
+    font-size: 24px;
+    font-weight: bold;
     color: #fff;
     margin: 20px;
 }
@@ -1625,7 +1639,7 @@ border-radius:6px;
     background: rgba(183, 125, 205, 0.43);
 }
 .cstm-pkg-inn-detail .cstmpkg-price {
-    font-size: 30px;
+    font-size: 19px;
     font-weight: 900;
     color: #000;
 }
@@ -1633,8 +1647,52 @@ border-radius:6px;
         background: #eda108;
         color: #fff;
 }
+.chatBox-frame .content .messages .cstm-pkg-inn-detail ul li{
+  font-size: 19px;
+  margin:0px;
+}
+.chatBox-frame .cstm-pkg-card{
+	border-radius: 30px;
+	max-width: 420px;
+	margin: 10px 0px; 
+	border: 5px solid #435f7a;
+}
+.chatBox-frame .replies .cstm-pkg-card{
+   float: right;
+}
+.replies .ctm-msg-pkg-wrap {
+    float: right;
+}
+.ctm-msg-pkg-wrap-tag .cstm-pkg-btn, 
+.ctm-msg-pkg-wrap-tag .cstm-pkg-heading, 
+.ctm-msg-pkg-wrap-tag .cstm-pkg-fotter{
+    display: none;
+}
+.ctm-msg-pkg-wrap {
+    max-width: calc(100% - 40px);
+    display: inline-flex;
+    flex-wrap: wrap;
+}
 
-
+.ctm-msg-pkg-wrap .text-info {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    color: #fff !important;
+    border-radius: 4px;
+}
+.ctm-msg-pkg-wrap .text-success {
+       background: green;
+       color: #fff !important
+	}
+.ctm-msg-pkg-wrap .text-danger {
+	background: red;
+}
+ .cstm-pkg-fotter {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+}
 
 
 

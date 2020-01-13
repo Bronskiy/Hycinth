@@ -16,7 +16,11 @@ class ChatMessage extends Model
 
     public function receiver()
     {
-    	return $this->belongsTo('App\User','receiver_id');
+      return $this->belongsTo('App\User','receiver_id');
+    }
+    public function parentMsg()
+    {
+    	return $this->belongsTo($this,'parent');
     }
 
     public function chat()

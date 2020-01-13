@@ -232,8 +232,8 @@ function submitMessageRequestForm($this,$url,$data) {
                             setTimeout(function () {
                                  $this.find('.messageNotofications').html('');
                                  $("body").find('#CstmPackage').modal('hide');
-                                 window.location.reload();
-                            },4000);
+                                 window.location.href = result.url;
+                            },2000);
  
                     }else if(result.status == 2){
                 		   

@@ -8,6 +8,7 @@ use App\Category;
 use App\VendorCategory;
 use App\Models\Vendors\Chat;
 use App\Models\Vendors\ChatMessage;
+use App\Models\Vendors\CustomPackage;
 use Auth;
 class ChatController extends Controller
 {
@@ -89,7 +90,8 @@ public function sendMessages(Request $request,$id)
 { 
    $Chat = Chat::where('id',$id)->where('vendor_id',Auth::user()->id);
    if($Chat->count() > 0){
-
+            $parent = !empty($request->parent) ? $request->parent : 0;
+            $type = !empty($request->type) ? 2 : 0;
             $c = $Chat->first();
             $c->updated_at =\Carbon\Carbon::now();
             $c->save();
@@ -100,13 +102,40 @@ public function sendMessages(Request $request,$id)
             $m->business_id = trim($c->business_id);
             $m->chat_id = trim($c->id);
             $m->message = $request->message;
+            $m->parent = $parent;
             $m->sender_status = 1;
+            $m->type = $type;
             $m->receiver_status = 0;
             $m->save();
+
+
+            if(!empty($request->package_id)){
+                if($parent > 0){
+                    $c1 = ChatMessage::find($parent);
+                    $c1->custom_package_id=$request->package_id;
+                    $c1->save();
+                }
+               $this->CustomPackageStatus($request);
+            }
 
         return response()->json(['status' => 1,'message' => $this->getMessage($m)]);    
         
    }
+}
+
+
+
+public function CustomPackageStatus($request)
+{
+  if(!empty($request->package_id)){
+   $m = CustomPackage::find($request->package_id);
+    if(!empty($m)){
+        $m->status = $request->type;
+        $m->save();  
+         
+
+     }
+  }
 }
 
 #------------------------------------------------------------------------------------
