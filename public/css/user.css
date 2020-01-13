@@ -1247,7 +1247,8 @@ width: 100%;
     border-radius: 4px;
     max-width: 300px;
     width: 100%;
-        animation: avatar-pulse 2s infinite;
+    animation: avatar-pulse 2s infinite;
+    margin: 20px auto;
 }
 .event-planning-table-wrap .cart-totals .headline {
     background-color: #5372aa;

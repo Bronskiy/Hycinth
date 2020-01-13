@@ -94,17 +94,28 @@ public function createMessageforChat($business,$request)
 {
        $msg = "Your Pricing request has been sent successfully!";
        $box = $this->CreateCustomPackage($request,$business);
-       $data = [
-         'vendor_id' => $business->user_id,
-         'sender_id' => Auth::user()->id,
-         'receiver_id' => $business->user_id,
-         'deal_id' => 0,
-         'business_id' => $business->id,
-         'type' => 0,
-         'message' => $this->CustomChatMessageBox($request)
+       $message = $this->CustomChatMessageBox($request);
+       $emailType = 0;
+       $emaiData = [
+          'vendor_name' => $business->vendors->name,
+          'vendor_email' => $business->vendors->email,
+          'user_name' => Auth::user()->name,
+          'user_email' => Auth::user()->email
        ];
 
-       $this->sendCustomChatMessage($data);
+       $data = [
+           'vendor_id' => $business->user_id,
+           'sender_id' => Auth::user()->id,
+           'receiver_id' => $business->user_id,
+           'deal_id' => 0,
+           'business_id' => $business->id,
+           'type' => 0,
+           'message' => $message
+       ];
+
+       $chat_id = $this->sendCustomChatMessage($data);
+
+
        if($request->request_for == 2){
            $box = $this->CreateCustomPackage($request,$business);
            $data = [
@@ -116,9 +127,15 @@ public function createMessageforChat($business,$request)
              'business_id' => $business->id,
              'message' => $box
            ];
-          $this->sendCustomChatMessage($data);
+          $message = $this->sendCustomChatMessage($data);
           $msg = "Your Custom package is created successfully and sent to vendor, please wait for vendor revert.";
+          $emailType = 1;
        }
+
+       $emaiData['message'] = $message;
+       $emaiData['type'] = $emailType;
+
+
 
 
  return $status = ['status' => 1, 'message' => $msg];
@@ -136,9 +153,9 @@ public function createMessageforChat($business,$request)
 public function CreateCustomPackage($request,$vendor)
 {
 
-$amenities = !empty($request->amenities) ? json_encode($request->amenities) : '';
-$events = !empty($request->events) ? json_encode($request->events) : '';
-$games = !empty($request->games) ? json_encode($request->games) : '';
+    $amenities = !empty($request->amenities) ? json_encode($request->amenities) : '';
+    $events = !empty($request->events) ? json_encode($request->events) : '';
+    $games = !empty($request->games) ? json_encode($request->games) : '';
 
     $c=new CustomPackage;
     $c->title = $request->title;
@@ -186,5 +203,9 @@ public function createCustomPackageBox($c)
   $text .='</div>';
   return $text;
 }
+
+
+
+
 
 }

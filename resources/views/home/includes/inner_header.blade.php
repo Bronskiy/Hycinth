@@ -181,7 +181,7 @@
                </a>
             </li>
             <li>
-               <a href="{{url('/vendor/register')}}" style="background:url(/frontend/images/menu-vendor.png)">
+               <a href="{{url(route('all_deals'))}}" style="background:url(/frontend/images/menu-vendor.png)">
                   <span class="nav-item-icon"><i class="fas fa-star"></i></span>
                   <h3>Deals & Discount</h3>
                </a>
