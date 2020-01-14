@@ -304,11 +304,13 @@ public function CheckDealRelatedPackage($package,$request)
 	 
     $deals = DiscountDeal::where('id',$deal_id)
                     ->orWhere(function($t) use($deal_id){
+                    	     if($deal_id > 0):
                                $d = $t->where('id',$deal_id)->first();
                               if($d->deal_life == 1){
                                        $t->whereDate('start_date','<=',Carbon::now());
                                        $t->whereDate('expiry_date','>=',Carbon::now());
                                }
+                              endif;
                     
                     })
                     //->where('type_of_deal',1)

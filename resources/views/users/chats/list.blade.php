@@ -47,13 +47,9 @@
                               <label for=""><i class="fa fa-search" aria-hidden="true"></i></label>
                               <input type="text" placeholder="Search contacts..." data-search/>
                             </div>
-                            <div id="contacts" data-action="{{url(route('get_chat_list'))}}">
-                             
-
+                             <div id="contacts" data-action="{{url(route('get_chat_list'))}}">
                                @include('users.chats.chatlist')
-                               
-                               
-                            </div>
+                             </div>
                             <input type="hidden" id="listactive" value="0">
      
                       </div>

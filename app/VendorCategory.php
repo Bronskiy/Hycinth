@@ -89,9 +89,18 @@ class VendorCategory extends Model
  
     public function VendorPackage()
     {
-       return $this->hasMany('App\VendorPackage','vendor_category_id');
+       return $this->hasMany('App\VendorPackage','vendor_category_id')->where('type',0);
+    }
+    
+    public function CustomPackages()
+    {
+         $user_id = Auth::check() && Auth::user()->role =='user' ? Auth::user()->id : 0;
+         return $this->hasMany('App\VendorPackage','vendor_category_id')
+                     ->where('type',1)
+                     ->where('user_requested_by',$user_id);
     }
  
+
     public function vendors()
     {
        return $this->belongsTo('App\User','user_id')->where('role','vendor');

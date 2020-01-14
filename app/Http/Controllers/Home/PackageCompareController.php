@@ -95,7 +95,7 @@ public function upcomingEvents($request,$id)
 public function createMessageforChat($business,$request)
 {
        $msg = "Your Pricing request has been sent successfully!";
-       $box = $this->CreateCustomPackage($request,$business);
+      // $box = $this->CreateCustomPackage($request,$business);
        $message = [
                     'message' => $this->CustomChatMessageBox($request),
                     'pkg' => 0
@@ -134,7 +134,7 @@ public function createMessageforChat($business,$request)
 
        $emaiData['message'] = json_encode($message);
        $emaiData['url'] = $url;
-       $emaiData['type'] = $emailType;
+       $emaiData['type'] = 1;
 
        $status = $this->PricingRequestEmailSuccess($emaiData);
 

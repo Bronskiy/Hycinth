@@ -11,4 +11,10 @@ class CustomPackage extends Model
     {
        return $this->belongsTo('App\Category','category_id','id');
     }
+
+
+    public function VendorPackage()
+    {
+       return $this->belongsTo('App\VendorPackage','package_id','id');
+    }
 }

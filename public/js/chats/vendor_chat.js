@@ -4,15 +4,23 @@ jQuery(function(){
 
 
 
-$("body").on('click','a.btn-accepted',function(e){
+// $("body").on('click','a.btn-accepted',function(e){
+//     e.preventDefault();
+//     var parent = $(this).attr('data-chatID');
+//     var pid = $(this).attr('data-id');
+//     var msg = "Your Custom Package Request is Accepted";
+//     //sendMessage(msg,parent,pid,2);
+// });
+
+
+
+$("body").on('click','a.btn-delined',function(e){
     e.preventDefault();
     var parent = $(this).attr('data-chatID');
     var pid = $(this).attr('data-id');
-    var msg = "Your Custom Package Request is Accepted";
-    sendMessage(msg,parent,pid,2);
+    var msg = "Your Custom Package Request is Delined";
+    sendMessage(msg,parent,pid,3);
 });
-
-
 
 //----------------------------------------------------------------------
 

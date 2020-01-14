@@ -31,6 +31,8 @@ Route::get('/vendor/register', 'HomeController@register')->name('vendor_register
  
  Route::get('/listing/{cateSlug}/{vendorSlug}', 'Home\Services\ServiceDetailController@index2')->name('vendor_detail_page');
 
+ Route::get('/custom/listing/{cateSlug}/{vendorSlug}', 'Home\Services\ServiceDetailController@index2')->name('home.vendor.customPackage');
+
  Route::get('/page/{slug}', 'HomeController@showCmsPage')->name('cmsPage');
  Route::get('/venues', 'Home\Services\VendorListingController@venue')->name('get_all_venues');
 

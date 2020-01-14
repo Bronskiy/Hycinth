@@ -339,5 +339,16 @@ $("body").on('submit','form#AddonSubmit',function(e){
 });
 
 
+$("body").on('click','.remove-from-cart',function()
+{
+    var r = confirm("Alert!! Do you want to remove this Package from Cart");
+      if (r == true) {
+        var redirectionURL = $(this).attr('data-url');
+        window.location.href= redirectionURL;
+      } else {
+        return false;
+      }
+});
+
 //###############################################################################################
 });

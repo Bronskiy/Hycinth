@@ -12,7 +12,9 @@ class VendorPackage extends Model
     use SluggableScopeHelpers;
 
     protected $fillable = ['title', 'slug', 'description', 'no_of_hours', 'no_of_days', 'menus',
-    'status', 'category_id', 'user_id', 'price', 'price_type', 'min_person', 'max_person','vendor_category_id'];
+    'status', 'category_id', 'user_id', 'price', 'price_type', 'min_person', 'max_person','vendor_category_id',
+    'custom_package_id','type','user_requested_by'
+];
 
     public function sluggable() {
         return [
@@ -46,6 +48,10 @@ class VendorPackage extends Model
         return $this->belongsTo('App\VendorCategory', 'vendor_category_id', 'id');
     }
 
+      public function category()
+    {
+       return $this->belongsTo('App\Category','category_id','id');
+    }
 
 
     //  public function assignedDeal() {

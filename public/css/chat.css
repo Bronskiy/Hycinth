@@ -42,6 +42,15 @@ img{
     flex-direction: column;
     padding: 10px 20px;
 }
+.replies .custom-chat-card{
+    background: #fff;
+}
+/*.chatBox-frame .replies .custom-chat-card p{
+  background:#fff;
+}*/
+.chatBox-frame .content .messages .replies .custom-chat-card p{
+  background:#fff;
+}
 .custom-chat-card p {
     padding: 5px 0px !important;
 }

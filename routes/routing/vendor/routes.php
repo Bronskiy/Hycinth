@@ -161,6 +161,12 @@ require __DIR__.'/ajax.php';
 
 
 
+          Route::get('/category/{slug}/custom/package/{id}/{chat_id}', 'Vendor\CustomPackageController@packagesAdd')->name('vendor.custom.packageCreate');  
+
+            Route::post('/category/{slug}/custom/package/{id}/{chat_id}', 'Vendor\CustomPackageController@store')->name('vendor.custom.packageCreate'); 
+
+
+
         #-----------------------------------------------------------------------------------
         #  vendor De;as and Discount
         #-----------------------------------------------------------------------------------

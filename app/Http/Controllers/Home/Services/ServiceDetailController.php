@@ -69,7 +69,7 @@ public function index2(Request $request, $cateSlug, $vendorSlug)
 
 
                             
-  
+  $packages = \Request::route()->getName() == "home.vendor.customPackage" ? $vendor->CustomPackages : $vendor->VendorPackage;
  
 return view($this->folderPath.'.index')
       ->with('games',$games)
@@ -79,7 +79,7 @@ return view($this->folderPath.'.index')
       ->with('services', $vendor->subcategory)
       ->with('VendorEvents', $vendor->VendorEvents)
       ->with('seasons',$vendor->seasons)
-      ->with('packages',$vendor->VendorPackage)
+      ->with('packages',$packages)
       ->with('recommendedVendor',$recommendedVendor)
       ->with('vendor',$vendor);
 }

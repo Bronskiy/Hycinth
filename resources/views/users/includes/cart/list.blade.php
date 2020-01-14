@@ -108,7 +108,7 @@
                           </form>
 
 
-                       <a data-toggle="tooltip" data-placement="top" title="Remove from Cart" href="{{url(route('cart.delete',$item->id))}}" class="icon-btn danger-btn ml-1"><i class="fas fa-trash-alt"></i></a>
+                       <a data-toggle="tooltip" data-placement="top" title="Remove from Cart" href="javascript:;" class="icon-btn danger-btn ml-1 remove-from-cart" data-url="{{url(route('cart.delete',$item->id))}}"><i class="fas fa-trash-alt"></i></a>
 
 
                     </div>

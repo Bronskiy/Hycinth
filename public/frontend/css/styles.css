@@ -561,7 +561,9 @@ body.body-fixed {
     opacity: 1;
     visibility: visible;
 }
-
+#dropdownMenuLink:after {
+    display: block !important;
+}
 .nav-close-btn {
     position: absolute;
     font-size: 40px;
@@ -7381,12 +7383,13 @@ ul.vendor_ser_list {
     padding-left: 20px;
     position: relative;
     margin: 5px 0px;
+    font-size: 14px;
 }
 .vendor_ser_list li .left-check {
     position: absolute;
     left: 0;
     font-size: 15px;
-    top: 5px;
+    top: 3px;
     color: #226b10;
 }
 .user-status-content .alert a {

@@ -108,8 +108,8 @@
                                         <div class="col-lg-3 col-md-6">
                                          <div class="pkg-ckeck-list">
                                             <div class="category-checkboxes category-title">
-                                            <input type="checkbox" name="amenity[]" value="{{$game->amenity->id}}" id="game-{{$game->amenity->id}}">
-                                                 <label for="game-{{$game->amenity->id}}">{{$game->amenity->name}}</label> 
+                                            <input type="checkbox" name="amenities[]" value="{{$game->amenity->id}}" id="amenityes-{{$game->amenity->id}}">
+                                                 <label for="amenityes-{{$game->amenity->id}}">{{$game->amenity->name}}</label> 
                                           </div>
                                          </div>
                                         </div>  

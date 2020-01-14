@@ -256,7 +256,7 @@ function submitMessageRequestForm($this,$url,$data) {
                          
                        
                     }else{
-                        $this.find('.messageNotofications').html(ErrorMsg('warning',result.messages));
+                        $this.find('.messageNotofications').html(ErrorMsg('warning',result.message));
                          $("body").find('.custom-loading').hide();
                         $this.find('button.cstm-btn').removeAttr('disabled');
                     }
