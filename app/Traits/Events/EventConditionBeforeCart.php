@@ -126,6 +126,7 @@ public function checkAllConditionOfEvent($events,$request,$type=null)
       $package_id = $request->package_id;
 	  
 	  # this function is check that the event type of package which are selected and your event's eventtype both are same
+	 $checkCustomPackage = $this->checkCustomPackageExpiredOrAlreadBuy($package_id);
 	  $evenTypeStatus = $this->dealHaveRelatedEventType($events,$package_id);
  
 	  $checkDealMinAmountStatus = $this->checkDealMinAmountAccordingToPackage($evenTypeStatus,$request);
@@ -147,7 +148,10 @@ public function checkAllConditionOfEvent($events,$request,$type=null)
 	  # this function is check that the category of package which is selected and your event's category both are same
 	  $budgetStatus = $this->PackageAndEventBudget($capacityStatus,$events,$request,$type);
 
-	  if($evenTypeStatus == 0){
+	  if($checkCustomPackage['status'] == 0){
+	  	  $status = 0;
+          $msg = $this->checkAllConditionBeforeAddingPackage($checkCustomPackage['message']);
+	  }elseif($evenTypeStatus == 0){
 	  	  $status = 0;
           $msg = $this->checkAllConditionBeforeAddingPackage('event_type');
 	  }elseif($checkDealMinAmountStatus == 0){
@@ -188,6 +192,58 @@ public function checkAllConditionOfEvent($events,$request,$type=null)
        	   'records' => $events->eventCategories,
      	   'errors' => $msg
         ];
+}
+
+#-----------------------------------------------------------------------------------------
+#  check deal package have related to user event
+#-----------------------------------------------------------------------------------------  
+
+public function checkCustomPackageExpiredOrAlreadBuy($package_id)
+{
+  $message =0;
+  $status = 1;
+   $pkg = VendorPackage::find($package_id);
+   if($pkg->type == 1){
+             $p = \App\Models\Vendors\CustomPackage::where('package_id',$package_id);
+          if($p->count() > 0){
+
+          	if($this->CustomPackageAlreadyBuy($p->first()) == 1){
+
+                  if($this->SevenDayOldPackage($p->first()) == 0){
+                     $message = 'CustomPackageExpired';
+                     $status = 0;
+                  } 
+          	}else{
+                $message = 'AlreadyUsedCustomPackage';
+                $status = 0;
+          	}
+
+          }else{
+              $message = 'CustomPackageDeleted';
+              $status = 0;
+		  } 
+   }
+
+   return ['status' => $status,'message' => $message];
+
+
+}
+
+
+
+public function SevenDayOldPackage($c)
+{
+	 $now = \Carbon\Carbon::now();
+     return $status = ($c->updated_at->diffInDays($now) > 7) ? 0 : 1;
+ 
+}
+
+public function CustomPackageAlreadyBuy($c)
+{
+  $cont =  EventOrder::where('type','order')->where('user_id',Auth::user()->id)
+                         ->where('package_id',$c->package_id)->count();
+   
+  return $cont > 0 ? 0 : 1;
 }
 
 #-----------------------------------------------------------------------------------------
@@ -382,6 +438,16 @@ public function checkAllConditionBeforeAddingPackage($errorType,$request=[])
 		
 		case 'event_capacity':
 		    $msg= 'Guest Capacity does not matched with your Events Package.';
+			break;
+
+		case 'CustomPackageExpired':
+		    $msg= 'This package has been expired!';
+			break;
+		case 'AlreadyUsedCustomPackage':
+		    $msg= 'The Custom Package already used by you.';
+			break;
+		case 'CustomPackageDeleted':
+		    $msg= 'The Cistom Package is deleted by Vendor!';
 			break;
 		case 'package_exist':
 		    $msg= 'You already have this package. Try with another Package.';

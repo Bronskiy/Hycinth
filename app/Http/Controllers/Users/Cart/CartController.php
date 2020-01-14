@@ -29,10 +29,59 @@ public function index(Request $request)
                 $t->where('user_id',$user_id);
           })
           ->get();
+
+
+           $this->DeleteExpiredCustomPackage();
+
           $this->ChangeDirectToCart();
  
      return view('users.cart.index')->with('CartItems',$order);
 }
+
+
+
+
+public function DeleteExpiredCustomPackage()
+{
+        $package_ids = EventOrder::where('type','cart')
+                                 ->where('user_id',Auth::user()->id)
+                                 ->pluck('package_id');
+ 
+         $packages = VendorPackage::join('custom_packages','custom_packages.id','=','vendor_packages.custom_package_id')
+                                 ->select('custom_packages.*')
+                                 ->whereIn('vendor_packages.id',$package_ids)
+                                 ->where('vendor_packages.type',1)
+                                 //->where('custom_packages.updated_at', '>', \Carbon\Carbon::now()->addDays(7))
+                                 ->groupBy('vendor_packages.id')
+                                 ->orWhere(function($t){
+                                              $c = $t->first();
+                                              $now = \Carbon\Carbon::now();
+                                              if($c->created_at->diffInDays($now) < 0){
+                                                  // EventOrder::where('type','cart')
+                                                  //            ->where('user_id',Auth::user()->id)
+                                                  //            ->where('package_id',$c->package_id)
+                                                  //            ->delete();
+                                              }else{
+                                                $t->where('vendor_packages.id',0);
+                                              }
+                                 })
+                                 ->get();
+ 
+  foreach($packages as $c) {
+            $now = \Carbon\Carbon::now();
+            if($c->updated_at->diffInDays($now) > 0){
+              EventOrder::where('type','cart')
+                         ->where('user_id',Auth::user()->id)
+                         ->where('package_id',$c->package_id)
+                         ->delete();
+            }  
+  }
+
+}
+
+
+
+
 #----------------------------------------------------------------------------------------------
 #  cart delete
 #----------------------------------------------------------------------------------------------

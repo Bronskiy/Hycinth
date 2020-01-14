@@ -220,7 +220,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="background: url('/frontend/images/business-modal-bg.jpg');">
          <div class="venues-categories-wrap">
            <ul class="venues-cat-list row">
 
