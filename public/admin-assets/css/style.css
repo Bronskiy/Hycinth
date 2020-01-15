@@ -1853,7 +1853,7 @@ p.text-muted {
   content: "\63";
   font-family: "pct";
   position: absolute;
-  left: -5px;
+  left: -10px;
   top: 60px;
   z-index: 1001;
   font-size: 40px;
@@ -2934,22 +2934,22 @@ p.text-muted {
     display: none;
   }
   .pcoded-header .dropdown.show {
-    position: static;
+    position: relative;
   }
-  .pcoded-header .dropdown.show a:after {
+/*  .pcoded-header .dropdown.show a:after {
     display: none;
   }
   .pcoded-header .dropdown.show:before {
     display: none;
-  }
+  }*/
   .pcoded-header .dropdown .notification {
     width: 100%;
   }
   .pcoded-header .dropdown .dropdown-menu {
-    width: 95%;
+    width: 280px;
     margin-left: auto;
     margin-right: auto;
-    left: 0;
+    left: auto;
     right: 0;
   }
 

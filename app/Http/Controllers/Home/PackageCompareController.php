@@ -129,12 +129,14 @@ public function createMessageforChat($business,$request)
 
        $data['message'] = json_encode($message);
 
-       $chat_id = $this->sendCustomChatMessage($data);
-       $url = url(route('myCategoryChat',$business->category->slug)).'?activeList='.$chat_id;
+       $chat = $this->sendCustomChatMessage($data,1);
+       $chat_id = $chat->chat_id;
+       $url = url(route('myCategoryChat',$business->category->slug)).'?activeList='.$chat->chat_id;
 
        $emaiData['message'] = json_encode($message);
        $emaiData['url'] = $url;
        $emaiData['type'] = 1;
+       $emaiData['id'] = $chat->id;
 
        $status = $this->PricingRequestEmailSuccess($emaiData);
 

@@ -73,10 +73,12 @@ public function PricingRequestEmailSendEmailToAdmin($data,$template)
 
 public function PricingRequestEmailHtml($data,$template)
 { 
+
+    $message = view('emails.chat.quote')->with('id',$data['id'])->render();
     $text2 = $template->body;
 		$text = str_replace("{name}",$data['vendor_name'],$text2);
 		$text = str_replace("{username}",$data['user_name'],$text);
-    $text = str_replace("{message}",$data['message'],$text);
+    $text = str_replace("{message}",$message,$text);
     return $text;
 }
 
@@ -87,7 +89,7 @@ public function PricingRequestEmailHtml($data,$template)
 
 public function checkPricingRedirectLinks($url)
 {
-     return '<a href="'.$url.'">Click Here</a>';
+     //return '<a href="'.$url.'">Click Here</a>';
 }
 
   

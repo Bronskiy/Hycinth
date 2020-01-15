@@ -157,6 +157,7 @@ jQuery("body").on('submit','#sendMessage',function(e){
 
 
 getChatListOfUser('all');
+getMessagesAccordingToID();
 getDealAndDiscountChat();
 
 setInterval(function(){ 
@@ -308,9 +309,43 @@ jQuery("body").on('click','a.getChatbox',function(e){
 
 
 
+ 
 
+function getMessagesAccordingToID() {
+   
+      //jQuery("body").find('#listactive').val($this.attr('data-id'));
+      var $this = jQuery("body").find('#contacts').find('li.active').find('a.getChatbox');
 
+     
 
+      var url = $this.attr('data-href');
+      $.ajax({
+               url : url,
+                
+               type: 'GET',   
+               dataTYPE:'JSON',
+               headers: {
+                 'X-CSRF-TOKEN': $('input[name=_token]').val()
+               },
+                beforeSend: function() {
+                     
+                },
+                success: function (result) {
+                        if(parseInt(result.status) == 1){
+                           $("body").find('#userChatBox').html(result.data);
+                           getChatListOfUser('all');
+                           scrollingTop();
+                        }
+               },
+               complete: function() {
+                        
+               },
+               error: function (jqXhr, textStatus, errorMessage) {
+                     
+               }
+
+        });  
+}
 
 
 

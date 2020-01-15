@@ -1,7 +1,7 @@
 @if(Auth::check() && Auth::user()->role == 'user' && $CartItems->count() > 0) 
 @foreach($CartItems as $item)
 
- <div class="row no-gutters" data=id="{{$item->id}}">
+ <div class="row no-gutters" data=id="{{$item->id}}" onclick="location.href='javascript:void(0);'">
                 <div class="col-lg-2 col-md-3">
                   <div class="cart-col-wrap">
                    <div class="cart-table-head dsk-hide">

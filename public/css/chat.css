@@ -76,6 +76,9 @@ img{
     width: 58px;
     min-width: 58px;
   }
+  .chatBox-frame .chatBox-sidepanel:hover{
+    width: 100%;
+  }
 }
 .chatBox-frame .chatBox-sidepanel .chat-profile {
   width: 80%;
@@ -135,12 +138,12 @@ img{
   -webkit-transition: 0.3s border ease;
   transition: 0.3s border ease;
 }
-@media screen and (max-width: 735px) {
+/*@media screen and (max-width: 735px) {
   .chatBox-frame .chatBox-sidepanel .chat-profile .wrap img {
     width: 40px;
     margin-left: 4px;
   }
-}
+}*/
 .chatBox-frame .chatBox-sidepanel .chat-profile .wrap img.online {
   border: 2px solid #2ecc71;
 }
@@ -394,7 +397,7 @@ img{
 }
 @media screen and (max-width: 735px) {
   .chatBox-frame .chatBox-sidepanel #contacts ul li.contact {
-    padding: 6px 0 46px 8px;
+    padding: 6px 0 8px 8px;
   }
 }
 .chatBox-frame .chatBox-sidepanel #contacts ul li.contact:hover {
@@ -481,9 +484,9 @@ img{
   padding: 0px 0 0 0;
 }
 @media screen and (max-width: 735px) {
-  .chatBox-frame .chatBox-sidepanel #contacts ul li.contact .wrap .meta {
+/*  .chatBox-frame .chatBox-sidepanel #contacts ul li.contact .wrap .meta {
     display: none;
-  }
+  }*/
 }
 .chatBox-frame .chatBox-sidepanel #contacts ul li.contact .wrap .meta .name {
   font-weight: 600;
@@ -705,7 +708,7 @@ form#sendMessage{
   position: absolute;
   bottom: 0;
   width: 100%;
-  z-index: 99;
+  z-index: 9999;
   height: 46px;
 }
 .chatBox-frame .content .message-input .wrap {

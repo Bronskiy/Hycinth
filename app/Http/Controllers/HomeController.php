@@ -507,6 +507,10 @@ public function requestMessages(Request $request)
 
 public function about()
 {
+
+
+ 
+
     return view('home.cms.about_us');
 }
 

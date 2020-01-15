@@ -5,6 +5,7 @@ Route::post('/admin/login', 'Admin\AdminController@check')->name('post_admin_log
 
 Route::group(['middleware' => ['AdminAuth'], 'prefix' => 'admin'], function() {
        require __DIR__.'/ajax.php';
+       require __DIR__.'/product.php';
 
 		Route::get('/','Admin\AdminController@dashboard')->name('admin_dashboard');
 		Route::get('/profile/settings','Admin\AdminController@profile')->name('admin_settings');

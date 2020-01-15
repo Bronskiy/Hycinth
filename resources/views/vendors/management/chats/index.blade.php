@@ -53,7 +53,7 @@
     <div id="contacts" data-action="{{url(route('getBusineschatList',$business->category->slug))}}">
      @include('vendors.management.chats.chatlist')
     </div>
-    <input type="hidden" id="listactive" value="0">
+    <input type="hidden" id="listactive" value="{{Request::has('chat_id') ? Request::get('chat_id') : 0}}">
     <!-- <div id="bottom-bar">
       <button id="addcontact"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i> <span>Add contact</span></button>
       <button id="settings"><i class="fa fa-cog fa-fw" aria-hidden="true"></i> <span>Settings</span></button>

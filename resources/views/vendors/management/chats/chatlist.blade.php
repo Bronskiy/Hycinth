@@ -1,3 +1,7 @@
+
+
+
+
  <ul>
     @foreach($business->chats as $c)
       <?php  $chat = $c->ChatMessages()->orderBy('id','DESC')->first(); ?>

@@ -152,9 +152,9 @@ class CustomPackageController extends Controller
        $this->sendMessages($customPackage,$vendorPack,$chat_id);
 
 
-       //$customPackage->
+       $url = route('myCategoryChat',$category->slug).'?chat_id='.$chat_id;
 
-	  // return redirect()->route('vendor_packages_management', $slug)->with('messages','Package has added successfully.');
+	   return redirect($url)->with('messages','Package has added successfully.');
   }
 
 

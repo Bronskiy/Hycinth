@@ -1673,8 +1673,8 @@ border-radius:6px;
 
 
 /*cstm pkg card*/
-/*.cstm-pkg-card {
-    background: url('../frontend/images/custom-pkg-card-bg.jpg') !important;
+ .cstm-pkg-card {
+    background: url('../frontend/images/custom-pkg-card-bg.jpeg') !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
     background-position: center center !important;  
@@ -1686,22 +1686,51 @@ border-radius:6px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
       position: relative;
       overflow: hidden;
-}*/
+} 
 
-.cstm-pkg-card {
-    background-position: center center !important;
-    padding: 8px;
-    background: #fff;
-    border-radius: 5px;
-    border: 20px solid #fff;
-    -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-    position: relative;
-    overflow: hidden;
-    /* transition: background-color 0.5s; */
-    /* transition: 0.5s ease all; */
-    background-image: linear-gradient(to top, #2751a0 0%, #1f468c 52%, #032b75 100%) !important;
+.cstm-pkg-card:before {
+    position: absolute;
+    content: "";
+    background: rgba(44, 62, 80, 0.3);
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
+.already-used .cstm-pkg-card:before, .delined-pkgs .cstm-pkg-card:before, .expired-pkgs .cstm-pkg-card:before {
+    position: absolute;
+    content: "";
+    background: rgba(255, 255, 255, 0.7);
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 111;
+}
+.already-used .cstm-pkg-card:after, .delined-pkgs .cstm-pkg-card:after, .expired-pkgs .cstm-pkg-card:after {
+    position: absolute;
+    content: "";
+    width: 220px;
+    height: 130px;
+    background-image: url(../frontend/images/hired-img.png);
+    left: 50%;
+    top: 50%;
+    display: block;
+    z-index: 111;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left 50%;
+    transform: translate(-50%, -50%);
+    z-index: 111;
+}
+.delined-pkgs .cstm-pkg-card:after {
+    background-image: url(../frontend/images/denied-img.png);
+    }
+    .expired-pkgs .cstm-pkg-card:after {
+        background-image: url(../frontend/images/expired-img.png);
+    }
+
 .cstm-pkg-card-inner{
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1764,6 +1793,7 @@ border-radius:6px;
     font-weight: bold;
     color: #fff;
     margin: 20px;
+    text-align: center;
 }
 .cstm-pkg-inn-detail ul li {
     font-size: 19px;
@@ -1773,8 +1803,7 @@ border-radius:6px;
 .cstm-pkg-inn-detail {
     width: 100%;
     text-align: center;
-    background: rgb(18, 52, 115);
-    border: 1px dashed #0d234c;
+    background: rgba(44, 62, 80, 0.63);
     padding: 10px;
     border-radius: 18px;
 }
@@ -1790,6 +1819,8 @@ border-radius:6px;
 .chatBox-frame .content .messages .cstm-pkg-inn-detail ul li{
   font-size: 19px;
   margin:0px;
+  width: 100%;
+  text-align: center;
 }
 .chatBox-frame .cstm-pkg-card{
     border-radius: 30px;
@@ -1844,3 +1875,24 @@ border-radius:6px;
 .cstm-pkg-fotter .btn:last-child{
     margin-right: 0px;
 }
+
+
+.cstm-pkg-heading {
+    color: #000000;
+    font-size: 18px;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+    position: relative;
+
+}
+.cstm-pkg-heading:after{
+    position: absolute;
+    content: "";
+    width: 70px;
+    height: 2px;
+    background: #000;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+}
+

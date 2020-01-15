@@ -34,4 +34,7 @@ require __DIR__.'/routing/user/routes.php';
 
 
 
-
+Route::get('/emailss',function(){
+  $msg = \App\Models\Vendors\ChatMessage::find(8);
+ return view('emails.chat.quote')->with('msg',$msg);
+ });

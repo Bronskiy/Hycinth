@@ -157,6 +157,12 @@
 .cart-pop-inn{
   min-height: unset;
 }
+.cstm-pkg-heading{
+	font-size: 14px;
+}
+.chatBox-frame .content .messages .cstm-pkg-inn-detail ul li{
+	font-size: 14px;
+}
 }
 @media (max-width: 480px){
   #firstUserModal .about-event-img{
@@ -191,4 +197,7 @@
 .cart-price-line>p{
   width: 100%;
 }
+.cstm-pkg-inn-detail .cstmpkg-price {
+    font-size: 16px;
+    }
 }

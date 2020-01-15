@@ -62,7 +62,7 @@ $text .='<p><span> <i class="fa fa-envelope"></i> '.$request['email'].'</span></
 $text .='<p>'.$request['message'].'</p>';
 $text .='</div>';
 
-$text .= customPackage2($arr->pkg,$msg);
+$text .= customPackage($arr->pkg,$msg);
 
 return $text;
 
@@ -78,8 +78,13 @@ function customPackage($pkg,$msg)
 {
    $page = App\Models\Vendors\CustomPackage::where('id',$pkg);
   if($page->count() > 0){
-   $c = $page->first();
    
+
+  $c = $page->first();
+
+   if($c->status == 2){
+      return customPackage2($pkg,$msg);
+     }
   $text  ='<div class="cstm-pkg-card">';
   $text .='<div class="cstm-pkg-card-inner">';
   $text .='<div class="cstm-pkg-btn"><span class="blink-text">Custom Package</span></div>';
@@ -99,9 +104,9 @@ function customPackage($pkg,$msg)
               $url = url('/');
             }else{
             $url = url(route('vendor.custom.packageCreate',[$c->category->slug,$c->id,$msg->id]));
-            }
   $text .='<a href="'.$url.'" data-toggle="tooltip" title="More Detail" class="icon-btn" target="_blank"><i class="fa fa-eye"></i>';
   $text .='</a>';
+            }
   $text .='</li>';
 
 
@@ -110,8 +115,11 @@ function customPackage($pkg,$msg)
   $text .='<div class="cstm-pkg-fotter text-center">';
   if($c->status == 1){
       if(Auth::check() && Auth::user()->role == "user"){
+
            $text .='<a href="javascript:void(0)" class="btn btn-info">Waiting For Approval</a>';
+
       }else{
+
            $text .='<a href="'.$url.'" class="btn btn-info btn-accepted" target="_blank" data-chatID="'.$msg->id.'" data-id="'.$c->id.'">Accept</a>';
            $text .='<a href="javascript:void(0)" class="btn btn-danger btn-delined" data-chatID="'.$msg->id.'" data-id="'.$c->id.'">Deline</a>';
 
@@ -154,7 +162,7 @@ function customPackage2($pkg,$msg)
   $text .='<div class="cstm-pkg-inn-detail">';
   $text .='<ul>';
   $text .='<li>'.$pkg->category->label.'</li>';
-  $text .='<li><i class="fa fa-users"></i> Guest Capacity <b>'.$c->min_person.' To '.$c->max_person.'</b></li>';
+  $text .='<li><i class="fa fa-users"></i> Guest Capacity <b>'.$pkg->min_person.' To '.$pkg->max_person.'</b></li>';
   // $text .='<li>2-3 Games with Prizes</li>';
   // $text .='<li>Sadh for Bride</li>';
   $text .='<li><h1 class="cstmpkg-price">$'.custom_format($pkg->price,2).' / BUDGET</h1></li>';
@@ -185,10 +193,13 @@ function customPackage2($pkg,$msg)
       }
   }elseif($c->status == 2){
        if(Auth::check() && Auth::user()->role == "user"){
+
         $text .='<span class="text-info text-success">Accepted</span>';
 
        }else{
+
         $text .='<span class="text-info text-success">Accepted</span>';
+
        }
   }else{
        $text .='<span class="text-info text-danger">Delined</span>';
@@ -209,9 +220,13 @@ function messageWithTag($message,$msg){
     //  $text = 
 
       $pkg = App\Models\Vendors\CustomPackage::where('id',$arr->pkg);
+
       $class = $pkg->count() > 0 && $pkg->first()->status == 2 ? 'accepted-pkgs' : 'delined-pkgs';
+      $class = SevenDayOldPackage($pkg->first()) == 0 ? 'expired-pkgs' : $class;
+      $class = CustomPackageAlreadyBuy($pkg) == 0 ? 'already-used' : $class;
+
       $text ="<div class='cMessagePkgStatus ".$class."'>";
-      $text .=customPackage2($arr->pkg,$msg);
+      $text .= customPackage2($arr->pkg,$msg);
       $text .="<p>".$message."</p></div>";
      return $text;
   }else{
@@ -220,8 +235,22 @@ function messageWithTag($message,$msg){
 }
 
 
+function SevenDayOldPackage($c)
+{
+     $now = \Carbon\Carbon::now();
+     return $status = ($c->updated_at->diffInDays($now) > 7) ? 0 : 1;
+ 
+}
 
 
+function CustomPackageAlreadyBuy($c)
+{
+  $user_id =Auth::check() ? Auth::user()->id : 0;
+  $cont =  \App\Models\EventOrder::where('type','order')->where('user_id',$user_id)
+                         ->where('package_id',$c->first()->package_id)->count();
+   
+  return $cont > 0 ? 0 : 1;
+}
 
 
 
@@ -3438,10 +3467,10 @@ function createSlug($name)
 function Actions($currentRoute)
 {
 	 
-   $permision = new \App\Permission\Permissions;
-   if(\Auth::check() && \Auth::user()->role != "master"):
-            return $permision->checkCurrentRoutePermissionWithRouteForMenuLink($currentRoute) == 1 ? 'hide' : '';
-   endif;
+   // $permision = new \App\Permission\Permissions;
+   // if(\Auth::check() && \Auth::user()->role != "master"):
+   //          return $permision->checkCurrentRoutePermissionWithRouteForMenuLink($currentRoute) == 1 ? 'hide' : '';
+   // endif;
 }
 
 

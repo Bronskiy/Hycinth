@@ -15,10 +15,10 @@ trait CustomChatMessage {
 
 
 
-public function sendCustomChatMessage($request)
+public function sendCustomChatMessage($request,$obj=0)
 {
       
-    return $this->CustomChatMessageSend($request);
+    return $this->CustomChatMessageSend($request,$obj);
 }
 
 
@@ -72,7 +72,7 @@ public function CustomChatMessageBox($request)
 
 
 
-public function CustomChatMessageSend($request)
+public function CustomChatMessageSend($request,$obj=0)
 {
 	      
 
@@ -95,7 +95,7 @@ public function CustomChatMessageSend($request)
                 $m->sender_status = 0;
                 $m->receiver_status = 0;
                 $m->save();
-                 return $chat->id;
+                 return $obj == 0 ? $chat->id : $m;
           }else{
           
                 $chat = new Chat;
@@ -106,18 +106,18 @@ public function CustomChatMessageSend($request)
                 $chat->updated_at =\Carbon\Carbon::now();
                 $chat->status = 0;
                 if($chat->save()){
-						$m = new ChatMessage;
-						$m->sender_id = $request['sender_id'];
-						$m->receiver_id = $request['receiver_id'];
-						$m->deal_id = $request['deal_id'];
-						$m->business_id = $request['business_id'];
-						$m->chat_id = trim($chat->id);
-						$m->message = $request['message'];
-						$m->type = $request['type'];
-						$m->sender_status = 0;
-						$m->receiver_status = 0;
+            						$m = new ChatMessage;
+            						$m->sender_id = $request['sender_id'];
+            						$m->receiver_id = $request['receiver_id'];
+            						$m->deal_id = $request['deal_id'];
+            						$m->business_id = $request['business_id'];
+            						$m->chat_id = trim($chat->id);
+            						$m->message = $request['message'];
+            						$m->type = $request['type'];
+            						$m->sender_status = 0;
+            						$m->receiver_status = 0;
                         $m->save();
-                  return $chat->id;
+                        return $obj == 0 ? $chat->id : $m;
 
                 }
 
