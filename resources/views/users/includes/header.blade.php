@@ -18,9 +18,15 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li>
+                   <a class="header-filter-icons" href="{{url(route('my_cart'))}}"><span class="header-filter-icons"><i class="icon feather icon-shopping-cart"></i><em class="notification-count">{{ Auth::User()->CartItems->count() }}</em></span></a>
+                </li>
+                <li>
+                   <a class="header-filter-icons" href="{{url(route('my_wishlist'))}}"><span class="header-filter-icons"><i class="icon feather icon-list"></i> <em class="notification-count">{{ Auth::User()->MyWishlist->count() }}</em> </span></a>
+                </li>                
+                <li>
                     <div class="dropdown drp-user">
                         <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon feather icon-settings"></i>
+                            <span class="header-filter-icons"><i class="icon feather icon-settings"></i></span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-notification">
                             <div class="pro-head">

@@ -25,7 +25,7 @@ $(document).ready(function(){
       },
       "slider_tagline": { 
           required: true,
-          maxlength: 100,
+          maxlength: 150,
       },
       "slider_button_title": {
           required: true,

@@ -78,6 +78,7 @@
                                                <?= $sub->status == 1 ? 'Active' : 'Deactive' ?>
                                                </span></sup>
                                                <a href="{{url(route('admin.products.category.edit',$sub->id))}}">Edit</a>
+                                               <a href="{{url(route('admin.products.category.variation',$sub->id))}}">Add Variation</a>
                                           </div>
                                           <div class="collapse row" id="collapse<?= $sub->id ?>" aria-expanded="false" style=""></div>
  

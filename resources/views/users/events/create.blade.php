@@ -109,7 +109,7 @@
          </div>
          <div class="col-md-6">
           <div class="form-group">
-            <label>Categories*</label>
+            <label>Select your Vendor Categories*</label>
                <select class="form-control select2" id="event_categories" multiple="multiple" name="event_categories[]">
                </select>
             </div>

@@ -175,8 +175,37 @@
       <div class="col-lg-12 mb-30">
          <div class="card">
             <div class="card-block">
-               <div class="event-card-head">
+               <div class="event-card-head j-c-s-b">
                   <h3>Event Details</h3>
+                  <!-- Shared Event Icon Html -->
+                  <ul class="social-icons event-share-icons">
+                    <li>
+                       <a target="_blank" href="<?= \Share::load(url()->full(),'Check out '.$user_event->title.' on Envisiun User Please check it ASAP.')->facebook() ?>">
+                       <img src="https://yauzer.com/images/icon-fb.png" alt="Facebook">
+                    </a>
+                   </li>
+                    <li>
+                       <a target="_blank" href="<?= \Share::load(url()->full(),'Check out '.$user_event->title.' on Envisiun User Please check it ASAP.')->twitter() ?>">
+                          <img src="https://yauzer.com/images/icon-twitter.png" alt="Twitter">
+                       </a>
+                    </li>
+                    <li>
+                       <a target="_blank" href="<?= \Share::load(url()->full(),'Check out '.$user_event->title.' on Envisiun User Please check it ASAP.')->gplus() ?>">
+                          <img src="https://yauzer.com/images/icon-gplus.png" alt="Google Plus">
+                       </a>
+                    </li>
+                    <li>
+                       <a target="_blank" href="<?= \Share::load(url()->full(),'Check out '.$user_event->title.' on Envisiun User Please check it ASAP.')->linkedin() ?>">
+                          <img src="https://yauzer.com/images/linkedin-icon.png" alt="Linkedin">
+                       </a>
+                    </li>
+                    <li>
+                       <a target="_blank" href="<?= \Share::load(url()->full(),'Check out '.$user_event->title.' on Envisiun User Please check it ASAP.')->pinterest() ?>">
+                          <img src="https://yauzer.com/images/icon-Pinterest.png" alt="Pinterest">
+                       </a>
+                    </li>
+                  </ul>                      
+                  <!-- Shared Event Icon Html End -->
                </div>
                <div class="card-media  mt-4 wow bounceInRight" data-wow-delay="350ms">
                   <!-- media container -->
@@ -231,8 +260,13 @@
                   <div class="col-md-6">
                      <div class="evt-theme-card bs mt-4 wow bounceInRight animated" data-wow-delay="800ms" style="background-image: url({{ asset('images/event-theme-bg-2.jpg') }})">
                       <div class="evt-theme-body">
-                        <div class="title">Theme Color</div>
-                        <div class="value">{{$user_event->colour}}<span class="theme-color-box" style="background: {{$user_event->colour}}"></span></div>
+                        <div class="title">Event Theme Color</div>
+                        <!-- <div class="value">{{$user_event->colour}}<span class="theme-color-box" style="background: {{$user_event->colour}}"></span></div> -->
+                        <ul class="event-theme-color">
+                         <li><div class="theme-color-wrap"><span class="theme-color-box" style="background:#36496c;">#36496c</span></div></li>
+                         <li><div class="theme-color-wrap"><span class="theme-color-box" style="background:#a864a8;">#a864a8</span></div></li>
+                         <li><div class="theme-color-wrap"><span class="theme-color-box" style="background:#362f2d;">#362f2d</span></div></li>
+                       </ul>
                      </div>
                    </div>
                   </div>
@@ -361,15 +395,15 @@
               </table>
     <br>
     @if($b['over'] == 0)
-    <div class="headline-wrap color-green text-center">
-       <h3 class="headline">On Budget</h3>
+    <div class="btn-wrap text-center">
+       <h3 class="cstm-btn success-btn blink-text">On Budget</h3>
        <span class="line"></span><div class="clearfix"></div>
     </div>
 
   @else
 
-   <div class="headline-wrap color-danger text-center">
-     <h3 class="headline">Over Budget</h3>
+   <div class="btn-wrap text-center">
+     <h3 class="cstm-btn danger-btn blink-text">Over Budget</h3>
      <span class="line"></span><div class="clearfix"></div>
    </div>
    @endif

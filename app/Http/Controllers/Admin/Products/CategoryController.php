@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\Products;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Products\ProductCategory;
+use App\Models\Products\ProductVariation;
+use App\Models\Products\ProductCategoryVariation;
 class CategoryController extends Controller
 {
    
@@ -178,7 +180,7 @@ public function update(Request $request,$id)
               'meta_title' => 'required',
               'meta_tag' => 'required',
               'meta_description' => 'required',
-              'label' => 'required',
+             'label' => 'required|unique:product_categories,id,'.$id,
               'category_image' => 'image',
        ]);
 
@@ -198,6 +200,107 @@ public function update(Request $request,$id)
 
       return redirect(route('admin.products.category'))->with('flash_message','Category saved!');
 
+}
+
+
+
+
+
+
+
+#-----------------------------------------------------------------------------------------------
+# admin.products.category.variation
+#-----------------------------------------------------------------------------------------------
+
+
+
+public function variation($id)
+{
+    $cate = ProductCategory::where('id',$id)->where('parent','>',0)->where('subparent',0);
+
+    if($cate->count() == 0){
+      return redirect()->back()->with('messages','Something Wrong');
+
+    }
+
+    $variations = new ProductVariation;
+    $CategoryVariation = new ProductCategoryVariation;
+
+     
+    return view($this->path.'variations')
+           ->with('category',$cate->first())
+           ->with('variations',$variations)
+           ->with('CategoryVariation',$CategoryVariation)
+           ->with('title','Product Category')
+           ->with('addLink',route('admin.products.category.create'));
+    
+
+}
+
+
+
+
+
+#----------------------------------------------------------------------------------------------------
+#  post Variation
+#----------------------------------------------------------------------------------------------------
+
+public function postVariation(Request $request,$id)
+{
+
+
+  $var = [
+      '_token'
+  ];
+
+  foreach ($request->all() as $key => $value) {
+
+     if(!in_array($key, $var)){
+
+      $this->saveVariation($value,$key,$id);
+     }
+  }
+
+  return response()->json(['status'=> 1,'messages' => 'Product variations are assigned to category variation.']);
+   
+}
+
+
+
+#---------------------------------------------------------------------------------------------------_
+# saveVariation
+#----------------------------------------------------------------------------------------------------
+
+
+public function saveVariation($request,$type,$category_id)
+{
+  $v = ProductCategoryVariation::where('category_id',$category_id)
+                               ->where('type',$type)
+                               ->delete();
+   foreach($request as $key => $value) {
+       $this->saveVariationInTable($value,$type,$category_id);                   
+   }  
+   return 1;                          
+  
+}
+
+
+
+
+#---------------------------------------------------------------------------------------------------_
+# saveVariationInTable
+#----------------------------------------------------------------------------------------------------
+
+
+public function saveVariationInTable($value,$type,$category_id)
+{
+  $v =new ProductCategoryVariation;
+  $v->key = $type;
+  $v->type = $type;
+  $v->value = $value;
+  $v->category_id = $category_id;
+  $v->save();
+  return $v->id;
 }
 
 

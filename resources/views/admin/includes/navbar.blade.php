@@ -40,16 +40,27 @@
                 <li class="nav-item pcoded-menu-caption">
                     <label>Product Management</label>
                 </li>
-                <li class="nav-item pcoded-hasmenu <?= ActiveMenu(['list_amenities', 'list_games', 'create_amenities_type', 'edit_amenity'],'pcoded-trigger') ?>" >
+                <li class="nav-item pcoded-hasmenu <?= ActiveMenu(['admin.products.variation','admin.products.category'],'pcoded-trigger') ?>" >
                         <a href="javascript:" class="nav-link "><span class="pcoded-micon">
                          <i class="feather icon-box"></i></span><span class="pcoded-mtext">Product Variations</span></a>
-                       <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['admin.products.category'],'block') ?>;">
+
+                       <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['admin.products.category','admin.products.variation'],'block') ?>;">
+
                                 <li class="<?= ActiveMenu(['admin.products.category'],'active') ?>">
                                       <a href="{{ route('admin.products.category') }}" class="">Product Category</a>
                                 </li>
-                               <li class="<?= ActiveMenu(['list_games'],'active') ?>">
-                                       <a href="{{ route('list_games') }}" class="">Product Variations</a>
-                               </li>
+                                 <li class="<?= ActiveMenu(['admin.products.create.variations'],'active') ?>">
+                                      <a href="{{ route('admin.products.create.variations') }}" class="">Variations</a>
+                                </li>
+
+                                <?php $variationMenus = App\Models\Products\Variation::where('status',1)->orderBy('name','ASC')->get(); ?>
+
+                                @foreach($variationMenus as $v)
+                                    <li class="<?= ActiveMenu(['admin.products.variations'],'active') ?>">
+                                           <a href="{{ route('admin.products.variations',$v->type) }}" class="">{{$v->name}}</a>
+                                   </li>
+                                @endforeach
+                                
                       </ul>
                 </li>
 

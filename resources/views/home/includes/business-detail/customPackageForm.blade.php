@@ -170,7 +170,7 @@
                  <div class="form-group">
                 <div class="row">
                   <div class="col-lg-12">
-                  <label class="form-label" for="no_of_hours">Do You Want Event?</label>
+                  <label class="form-label" for="no_of_hours">What type of Event do you want?</label>
                 </div>
 
                    

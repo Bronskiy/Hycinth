@@ -253,6 +253,7 @@ function submitMessageRequestForm($this,$url,$data) {
                          $modal.find('.modal-body').html(result.htm);
 	                     $modal.modal({backdrop: 'static', keyboard: false});
 	                      $("body").find('.custom-loading').hide();
+	                      $this.find('button.cstm-btn').removeAttr('disabled');
                          
                        
                     }else{
@@ -273,6 +274,11 @@ function submitMessageRequestForm($this,$url,$data) {
 
 
  
+ $('#CstmPackage').on('hidden.bs.modal', function () {
+    $('#sendMessageFormToVendor').find('button.cstm-btn').removeAttr('disabled');
+});
+
+
 
 /*----------------------------------------------------------------------------
 |

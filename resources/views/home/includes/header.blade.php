@@ -71,7 +71,7 @@
             
             <!-- <li><a href="{{url(route('get_all_venues'))}}">Venues</a></li> -->
             <li class="mob-hide"><a href="javascript:void(0);" data-toggle="modal" data-target="#VenuesCategoriesModal">Businesses</a></li>
-            <li class="mob-hide"><a href="{{url(route('all_deals'))}}">Deals & Discount</a></li>
+            <li class="mob-hide"><a href="{{url(route('vendor_register'))}}">New Vendor</a></li>
             
             
              @include('home.includes.messageCountHeader')

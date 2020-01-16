@@ -937,8 +937,8 @@ nav#tool-nav #menus-list li a:hover {
     height: 40px;
     border-radius: 50%;
     background: #d9534f;
-    top: -18px;
-    right: -10px;
+    top: 0px;
+    right: 0px;
     opacity: 1;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -2292,7 +2292,7 @@ hr.hr-break {
     padding: 0 6px 0 15px;
 
 }
-.right-content ul.inner-list::before {
+/*.right-content ul.inner-list::before {
     position: absolute;
     content: "";
     height: 18px;
@@ -2301,7 +2301,7 @@ hr.hr-break {
     left: 7px;
     top: 4px;
 }
-
+*/
 .right-content ul.inner-list li {
     padding: 0;
 }
@@ -5922,20 +5922,7 @@ table.compere-table th {
         -webkit-box-orient: vertical;
         width: 100%;
 }
-.blink-text{
-        -webkit-animation: blink-text 1s linear infinite;
-                animation: blink-text 1s linear infinite;
-    }
-@-webkit-keyframes blink-text{
-0%{opacity: 1; -webkit-transform: scale(0.6); transform: scale(0.6);}
-50%{opacity: 1;-webkit-transform: scale(1.2);transform: scale(1.2);}
-100%{opacity: 1;-webkit-transform: scale(0.6);transform: scale(0.6);}
-}
-@keyframes blink-text{
-0%{opacity: 1; -webkit-transform: scale(0.6); transform: scale(0.6);}
-50%{opacity: 1;-webkit-transform: scale(1.2);transform: scale(1.2);}
-100%{opacity: 1;-webkit-transform: scale(0.6);transform: scale(0.6);}
-}
+
 
 .button-grp-wrap {
     display: -webkit-box;

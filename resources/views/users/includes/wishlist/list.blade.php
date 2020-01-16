@@ -97,11 +97,14 @@
                                          type="button"
                                          data-form="#addToWishListForm-{{$item->id}}"
                                          data-action="{{url(route('cart.addToCart'))}}"
-                                         class="icon-btn wishlist-icon">
+                                         class="icon-btn wishlist-icon"
+                                         data-toggle="tooltip" 
+                                         title="Add to Cart"
+                                         >
                                          <span><i class="fas fa-cart-plus"></i></span>
                                         </button>
                           </form>
-                          <a href="{{url(route('wishlist.delete',$item->id))}}" class="icon-btn danger-btn">
+                          <a data-toggle="tooltip" title="Remove from Wishlist" href="{{url(route('wishlist.delete',$item->id))}}" class="icon-btn danger-btn">
                               <i class="fas fa-trash-alt"></i>
                           </a>
 
@@ -142,3 +145,9 @@
  
 @endforeach 
 @endif
+
+<script type="text/javascript">
+   $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();   
+   });
+</script>
