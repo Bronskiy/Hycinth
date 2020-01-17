@@ -86,7 +86,7 @@ class UserEventController extends Controller
         $e->min_person = trim($request->min_person);
         $e->max_person = trim($request->max_person);
         $e->seasons = trim($request->seasons);
-        $e->colour = trim($request->colour);
+        $e->colour = json_encode($request->colour);
         
         $e->event_picture = $request->hasFile('event_picture') ? uploadFileWithAjax($path, $request->event_picture) : $e->event_picture;
         $e->save();
@@ -206,7 +206,7 @@ class UserEventController extends Controller
         $e->min_person = trim($request->min_person);
         $e->max_person = trim($request->max_person);
         $e->seasons = trim($request->seasons);
-        $e->colour = trim($request->colour);
+        $e->colour = json_encode($request->colour);
         
         $e->event_picture = $request->hasFile('event_picture') ? uploadFileWithAjax($path, $request->event_picture) : $e->event_picture;
         $e->save();

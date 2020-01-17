@@ -3,6 +3,9 @@
 
 
 <style type="text/css">
+  .seasonName{
+    color: #fff !important;
+  }
   .headline-wrap.text-center:before {
     content: "";
     position: absolute;
@@ -249,14 +252,50 @@
                   <h3>Event Theme</h3>
                </div>
                <div class="row">
-                  <div class="col-md-6">
+
+                  
+            <!-- weather section -->
+            <div class="col-md-6" id="sidebar-weather" style="display: none">
+            
+            <div class="evt-theme-card bs mt-4 wow bounceInLeft" data-wow-delay="500ms" style="background-image: url({{ asset('frontend/images/weather.png') }})">
+                      <div class="evt-theme-body">
+                        <div class="form-group mb-0">
+            <input type="date" min="{{date('Y-m-d', strtotime($user_event->start_date))}}" max="{{date('Y-m-d', strtotime($user_event->end_date))}}" value="{{date('Y-m-d', strtotime($user_event->start_date))}}" class="form-control" id="weatherDatePicker" placeholder="select date">
+            </div>
+            <div class="weather-mini-card mt-2">
+              <div class="weather-info">
+                <div class="weather-info-wrapper">
+                  <div class="info-date">
+                    <h1 id="sidebar-localTime"></h1>
+                    <h5><span id="sidebar-localDate"></span></h5>
+                  </div>                  
+                  <div class="info-weather">
+                    <div class="weather-wrapper">
+                      <span class="weather-temperature" id="sidebar-mainTemperature"></span>
+                      <div class="weather-sunny"><img id="sidebar-main-icon" src="{{ asset('/frontend/DarkSky-icons/SVG/clear-day.svg') }}"></div>
+                    </div>        
+                    <h4 class="seasonName">
+                      <span class="weather-city">Season</span> 
+                      <spam id="seasonName"></spam>
+                    </h4>                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+            </div>
+            <!-- weather section end -->
+
+                  <!-- <div class="col-md-6">
                      <div class="evt-theme-card bs mt-4 wow bounceInLeft" data-wow-delay="500ms" style="background-image: url({{ asset('images/event-theme-bg.jpg') }})">
                       <div class="evt-theme-body">
                         <div class="title">Seasons</div>
                         <div class="value">{{$user_event->seasons}}</div>
                      </div>
                     </div>
-                  </div>
+                  </div> -->
+
                   <div class="col-md-6">
                      <div class="evt-theme-card bs mt-4 wow bounceInRight animated" data-wow-delay="800ms" style="background-image: url({{ asset('images/event-theme-bg-2.jpg') }})">
                       <div class="evt-theme-body">
@@ -619,13 +658,30 @@
 </div>
 @endsection
 @section('scripts')
+<script src="{{url('/js/weather-custom.js')}}"></script>
 <script src="{{url('/js/comingsoon.js')}}"></script>
 <script type="text/javascript">
 
-CKEDITOR.replace('ideas');
+CKEDITOR.replace('ideas');  
 
+// weather start
+function getWeather(lat, long, time) {
+   const weather_route = "{{ route('get_venue_weather') }}";
+   const url = `${weather_route}?latitude=${lat}&longitude=${long}&time=${time}`;
+   getSideBarWeatherData(url);
+}
 
-  
+getWeather('{{$user_event->latitude}}', '{{$user_event->longitude}}', '{{date('Y-m-d', strtotime($user_event->start_date))}}');
+
+$('#seasonName').text(getSeasonSouthernHemisphere('{{date('Y-m-d', strtotime($user_event->start_date))}}'));
+
+$('#weatherDatePicker').change(function() {
+    const date = $(this).val();
+    $("body").find('.custom-loading').show();
+    $('#seasonName').text(getSeasonSouthernHemisphere(date));
+    getWeather('{{$user_event->latitude}}', '{{$user_event->longitude}}', date);
+});
+// weather end
    
    function payments(paymentsData) {
      console.log('paymentsData ', paymentsData);

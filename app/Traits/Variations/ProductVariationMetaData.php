@@ -11,10 +11,10 @@ public function varaitionFields($type,$old=[])
 {
 
 
-	  $fields = $this->addArrayOfAttributesOfFields();
+	  $fields = $this->addArrayOfAttributesOfFields($type);
 
 	 if(@sizeof($fields)){
-	 	 return $this->getFieldHTML($fields[$type],$type,$old);
+	 	 return $this->getFieldHTML($fields,$type,$old);
 	 }
 }
 
@@ -26,7 +26,8 @@ public function getFieldHTML($fields,$type,$old)
 {
    $text = '';
    foreach ($fields as $k => $v) {
-   	 $text .= $this->getFieldInputs($v,$type,$old);
+        
+   	 $text .= $this->getFieldInputs($v,$v->type,$old);
    }
    return $text;
 }
@@ -39,9 +40,10 @@ public function getFieldHTML($fields,$type,$old)
 public function getFieldInputs($k,$type,$old)
 {
 
-   $type = $k['type'];
+   $type = $k->type;
    switch ($type) {
    		case 'color':
+          
    			return $this->colorField($k,$old);
    			break;
    		

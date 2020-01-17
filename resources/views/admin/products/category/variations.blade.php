@@ -35,101 +35,28 @@
 
         
 
-        <div class="col-lg-4">
-                <h3 class="card-title">Choose Brands</h3>
-                <ul class="unstyled centered">
-                  <li>
-                       <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" onclick="allCheck(this)" id="checkbox-amenity-all" type="checkbox" >
-                          <label class="custom-control-label" for="checkbox-amenity-all">All</label>
-                      </div>
-                    </li>
+       
 
-                 @foreach($variations->getWIthType('brands') as $brand)  
-                    <li>
-                       <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="brands[]" id="styled-checkbox-event-{{$brand->id}}" type="checkbox" value="{{$brand->id}}" 
-                          {{$CategoryVariation->hasSameValue($category->id,'brands',$brand->id,'checked')}}>
-                          <label class="custom-control-label" for="styled-checkbox-event-{{$brand->id}}">{{$brand->name}}</label>
-                      </div>
-                    </li>
-                  @endforeach
-                  
-                  
-                </ul>
-        </div>
+@foreach($variations as $variation)
 
-        <div class="col-lg-4">
-                <h3 class="card-title">Choose Sizes</h3>
-                <ul class="unstyled centered">
-                  <li>
-                       <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" onclick="allCheck(this)" id="checkbox-game-all" type="checkbox" >
-                          <label class="custom-control-label" for="checkbox-game-all">All</label>
-                      </div>
-                    </li>
-
-
-                 @foreach($variations->getWIthType('sizes') as $brand)  
-                    <li>
-                       <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="sizes[]" id="styled-checkbox-sizes-{{$brand->id}}" type="checkbox" value="{{$brand->id}}"
-                          {{$CategoryVariation->hasSameValue($category->id,'sizes',$brand->id,'checked')}}>
-                          <label class="custom-control-label" for="styled-checkbox-sizes-{{$brand->id}}">{{$brand->name}}</label>
-                      </div>
-                    </li>
-                  @endforeach
-                 
-                  
-                </ul>
-        </div>
-
-        <div class="col-lg-4">
-                <h3 class="card-title">Choose Styles</h3>
-                <ul class="unstyled centered">
-                  <li>
-                       <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" onclick="allCheck(this)" id="checkbox-season-all" type="checkbox" >
-                          <label class="custom-control-label" for="checkbox-season-all">All</label>
-                      </div>
-                    </li>
-
-
-                  @foreach($variations->getWIthType('styles') as $brand)  
-                    <li>
-                       <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="styles[]" id="styled-checkbox-styles-{{$brand->id}}" type="checkbox" value="{{$brand->id}}"
-                          {{$CategoryVariation->hasSameValue($category->id,'styles',$brand->id,'checked')}}>
-                          <label class="custom-control-label" for="styled-checkbox-styles-{{$brand->id}}">{{$brand->name}}</label>
-                      </div>
-                    </li>
-                  @endforeach
-                 
-                  
-                  
-                </ul>
-        </div>
-
-
-
-
+     @if($variation->ProductVariation->count() > 0)
          <div class="col-lg-4">
-                <h3 class="card-title">Choose Colors</h3>
+                <h3 class="card-title">Choose {{$variation->name}}</h3>
                 <ul class="unstyled centered">
                   <li>
                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" onclick="allCheck(this)" id="checkbox-color-all" type="checkbox" >
-                          <label class="custom-control-label" for="checkbox-color-all">All</label>
+                          <input type="checkbox" class="custom-control-input" onclick="allCheck(this)" id="checkbox-{{$variation->type}}-all" type="checkbox" >
+                          <label class="custom-control-label" for="checkbox-{{$variation->type}}-all">All</label>
                       </div>
                     </li>
 
 
-                  @foreach($variations->getWIthType('colors') as $brand)  
+                  @foreach($variation->ProductVariation as $brand)  
                     <li>
                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="colors[]" id="styled-checkbox-colors-{{$brand->id}}" type="checkbox" value="{{$brand->id}}"
-                          {{$CategoryVariation->hasSameValue($category->id,'colors',$brand->id,'checked')}}>
-                          <label class="custom-control-label" for="styled-checkbox-colors-{{$brand->id}}">{{$brand->name}}</label>
+                          <input type="checkbox" class="custom-control-input" name="{{$variation->type}}[]" id="styled-checkbox-{{$variation->type}}-{{$brand->id}}" type="checkbox" value="{{$brand->id}}"
+                          {{$CategoryVariation->hasSameValue($category->id,$variation->type,$brand->id,'checked')}}>
+                          <label class="custom-control-label" for="styled-checkbox-{{$variation->type}}-{{$brand->id}}">{{$brand->name}}</label>
                       </div>
                     </li>
                   @endforeach
@@ -138,35 +65,8 @@
                   
                 </ul>
         </div>
-
-
-         <div class="col-lg-4">
-                <h3 class="card-title">Choose Materials</h3>
-                <ul class="unstyled centered">
-                  <li>
-                       <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" onclick="allCheck(this)" id="checkbox-materials-all" type="checkbox" >
-                          <label class="custom-control-label" for="checkbox-materials-all">All</label>
-                      </div>
-                    </li>
-
-
-                  @foreach($variations->getWIthType('materials') as $brand)  
-                    <li>
-                       <div class="custom-control custom-checkbox">
-                          <input type="checkbox" class="custom-control-input" name="materials[]" id="styled-checkbox-materials-{{$brand->id}}" type="checkbox" value="{{$brand->id}}"
-                          {{$CategoryVariation->hasSameValue($category->id,'materials',$brand->id,'checked')}}>
-                          <label class="custom-control-label" for="styled-checkbox-materials-{{$brand->id}}">{{$brand->name}}</label>
-                      </div>
-                    </li>
-                  @endforeach
-                 
-                  
-                  
-                </ul>
-        </div>
-
-
+   @endif
+@endforeach
 
 
 <div class="col-md-12">

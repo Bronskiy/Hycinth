@@ -409,6 +409,7 @@
 <script type="text/javascript" src="{{url('/js/deals/deals.js')}}"></script>
 <script type="text/javascript" src="{{url('/js/comparePackage.js')}}"></script>
 <script type="text/javascript" src="{{url('/js/business/requestForm.js')}}"></script>
+<script type="text/javascript" src="{{url('/js/weather-custom.js')}}"></script>
 <script>
  jQuery("body").on('click','.play-model-video2',function(e) {
 

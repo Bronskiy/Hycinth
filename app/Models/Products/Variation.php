@@ -22,4 +22,33 @@ class Variation extends Model
         ];
     }
 
+
+
+
+    #--------------------------------------------------------------------------------------------
+
+    public function ProductVariation()
+    {
+        return $this->hasMany('App\Models\Products\ProductVariation','type','type');
+    }
+
+
+
+
+ 
+
+    #--------------------------------------------------------------------------------------------
+
+    public function VariationExtras()
+    {
+    	return $this->hasMany('App\Models\Products\VariationExtra','slug','type')->where('status',1);
+    }
+
+
+
+
+ 
+
+
+
 }

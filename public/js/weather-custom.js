@@ -1,5 +1,21 @@
+// get season
+const getSeason = d => Math.floor((d.getMonth() / 12 * 4)) % 4;
+
+function getSeasonSouthernHemisphere(date) {
+// Southern hemisphere (Summer as Dec/Jan/Feb etc...)
+// console.log(['Summer', 'Autumn', 'Winter', 'Spring'][getSeason(new Date())])
+  return ['Summer', 'Autumn', 'Winter', 'Spring'][getSeason(new Date(date))];
+}
+
+function getSeasonNorthernHemisphere(date) {
+// Northern hemisphere (Winter as Dec/Jan/Feb etc...)
+// console.log(['Winter', 'Spring', 'Summer', 'Autumn'][getSeason(new Date())]);
+  return ['Winter', 'Spring', 'Summer', 'Autumn'][getSeason(new Date(date))];
+}
+
+
 // home sidebar
-function initMap() {
+function currentLatLongWeather() {
 
 // static lat and long
    const weather_route = $('#weather_route').val();
@@ -24,8 +40,6 @@ function initMap() {
    }
 }
 
-
-
 function getSideBarWeatherData(weather_route) {
   $.ajax({
     type: "GET",
@@ -46,7 +60,10 @@ function getSideBarWeatherData(weather_route) {
     error: function(error) {
       $('#sidebar-weather').css('display', 'none');
       console.log("Error with ajax: "+ error);
-    }
+    },
+    complete: function() {
+      $("body").find('.custom-loading').hide();
+    },
   });
 }
 

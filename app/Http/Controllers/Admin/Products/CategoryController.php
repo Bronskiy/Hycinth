@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Products\ProductCategory;
 use App\Models\Products\ProductVariation;
 use App\Models\Products\ProductCategoryVariation;
+use App\Models\Products\Variation;
 class CategoryController extends Controller
 {
    
@@ -223,7 +224,7 @@ public function variation($id)
 
     }
 
-    $variations = new ProductVariation;
+    $variations = Variation::with('ProductVariation')->get();
     $CategoryVariation = new ProductCategoryVariation;
 
      

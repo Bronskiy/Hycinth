@@ -43,7 +43,7 @@
            {{textarea($errors, 'Description*', 'description')}}
            </div>
 
-           <div class="col-md-12">
+           <div class="col-md-6">
            {{textarea($errors, 'Long Description*', 'long_description')}}
            </div>
 
@@ -87,7 +87,7 @@
            <div class="col-md-6">
            {{textbox($errors, 'Max Person*', 'max_person')}}
            </div>
-         <div class="col-md-12">
+         <div class="col-md-6">
            {{textbox($errors, 'Address*', 'location')}}
            </div>
          <div class="col-md-6" style="display: none">
@@ -131,19 +131,9 @@
            {{textbox($errors, 'Seasons*', 'seasons')}}
            </div>
 
-         <div class="col-md-6">
-                
-
-                 <div class="form-group "><label class="control-label">Colour*</label>
-                     <input type="color" value="" name="colour" id="get" style="width: 46px; margin-left: -2px;">
-                     <input type="text" readonly value="{{old('colour')}}" class="form-control" name="colour" id="colour">
-                       <p class="error">{{$errors->first('colour')}}</p>
-                 </div>
-           </div>
-
-            <div class="col-md-6">
+          <div class="col-md-12">
               <!-- {{choosefile($errors, 'Event Image*', 'event_picture')}} -->
-               <div class="form-group ">
+            <div class="form-group ">
               <div class="profile-image">
                 <label class="label-file">Event Image*</label>
                          <input type="file" required name="event_picture" accept="image/*" onchange="ValidateSingleInput(this, 'image_src')" id="event_picture" class="form-control">
@@ -156,6 +146,22 @@
                    </div>
                </div>
            </div>
+
+         <div class="col-md-12">
+          <div id="AddRemoveColorEvent">
+            <div class="form-group"><label class="control-label">Colour*</label>
+              <div class="pick-color-field-wrap row">
+                <div class="element col-lg-3 col-md-6" id="div_1">              
+                  <div class="form-group">
+                    <input type="color" class="ColorGet" style="width: 46px; margin-left: -2px;">
+                    <input type="text" readonly value="{{old('colour')}}" class="form-control ColourSelect" name="colour[]">
+                    <ul class="acrdn-action-btns"><li><a href="javascript:void(0)" id="AddNewColorEvent" class="action_btn primary-btn" data-toggle="tooltip" title="" data-original-title="Add new Color"><i class="fas fa-plus"></i></a></li></ul>
+                  </div>
+                </div>
+              </div>
+             </div>
+            </div>            
+          </div>            
 
 <div class="col-md-12">
    <div class="form-group ">
@@ -224,12 +230,6 @@
 <script src="{{url('/js/validations/imageShow.js')}}"></script>
 
 <script type="text/javascript">
- $("body").on('change','#get',function(){
-     var val = $( this ).val();
-     $("body").find("#colour").val(val);
-});
-
-
 
 $('#start_time').clockface();
 $('#end_time').clockface();
@@ -264,6 +264,48 @@ $('select[name="event_type"]').change(function() {
             console.log(err);
         }
     });
+});
+
+// Get Current color and append the value in next input
+function loadColorJQ() {
+    $('.ColorGet').on('change', function() { 
+      var val = $( this ).val();
+      $( this ).next().val(val);
+    });
+  }
+loadColorJQ();
+
+// Add Remove multiple color for event
+$(document).ready(function(){
+  $("#AddNewColorEvent").click(function(){
+  // Finding total number of elements added
+  var total_element = $(".element").length;
+  var lastid = $(".element:last").attr("id");
+  var split_id = lastid.split("_");
+  var nextindex = Number(split_id[1]) + 1;
+
+  var max = 4;
+  // Check total number elements
+  if(total_element < max ){
+   // Adding new div AddRemoveColorEvent after last occurance of element class
+   $(".element:last").after("<div class='element col-lg-3 col-md-6' id='div_"+ nextindex +"'></div>");
+ 
+   // Adding element to <div>
+   $("#div_" + nextindex).append('<div class="form-group"><input type="color" class="ColorGet" style="width: 46px; margin-left: -2px;"><input type="text" readonly value="{{old('colour')}}" class="form-control ColourSelect" name="colour[]"> <ul class="acrdn-action-btns"><li><a href="javascript:void(0)" id="remove_'+nextindex+'" class="action_btn danger-btn remove_color_event" data-toggle="tooltip" title="" data-original-title="Delete"><i class="fas fa-trash-alt"></i></a></li></ul></div>'); 
+  }
+  // Load get solor function to select color
+  loadColorJQ(); 
+ });
+
+  // Remove element
+  $("#AddRemoveColorEvent").on('click','.remove_color_event',function(){
+    var id = this.id;
+    var split_id = id.split("_");
+    var deleteindex = split_id[1];
+
+    // Remove <div> with id
+    $("#div_" + deleteindex).remove();
+  }); 
 });
 </script>
 @endsection

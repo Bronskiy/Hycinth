@@ -73,8 +73,8 @@ $(document).ready(function() {
       "seasons": {
         required: true
       },      
-      "colour": {
-        required: true
+      "colour[]": {
+        lengthRequired: true,
       },
       "event_categories[]": {
         required: true

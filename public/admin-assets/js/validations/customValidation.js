@@ -124,14 +124,16 @@ $.validator.addMethod("timeValidator", function(value, element, params) {
       start_date = new Date($('#start_date').val());
       end_date = new Date($('#end_date').val());
 
-      console.log('start_date ', start_date);
-      console.log('end_date ', end_date);
+      // console.log('start_date ', start_date);
+      // console.log('end_date ', end_date);
+      const smonth = start_date.getMonth() + 1;
+      const emonth = end_date.getMonth() + 1;
 
-      const startDate = start_date.getFullYear() + '-' + start_date.getMonth() + 1 + '-' + start_date.getDate();
-      const endDate = end_date.getFullYear() + '-' + end_date.getMonth() + 1 + '-' + end_date.getDate();
+      const startDate = start_date.getFullYear() + '-' + smonth + '-' + start_date.getDate();
+      const endDate = end_date.getFullYear() + '-' + emonth + '-' + end_date.getDate();
 
-      console.log('startDate ', startDate);
-      console.log('endDate ', endDate);
+      // console.log('startDate s ', startDate);
+      // console.log('endDate e ', endDate);
 
       const val = new Date(startDate + ' ' + value);
       const par = new Date(endDate + ' ' + $(params).val());
@@ -173,3 +175,18 @@ $.validator.addMethod("minAge", function(value, element, min) {
     return age >= min;
 }, "You must be at least 18 years old!");
 
+
+// Add method to check all color value are required
+  $.validator.addMethod("lengthRequired", function (value, element) {
+    console.log('test');
+      var flag = true;             
+     $("[name^=colour]").each(function (i, j) {  
+       $(this).parent().find('#length_'+i+'-error').remove();
+        if ($.trim($(this).val()) == '') {
+           flag = false;
+           var counter= i + 1;
+        $(this).parent().append('<label id="length_'+i+'-error" class="error">This field is required.</label>');
+       }
+    });  
+     return flag; 
+    }, "");

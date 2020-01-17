@@ -30,7 +30,21 @@ Route::post('category/variations/{id}','Admin\Products\CategoryController@postVa
 
 Route::get('variations','Admin\Products\VariationController@index')->name('admin.products.create.variations');
 Route::post('variations','Admin\Products\VariationController@store')->name('admin.products.create.variations');
+Route::get('variation/edit/{id}','Admin\Products\VariationController@index')->name('admin.products.edit.variations');
+Route::post('variation/edit/{id}','Admin\Products\VariationController@store')->name('admin.products.edit.variations');
 
+
+
+
+Route::get('variations/custom/fields/{type}','Admin\Products\VariationController@fields')->name('admin.products.custom.fields.variations');
+
+
+Route::post('variations/custom/fields/{type}','Admin\Products\VariationController@postVariation')->name('admin.products.custom.fields.variations');
+
+
+Route::get('variations/custom/fields/{type}/{id}','Admin\Products\VariationController@fields')->name('admin.products.custom.fields.edit.variations');
+Route::post('variations/custom/fields/{type}/{id}','Admin\Products\VariationController@postVariation')->name('admin.products.custom.fields.edit.variations');
+Route::get('variations/custom/fields/delete/{type}/{id}','Admin\Products\VariationController@fieldDelete')->name('admin.products.custom.fields.delete.variations');
 #-----------------------------------------------------------------------------------
 #  Product Variation Management
 #-----------------------------------------------------------------------------------

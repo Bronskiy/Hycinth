@@ -31,12 +31,45 @@
 
 <div class="col-md-4">
 
-     <form role="form" method="post" id="faqForm" enctype="multipart/form-data">
+     <form role="form" method="post" class="row" id="faqForm" enctype="multipart/form-data">
     @csrf
 
-       
+          
 
-         {{textbox($errors, 'Variation Name*', 'name')}}
+         {{textbox($errors, 'Variation Name*', 'name',$val)}}
+
+
+
+         <div class="col-md-12">
+
+             <h3 class="card-title">Pattern</h3>
+                <ul class="unstyled centered">
+                    <li>
+                       <div class="custom-control custom-checkbox">
+                          <input type="checkbox" 
+                          class="custom-control-input" 
+                          id="checkbox-price" 
+                          type="checkbox" 
+                          value="price" 
+                          name="extra[]"
+                          {{$variation_id > 0 && in_array('price',$vary) ? 'checked' : ''}}
+                          >
+                          <label class="custom-control-label" for="checkbox-price">Price vary for each Item</label>
+                      </div>
+                    </li>
+
+                    <li>
+                       <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" id="checkbox-stock" 
+                          type="checkbox" value="stock" name="extra[]"  {{$variation_id > 0 && in_array('stock',$vary) ? 'checked' : ''}}>
+                          <label class="custom-control-label" for="checkbox-stock">Quantities vary for each Item</label>
+                      </div>
+                    </li>
+
+                </ul>
+        </div>
+
+ 
          
        
         <div class="card-footer">
@@ -58,6 +91,21 @@
           <td>{{$v->name}}</td>
           <td>{{$v->type}}</td>
           <td>{{$v->status == 1 ? 'Active' : 'In-Active'}}</td>
+          <td>
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary">Action</button
+                ><button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                  <span class="caret"></span><span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu" role="menu" x-placement="top-start" style="position: absolute; transform: translate3d(-18px, -82px, 0px); top: 0px; left: 0px; will-change: transform;">
+                       <a href="{{url(route('admin.products.edit.variations',$v->id))}}" class="dropdown-item">Edit</a>
+                       <div class="dropdown-divider"></div>
+                       <a href="{{url(route('admin.products.custom.fields.variations',$v->type))}}" class="dropdown-item">Add Custom Fields</a>
+                       <div class="dropdown-divider"></div>
+                   
+                  </div>
+            </div>
+          </td>
         </tr>
       @endforeach
     </table>      

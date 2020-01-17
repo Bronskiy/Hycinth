@@ -18,6 +18,7 @@ public function getWIthType($type)
 	return $this->where('type',$type)->where('status',1)->get();
 }
 
+ 
 
 
 }

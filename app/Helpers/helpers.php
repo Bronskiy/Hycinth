@@ -2546,6 +2546,50 @@ function choosefilemultiple($errors,$label, $name,$value=null){
 
 
 
+function selectsimple2($errors,$label,$name,$array,$select="select",$value=null){
+    if($errors->has($name)){
+      $border="BORDER";
+    }else{
+      $border="";
+    }
+        if(Session::has($name)){
+          $ex=Session::get($name);
+          $border="BORDER";
+        }else{
+          $ex="";
+        }
+
+
+    if($value==null){
+      $v='m';
+    }else{
+      $v=$value;
+    }
+    $old=old($name);
+    $text = "";
+    $text .= "<div class='form-group label-floating is-focused' id=".$name.">";
+    $text .="<label class='control-label'>$label</label>";
+        $text .= "<select class='form-control $border' name='$name'>";   
+        $text .="<option value='' selected>".$select."</option>"; 
+          foreach ($array as $key => $val) {
+                  if($key == $v || $old == $key){
+
+                        $text .="<option value='".$key."' selected>".$val."</option>";    
+                  }else{
+                        $text .="<option value='".$key."'>".$val."</option>";
+                  }         
+                                
+
+          }
+
+    
+  
+    $text .="</select>";  
+      $text .="<label class='error' for='$name'>".$errors->first($name)."&nbsp;".$ex."</label>";
+    $text .="</div>";
+
+    echo $text;
+  }
 
 
 function selectsimple($errors,$label,$name,$array,$value=null){

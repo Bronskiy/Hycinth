@@ -116,16 +116,47 @@
             <div class="col-md-6">
            {{textbox($errors, 'Seasons*', 'seasons', $user_event->seasons)}}
            </div>
-         <div class="col-md-6">
-                
 
-                 <div class="form-group "><label class="control-label">Colour*</label>
-                     <input type="color" value="{{$user_event->colour}}" name="color" id="get" style="width: 46px; margin-left: -2px;">
-                     <input type="text" readonly value="{{$user_event->colour !='' ? $user_event->colour : old('colour')}}" class="form-control" name="colour" id="colour">
-                 </div>
+          <div class="col-md-12">
+            <div id="AddRemoveColorEvent">
+             <div class="form-group"><label class="control-label">Colour*</label>
+              <div class="pick-color-field-wrap row">
+                <input type="hidden" value="{{$user_event->colour}}" id="coloursArr" />
+                @php
+                $colour = json_decode($user_event->colour);
+                  for($i=0; $i<count($colour); $i++){ @endphp
+                <div class="element col-lg-3 col-md-6" id="div_{{$i}}">              
+                  <div class="form-group">
+                    <input type="color" class="ColorGet" value="{{$colour[$i]}}" style="width: 46px; margin-left: -2px;">
+                    <input type="text" readonly value="{{$colour[$i] !='' ? $colour[$i] : old('colour')}}" class="form-control ColourSelect" name="colour[]">
 
-                 <p class="error">{{$errors->first('colour')}}</p>
-           </div>
+                    <ul class="acrdn-action-btns">
+                      @if(count($colour) < 4 && $i === 0)
+                      <li id="plus">
+                        <a href="javascript:void(0)" id="AddNewColorEventEdit" class="action_btn primary-btn" data-toggle="tooltip" title="" data-original-title="Add new Color">
+                          <i class="fas fa-plus"></i>
+                        </a>
+                      </li>
+                      @endif
+
+                      @if(count($colour) > 1 )
+                      <li>
+                        <a href="javascript:void(0)" id="remove_{{$i}}" class="action_btn danger-btn remove_color_event" data-toggle="tooltip" title="" data-original-title="Delete">
+                          <i class="fas fa-trash-alt"></i>
+                        </a>
+                      </li>
+                      @endif
+
+                    </ul>
+
+                  </div>
+                </div>
+                @php }
+                @endphp
+              </div>
+             </div>
+            </div>            
+          </div>
 
             <div class="col-md-6">
              <!-- {{choosefile($errors, 'Event Image*', 'event_picture')}} -->
@@ -187,11 +218,6 @@
 <script src="{{url('/js/validations/imageShow.js')}}"></script>
 
 <script type="text/javascript">
-  $("body").on('change','#get',function(){
-     var val = $( this ).val();
-     $("body").find("#colour").val(val);
-  });
-
   $('#start_time').clockface();
   $('#end_time').clockface();
 
@@ -236,6 +262,75 @@ function getCat(selectedEvent) {
     });
 }
 getCat($('#sel_eve_id').val());
+
+
+
+// Get Current color and append the value in next input
+function loadColorJQ() {
+    $('.ColorGet').on('change', function() { 
+      var val = $( this ).val();
+      $( this ).next().val(val);
+    });
+  }
+loadColorJQ();
+
+// Add Remove multiple color for event
+$(document).ready(function(){
+
+  const coloursArr = JSON.parse($('#coloursArr').val());
+  const plus = `<li id="plus">
+                    <a href="javascript:void(0)" id="AddNewColorEventEdit" class="action_btn primary-btn" data-toggle="tooltip" title="" data-original-title="Add new Color">
+                      <i class="fas fa-plus"></i>
+                    </a>
+                  </li>`;
+
+  $("#AddNewColorEventEdit").click(function(){
+    coloursArr.push('new');
+    console.log('kkk');
+  // Finding total number of elements added
+  var total_element = $(".element").length;
+  var lastid = $(".element:last").attr("id");
+  var split_id = lastid.split("_");
+  var nextindex = Number(split_id[1]) + 1;
+
+  var max = 4;
+  // Check total number elements
+  if(total_element < max ){
+   // Adding new div AddRemoveColorEvent after last occurance of element class
+   $(".element:last").after("<div class='element col-lg-3 col-md-6' id='div_"+ nextindex +"'></div>");
+ 
+   // Adding element to <div>
+   $("#div_" + nextindex).append('<div class="form-group"><input type="color" class="ColorGet" style="width: 46px; margin-left: -2px;"><input type="text" readonly value="{{old('colour')}}" class="form-control ColourSelect" name="colour[]"> <ul class="acrdn-action-btns"><li><a href="javascript:void(0)" id="remove_'+nextindex+'" class="action_btn danger-btn remove_color_event" data-toggle="tooltip" title="" data-original-title="Delete"><i class="fas fa-trash-alt"></i></a></li></ul></div>'); 
+  }
+  // Load get solor function to select color
+  loadColorJQ(); 
+ });
+
+  // Remove element
+  $("#AddRemoveColorEvent").on('click','.remove_color_event',function() {
+    coloursArr.pop();
+    if(coloursArr.length === 1) {
+      // $('.acrdn-action-btns').hide();
+      $('.acrdn-action-btns').html(plus);
+    } 
+
+    if(coloursArr.length > 1 && coloursArr.length < 4) {
+      $('.acrdn-action-btns').show();
+    }
+
+    var id = this.id;
+    var split_id = id.split("_");
+    var deleteindex = split_id[1];
+    // Remove <div> with id
+    const divId = "#div_" + deleteindex;
+    $(divId).remove();
+
+    // const color = $(divId).find('Input').val();
+    
+  });
+
+
+});
 </script>
 @endsection
 

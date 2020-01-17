@@ -112,7 +112,8 @@ public function getweather(Request $req) {
     
     $weather = curl_init();
     if($req->time) {
-    	$req->time = \Carbon\Carbon::parse($req->time)->timestamp;
+      // $req->time = \Carbon\Carbon::parse($req->time)->timestamp;
+    	$req->time = \Carbon\Carbon::parse($req->time)->addDay()->timestamp;
 		$url = "https://api.darksky.net/forecast/$weather_api_key/$req->latitude,$req->longitude,$req->time";
     } else {
     $url = "https://api.darksky.net/forecast/$weather_api_key/$req->latitude,$req->longitude";

@@ -1061,7 +1061,7 @@ $( document ).ready(function() {
 
 // check user for weather
 @if(Auth::check() && Auth::User()->role == 'user')
-  initMap();
+  currentLatLongWeather();
 @endif
 
 </script>
