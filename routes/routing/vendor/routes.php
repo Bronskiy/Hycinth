@@ -3,6 +3,7 @@
 Route::group(['middleware' => ['VendorAuth'],'prefix' => 'vendors'], function(){
 
 require __DIR__.'/ajax.php';
+require __DIR__.'/shop.php';
 		Route::get('/', 'Vendor\VendorController@index')->name('vendor_dashboard'); 
 		Route::get('/settings', 'Vendor\VendorController@vendor_profile')->name('vendor_profile'); 
 		Route::post('/settings', 'Vendor\VendorController@vendorProfile')->name('vendor_profile');

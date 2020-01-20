@@ -74,7 +74,7 @@
 
             <div class="form-group">
             <label class="label-file">Image*</label>
-            <input type="file" accept="image/*" required id="cat_image" onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="image">
+            <input type="file" accept="image/*" id="cat_image" onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="image">
            </div>
 
             </div>

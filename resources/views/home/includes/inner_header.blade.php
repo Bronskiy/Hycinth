@@ -10,7 +10,8 @@
                 
                 <ul class="inn-top-navigation">
                    <li><a href="javascript:void(0);" data-toggle="modal" data-target="#VenuesCategoriesModal">Businesses</a></li>
-             <li><a href="{{url(route('all_deals'))}}">Deals & Discount</a></li>
+                   <li><a href="{{url(route('all_deals'))}}">Deals & Discount</a></li>
+                   <li><a href="{{url(route('shop.index'))}}">Shop</a></li>
                     @if(Auth::check())
                     <li>
                         <a href="javascript:void(0);" class="fav-list mr-2"><i class="fas fa-heart"></i>

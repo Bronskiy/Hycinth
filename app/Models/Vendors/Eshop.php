@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Vendors;
+namespace App\Models\Vendors;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CustomPackage extends Model
+class Eshop extends Model
 {
     //
 }

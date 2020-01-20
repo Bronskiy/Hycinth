@@ -55,7 +55,7 @@
                               
                             </td> 
                             <td>
-                              <a href="{{url(route('vendor.orderDetail',[$slug,$order->order_id]))}}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                              <a href="{{url(route('vendor.orderDetail',[$slug,$order->order_id]))}}" class="icon-btn"><i class="fa fa-eye"></i></a>
                             </td>
                          </tr>
                         

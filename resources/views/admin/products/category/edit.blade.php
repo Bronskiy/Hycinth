@@ -32,31 +32,64 @@
                   <div class="col-md-12">
 
                     <form role="form" method="post" id="categoryForm" enctype="multipart/form-data">
-                                  <div class="card-body">
-<div class="row">
+                       <div class="card-body">
+                                <div class="row">
                                          @csrf
-          <div class="col-md-6"> 
-             {{select3($errors,'Parent','parent','label','0',$category,$cate->parent)}}
-           </div>
-        <div class="col-md-6">
-         {{select3($errors,'SubParent','subparent','label','0',$subcategory,$cate->subparent)}}
-       </div>
-        <div class="col-md-6"> 
-        {{textbox($errors,'Name*','label',$cate->label)}}
-      </div>
+                                        <div class="col-md-6"> 
+                                           {{select3($errors,'Parent','parent','label','0',$category,$cate->parent)}}
+                                         </div>
+                                         <div class="col-md-6">
+                                            {{select3($errors,'SubParent','subparent','label','0',$subcategory,$cate->subparent)}}
+                                         </div>
+                                         <div class="col-md-6"> 
+                                             {{textbox($errors,'Name*','label',$cate->label)}}
+                                         </div>
 
-            <div class="col-md-6">
-                   <div class="form-group" >
+                                        
 
-                          <label>Featured | Not</label>
 
-                          <select class="form-control" name="featured">
-                            <option value="0" {{$cate->featured == 0 ? 'selected' :''}}>Unfeatured</option>
-                            <option value="1" {{$cate->featured == 1 ? 'selected' :''}}>Featured</option>
-                          </select>
-                  </div>
-                   
-            </div>
+                        <div class="col-md-6" id="hasFeatured">
+                           <div class="form-group" >
+
+                                                      <label>Featured | Not</label>
+
+                                                      <select class="form-control" id="featuredCategory" name="featured">
+                                                        <option value="0" {{$cate->featured == 0 ? 'selected' :''}}>Unfeatured</option>
+                                                        <option value="1" {{$cate->featured == 1 ? 'selected' :''}}>Featured</option>
+                                                      </select>
+                                              </div>
+                            <div class="row templateFeatured" id="templateFeatured">
+                              <div class="col-md-8">
+                                  <h4>Choose Template</h4>
+                                  <div class="row">
+                                       <div class="col-md-6">
+                                        <div class="checkbox-template"> 
+                                          <input type="radio" id="template-1" name="template" value="1" {{$cate->template_id == 1 ? 'checked' : ''}}>
+                                           <label for="template-1"><img src="{{url('images/admin/product-cate-img-1.png')}}" width="100%"></label>
+                                        </div>
+                                       </div>
+                                        <div class="col-md-6">
+                                           <div class="checkbox-template"> 
+                                              <input type="radio" id="template-2" name="template" value="2" {{$cate->template_id == 2 ? 'checked' : ''}}>
+                                               <label for="template-2"><img src="{{url('images/admin/product-cate-img-2.png')}}" width="100%"></label>
+                                            </div>
+                                       </div>
+                                        <div class="col-md-12">
+                                        <div class="checkbox-template"> 
+                                          <input type="radio" id="template-3" name="template" value="3" {{$cate->template_id == 3 ? 'checked' : ''}}>
+                                           <label for="template-3"><img src="{{url('images/admin/product-cate-img-3.png')}}" width="100%"></label>
+                                        </div>
+                                       </div>
+                                   </div>
+                                </div>
+                                  <div class="col-md-4">
+                                     <div class="checkbox-template"> 
+                                          <input type="radio" id="template-4" name="template" value="4" {{$cate->template_id == 4 ? 'checked' : ''}}>
+                                           <label for="template-4"><img src="{{url('images/admin/product-cate-img-4.png')}}" width="100%"></label>
+                                        </div>
+                                  </div>
+                            </div>
+                        </div>
            
  
 
@@ -64,25 +97,31 @@
 
 
 
-<div class="col-md-6">   {{textbox($errors,'Meta Title*','meta_title',$cate->meta_title)}}</div>
-  <div class="col-md-6">  {{textbox($errors,'Meta Tags*','meta_tag',$cate->meta_tag)}}</div>
-  <div class="col-md-12">  {{textarea($errors,'Meta description*','meta_description',$cate->meta_description)}}</div>
- <div class="col-md-12">
-                     <!-- {{choosefilemultiple($errors,'Category Icon','image')}} -->
-          @if($cate->image != "")          
-         <img src="{{url($cate->image)}}" id="image_src" style="width: 100px; height: 100px; display: block;"/>
-         @else
-         <img src="" id="image_src" style="width: 100px; height: 100px; display: none"/>
+                                      <div class="col-md-6">  
+                                        {{textbox($errors,'Meta Title*','meta_title',$cate->meta_title)}}
+                                      </div>
+                                        <div class="col-md-6">  
+                                          {{textbox($errors,'Meta Tags*','meta_tag',$cate->meta_tag)}}
+                                        </div>
+                                        <div class="col-md-12">  
+                                          {{textarea($errors,'Meta description*','meta_description',$cate->meta_description)}}
+                                        </div>
+                                         <div class="col-md-12">
+                                                             <!-- {{choosefilemultiple($errors,'Category Icon','image')}} -->
+                                                  @if($cate->image != "")          
+                                                 <img src="{{url($cate->image)}}" id="image_src" style="width: 100px; height: 100px; display: block;"/>
+                                                 @else
+                                                 <img src="" id="image_src" style="width: 100px; height: 100px; display: none"/>
 
-         @endif
-            <div class="form-group">
-            <label class="label-file">Image*</label>
-            <input type="file" accept="image/*" id="cat_image" onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="category_image">
-           </div>
+                                                 @endif
+                                                    <div class="form-group">
+                                                         <label class="label-file">Image*</label>
+                                                          <input type="file" accept="image/*" id="cat_image" onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="category_image">
+                                                    </div>
 
-            </div>
-     </div>                                 
-      </div>
+                                        </div>
+                                      </div>                                 
+                                 </div>
       <!-- /.card-body -->
             <div class="card-footer">
               <button type="submit" id="categoryFormSbt" class="btn btn-primary">Submit</button>
@@ -113,14 +152,59 @@
 <script type="text/javascript">
  
   $('#parent').on('change',function(){
-
-      var val = $( this ).val();
-
+     var val = $( this ).val();
+     featuredCategoryTemplate2();
       getSubCategoryByCategoryId();
 
   });
 
 
+   $('#subparent').on('change',function(){
+     var val = $( this ).val();
+     featuredCategoryTemplate2();
+
+   });
+
+
+featuredCategoryTemplate();
+featuredCategoryTemplate2();
+
+  function featuredCategoryTemplate() {
+      var $id  = $('#featuredCategory').val();
+      var $templateFeatured = $('#templateFeatured');
+      if(parseInt($id) == 0){
+         $templateFeatured.hide();
+      }else{
+         $templateFeatured.show();
+
+      }
+  }
+
+
+
+
+
+  function featuredCategoryTemplate2() {
+      var $id  = $('#parent').val();
+      var $sub  = $('#subparent').val();
+      var $templateFeatured = $('#hasFeatured');
+      if(parseInt($id) > 0 && parseInt($sub) == 0){
+         $templateFeatured.show();
+      }else{
+         $templateFeatured.hide();
+
+      }
+  }
+
+
+
+
+
+
+
+$('#featuredCategory').on('change',function(){
+   featuredCategoryTemplate();
+});
 
   function getSubCategoryByCategoryId() {
  

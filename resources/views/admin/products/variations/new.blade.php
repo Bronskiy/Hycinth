@@ -40,7 +40,7 @@
 
 
 
-         <div class="col-md-12">
+         <div>
 
              <h3 class="card-title">Pattern</h3>
                 <ul class="unstyled centered">

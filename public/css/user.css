@@ -1364,6 +1364,10 @@ width: 100%;
 }
 /*responsive css*/
 
+/*===========================*/
+
+
+
 /*for H-screen**/
 @media(min-width: 1600px){
 .order-status-row .media-content h3{

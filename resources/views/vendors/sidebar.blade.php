@@ -145,7 +145,7 @@
             </li>
 
             <li class="nav-item">
-               <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-clock"></i></span><span class="pcoded-mtext">Coming Soon</span></a>
+               <a href="{{url(route('vendor.shop.index'))}}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-clock"></i></span><span class="pcoded-mtext">Shop</span></a>
             </li>              
 
             <li class="nav-item pcoded-menu-caption">

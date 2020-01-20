@@ -23,6 +23,12 @@ error_reporting(E_ALL);
 require __DIR__.'/routing/user/checkout.php';
 require __DIR__.'/routing/home/routes.php';
 require __DIR__.'/routing/home/ajax.php';
+
+
+require __DIR__.'/routing/shop/routes.php';
+require __DIR__.'/routing/shop/ajax.php';
+
+
 require __DIR__.'/routing/admin/routes.php';
 require __DIR__.'/routing/vendor/routes.php';
 require __DIR__.'/routing/user/ajax.php';

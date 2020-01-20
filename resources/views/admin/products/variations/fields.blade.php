@@ -82,6 +82,10 @@ $required = '';
         <div class="col-12">
           <div class="card">
             <!-- /.card-header -->
+                     <div class="card-header"> 
+                      <h5 class="heading3">Add Custom Fields</h5>
+                      <small></small>
+                    </div>
        @include('admin.error_message')
  
             <div class="card-body">
@@ -107,18 +111,18 @@ $required = '';
                             <h4>Attributes</h4>
                             @if(!empty($attributes))
 
-                            <div class="row">
-                              @php $i =0; @endphp
-                              @foreach($attributes as $k => $v)
-                                 @if($k != 'required')
-                                      @if($i == 0)
-                                         <div class="col-md-5">
-                                              {{selectsimple2($errors,'Field Attribute','attribute_key[]',$obj->InputOtherAttribute(),'select',$k)}}
-                                         </div>
-                                         <div class="col-md-7">
-                                              {{textbox($errors, 'AttributeValue*', 'attribute_value[]',$v)}}
-                                         </div>
-                                       </div>
+                                                 <div class="row">
+                                                      @php $i =0; @endphp
+                                                      @foreach($attributes as $k => $v)
+                                                         @if($k != 'required')
+                                                              @if($i == 0)
+                                                         <div class="col-md-5">
+                                                              {{selectsimple2($errors,'Field Attribute','attribute_key[]',$obj->InputOtherAttribute(),'select',$k)}}
+                                                         </div>
+                                                         <div class="col-md-7">
+                                                              {{textbox($errors, 'AttributeValue*', 'attribute_value[]',$v)}}
+                                                         </div>
+                                                   </div>
                                     </div>
 
                                      <div class="col-md-12">
@@ -183,9 +187,9 @@ $required = '';
 
                       <table class="table">
                          <tr>
-                           <th>Sr.no</th>
-                           <th>Fields</th>
-                           <th>Action</th>
+                           <th class="bg-warning">Sr.no</th>
+                           <th class="bg-warning">Fields</th>
+                           <th class="bg-warning">Action</th>
                          </tr>
 
                          @foreach($variations->VariationExtras as $k => $v)

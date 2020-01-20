@@ -196,6 +196,7 @@ public function update(Request $request,$id)
        $c->meta_description = trim($request->meta_description);
        $c->status = 1;
        $c->featured = $request->featured;
+       $c->template_id = $request->template;
        
        $c->save();
 

@@ -56,17 +56,35 @@
                                  <li class="dd-item dd3-item " data-id="<?= $cate->id ?>">
                                     <div class="dd-handle dd3-handle"> </div>
                                     <div class="dd3-content" id="dd3-content-<?= $cate->id ?>">
+                                    	<div class="dragDrop-content">
+                                       <div class="dragDrop-title"> 
                                         {{$cate->label}} <sup class="{{$cate->status == 0 ? 'redbg' : ''}}"><span class="badge">
                                                <?= $cate->status == 1 ? 'Active' : 'Deactive' ?>
                                                </span></sup>
-                                        <a href="{{url(route('admin.products.category.edit',$cate->id))}}">Edit</a>
+                                           </div> 
+
+                                               <div class="dragDrop-btn-wrap">
+                                               <a class="DragDrop-accordion-btn" data-toggle="collapse" href="#DragDrop-collapse-{{$cate->id}}" role="button" aria-expanded="false" aria-controls="DragDrop-collapse-{{$cate->id}}"><i class="fas fa-plus"></i></a>
+                                        <!-- <a href="{{url(route('admin.products.category.edit',$cate->id))}}">Edit</a> -->
+                                        <div class="dropdown uix-dropdown">
+                                                    <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                     <span><i class="fas fa-user-cog"></i></span>
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                     
+                                                      <a class="dropdown-item" href="{{url(route('admin.products.category.edit',$cate->id))}}">Edit</a>
+                                                    </div>
+                                                  </div>
+                                              </div>
  
                                     </div>
+                                </div>
 
 
-                                    <div class="collapse row" id="collapse<?= $cate->id ?>" aria-expanded="false" style="">  </div>
+                                    
 
-
+                                    
+                                     <!-- <div class="card card-body"> -->
  
                                     <ol class="dd-list">
                                       @foreach($cate->subCategory as $sub)
@@ -77,10 +95,24 @@
                                              {{$sub->label}} <sup class="{{$sub->status == 0 ? 'redbg' : ''}}"><span class="badge">
                                                <?= $sub->status == 1 ? 'Active' : 'Deactive' ?>
                                                </span></sup>
-                                               <a href="{{url(route('admin.products.category.edit',$sub->id))}}">Edit</a>
-                                               <a href="{{url(route('admin.products.category.variation',$sub->id))}}">Add Variation</a>
+                                               <!-- <a href="{{url(route('admin.products.category.edit',$sub->id))}}">Edit</a>
+                                               <a href="{{url(route('admin.products.category.variation',$sub->id))}}">Add Variation</a> -->
+
+                                                <div class="dropdown uix-dropdown">
+                                                    <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                     <span><i class="fas fa-user-cog"></i></span>
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                      <a class="dropdown-item" href="{{url(route('admin.products.category.variation',$sub->id))}}">Add Variation</a>
+                                                      <a class="dropdown-item" href="{{url(route('admin.products.category.edit',$sub->id))}}">Edit</a>
+                                                    </div>
+                                                  </div>
+                                                 
+
+
+
                                           </div>
-                                          <div class="collapse row" id="collapse<?= $sub->id ?>" aria-expanded="false" style=""></div>
+                                         
  
                                                   <ol class="dd-list">
                                                     @foreach($sub->childCategory as $ch)
@@ -91,12 +123,25 @@
                                                                                       <?= $ch->status == 1 ? 'Active' : 'Deactive' ?>
                                                                    </span>
                                                                  </sup>
-                                                                 <a href="{{url(route('admin.products.category.edit',$ch->id))}}">Edit</a>
+                                                                
+
+
+                                                               <div class="dropdown uix-dropdown">
+                                                    <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                     <span><i class="fas fa-user-cog"></i></span>
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                     
+                                                      <a class="dropdown-item" href="{{url(route('admin.products.category.edit',$ch->id))}}">Edit</a>
+                                                    </div>
+                                                  </div>
+
+
+
                                                          
                                                         </div>
 
-                                                         <div class="collapse row" id="collapse<?= $ch->id ?>" aria-expanded="false" style="">
-                                                        </div>
+                                                          
 
  
 
@@ -110,6 +155,8 @@
                                     </li>
                                     @endforeach
                                     </ol>
+                                  <!-- </div> -->
+                                
 
                                      </li>
                                     @endforeach

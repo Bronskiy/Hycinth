@@ -1665,7 +1665,7 @@ border-radius:6px;
     color: #36496c;
 }
 .primary-btn:hover{
-    color: #36496c;
+    color: #fff;
     opacity: 0.8;
 }
 .danger-btn {
@@ -2183,3 +2183,45 @@ border-radius:6px;
 .form-control.ColourSelect {
     padding: 6px 50px;
 }
+/*admin category*/
+.dropdown.uix-dropdown{
+    float: right;
+}
+.uix-dropdown .dropdown-menu{
+   padding: 0px;
+}
+.dropdown.uix-dropdown .dropdown-toggle, .DragDrop-accordion-btn {
+    border: none;
+    padding: 8px 10px;
+    line-height: 1;
+    background: #3f4d67;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.DragDrop-accordion-btn {
+    margin-right: 10px;
+}
+.dropdown.uix-dropdown .dropdown-toggle:focus, .DragDrop-accordion-btn:hover, .DragDrop-accordion-btn:focus{
+    outline: none;
+    color:#fff;
+}
+.dd-handle{
+    cursor: move;
+}
+.dragDrop-content {
+    display: flex;
+    justify-content: space-between;
+}
+#DragDrop-collapse .card.card-body {
+    padding: 0;
+}
+.dd3-content:hover {
+    color: #3f4d67;
+    background: #ffffff;
+}
+/***********/

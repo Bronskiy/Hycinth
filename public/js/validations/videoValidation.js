@@ -17,7 +17,7 @@ $(document).ready(function(){
       },
       "video_link": {
         required: true,
-        isUrl: true
+        url: true
       },
       valueToBeTested: {
           required: true,
@@ -34,5 +34,5 @@ $(document).ready(function(){
         return false;
       }
     });
-    
+   
 });
