@@ -10917,3 +10917,48 @@ form#faqForm label.control-label {
     color: #fff;
     background: #eda208;
 }
+
+table.dataTable thead th {
+    background: #3f4c67;
+    color: #fff;
+    border-color: #3e4b67;
+}
+.dataTables_wrapper .dataTables_filter input {
+    margin-left: 0.5em;
+    border: 1px solid #d1d1d1;
+    border-radius: 6px;
+    height: 38px;
+    max-height: 444px;
+    width: calc(100% - 100px);
+    display: inline-flex;
+    flex-grow: 1;
+    padding: 6px 10px;
+}
+.dataTables_wrapper .dataTables_filter label{
+    width: 100%;
+}
+.dataTables_wrapper .dataTables_filter {
+    float: right;
+    text-align: right;
+    max-width: 400px;
+    width: 100%;
+    display: flex;
+}
+.custom-control-label {
+    font-size: 14px;
+    color: #111;
+    font-weight: 600;
+}
+.custom-checkbox .custom-control-label::before {
+    border-radius: .25rem;
+    border: 1px solid #cbcbcb;
+}
+#formVariations .card-title {
+    font-size: 20px;
+}
+/*label{
+	color: #333;
+}*/
+.control-label{
+	color: #333;
+}

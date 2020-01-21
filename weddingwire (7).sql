@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jan 17, 2020 at 09:28 PM
+-- Generation Time: Jan 21, 2020 at 09:42 PM
 -- Server version: 5.7.28-0ubuntu0.16.04.2
 -- PHP Version: 7.2.16-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -81,60 +81,61 @@ CREATE TABLE `categories` (
   `cover_type` int(11) NOT NULL DEFAULT '1',
   `meta_tag` text COLLATE utf8mb4_unicode_ci,
   `meta_description` longtext COLLATE utf8mb4_unicode_ci,
-  `featured` int(11) DEFAULT '0'
+  `featured` int(11) DEFAULT '0',
+  `template_id` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `parent`, `label`, `subparent`, `sorting`, `slug`, `status`, `capacity`, `created_at`, `updated_at`, `description`, `image`, `thumbnail_image`, `meta_title`, `color`, `cover_type`, `meta_tag`, `meta_description`, `featured`) VALUES
-(1, 0, 'Photography', 0, 23, 'photography', 1, 0, '2019-11-09 02:43:13', '2020-01-16 04:28:59', NULL, 'images/categories/15743400105v2qXkoiDtFtn0gWQT1g-photography.png', '', 'photography', '#ff80c0', 1, 'photography', 'photography', 0),
-(2, 8, 'Cateringss', 0, 1, 'catering', 1, 0, '2019-11-09 03:28:53', '2019-11-18 09:52:14', NULL, 'images/categories/1574071913C7jokbqSIC1l9G0G99FC-2faf1563b9868cea2b35d9345c68c77d.jpg', 'images/categories/1574071913dffkUcobysb0AhTRmTsd-167958.jpg', 'photography', '#ff8040', 1, 'photography', 'kgiuiu', 1),
-(3, 2, 'Food', 0, 2, 'food', 1, 0, '2019-11-09 03:41:39', '2019-11-13 05:21:43', NULL, '', '', 'huh', '', 1, 'ljoj', 'hgigy', 0),
-(4, 2, 'Demo', 0, 1, 'demo', 1, 0, '2019-11-09 03:44:29', '2019-11-13 05:21:43', NULL, '', '', 'Test', '', 1, 'Test', 'Test', 0),
-(5, 0, 'Transportation', 0, 1, 'transportation', 1, 0, '2019-11-13 02:48:49', '2020-01-15 08:27:14', NULL, 'images/categories/157433882640bPU2ByR2dPRT7yYPmB-transportation.png', '', 'Transportation', '#ff8040', 1, 'Transportation', 'Transportation', 1),
-(6, 0, 'Balloons', 0, 4, 'balloons', 1, 0, '2019-11-13 02:49:07', '2020-01-16 04:28:59', NULL, 'images/categories/1574338883As2ZWsXRGbdg8HhrcA2l-balloons.png', '', 'Balloons', '#ff8040', 1, 'Balloons', 'Balloons', 1),
-(7, 0, 'Bands', 0, 24, 'bands', 1, 0, '2019-11-13 02:49:22', '2020-01-16 04:29:00', NULL, 'images/categories/1574338845Ft52x3r4UsopztpEpzKA-band.png', '', 'Bands', '#ff8040', 1, 'Bands', 'Bands', 1),
-(8, 0, 'Catering/ Beverages', 0, 27, 'catering-beverages', 1, 0, '2019-11-13 02:49:53', '2020-01-16 04:29:00', NULL, 'images/categories/15743388746aYwytATTpiwln8JgO1l-catering.png', '', 'Catering/ Beverages', '#ff8040', 1, 'Catering/ Beverages', 'Catering/ Beverages', 1),
-(9, 0, 'Churches/Temples', 0, 12, 'churches-temples', 1, 0, '2019-11-13 02:50:23', '2020-01-16 04:28:59', NULL, 'images/categories/15743388975Lo3RUq2ORffCzrIn3ES-church.png', '', 'Churches/Temples', '#ff8000', 1, 'Churches/Temples', 'Churches/Temples', 1),
-(10, 6, 'Musicians/Instrumentalist', 0, 1, 'musicians-instrumentalist', 1, 0, '2019-11-13 02:50:46', '2020-01-15 07:50:38', NULL, 'images/categories/1574338997zHC6WEdhupjPoMfdptdB-musician.png', '', 'Musicians/Instrumentalist', '#ff8040', 1, 'Musicians/Instrumentalist', 'Musicians/Instrumentalist', 1),
-(11, 0, 'Venues', 0, 29, 'venues', 1, 1, '2019-11-13 02:51:29', '2020-01-16 04:29:00', NULL, 'images/categories/1574340571KoXV6BcmL7FtmiqzGJCy-venue.png', '', 'Venues', '#00ff00', 1, 'Venues', 'Venues', 1),
-(12, 0, 'Flowers/Florist', 0, 30, 'flowers-florist', 1, 0, '2019-11-13 02:51:44', '2020-01-16 04:30:44', NULL, 'images/categories/1574338941zjFl0RTRQa4urXRVqZaw-florist.png', '', 'Flowers/Florist', '#0080ff', 1, 'Flowers/Florist', 'Flowers/Florist', 1),
-(13, 0, 'Clothing/Dressing and Jewelries', 0, 14, 'clothing-dressing-and-jewelries', 0, 0, '2019-11-13 02:52:02', '2020-01-16 04:28:59', NULL, 'images/categories/15743147966MV8ioeX3sYpcqvg155J-162958.jpg', '', 'Clothing', '#80ffff', 1, 'Clothing/Dressing and Jewelries', 'Clothing/Dressing and Jewelries', 1),
-(14, 0, 'Beauty and Health', 0, 2, 'beauty-and-health', 1, 0, '2019-11-13 02:52:35', '2020-01-16 04:28:58', NULL, 'images/categories/1574340548WcIrYQEN4PSQezJc2tif-entertainers2.png', '', 'Beauty and Health', '#ff80c0', 1, 'Beauty and Health', 'Beauty and Health', 1),
-(15, 0, 'Staffing/Officiants', 0, 16, 'staffing-officiants', 1, 0, '2019-11-13 02:52:54', '2020-01-16 04:28:59', NULL, 'images/categories/1574339014DCigHI8pGlmLvmvy1pDn-staffing.png', '', 'Staffing/Officiants', '#80ffff', 1, 'Staffing/Officiants', 'Staffing/Officiants', 1),
-(16, 0, 'Photography/Videography', 0, 25, 'photography-videography', 1, 0, '2019-11-13 02:53:14', '2020-01-16 04:29:00', NULL, 'images/categories/1574340612LaVErx8mUMnl3hyDiHp2-videography.png', '', 'Photography/Videography', '#ff80ff', 1, 'Photography/Videography', 'Photography/Videography', 1),
-(17, 0, 'Party/Event Rental', 0, 9, 'party-event-rental', 1, 0, '2019-11-13 02:53:35', '2020-01-16 04:28:59', NULL, 'images/categories/15743390710Ro5L21ODtO9epoSDl4M-party-rental.png', '', 'Party/Event Rental', '#ff80ff', 1, 'Party/Event Rental', 'Party/Event Rental', 1),
-(18, 0, 'DJ/Entertainment/MC', 0, 10, 'dj-entertainment-mc', 1, 0, '2019-11-13 02:56:51', '2020-01-16 04:28:59', NULL, 'images/categories/1574339085ukuq313vmLuiahg25Yai-DJ.png', '', 'DJ/Entertainment/MC', '#ff80c0', 2, 'DJ/Entertainment/MC', 'DJ/Entertainment/MC', 1),
-(19, 0, 'Entertainer', 0, 11, 'entertainer', 1, 0, '2019-11-13 03:33:22', '2020-01-16 04:28:59', NULL, 'images/categories/15743391119xZNxqPtq1sVkDFA6CoQ-entertainers.png', '', 'Entertainer', '#00ff40', 1, 'Entertainer', 'Entertainer', 1),
-(20, 0, 'Event Planner', 0, 13, 'event-planner', 1, 0, '2019-11-13 03:34:21', '2020-01-16 04:28:59', NULL, 'images/categories/1574339133CJtGgkOlGdtRvuXmyF1k-entertainers2.png', '', 'Event Planner', '#ff8040', 1, 'Event Planner', 'Event Planner', 1),
-(21, 0, 'Funeral Service', 0, 15, 'funeral-service', 1, 0, '2019-11-13 03:34:36', '2020-01-16 04:28:59', NULL, 'images/categories/1574339197L4GqIvvm4Oid7vnlVcmO-florist.png', '', 'Funeral Service', '#ff0000', 1, 'Funeral Service', 'Funeral Service', 1),
-(22, 0, 'Printing/Stationary Services', 0, 17, 'printing-stationary-services', 1, 0, '2019-11-13 03:34:51', '2020-01-16 04:28:59', NULL, 'images/categories/15743404078k4fedURqsU2RwVPvBQE-printing.png', '', 'Printing/Stationary Services', '#ff8080', 1, 'Printing/Stationary Services', 'Printing/Stationary Services', 1),
-(23, 0, 'Lodging', 0, 18, 'lodging', 1, 0, '2019-11-13 03:35:02', '2020-01-16 04:28:59', NULL, 'images/categories/1574339946c55TKH0QzOHK2GRoq554-lodging.png', '', 'Lodging', '#ffff80', 1, 'Lodging', 'Lodging', 1),
-(24, 13, 'Cake', 0, 1, 'cake', 0, 0, '2019-11-13 03:35:12', '2020-01-16 04:25:02', NULL, 'images/categories/1574240469F63ls8aI3ygV7cnB8vxz-162958.jpg', '', 'Cake', '#ff0000', 1, 'Cake', 'Cake', 1),
-(25, 0, 'Decoration', 0, 19, 'decoration', 1, 0, '2019-11-13 03:35:23', '2020-01-16 04:28:59', NULL, 'images/categories/1574339960iBUOm0yNMRU16xAEJQDX-decoration.png', '', 'Decoration', '#ff80ff', 1, 'Decoration', 'Decoration', 1),
-(26, 0, 'Favors/Gift Registry', 0, 21, 'favors-gift-registry', 1, 0, '2019-11-13 03:35:38', '2020-01-16 04:28:59', NULL, 'images/categories/1574339974JyKWQ6DgYIT7r2VL0WXd-gifts.png', '', 'Favors/Gift Registry', '#0080ff', 1, 'Favors/Gift Registry', 'Favors/Gift Registry', 1),
-(27, 0, 'SECURITY', 0, 28, 'security', 1, 0, '2019-11-13 03:35:52', '2020-01-16 04:29:00', NULL, 'images/categories/15743399888soBNff6Zohuwf7dS0NJ-security2.png', '', 'SECURITY', '#80ffff', 1, 'SECURITY', 'SECURITY', 1),
-(28, 0, 'Sam', 0, 5, 'sam', 1, 0, '2019-11-13 10:36:27', '2019-12-18 04:22:33', NULL, 'images/categories/15743388561XqhzKceY675FsChfYKO-band2.png', '', 'Sam', '#ff8040', 1, 'Sam', 'Sam', 1),
-(29, 1, 'Photographers', 0, 1, 'demoo', 1, 0, '2019-11-14 05:03:12', '2020-01-16 04:28:59', NULL, '', '', 'sads', '#80ffff', 1, 'sdds', 'sdds', 0),
-(30, 1, 'Professional Photographers', 0, 5, 'demmo2', 1, 0, '2019-11-14 05:03:54', '2020-01-16 04:30:44', NULL, '', '', 'ses', '#ff8040', 1, 'sddssd', 'sdddddd', 0),
-(31, 6, 'Parent', 0, 2, 'parentcategory', 1, 0, '2019-11-15 04:12:46', '2020-01-15 07:50:38', NULL, 'images/categories/1574256910AdkpUtPl3yUSI01kzwZb-dries-augustyns-58ASFVAP2Y4-unsplash.png', 'images/categories/1574068648dKhoF4UWzKOtpexI0C7f-162958.jpg', 'Love', '#ff8040', 1, 'Always', '•	Price should say: Factor in the costs of materials and labor, plus any related business expenses. Consider the total price buyers will pay too—including shipping.\r\n\r\n•	Quantity: For quantities greater than one, this listing will renew automatically until you remove the product manually.', 1),
-(32, 31, 'ChildCategoryOne', 0, 1, 'childcategoryone', 1, 0, '2019-11-15 04:13:45', '2019-11-15 04:13:58', NULL, '', '', 'Test', '', 1, 'Test', 'Test', 1),
-(33, 0, 'category', 0, 7, 'category', 0, 0, '2019-11-18 04:40:10', '2020-01-16 04:25:49', NULL, 'images/categories/1574071810xXRXBhmUjmxnpJK55Cnw-162958.jpg', 'images/categories/1574071810hQyNwDAQBCLLAD8QI5Dg-167958.jpg', 'alwaysss', '', 1, 'sparrow', '!!! URGENT: I pulled a link from my history and it took me straight to the back end of the portal. This is a huge security problem. People login always has to be required!!!\r\nI suggest you place a small text under each field to guide the vendors through the process just like we did with other fields', 1),
-(34, 0, 'Event category', 0, 3, 'event-category', 0, 0, '2019-11-19 01:28:57', '2020-01-16 04:28:59', NULL, 'images/categories/1574314841E0CfEogVI4aByjqFMTY3-162958.jpg', 'images/categories/1574146737JMJEFKSdT7wZpkGxEbwE-162958.jpg', 'Jassi', '#ff8080', 1, 'JASSI12', 'India\'s history and culture is dynamic, spanning back to the beginning of human civilization. It begins with a mysterious culture along the Indus River and in farming communities in the southern lands of India. ... By the end of the fourth millennium BC, India had emerged as a region of highly developed civilization.', 1),
-(35, 0, 'Wedding Photographer', 0, 6, 'wedding-photographer', 0, 0, '2019-11-19 05:26:39', '2020-01-16 04:28:14', NULL, '', '', 'Wedding Photographer', '#eda208', 1, 'Wedding Photographer', 'Wedding Photographer', 1),
-(36, 1, 'Event Photographer', 0, 2, 'event-photographer', 1, 0, '2019-11-19 05:26:59', '2020-01-16 04:28:59', NULL, '', '', 'Event Photographer', '#eda208', 1, 'Event Photographer', 'Event Photographer', 0),
-(37, 1, 'Portrait Photographer', 0, 4, 'portrait-photographer', 1, 0, '2019-11-19 05:27:22', '2020-01-16 04:30:44', NULL, '', '', 'Portrait Photographer', '#eda208', 1, 'Portrait Photographer', 'Portrait Photographer', 0),
-(38, 1, 'Product Photographer', 0, 3, 'product-photographer', 1, 0, '2019-11-19 05:27:39', '2020-01-16 04:29:24', NULL, '', '', 'Product Photographer', '#eda208', 1, 'Product Photographer', 'Product Photographer', 0),
-(39, 0, 'Aerial Photographer', 0, 31, 'aerial-photographer', 0, 0, '2019-11-19 05:28:03', '2020-01-16 04:30:44', NULL, '', '', 'Aerial Photographer', '#eda208', 1, 'Aerial Photographer', 'Aerial Photographer', 0),
-(40, 0, 'Boudoir Photographer', 0, 32, 'boudoir-photographer', 0, 0, '2019-11-19 05:28:20', '2020-01-16 04:30:45', NULL, '', '', 'Boudoir Photographer', '#eda208', 1, 'Boudoir Photographer', 'Boudoir Photographer', 0),
-(41, 0, 'Sammy', 0, 33, 'sammy', 1, 0, '2019-11-19 05:52:46', '2020-01-16 04:30:45', NULL, 'images/categories/1574162585bMLKCNv4sUhDZDM39u0f-band.png', '', 'Sammy', '#eda208', 1, 'Sammy', 'Sammy', 0),
-(42, 0, 'Cake Shop', 0, 20, 'cake-shop', 0, 0, '2019-11-20 03:16:01', '2020-01-16 04:28:59', NULL, 'images/categories/1574239561Dsj1Fhax8VobJI3KNprn-wp3276805-pubg-4k-wallpapers.jpg', '', 'Cakesss', '#ff0000', 1, 'Cake121', 'A cake can be decorated with a photograph by printing the photograph onto an edible icing sheet and then setting the sheet on the desired portion of the cake. The ink used for printing the photograph on the edible icing ...', 0),
-(43, 0, 'test cat001 name', 0, 8, 'test-cat001-name', 0, 0, '2019-11-20 08:04:19', '2020-01-16 04:28:59', NULL, 'images/categories/1574256925IY43SgxOfewhaXwMw0QK-dries-augustyns-58ASFVAP2Y4-unsplash.png', '', 'test cat  titla', '#eda208', 1, 'new tag', 'desc', 0),
-(44, 0, 'Lights', 0, 22, 'lights', 0, 0, '2019-11-21 07:32:57', '2020-01-16 04:29:53', NULL, 'images/categories/1574341377swECw7z4VJqUU75EzrYx--dsc2796_15_68762.jpg', '', 'men-long-sleeve-shirts', '#eda208', 1, 'men-long-sleeve-shirts', 'sdsds', 0),
-(45, 0, 'Ballonss', 0, 26, 'ballonss', 0, 1, '2019-12-05 04:51:52', '2020-01-16 04:29:00', NULL, 'images/categories/1575541383lITC0JkHkJwUD8L2C58TBallons.jpg', '', 'Birthday Party', '#17dd1d', 2, 'PARTY   1', 'Balloons can brighten up any event, any day, and make things more fun! Here are 25 fun things to do with balloons that will bring a smile to your face.', 0),
-(46, 11, 'Amazing Venue', 0, 1, 'amazing-venue', 1, 1, '2019-12-23 07:48:40', '2020-01-15 07:50:45', NULL, 'images/categories/1577107120SW6W9qvJByPDFbYIUfW6t20_1312238515529Pwc10011.jpg', '', 'Test', '#eda208', 1, 'Test', 'Test', 0);
+INSERT INTO `categories` (`id`, `parent`, `label`, `subparent`, `sorting`, `slug`, `status`, `capacity`, `created_at`, `updated_at`, `description`, `image`, `thumbnail_image`, `meta_title`, `color`, `cover_type`, `meta_tag`, `meta_description`, `featured`, `template_id`) VALUES
+(1, 0, 'Photography', 0, 23, 'photography', 1, 0, '2019-11-09 02:43:13', '2020-01-16 04:28:59', NULL, 'images/categories/15743400105v2qXkoiDtFtn0gWQT1g-photography.png', '', 'photography', '#ff80c0', 1, 'photography', 'photography', 0, 1),
+(2, 8, 'Cateringss', 0, 1, 'catering', 1, 0, '2019-11-09 03:28:53', '2019-11-18 09:52:14', NULL, 'images/categories/1574071913C7jokbqSIC1l9G0G99FC-2faf1563b9868cea2b35d9345c68c77d.jpg', 'images/categories/1574071913dffkUcobysb0AhTRmTsd-167958.jpg', 'photography', '#ff8040', 1, 'photography', 'kgiuiu', 1, 1),
+(3, 2, 'Food', 0, 2, 'food', 1, 0, '2019-11-09 03:41:39', '2019-11-13 05:21:43', NULL, '', '', 'huh', '', 1, 'ljoj', 'hgigy', 0, 1),
+(4, 2, 'Demo', 0, 1, 'demo', 1, 0, '2019-11-09 03:44:29', '2019-11-13 05:21:43', NULL, '', '', 'Test', '', 1, 'Test', 'Test', 0, 1),
+(5, 0, 'Transportation', 0, 1, 'transportation', 1, 0, '2019-11-13 02:48:49', '2020-01-15 08:27:14', NULL, 'images/categories/157433882640bPU2ByR2dPRT7yYPmB-transportation.png', '', 'Transportation', '#ff8040', 1, 'Transportation', 'Transportation', 1, 1),
+(6, 0, 'Balloons', 0, 4, 'balloons', 1, 0, '2019-11-13 02:49:07', '2020-01-16 04:28:59', NULL, 'images/categories/1574338883As2ZWsXRGbdg8HhrcA2l-balloons.png', '', 'Balloons', '#ff8040', 1, 'Balloons', 'Balloons', 1, 1),
+(7, 0, 'Bands', 0, 24, 'bands', 1, 0, '2019-11-13 02:49:22', '2020-01-16 04:29:00', NULL, 'images/categories/1574338845Ft52x3r4UsopztpEpzKA-band.png', '', 'Bands', '#ff8040', 1, 'Bands', 'Bands', 1, 1),
+(8, 0, 'Catering/ Beverages', 0, 27, 'catering-beverages', 1, 0, '2019-11-13 02:49:53', '2020-01-16 04:29:00', NULL, 'images/categories/15743388746aYwytATTpiwln8JgO1l-catering.png', '', 'Catering/ Beverages', '#ff8040', 1, 'Catering/ Beverages', 'Catering/ Beverages', 1, 1),
+(9, 0, 'Churches/Temples', 0, 12, 'churches-temples', 1, 0, '2019-11-13 02:50:23', '2020-01-16 04:28:59', NULL, 'images/categories/15743388975Lo3RUq2ORffCzrIn3ES-church.png', '', 'Churches/Temples', '#ff8000', 1, 'Churches/Temples', 'Churches/Temples', 1, 1),
+(10, 6, 'Musicians/Instrumentalist', 0, 1, 'musicians-instrumentalist', 1, 0, '2019-11-13 02:50:46', '2020-01-15 07:50:38', NULL, 'images/categories/1574338997zHC6WEdhupjPoMfdptdB-musician.png', '', 'Musicians/Instrumentalist', '#ff8040', 1, 'Musicians/Instrumentalist', 'Musicians/Instrumentalist', 1, 1),
+(11, 0, 'Venues', 0, 29, 'venues', 1, 1, '2019-11-13 02:51:29', '2020-01-16 04:29:00', NULL, 'images/categories/1574340571KoXV6BcmL7FtmiqzGJCy-venue.png', '', 'Venues', '#00ff00', 1, 'Venues', 'Venues', 1, 1),
+(12, 0, 'Flowers/Florist', 0, 30, 'flowers-florist', 1, 0, '2019-11-13 02:51:44', '2020-01-16 04:30:44', NULL, 'images/categories/1574338941zjFl0RTRQa4urXRVqZaw-florist.png', '', 'Flowers/Florist', '#0080ff', 1, 'Flowers/Florist', 'Flowers/Florist', 1, 1),
+(13, 0, 'Clothing/Dressing and Jewelries', 0, 14, 'clothing-dressing-and-jewelries', 0, 0, '2019-11-13 02:52:02', '2020-01-16 04:28:59', NULL, 'images/categories/15743147966MV8ioeX3sYpcqvg155J-162958.jpg', '', 'Clothing', '#80ffff', 1, 'Clothing/Dressing and Jewelries', 'Clothing/Dressing and Jewelries', 1, 1),
+(14, 0, 'Beauty and Health', 0, 2, 'beauty-and-health', 1, 0, '2019-11-13 02:52:35', '2020-01-16 04:28:58', NULL, 'images/categories/1574340548WcIrYQEN4PSQezJc2tif-entertainers2.png', '', 'Beauty and Health', '#ff80c0', 1, 'Beauty and Health', 'Beauty and Health', 1, 1),
+(15, 0, 'Staffing/Officiants', 0, 16, 'staffing-officiants', 1, 0, '2019-11-13 02:52:54', '2020-01-16 04:28:59', NULL, 'images/categories/1574339014DCigHI8pGlmLvmvy1pDn-staffing.png', '', 'Staffing/Officiants', '#80ffff', 1, 'Staffing/Officiants', 'Staffing/Officiants', 1, 1),
+(16, 0, 'Photography/Videography', 0, 25, 'photography-videography', 1, 0, '2019-11-13 02:53:14', '2020-01-16 04:29:00', NULL, 'images/categories/1574340612LaVErx8mUMnl3hyDiHp2-videography.png', '', 'Photography/Videography', '#ff80ff', 1, 'Photography/Videography', 'Photography/Videography', 1, 1),
+(17, 0, 'Party/Event Rental', 0, 9, 'party-event-rental', 1, 0, '2019-11-13 02:53:35', '2020-01-16 04:28:59', NULL, 'images/categories/15743390710Ro5L21ODtO9epoSDl4M-party-rental.png', '', 'Party/Event Rental', '#ff80ff', 1, 'Party/Event Rental', 'Party/Event Rental', 1, 1),
+(18, 0, 'DJ/Entertainment/MC', 0, 10, 'dj-entertainment-mc', 1, 0, '2019-11-13 02:56:51', '2020-01-16 04:28:59', NULL, 'images/categories/1574339085ukuq313vmLuiahg25Yai-DJ.png', '', 'DJ/Entertainment/MC', '#ff80c0', 2, 'DJ/Entertainment/MC', 'DJ/Entertainment/MC', 1, 1),
+(19, 0, 'Entertainer', 0, 11, 'entertainer', 1, 0, '2019-11-13 03:33:22', '2020-01-16 04:28:59', NULL, 'images/categories/15743391119xZNxqPtq1sVkDFA6CoQ-entertainers.png', '', 'Entertainer', '#00ff40', 1, 'Entertainer', 'Entertainer', 1, 1),
+(20, 0, 'Event Planner', 0, 13, 'event-planner', 1, 0, '2019-11-13 03:34:21', '2020-01-16 04:28:59', NULL, 'images/categories/1574339133CJtGgkOlGdtRvuXmyF1k-entertainers2.png', '', 'Event Planner', '#ff8040', 1, 'Event Planner', 'Event Planner', 1, 1),
+(21, 0, 'Funeral Service', 0, 15, 'funeral-service', 1, 0, '2019-11-13 03:34:36', '2020-01-16 04:28:59', NULL, 'images/categories/1574339197L4GqIvvm4Oid7vnlVcmO-florist.png', '', 'Funeral Service', '#ff0000', 1, 'Funeral Service', 'Funeral Service', 1, 1),
+(22, 0, 'Printing/Stationary Services', 0, 17, 'printing-stationary-services', 1, 0, '2019-11-13 03:34:51', '2020-01-16 04:28:59', NULL, 'images/categories/15743404078k4fedURqsU2RwVPvBQE-printing.png', '', 'Printing/Stationary Services', '#ff8080', 1, 'Printing/Stationary Services', 'Printing/Stationary Services', 1, 1),
+(23, 0, 'Lodging', 0, 18, 'lodging', 1, 0, '2019-11-13 03:35:02', '2020-01-16 04:28:59', NULL, 'images/categories/1574339946c55TKH0QzOHK2GRoq554-lodging.png', '', 'Lodging', '#ffff80', 1, 'Lodging', 'Lodging', 1, 1),
+(24, 13, 'Cake', 0, 1, 'cake', 0, 0, '2019-11-13 03:35:12', '2020-01-16 04:25:02', NULL, 'images/categories/1574240469F63ls8aI3ygV7cnB8vxz-162958.jpg', '', 'Cake', '#ff0000', 1, 'Cake', 'Cake', 1, 1),
+(25, 0, 'Decoration', 0, 19, 'decoration', 1, 0, '2019-11-13 03:35:23', '2020-01-16 04:28:59', NULL, 'images/categories/1574339960iBUOm0yNMRU16xAEJQDX-decoration.png', '', 'Decoration', '#ff80ff', 1, 'Decoration', 'Decoration', 1, 1),
+(26, 0, 'Favors/Gift Registry', 0, 21, 'favors-gift-registry', 1, 0, '2019-11-13 03:35:38', '2020-01-16 04:28:59', NULL, 'images/categories/1574339974JyKWQ6DgYIT7r2VL0WXd-gifts.png', '', 'Favors/Gift Registry', '#0080ff', 1, 'Favors/Gift Registry', 'Favors/Gift Registry', 1, 1),
+(27, 0, 'SECURITY', 0, 28, 'security', 1, 0, '2019-11-13 03:35:52', '2020-01-16 04:29:00', NULL, 'images/categories/15743399888soBNff6Zohuwf7dS0NJ-security2.png', '', 'SECURITY', '#80ffff', 1, 'SECURITY', 'SECURITY', 1, 1),
+(28, 0, 'Sam', 0, 5, 'sam', 1, 0, '2019-11-13 10:36:27', '2019-12-18 04:22:33', NULL, 'images/categories/15743388561XqhzKceY675FsChfYKO-band2.png', '', 'Sam', '#ff8040', 1, 'Sam', 'Sam', 1, 1),
+(29, 1, 'Photographers', 0, 1, 'demoo', 1, 0, '2019-11-14 05:03:12', '2020-01-16 04:28:59', NULL, '', '', 'sads', '#80ffff', 1, 'sdds', 'sdds', 0, 1),
+(30, 1, 'Professional Photographers', 0, 5, 'demmo2', 1, 0, '2019-11-14 05:03:54', '2020-01-16 04:30:44', NULL, '', '', 'ses', '#ff8040', 1, 'sddssd', 'sdddddd', 0, 1),
+(31, 6, 'Parent', 0, 2, 'parentcategory', 1, 0, '2019-11-15 04:12:46', '2020-01-15 07:50:38', NULL, 'images/categories/1574256910AdkpUtPl3yUSI01kzwZb-dries-augustyns-58ASFVAP2Y4-unsplash.png', 'images/categories/1574068648dKhoF4UWzKOtpexI0C7f-162958.jpg', 'Love', '#ff8040', 1, 'Always', '•	Price should say: Factor in the costs of materials and labor, plus any related business expenses. Consider the total price buyers will pay too—including shipping.\r\n\r\n•	Quantity: For quantities greater than one, this listing will renew automatically until you remove the product manually.', 1, 1),
+(32, 31, 'ChildCategoryOne', 0, 1, 'childcategoryone', 1, 0, '2019-11-15 04:13:45', '2019-11-15 04:13:58', NULL, '', '', 'Test', '', 1, 'Test', 'Test', 1, 1),
+(33, 0, 'category', 0, 7, 'category', 0, 0, '2019-11-18 04:40:10', '2020-01-16 04:25:49', NULL, 'images/categories/1574071810xXRXBhmUjmxnpJK55Cnw-162958.jpg', 'images/categories/1574071810hQyNwDAQBCLLAD8QI5Dg-167958.jpg', 'alwaysss', '', 1, 'sparrow', '!!! URGENT: I pulled a link from my history and it took me straight to the back end of the portal. This is a huge security problem. People login always has to be required!!!\r\nI suggest you place a small text under each field to guide the vendors through the process just like we did with other fields', 1, 1),
+(34, 0, 'Event category', 0, 3, 'event-category', 0, 0, '2019-11-19 01:28:57', '2020-01-16 04:28:59', NULL, 'images/categories/1574314841E0CfEogVI4aByjqFMTY3-162958.jpg', 'images/categories/1574146737JMJEFKSdT7wZpkGxEbwE-162958.jpg', 'Jassi', '#ff8080', 1, 'JASSI12', 'India\'s history and culture is dynamic, spanning back to the beginning of human civilization. It begins with a mysterious culture along the Indus River and in farming communities in the southern lands of India. ... By the end of the fourth millennium BC, India had emerged as a region of highly developed civilization.', 1, 1),
+(35, 0, 'Wedding Photographer', 0, 6, 'wedding-photographer', 0, 0, '2019-11-19 05:26:39', '2020-01-16 04:28:14', NULL, '', '', 'Wedding Photographer', '#eda208', 1, 'Wedding Photographer', 'Wedding Photographer', 1, 1),
+(36, 1, 'Event Photographer', 0, 2, 'event-photographer', 1, 0, '2019-11-19 05:26:59', '2020-01-16 04:28:59', NULL, '', '', 'Event Photographer', '#eda208', 1, 'Event Photographer', 'Event Photographer', 0, 1),
+(37, 1, 'Portrait Photographer', 0, 4, 'portrait-photographer', 1, 0, '2019-11-19 05:27:22', '2020-01-16 04:30:44', NULL, '', '', 'Portrait Photographer', '#eda208', 1, 'Portrait Photographer', 'Portrait Photographer', 0, 1),
+(38, 1, 'Product Photographer', 0, 3, 'product-photographer', 1, 0, '2019-11-19 05:27:39', '2020-01-16 04:29:24', NULL, '', '', 'Product Photographer', '#eda208', 1, 'Product Photographer', 'Product Photographer', 0, 1),
+(39, 0, 'Aerial Photographer', 0, 31, 'aerial-photographer', 0, 0, '2019-11-19 05:28:03', '2020-01-16 04:30:44', NULL, '', '', 'Aerial Photographer', '#eda208', 1, 'Aerial Photographer', 'Aerial Photographer', 0, 1),
+(40, 0, 'Boudoir Photographer', 0, 32, 'boudoir-photographer', 0, 0, '2019-11-19 05:28:20', '2020-01-16 04:30:45', NULL, '', '', 'Boudoir Photographer', '#eda208', 1, 'Boudoir Photographer', 'Boudoir Photographer', 0, 1),
+(41, 0, 'Sammy', 0, 33, 'sammy', 1, 0, '2019-11-19 05:52:46', '2020-01-16 04:30:45', NULL, 'images/categories/1574162585bMLKCNv4sUhDZDM39u0f-band.png', '', 'Sammy', '#eda208', 1, 'Sammy', 'Sammy', 0, 1),
+(42, 0, 'Cake Shop', 0, 20, 'cake-shop', 0, 0, '2019-11-20 03:16:01', '2020-01-16 04:28:59', NULL, 'images/categories/1574239561Dsj1Fhax8VobJI3KNprn-wp3276805-pubg-4k-wallpapers.jpg', '', 'Cakesss', '#ff0000', 1, 'Cake121', 'A cake can be decorated with a photograph by printing the photograph onto an edible icing sheet and then setting the sheet on the desired portion of the cake. The ink used for printing the photograph on the edible icing ...', 0, 1),
+(43, 0, 'test cat001 name', 0, 8, 'test-cat001-name', 0, 0, '2019-11-20 08:04:19', '2020-01-16 04:28:59', NULL, 'images/categories/1574256925IY43SgxOfewhaXwMw0QK-dries-augustyns-58ASFVAP2Y4-unsplash.png', '', 'test cat  titla', '#eda208', 1, 'new tag', 'desc', 0, 1),
+(44, 0, 'Lights', 0, 22, 'lights', 0, 0, '2019-11-21 07:32:57', '2020-01-16 04:29:53', NULL, 'images/categories/1574341377swECw7z4VJqUU75EzrYx--dsc2796_15_68762.jpg', '', 'men-long-sleeve-shirts', '#eda208', 1, 'men-long-sleeve-shirts', 'sdsds', 0, 1),
+(45, 0, 'Ballonss', 0, 26, 'ballonss', 0, 1, '2019-12-05 04:51:52', '2020-01-16 04:29:00', NULL, 'images/categories/1575541383lITC0JkHkJwUD8L2C58TBallons.jpg', '', 'Birthday Party', '#17dd1d', 2, 'PARTY   1', 'Balloons can brighten up any event, any day, and make things more fun! Here are 25 fun things to do with balloons that will bring a smile to your face.', 0, 1),
+(46, 11, 'Amazing Venue', 0, 1, 'amazing-venue', 1, 1, '2019-12-23 07:48:40', '2020-01-15 07:50:45', NULL, 'images/categories/1577107120SW6W9qvJByPDFbYIUfW6t20_1312238515529Pwc10011.jpg', '', 'Test', '#eda208', 1, 'Test', 'Test', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -530,6 +531,30 @@ INSERT INTO `email_templates` (`id`, `subject`, `title`, `body`, `created_at`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `eshops`
+--
+
+CREATE TABLE `eshops` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `slug` text COLLATE utf8mb4_unicode_ci,
+  `vendor_id` int(11) NOT NULL,
+  `logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` int(11) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `eshops`
+--
+
+INSERT INTO `eshops` (`id`, `name`, `slug`, `vendor_id`, `logo`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Wedding Collection Store', NULL, 31, 'images/shops/1579618371hfZndz9YvNPyoZ7fXxNlfinal_cover.jpg', 0, '2020-01-21 06:22:34', '2020-01-21 09:22:51');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `events`
 --
 
@@ -639,8 +664,7 @@ CREATE TABLE `favourite_vendors` (
 --
 
 INSERT INTO `favourite_vendors` (`id`, `vendor_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(2, 35, 50, '2020-01-17 06:16:17', '2020-01-17 06:16:17'),
-(3, 1, 50, '2020-01-17 06:16:20', '2020-01-17 06:16:20');
+(2, 35, 50, '2020-01-17 06:16:17', '2020-01-17 06:16:17');
 
 -- --------------------------------------------------------
 
@@ -785,7 +809,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (35, '2020_01_16_064042_create_product_variations_table', 30),
 (36, '2020_01_16_120453_create_product_category_variations_table', 31),
 (37, '2020_01_16_150505_create_variations_table', 32),
-(38, '2020_01_17_110447_create_variation_extras_table', 33);
+(38, '2020_01_17_110447_create_variation_extras_table', 33),
+(39, '2020_01_20_153848_create_eshops_table', 34),
+(40, '2020_01_21_104430_create_shop_categories_table', 35);
 
 -- --------------------------------------------------------
 
@@ -1263,6 +1289,7 @@ CREATE TABLE `product_categories` (
   `subparent` int(11) DEFAULT NULL,
   `sorting` int(11) DEFAULT '0',
   `featured` int(11) DEFAULT NULL,
+  `template_id` int(11) NOT NULL DEFAULT '1',
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `thumbnail_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` longtext COLLATE utf8mb4_unicode_ci,
@@ -1278,9 +1305,19 @@ CREATE TABLE `product_categories` (
 -- Dumping data for table `product_categories`
 --
 
-INSERT INTO `product_categories` (`id`, `label`, `slug`, `parent`, `subparent`, `sorting`, `featured`, `image`, `thumbnail_image`, `description`, `meta_title`, `meta_tag`, `meta_description`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Gift', 'gift', 0, 0, 1, 0, 'images/products/categories/1579099823L4Xecbdm3qihwxYHgfEvanthonydelanoixhzgs56Ze49sunsplash(1).jpg', '', NULL, 'testing', 'testing', 'sddddddddd', '1', '2020-01-15 09:20:23', '2020-01-16 04:11:23'),
-(2, 'PERSONALIZED GIFTS FOR WOMEN', 'personalized-gifts-for-women', 1, 0, 0, 0, 'images/products/categories/1579177974p3tGjhVT0Ai4QH5AOUwpanthonydelanoixhzgs56Ze49sunsplash(1).jpg', '', NULL, 'sdsd', 'sdsd', 'sdsdsd', '1', '2020-01-16 07:02:54', '2020-01-16 07:02:54');
+INSERT INTO `product_categories` (`id`, `label`, `slug`, `parent`, `subparent`, `sorting`, `featured`, `template_id`, `image`, `thumbnail_image`, `description`, `meta_title`, `meta_tag`, `meta_description`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Mens', 'mens', 0, 0, 3, 0, 1, 'images/products/categories/1579518016adVQY4z7RgZmKTOLucDEtrendingpimg4.png', '', NULL, 'testing', 'testing', 'xdfsasd', '1', '2020-01-20 05:30:16', '2020-01-20 08:46:11'),
+(2, 'Women', 'women', 2, 0, 2, 0, 1, 'images/products/categories/1579518048wNrGibYntVWNpblAxPVIbannerproductimg.png', '', NULL, 'testing', 'testing', 'asdasas', '1', '2020-01-20 05:30:48', '2020-01-21 01:26:59'),
+(3, 'Men Top Wear', 'men-t', 1, 0, 2, 0, 1, 'images/products/categories/1579518280piJpcesol50Gyf6aALmNtrendingpimg3.png', '', NULL, 'testing', 'testing', 'dssssd', '1', '2020-01-20 05:34:40', '2020-01-20 06:11:45'),
+(4, 'Men Bottom Wear', 'men-shirts', 1, 0, 3, 0, 1, 'images/products/categories/1579518391RtPYcsl0wMl72kyDWP3Fbannerproductimg.png', '', NULL, 'dssd', 'test', 'sdsd', '1', '2020-01-20 05:36:31', '2020-01-20 06:11:45'),
+(5, 'Men\'s Grooming', 'men-s-grooming', 1, 0, 1, 0, 1, 'images/products/categories/1579519092ZR1fWlPXkoAlRvZDz68Atrendingpimg4.png', '', NULL, 'men-long-sleeve-shirts', 't', 'sdsd', '1', '2020-01-20 05:48:12', '2020-01-20 06:11:45'),
+(6, 'Bride Collections', 'bride', 11, 0, 2, 1, 1, 'images/products/categories/15795203429uTDlLFlLuu2KTYNeowQplussizeweddingdressesimage.jpg', '', NULL, 'testing', 'testing', 'sdsds', '1', '2020-01-20 05:50:32', '2020-01-20 09:00:18'),
+(7, 'Groom Collections', 'groom-collections', 11, 0, 1, 1, 2, 'images/products/categories/15795203711zoLA4q1VhXU3VFBdK2ifinal_cover.jpg', '', NULL, 'dssd', 'testing', 'sdsd', '1', '2020-01-20 05:51:41', '2020-01-20 09:00:17'),
+(8, 'Wedding Dresses', 'wedding-dresses', 0, 0, 4, 0, 1, '', '', NULL, 'testing', 'testing', 'sddddddd', '1', '2020-01-20 05:53:22', '2020-01-20 08:46:12'),
+(9, 'Bags', 'bags', 2, 0, 1, 1, 4, 'images/products/categories/1579520300siERccTThiA1VnxIUcbhtrendingpimg4.png', '', NULL, 'testing', 'testing', 'sddddddd', '1', '2020-01-20 06:06:25', '2020-01-20 08:46:17'),
+(10, 'Tote bags', 'tote-bags', 2, 9, 1, 1, 1, 'images/products/categories/1579520258oOV1sJMhQRvGxSW3NNHitrendingpimg4.png', '', NULL, 'test', 'testing', 'assssss', '1', '2020-01-20 06:06:46', '2020-01-20 08:46:18'),
+(11, 'Wedding Collections', 'wedding-collections', 11, 0, 1, 0, 1, '', '', NULL, 'testing', 'testing', 'assssssss', '1', '2020-01-20 06:11:19', '2020-01-21 01:26:30'),
+(12, 'Wedding Jewelries', 'wedding-jewelries', 11, 0, 3, 1, 3, 'images/products/categories/1579528394hxpX6uzIdvUZkBmXYfhKdownload.jpeg', '', NULL, 'testing', 'testing', 'sdddddddddd', '1', '2020-01-20 06:13:19', '2020-01-20 09:00:18');
 
 -- --------------------------------------------------------
 
@@ -1299,24 +1336,6 @@ CREATE TABLE `product_category_variations` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `product_category_variations`
---
-
-INSERT INTO `product_category_variations` (`id`, `category_id`, `parent`, `key`, `value`, `type`, `status`, `created_at`, `updated_at`) VALUES
-(35, 2, NULL, 'brands', '1', 'brands', NULL, '2020-01-17 01:46:35', '2020-01-17 01:46:35'),
-(36, 2, NULL, 'sizes', '3', 'sizes', NULL, '2020-01-17 01:46:35', '2020-01-17 01:46:35'),
-(37, 2, NULL, 'sizes', '4', 'sizes', NULL, '2020-01-17 01:46:36', '2020-01-17 01:46:36'),
-(38, 2, NULL, 'sizes', '5', 'sizes', NULL, '2020-01-17 01:46:36', '2020-01-17 01:46:36'),
-(39, 2, NULL, 'sizes', '6', 'sizes', NULL, '2020-01-17 01:46:36', '2020-01-17 01:46:36'),
-(40, 2, NULL, 'sizes', '7', 'sizes', NULL, '2020-01-17 01:46:36', '2020-01-17 01:46:36'),
-(41, 2, NULL, 'sizes', '8', 'sizes', NULL, '2020-01-17 01:46:36', '2020-01-17 01:46:36'),
-(42, 2, NULL, 'styles', '10', 'styles', NULL, '2020-01-17 01:46:36', '2020-01-17 01:46:36'),
-(43, 2, NULL, 'colors', '2', 'colors', NULL, '2020-01-17 01:46:36', '2020-01-17 01:46:36'),
-(44, 2, NULL, 'colors', '13', 'colors', NULL, '2020-01-17 01:46:36', '2020-01-17 01:46:36'),
-(45, 2, NULL, 'materials', '11', 'materials', NULL, '2020-01-17 01:46:36', '2020-01-17 01:46:36'),
-(46, 2, NULL, 'materials', '12', 'materials', NULL, '2020-01-17 01:46:36', '2020-01-17 01:46:36');
 
 -- --------------------------------------------------------
 
@@ -1344,11 +1363,11 @@ INSERT INTO `product_variations` (`id`, `parent`, `name`, `data`, `type`, `statu
 (2, NULL, 'Maroon', '{"_token":"0TcuMtID41JfwzoWCo8q7z267cslX8JplD7bcZog","type":"colors","name":"Maroon","color":"#6f0606"}', 'colors', 1, '2020-01-16 03:56:43', '2020-01-17 07:46:46'),
 (3, NULL, 'sm', '{"attributes":{},"request":{},"query":{},"server":{},"files":{},"cookies":{},"headers":{}}', 'sizes', 1, '2020-01-16 03:57:26', '2020-01-16 03:57:26'),
 (4, NULL, 'M', '{"attributes":{},"request":{},"query":{},"server":{},"files":{},"cookies":{},"headers":{}}', 'sizes', 1, '2020-01-16 03:57:51', '2020-01-16 03:57:51'),
-(5, NULL, 'L', '{"attributes":{},"request":{},"query":{},"server":{},"files":{},"cookies":{},"headers":{}}', 'sizes', 1, '2020-01-16 03:57:56', '2020-01-16 03:57:56'),
+(5, NULL, 'L', '{"_token":"9kftwU0NZV8g1Q9jgRYVOwYLqDtifuZP0WvzN7QG","type":"sizes","name":"L"}', 'sizes', 1, '2020-01-16 03:57:56', '2020-01-20 23:58:04'),
 (6, NULL, 'XL', '{"attributes":{},"request":{},"query":{},"server":{},"files":{},"cookies":{},"headers":{}}', 'sizes', 1, '2020-01-16 03:58:04', '2020-01-16 03:58:04'),
 (7, NULL, 'XXL', '{"attributes":{},"request":{},"query":{},"server":{},"files":{},"cookies":{},"headers":{}}', 'sizes', 1, '2020-01-16 03:58:10', '2020-01-16 03:58:10'),
 (8, NULL, 'XXXL', '{"attributes":{},"request":{},"query":{},"server":{},"files":{},"cookies":{},"headers":{}}', 'sizes', 1, '2020-01-16 03:58:15', '2020-01-16 03:58:15'),
-(9, NULL, 'Wedding', '{"attributes":{},"request":{},"query":{},"server":{},"files":{},"cookies":{},"headers":{}}', 'types', 1, '2020-01-16 03:59:57', '2020-01-16 03:59:57'),
+(9, NULL, 'Wedding', '{"_token":"9kftwU0NZV8g1Q9jgRYVOwYLqDtifuZP0WvzN7QG","type":"types","name":"Wedding"}', 'types', 1, '2020-01-16 03:59:57', '2020-01-21 01:36:17'),
 (10, NULL, 'Full Sleeve', '{"attributes":{},"request":{},"query":{},"server":{},"files":{},"cookies":{},"headers":{}}', 'styles', 1, '2020-01-16 04:00:29', '2020-01-16 04:00:29'),
 (11, NULL, 'Cotton', '{"attributes":{},"request":{},"query":{},"server":{},"files":{},"cookies":{},"headers":{}}', 'materials', 1, '2020-01-16 04:01:13', '2020-01-16 04:01:13'),
 (12, NULL, 'Woolen', '{"attributes":{},"request":{},"query":{},"server":{},"files":{},"cookies":{},"headers":{}}', 'materials', 1, '2020-01-16 04:09:04', '2020-01-16 04:09:04'),
@@ -1416,6 +1435,39 @@ INSERT INTO `service_aproval_processes` (`id`, `user_id`, `parent`, `vendor_serv
 (93, 34, 0, 25, 'venue_comment', 'v cmt', '2019-12-02 04:43:48', '2019-12-02 04:43:48'),
 (107, 34, 0, 15, 'comment', 'cts', '2019-12-02 05:16:20', '2019-12-02 05:16:20'),
 (108, 34, 0, 15, 'photo_comment', 'p ct', '2019-12-02 05:16:20', '2019-12-02 05:16:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shop_categories`
+--
+
+CREATE TABLE `shop_categories` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `shop_id` int(11) DEFAULT NULL,
+  `parent` int(11) NOT NULL DEFAULT '0',
+  `category_id` int(11) DEFAULT NULL,
+  `vendor_id` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `shop_categories`
+--
+
+INSERT INTO `shop_categories` (`id`, `type`, `shop_id`, `parent`, `category_id`, `vendor_id`, `created_at`, `updated_at`) VALUES
+(45, NULL, 1, 0, 1, 31, '2020-01-21 10:17:54', '2020-01-21 10:17:54'),
+(46, NULL, 1, 0, 1, 31, '2020-01-21 10:17:55', '2020-01-21 10:17:55'),
+(47, NULL, 1, 0, 8, 31, '2020-01-21 10:17:55', '2020-01-21 10:17:55'),
+(48, NULL, 1, 0, 8, 31, '2020-01-21 10:17:55', '2020-01-21 10:17:55'),
+(55, NULL, 1, 1, 5, 31, '2020-01-21 10:19:43', '2020-01-21 10:19:43'),
+(56, NULL, 1, 1, 5, 31, '2020-01-21 10:19:43', '2020-01-21 10:19:43'),
+(57, NULL, 1, 1, 3, 31, '2020-01-21 10:19:44', '2020-01-21 10:19:44'),
+(58, NULL, 1, 1, 3, 31, '2020-01-21 10:19:44', '2020-01-21 10:19:44'),
+(59, NULL, 1, 1, 4, 31, '2020-01-21 10:19:44', '2020-01-21 10:19:44'),
+(60, NULL, 1, 1, 4, 31, '2020-01-21 10:19:44', '2020-01-21 10:19:44');
 
 -- --------------------------------------------------------
 
@@ -1489,11 +1541,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `first_name`, `last_name`, `email`, `phone_number`, `user_location`, `latitude`, `longitude`, `email_verified_at`, `password`, `website_url`, `ein_bs_number`, `age`, `id_proof`, `role`, `custom_token`, `profile_image`, `status`, `payment_status`, `payment_type`, `paypal_account`, `stripe_account`, `login_count`, `remember_token`, `updated_status`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', NULL, NULL, 'admin@gmail.com', '0', NULL, NULL, NULL, NULL, '$2y$10$24fdx3W1i9M2GLFjlOeUXuE2H7reNsX/Nsixl/ou8JxPIB.2EmZh.', NULL, NULL, NULL, NULL, 'admin', NULL, 'images/admin/1574677337kn9RnvDobyEJXsHyk5xe-photo-1551592398-c320012bc1c6.jpeg', 1, NULL, NULL, NULL, NULL, 0, 'en98hjDwSN8v0JodUrIpCheS22ofc2sLYHkYTJDSwuVJBTev2waEPlzWkgeF', 0, '2019-11-09 00:19:35', '2019-11-25 04:52:17'),
-(31, 'Narinder Bajwa', 'Narinder', 'Bajwa', 'bajwa7696346232@gmail.com', '0', NULL, NULL, NULL, '2019-11-12 07:02:09', '$2y$10$he8YxmZeBwdKAMqcbtQ0/.aJqTWo1Nxpm/WCKXK2XaEZAAJUE7Hc.', NULL, NULL, NULL, NULL, 'vendor', NULL, 'images/vendors/profile/15754682903k0mKXR3oz1UOM4OSDE2istockphoto953790424612x612.jpg', 1, '0', 1, 'paypalg@gmail.com', 'acct_1Fo5XDLPmLY4XjL0', 19, 'd7t241aHLRRfBBeKog7E52Ru5eYU6rFAlc7ys7lQnBElYi09klCxynG0uHsW', 0, '2019-11-12 06:11:13', '2020-01-15 05:29:42'),
-(32, 'Narinder Bajwa', 'Narinder', 'Bajwa', 'bajwa9876470491@gmail.com', '789654156', 'New York Avenue Northwest, Washington, DC, USA', '38.9032325', '-77.02110679999998', '2019-11-30 18:30:00', '$2y$10$tiBVNqE4PMLEbmyfMNH9/eXn4rkSKw0uHTNdeFJEALg2yBdwB04JG', NULL, NULL, NULL, NULL, 'user', NULL, 'images/vendors/profile/15754697554EkKbsnz87ArnXAWUqAht10_dsc5356_15_1836831555326929.jpg', 1, NULL, NULL, NULL, NULL, 1, 'qFPByzey8kkhgl2en8R894aKgjhP3fukLimvCdtlbrgFoq7w7cXvklaPnF62', 0, '2019-11-12 06:25:25', '2019-12-19 04:04:45'),
+(1, 'Admin', NULL, NULL, 'admin@gmail.com', '0', NULL, NULL, NULL, NULL, '$2y$10$24fdx3W1i9M2GLFjlOeUXuE2H7reNsX/Nsixl/ou8JxPIB.2EmZh.', NULL, NULL, NULL, NULL, 'admin', NULL, 'images/admin/1574677337kn9RnvDobyEJXsHyk5xe-photo-1551592398-c320012bc1c6.jpeg', 1, NULL, NULL, NULL, NULL, 0, '64nbqfZjaOKfbHBHF7CNlAUHWihgUWBQsn9MIN1sI31if8ROAelrquM2uJAS', 0, '2019-11-09 00:19:35', '2019-11-25 04:52:17'),
+(31, 'Narinder Bajwa', 'Narinder', 'Bajwa', 'bajwa7696346232@gmail.com', '0', NULL, NULL, NULL, '2019-11-12 07:02:09', '$2y$10$he8YxmZeBwdKAMqcbtQ0/.aJqTWo1Nxpm/WCKXK2XaEZAAJUE7Hc.', NULL, NULL, NULL, NULL, 'vendor', NULL, 'images/vendors/profile/15754682903k0mKXR3oz1UOM4OSDE2istockphoto953790424612x612.jpg', 1, '0', 1, 'paypalg@gmail.com', 'acct_1Fo5XDLPmLY4XjL0', 24, 'AiGUP1NVBBbiJC0HoVDMZNKpBvag9vjDkgOFbtC96o0f3QnEgoDzOqamAELR', 0, '2019-11-12 06:11:13', '2020-01-21 02:07:28'),
+(32, 'Narinder Bajwa', 'Narinder', 'Bajwa', 'bajwa9876470491@gmail.com', '789654156', 'New York Avenue Northwest, Washington, DC, USA', '38.9032325', '-77.02110679999998', '2019-11-30 18:30:00', '$2y$10$tiBVNqE4PMLEbmyfMNH9/eXn4rkSKw0uHTNdeFJEALg2yBdwB04JG', NULL, NULL, NULL, NULL, 'user', NULL, 'images/vendors/profile/15754697554EkKbsnz87ArnXAWUqAht10_dsc5356_15_1836831555326929.jpg', 1, NULL, NULL, NULL, NULL, 1, '3u64WaYVdnXLDNfBdUzEH4AfCyvzAJ1TN1sTWf2M8EMQLM6bazkTbZok4oYN', 0, '2019-11-12 06:25:25', '2019-12-19 04:04:45'),
 (33, 'hitesh sharma', 'hitesh', 'sharma', 'hitesh22791@gmail.com', '0', NULL, NULL, NULL, '2019-11-13 18:30:00', '$2y$10$o6TsuB0J0za0EknNojA7g.B304Cg3SRfIqrJU7QQZKSxgCYb5FpGi', NULL, NULL, NULL, NULL, 'vendor', NULL, NULL, 1, NULL, NULL, NULL, NULL, 0, 'usHDkMT6QyFgQUsA03DB113wGW1nDuLMbyqfBp9gdXKsZ8J0fi5xPkAJDT82', 0, '2019-11-14 02:17:10', '2019-11-21 09:09:51'),
-(34, 'vendor s', 'vendor', 's', 'vendor001@yopmail.com', '12345656', NULL, NULL, NULL, '2019-11-14 04:22:00', '$2y$10$3nhw3wasoho0VKY52ffgHO7/OBu5wNz0O4r2SXSQrtzktEnI3YI5K', NULL, NULL, NULL, NULL, 'vendor', NULL, 'images/vendors/profile/1575376773SRf20ex3xxBQ4dgJjBNZonline.png', 1, '2', 1, NULL, 'acct_1FlvGZCqcZPOBWPd', 5, 'uDXtWtGqWT0dzbKwCIGZvx6ofc6di0w30992yvrLJltVRrOojYXPZmJQxvvf', 0, '2019-11-14 04:19:37', '2020-01-17 06:46:21'),
+(34, 'vendor s', 'vendor', 's', 'vendor001@yopmail.com', '12345656', NULL, NULL, NULL, '2019-11-14 04:22:00', '$2y$10$3nhw3wasoho0VKY52ffgHO7/OBu5wNz0O4r2SXSQrtzktEnI3YI5K', NULL, NULL, NULL, NULL, 'vendor', NULL, 'images/vendors/profile/1575376773SRf20ex3xxBQ4dgJjBNZonline.png', 1, '2', 1, NULL, 'acct_1FlvGZCqcZPOBWPd', 6, 'FRFirgthGKHrXJrdtppw07KeDhP5w0zNRemH6LgIQdbsDfcqFyJJH5gfqkJY', 0, '2019-11-14 04:19:37', '2020-01-20 02:19:51'),
 (35, 'Kanny Gill', 'Kanny', 'Gill', 'kanny@yopmail.com', '0', NULL, NULL, NULL, '2019-11-15 03:06:31', '$2y$10$XZA0JR6bHi1MSANa86u8jOncOCBPT7wFdxaq5RZBjLIYW992ssDA.', NULL, NULL, NULL, NULL, 'vendor', NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, 'CILaDjfmOEMMvHxPX91YpMYmtl9OVRpcAYUhAl83uhtKxGWCXLFprBaCcYAp', 0, '2019-11-15 03:06:02', '2020-01-07 10:01:57'),
 (36, 'Kanny Rajput', 'Kanny', 'Rajput', 'kannyraj@yopmail.com', '0', NULL, NULL, NULL, '2019-11-15 04:27:34', '$2y$10$05CiO5N1YnlHK2qAV493Kub/2oQ1PkscvvcNJ5lEeupu.MNxtrT7m', NULL, NULL, NULL, NULL, 'vendor', NULL, NULL, 1, NULL, NULL, NULL, NULL, 0, 'MiJiNw0hILOy4O7TcVXUAYem6b3hAujmp6kbR0rc2B8ILItRzt4iDwxj4wnI', 0, '2019-11-15 04:27:09', '2019-11-21 09:10:06'),
 (37, 'Kanny Singhh', 'Kanny', 'Singhh', 'kannysingh@yopmail.com', '0', NULL, NULL, NULL, '2019-11-15 04:30:26', '$2y$10$D43XORx9FPYbJXJu2L7CkuJsKI9ywXPjNOXoVhPi9iegyE5tXy7h2', NULL, NULL, NULL, NULL, 'vendor', NULL, NULL, 1, NULL, NULL, NULL, NULL, 0, 'Moa9zHEdREFzRSFG7DNs2fDCSMEFPyGiUGOgan9FxOFj4TjsZNcdLF5CgwIa', 0, '2019-11-15 04:30:08', '2019-11-21 09:10:10'),
@@ -1518,8 +1570,8 @@ INSERT INTO `users` (`id`, `name`, `first_name`, `last_name`, `email`, `phone_nu
 (56, 'Inder Bajwa', 'Inder', 'Bajwa', 'qa2.defsoft@gmail.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$O2X.68/cxdnSWTjhO2cW5OsgLakNXhQDm3e4MYpk3zxX6lzDKsFUC', NULL, NULL, NULL, NULL, 'vendor', NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, 0, '2019-12-05 03:28:52', '2019-12-05 03:28:52'),
 (57, 'pallavi toomar', 'pallavi', 'toomar', 'qa2.deftsoft@gmail.com', NULL, NULL, NULL, NULL, '2019-12-05 03:32:45', '$2y$10$NtsBEHLcUQG8nkSLtrUbQ.JTQpiefyrc7DIatcZV2ztayxs6ThEzG', NULL, NULL, NULL, NULL, 'vendor', NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, NULL, 0, '2019-12-05 03:32:21', '2019-12-05 03:32:45'),
 (58, 'Dkisisis Idiidisi', 'Dkisisis', 'Idiidisi', 'Ksksjsi@yopmail.com', NULL, NULL, NULL, NULL, NULL, '$2y$10$HxQP976VGBBYIE9ABFGrSe/qVkRFqClYtL8dFDYjZ0UN/0fmSF6mC', NULL, NULL, NULL, NULL, 'user', NULL, NULL, 1, NULL, NULL, NULL, NULL, 0, NULL, 0, '2019-12-05 04:20:35', '2019-12-05 04:20:35'),
-(59, 'Kanny Vendor', 'Kanny', 'Vendor', 'kannyv@yopmail.com', '9465470549', NULL, NULL, NULL, '2019-12-09 03:08:48', '$2y$10$LfGOFgZDUEoK32h4KM4ve.gEEQBHptPIyxjQEWakk5gMx6eg2tP/a', NULL, NULL, NULL, NULL, 'vendor', NULL, 'images/vendors/profile/1575882091j0GZOQCG6Q7AB3dlJFb2k.jpg', 1, NULL, NULL, NULL, 'acct_1FsqrhHm6sbEOjYy', 17, 'YoGMKD8HLyMei3H7wD3k3hdagAtu6aD4H6qfdGnc8oHWDD2BxNKWqsN2JhAU', 0, '2019-12-09 03:08:24', '2020-01-16 13:19:11'),
-(60, 'Kanny Customer', 'Kanny', 'Customer', 'kannyc@yopmail.com', NULL, NULL, NULL, NULL, '2019-12-09 03:10:12', '$2y$10$2NoI44RRR.M9N5YBuSHtu.LokV/LdI07LFfDouegVOPIbq8C5xWIy', NULL, NULL, NULL, NULL, 'user', NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, 'uARd77OAn270KYUt0wXQkvG2aa3H4MJ3rfz7llMKHc8iyBe2IIKU5GBD1mIL', 0, '2019-12-09 03:10:03', '2019-12-18 05:43:09'),
+(59, 'Kanny Vendor', 'Kanny', 'Vendor', 'kannyv@yopmail.com', '9465470549', NULL, NULL, NULL, '2019-12-09 03:08:48', '$2y$10$LfGOFgZDUEoK32h4KM4ve.gEEQBHptPIyxjQEWakk5gMx6eg2tP/a', NULL, NULL, NULL, NULL, 'vendor', NULL, 'images/vendors/profile/1575882091j0GZOQCG6Q7AB3dlJFb2k.jpg', 1, NULL, NULL, NULL, 'acct_1FsqrhHm6sbEOjYy', 21, '0zsSTHtymBvj004fUCxB9rFeRlZJ3kPLYKPJU63raPLTPHNq0UPE8gXn9Wga', 0, '2019-12-09 03:08:24', '2020-01-20 08:30:09'),
+(60, 'Kanny Customer', 'Kanny', 'Customer', 'kannyc@yopmail.com', NULL, NULL, NULL, NULL, '2019-12-09 03:10:12', '$2y$10$2NoI44RRR.M9N5YBuSHtu.LokV/LdI07LFfDouegVOPIbq8C5xWIy', NULL, NULL, NULL, NULL, 'user', NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, 'F0HnTZJRAlWYB2bIoScZuT8LCTVlaC3JQ6b4EJnELXaPVzMElnfyfUpKHdB4', 0, '2019-12-09 03:10:03', '2019-12-18 05:43:09'),
 (61, 'Joyce Nana', 'Joyce', 'Nana', 'jadjaloko@yahoo.com', NULL, NULL, NULL, NULL, '2019-12-13 12:45:35', '$2y$10$xMRDYmugEWM.oEWkJla//OFqHiL6l6J8GPAmr74x9VulvBHBlKduC', NULL, NULL, NULL, NULL, 'user', NULL, NULL, 1, NULL, NULL, NULL, NULL, 0, 'mEshVWJJUDR7eyp1cLxz9MPp2a3D2EsOaShFffADvOFcagHmTLvzlJwcleSp', 0, '2019-12-13 12:45:04', '2019-12-13 20:21:24'),
 (62, 'jassar singh', 'jassar', 'singh', 'jassi93@yopmail.com', NULL, NULL, NULL, NULL, '2019-12-24 02:46:40', '$2y$10$c18iOBYzSvsD/nLcfDocjub3YrezwRe8nThSo.bstJ6i9yOQCQHOm', NULL, NULL, NULL, NULL, 'user', NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, 'ysiCRovEYthgeZwIIshS3tTZnW3FGXW6RByrrUD1soAJ7C8uBIabtmxfKbBp', 0, '2019-12-24 02:46:11', '2019-12-24 04:28:10'),
 (63, 'karan singh', 'karan', 'singh', 'karan92@yopmail.com', NULL, NULL, NULL, NULL, '2019-12-24 03:44:22', '$2y$10$BSMt5DN4O5nNMFSj3dV6M.Q0H0Flcvz3rVb/RqaJXlxEN1m4lf3xC', NULL, NULL, NULL, NULL, 'user', NULL, NULL, 1, NULL, NULL, NULL, NULL, 1, 'jiUtfNZWtPxvth49Cn51N5oPVRrvSc8uPLVrmHJxulY2LsyC7H3T5DS7hdhO', 0, '2019-12-24 03:44:09', '2019-12-24 03:50:50'),
@@ -1584,7 +1636,7 @@ INSERT INTO `user_events` (`id`, `user_id`, `slug`, `title`, `event_picture`, `e
 (32, 60, 'lorem-ipsum-dolor-sit', 'Lorem ipsum dolor sit', 'images/events/1576671989s2UbvLhU0bM9r1AYkSP6eventformimg.png', 112, 'sdddddd', 'ssssss', '2019-12-19 13:04:51', '2019-12-19 13:04:51', 'Logan Airport Terminal B, East Boston, MA, USA', '42.3645508', '-71.01954490000003', '2', 0, 5, 12, '09:15 PM', '05:25 PM', 'sdsdsd', '#bc5151', 'Events are on the top of the world', 'Testing Ideas is running', '2019-12-18 06:56:29', '2019-12-19 07:34:51'),
 (33, 60, 'dream-pool', 'Dream Pool', 'images/events/1576704472U9uAYpo2oNSkWdIc8fQt24.09.2019_19.56.56_REC.png', 30000, 'long', 'Pool Party', '2019-12-18 18:30:00', '2020-02-19 18:30:00', 'Willow Oaks Corporate Drive, Annandale, VA, USA', '38.86409560000001', '-77.23121220000002', '11', 0, 10, 2000, '2:30 PM', '2:30 PM', 'Winter', '#008080', 'none', 'none', '2019-12-18 15:57:52', '2019-12-18 15:57:52'),
 (34, 60, 'technology-event', 'Technology Event', 'images/events/1576750039Q1HnCw9QUYZUAxVce4FY15747561420CECWnSZ7yaVhvavQEMn14997.png', 1500, 'This is the long dummy event', 'This is the dummy event', '2019-12-28 18:30:00', '2020-01-30 18:30:00', 'Newbury Street, Boston, MA, USA', '42.3481375', '-71.08792870000002', '5', 0, 1, 200, '2:30 PM', '06:25 AM', 'Summer', '#f14747', NULL, NULL, '2019-12-19 04:37:20', '2019-12-19 04:37:20'),
-(35, 60, 'birthday-event', 'Birthday Event', 'images/events/157675311250WaTOMWVJXmkph6csTlanchez4_51_698336157383070553519.jpg', 1500, 'Long Description', 'Short Event Description', '2020-01-24 18:30:00', '2020-02-20 18:30:00', 'Teston Road, Woodbridge, ON, Canada', '43.8676065', '-79.5438924', '17', 0, 10, 1000, '2:30 PM', '2:30 PM', 'Summer', '#e80d0d', NULL, NULL, '2019-10-02 05:28:32', '2020-01-17 04:41:26'),
+(35, 60, 'birthday-event', 'Birthday Event', 'images/events/157675311250WaTOMWVJXmkph6csTlanchez4_51_698336157383070553519.jpg', 1500, 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text', 'Short Event Description', '2020-01-21 13:31:04', '2020-01-21 13:31:04', 'Teston Road, Woodbridge, ON, Canada', '43.8676065', '-79.5438924', '17', 0, 10, 1000, '2:30 PM', '2:30 PM', 'Summer', '#e80d0d', NULL, '<p>Test</p>', '2019-10-02 05:28:32', '2020-01-21 08:01:04'),
 (36, 63, 'my-marriage', 'my marriage', 'images/events/1577179249vH0WZDxPguaDuxjmPPNY30.jpg', 2000, 'The definition of marriage is the religious or legal process through which people become husband and wife, husband and husband or wife and wife, or the state of being married. An example of marriage is the Sacrament of Holy Matrimony.', 'The definition of marriage is the religious or legal process through which people become husband and wife, husband and husband or wife and wife, or the state of being married. An example of marriage is the Sacrament of Holy Matrimony.', '2019-12-24 18:30:00', '2019-12-25 18:30:00', 'Test Drive, Chattanooga, TN, USA', '35.0602608', '-85.18986029999996', '2', 0, 100, 200, '11 AM', '06:30 PM', 'winter', '#0000ff', NULL, NULL, '2019-12-24 03:50:49', '2019-12-24 04:09:08'),
 (37, 62, 'wedding', 'wedding Me', 'images/events/1577181490tCD5fNRc4UwPCLmb6YDjimg3.jpg', 21000, 'The definition of marriage is the religious or legal process through which people become husband and wife, husband and husband or wife and wife, or the state of being married. An example of marriage is the Sacrament of Holy Matrimony.', 'The definition of marriage is the religious or legal process through which people become husband and wife, husband and husband or wife and wife, or the state of being married. An example of marriage is the Sacrament of Holy Matrimony.', '2020-01-15 09:52:23', '2020-01-31 09:52:23', 'Logan Airport Terminal B, East Boston, MA, USA', '42.3645508', '-71.01954490000003', '2', 0, 100, 200, '11 AM', '06 AM', 'winter', '#0000ff', NULL, NULL, '2019-12-24 04:28:10', '2019-12-31 04:45:40'),
 (38, 50, 'my-birthday', 'My birthday', 'images/events/157726558267L7GBhugwooLRb10241loyalty24px.svg', 50000, 'Congratulation for using our Platform', 'Congratulation for using our Platform', '2019-12-25 18:30:00', '2019-12-26 18:30:00', 'Teston Road, Woodbridge, ON, Canada', '43.8676065', '-79.5438924', '17', 0, 100, 250, '2:30 PM', '2:30 PM', 'hghh', '#3c2828', NULL, NULL, '2019-12-25 03:49:42', '2019-12-25 06:38:14'),
@@ -1597,7 +1649,7 @@ INSERT INTO `user_events` (`id`, `user_id`, `slug`, `title`, `event_picture`, `e
 (46, 62, 'function', 'function', 'images/events/1578563510wnw9V6GofrjtE9Mx0VAJchathere.png', 5000, 'lorem ipsum lorem ipsum lorem ipsum lorem ipsum', 'lorem ipsum', '2020-01-09 18:30:00', '2020-01-15 18:30:00', 'DC Drive, Tyler, TX, USA', '32.30049739999999', '-95.3250115', '17', 0, 100, 200, '04:20 AM', '06:20 AM', 'winter', '#80ff00', NULL, NULL, '2020-01-09 04:21:50', '2020-01-09 04:25:11'),
 (47, 32, 'kanny-birthday-bash', 'Kanny Birthday Bash', 'images/events/1579166583UWXiQA21FV2qHOr6llGO15747561420CECWnSZ7yaVhvavQEMn14997.png', 25000, 'Lorium Epsum Lorium Epsum', 'Lorium Epsum', '2020-01-17 18:30:00', '2020-01-30 18:30:00', 'Miami Gardens Drive, Hialeah, FL, USA', '25.9409179', '-80.2473297', '2', 0, 10, 100, '06:10 AM', '04:30 AM', 'Summer', '#fe066f', NULL, NULL, '2020-01-16 03:53:03', '2020-01-16 03:53:03'),
 (48, 60, 'sdfsd', 'Test Event', 'images/events/1579258860RiqS5BEcVz7cOXyhGaxh8.jpg', 111, 'sdgsd', 'Test', '2020-01-17 18:30:00', '2020-01-18 18:30:00', 'Assembly Row, Somerville, MA, USA', '42.3938779', '-71.0790553', '11', 0, 1, 2, '10:10 AM', '02:10 AM', '213qwsaf', '["#5a1414","#5a1414","#a44343","#a44343","#432e2e","#432e2e"]', NULL, NULL, '2020-01-17 05:31:00', '2020-01-17 10:20:20'),
-(49, 60, 'gsdg', 'Ryan Eve', 'images/events/15792591241ZCxDpl2yNlMEzX7i6jp8.jpg', 1, 'Test', 'Test', '2020-01-18 18:30:00', '2020-01-23 18:30:00', 'SD-11, Brandon, SD, USA', '43.5912692', '-96.57229269999999', '11', 0, 1, 11, '09:15 AM', '09:20 AM', '2', '["#482929","#611b1b","#89e850","#de2828"]', NULL, NULL, '2020-01-17 05:35:24', '2020-01-17 10:23:36');
+(49, 60, 'gsdg', 'Ryan Eve', 'images/events/15792591241ZCxDpl2yNlMEzX7i6jp8.jpg', 1, 'Test', 'Test', '2020-01-18 18:30:00', '2020-01-23 18:30:00', 'SD-11, Brandon, SD, USA', '43.5912692', '-96.57229269999999', '11', 0, 1, 11, '09:15 AM', '09:20 AM', '2', '["#de2828"]', NULL, NULL, '2020-01-17 05:35:24', '2020-01-17 10:51:30');
 
 -- --------------------------------------------------------
 
@@ -1741,7 +1793,7 @@ INSERT INTO `user_event_meta_datas` (`id`, `parent`, `user_id`, `type`, `key`, `
 (418, 0, 50, 'events', 'category_id', '11', 40, '2020-01-17 05:13:34', '2020-01-17 05:13:34'),
 (419, 0, 50, 'events', 'category_id', '20', 40, '2020-01-17 05:13:34', '2020-01-17 05:13:34'),
 (423, 0, 60, 'events', 'category_id', '20', 48, '2020-01-17 10:20:20', '2020-01-17 10:20:20'),
-(425, 0, 60, 'events', 'category_id', '25', 49, '2020-01-17 10:23:36', '2020-01-17 10:23:36');
+(426, 0, 60, 'events', 'category_id', '25', 49, '2020-01-17 10:51:30', '2020-01-17 10:51:30');
 
 -- --------------------------------------------------------
 
@@ -2633,6 +2685,12 @@ ALTER TABLE `email_templates`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `eshops`
+--
+ALTER TABLE `eshops`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `events`
 --
 ALTER TABLE `events`
@@ -2714,6 +2772,12 @@ ALTER TABLE `seasons`
 -- Indexes for table `service_aproval_processes`
 --
 ALTER TABLE `service_aproval_processes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `shop_categories`
+--
+ALTER TABLE `shop_categories`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2843,6 +2907,11 @@ ALTER TABLE `discount_deals`
 ALTER TABLE `email_templates`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
+-- AUTO_INCREMENT for table `eshops`
+--
+ALTER TABLE `eshops`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
@@ -2856,7 +2925,7 @@ ALTER TABLE `event_orders`
 -- AUTO_INCREMENT for table `favourite_vendors`
 --
 ALTER TABLE `favourite_vendors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `f_a_qs`
 --
@@ -2871,7 +2940,7 @@ ALTER TABLE `invite_vendors`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `orders`
 --
@@ -2891,12 +2960,12 @@ ALTER TABLE `page_meta_tags`
 -- AUTO_INCREMENT for table `product_categories`
 --
 ALTER TABLE `product_categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `product_category_variations`
 --
 ALTER TABLE `product_category_variations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `product_variations`
 --
@@ -2912,6 +2981,11 @@ ALTER TABLE `seasons`
 --
 ALTER TABLE `service_aproval_processes`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+--
+-- AUTO_INCREMENT for table `shop_categories`
+--
+ALTER TABLE `shop_categories`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 --
 -- AUTO_INCREMENT for table `styles`
 --
@@ -2931,7 +3005,7 @@ ALTER TABLE `user_events`
 -- AUTO_INCREMENT for table `user_event_meta_datas`
 --
 ALTER TABLE `user_event_meta_datas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=426;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=427;
 --
 -- AUTO_INCREMENT for table `variations`
 --
@@ -2941,7 +3015,7 @@ ALTER TABLE `variations`
 -- AUTO_INCREMENT for table `variation_extras`
 --
 ALTER TABLE `variation_extras`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `vendor_amenities`
 --

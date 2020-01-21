@@ -144,14 +144,48 @@
                <label>E-Shop</label>
             </li>
 
-            <li class="nav-item">
-               <a href="{{url(route('vendor.shop.index'))}}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-clock"></i></span><span class="pcoded-mtext">Shop</span></a>
-            </li>              
+           
+
+           <li class="nav-item pcoded-hasmenu">
+                <a href="javascript:" class="nav-link">
+                   <span class="pcoded-micon"> <i class="feather icon-briefcase"></i></span>
+                   <span class="pcoded-mtext">E-Shop</span>
+                </a>
+               <ul class="pcoded-submenu">
+                   
+                    
+                  <li class="nav-item pcoded-hasmenu">
+                     <a href="javascript:" class="nav-link">
+                        <span class="pcoded-micon"> <i class="feather icon-box"></i></span>
+                        <span class="pcoded-mtext">Products</span>
+                     </a>
+                     <ul class="pcoded-submenu" >
+                        <li role="presentation">
+                           <a  class="nav-link" href="{{url(route('vendor.shop.products.index'))}}">
+                           <span class="arrow-before"><i class="fas fa-eye"></i></span>
+                               Products
+                           </a>
+                        </li>
+                     </ul>
+                  </li>
+                   <li class="nav-item">
+                     <a href="{{url(route('vendor.shop'))}}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-clock"></i></span><span class="pcoded-mtext">Shop Settings</span></a>
+                  </li>  
+                </ul>
+         </li>
+
+
+
+
+
+
+
+
 
             <li class="nav-item pcoded-menu-caption">
                <label>Settings</label>
             </li>
-            <li data-username="basic components Button Alert Badges breadcrumb Paggination progress Tooltip popovers Carousel Cards Collapse Tabs pills Modal Grid System Typography Extra Shadows Embeds" class="nav-item pcoded-hasmenu <?= ActiveMenu(['vendor_profile', 'vendor_password', 'vendor_payment'],'pcoded-trigger') ?>" >
+            <li class="nav-item pcoded-hasmenu <?= ActiveMenu(['vendor_profile', 'vendor_password', 'vendor_payment'],'pcoded-trigger') ?>" >
                <a href="javascript:" class="nav-link "><span class="pcoded-micon">
                <i class="feather icon-settings"></i></span><span class="pcoded-mtext">Settings</span></a>
                <ul class="pcoded-submenu" style="display: <?= ActiveMenu(['vendor_profile', 'vendor_password', 'vendor_payment'],'block') ?>;">

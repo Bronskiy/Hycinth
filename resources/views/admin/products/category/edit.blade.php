@@ -31,8 +31,7 @@
 
                   <div class="col-md-12">
 
-                    <form role="form" method="post" id="categoryForm" enctype="multipart/form-data">
-                       <div class="card-body">
+                    <form role="form" method="post" id="categoryForm" enctype="multipart/form-data">                
                                 <div class="row">
                                          @csrf
                                         <div class="col-md-6"> 
@@ -58,7 +57,7 @@
                                                         <option value="1" {{$cate->featured == 1 ? 'selected' :''}}>Featured</option>
                                                       </select>
                                               </div>
-                            <div class="row templateFeatured" id="templateFeatured">
+                            <div class="row templateFeatured form-group" id="templateFeatured">
                               <div class="col-md-8">
                                   <h4>Choose Template</h4>
                                   <div class="row">
@@ -89,14 +88,7 @@
                                         </div>
                                   </div>
                             </div>
-                        </div>
-           
- 
-
-
-
-
-
+                        </div>       
                                       <div class="col-md-6">  
                                         {{textbox($errors,'Meta Title*','meta_title',$cate->meta_title)}}
                                       </div>
@@ -107,21 +99,25 @@
                                           {{textarea($errors,'Meta description*','meta_description',$cate->meta_description)}}
                                         </div>
                                          <div class="col-md-12">
+
+                                          <div class="form-group">
+                                                         <label class="label-file control-label">Image*</label>
+                                                          <input type="file" accept="image/*" id="cat_image" onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="category_image">
+                                                    </div>
                                                              <!-- {{choosefilemultiple($errors,'Category Icon','image')}} -->
+                                                             <div class="form-group">
                                                   @if($cate->image != "")          
                                                  <img src="{{url($cate->image)}}" id="image_src" style="width: 100px; height: 100px; display: block;"/>
                                                  @else
                                                  <img src="" id="image_src" style="width: 100px; height: 100px; display: none"/>
 
                                                  @endif
-                                                    <div class="form-group">
-                                                         <label class="label-file">Image*</label>
-                                                          <input type="file" accept="image/*" id="cat_image" onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="category_image">
-                                                    </div>
+                                               </div>
+                                                    
 
                                         </div>
                                       </div>                                 
-                                 </div>
+                                 
       <!-- /.card-body -->
             <div class="card-footer">
               <button type="submit" id="categoryFormSbt" class="btn btn-primary">Submit</button>

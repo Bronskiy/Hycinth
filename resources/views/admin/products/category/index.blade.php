@@ -10,16 +10,19 @@
 
  <section class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-               <h1>{{$title}}</h1> 
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
+        <div class="mb-2">
+         
+               <div class="page-header-title">
+                    <h5 class="m-b-10">{{$title}}</h5>
+                </div>
+        
+        
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="http://49.249.236.30:6633/admin"><i class="feather icon-home"></i></a></li>
               <li class="breadcrumb-item active"><a href="{{ url('/admin') }}">Dashboard</a></li>
                 <li class="breadcrumb-item "><a href="{{ url($addLink) }}">Add</a></li>
             </ol>
-          </div>
+       
         </div>
       </div><!-- /.container-fluid -->
     </section>
@@ -30,19 +33,18 @@
             <!-- /.card-header -->
         
         @include('admin.error_message')
+
+        <div class="card-header">
+             <h5>Drag & Drop List Drag & Drop item arrange <b>Category</b></h5>                                            
+        </div>
  
             <div class="card-body">
 
   
 
 <div class="col-md-12">
-
-
-
-
-
-               <h4 class="block">Drag & Drop List 
-                        <small>Drag & Drop item arrange <b>Category</b></small></h4>
+              <!--  <h4 class="block">Drag & Drop List 
+                        <small>Drag & Drop item arrange <b>Category</b></small></h4> -->
                      <div class="portlet light bordered">
                         <div class="portlet-title">
                             
@@ -76,12 +78,8 @@
                                                     </div>
                                                   </div>
                                               </div>
- 
-                                    </div>
-                                </div>
-
-
-                                    
+                                           </div>
+                                        </div>                              
 
                                     
                                      <!-- <div class="card card-body"> -->
@@ -106,13 +104,8 @@
                                                       <a class="dropdown-item" href="{{url(route('admin.products.category.variation',$sub->id))}}">Add Variation</a>
                                                       <a class="dropdown-item" href="{{url(route('admin.products.category.edit',$sub->id))}}">Edit</a>
                                                     </div>
-                                                  </div>
-                                                 
-
-
-
-                                          </div>
-                                         
+                                                  </div>                                                           
+                                                </div>                                        
  
                                                   <ol class="dd-list">
                                                     @foreach($sub->childCategory as $ch)

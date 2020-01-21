@@ -3,16 +3,18 @@
 @section('content')
  <section class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-               <h1>{{$title}} </h1> 
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
+        <div class="mb-2">
+    
+            <div class="page-header-title">
+                    <h5 class="m-b-10">{{$title}}</h5>
+                </div>       
+        
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="http://49.249.236.30:6633/admin"><i class="feather icon-home"></i></a></li>
               <li class="breadcrumb-item active"><a href="{{ url('master/') }}">Dashboard</a></li>
               <li class="breadcrumb-item "><a href="{{ url($addLink) }}">Add</a></li>
             </ol>
-          </div>
+        
         </div>
       </div><!-- /.container-fluid -->
     </section>

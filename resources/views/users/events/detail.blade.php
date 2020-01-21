@@ -210,8 +210,7 @@
                   </ul>                      
                   <!-- Shared Event Icon Html End -->
                </div>
-               <div class="card-media  mt-4 wow bounceInRight" data-wow-delay="350ms">
-                  <!-- media container -->
+<!--                <div class="card-media  mt-4 wow bounceInRight" data-wow-delay="350ms">               
                   <div class="card-media-object-container">
                      <div class="card-media-object" style="background-image: url({{$user_event->event_picture !='' ? url($user_event->event_picture) : '' }});">
                         <div class="date-ribbon">
@@ -220,8 +219,7 @@
                         </div>
                      </div>
                      <span class="card-media-object-tag subtle {{ str_slug(EventCurrentStatus($user_event->start_date,$user_event->end_date)) }}">{{ EventCurrentStatus($user_event->start_date,$user_event->end_date)}}</span>
-                  </div>
-                  <!-- body container -->
+                  </div>          
                   <div class="card-media-body">
                      <div class="card-media-body-top">
                         <span class="subtle">
@@ -240,6 +238,33 @@
                         <span class="card-media-body-supporting-bottom-text subtle ">@foreach($user_event->eventCategories as $loopingTags)#{{ $loopingTags->eventCategory->label }} @if (!$loop->last), @endif @endforeach</span>
                      </div>
                   </div>
+               </div> -->
+               <div class="row  cstm-flex-row">
+                 <div class="col-lg-6">
+                   <div class="event-detail-full-dec">
+                     <h3 class="evt-title">{{ ucfirst($user_event->title) }}</h3>
+                       <span class="evt-date">{{ \Carbon\Carbon::parse($user_event->start_date)->format('l') }}, {{ \Carbon\Carbon::parse($user_event->start_date)->formatLocalized('%b') }} {{ \Carbon\Carbon::parse($user_event->start_date)->formatLocalized('%d') }}, {{ \Carbon\Carbon::parse($user_event->start_time)->format('g:i A') }}</span>
+                       <div class="evnt-full-detail">
+                         <p>{{ $user_event->long_description }}</p>
+                         <ul class="evt-more-dec">
+                         <li><p><span class="icon"><i class="fas fa-map-marker-alt"></i></span>{{ $user_event->location }}</p></li>
+                         <li><p class="evt-more-deatil"> <span class="icon"><i class="fas fa-tags"></i></span> @foreach($user_event->eventCategories as $loopingTags)#{{ $loopingTags->eventCategory->label }} @if (!$loop->last), @endif @endforeach</p></li>
+                         <li><p class="evt-more-deatil"> <span class="icon"><i class="fas fa-dollar-sign"></i></span>${{ $user_event->event_budget }}</span></p></li>
+                       </ul>
+                       </div>
+                   </div>
+                 </div>
+                 <div class="col-lg-6">
+        <div class="event-detail-side-img">                   
+        <div class="eggShape-wrap">
+      <div class="eggShape-container eggShape-1"></div>
+    <div class="eggShape-container eggShape-2"></div>
+    <!-- <div class="eggShape-container eggShape-3"></div> -->
+    <div class="egg-shape-img" style="background-image: url({{$user_event->event_picture !='' ? url($user_event->event_picture) : '' }});"></div>
+    <div class="eggShape-container eggShape-5"></div>
+  </div>
+</div>
+                 </div>
                </div>
             </div>
          </div>
@@ -599,41 +624,62 @@
             <div class="cstm-card-head">
                <h5 class="card-title">Idea Tracker / Event Diary</h5>
             </div>
-          <form method="Post" action="{{ route('eventExtraDetail', $user_event->slug) }}">
-            @csrf
+<!-- open book sec -->
+<div class="col-md-12"> 
+<form method="Post" action="{{ route('eventExtraDetail', $user_event->slug) }}">
+  @csrf     
+<div class="open-book-wrap">
+   <section class="open-book">
+            <header>
+                <h1>Envisiun</h1>
+                <h6>Envisiun</h6>
+            </header>
+            <article>
+           
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-lg-6">
               <div class="recommended-vedors-wrap ">
                 <div class="rec-card">
                   <h3 class="rec-heading">Idea Tracker</h3>
                   <div class="row">
                      <div class="col-lg-12">
-                        {{textarea($errors, 'Ideas*', 'ideas', $user_event->ideas)}}
+                        <div class='form-group'>{{textarea($errors, 'Ideas*', 'ideas', $user_event->ideas)}}<p class='error'></p></div>
                      </div>
                   </div>
                </div>  
-              </div>  
-            </div>
+              </div> 
+                  </div>
 
-          <div class="col-md-12">                
-            <div class="recommended-vedors-wrap ">
+                  <div class="col-lg-6">
+                    <div class="recommended-vedors-wrap ">
                <div class="rec-card">
                   <h3 class="rec-heading">Event Diary</h3>
                   <div class="row">
                      <div class="col-lg-12">
-                        {{textarea($errors, 'Event Diary*', 'notepad', $user_event->notepad)}}
+                        <div class='form-group'><label>Event Diary*</label><textarea class='form-control  myTextEditor' id='notepad' name='notepad' rows='23' col='23'></textarea><p class='error'></p></div>
                      </div>
                   </div>
                </div>         
             </div>
-          </div>
-          <div class="col-md-12"> 
-          <div class="card-footer w-100">
-            <button type="submit" id="UserEventFormBtn" class="cstm-btn">Update</button>
-          </div>
-        </div>
-
-        </form>
+                  </div>
+                </div>
+            </article>
+            <footer>
+                <ol id="page-numbers">
+                    <li>1</li>
+                    <li>2</li>
+                </ol>
+            </footer>
+        </section>
+      </div>
+    <div class="col-md-12"> 
+    <div class="card-footer w-100">
+      <button type="submit" id="UserEventFormBtn" class="cstm-btn">Update</button>
+    </div>
+  </div>              
+    </form>      
+    </div>
+<!-- Open book sec end here -->
 
         </div>
          </div>

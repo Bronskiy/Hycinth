@@ -40,7 +40,7 @@
 @foreach($variations as $variation)
 
      @if($variation->ProductVariation->count() > 0)
-         <div class="col-lg-4">
+         <div class="col-lg-3 col-sm-6">
                 <h3 class="card-title">Choose {{$variation->name}}</h3>
                 <ul class="unstyled centered">
                   <li>

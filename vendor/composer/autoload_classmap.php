@@ -107,6 +107,7 @@ return array(
     'App\\Models\\Products\\Variation' => $baseDir . '/app/Models/Products/Variation.php',
     'App\\Models\\Products\\VariationExtra' => $baseDir . '/app/Models/Products/VariationExtra.php',
     'App\\Models\\Products\\VariationMetaData' => $baseDir . '/app/Models/Products/VariationMetaData.php',
+    'App\\Models\\Shop\\ShopCategory' => $baseDir . '/app/Models/Shop/ShopCategory.php',
     'App\\Models\\Vendors\\Chat' => $baseDir . '/app/Models/Vendors/Chat.php',
     'App\\Models\\Vendors\\ChatMessage' => $baseDir . '/app/Models/Vendors/ChatMessage.php',
     'App\\Models\\Vendors\\CustomPackage' => $baseDir . '/app/Models/Vendors/CustomPackage.php',

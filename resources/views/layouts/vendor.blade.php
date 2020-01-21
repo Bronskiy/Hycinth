@@ -51,7 +51,7 @@
 </head>
 
 <body>
-
+<div class="custom-loading"><div class="loader5"></div></div>
   <!-- Main Sidebar Container -->
 @include('vendors.sidebar')
 
