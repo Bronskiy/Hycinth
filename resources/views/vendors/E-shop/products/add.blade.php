@@ -160,6 +160,7 @@
 @section('scripts')
 
 <script type="text/javascript" src="{{url('/js/shop/vendors/products/category.js')}}"></script>
+<script type="text/javascript" src="{{url('/js/shop/vendors/products/variation/basic.js')}}"></script>
 <script type="text/javascript">
 
 	@if($product->category == null || $product->category->count() == 0)

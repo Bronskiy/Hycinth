@@ -38,22 +38,42 @@
 
          {{textbox($errors, 'Variation Name*', 'name',$val)}}
 
+         <div class="form-group">
+              <label class="control-label">Selectable</label>
+              <select class="form-control" name="selectable">
+                 <option value="single">Single</option>
+                 <option value="multiple">Single</option>
+              </select>
+
+         </div>
+
+
+
+        <!--  <div class="form-group">
+              <label class="control-label">View By:</label>
+              <select class="form-control" name="selectable">
+                  <option></option>
+                  <option value="color">color</option>
+                  <option value="checkboxs">checkboxs</option>
+                  <option value="select">select</option>
+              </select>
+        </div> -->
+
 
 
          <div>
 
-             <h3 class="card-title">Pattern</h3>
+          <h3 class="card-title">Pattern</h3>
                 <ul class="unstyled centered">
                     <li>
                        <div class="custom-control custom-checkbox">
-                          <input type="checkbox" 
-                          class="custom-control-input" 
-                          id="checkbox-price" 
-                          type="checkbox" 
-                          value="price" 
-                          name="extra[]"
-                          {{$variation_id > 0 && !empty($vary) && in_array('price',$vary) ? 'checked' : ''}}
-                          >
+                             <input type="checkbox" 
+                                    class="custom-control-input" 
+                                    id="checkbox-price" 
+                                    type="checkbox" 
+                                    value="price" 
+                                    name="extra[]"
+                                    {{$variation_id > 0 && !empty($vary) && in_array('price',$vary) ? 'checked' : ''}}>
                           <label class="custom-control-label" for="checkbox-price">Price vary for each Item</label>
                       </div>
                     </li>
@@ -67,12 +87,14 @@
                     </li>
 
                 </ul>
-        </div>
+
+
+         </div>
 
  
          
        
-        <div class="card-footer">
+         <div class="card-footer">
            <button type="submit" id="faqFormBtn" class="btn btn-primary">Create</button>
          </div>
     </form>

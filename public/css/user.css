@@ -1507,9 +1507,16 @@ transform: translate(-50%, -50%) rotate(0deg);
 
 
 /*for H-screen**/
-@media(min-width: 1600px){
+@media(min-width: 1300px){
 .order-status-row .media-content h3{
   font-size: 35px;
+}
+.wt-countdown.sm-countdown-wrap .count-down-timer li span{
+  font-size: 35px;
+}
+.sm-countdown-wrap .count-down-timer li{
+  width: 80px;
+  font-size: 15px;
 }
 }
 /*********/
