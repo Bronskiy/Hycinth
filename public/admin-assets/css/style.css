@@ -6906,6 +6906,7 @@ pre[class*=language-]:after, pre[class*=language-]:before {
   background: #f4f7fa;
   padding: 10px 20px;
   font-size: 14px;
+  -webkit-appearance: none;
 }
 .custom-select:focus,
 .form-control:focus {
@@ -10901,12 +10902,12 @@ input[type="checkbox"].switch_btn{
 }
 
 /******************/
-form#faqForm {
+/*form#faqForm {
     padding: 15px;
     background: #ffffff;
     border-radius: 4px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-}
+}*/
 form#faqForm label.control-label {
     color: #333;
 }
@@ -10962,3 +10963,33 @@ table.dataTable thead th {
 .control-label{
 	color: #333;
 }
+.cstm-admin-table tr th {
+    background: #3f4c67;
+    color: #fff;
+    border-color: #3e4b67;
+}
+.email-temp-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.email-temp-row .control-label{
+  margin-bottom: 10px;
+  }
+  .email-temp-row .btn{
+    margin-bottom: 10px;
+  }
+   .email-temp-row .form-control{
+    margin-bottom: 10px;
+   }
+   .page-header-title h5 {
+    text-transform: capitalize;
+}
+
+   /*responsive css*/
+   @media(max-width:767px){
+   .card .card-block, .card .card-body {
+    padding: 20px 10px;
+}
+}
+   /******************/

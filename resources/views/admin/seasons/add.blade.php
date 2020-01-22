@@ -31,13 +31,13 @@
 <div class="col-md-12">
 
   <form role="form" method="post" id="eventForm" action="{{url(route('store_seasons'))}}" enctype="multipart/form-data">
-                <div class="card-body">
+              
                    @csrf
                   
                    {{textbox($errors,'Season Name*','name')}}
                    {{textarea($errors,'Season Description*','description')}}
 
-                </div>
+          
 
                 <!-- /.card-body -->
 

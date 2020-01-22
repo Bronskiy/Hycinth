@@ -21,11 +21,13 @@ Route::get('/','Vendor\Shop\ShopController@index')->name('vendor.shop');
 #=============================================================================================================
 
 Route::get('/products','Vendor\Shop\ProductController@index')->name('vendor.shop.products.index');
-
+Route::get('/products/create','Vendor\Shop\ProductController@create')->name('vendor.shop.products.create');
+Route::get('/products/edit/{id}','Vendor\Shop\ProductController@edit')->name('vendor.shop.products.edit');
+Route::post('/products/save/category/{id}','Vendor\Shop\ProductController@saveCategory')->name('vendor.shop.products.saveCategory');
 
 #=============================================================================================================
 #  Create Products
 #=============================================================================================================
-
+Route::get('/products/ajax/category','Vendor\Shop\ProductController@ajaxCategory')->name('vendor.shop.products.ajax.categories');
 
 });

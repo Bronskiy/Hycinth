@@ -22,6 +22,9 @@
         <div class="col-12">
           <div class="card">
             <!-- /.card-header -->
+             <div class="card-header">
+             <h5>Commission Slabs</h5>                                            
+        </div>
        
  
             <div class="card-body">
@@ -43,9 +46,8 @@
 
   
 <div class="col-md-12">
-    <div class="card">
-        <div class="card-body">
-           <h5 class="card-title">Commission Slabs</h5>
+        
+           
            <div class="row">
              <div class="col-md-6 ">
                 <form method="post">
@@ -57,13 +59,13 @@
                        {{textbox($errors,'Commission Fee (In Percent %)','commission_fee')}}
                    
 
-                  <button class="btn">Save</button>
+                  <button class="btn btn-primary">Save</button>
                 </form>
              </div>
              
             <div class="col-md-6">
-
-               <table class="table">
+               <div class="table-responsive">
+               <table class="table cstm-admin-table"">
               <tr>
                 <th>Slabs</th> 
                 <th>Commission fee</th>
@@ -80,9 +82,9 @@
 
               @endforeach
             </table>
+          </div>
          </div>
-       </div>
-    </div>
+       
 </div>
 </div>
 

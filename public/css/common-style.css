@@ -1566,7 +1566,8 @@ border-radius:6px;
 
 .faq-accordion .acrdn-header {
   border-bottom-color: #EDEFF0;
-  background: transparent;
+  background: #36496c;
+    border-radius: 10px;
   position: relative;
 }
 
@@ -1587,7 +1588,7 @@ border-radius:6px;
     border-radius: 10px;
     background: #36496c;
     color: #fff;
-    padding-right: 100px;
+    padding-right: 120px;
 }
 .faq-accordion .btn:focus{
     outline: none;
@@ -1595,13 +1596,13 @@ border-radius:6px;
             box-shadow: none;
 }
 .acrdn-header h3 {
-    font-size: 18px;
+       font-size: 18px;
     min-height: 36px;
     position: relative;
     padding-left: 45px;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1609,6 +1610,12 @@ border-radius:6px;
     text-align: left;
     color: #fff;
     margin-bottom: 0px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: inline-flex;
 }
 .faq-accordion .btn-link:hover,
 .faq-accordion .btn-link:focus {

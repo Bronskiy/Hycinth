@@ -23,14 +23,16 @@
   <div class="row">
     <div class="col-12">
       <div class="card">
+        <div class="card-header">                                          
+           <h5>Vendor Submit Business</h5>    
+          </div>
         <div class="card-body">
-          <h5 class="card-title">Vendor Submit Business</h5>
           <div class="col-md-12">
-           <form class="row" method="post">
+           <form class="row email-temp-row" method="post">
               @csrf
-               <div class="col-md-5 text-right"><label>Enter Email Template Title</label></div>
-               <div class="col-md-5"><input type="text" name="title" class="form-control" required></div>
-               <div class="col-md-2"><button class="btn btn-warning">Submit</button></div>
+               <div class="col-md-3"><label class="control-label">Enter Email Template Title</label></div>
+               <div class="col-md-4"><input type="text" name="title" class="form-control" required></div>
+               <div class="col-md-2"><button class="btn btn-primary">Submit</button></div>
            </form>
           </div>
           <div class="col-md-12">
@@ -38,8 +40,8 @@
        
            
 
-            
-            <table class="table">
+            <div class="table-responsive">
+            <table class="table cstm-admin-table">
                  <tr>
                      <th>Template ID</th>
                      <th>Title</th>
@@ -58,6 +60,7 @@
 
                  @endforeach
             </table>
+          </div>
 
 
 

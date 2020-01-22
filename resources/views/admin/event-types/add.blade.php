@@ -33,13 +33,13 @@
 <div class="col-md-12">
 
   <form role="form" method="post" id="eventForm" action="{{url(route('store_events'))}}" enctype="multipart/form-data">
-                <div class="card-body">
+                
                    @csrf
                   
                    {{textbox($errors,'Event Type*','name')}}
                    {{textarea($errors,'Description*','description')}}
 
-                </div>
+                
 
                 <!-- /.card-body -->
 

@@ -25,7 +25,8 @@ public function index($id=0)
 	  $Variation = Variation::with('ProductVariation')->get();
     $variatant = Variation::find($id);
     $val = !empty($variatant) ? $variatant->name : '';
-	  $vary = !empty($variatant) && $variatant->value != "" ? json_decode($variatant->value) : [];
+    $vary = !empty($variatant) && $variatant->value != null ? json_decode($variatant->value) : [];
+
 	return view($this->path.'new',[
         'title' => 'Variation',
         'variations' => $Variation,

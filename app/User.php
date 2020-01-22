@@ -135,7 +135,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Models\EventOrder')->where('type','wishlist');
     }
 
+    
 
+    public function shop()
+    {
+       return $this->hasOne('App\Models\Vendors\Eshop','vendor_id','id');
+    }
 
 
 

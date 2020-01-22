@@ -32,7 +32,7 @@
 <div class="col-md-12">
 
   <form role="form" method="post" id="eventForm" action="{{url(route('update_amenity', $amenity->slug))}}" enctype="multipart/form-data">
-                <div class="card-body">
+                
 
 
                    @csrf
@@ -50,7 +50,7 @@
                             <label class="custom-control-label"for="game">Game</label>
                           </div> 
 
-                </div>
+                
                 <!-- /.card-body -->
 
                 <div class="card-footer">

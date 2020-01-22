@@ -33,7 +33,7 @@
 
   <form role="form" method="post" id="CmsPageForm" enctype="multipart/form-data">
     @csrf
-      <div class="card-body">
+     
          {{textbox($errors, 'Title*', 'title')}}
          <div class="form-group">
           <label>Body*</label>
@@ -44,7 +44,7 @@
          {{textbox($errors,'Meta Keywords*','meta_keywords')}}
          {{textarea($errors,'Meta Description*','meta_description')}}
 
-      </div>
+      
 
       <div class="card-footer">
         <button type="submit" id="CmsPageFormBtn" class="btn btn-primary">Create</button>

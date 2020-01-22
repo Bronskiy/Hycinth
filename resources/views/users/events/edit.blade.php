@@ -124,7 +124,7 @@
                 <input type="hidden" value="{{$user_event->colour}}" id="coloursArr" />
                 @php
                 $colour = json_decode($user_event->colour);
-                  for($i=0; $i<count($colour); $i++){ @endphp
+                  for($i=0; $i < count($colour); $i++){ @endphp
                 <div class="element col-lg-3 col-md-6" id="div_{{$i}}">              
                   <div class="form-group">
                     <input type="color" class="ColorGet" value="{{$colour[$i]}}" style="width: 46px; margin-left: -2px;">

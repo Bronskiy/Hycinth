@@ -4,7 +4,9 @@
  <div class="row no-gutters" data=id="{{$item->id}}">
                 <div class="col-lg-2">
                   <div class="cart-col-wrap">
-                     
+                    <div class="cart-table-head dsk-hide">
+                                 <h3>Event Image</h3>
+                    </div>   
                     <div class="car-col-body">
                       <figure class="cart-tab-img">
                         <img src="{{asset($item->event->event_picture)}}">
@@ -15,7 +17,9 @@
                 </div>
                 <div class="col-lg-8">
                   <div class="cart-col-wrap">
-                                      
+                               <div class="cart-table-head dsk-hide">
+                                 <h3>Event detail</h3>
+                              </div>                                       
                     <div class="car-col-body">
                       <a href="javascript:void(0);" class="cart-item-link">{{$item->event->title}}</a>
                       <div class="cart-item-des">

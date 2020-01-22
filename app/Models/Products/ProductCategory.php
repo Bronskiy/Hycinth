@@ -25,20 +25,28 @@ class ProductCategory extends Model
 
 
 
-  public function categoryParent()
+    public function categoryParent()
     {
        return $this->belongsTo($this,'parent');
     }
+
+
+
 
     public function categorySubparent()
     {
        return $this->belongsTo($this,'subparent');
     }
 
+
+
+
     public function subCategory()
     {
          return $this->hasMany($this,'parent')->where('parent','>',0)->where('subparent',0)->orderBy('sorting','ASC');
     }
+
+
 
     public function childCategory()
     {
@@ -54,6 +62,8 @@ class ProductCategory extends Model
          return $this->hasMany($this,'parent')->where('parent','>',0)->where('subparent',0)->orderBy('sorting','ASC');
     }
 
+
+
     public function childCategoryActives()
     {
          return $this->hasMany($this,'subparent')->where('parent','>',0)->where('subparent','>',0)->orderBy('sorting','ASC');
@@ -62,9 +72,17 @@ class ProductCategory extends Model
 
 
 
+    public function ProductVariations()
+    {
+         return $this->hasMany('App\Models\Products\ProductCategoryVariation','category_id')->groupBy('type');
+    }
 
 
 
+     public function ProductVariationTypes($type='')
+    {
+         return $this->hasMany('App\Models\Products\ProductCategoryVariation','category_id');
+    }
 
 
 

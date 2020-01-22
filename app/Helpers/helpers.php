@@ -2751,8 +2751,8 @@ function textarea($errors,$label, $name,$value=null){
 			$v=$value;
 		}
 		$text = "";
-		$text .= "<div class='form-group'>";
-		$text .= "<label>$label</label>";
+		$text .= "<div class='form-group '>";
+		$text .= "<label class='control-label'>$label</label>";
 		$text .= "<textarea class='form-control $border myTextEditor' id='$name' name='$name' rows='5' col='10'>".$v."</textarea>";
 		$text .= "<p class='error'>".$errors->first($name)."</p>";
 		$text .= "</div>";
@@ -2773,7 +2773,7 @@ function textareackeditor($errors,$label, $name,$value=null){
 		}
 		$text = "";
 		$text .= "<div class='form-group'>";
-		$text .= "<label>$label</label>";
+		$text .= "<label class='control-label'>$label</label>";
 		$text .= "<textarea class='form-control ckeditor $border myTextEditor' id='$name' name='$name'>".$v."</textarea>";
 		$text .= "<p class='error'>".$errors->first($name)."</p>";
 		$text .= "</div>";
@@ -2920,7 +2920,7 @@ function custom_format($n, $d = 0) {
 		}
 		$text = "";
 		$text .= "<div class='form-group'>";
-		$text .="<label>$label</label>";
+		$text .="<label class='control-label'>$label</label>";
 		$text .= "<textarea class='form-control $border' name='$name' id='hindiTypingTextarea'>".$v."</textarea>";
 		$text .=" <p class='error'>".$errors->first($name)."</p>";
 		$text .="</div>";

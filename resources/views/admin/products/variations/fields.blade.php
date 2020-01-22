@@ -184,12 +184,12 @@ $required = '';
                       </form>
                     </div>
                     <div class="col-md-6">
-
-                      <table class="table">
+                      <div class="table-responsive">
+                      <table class="table cstm-admin-table">
                          <tr>
-                           <th class="bg-warning">Sr.no</th>
-                           <th class="bg-warning">Fields</th>
-                           <th class="bg-warning">Action</th>
+                           <th>Sr.no</th>
+                           <th>Fields</th>
+                           <th>Action</th>
                          </tr>
 
                          @foreach($variations->VariationExtras as $k => $v)
@@ -215,7 +215,7 @@ $required = '';
                              </tr>
                          @endforeach
                       </table>
-
+                      </div>  
                     </div>
 
                   </div>

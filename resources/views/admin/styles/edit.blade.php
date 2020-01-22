@@ -31,7 +31,7 @@
 <div class="col-md-12">
 
   <form role="form" method="post" id="venueForm" enctype="multipart/form-data">
-                <div class="card-body">
+                
                    @csrf
                   
                    {{textbox($errors,'Title*','title', $style->title)}}
@@ -46,7 +46,7 @@
                     <img id="image_src" class="img-thumbnail" width="100" src="{{ url('/uploads').'/'.$style->image }}" />
                   </div>                  
                   
-                </div>
+               
 
                 <div class="card-footer">
                   <button type="submit" id="btnVanue" class="btn btn-primary">Submit</button>

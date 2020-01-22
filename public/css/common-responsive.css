@@ -70,6 +70,7 @@
    }
    .card-media-body-top .subtle{
     width: 100%;
+    margin-bottom: 15px;
    }
    .card-media-body-supporting-bottom{
     position: static;
@@ -162,6 +163,35 @@
 }
 .chatBox-frame .content .messages .cstm-pkg-inn-detail ul li{
 	font-size: 14px;
+}
+.faq-accordion .btn{
+  padding-right: 10px;
+}
+.faq-accordion .acrdn-action-btns {
+    position: static;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    transform: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+.acrdn-header h3 {
+  padding-left: 32px;
+}
+.faq-accordion .fa-stack{
+  font-size: 12px;
+}
+.dd3-content{
+  height: 100px;
+}
+.dd3-content .action-btn-wrap{
+    position: static;
+    transform: none;
+}
+.dd-handle {
+    height: 101px !important;
 }
 }
 @media (max-width: 480px){

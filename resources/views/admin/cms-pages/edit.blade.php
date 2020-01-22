@@ -32,7 +32,7 @@
 <div class="col-md-12">
 
   <form role="form" method="post" id="CmsPageForm" enctype="multipart/form-data">
-                <div class="card-body">
+                
                    @csrf
                    
                    {{textbox($errors, 'Title*', 'title', $page->title)}}
@@ -46,7 +46,7 @@
                  {{textbox($errors,'Meta Keywords*','meta_keywords', $page->meta_keywords)}}
                  {{textarea($errors,'Meta Description*','meta_description', $page->meta_description)}}
 
-                </div>
+                
 
                 <div class="card-footer">
                   <button type="submit" id="CmsPageFormBtn" class="btn btn-primary">Update</button>

@@ -29,7 +29,7 @@
 
             <form role="form" method="post" action="{{ route('admin.emails.update', $email->id) }}" id="businessSubForm" enctype="multipart/form-data">
             @csrf
-              <div class="card-body">
+              
               <div class="form-group label-floating is-focused">
                 <label class="control-label">Subject*</label>
                 <input type="text" class="form-control " name="subject" value="{{$email->subject}}" id="subject1">
@@ -38,7 +38,7 @@
                 <label>Body*</label>
                 <textarea class="form-control" id="body" name="body">{{$email->body}}</textarea>
               </div>
-              </div>
+              
               <div class="card-footer">
               <button type="submit" id="businessSubFormBtn" class="btn btn-primary">Update</button>
               </div>

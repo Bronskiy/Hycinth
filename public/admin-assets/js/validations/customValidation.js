@@ -109,7 +109,7 @@ $.validator.addMethod("minDate", function(value, element) {
 $.validator.addMethod("minStartDate", function(value, element) {
     var curDate = new Date($('#start_date').val());
     var inputDate = new Date(value);
-    if (inputDate == 'Invalid Date' || inputDate > curDate) {
+    if (inputDate == 'Invalid Date' || inputDate >= curDate) {
       return true; 
     }
     return false;

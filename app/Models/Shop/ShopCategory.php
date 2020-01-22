@@ -31,6 +31,13 @@ class ShopCategory extends Model
     }
 
 
+     public function childCategory($shop_id,$parent=0)
+    {
+        $categoryIDs = $this->where('shop_id',$shop_id)->where('parent',$parent)->pluck('category_id')->toArray();
+        return ProductCategory::whereIn('id',$categoryIDs)->where('parent',$parent)->where('status',1)->orderBy('sorting','ASC')->get();
+    }
+
+
 
     
 

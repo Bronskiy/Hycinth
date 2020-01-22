@@ -36,7 +36,7 @@ $(document).ready(function() {
       },
       "end_time":{
       	required: true,
-        timeValidator: '#start_time'
+        // timeValidator: '#start_time'
       },
       "event_budget":{
       	required: true,

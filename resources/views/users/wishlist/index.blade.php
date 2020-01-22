@@ -20,7 +20,7 @@
             @if(Auth::check() && Auth::user()->role == 'user' && $CartItems->count() > 0)
             <div class="row">
                <div class="col-lg-12">
-                  <div class="cart-items-wrap">
+                  <div class="cart-items-wrap mobile-hide">
                      <div class="row no-gutters">
                         <div class="col-lg-2">
                            <div class="cart-col-wrap">

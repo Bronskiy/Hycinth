@@ -19,4 +19,28 @@ class ProductCategoryVariation extends Model
    	   	   return $variation->count() > 0 ? $return : '';
    	   }
    }
+
+
+
+
+
+    public function variationTypes()
+    {
+         return $this->hasMany('App\Models\Products\ProductCategoryVariation','type','type');
+    }
+
+
+    public function variations()
+    {
+    	return $this->belongsTo('App\Models\Products\Variation','type','type')->where('status',1);
+    }
+
+    public function variation()
+    {
+    	return $this->belongsTo('App\Models\Products\ProductVariation','value')->where('status',1);
+    }
+
+
+
+
 }

@@ -52,7 +52,7 @@
                           type="checkbox" 
                           value="price" 
                           name="extra[]"
-                          {{$variation_id > 0 && in_array('price',$vary) ? 'checked' : ''}}
+                          {{$variation_id > 0 && !empty($vary) && in_array('price',$vary) ? 'checked' : ''}}
                           >
                           <label class="custom-control-label" for="checkbox-price">Price vary for each Item</label>
                       </div>
@@ -61,7 +61,7 @@
                     <li>
                        <div class="custom-control custom-checkbox">
                           <input type="checkbox" class="custom-control-input" id="checkbox-stock" 
-                          type="checkbox" value="stock" name="extra[]"  {{$variation_id > 0 && in_array('stock',$vary) ? 'checked' : ''}}>
+                          type="checkbox" value="stock" name="extra[]"  {{$variation_id > 0 && !empty($vary) && in_array('stock',$vary) ? 'checked' : ''}}>
                           <label class="custom-control-label" for="checkbox-stock">Quantities vary for each Item</label>
                       </div>
                     </li>
@@ -80,9 +80,10 @@
 
 </div>
 <div class="col-md-8">
-    <table class="table">
+  <div class="table-responsive">
+    <table class="table cstm-admin-table">
       <tr>
-        <th class="bg-warning">Sr.no</th><th class="bg-warning">Variation</th><th class="bg-warning">Meta Tag</th><th class="bg-warning">Status</th><th class="bg-warning">Action</th>
+        <th class="">Sr.no</th><th class="">Variation</th><th class="">Meta Tag</th><th class="">Status</th><th class="">Action</th>
       </tr>
 
       @foreach($variations as $k => $v)
@@ -108,7 +109,8 @@
           </td>
         </tr>
       @endforeach
-    </table>      
+    </table>
+    </div>      
 </div>
 </div>
 

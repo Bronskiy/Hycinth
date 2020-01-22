@@ -32,7 +32,7 @@
 <div class="col-md-12">
 
   <form role="form" method="post" id="eventForm" action="{{url(route('update_event',$events->slug))}}" enctype="multipart/form-data">
-                <div class="card-body">
+                
 
 
                    @csrf
@@ -40,7 +40,7 @@
                    {{textbox($errors,'Event Type*','name',$events->name)}}
                    {{textarea($errors,'Description*','description',$events->description)}}
                     
-                </div>
+              
                 <!-- /.card-body -->
 
                 <div class="card-footer">

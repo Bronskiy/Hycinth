@@ -32,7 +32,7 @@
 <div class="col-md-12">
 
   <form role="form" method="post" id="eventForm" action="{{url(route('store_amenities'))}}" enctype="multipart/form-data">
-                <div class="card-body">
+                
                    @csrf
 
                    {{textbox($errors,'Amenity Type*','name')}}
@@ -49,7 +49,7 @@
                             <label class="custom-control-label"for="game-2">Game</label>
                           </div>               
 
-                </div>
+                
 
                 <!-- /.card-body -->
 

@@ -32,7 +32,7 @@
                   <div class="col-md-12">
 
                     <form role="form" method="post" id="categoryForm" enctype="multipart/form-data">
-                                  <div class="card-body">
+                                
 <div class="row">
                                          @csrf
           <div class="col-md-6"> 
@@ -99,18 +99,20 @@
   <div class="col-md-6">  {{textbox($errors,'Meta Tags*','meta_tag')}}</div>
   <div class="col-md-12">  {{textarea($errors,'Meta description*','meta_description')}}</div>
  <div class="col-md-12">
-                     <!-- {{choosefilemultiple($errors,'Category Icon','image')}} -->
-                    
-         <img src="" id="image_src" style="width: 100px; height: 100px; display: none"/>
+                     <!-- {{choosefilemultiple($errors,'Category Icon','image')}} -->                    
+         
 
                      <div class="form-group">
-            <label class="label-file">Image*</label>
+            <label class="label-file control-label">Image*</label>
             <input type="file" accept="image/*" required id="cat_image" onchange="ValidateSingleInput(this, 'image_src')" class="form-control" name="image">
            </div>
+         <div class="form-group">
+           <img src="" id="image_src" style="width: 100px; height: 100px; display: none"/>
+         </div>
 
             </div>
      </div>                                 
-      </div>
+      
       <!-- /.card-body -->
             <div class="card-footer">
               <button type="submit" id="categoryFormSbt" class="btn btn-primary">Submit</button>
