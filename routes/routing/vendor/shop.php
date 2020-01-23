@@ -30,4 +30,35 @@ Route::post('/products/save/category/{id}','Vendor\Shop\ProductController@saveCa
 #=============================================================================================================
 Route::get('/products/ajax/category','Vendor\Shop\ProductController@ajaxCategory')->name('vendor.shop.products.ajax.categories');
 
+
+
+
+
+
+
+#=============================================================================================================
+#  Product Variation Ajax
+#=============================================================================================================
+
+
+Route::get('/products/ajax/category/{id}','Vendor\Shop\VariationController@types')->name('vendor.shop.variation.types');
+Route::get('/products/ajax/save/attributes/{id}','Vendor\Shop\VariationController@attributes')->name('vendor.shop.variation.attributes');
+Route::post('/products/ajax/save/attributes/{id}','Vendor\Shop\VariationController@saveAttributes')->name('vendor.shop.variation.attributes');
+
+
+Route::get('/products/ajax/add/item/variations/attributes/{id}','Vendor\Shop\VariationController@variationAttributeAddationItem')->name('vendor.shop.variations.add.attributes');
+
+
+#=============================================================================================================
+#  Product Inventory Ajax
+#=============================================================================================================
+
+Route::post('/products/ajax/save/Inventory/product/{id}',
+	       'Vendor\Shop\VariationController@createInventory')->name('vendor.shop.variations.inventoryCreate');
+
+#=============================================================================================================
+#  Create Products
+#=============================================================================================================
+
+
 });

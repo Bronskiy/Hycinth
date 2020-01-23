@@ -78,6 +78,12 @@ class ProductCategory extends Model
     }
 
 
+    public function ProductVariationWithType()
+    {
+         return $this->hasMany('App\Models\Products\ProductCategoryVariation','category_id'); //->where('type',$type);
+    }
+
+
 
      public function ProductVariationTypes($type='')
     {

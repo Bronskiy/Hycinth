@@ -24,4 +24,10 @@ class Product extends Model
      {
      	 return $this->belongsTo('App\Models\Products\ProductCategory','childcategory_id','id');
      }
+
+
+     public function variationAttributes()
+     {
+          return $this->hasMany('App\Models\Products\ProductAttribute','product_id','id')->where('parent',0);
+     }
 }

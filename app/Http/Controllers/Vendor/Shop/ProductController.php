@@ -9,6 +9,7 @@ use Auth;
 use App\Models\Vendors\Eshop;
 use App\Models\Products\ProductCategory;
 use App\Models\Shop\ShopCategory;
+use App\Models\Products\ProductInventory;
 class ProductController extends Controller
 {
 
@@ -47,8 +48,12 @@ public function edit($id)
 
     $shop = Auth::user()->shop;
     $ShopCategory = new ShopCategory;
-    $product = Product::with('subcategory.ProductVariations','subcategory.ProductVariations.variationTypes')->where('user_id',Auth::user()->id)->where('id',$id);
-     //return $product->first();
+    $product = Product::with(
+    	'subcategory.ProductVariations',
+    	'subcategory.ProductVariations.variationTypes',
+    	'variationAttributes'
+    )->where('user_id',Auth::user()->id)->where('id',$id);
+    //return $product->first();
     if($product->count() == 0){
     	return redirect()->route('vendor.shop.products.create');
     }

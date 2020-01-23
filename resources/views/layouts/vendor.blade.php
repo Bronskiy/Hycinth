@@ -34,7 +34,7 @@
 
     <link rel="stylesheet" href="{{url('/admin-assets/css/style.css')}}">
     <link rel="stylesheet" href="{{url('/css/chat.css')}}">
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{url('/AdminFILE/dist/css/jquery-ui.css')}}">
 <link href="{{ url('/css/vendors/vendor-custom.css') }}" rel="stylesheet">
 <link href="{{ url('/css/vendors/vendor-responsive.css') }}" rel="stylesheet">
@@ -81,7 +81,7 @@
 
 <!-- delete data js -->
 <script src="{{ asset('js/deleteData.js') }}"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 @yield('scripts')
 
 </body>

@@ -2279,6 +2279,138 @@ overflow: auto;
 .normal-link:hover, .normal-link:focus{
   color: #eda208;
 }
+
+/*23-01-2020*/
+
+.variableBox {
+   background: #36496c;
+   margin: 0px;
+   padding: 0px 0;
+   position: relative;
+}
+
+.variableBox ul.sideUl li a {
+       display: block;
+   border-radius: 0px;
+   margin: 0px;
+   text-align: left;
+   border-bottom: 1px solid #4c5567;
+}
+
+.variableBox ul.sideUl {
+   min-height: 211px;
+   width: 100%;
+}
+
+.variableBox {
+   /* background: #ddd; */
+}
+.outerWraps{
+background: #f2f2f2;
+   min-height: 400px;
+
+}
+.variableBox h3 {
+    margin-right: 10px;
+    color: #fff;
+}
+.variableBox h3 select{
+padding: 3px;
+font-size: 12px;
+}
+.variableBox .loader3 {
+     position: absolute;
+   z-index: 999;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   background: #e8e8e87d;
+   text-align: center;
+   padding: 20%;
+   display: none;
+}
+
+.variableBox .loader3 img {
+   width: 89px;
+}
+
+.variableBox .head {
+    padding: 10px;
+    text-transform: uppercase;
+    margin-top: 20px;
+    font-size: 26px;
+}
+.variableBox {
+    background: #f2f2f2;
+    margin-bottom: 30px;
+  }
+  .variableBox .outerWraps {
+    background: #ffffff;
+    min-height: 400px;
+}
+.variableBox .sideUl li .btn {
+    background: #f2f2f2;
+    border: none;
+    color: #2b3956;
+    font-weight: 600;
+}
+.variableBox .sideUl li .btn:focus{
+  outline: none;
+  box-shadow: none !important;
+}
+.variableBox .sideUl li .btn.active {
+    background-color: #35486b;
+    border-color: #35486b;
+}
+.variableBox ul.sideUl li a {
+    display: block;
+    border-radius: 0px;
+    margin: 0px;
+    text-align: left;
+    border-bottom: 1px solid #d1d1d1;
+}
+.variableBox .top-field-wrap {
+    display: flex;
+    align-items: center;
+    background: #eda108;
+    width: 100%;
+    padding: 10px;
+}
+.v-cstm-select{
+  height: 35px;
+  max-width: 200px;
+  width: 100%;
+  border:1px solid #d1d1d1;
+  border-radius: 4px;
+}
+.variableBox .col-form-label {
+    padding: 0px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.variableBox #loadAllVariationOfProductBTN {
+    height: 35px;
+    padding: 6px 20px;
+}
+.variableBox .loadAllVariationOfProduct {
+    margin-top: 25px;
+}
+.variableBox .row.variationLabeled {
+    margin-bottom: 14px;
+}
+.variableBox .variation-header-wraper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.variableBox .variation-header-wraper .form-group{
+  margin-bottom: 0px;
+}
+.variationItemOneOfList .card, .loadAllVariationOfProduct .card {
+    border: 1px solid #e8e8e8;
+}
 /*********************************/
 /******************/
 @media (max-width: 767px) {

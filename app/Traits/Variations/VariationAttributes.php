@@ -1,11 +1,7 @@
 <?php
 namespace App\Traits\Variations;
 trait VariationAttributes{
-
-
-
-
-
+ 
 public function InputTypeAttribute()
 {
     return [
