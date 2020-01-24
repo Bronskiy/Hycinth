@@ -2,7 +2,7 @@
  @if(!empty($type))
 @php  $variations = $product->subcategory->ProductVariationWithType->where('type',$type); @endphp
 
-  <div class="card">
+  <div class="card productItemParentDiv">
     <div class="card-header" id="headingOne">
       <div class="row">
       	<div class="col-md-8">{{$type}}</div>
@@ -10,6 +10,7 @@
              <a href="#" data-toggle="collapse" data-target="#collapseOne{{$type}}" aria-expanded="false" aria-controls="collapseOne{{$type}}">
                <i class="fas fa-list"></i>
             </a>
+           <a href="javascript:void(0)" class="remove-attribute" data-id="0"><i class="fa fa-trash"></i></a>
           </div>
       </div>
     </div>
@@ -31,16 +32,21 @@
 					</div>
 				 </div>
 
-
-				  <div class="form-group">
+               @if($product->product_type == 1)
+				   <div class="form-group">
 				 	<div class="form-check">
 					  <input class="form-check-input" type="checkbox" value="1" name="variable[{{$type}}][]" id="defaultCheck-{{$type}}-2">
 
 					  <label class="form-check-label" for="defaultCheck-{{$type}}-2">
-					    Visible on the product page  
+					     Used for Variation
 					  </label>
 					</div>
 				 </div>
+
+				@else
+				  <input type="hidden" value="0" name="variable[{{$type}}][]" id="defaultCheck-{{$type}}-2">
+                @endif
+				 
 
 				  
           	 </div>

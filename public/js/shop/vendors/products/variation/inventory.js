@@ -1,44 +1,38 @@
 
-$("body").find('#inventoryFormSubmit').validate({
-	    onfocusout: function (valueToBeTested) {
-	      $(valueToBeTested).valid();
-	    },
+// $("body").find('#inventoryFormSubmit').validate({
+// 	    onfocusout: function (valueToBeTested) {
+// 	      $(valueToBeTested).valid();
+// 	    },
 	  
-	    highlight: function(element) {
-	      $('element').removeClass("error");
-	    },
-       rules: {
-		      "sku": {
-		          required: true,
-		          maxlength: 150
-		      },
-		      "hasStock":{
-		        required: true
-		      },
-		      "stock":{
-		        required: function(){
-		        	 if($("body").find('#hasStock').is(':checked')){
-		        	 	return true;
-		        	 }
-		        }
-		      },
-		      "lowInStock":{
-		        required: function(){
-		        	 if($("body").find('#hasStock').is(':checked')){
-		        	 	return true;
-		        	 }
-		        }
-		      },
-		      valueToBeTested: {
-		          required: true,
-              }
-         } 
+// 	    highlight: function(element) {
+// 	      $('element').removeClass("error");
+// 	    },
+//        rules: {
+// 		      "sku": {
+// 		          required: true,
+// 		          maxlength: 150
+// 		      },
+		       
+// 		      "stock":{
+// 		        required: function(){
+// 		        	 if($("body").find('#hasStock').is(':checked')){
+// 		        	 	return true;
+// 		        	 }
+// 		        }
+// 		      },
+// 		      "lowInStock":{
+// 		        required: function(){
+// 		        	 if($("body").find('#hasStock').is(':checked')){
+// 		        	 	return true;
+// 		        	 }
+// 		        }
+// 		      },
+// 		      valueToBeTested: {
+// 		          required: true,
+//               }
+//          } 
     
-});
-
- 
- 
-
+// });
 
 
 $("body").on('submit','#inventoryFormSubmit',function(e){
@@ -66,7 +60,30 @@ $("body").on('submit','#inventoryFormSubmit',function(e){
                  }
               } 
          });
-});
+}); 
+
+
+
+ //=============================================================================================================
+ //=============================================================================================================
+ //=============================================================================================================
+ //=============================================================================================================
+ //=============================================================================================================
+ //=============================================================================================================
+ //=============================================================================================================
+ 
+
+
+
+
+
+//==============================================================================================================
+//==============================================================================================================
+//==============================================================================================================
+
+
+
+
 
 
 

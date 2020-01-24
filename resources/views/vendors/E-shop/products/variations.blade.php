@@ -9,16 +9,18 @@
 	  		<h3>Product Variations</h3>
 	  		
 	  			   <select name="variation_type" id="variationType" class="v-cstm-select">
-	          	       <option value="0">Simple Product</option>
-	          	       <option value="1">Variable Product</option>
+	          	       <option value="0" {{$product->product_type == 0 ? 'selected' : ''}}>Simple Product</option>
+	          	       <option value="1" {{$product->product_type == 1 ? 'selected' : ''}}>Variable Product</option>
 	               </select>
 	  	</div>
 		  	
                     
            
 	 
-     <div class="col-md-3">
+     <div class="col-md-12">
      	   <div class="row">
+     	   	<input type="hidden" id="loadAllstepWhenClieckOnTab" value="{{url(route('vendor.shop.variations.loadSteps',$product->id))}}">
+           
               <ul class="sideUl">
               	 <li><a href="javascript:void(0)" class="btn btn-primary navVariant active nav-general" data-show="#generalBox">General</a></li>
               	 <li><a href="javascript:void(0)" class="btn btn-primary navVariant nav-inventory" data-show="#inventoryBox">Inventory</a></li>
@@ -28,7 +30,7 @@
             </div>
      </div>
 
-     <div class="col-md-9">
+     <div class="col-md-12">
      	 <div class="row outerWraps">
      	 	 <div class="col-md-12">
      	 	 	 <div class="innerWraps row">

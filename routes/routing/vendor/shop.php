@@ -56,6 +56,30 @@ Route::get('/products/ajax/add/item/variations/attributes/{id}','Vendor\Shop\Var
 Route::post('/products/ajax/save/Inventory/product/{id}',
 	       'Vendor\Shop\VariationController@createInventory')->name('vendor.shop.variations.inventoryCreate');
 
+
+Route::get('/products/ajax/load/steps/{id}',
+	       'Vendor\Shop\VariationController@loadSteps')->name('vendor.shop.variations.loadSteps');
+
+Route::get('/products/ajax/remove/product-vaariation-with-type/{id}',
+				       'Vendor\Shop\VariationController@removeProductVariationWithType')
+			           ->name('vendor.shop.variations.removeProductVariationWithType');
+
+
+
+
+
+
+Route::post('/products/ajax/create/variation-with-stock/{id}',
+				       'Vendor\Shop\VariationController@createNewVariationWithAttributeAndStockManagable')
+			           ->name('vendor.shop.variations.createNewVariationWithAttributeAndStockManagable');
+
+
+
+
+Route::get('/check/skuid/exist/ornot',
+				       'Vendor\Shop\VariationController@checkSkU')
+			           ->name('vendor.shop.variations.checkSkU');
+
 #=============================================================================================================
 #  Create Products
 #=============================================================================================================

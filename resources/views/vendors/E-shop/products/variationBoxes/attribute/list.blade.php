@@ -10,7 +10,7 @@ $childAttributes = $parent->childAttributes->pluck('value')->toArray();
 $variations = $product->subcategory->ProductVariationWithType->where('type',$type);
 @endphp
 
-  <div class="card">
+  <div class="card productItemParentDiv">
     <div class="card-header" id="headingOne">
       <div class="row">
       	<div class="col-md-8">{{$type}}</div>
@@ -18,6 +18,11 @@ $variations = $product->subcategory->ProductVariationWithType->where('type',$typ
              <a href="#" data-toggle="collapse" data-target="#collapseOne{{$type}}" aria-expanded="false" aria-controls="collapseOne{{$type}}">
                <i class="fas fa-list"></i>
             </a>
+
+            <a href="javascript:void(0)" class="remove-attribute text-danger" 
+            data-id="{{$parent->id}}"
+            data-url="{{url(route('vendor.shop.variations.removeProductVariationWithType',$product->id))}}?type=attribute&id={{$parent->id}}"
+            ><i class="fa fa-trash"></i></a>
           </div>
       </div>
     </div>
@@ -39,16 +44,19 @@ $variations = $product->subcategory->ProductVariationWithType->where('type',$typ
 					</div>
 				 </div>
 
-
+                 @if($product->product_type == 1)
 				  <div class="form-group">
-				 	<div class="form-check">
-					  <input class="form-check-input" type="checkbox" value="1" name="variable[{{$type}}][]" id="defaultCheck-{{$type}}-2" {{$parent->product_variant == 1 ? 'checked' : ''}}>
-                      <label class="form-check-label" for="defaultCheck-{{$type}}-2">
-					    Used for Variation
-					  </label>
-					</div>
-				 </div>
+				 	 <div class="form-check">
+						  <input class="form-check-input" type="checkbox" value="1" name="variable[{{$type}}][]" id="defaultCheck-{{$type}}-2" {{$parent->product_variant == 1 ? 'checked' : ''}}>
+	                      <label class="form-check-label" for="defaultCheck-{{$type}}-2">
+						    Used for Variation
+						  </label>
+					 </div>
+				  </div>
 
+				@else
+				  <input type="hidden" value="0" name="variable[{{$type}}][]" id="defaultCheck-{{$type}}-2">
+                @endif
 				  
           	 </div>
           	 <div class="col-md-6">

@@ -30,4 +30,14 @@ class Product extends Model
      {
           return $this->hasMany('App\Models\Products\ProductAttribute','product_id','id')->where('parent',0);
      }
+
+     public function HasInventory()
+     {
+          return $this->hasOne('App\Models\Products\ProductInventory','product_id','id');
+     }
+
+     public function ProductAssignedVariations()
+     {
+          return $this->hasMany('App\Models\Products\ProductAssignedVariation','product_id')->where('parent',0);
+     }
 }

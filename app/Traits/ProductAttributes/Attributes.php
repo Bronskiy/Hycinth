@@ -11,11 +11,12 @@ use App\Traits\ProductAttributes\ProductAttributes;
 
 // more traits
 use App\Traits\ProductAttributes\CreateInventory;
+use App\Traits\ProductAttributes\ProductAssignedVariationTrait;
 trait Attributes{
 
 
 use CreateInventory;
-
+use ProductAssignedVariationTrait;
 
 #===================================================================================================
 #===================================================================================================

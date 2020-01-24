@@ -49,11 +49,13 @@ public function edit($id)
     $shop = Auth::user()->shop;
     $ShopCategory = new ShopCategory;
     $product = Product::with(
+    	'ProductAssignedVariations',
+    	'ProductAssignedVariations.inventoryWithVariation',
     	'subcategory.ProductVariations',
     	'subcategory.ProductVariations.variationTypes',
     	'variationAttributes'
     )->where('user_id',Auth::user()->id)->where('id',$id);
-    //return $product->first();
+    return $product->first();
     if($product->count() == 0){
     	return redirect()->route('vendor.shop.products.create');
     }

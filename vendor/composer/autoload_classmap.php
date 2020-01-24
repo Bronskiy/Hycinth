@@ -104,6 +104,7 @@ return array(
     'App\\Models\\InviteVendor' => $baseDir . '/app/Models/InviteVendor.php',
     'App\\Models\\Order' => $baseDir . '/app/Models/Order.php',
     'App\\Models\\Products\\Product' => $baseDir . '/app/Models/Products/Product.php',
+    'App\\Models\\Products\\ProductAssignedVariation' => $baseDir . '/app/Models/Products/ProductAssignedVariation.php',
     'App\\Models\\Products\\ProductAttribute' => $baseDir . '/app/Models/Products/ProductAttribute.php',
     'App\\Models\\Products\\ProductCategory' => $baseDir . '/app/Models/Products/ProductCategory.php',
     'App\\Models\\Products\\ProductCategoryVariation' => $baseDir . '/app/Models/Products/ProductCategoryVariation.php',

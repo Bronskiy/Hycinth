@@ -79,14 +79,6 @@ $("body").on('click','.addMoreVariationAttributes',function(e){
 
 
 
-
-
-
-
-
-
-
-
 });
 
 
