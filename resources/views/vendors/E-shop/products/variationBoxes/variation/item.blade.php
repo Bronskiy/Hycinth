@@ -25,6 +25,10 @@
                                      $AssignedAttribute = !empty($variant) && $variant->hasVariationAttributes != null && $variant->hasVariationAttributes->count() > 0 ? $variant->hasVariationAttributes->where('type',$type)->first()->attribute_id : 0;
                                                   
 								@endphp
+
+
+
+
 							        <div class="col-md-3">
 							            <div class="form-group">
 							                         <select name="variations[{{$type}}]" class="form-control" >
@@ -48,7 +52,11 @@
 
        <div id="collapseTypeVariation{{$variationCount}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
            <div class="card-body">
-                 @include('vendors.E-shop.products.variationBoxes.variation.variationFields')
+
+					@if(!empty($variant))
+			              <input type="hidden" name="variation_id" value="{{$variant->id}}">
+			        @endif
+                    @include('vendors.E-shop.products.variationBoxes.variation.variationFields')
            </div>
        </div>
 

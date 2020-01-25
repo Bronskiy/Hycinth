@@ -44,10 +44,7 @@ class UserEventController extends Controller
     	return view('users.events.create')->with(['events' => $events]);
     }
 
-	public function create(Request $request) {
-  
-
- 
+	public function create(Request $request) { 
 
         $this->validate($request,[
                  'title' => 'required',
@@ -64,9 +61,22 @@ class UserEventController extends Controller
                  // 'max_person' => 'required',
                  // 'event_picture' => 'required|image',
                  // 'seasons' => 'required',
-                 // 'colour' => 'required'
+                 // 'colourNames' => 'required',
+                 // 'colours' => 'required',
                  
          ]);
+
+        if(!empty($request->colourNames) && !empty($request->colours)) {
+          foreach($request->colourNames as $key => $cname) {
+                if(!empty($request->colourNames[$key] && $request->colours[$key])) {
+                    $colours[] = [
+                        'colourName' => $request->colourNames[$key],
+                        'colour' => $request->colours[$key]
+                    ]; 
+                }   
+            }
+        }
+
 
         $path = 'images/events/';
         $e =new  UserEvent;
@@ -86,12 +96,12 @@ class UserEventController extends Controller
         $e->min_person = trim($request->min_person);
         $e->max_person = trim($request->max_person);
         $e->seasons = trim($request->seasons);
-        $e->colour = json_encode($request->colour);
+        $e->colour = json_encode($colours);
         
         $e->event_picture = $request->hasFile('event_picture') ? uploadFileWithAjax($path, $request->event_picture) : $e->event_picture;
         $e->save();
           
-        $url = url(route('user_show_detail_event',$e->slug));
+        $url = url(route('user_show_detail_event', $e->slug));
 
         $categories = $request->event_categories;
         $u = Auth::user();
@@ -180,12 +190,22 @@ class UserEventController extends Controller
                  'max_person' => 'required',
                  'event_picture' => 'image',
                  'seasons' => 'required',
-                 'colour' => 'required',
+                 'colourNames' => 'required',
+                 'colours' => 'required',
                   
    ]);
 
 
-
+        if(!empty($request->colourNames) && !empty($request->colours)) {
+          foreach($request->colourNames as $key => $cname) {
+                if(!empty($request->colourNames[$key] && $request->colours[$key])) {
+                    $colours[] = [
+                        'colourName' => $request->colourNames[$key],
+                        'colour' => $request->colours[$key]
+                    ]; 
+                }   
+            }
+        }
 
 
         $path = 'images/events/';
@@ -206,7 +226,7 @@ class UserEventController extends Controller
         $e->min_person = trim($request->min_person);
         $e->max_person = trim($request->max_person);
         $e->seasons = trim($request->seasons);
-        $e->colour = json_encode($request->colour);
+        $e->colour = json_encode($colours);
         
         $e->event_picture = $request->hasFile('event_picture') ? uploadFileWithAjax($path, $request->event_picture) : $e->event_picture;
         $e->save();

@@ -151,6 +151,8 @@
     <script type="text/javascript" src="{{url('/e-shop/js/owl.carousel.min.js')}}"></script>
     <script type="text/javascript" src="{{url('/e-shop/js/custom.js')}}"></script>
     <script type="text/javascript" src="{{url('/e-shop/js/home/home.js')}}"></script>
+
+    @yield('jscript')
     <script>
         AOS.init();
 

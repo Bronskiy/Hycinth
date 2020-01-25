@@ -53,10 +53,12 @@ $("body").on('submit','#inventoryFormSubmit',function(e){
 			   },   
                success: function (result) {
                	 if(result.status == 1){
-			          //$div.html(result.htm);
-			          
-			          $("body").find('.select2').select2();
-			          $loader.hide();
+               	 	   // alert('Inventry info is saved');
+                 	 alert(result.messages);
+			           $loader.hide();
+                 }else{
+                 	 alert(result.messages);
+                 	  $loader.hide();
                  }
               } 
          });

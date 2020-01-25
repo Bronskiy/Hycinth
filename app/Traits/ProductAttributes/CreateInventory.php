@@ -22,9 +22,14 @@ trait CreateInventory{
 	{             
 		          $product = Product::find($product_id);
 
+
+		     if($this->checkSkU($request,$product) == 0){
+                return response()->json(['status' => 0,'messages' => $request->sku.' is already used.']);
+		     }else{
+ 
 		          $old = ProductInventory::where('user_id',$product->user_id)
 		          ->where('product_id',$product->id)
-		          ->where('product_id',$product->id)
+		          ->where('variation_id',0)
 		          ->where('shop_id',$product->shop_id);
 
 
@@ -53,8 +58,8 @@ trait CreateInventory{
 		          	
 		          }
 
-		          return response()->json(['status' => 1]);
-
+		          return response()->json(['status' => 1,'messages' => 'Inventry info is saved']);
+             }
 				 
 	}
 
@@ -65,17 +70,23 @@ trait CreateInventory{
 #=====================================================================================================
 
 
-	public function checkSkU(Request $request)
+	public function checkSkU($request,$product,$type=0,$variation_id=0)
 	{
+
+		                      $array = [
+                                 'type' => $type,
+                                 'variation_id' => $variation_id,
+                                 'product_id' => $product->id
+		                      ];
 		                      $u = ProductInventory::where('sku',$request->sku)
-		                       ->orWhere(function($t) use($request){
-                                      if($request->type == 1 && $request->variation_id > 0){
-											$u->where('variation_id','!=',$request->variation_id);
-                                      }elseif($request->type == 0){
-											$u->where('product_id','!=',$request->product_id);
-                                      }
-		                       })
-		                       ->count();
+							                       ->orWhere(function($t) use($array){
+					                                      if($array['type'] == 1 && $array['variation_id'] > 0){
+																$t->where('variation_id','!=',$array['variation_id']);
+					                                      }elseif($array['type'] == 0){
+																$t->where('product_id','!=',$array['product_id']);
+					                                      }
+							                       })
+							                       ->count();
 
 		
        return $u == 0 ? 1 : 0;

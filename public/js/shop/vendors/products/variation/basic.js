@@ -305,7 +305,9 @@ function defaultJs() {
 $("body").find('.select2').select2();
 // $this = $("body").find('form.saveVariationStockForm');
 // validationRuleOfAttributes($this);
+var $formVariationGeneralSetting = $("body").find('form#VariationGeneralSetting');
 
+VariationGeneralSettingValidation($formVariationGeneralSetting);
 //======================================================================================================
 
 $("body").find('#inventoryFormSubmit').validate({
@@ -401,6 +403,97 @@ $("body").on('submit','.saveVariationStockForm',function(e){
 
 
 
+//===================================================================================================
+//===================================================================================================
+//===================================================================================================
+var $formVariationGeneralSetting = $("body").find('form#VariationGeneralSetting');
+
+VariationGeneralSettingValidation($formVariationGeneralSetting);
+
+$("body").on('submit','form#VariationGeneralSetting',function(e){
+  
+   var $this = $(this);
+ 
+   var $loader = $("body").find('.loader3');
+   var $div =$("body").find('.loadAllVariationOfProduct');
+   if($this.valid()){
+    $.ajax({
+               url : $this.attr('data-action'),
+               data : $this.serialize(),
+               type: 'POST',   
+               dataTYPE:'JSON',
+               headers: {
+                 'X-CSRF-TOKEN': $('input[name=_token]').val()
+               },
+               beforeSend: function() {
+		 			$loader.show();
+			   },   
+               success: function (result) {
+	               	 if(result.status == 1){
+				          alert(result.messages);
+				          $loader.hide();
+	                 }else if(result.status == 0){
+				          alert(result.messages);
+	                 	 $loader.hide();
+	                 }
+                 
+              } 
+         });
+   }
+   return false;
+});
+
+
+
+function VariationGeneralSettingValidation($this) {
+	$this.validate({
+	    onfocusout: function (valueToBeTested) {
+	      $(valueToBeTested).valid();
+	    },
+	  
+	    highlight: function(element) {
+	      $('element').removeClass("error");
+	    },
+       rules: {
+
+              "price": {
+                number:true,
+                required:true
+              },
+              "sale_price": {
+                number:true,
+                required:true,
+                maxlength:function(){
+                	      $val =$("body").find('form.saveVariationStockForm').find('input[name=price]').val();
+                	   return $val;
+                }
+              },
+              "height": {
+                number:true,
+                required:true,
+              },
+		      "width": {
+                number:true,
+                required:true,
+              },
+		      "length": {
+                number:true,
+                required:true,
+              },
+		      "weight": {
+                number:true,
+                required:true,
+              },
+		      
+		      valueToBeTested: {
+		          required: true,
+              }
+         } 
+    
+});
+}
+
+
 
 
 
@@ -434,7 +527,7 @@ function validationRuleOfAttributes($this) {
               },
 		      "sku": {
 		          required: function(){
-		        	 if($("body").find('#hasStockManage').is(':checked')){
+		        	 if($("body").find('input[name=hasStockManage]').is(':checked')){
 		        	 	return true;
 		        	 }
 		          },
@@ -448,14 +541,14 @@ function validationRuleOfAttributes($this) {
 		      },
 		      "stock":{
 		        required: function(){
-		        	 if($("body").find('#hasStockManage').is(':checked')){
+		        	 if($("body").find('input[name=hasStockManage]').is(':checked')){
 		        	 	return true;
 		        	 }
 		        }
 		      },
 		      "lowInStock":{
 		        required: function(){
-		        	 if($("body").find('#hasStockManage').is(':checked')){
+		        	 if($("body").find('input[name=hasStockManage]').is(':checked')){
 		        	 	return true;
 		        	 }
 		        }

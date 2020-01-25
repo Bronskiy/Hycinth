@@ -29,6 +29,8 @@ public function createNewVariationWithAttributeAndStockManagable(Request $reques
 	  if($product->user_id == Auth::user()->id){
 	  	if($this->checkAlreadyExistVariationOrNot($request,$product) == 0){
 	  		$status =['status' => 0,'messages' => 'This variation already Exist Please check again'];
+	  	}elseif(!empty($request->hasStockManage) && $this->checkAlreadyExistSKUOrNot($request,$product) == 0){
+	  		$status =['status' => 0,'messages' => 'This Sku is already Exists!'];
 	  	}else{
              $this->createInventoryAndVariations($request,$product);
              $status =['status' => 1,'messages' => 'This variation is saved successfully.'];
@@ -51,14 +53,14 @@ public function createInventoryAndVariations($request,$product)
 {
  
 
-        $v = new ProductAssignedVariation;
+        $v = !empty($request->variation_id) ? ProductAssignedVariation::find($request->variation_id) : new ProductAssignedVariation;
 		$v->shop_id = $product->shop_id;
 		$v->user_id = $product->user_id;
 		$v->product_id = $product->id;
 		$v->price = $request->price;
 		$v->sale_price = $request->sale_price;
 		$v->status = $request->stock_status;
-		$v->status = !empty($request->hasStockManage) ? 1 : 0;
+		$v->stock_managable = !empty($request->hasStockManage) ? 1 : 0;
 		$v->weight=$request->weight;
         $v->height=$request->height;
         $v->width=$request->width;
@@ -103,15 +105,17 @@ public function checkAlreadyExistVariationOrNot($request,$product)
    $arr1 = [];
    $arr2 = [];
    $i = 0;
+    $variation_id = !empty($request->variation_id) ? $request->variation_id : 0;
 	foreach ($request->variations as $type => $attribute_id) {
 
 	                  $get = ProductAssignedVariation::where('user_id',$product->user_id)
 	                         ->where('product_id',$product->id)
 	                         ->where('shop_id',$product->shop_id)
 	                         ->where('type',$type)
-	                         ->where('attribute_id',$attribute_id)
-	                         ->count();
-	        if($get > 0){
+	                         ->where('parent','!=',$variation_id)
+	                         ->where('attribute_id',$attribute_id);
+	                           
+	        if($get->count() > 0){
 	        	array_push($arr1,$attribute_id);
 	        }
 	        array_push($arr2,$attribute_id);
@@ -170,6 +174,22 @@ public function ProductInventoryChecking($request,$product,$variation_id=0)
 	return 1;
 }
 
+
+
+
+#==================================================================================================
+#==================================================================================================
+#==================================================================================================
+
+
+public function checkAlreadyExistSKUOrNot($request,$product)
+{
+	  $variation_id = !empty($request->variation_id) ? $request->variation_id : 0;
+	  $c = ProductInventory::where('sku',$request->sku)
+	                  ->where('variation_id','!=',$variation_id);
+	                   
+	  return $c->count() > 0 ? 0 : 1;
+}
 
 
 }

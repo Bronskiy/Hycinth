@@ -177,10 +177,9 @@ $.validator.addMethod("minAge", function(value, element, min) {
 
 
 // Add method to check all color value are required
-  $.validator.addMethod("lengthRequired", function (value, element) {
-    console.log('test');
+  $.validator.addMethod("lengthRequired", function (value, element, param) {
       var flag = true;             
-     $("[name^=colour]").each(function (i, j) {  
+     $(`[name^=${param}]`).each(function (i, j) {  
        $(this).parent().find('#length_'+i+'-error').remove();
         if ($.trim($(this).val()) == '') {
            flag = false;

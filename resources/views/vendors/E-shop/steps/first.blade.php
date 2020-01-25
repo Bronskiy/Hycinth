@@ -29,7 +29,7 @@
                             </div>
                             </div>
                                   <div class="form-group">
-                                  <p>Your shop name will appear in your shop and next to each of your listings throughout Etsy. After you open your shop, you can change your name once. </p>
+                                  <p>Your shop name will appear in your shop and next to each of your listings throughout ENVISIUN. After you open your shop, you can change your name once. </p>
                                   </div>
                                  <a href="javascript:void(0);" class="normal-link mt-3">Here are some tips for picking a shop name.</a>
  
@@ -37,11 +37,13 @@
 
 
                         <div class="col-lg-4">
+                          @if($shop->count() > 0)
                           <input type="hidden" name="logo" value="{{$shop->count() > 0 && $e->logo != '' ? url($e->logo) : ''}}">
+                          @endif
                             <!-- Upload  -->
                           <div class="uploader file-upload-form {{$shop->count() > 0 && $e->logo != '' ? 'hasFile' : ''}}">
                             <!-- <input id="file-upload" type="file" name="logo" accept="image/*" /> -->
-                              <input type="file" id="file-upload" required name="logo" accept="image/*" onchange="ValidateSingleInputs(this, 'file-image')" id="logo" class="form-control">
+                              <input type="file" id="file-upload" name="logo" accept="image/*" onchange="ValidateSingleInputs(this, 'file-image')" id="logo" class="form-control">
                             <label for="file-upload" id="file-drag">
                               <img 
                               id="file-image" 

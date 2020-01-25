@@ -131,27 +131,20 @@
            {{textbox($errors, 'Seasons*', 'seasons')}}
            </div>
 
-          <div class="col-md-12">
-              <!-- {{choosefile($errors, 'Event Image*', 'event_picture')}} -->
-            <div class="form-group ">
-              <div class="profile-image">
-                <label class="label-file">Event Image*</label>
-                         <input type="file" required name="event_picture" accept="image/*" onchange="ValidateSingleInput(this, 'image_src')" id="event_picture" class="form-control">
-                         
-                         <!-- <img id="image_src" class="img-radius" style="display: none; width: 100px; height: 100px; margin-top: 6px;" src="{{ asset('/images/user.jpg') }}"> -->
 
-                          @if ($errors->has('event_picture'))
-                              <div class="error">{{ $errors->first('event_picture') }}</div>
-                          @endif
-                   </div>
-               </div>
-           </div>
 
          <div class="col-md-12">
-          <div id="AddRemoveColorEvent">
-            <div class="form-group"><label class="control-label">Colour*</label>
+          
+         <!--  <div id="AddRemoveColorEvent">
+            <div class="form-group">
+              <label class="control-label">Colour*</label>
               <div class="pick-color-field-wrap row">
-                <div class="element col-lg-3 col-md-6" id="div_1">              
+                <div class="element col-lg-3 col-md-6" id="div_1">   
+
+                  <div class="form-group">
+                    <input type="text" class="form-control ColourSelect" name="colour[]">
+                  </div>
+
                   <div class="form-group">
                     <input type="color" class="ColorGet" style="width: 46px; margin-left: -2px;">
                     <input type="text" readonly value="{{old('colour')}}" class="form-control ColourSelect" name="colour[]">
@@ -160,17 +153,53 @@
                 </div>
               </div>
              </div>
-            </div>            
-          </div>            
+            </div>      -->  
+
+
+       <label class="control-label">Colours*</label>
+       <input type="hidden" id="countColours" value="1">
+      <div class="row field_wrapper">
+       <div class="element col-lg-3 col-md-6">
+            <div class="pick-color-field-wrap">               
+                <div class="form-group">
+                  <input placeholder="Colour Name" name="colourNames[]" class="form-control"/>
+                </div>
+              <div class="form-group">
+                <input type="color" class="ColorGet" style="width: 46px; margin-left: -2px;">
+                <input type="text" readonly class="form-control ColourSelect" name="colours[]">
+              </div>
+            </div>
+            <div class="input-group-btn color-btn">
+                <button class="btn btn-success add_button" type="button" style="margin-left: 0px;height: 54px; width: 120px"><i class="fas fa-plus"></i> Add </button>
+            </div>
+      </div>
+    </div>
+
+
+
+          </div> 
+
+<div class="col-md-12">
+<!-- {{choosefile($errors, 'Event Image*', 'event_picture')}} -->
+<div class="form-group ">
+<div class="profile-image">
+<label class="label-file">Event Image*</label>
+     <input type="file" required name="event_picture" accept="image/*" onchange="ValidateSingleInput(this, 'image_src')" id="event_picture" class="form-control">
+     
+     <!-- <img id="image_src" class="img-radius" style="display: none; width: 100px; height: 100px; margin-top: 6px;" src="{{ asset('/images/user.jpg') }}"> -->
+
+      @if ($errors->has('event_picture'))
+          <div class="error">{{ $errors->first('event_picture') }}</div>
+      @endif
+</div>
+</div>
+</div>           
 
 <div class="col-md-12">
    <div class="form-group ">
  <img src="" id="image_src" style="display: none;" width="120">
 </div>
 </div>
-
-
-
 
 
 
@@ -218,6 +247,8 @@
       <!-- /.row -->
     </section>
 
+
+
      
 @endsection
 
@@ -228,6 +259,8 @@
 <script src="{{url('/js/setLatLong.js')}}"></script>
 <script src="{{url('/js/validations/userEventValidation.js')}}"></script>
 <script src="{{url('/js/validations/imageShow.js')}}"></script>
+<script src="{{ asset('/js/userEventColor.js') }}"></script>
+
 
 <script type="text/javascript">
 
@@ -266,48 +299,5 @@ $('select[name="event_type"]').change(function() {
     });
 });
 
-// Get Current color and append the value in next input
-function loadColorJQ() {
-    $('.ColorGet').on('change', function() { 
-      var val = $( this ).val();
-      $( this ).next().val(val);
-    });
-  }
-loadColorJQ();
-
-// Add Remove multiple color for event
-$(document).ready(function(){
-  $("#AddNewColorEvent").click(function(){
-  // Finding total number of elements added
-  var total_element = $(".element").length;
-  var lastid = $(".element:last").attr("id");
-  var split_id = lastid.split("_");
-  var nextindex = Number(split_id[1]) + 1;
-
-  var max = 4;
-  // Check total number elements
-  if(total_element < max ){
-   // Adding new div AddRemoveColorEvent after last occurance of element class
-   $(".element:last").after("<div class='element col-lg-3 col-md-6' id='div_"+ nextindex +"'></div>");
- 
-   // Adding element to <div>
-   $("#div_" + nextindex).append('<div class="form-group"><input type="color" class="ColorGet" style="width: 46px; margin-left: -2px;"><input type="text" readonly value="{{old('colour')}}" class="form-control ColourSelect" name="colour[]"> <ul class="acrdn-action-btns"><li><a href="javascript:void(0)" id="remove_'+nextindex+'" class="action_btn danger-btn remove_color_event" data-toggle="tooltip" title="" data-original-title="Delete"><i class="fas fa-trash-alt"></i></a></li></ul></div>'); 
-  }
-  // Load get solor function to select color
-  loadColorJQ(); 
- });
-
-  // Remove element
-  $("#AddRemoveColorEvent").on('click','.remove_color_event',function(){
-    var id = this.id;
-    var split_id = id.split("_");
-    var deleteindex = split_id[1];
-
-    // Remove <div> with id
-    $("#div_" + deleteindex).remove();
-  }); 
-});
 </script>
 @endsection
-
-

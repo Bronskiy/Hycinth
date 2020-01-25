@@ -9,6 +9,12 @@ $weight = !empty($variant) ? $variant->weight : '';
 $height = !empty($variant) ? $variant->height : '';
 $width = !empty($variant) ? $variant->width : '';
 $length = !empty($variant) ? $variant->length : '';
+$sku = !empty($variant) && $variant->inventoryWithVariation != null && $variant->inventoryWithVariation->count() > 0 ? $variant->inventoryWithVariation->sku : '';
+$stock = !empty($variant) && $variant->inventoryWithVariation != null && $variant->inventoryWithVariation->count() > 0 ? $variant->inventoryWithVariation->stock : '';
+$lowInStock = !empty($variant) && $variant->inventoryWithVariation != null && $variant->inventoryWithVariation->count() > 0 ? $variant->inventoryWithVariation->lowInStock : '';
+
+
+ 
 
 ?>
  
@@ -49,7 +55,7 @@ $length = !empty($variant) ? $variant->length : '';
 			        class="form-check-input"
 			        type="checkbox"
 			        value="1" 
-			        id="hasStockManage" 
+			        data-id="hasStockManage" 
 			        name="hasStockManage"
 			        {{$hasStockManage == 1 ? 'checked' : ''}}
                     >
@@ -80,6 +86,7 @@ $length = !empty($variant) ? $variant->length : '';
 					      class="form-control " 
 					      name="sku"
 					      data-url="{{url(route('vendor.shop.variations.checkSkU'))}}?type={{$product->product_type}}&product_id={{$product->id}}{{!empty($variation) ? '&variation_id='.$variation->id : ''}}"
+					      value="{{$sku}}" 
 					  >
 				</div>
 				<!-- field start -->
@@ -97,6 +104,7 @@ $length = !empty($variant) ? $variant->length : '';
 					      min="1" 
 					      class="form-control" 
 					      name="stock"
+					       value="{{$stock}}" 
 					  >
 				</div>
 				<!-- field start -->
@@ -114,6 +122,7 @@ $length = !empty($variant) ? $variant->length : '';
 					      min="1" 
 					      class="form-control " 
 					      name="lowInStock"
+					       value="{{$lowInStock}}" 
 
 					  >
 				</div>

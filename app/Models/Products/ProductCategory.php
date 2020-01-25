@@ -66,7 +66,10 @@ class ProductCategory extends Model
 
     public function childCategoryActives()
     {
-         return $this->hasMany($this,'subparent')->where('parent','>',0)->where('subparent','>',0)->orderBy('sorting','ASC');
+         return $this->hasMany($this,'subparent','id')
+        // ->where('parent','>',0)
+         //->where('subparent','>',0)
+         ->orderBy('sorting','ASC');
     }
 
 

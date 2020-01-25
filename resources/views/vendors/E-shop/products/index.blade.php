@@ -45,13 +45,30 @@
                        	<thead>
                        		<tr>
                        			<th>Sr.no</th>
-                       			<th>Sr.no</th>
-                       			<th>Sr.no</th>
-                       			<th>Sr.no</th>
-                       			<th>Sr.no</th>
-                       			<th>Sr.no</th>
+                       			<th>Name</th>
+                       			<th>Action</th>
                        		</tr>
                        	</thead>
+
+                        <tbody>
+                          @foreach($products as $k => $product)
+                              <tr>
+                                 <td>{{$k + 1}}</td>
+                                 <td><img src="{{url($product->thumbnail)}}" width="100"></td>
+
+                                 <td>
+                                  <h3>{{$product->name}}</h3>
+                                  <p>{{$product->category != null && $product->category->count() > 0 ? $product->category->label : ''}} |
+                                  {{$product->subcategory != null && $product->subcategory->count() > 0 ? $product->subcategory->label : ''}} |
+                                  {{$product->childcategory != null && $product->childcategory->count() > 0 ? $product->childcategory->label : ''}}</p>
+                                  </td>
+                                <td>
+                                     <a href="{{url(route('vendor.shop.products.edit',$product->id))}}">Edit</a>
+                                </td>
+                              </tr>
+
+                          @endforeach
+                        </tbody>
                        	
                        </table>
 

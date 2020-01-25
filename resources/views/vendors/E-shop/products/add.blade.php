@@ -34,7 +34,13 @@
           <div class="card vendor-dash-card">
                   <div class="card-header">Assign Categories</div>
 		           <div class="card-body">
-		           	    <div class="row">
+                      <form method="post" enctype="multipart/form-data">
+		           	       <div class="row">
+                          <div class="col-md-12">
+                                      <div class="form-group text-right">
+                                            <button class="cstm-btn btn-submit next">Save</button>
+                                      </div>
+                           </div>
                            <div class="col-md-6">
                                  <label>Product Category</label>
                                  <a href="javascript:void(0)" class="categoryAssign form-control">
@@ -44,19 +50,25 @@
                                  </a>
                            </div>
 
-
-
                            <div class="col-md-6">
-                                 {{textbox($errors,'Product Name','product_name',$product->name)}}
-                           </div>
-                           <div class="col-md-6">
-                                 {{textbox($errors,'Basic Price','basic_price',$product->basic_price)}}
+                                 {{textbox($errors,'Product Name','name',$product->name)}}
                            </div>
 
-                           <div class="col-md-6">
-                                 {{textbox($errors,'Sale Price','sale_price',$product->sale_price)}}
-                           </div>
+                            <div class="col-md-12">
+            
+                              <div class="form-group ">
+                                <div class="profile-image">
+                                  <label class="label-file">Product Main Thumbnail*</label>
+                                           <input type="file" name="thumbnail" accept="image/*" onchange="ValidateSingleInput(this, 'image_src')" id="image" class="form-control">
+                                           
+                <img id="image_src" class="img-radius" style="display:{{$product->thumbnail != null ? 'block' : 'none'}}; width: 100px; height: 100px; margin-top: 6px;" src="{{$product->thumbnail != "" ? url($product->thumbnail) : ''}}"> 
 
+                                            @if ($errors->has('thumbnail'))
+                                                <div class="error">{{ $errors->first('thumbnail') }}</div>
+                                            @endif
+                                     </div>
+                                 </div>
+                             </div>
                            <div class="col-md-12">
                                  {{textarea($errors,'Short Description','short_description',$product->short_description)}}
                            </div>
@@ -64,27 +76,26 @@
                                  {{textarea($errors,'Description','description',$product->description)}}
                            </div>
 
+                     </div>
+                   </form>
 
 
+
+
+
+
+
+                    <div class="row">
                            <div class="col-md-12">
-
-
-
-                               @include('vendors.E-shop.products.variations')
-
-
-
-
+                              @if($product->category != null && $product->category->count() > 0)
+                                @include('vendors.E-shop.products.variations')
+                              @endif
 
                            </div>
 
+                    
 
-
-                           <div class="col-md-12">
-                                      <div class="form-group">
-                                            <button class="cstm-btn btn-submit next">Save</button>
-                                      </div>
-                           </div>
+                         
                         </div>
                    </div>
          </div>
@@ -159,6 +170,8 @@
 @endsection
 @section('scripts')
 
+         
+<script src="{{url('/js/validations/imageShow.js')}}"></script>
 <script type="text/javascript" src="{{url('/js/shop/vendors/products/category.js')}}"></script>
 <script type="text/javascript" src="{{url('/js/shop/vendors/products/variation/basic.js')}}"></script>
 <script type="text/javascript" src="{{url('/js/shop/vendors/products/variation/attributes.js')}}"></script>

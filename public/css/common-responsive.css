@@ -185,10 +185,12 @@
 }
 .dd3-content{
   height: 100px;
+  font-size: 12px;
 }
 .dd3-content .action-btn-wrap{
     position: static;
     transform: none;
+    margin-left: 10px;
 }
 .dd-handle {
     height: 101px !important;

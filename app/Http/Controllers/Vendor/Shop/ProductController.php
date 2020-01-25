@@ -15,14 +15,27 @@ class ProductController extends Controller
 
 public $filePath = 'vendors.E-shop.products.';
 
-
+public $path = 'images/products/';
 #=====================================================================================
 #  index 
 #=====================================================================================
 
 public function index($value='')
 {
-	 return view($this->filePath.'index');
+         
+	   
+	  $product = Product::with(
+	    	'ProductAssignedVariations',
+	    	'ProductAssignedVariations.inventoryWithVariation',
+	    	'subcategory.ProductVariations',
+	    	'subcategory.ProductVariations.variationTypes',
+	    	'variationAttributes'
+	    )
+	    ->where('create_status',1)
+	    ->where('user_id',Auth::user()->id)
+	    ->orderBy('id','DESC')->paginate(20);
+
+	 return view($this->filePath.'index')->with('products',$product);
 }
 
 
@@ -55,7 +68,7 @@ public function edit($id)
     	'subcategory.ProductVariations.variationTypes',
     	'variationAttributes'
     )->where('user_id',Auth::user()->id)->where('id',$id);
-    return $product->first();
+    //return $product->first();
     if($product->count() == 0){
     	return redirect()->route('vendor.shop.products.create');
     }
@@ -69,6 +82,37 @@ public function edit($id)
               ->with('product',$product->first());
 }
 
+
+
+#=====================================================================================
+#  create new product
+#=====================================================================================
+
+
+public function update(Request $request,$product_id)
+{
+
+	$shop_id = Auth::user()->shop->id;
+	 $this->validate($request,[
+         'name' => 'required',
+         'description' => 'required',
+         'short_description' => 'required',
+         'thumbnail'=> 'required|image'
+         
+	 ]);
+
+
+	 $product = Product::find($product_id);
+	 $product->name = trim($request->name);
+	 $product->description = trim($request->description);
+	 $product->short_description = trim($request->short_description);
+	 $product->create_status = 1;
+
+	 $product->thumbnail = $request->hasFile('thumbnail') ? uploadFileWithAjax($this->path, $request->thumbnail) : $product->thumbnail;
+	 $product->save();
+	 $product->sluggable();
+	 return redirect()->route('vendor.shop.products.index')->with('messages','Product is saved successfully!');
+}
 
 
 #=====================================================================================
@@ -155,6 +199,38 @@ public function ajaxCategory(Request $request)
        }
 	 
 }
+
+
+#=================================================================================================
+#=================================================================================================
+#=================================================================================================
+
+
+
+public function createGeneralSetting(Request $request,$product_id)
+{
+	 $product = Product::find($product_id);
+
+
+	 if($product->id == Auth::user()->id){
+	 	$status = ['status' => 0, 'messages' => 'Unautherized to do this operation!'];
+	 }else{
+          
+          $product->height = trim($request->height);
+          $product->weight = trim($request->weight);
+          $product->length = trim($request->length);
+          $product->width = trim($request->width);
+          $product->price = trim($request->price);
+          $product->sale_price = trim($request->sale_price);
+          $product->save();
+
+	 	$status = ['status' => 1, 'messages' => 'General Setting is saved'];
+
+	 }
+
+	 return response()->json($status);
+}
+
 
 
 
