@@ -26,7 +26,7 @@ class ProductFilterController extends Controller
 	public function index(Request $request,$category_id)
 	{
 
-      $Product = Product::where('childcategory_id',$category_id)
+       $Product = Product::with('ProductAssignedVariations')->where('childcategory_id',$category_id)
                           ->where('create_status',1)
                           ->paginate(20);
        $vv = view($this->include.'list')->with('products',$Product);

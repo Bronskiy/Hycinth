@@ -10,6 +10,7 @@ use App\Models\Vendors\Eshop;
 use App\Models\Products\ProductCategory;
 use App\Models\Shop\ShopCategory;
 use App\Models\Products\ProductInventory;
+use App\Models\Products\ProductImage;
 class ProductController extends Controller
 {
 
@@ -230,6 +231,73 @@ public function createGeneralSetting(Request $request,$product_id)
 
 	 return response()->json($status);
 }
+
+
+
+
+
+
+
+
+
+
+#=====================================================================================================
+#=====================================================================================================
+#=====================================================================================================
+
+
+
+
+    public function imageUploading(Request $request,$id)
+    {
+         $product = Product::find($id);
+         if($request->hasFile('images')){
+
+                  # save images
+                          $imageLink = array();
+                          $delink = array();
+
+                          foreach ($request->file('images') as $key => $file) {
+                               $image_name = uploadFileWithAjax($this->path, $file);
+                                 $del = array(
+                                      'caption' => 'product_image',
+                                      'url'     => '', // url(route('delete_meta_image')),
+                                      'key'     => $request->meta
+                                );
+                                array_push($imageLink, url($image_name));
+
+                                array_push($delink, $del);
+
+                                $image = new ProductImage;
+                                $image->product_id = $product->id;
+                                $image->image = $image_name;
+                                $image->type = 'product';
+                                $image->variation_id = !empty($request->variation_id) ? $request->variation_id : 0;
+                                $image->save();
+
+                          }
+              
+
+              $json = array(
+                            'initialPreview' => $imageLink,
+                            'initialPreviewAsData' => true,
+                            'initialPreviewConfig' => $delink,
+             );
+
+             return response()->json($json); 
+               
+         }
+
+
+
+ }
+
+
+
+
+
+
+
 
 
 

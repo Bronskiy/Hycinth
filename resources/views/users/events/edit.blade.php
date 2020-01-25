@@ -120,7 +120,10 @@
           <div class="col-md-12">
             @php $colours = json_decode($user_event->colour); @endphp
             <label class="control-label">Colours*</label>
+
+             <!-- starting value count for add more colours -->
             <input type="hidden" id="countColours" value="{{sizeof($colours)}}">
+            
                 <div class="row field_wrapper">
 
                   @foreach($colours as $key => $colour)
@@ -138,7 +141,7 @@
                             </div>
                             <div class="input-group-btn color-btn {{ $key > 0 ? 'remove_button' : '' }}">
 
-                              <!-- @if($key === 0 && sizeof($colours) < 4)
+                              @if($key === 0 && sizeof($colours) < 4)
                                 <button class="btn btn-success add_button" type="button" 
                                 style="margin-left: 0px;height: 54px; width: 120px;">
                                   <i class="fas fa-plus"></i> Add 
@@ -150,7 +153,7 @@
                                 style="margin-left: 0px; height: 54px; width: 120px;">
                                 <i class="fas fa-trash-alt"></i> Remove
                              </button>
-                             @endif -->
+                             @endif
 
                             </div>
                       </div>

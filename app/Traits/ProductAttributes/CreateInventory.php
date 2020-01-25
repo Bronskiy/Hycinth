@@ -80,11 +80,11 @@ trait CreateInventory{
 		                      ];
 		                      $u = ProductInventory::where('sku',$request->sku)
 							                       ->orWhere(function($t) use($array){
-					                                      if($array['type'] == 1 && $array['variation_id'] > 0){
-																$t->where('variation_id','!=',$array['variation_id']);
-					                                      }elseif($array['type'] == 0){
-																$t->where('product_id','!=',$array['product_id']);
-					                                      }
+					           //                            if($array['type'] == 1 && $array['variation_id'] > 0){
+																// $t->where('variation_id','!=',$array['variation_id']);
+					           //                            }elseif($array['type'] == 0){
+																// $t->where('product_id','!=',$array['product_id']);
+					           //                            }
 							                       })
 							                       ->count();
 

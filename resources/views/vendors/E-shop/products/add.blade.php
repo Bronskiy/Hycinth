@@ -81,6 +81,28 @@
 
 
 
+                    <div class="col-md-12">
+                       {{choosefilemultiple($errors,'Product Images','images[]')}}
+                          <script type="text/javascript">
+                                     $('#product_images').fileinput({
+                                             'theme': 'explorer-fas',
+                                              // headers: {
+                                              //      // 'X-CSRF-TOKEN': $('input[name=_token]').val(),
+                                              //      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                              // },
+                                             'uploadUrl': "{{url(route('vendor.shop.products.ajax.imageUploading',$product->id))}}",
+                                              overwriteInitial: false,
+                                              initialPreviewAsData: true,
+                                              initialPreview: [],
+                                              initialPreviewConfig: [],
+                                              uploadExtraData: { '_token': $('meta[name="csrf-token"]').attr('content') },
+                                });
+                           </script>    
+                    </div>
+
+
+
+
 
 
 

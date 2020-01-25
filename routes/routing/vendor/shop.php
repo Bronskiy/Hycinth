@@ -37,6 +37,10 @@ Route::get('/products/ajax/category','Vendor\Shop\ProductController@ajaxCategory
 Route::post('/products/ajax/update/generalSetting/{id}','Vendor\Shop\ProductController@createGeneralSetting')->name('vendor.shop.products.ajax.createGeneralSetting');
 
 
+
+Route::post('/products/ajax/multiple-image-uploading/{id}','Vendor\Shop\ProductController@imageUploading')->name('vendor.shop.products.ajax.imageUploading');
+
+
 #=============================================================================================================
 #  Product Variation Ajax
 #=============================================================================================================
@@ -77,7 +81,7 @@ Route::post('/products/ajax/create/variation-with-stock/{id}',
 
 
 
-Route::get('/check/skuid/exist/ornot',
+Route::get('/check/sku-id/exist/ornot',
 				       'Vendor\Shop\VariationController@checkSkU')
 			           ->name('vendor.shop.variations.checkSkU');
 

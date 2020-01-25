@@ -157,7 +157,10 @@
 
 
        <label class="control-label">Colours*</label>
-       <input type="hidden" id="countColours" value="1">
+      
+       <!-- starting value count for add more colours -->
+       <input type="hidden" id="countColours" value="1"> 
+
       <div class="row field_wrapper">
        <div class="element col-lg-3 col-md-6">
             <div class="pick-color-field-wrap">               

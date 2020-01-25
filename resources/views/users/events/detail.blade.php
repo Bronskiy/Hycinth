@@ -324,12 +324,20 @@
                   <div class="col-md-6">
                      <div class="evt-theme-card bs mt-4 wow bounceInRight animated" data-wow-delay="800ms" style="background-image: url({{ asset('images/event-theme-bg-2.jpg') }})">
                       <div class="evt-theme-body">
+                        @php $colours = json_decode($user_event->colour); @endphp
                         <div class="title">Event Theme Color</div>
                         <!-- <div class="value">{{$user_event->colour}}<span class="theme-color-box" style="background: {{$user_event->colour}}"></span></div> -->
                         <ul class="event-theme-color">
-                         <li><div class="theme-color-wrap"><span class="theme-color-box" style="background:#36496c;">#36496c</span></div></li>
-                         <li><div class="theme-color-wrap"><span class="theme-color-box" style="background:#a864a8;">#a864a8</span></div></li>
-                         <li><div class="theme-color-wrap"><span class="theme-color-box" style="background:#362f2d;">#362f2d</span></div></li>
+                          @foreach($colours as $key => $colour)
+                         <li>
+                          <div class="theme-color-wrap"><span class="theme-color-box" style="background:{{ $colour->colour }}">{{ $colour->colourName }}</span>
+                          </div>
+                        </li>
+                        @endforeach
+
+                        <!--  <li><div class="theme-color-wrap"><span class="theme-color-box" style="background:#a864a8;">#a864a8</span></div></li>
+                         <li><div class="theme-color-wrap"><span class="theme-color-box" style="background:#362f2d;">#362f2d</span></div></li> -->
+
                        </ul>
                      </div>
                    </div>

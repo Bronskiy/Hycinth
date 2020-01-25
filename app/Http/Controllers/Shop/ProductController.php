@@ -11,6 +11,7 @@ use App\Models\Vendors\Eshop;
 use App\Models\Products\ProductCategory;
 use App\Models\Shop\ShopCategory;
 use App\Models\Products\ProductInventory;
+use App\Models\Products\ProductImage;
 class ProductController extends Controller
 {
     
@@ -24,6 +25,7 @@ class ProductController extends Controller
 	public function index($cateSlug,$subcate,$childSlug)
 	{
        $ProductCategory = ProductCategory::with([
+       	   
           'categoryParent',
           'categorySubparent'
          ])->where('slug',$childSlug)->first();
@@ -34,7 +36,24 @@ class ProductController extends Controller
 
 
 
+#================================================================================================
+#================================================================================================
+#================================================================================================
 
+	public function detail($slug)
+	{
+        $product = Product::with('ProductImages','ProductAttributeVariableProduct','ProductAttributeVariableProduct.childAttributes')->where('slug',$slug)->where('create_status',1)->first();
+		   return view($this->filePath.'detail')
+		        ->with('product',$product);
+	}
+
+
+
+#=================================================================================================
+#=================================================================================================
+#=================================================================================================
+
+ 
 
 
 }
