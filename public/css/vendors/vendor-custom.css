@@ -2412,6 +2412,82 @@ font-size: 12px;
     border: 1px solid #e8e8e8;
 }
 /*********************************/
+
+/*M-css*/
+/**  24-1-2020  **/
+.variableBox ul.sideUl {
+    min-height: auto !important; 
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.variableBox ul.sideUl li {
+    flex-grow: 1;
+    /* flex-basis: 1; */
+    /* width: 33%; */
+    border-right: 1px solid #ddd;
+}
+.variableBox ul.sideUl li a {
+    /* text-align: center !important; */
+}
+div#generalBox .row {
+    margin-bottom: 10px;
+}
+.variableBox .col-form-label {
+    text-transform: capitalize;
+    color: #333;
+}
+.product-cate-checkbox .custom-control-label {
+    font-size: 17px;
+}
+ul.shop-category-list li {
+    padding-bottom: 0;
+}
+ul.shop-category-list label.custom-control-label {
+    padding-left: 0;
+  font-size: 17px;
+    font-weight: 500;
+}
+.variableBox .v-cstm-select {
+    color: #313030;
+    padding: 0 10px;
+  height: 42px;
+}
+.variableBox #loadAllVariationOfProductBTN {
+    height: 40px !important;
+    padding: 6px 30px !important;
+  margin-top: 2px;
+}
+.card.productItemParentDiv i {
+    color: #ffffff;
+}
+/*.variableBox .top-field-wrap {
+    background: #2b3b58 !important;
+  padding: 20px 20px !important;
+}*/
+.variableBox .top-field-wrap h3 {
+    font-size: 21px;
+}
+.variableBox .top-field-wrap .v-cstm-select {
+    height: 30px;
+}
+.card.productItemParentDiv .text-right a, .variableBox form.saveVariationStockForm .text-right a {
+    display: inline-block;
+    border: 1px solid #e8e5e5;
+    padding: 3px 5px 3px;
+    background: rgb(54, 73, 108);
+    margin-left: 3px;
+    color: #fff;
+}
+.card.productItemParentDiv .text-right a:hover, .variableBox form.saveVariationStockForm .text-right a:hover {
+    opacity: 0.9;
+}
+.variableBox .outerWraps {
+    background: #f5f5f5 !important;
+    padding-bottom: 20px;
+}
+
+/**  24-1-2020  **/
 /******************/
 @media (max-width: 767px) {
 .package-card .inn-card {

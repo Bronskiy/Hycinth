@@ -7,16 +7,16 @@ File: style.css
 =========================================================================
 =========================================================================
   == Table of Contents==
-  - Generic classes
-    - Margin, Padding, Font class, text align, position, floating, overflow, background class, text color, display class, boarder class
-  - Theme Elements
-    - Accordion, Button, tabs, typography, buttons, box shadow, Lable & Badges, Alert, Pagination, Breadcumb, Cards, Collapse,
+	- Generic classes
+		-	Margin, Padding, Font class, text align, position, floating, overflow, background class, text color, display class, boarder class
+	- Theme Elements
+		-	Accordion, Button, tabs, typography, buttons, box shadow, Lable & Badges, Alert, Pagination, Breadcumb, Cards, Collapse,
         -   Carousel, Grid, Progress, Model, tooltip, popover, Datepicker, Gridstack, lightbox, notification, Nestable, pnotify, rating,
         -   Rangeslider, Slider, Syntax Highlighter, Tour, Treeview, Toolbar, Session Timeout, Session idle Timeout, offline, Animation
     - Forms
         -   Forms Elements, Advance Form Control, Validation, Masking, Wizard, Picker, Select
-  - Pages
-    -   Chat, authentication, Maintenance, Maps, Landingpage messages, task, Todo, Notes, Charts, Icons, Gallery, Editors,
+	- Pages
+		-   Chat, authentication, Maintenance, Maps, Landingpage messages, task, Todo, Notes, Charts, Icons, Gallery, Editors,
         -   Invoice, Full Calender, File Upload,
 =================================================================================
 =================================================================================== */
@@ -8475,9 +8475,9 @@ a.btn-theme.active {
           box-shadow: 0 0 15px #dcdcdc;
   border-radius: 15px;
 }
-/*.popover .arrow::after {
+.popover .arrow::after {
   display: none;
-}*/
+}
 .popover .arrow::before {
   content: "\6d";
   top: -1px;
@@ -10537,72 +10537,72 @@ div.code-toolbar > .toolbar span:hover {
 
 
 .fixed-button {
-  position: fixed;
-  bottom: -50px;
-  right: 30px;
-  opacity: 0;
-  z-index: 9;
-  -webkit-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-  -webkit-animation: pulse 2s infinite;
-  animation: pulse 2s infinite;
-  border-radius: 0.25rem
+	position: fixed;
+	bottom: -50px;
+	right: 30px;
+	opacity: 0;
+	z-index: 9;
+	-webkit-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+	-webkit-animation: pulse 2s infinite;
+	animation: pulse 2s infinite;
+	border-radius: 0.25rem
 }
 
 .fixed-button .btn {
-  margin: 0;
-  background: #79b530;
-  border: none;
-  border-bottom: 2px solid #5e8d25;
-  text-transform: capitalize;
-  font-weight: bold;
-  font-size: 16px
+	margin: 0;
+	background: #79b530;
+	border: none;
+	border-bottom: 2px solid #5e8d25;
+	text-transform: capitalize;
+	font-weight: bold;
+	font-size: 16px
 }
 
 .fixed-button .btn:hover {
-  background: #79b530;
-  border: none;
-  border-bottom: 2px solid #5e8d25
+	background: #79b530;
+	border: none;
+	border-bottom: 2px solid #5e8d25
 }
 
 .fixed-button:hover {
-  -webkit-animation: none;
-  animation: none
+	-webkit-animation: none;
+	animation: none
 }
 
 .fixed-button.active {
-  bottom: 50px;
-  opacity: 1
+	bottom: 50px;
+	opacity: 1
 }
 
 @-webkit-keyframes pulse {
-  0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(121, 181, 48, 0.3);
-    box-shadow: 0 0 0 0 rgba(121, 181, 48, 0.3)
-  }
-  70% {
-    -webkit-box-shadow: 0 0 0 20px rgba(4, 169, 245, 0);
-    box-shadow: 0 0 0 20px rgba(4, 169, 245, 0)
-  }
-  100% {
-    -webkit-box-shadow: 0 0 0 0 rgba(4, 169, 245, 0);
-    box-shadow: 0 0 0 0 rgba(4, 169, 245, 0)
-  }
+	0% {
+		-webkit-box-shadow: 0 0 0 0 rgba(121, 181, 48, 0.3);
+		box-shadow: 0 0 0 0 rgba(121, 181, 48, 0.3)
+	}
+	70% {
+		-webkit-box-shadow: 0 0 0 20px rgba(4, 169, 245, 0);
+		box-shadow: 0 0 0 20px rgba(4, 169, 245, 0)
+	}
+	100% {
+		-webkit-box-shadow: 0 0 0 0 rgba(4, 169, 245, 0);
+		box-shadow: 0 0 0 0 rgba(4, 169, 245, 0)
+	}
 }
 
 @keyframes pulse {
-  0% {
-    -webkit-box-shadow: 0 0 0 0 rgba(121, 181, 48, 0.3);
-    box-shadow: 0 0 0 0 rgba(121, 181, 48, 0.3)
-  }
-  70% {
-    -webkit-box-shadow: 0 0 0 20px rgba(4, 169, 245, 0);
-    box-shadow: 0 0 0 20px rgba(4, 169, 245, 0)
-  }
-  100% {
-    -webkit-box-shadow: 0 0 0 0 rgba(4, 169, 245, 0);
-    box-shadow: 0 0 0 0 rgba(4, 169, 245, 0)
-  }
+	0% {
+		-webkit-box-shadow: 0 0 0 0 rgba(121, 181, 48, 0.3);
+		box-shadow: 0 0 0 0 rgba(121, 181, 48, 0.3)
+	}
+	70% {
+		-webkit-box-shadow: 0 0 0 20px rgba(4, 169, 245, 0);
+		box-shadow: 0 0 0 20px rgba(4, 169, 245, 0)
+	}
+	100% {
+		-webkit-box-shadow: 0 0 0 0 rgba(4, 169, 245, 0);
+		box-shadow: 0 0 0 0 rgba(4, 169, 245, 0)
+	}
 }
 
 
@@ -10756,6 +10756,7 @@ ul{
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 50% 50%;
+	display: none;
 }
 .custom-control-label{
     font-size: 14px;
@@ -10953,15 +10954,16 @@ table.dataTable thead th {
 .custom-checkbox .custom-control-label::before {
     border-radius: .25rem;
     border: 1px solid #cbcbcb;
+	display: none;
 }
 #formVariations .card-title {
     font-size: 20px;
 }
 /*label{
-  color: #333;
+	color: #333;
 }*/
 .control-label{
-  color: #333;
+	color: #333;
 }
 .cstm-admin-table tr th {
     background: #3f4c67;
@@ -10985,6 +10987,8 @@ table.dataTable thead th {
    .page-header-title h5 {
     text-transform: capitalize;
 }
+
+
 
    /*responsive css*/
    @media(max-width:767px){

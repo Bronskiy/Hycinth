@@ -42,35 +42,73 @@
           </div>
           <div class="details col-lg-6">
             <h3 class="product-title">{{$product->name}}</h3>
+
+
+            <div class="price-rating-wrap">
+            
+            <h4 class="price"><span>{!!$product->productPrice()['html']!!}</span></h4>  
+
             <div class="rating">
-              <div class="stars">
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star checked"></span>
-                <span class="fa fa-star"></span>
-                <span class="fa fa-star"></span>
-              </div>
-              <span class="review-no">41 reviews</span>
+                         <div class="stars">
+                           <span class="fa fa-star checked"></span>
+                           <span class="fa fa-star checked"></span>
+                           <span class="fa fa-star checked"></span>
+                           <span class="fa fa-star"></span>
+                           <span class="fa fa-star"></span>
+                         </div>
+                         <span class="review-no">41 reviews</span>
+                       </div>
             </div>
+            
             <p class="product-description">{{$product->short_description}}</p>
-        <h4 class="price">current price: <span>{!!$product->productPrice()['html']!!}</span></h4>  
 
             <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+        <form id="ADDToCART" data-action="{{url(route('shop.ajax.addToCart',$product->id))}}">
+         <!--  @foreach($product->ProductAttributeVariableProduct as $attribute)
+ 
+            <h5 class="sizes">{{$attribute->type}}: <label></label>
+              <ul class="ctm-type-{{$attribute->type}}">
+              @foreach($attribute->childAttributes as $k => $item)
+                      <?php $attributes = json_decode($item->variation->data);  ?>
+                        @if(!empty($attributes->color))
+                           <li>
+                             <div class="color-btn">
+                                <input 
+                                  type="radio" 
+                                  name="{{$attribute->type}}" 
+                                  value="{{$item->variation->id}}" 
+                                  id="filter-{{$attribute->type}}-{{$item->id}}"
+                                  {{$k == 0 ? 'checked' : ''}}
+                                >
+                                <label class="color" for="filter-{{$attribute->type}}-{{$item->id}}" 
+                                  style="background:{{$attributes->color}}"></label>
+                                </div>
+                           </li>
+                        @else
+                      
 
-          @foreach($product->ProductAttributeVariableProduct as $attribute)
+                          <li>
+                            <div class="size-btn" style="position:relative;">
+                              <input 
+                              type="radio" 
+                              name="{{$attribute->type}}" 
+                              value="{{$item->variation->id}}" 
+                              id="filter-{{$attribute->type}}-{{$item->id}}"
+                               {{$k == 0 ? 'checked' : ''}}
+                              >
+                              <label for="filter-{{$attribute->type}}-{{$item->id}}">{{$item->variation->name}}</label>
+                            </div>
+                         </li>
 
-            <h5 class="sizes">{{$attribute->type}}:
-              @foreach($attribute->childAttributes as $item)
-                <span class="size" data-toggle="tooltip" title="small">
-                 <label for="filter-{{$attribute->type}}-{{$item->id}}">
-                  <input type="radio" name="{{$attribute->type}}" value="{{$item->variation->id}}" id="filter-{{$attribute->type}}-{{$item->id}}">
-                  {{$item->variation->name}}
-                </label> 
-                </span>
+                      @endif
               @endforeach
+            </ul>
             </h5>
-          @endforeach
+          @endforeach -->
 
+          <div id="ProductDetailFilter">
+               @include('e-shop.includes.products.addToCartForm')
+          </div>
            <!--  <h5 class="colors">colors:
               <span class="color orange not-available" data-toggle="tooltip" title="Not In store"></span>
               <span class="color green"></span>
@@ -78,9 +116,12 @@
             </h5> -->
 
             <div class="action btn-wrap mt-3">
-              <button class="cstm-btn solid-btn" type="button">add to cart</button>
-              <button class="cstm-btn solid-btn" type="button"><span class="fa fa-heart"></span></button>
+              <button class="cstm-btn solid-btn cartButton" type="submit">add to cart</button>
+              <button class="cstm-wishlist-btn" type="button"><span class="fa fa-heart"></span></button>
+              <div id="errorMessageBox"></div>
             </div>
+
+          </form>
           </div>
         </div>
       </div>
@@ -104,7 +145,7 @@
           <div class="tab-pane active" id="tabs-1" role="tabpanel">
             <div class="description-content">
               <h3>Product Description</h3>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+               {!!$product->description!!} 
             </div>
           </div>
           <div class="tab-pane" id="tabs-2" role="tabpanel">
@@ -112,7 +153,7 @@
               <div class="row">
                 <div class="col-lg-6">
                   <figure class="product-specification-img">
-                    <img src="images/product-img-1.jpg">
+                    <img src="{{url($product->thumbnail)}}">
                   </figure>
                 </div>
                 <div class="col-lg-6">
@@ -120,31 +161,25 @@
                     <h3>Specification</h3>
                   </div>
               <table class="table specification-table" id="tblProductSpecifics">
-                    <tbody>
-                    <tr>
-                    <td class="ItemSpecificName">Main Stone</td>
-                    <td class="ItemSpecificValue">Cubic Zirconia</td>
-                    </tr>
-                    <tr>
-                    <td class="ItemSpecificName">Main Stone Color</td>
-                    <td class="ItemSpecificValue">Black</td>
-                    </tr>
-                    <tr>
-                    <td class="ItemSpecificName">Metal</td>
-                    <td class="ItemSpecificValue">Silver</td>
-                    </tr>
-                    <tr>
-                    <td class="ItemSpecificName">Metal Purity</td>
-                    <td class="ItemSpecificValue">.925, Sterling</td>
-                    </tr>
-                    <tr>
-                    <td class="ItemSpecificName">Set Type</td>
-                    <td class="ItemSpecificValue">Necklace/Earrings</td>
-                    </tr>
-                    <tr>
-                    <td class="ItemSpecificName">Total Stone Weight</td>
-                    <td class="ItemSpecificValue">12.60 Carat</td>
-                    </tr>
+                     <tbody>
+                  <?php
+                      $specification = $product->ProductAttributeVariableProduct->where('product_view',1);
+ 
+                  ?>                    
+ 
+                        @foreach($specification as $attribute)
+
+                         <tr>
+                              <td class="ItemSpecificName">{{$attribute->type}}</td>
+                                
+                                <td class="ItemSpecificValue">
+                                          @foreach($attribute->childAttributes as $sp)
+                                                 <span>{{$sp->variation->name}}</span>
+                                          @endforeach
+                                </td>
+                            </tr>
+                          
+                        @endforeach
                     </tbody>
                     </table>
                   </div>
@@ -340,7 +375,7 @@
 
 
 @section('jscript')
-<script type="text/javascript" src="{{url('/e-shop/js/products/filters.js')}}"></script>
+<script type="text/javascript" src="{{url('/e-shop/js/products/cart.js')}}"></script>
 <script type="text/javascript">
   
 

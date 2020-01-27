@@ -43,8 +43,7 @@ public function getFieldInputs($k,$type,$old)
    $type = $k->type;
    switch ($type) {
    		case 'color':
-          
-   			return $this->colorField($k,$old);
+             return $this->colorField($k,$old);
    			break;
    		
    		default:

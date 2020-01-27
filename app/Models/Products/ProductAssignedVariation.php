@@ -17,7 +17,7 @@ class ProductAssignedVariation extends Model
         return $this->hasMany($this,'parent');
     }
 
-
+  
 
     public function inventoryWithVariation()
     {

@@ -5,11 +5,11 @@ trait VariationAttributes{
 public function InputTypeAttribute()
 {
     return [
-         'text' => 'text',
+         //'text' => 'text',
          'color' => 'color',
-         'file' => 'file',
-         'textarea' => 'textarea',
-         'select' => 'select',
+         // 'file' => 'file',
+         // 'textarea' => 'textarea',
+         // 'select' => 'select',
 
     ];
 }

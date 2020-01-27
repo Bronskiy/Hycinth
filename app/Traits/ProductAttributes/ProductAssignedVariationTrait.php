@@ -59,6 +59,7 @@ public function createInventoryAndVariations($request,$product)
 		$v->product_id = $product->id;
 		$v->price = $request->price;
 		$v->sale_price = $request->sale_price;
+		$v->final_price = trim(($request->price - $request->sale_price));
 		$v->status = $request->stock_status;
 		$v->stock_managable = !empty($request->hasStockManage) ? 1 : 0;
 		$v->weight=$request->weight;

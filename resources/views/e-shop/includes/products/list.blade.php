@@ -14,12 +14,13 @@ $url = $complete == 1 ? url(route('shop.product.detail.page',$product->slug)) : 
 
  <div class="col-lg-4 col-md-6">
 
-          <a href="{{$url}}" >
-          	<div class="product-card">
+            <div class="product-card">
+             <a href="{{$url}}" >
               <div class="badge">{{$type}}</div>
               <div class="product-tumb">
                   <img src="{{$product->thumbnail != null ? url($product->thumbnail) : ''}}" alt="">
               </div>
+            </a>
               <div class="product-details">                              
                   <h4>{{$product->name}}</h4>
                   <p>{{$product->short_description}}</p>
@@ -27,12 +28,12 @@ $url = $complete == 1 ? url(route('shop.product.detail.page',$product->slug)) : 
                   	@php $price = $product->productPrice(); @endphp
                        {!!$price['html']!!}
                       <div class="product-links">
-                          <a href=""><i class="fa fa-heart"></i></a>
-                          <a href=""><i class="fa fa-shopping-cart"></i></a>
+                       <a href=""><i class="fa fa-heart"></i></a> 
+                          <a href="{{$url}}"><i class="fa fa-shopping-cart"></i></a>
                       </div>
                   </div>
               </div>
-          </a>
+          
       </div>
  </div>
 

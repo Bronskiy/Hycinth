@@ -9,14 +9,33 @@
     <link rel="stylesheet" href="https://cdn.rawgit.com/michalsnik/aos/2.0.4/dist/aos.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="{{url('/e-shop/css/owl.carousel.min.css')}}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.0/flexslider.min.css">
     <link rel="stylesheet" type="text/css" href="{{url('/e-shop/css/animate.css')}}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{url('/e-shop/css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('/e-shop/css/responsive.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('/e-shop/css/custom.css')}}">
+  <style type="text/css">
+    .custom-loading {
+       
+        display: none;
+    }
+    
+</style>
 </head>
 
 <body>
+
+ <div class="pre-loader custom-loading">
+       <div class="pre-loader-inner">
+      <div class="predot white"></div>
+      <div class="predot"></div>
+      <div class="predot"></div>
+       <div class="predot"></div>
+       <div class="predot"></div>
+   </div>
+</div>
+ 
     <header class="Eshop-header">
         <!-- header starts here -->
       <nav class="navbar navbar-expand-lg d-f">
@@ -143,17 +162,27 @@
     <!--   footer ends here -->
 
     <!-- Scripting starts here -->
-    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<!--     <script src="https://code.jquery.com/jquery-3.1.0.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.rawgit.com/michalsnik/aos/2.0.4/dist/aos.js"></script>
     
-<script src="https://cdn.rawgit.com/michalsnik/aos/2.0.4/dist/aos.js"></script>
+    <script src="https://cdn.rawgit.com/michalsnik/aos/2.0.4/dist/aos.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.0/jquery.flexslider.min.js"></script>
     <script src="{{url('/e-shop/js/animation.js')}}"></script>
     <script type="text/javascript" src="{{url('/e-shop/js/owl.carousel.min.js')}}"></script>
     <script type="text/javascript" src="{{url('/e-shop/js/custom.js')}}"></script>
     <script type="text/javascript" src="{{url('/e-shop/js/home/home.js')}}"></script>
+
+
+
+
+
+ 
+ 
+
+
 
     @yield('jscript')
     <script>

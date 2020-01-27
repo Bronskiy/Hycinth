@@ -70,57 +70,93 @@
                                   <ul class="price-range product-checkbox-list">
                                     <li>
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="PriceRange1">
-                                            <label class="custom-control-label" for="PriceRange1">Under $1000</label>
+                                            <input type="radio" class="custom-control-input formInputFilter" name="price" value="1&1000" id="PriceRange1">
+                                            <label class="custom-control-label" for="PriceRange1"
+                                            >Under $1000</label>
                                           </div>
                                         </li>
                                         <li><div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="PriceRange2">
-                                            <label class="custom-control-label" for="PriceRange2">$1,000 - 1,999</label>
+                                            <input type="radio" class="custom-control-input formInputFilter" name="price" value="1000&1999" id="PriceRange2">
+                                            <label class="custom-control-label" for="PriceRange2"
+                                            >$1,000 - 1,999</label>
                                           </div>
                                         </li>
                                         <li><div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="PriceRange3">
-                                            <label class="custom-control-label" for="PriceRange3">$2,000 - $2,999</label>
+                                            <input type="radio" class="custom-control-input formInputFilter" name="price" value="2000&2999" id="PriceRange3">
+                                            <label class="custom-control-label" for="PriceRange3"
+                                            >$2,000 - $2,999</label>
                                           </div>
                                         </li>
                                         <li><div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="PriceRange4">
-                                            <label class="custom-control-label" for="PriceRange4">$3,000 - $3,999</label>
+                                            <input type="radio" class="custom-control-input formInputFilter" name="price" value="3000&3999" id="PriceRange4">
+                                            <label class="custom-control-label" for="PriceRange4"
+                                            >$3,000 - $3,999</label>
                                           </div>
                                         </li>
                                         <li><div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="PriceRange5">
-                                            <label class="custom-control-label" for="PriceRange5">$4,000 +</label>
+                                            <input type="radio" class="custom-control-input formInputFilter" value="4000&1000000" name="price" id="PriceRange5">
+                                            <label class="custom-control-label" 
+                                            for="PriceRange5"
+                                            >$4,000 +</label>
                                           </div>
+                                        </li>
+                                        <li>
+                                          <div class="form-group mini-btn-wrap text-right">
+                                                        <a href="javascript::void(0)" class="resetRadio cstm-btn solid-btn">Reset</a> 
+                                           </div>
                                         </li>
                                   </ul>
                               </div>
                             </div>
                           </div>
 
+
+                      @if($category->categorySubparent->ProductVariations != null && $category->categorySubparent->ProductVariations->count() > 0)    
+                          
+                        @foreach($category->categorySubparent->ProductVariations as $variation)
                           <div class="card">
                             <div class="card-header" id="heading-4">
                               <h5 class="mb-0">
-                                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-4" aria-expanded="true" aria-controls="collapse-4">
-                                  Select colors
+                                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-{{$variation->type}}-{{$variation->id}}" aria-expanded="true" aria-controls="collapse-4">
+                                 {{$variation->variations->name}}
                                 </a>
                               </h5>
                             </div>
-                            <div id="collapse-4" class="collapse show" data-parent="#accordion" aria-labelledby="heading-4">
+                            <div id="collapse-{{$variation->type}}-{{$variation->id}}" class="collapse show" data-parent="#accordion" aria-labelledby="heading-4">
                               <div class="card-body">
-                                <ul class="product-colors-wrap">
+                                <ul class="{{$variation->type == 'colors' ? 'product-colors-wrap' : 'price-range product-checkbox-list'}}">
+                                 @foreach($variation->variationTypes as $v)
+                                   
+                                   <?php $attributes = json_decode($v->variation->data);  ?>
 
-                                  <li><div class="product-color-checkbox">
-                                        <input type="checkbox" name="" id="productColor-1">
-                                        <label for="productColor-1" class="productColor-label" style="background-color: #d1d1d1;"></label>
-                                     </div>
-                                 </li>
+                                   @if(!empty($attributes->color))
+                                    <li>
+                                      <div class="product-color-checkbox">
+                                          <input type="checkbox" class="formInputFilter" name="{{$variation->type}}[]" value="{{$v->variation->id}}" id="productColor-{{$v->id}}">
+                                          <label for="productColor-{{$v->id}}" class="productColor-label" style="background-color: {{$attributes->color}};"></label>
+                                       </div>
+                                    </li>
+ 
+                                   @else
+                                       <li>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input formInputFilter" name="{{$variation->type}}[]" id="productColor-{{$v->id}}" value="{{$v->variation->id}}">
+                                                <label class="custom-control-label" for="productColor-{{$v->id}}">
+                                                  {{$v->variation->name}}
+                                                </label>
+                                              </div>
+                                       </li>
+                                   @endif
+
+                                    
+                                 @endforeach
                               
                                 </ul>
                               </div>
                             </div>
                           </div>
+                          @endforeach
+                        @endif
 
 
                         </form>

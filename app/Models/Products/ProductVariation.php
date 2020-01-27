@@ -22,7 +22,10 @@ public function getWIthType($type)
 	return $this->where('type',$type)->where('status',1)->get();
 }
 
- 
+  public function variations()
+    {
+    	return $this->belongsTo('App\Models\Products\Variation','type','type')->where('status',1);
+    }
 
 
 }

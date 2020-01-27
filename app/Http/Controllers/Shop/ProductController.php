@@ -25,8 +25,7 @@ class ProductController extends Controller
 	public function index($cateSlug,$subcate,$childSlug)
 	{
        $ProductCategory = ProductCategory::with([
-       	   
-          'categoryParent',
+       	  'categoryParent',
           'categorySubparent'
          ])->where('slug',$childSlug)->first();
 		   return view($this->filePath.'index')
@@ -42,7 +41,7 @@ class ProductController extends Controller
 
 	public function detail($slug)
 	{
-        $product = Product::with('ProductImages','ProductAttributeVariableProduct','ProductAttributeVariableProduct.childAttributes')->where('slug',$slug)->where('create_status',1)->first();
+         $product = Product::with('ProductImages','ProductAttributeVariableProduct','ProductAttributeVariableProduct.childAttributes')->where('slug',$slug)->where('create_status',1)->first();
 		   return view($this->filePath.'detail')
 		        ->with('product',$product);
 	}

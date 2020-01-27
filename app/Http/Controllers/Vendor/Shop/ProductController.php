@@ -223,6 +223,7 @@ public function createGeneralSetting(Request $request,$product_id)
           $product->width = trim($request->width);
           $product->price = trim($request->price);
           $product->sale_price = trim($request->sale_price);
+          $product->final_price = trim(($request->price - $request->sale_price));
           $product->save();
 
 	 	$status = ['status' => 1, 'messages' => 'General Setting is saved'];
