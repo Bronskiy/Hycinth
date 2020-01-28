@@ -15,11 +15,10 @@ $url = $complete == 1 ? url(route('shop.product.detail.page',$product->slug)) : 
  <div class="col-lg-4 col-md-6">
 
             <div class="product-card">
-             <a href="{{$url}}" >
+            
               <div class="badge">{{$type}}</div>
-              <div class="product-tumb">
-                  <img src="{{$product->thumbnail != null ? url($product->thumbnail) : ''}}" alt="">
-              </div>
+             <a href="{{$url}}"  class="product-tumb">
+                  <img src="{{$product->thumbnail != null ? url($product->thumbnail) : ''}}" alt="">            
             </a>
               <div class="product-details">                              
                   <h4>{{$product->name}}</h4>

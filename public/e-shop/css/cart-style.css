@@ -16,6 +16,8 @@
     display: block;
     width: 100%;
     position: relative;
+    overflow: hidden;
+    border-radius: 6px;
 }
 .input-number__input {
     -moz-appearance: textfield;
@@ -38,11 +40,15 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    opacity: .3;
+    opacity: 0.7;
     transition: opacity .18s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #d1d1d1;
 }
 .input-number__sub {
-    left: 1px;
+    l: 1px;
 }
 .cart__actions {
     margin-top: 2rem;
@@ -65,11 +71,12 @@
 }
 
 .cart__buttons {
-    width: calc(50% - 15px);
+    /*width: calc(50% - 15px);*/
+    width: 100%;
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: end;
-    justify-content: flex-end
+    -ms-flex-pack: center;
+    justify-content: center;
 }
 
 .cart__update-button {

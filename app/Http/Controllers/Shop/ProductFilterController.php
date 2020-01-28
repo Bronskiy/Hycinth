@@ -33,13 +33,13 @@ public function index(Request $request,$category_id)
 // 	 }
 
 
-   $simpleIds =$this->getSimpleProductId($request,$category_id);
- $ids = $this->getProductIDWIthFilters($request,$category_id);
-   $compineIDS = array_merge($simpleIds,$ids);
+   // $simpleIds =$this->getSimpleProductId($request,$category_id);
+   // return $ids = $this->getProductIDWIthFilters($request,$category_id);
+   // return $compineIDS = array_merge($simpleIds,$ids);
    $Product = Product::with('ProductAssignedVariations')
                       ->where('childcategory_id',$category_id)
                       ->where('create_status',1)
-                      ->whereIn('id',$compineIDS)
+                      //->whereIn('id',$compineIDS)
                       ->paginate(20);
    $vv = view($this->include.'list')->with('products',$Product);
    return response()->json(['status' => 1,'htm' => $vv->render()]);
@@ -115,7 +115,7 @@ public function getProductIDWIthFilters($request,$category_id)
 	        		if(is_array($value)){
 
 	                   $t->orWhere('product_assigned_variations.type',$key);
-	        		   $t->whereIn('product_assigned_variations.attribute_id',$value);
+	        		       $t->whereIn('product_assigned_variations.attribute_id',$value);
 	        		}
 		        }
 

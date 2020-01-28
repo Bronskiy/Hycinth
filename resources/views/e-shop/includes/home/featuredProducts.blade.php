@@ -1,9 +1,9 @@
  <section class="featured-product-sec">
          <div class="container">
-             <div class="sec-heading text-center">
-                <h2>Featured PRODUCTS</h2>
+             <div class="sec-heading text-center wow bounceInRight" data-wow-delay=".35s">
+                <h2>FEATURED PRODUCTS</h2>
             </div>
-            <div class="featured-product-wrap">
+            <div class="featured-product-wrap wow bounceInUp" data-wow-delay=".40s">
                     <div class="owl-carousel owl-theme featured-product-slider">
                        
                      
@@ -26,20 +26,28 @@ $price = $product->productPrice();
 
 
    <div class="item"> 
-     <a href="{{$url}}" >                         
-     <div class="featured-product-card">
-        <figure class="f-product-img">
-            <img src="{{$product->thumbnail != null ? url($product->thumbnail) : ''}}" alt="">
-        </figure>
-         <div class="f-product-detail">
-             <h4>{{$product->name}}</h4>
-             <div class="f-product-price text-center">
-                 <h3 class="after-discount-price">${{custom_format($price['sale_price'],2)}} </h3>
-                 <p class="original-price"><del>${{custom_format($price['price'],2)}}</del></p>
-             </div>
-         </div>
-     </div>
-    </a>
+                         <div class="product-card">
+                            <div class="badge">Featured</div>
+                             <a href="{{$url}}" class="product-tumb">
+                                  <img src="{{$product->thumbnail != null ? url($product->thumbnail) : ''}}" alt="">
+                               
+                             </a>
+                            <div class="product-details">
+                                <span class="product-catagory">{{$product->category->label}} | {{$product->subcategory->label}} | {{$product->childcategory->label}}</span>
+                                <h4>
+                                    <a href="{{$url}}">{{ $product->name }}</a>
+                                </h4>
+                                <p>{!!$product->short_description!!}</p>
+                                <div class="product-bottom-details">
+                                        @php $price = $product->productPrice(); @endphp
+                                          {!!$price['html']!!}
+                                            <div class="product-links">
+                                                <a href=""><i class="fa fa-heart"></i></a>
+                                                <a href="{{$url}}"><i class="fa fa-shopping-cart"></i></a>
+                                            </div>
+                                </div>
+                            </div>
+                        </div>
  </div>
 
  

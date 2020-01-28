@@ -18,12 +18,12 @@
                                   <div class="card">
                                     <div class="card-header" id="heading-1-2">
                                       <h5 class="mb-0">
-                                        <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-1-2" aria-expanded="false" aria-controls="collapse-1-2">
+                                        <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-1-2" aria-expanded="true" aria-controls="collapse-1-2">
                                           {{$category->categorySubparent->label}}
                                         </a>
                                       </h5>
                                     </div>
-                                    <div id="collapse-1-2" class="collapse" data-parent="#filter-sub-accordion" aria-labelledby="heading-1-2">
+                                    <div id="collapse-1-2" class="collapse show" data-parent="#filter-sub-accordion" aria-labelledby="heading-1-2">
                                       <div class="card-body">
                                         <!-- <div class="product-checkbox-list">
 
@@ -33,7 +33,7 @@
                                          
                                          </div> -->
 
-                                         <ul>
+                                         <ul class="sub-category-list">
                                           @foreach($category->categorySubparent->childCategory as $childCategory)
                                           <li class="{{$childCategory->id == $category->id ? 'active' : ''}}">
                                               <a href="{{url(route('shop.childcategory',[

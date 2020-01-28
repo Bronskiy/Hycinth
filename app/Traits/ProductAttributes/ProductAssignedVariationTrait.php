@@ -26,8 +26,10 @@ public function createNewVariationWithAttributeAndStockManagable(Request $reques
 {
      
       $product = Product::find($product_id);
+
+      
 	  if($product->user_id == Auth::user()->id){
-	  	if($this->checkAlreadyExistVariationOrNot($request,$product) == 0){
+	  	if($this->checkAlreadyExistVariationOrNot($request,$product) == 1){
 	  		$status =['status' => 0,'messages' => 'This variation already Exist Please check again'];
 	  	}elseif(!empty($request->hasStockManage) && $this->checkAlreadyExistSKUOrNot($request,$product) == 0){
 	  		$status =['status' => 0,'messages' => 'This Sku is already Exists!'];
@@ -102,37 +104,30 @@ public function savingAttributeOfVariation($request,$product,$variation_id)
 
 public function checkAlreadyExistVariationOrNot($request,$product)
 {
+        $variation_id = !empty($request->variation_id) ? $request->variation_id : 0;
+        $variations = $product->ProductAssignedVariations->where('id','!=',$variation_id);
 
-   $arr1 = [];
-   $arr2 = [];
-   $i = 0;
-    $variation_id = !empty($request->variation_id) ? $request->variation_id : 0;
-	foreach ($request->variations as $type => $attribute_id) {
 
-	                  $get = ProductAssignedVariation::where('user_id',$product->user_id)
-	                         ->where('product_id',$product->id)
-	                         ->where('shop_id',$product->shop_id)
-	                         ->where('type',$type)
-	                         ->where('parent','!=',$variation_id)
-	                         ->where('attribute_id',$attribute_id);
-	                           
-	        if($get->count() > 0){
-	        	array_push($arr1,$attribute_id);
-	        }
-	        array_push($arr2,$attribute_id);
-		 $i++; 
-	}
+        $arr = [];
+        foreach ($request->variations as $key => $value) {
+        	 $arr[$key]=$value;
+        }
 
-sort($arr1); 
-sort($arr2); 
+        $status = 0;
 
-return $i > 0 && $arr1 == $arr2 ? 0 : 1;
+        foreach ($variations as $key => $v) {
+        	   $ids = $v->hasVariationAttributes->pluck('attribute_id','type')->toArray();
+               if($arr == $ids){
+               	$status = 1;
+               }
 
-	//return ;
+        }
+
+        return $status;
 
 }
 
-
+ 
 
 #==========================================================================================================
 #==========================================================================================================
@@ -191,6 +186,14 @@ public function checkAlreadyExistSKUOrNot($request,$product)
 	                   
 	  return $c->count() > 0 ? 0 : 1;
 }
+
+
+
+
+
+
+
+
 
 
 }

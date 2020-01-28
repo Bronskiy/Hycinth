@@ -9,7 +9,7 @@
         <div class="container">
             <div class="banner-content">
                 <div class="row cstm-flex-row">
-                    <div class="col-lg-7">
+                    <div class="col-lg-7 wow bounceInLeft" data-wow-delay=".40s">
                         <div class="banner-text">
                             <h1>
                              <small>Sed ut perspiciatis unde omnis</small>
@@ -20,8 +20,8 @@
                             <a href="javascript:void(0);" class="cstm-btn solid-btn">Shop Now</a>
                         </div>
                     </div>
-                    <div class="col-lg-5">
-                        <figure class="banner-product-img">
+                    <div class="col-lg-5 wow bounceInRight" data-wow-delay=".40s">
+                        <figure class="banner-product-img wow rubberBand" data-wow-delay=".45s">
                             <img src="{{url('e-shop/images/banner-product-img.png')}}">
                         </figure>
                     </div>

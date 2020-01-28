@@ -23,4 +23,10 @@ class ProductAssignedVariation extends Model
     {
     	return $this->hasOne('App\Models\Products\ProductInventory','variation_id');
     }
+
+
+     public function parentVariation()
+    {
+    	return $this->belongsTo('App\Models\Products\ProductVariation','attribute_id');
+    }
 }

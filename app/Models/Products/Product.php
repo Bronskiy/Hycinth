@@ -4,6 +4,7 @@ namespace App\Models\Products;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+use App\Models\Products\ProductAssignedVariation;
 class Product extends Model
 {
      use Sluggable;
@@ -78,10 +79,13 @@ class Product extends Model
           return $this->hasMany('App\Models\Products\ProductAttribute','product_id','id')->where('parent',0);
      }
 
+
      public function HasInventory()
      {
           return $this->hasOne('App\Models\Products\ProductInventory','product_id','id');
      }
+
+
      public function ProductImages()
      {
           return $this->hasMany('App\Models\Products\ProductImage','product_id','id');
@@ -99,12 +103,50 @@ class Product extends Model
          return $this->hasMany('App\Models\Products\ProductAttribute','product_id','id')->where('parent',0)->where('product_variant',1);
      }
 
+
      public function ProductAttributeVariableVisibles()
      {
          return $this->hasMany('App\Models\Products\ProductAttribute','product_id','id')
                      ->where('parent',0)
                      ->where('product_view',1);
      }
+
+#=============================================================================================================================================
+
+    public function cartOptions()
+    {
+        $types = $this->getVariationTypes();
+        $typeArray = [];
+        foreach ($types as $key => $type) {
+                 $ProductAttribute = ProductAssignedVariation::where('type',$type)
+                                                             ->where('product_id',$this->id)
+                                                             ->groupBy('attribute_id')
+                                                             ->pluck('attribute_id')
+                                                             ->toArray();
+                 $typeArray[$type] = $ProductAttribute;
+        }
+
+        return $typeArray;
+    }
+
+
+
+  #============================================================================================================================================
+
+
+  public function getVariationTypes()
+  {
+      return $this->hasMany('App\Models\Products\ProductAssignedVariation','product_id')
+                  ->where('parent','>',0)
+                  ->groupBy('type')
+                  ->pluck('type');
+  }
+
+
+
+
+
+
 
 
 

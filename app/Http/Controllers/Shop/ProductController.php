@@ -28,6 +28,9 @@ class ProductController extends Controller
        	  'categoryParent',
           'categorySubparent'
          ])->where('slug',$childSlug)->first();
+
+       
+
 		   return view($this->filePath.'index')
 		        ->with('category',$ProductCategory);
 	}

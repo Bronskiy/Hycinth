@@ -5,40 +5,47 @@
 
 <?php
 
+$assigned = $product->cartOptions();
+ $i=0
+ ?>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@foreach($assigned as $type => $val)
+<?php
+$attributes = App\Models\Products\ProductVariation::whereIn('id',$val)->where('type',$type);
 ?>
+ <h5 class="sizes">
+{{$type}}
+  <ul class="ctm-type-{{$type}}">
+@foreach($attributes->get() as $k => $item)
+
+        <li>
+            <div class="size-btn">
+              <input type="radio" 
+                      name="{{$type}}" 
+                      value="{{$item->id}}" 
+                      id="filter-{{$type}}-{{$item->id}}"
+                      data-type="{{$type}}"
+                      class="filterType" 
+                      {{$k == 0 ? 'checked' : ''}}>
+                      <label for="filter-{{$type}}-{{$item->id}}">{{$item->name}}</label>
+            </div>
+         </li>
+
+@endforeach
+</ul>
+ </h5> 
+
+<?php $i++; ?>
+@endforeach
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-          @foreach($product->ProductAttributeVariableProduct as $attribute)
+         <!--  @foreach($product->ProductAttributeVariableProduct as $attribute)
  
             <h5 class="sizes">{{$attribute->type}}: <label></label>
               <ul class="ctm-type-{{$attribute->type}}">
@@ -80,6 +87,6 @@
             </h5>
           @endforeach
     
-
+ -->
 
 @endif

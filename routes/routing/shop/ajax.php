@@ -16,4 +16,7 @@ Route::post('/category/product/filter/{id}','Shop\ProductFilterController@index'
 Route::get('/add-to-cart/product/{id}','Shop\CartController@addToCart')->name('shop.ajax.addToCart');
  
 
+
+Route::get('/cart-operations','Shop\CartController@cartOperations')->name('shop.ajax.cartOperations');
+
 });

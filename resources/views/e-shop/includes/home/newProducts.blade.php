@@ -1,9 +1,9 @@
    <section class="products-sec">
         <div class="container">
-            <div class="sec-heading text-center">
+            <div class="sec-heading text-center wow bounceInRight" data-wow-delay=".35s">
                 <h2>PRODUCTS</h2>
             </div>
-            <div class="product-wrapper">
+            <div class="product-wrapper wow bounceInUp" data-wow-delay=".40s">
                 <div class="row">
 
 
@@ -26,28 +26,30 @@
  
 
 
-   <div class="col-lg-4 col-md-6">
-                    <a href="{{$url}}" >
+   <div class="col-lg-3 col-md-6">
                          <div class="product-card">
                             <div class="badge">New</div>
-                            <div class="product-tumb">
-                               <img src="{{$product->thumbnail != null ? url($product->thumbnail) : ''}}" alt="">
-                            </div>
+                             <a href="{{$url}}" class="product-tumb">
+                                  <img src="{{$product->thumbnail != null ? url($product->thumbnail) : ''}}" alt="">
+                               
+                             </a>
                             <div class="product-details">
                                 <span class="product-catagory">{{$product->category->label}} | {{$product->subcategory->label}} | {{$product->childcategory->label}}</span>
-                                <h4><a href="">Women leather bag</a></h4>
+                                <h4>
+                                    <a href="{{$url}}">{{ $product->name }}</a>
+                                </h4>
                                 <p>{!!$product->short_description!!}</p>
                                 <div class="product-bottom-details">
                                         @php $price = $product->productPrice(); @endphp
                                           {!!$price['html']!!}
-                                    <div class="product-links">
-                                        <a href=""><i class="fa fa-heart"></i></a>
-                                        <a href="{{$url}}"><i class="fa fa-shopping-cart"></i></a>
-                                    </div>
+                                            <div class="product-links">
+                                                <a href=""><i class="fa fa-heart"></i></a>
+                                                <a href="{{$url}}"><i class="fa fa-shopping-cart"></i></a>
+                                            </div>
                                 </div>
                             </div>
                         </div>
-                      </a>
+                      
   </div>
 
 

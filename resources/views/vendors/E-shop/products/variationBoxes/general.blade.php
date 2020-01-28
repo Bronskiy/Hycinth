@@ -3,22 +3,24 @@
  
 <form data-action="{{url(route('vendor.shop.products.ajax.createGeneralSetting',$product->id))}}" id="VariationGeneralSetting">
 <div class="col-md-12">
+	<div class="row">
+		<div class="col-lg-6">
 		<div class="form-group">
 		    <label>Regular price($)<span class="q-mark"><i class="fas fa-question-circle"></i></span></label>
 		  
 		      <input type="number" class="form-control" value="{{$product->price}}" name="price" id="staticEmail" placeholder="">
 		    
 		</div>
-
+	</div>
+     <div class="col-lg-6">
 		<div class="form-group">
 		    <label>Sale price($)<span class="q-mark"><i class="fas fa-question-circle"></i></span></label>
 		    
-		      <input type="number" class="form-control" value="{{$product->sale_price}}" name="sale_price" id="staticEmail" placeholder="">
-		  
-		   
+		      <input type="number" class="form-control" value="{{$product->sale_price}}" name="sale_price" id="staticEmail" placeholder="">	  
+		   </div>
 		</div>
 </div>
-
+</div>
 		<div class="col-md-12">
 				   <div class="row">
 				       <div class="col-md-12">

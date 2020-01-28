@@ -15,6 +15,9 @@
     <link rel="stylesheet" type="text/css" href="{{url('/e-shop/css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('/e-shop/css/responsive.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('/e-shop/css/custom.css')}}">
+
+@yield('styleSheet')
+
   <style type="text/css">
     .custom-loading {
        
@@ -42,7 +45,7 @@
         <div class="top-head-bar">
             <div class="container">
                <div class="top-bar-content">
-                   <a href="index.html" class="brand-name"><img src="{{url('/e-shop/images/logo.svg')}}"></a>
+                   <a href="{{url(route('shop.index'))}}" class="brand-name"><img src="{{url('/e-shop/images/logo.svg')}}"></a>
 
                      <ul class="head-top-filters ml-auto">
                          <li class="search-li mob-hide">
@@ -62,7 +65,7 @@
                         <span class="top-filter-icon">
                             <i class="fas fa-heart"></i><span class="notification-icon">2</span></span>
                              <p>Wishlist</p></a></li>
-                     <li><a href="javascript:void(0);" class="cart-btn"><span class="top-filter-icon"><i class="fas fa-cart-plus"></i><span class="notification-icon">2</span></span><p>Cart</p> </a></li>
+                     <li><a href="{{url(route('shop.cart'))}}" class="cart-btn"><span class="top-filter-icon"><i class="fas fa-cart-plus"></i><span class="notification-icon">2</span></span><p>Cart</p> </a></li>
 
                      </ul>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -166,7 +169,7 @@
 <!--     <script src="https://code.jquery.com/jquery-3.1.0.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="https://cdn.rawgit.com/michalsnik/aos/2.0.4/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/0.1.12/wow.min.js"></script>
     
     <script src="https://cdn.rawgit.com/michalsnik/aos/2.0.4/dist/aos.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.0/jquery.flexslider.min.js"></script>
@@ -174,22 +177,12 @@
     <script type="text/javascript" src="{{url('/e-shop/js/owl.carousel.min.js')}}"></script>
     <script type="text/javascript" src="{{url('/e-shop/js/custom.js')}}"></script>
     <script type="text/javascript" src="{{url('/e-shop/js/home/home.js')}}"></script>
-
-
-
-
-
  
- 
-
-
 
     @yield('jscript')
     <script>
-        AOS.init();
-
+        new WOW().init();
     </script>
-
 </body>
 
 </html>

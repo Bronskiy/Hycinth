@@ -27,12 +27,12 @@
                                 <option>Popularity</option>
                               </select>
                           </div></li>
-                          <li><a href="javascript:void(0);"><i class="fas fa-list"></i></a></li>
-                          <li><a href="javascript:void(0);"><i class="fas fa-th"></i></a></li>
+<!--                           <li><a href="javascript:void(0);"><i class="fas fa-list"></i></a></li>
+                          <li><a href="javascript:void(0);"><i class="fas fa-th"></i></a></li> -->
                         </ul>
                      </div>
                      <div class="product-wrapper">
-                          <div class="row" id="loadProducts">
+                          <div class="row wow bounceInRight" id="loadProducts" data-wow-delay=".50s">
                              
                            
                           </div>
