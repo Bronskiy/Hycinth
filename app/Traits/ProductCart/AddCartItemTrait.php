@@ -10,6 +10,7 @@ use App\Models\Shop\ShopCategory;
 use App\Models\Products\ProductInventory;
 use App\Models\Products\ProductImage;
 use App\Models\Products\ProductAssignedVariation;
+use App\Models\Shop\ShopCartItems;
 use Cart; 
 trait AddCartItemTrait{
 
@@ -99,6 +100,46 @@ public function checkHasStock($request,$product,$variant_id)
 
 public function addCartItem($request,$product,$variant_id=0)
 {
+	 if(Auth::check() && Auth::user()->role == "user"){
+              $status = $this->SaveToShopUserCartItemTable($request,$product,$variant_id);
+              return ['status' => $status,'messages' => 'Product is added to cart successfully!'];
+	 }else{
+           $status = $this->SaveToSessionCart($request,$product,$variant_id);
+           return ['status' => $status,'messages' => 'Product is added to cart successfully!'];
+	 }
+    return ['status' => 0,'messages' => 'Something Wrong!'];
+}
+
+
+#================================================================================================================
+
+public function SaveToShopUserCartItemTable($request,$product,$variant_id)
+{ 
+         $ShopCartItems = ShopCartItems::where('user_id',Auth::user()->id)
+                                       ->where('product_id',$product->id)
+                                       ->where('variant_id',$variant_id);
+ 
+	     $variant = ProductAssignedVariation::find($variant_id);
+         $product_id = $product->id;
+         $price = $variant_id > 0 ? $variant->final_price : $product->final_price;
+         $quantity = $ShopCartItems->count() > 0 ? ($ShopCartItems->first()->quantity + 1) : 1;
+ 
+		 $s= $ShopCartItems->count() > 0 ? $ShopCartItems->first() : new ShopCartItems;
+		 $s->product_id = $product_id;
+		 $s->variant_id = $variant_id;
+		 $s->price = $price;
+		 $s->quantity = $quantity;
+		 $s->total = ($quantity * $price);
+		 $s->user_id = Auth::user()->id;
+		 $s->save();
+		 return 1;
+
+}
+
+#================================================================================================================
+
+public function SaveToSessionCart($request,$product,$variant_id)
+{
 	if($variant_id > 0){
 
 		$variant = ProductAssignedVariation::find($variant_id);
@@ -130,8 +171,7 @@ public function addCartItem($request,$product,$variant_id=0)
 	}
 
     Cart::add($item);
-
-    return ['status' => 1,'messages' => 'Product is added to cart successfully!'];
+    return 1;
 }
 
 

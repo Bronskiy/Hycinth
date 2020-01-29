@@ -65,7 +65,14 @@
                         <span class="top-filter-icon">
                             <i class="fas fa-heart"></i><span class="notification-icon">2</span></span>
                              <p>Wishlist</p></a></li>
-                     <li><a href="{{url(route('shop.cart'))}}" class="cart-btn"><span class="top-filter-icon"><i class="fas fa-cart-plus"></i><span class="notification-icon">2</span></span><p>Cart</p> </a></li>
+                     <li>
+                       <a href="{{url(route('shop.cart'))}}" class="cart-btn">
+                           <span class="top-filter-icon">
+                               <i class="fas fa-cart-plus"></i>
+                                   <span class="notification-icon">{{ShopCartCount()}}</span>
+                           </span><p>Cart</p> 
+                         </a>
+                       </li>
 
                      </ul>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

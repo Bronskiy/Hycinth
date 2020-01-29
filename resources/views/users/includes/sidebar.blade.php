@@ -50,10 +50,13 @@
                 <li class="nav-item {{ ActiveMenu(['user.inviting.vendors'], 'active') }}">
                     <a href="{{ route('user.inviting.vendors') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-inbox"></i></span><span class="pcoded-mtext">Invite Vendors</span></a>
                 </li>
-
- 
-
                 
+
+                 <li class="nav-item pcoded-menu-caption">
+                    <label>E-Shop</label>
+                </li>
+
+                  
 
                 </ul>
             </div>

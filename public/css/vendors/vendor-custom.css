@@ -45,6 +45,9 @@ textarea.form-control {
     height: 130px;
     resize: none;
 }
+.btn{
+  margin-right: 0px;
+}
 .vendor-dash-card {
     border: none;
     background: #fff;
@@ -2498,6 +2501,15 @@ ul.shop-category-list li {
     border-radius: 0px 0px 10px 10px;
     background: #f3f3f3;
     border-top: 0;
+}
+.table.cstm-eshop-table h3 {
+    font-size: 19px;
+    margin-bottom: 8px;
+}
+.table.cstm-eshop-table thead tr th {
+    background: #eda108;
+    color: #fff;
+    font-size: 17px;
 }
 /**  24-1-2020  **/
 /******************/

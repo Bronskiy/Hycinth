@@ -1,10 +1,8 @@
    
-@foreach(Cart::getContent() as $item)
+@foreach($userCartContent->get() as $item)
 <?php
-
-    $Product_id = $item->attributes->product_id;
-    $product = \App\Models\Products\Product::find($Product_id);
-    $variation = \App\Models\Products\ProductAssignedVariation::find($item->attributes->variant_id);
+    $product = $item->product;
+    $variation = \App\Models\Products\ProductAssignedVariation::find($item->variant_id);
     
 
  ?>
@@ -14,7 +12,7 @@
                                     <a href=""><img src="{{url($product->thumbnail)}}" alt=""></a>
                                 </td>
                                 <td class="cart-table__column cart-table__column--product">
-                                    <a href="" class="cart-table__product-name">{{$item->name}}</a>
+                                    <a href="" class="cart-table__product-name">{{$product->name}}</a>
                                     <h4>Product Type: {{$product->product_type == 1 ? 'Variable' : 'Simple'}}</h4>
                                    
                                   @if($product->product_type == 1)
@@ -38,7 +36,7 @@
                                         class="input-number__sub cartItemQty {{$item->quantity == 1 ? 'disabled-type' : ''}}"
                                         data-type="sub"
                                         data-id="{{$item->id}}"
-                                         data-disable="{{$item->quantity == 1 ? 0 : 1}}"
+                                        data-disable="{{$item->quantity == 1 ? 0 : 1}}"
                                         >
                                           <i class="fas fa-minus"></i>
                                         </a>
@@ -46,14 +44,14 @@
                                         class="input-number__add cartItemQty "
                                         data-type="add"
                                         data-id="{{$item->id}}"
-                                         data-disable="1"
-                                        >
+                                        data-disable="1"
+                                         >
                                          <i class="fas fa-plus"></i>
                                         </a>
                                     </div>
                                 </td>
                                 <td class="cart-table__column cart-table__column--total" data-title="Total">
-                                        ${{custom_format($item->getPriceSum(),2)}} 
+                                        ${{($item->price * $item->quantity)}} 
                                 </td>
                                 <td class="cart-table__column cart-table__column--remove">
                                     <a href="javascript" class="btn btn-light btn-sm btn-svg-icon cartItemQty"

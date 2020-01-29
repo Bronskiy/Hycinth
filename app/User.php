@@ -4,7 +4,7 @@ use App\Notifications\VerifyEmail;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use App\Models\Shop\ShopCartItems;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
@@ -37,6 +37,12 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function __construct()
+    {
+        $this->getShopCartTotal();
+    }
 
 
     public function services()
@@ -143,5 +149,39 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
 
+    public function ShopProductCount()
+    {
+        return $ShopCartItems = ShopCartItems::where('user_id',$this->id)->sum('quantity');
+                                       
+    }
 
+
+
+    public function ShopProductCartItems()
+    {
+        return $this->hasMany('App\Models\Shop\ShopCartItems');
+                                       
+    }
+
+
+
+    public function getShopCartTotal()
+    {
+          $items = ShopCartItems::where('user_id',$this->id)->get();
+
+          foreach ($items as $key => $im) {
+                    $Product_id = $item->attributes->product_id;
+                    $product = $im->product;
+                    $variation = \App\Models\Products\ProductAssignedVariation::find($item->attributes->variant_id);
+                    $price = $product->final_price;
+                    if($product->product_type == 1){
+                      $price = $variation->final_price;
+                    }
+                    
+                    $im->price = $price;
+                    $im->total = ($price * $im->quantity);
+                    $im->save();
+            
+          }
+    }
 }

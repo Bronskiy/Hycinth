@@ -13,13 +13,15 @@ use App\Category;
 use App\VendorCategory;
 use Carbon\Carbon;
 use App\FAQs;
-
+use App\Traits\ProductCart\UserCartTrait;
 use App\Traits\EmailTraits\EmailNotificationTrait;
+
 class HomeController extends Controller
 {
     use RegistersUsers;
     use GeneralSettingTrait;
     use EmailNotificationTrait;
+    use UserCartTrait;
 
     /**
      * Create a new controller instance.
@@ -438,6 +440,7 @@ public function login($request)
                
 
                              if(Auth::user()->status == 1):
+                                            $this->TransferCartItemToUserTable();
                                             $arr = [
                                                 'status' => 1,
                                                 'message' => 'Please wait... Redirecting to your dashboard.',

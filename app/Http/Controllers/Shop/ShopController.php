@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Shop;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Products\ProductCategory;
+use App\Traits\ProductCart\UserCartTrait;
 class ShopController extends Controller
 {
-   
+    use UserCartTrait;
+    
     public $filePath = 'e-shop.';
     public $include = 'e-shop.includes.';
 

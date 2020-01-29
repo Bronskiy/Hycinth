@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'UserAuth' => \App\Http\Middleware\UserAuth::class,
         'VendorAuth' => \App\Http\Middleware\VendorAuth::class,
         'Checkout' => \App\Http\Middleware\Checkout::class,
+        'ShopCheckoutCheck' => \App\Http\Middleware\ShopCheckoutCheck::class,
     ];
 
     /**

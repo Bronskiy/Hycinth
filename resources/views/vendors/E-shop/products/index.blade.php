@@ -41,12 +41,13 @@
           <div class="card vendor-dash-card">
                   
 		           <div class="card-body">
-                       <table class="table">
+                       <table class="table cstm-eshop-table">
                        	<thead>
                        		<tr>
                        			<th>Sr.no</th>
+                       			<th>Image</th>
                        			<th>Name</th>
-                       			<th>Action</th>
+                            <th>Action</th>
                        		</tr>
                        	</thead>
 
@@ -63,7 +64,8 @@
                                   {{$product->childcategory != null && $product->childcategory->count() > 0 ? $product->childcategory->label : ''}}</p>
                                   </td>
                                 <td>
-                                     <a href="{{url(route('vendor.shop.products.edit',$product->id))}}">Edit</a>
+                                    
+                                     <a href="{{url(route('vendor.shop.products.edit',$product->id))}}" data-toggle="tooltip" data-placement="top" title="Edit" class="add_btn"><i class="fa fa-pencil-alt"></i></a>
                                 </td>
                               </tr>
 
@@ -89,3 +91,8 @@
 
 
 @endsection
+<script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>

@@ -2,6 +2,28 @@
 
 
 
+function ShopCartCount()
+{
+  if(Auth::check() && Auth::user()->role == "user"){
+      return Auth::user()->ShopProductCount();
+  }else{
+      return Cart::getTotalQuantity();
+  }
+}
+
+
+
+function getTaxPriceAccordingToZipcode()
+{  
+  $tax=0;
+   if(Session::has('shippingAddress')){
+        $arr = (object)json_decode(Session::get('shippingAddress'));
+        $tax = $arr->tax;
+
+   }
+   return $tax;
+}
+
 
 
 function messageAccordingType($msg,$class)
@@ -286,6 +308,10 @@ function errorMessages($type)
      break;
     case 'logged':
       return 'Your request is not fullfilled right now because already you are logged in.';
+     break;
+
+   case 'UnAutherized':
+      return 'Your request is not fullfilled right now because already you are logged in with other type user.';
      break;
    
    default:

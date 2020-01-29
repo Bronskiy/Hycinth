@@ -1,9 +1,29 @@
- <h3 class="card-title">Cart Totals</h3>
- <table class="cart__totals">
+<?php
+$subtotal = 0;
+$total = 0;
+
+if($userCartContent->count() > 0){
+ 
+$subtotal = $userCartContent->sum('total');
+$total = $userCartContent->sum('total');
+
+}else{
+    $subtotal = Cart::getSubTotal();
+    $total = Cart::getTotal();
+}
+
+
+
+
+
+?>                            
+
+                             <h3 class="card-title">Cart Totals</h3>
+                                    <table class="cart__totals">
                                         <thead class="cart__totals-header">
                                             <tr>
                                                 <th>Subtotal</th>
-                                                <td>${{custom_format(Cart::getSubTotal(),2)}}</td>
+                                                <td>${{custom_format($subtotal,2)}}</td>
                                             </tr>
                                         </thead>
                                        <!--  <tbody class="cart__totals-body">
@@ -21,11 +41,11 @@
                                         <tfoot class="cart__totals-footer">
                                             <tr>
                                                 <th>Total</th>
-                                                <td>${{custom_format(Cart::getTotal(),2)}}</td>
+                                                <td>${{custom_format($total,2)}}</td>
                                             </tr>
                                         </tfoot>
                                     </table>
 
 
 
-                                    <a class="cstm-btn solid-btn btn-xl btn-block cart__checkout-button" href="checkout.html">Proceed to checkout</a>
+                                    <a class="cstm-btn solid-btn btn-xl btn-block cart__checkout-button" href="{{url(route('shop.checkout.index'))}}">Proceed to checkout</a>

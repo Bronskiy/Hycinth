@@ -43,7 +43,7 @@
               <input type="text" id="phone_number" class="form-control" name="phone_number" 
               value="{{$address->phone_number}}" 
               placeholder="Enter your Phone Number">
-              <span class="input-icon"><i class="fas fa-phone-alt"></i></span>
+              <span class="input-icon"><i class="fa fa-phone"></i></span>
            </div>
         </div> 
         <div class="col-md-6">
@@ -101,8 +101,7 @@
 
            <!-- <button class="cstm-btn solid-btn">Continue</button> -->
            <div class="multistep-footer mt-4 text-right"> 
-            
-            <button id="billingFormBtn" type="submit" class="cstm-btn solid-btn">Save & Continue</button>
+             <button id="billingFormBtn" type="submit" class="cstm-btn solid-btn">Save & Continue</button>
           </div>
 
         </div>

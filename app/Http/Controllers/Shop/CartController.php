@@ -15,6 +15,7 @@ use App\Models\Products\ProductImage;
 use App\Models\Products\ProductAssignedVariation;
 use Cart;
 use App\Traits\ProductCart\AddCartItemTrait;
+use App\Models\Shop\ShopCartItems;
 class CartController extends Controller
 {
      use AddCartItemTrait;
@@ -68,20 +69,38 @@ public function cartOperations(Request $request)
 
 public function addQty($request,$val)
 {
-	  $rowId = $request->id;
+       $rowId = $request->id;
+	 if(Auth::check() && Auth::user()->role == "user"){
 
-	       $cart = Cart::get($rowId);
-	  if($val == 2){
+	 	$userCart = ShopCartItems::where('user_id',Auth::user()->id)->where('id',$rowId);
 
-	  	Cart::remove($rowId);
+	 	 if($userCart->count() > 0){
+	 	 	if($val == 2) {
+                 $userCart->delete();
+	 	 	}else{
+		 	 	$c = $userCart->first();
+		 	 	$qty = $val == 1 ? ($c->quantity + 1) : abs($c->quantity - 1);
+		 	 	$c->quantity = $qty;
+		 	 	$c->total = ($qty * $c->price);
+		 	 	$c->save();
+	 	   }
 
-	  }else{
-		      $new = $val == 1 ? 1 : -1;
-			    Cart::update($rowId,[
-					'quantity' => $new
-				]);
-      }
-        return  $this->listItemOfcart();
+	 	 }
+
+	 }else{
+		  $rowId = $request->id;
+          $cart = Cart::get($rowId);
+		  if($val == 2){
+                 Cart::remove($rowId);
+          }else{
+			      $new = $val == 1 ? 1 : -1;
+				    Cart::update($rowId,[
+						'quantity' => $new
+					]);
+	      }
+
+     }
+      return  $this->listItemOfcart();
 
 
 }
@@ -92,10 +111,15 @@ public function addQty($request,$val)
 
 
 public function listItemOfcart()
-{
+{ 
+   $user_id = Auth::check() && Auth::user()->role == "user" ? Auth::user()->id : 0;
+   $view = Auth::check() && Auth::user()->role == "user" ? 'withLogin' : 'withoutLoginCart';
 
-   $vv = view($this->include.'withoutLoginCart');
-   $v = view($this->include.'totals');
+   $userCart = ShopCartItems::where('user_id',$user_id);
+
+ 
+   $vv = view($this->include.$view)->with('userCartContent',$userCart);
+   $v = view($this->include.'totals')->with('userCartContent',$userCart);
 
    return [
         'status' => 1,

@@ -33,7 +33,7 @@
                         </thead>
                         <tbody class="cart-table__body" id="loadCartItems">
  
-                          @include('e-shop.includes.cart.withoutLoginCart')
+                          
                          
                         </tbody>
                     </table>
@@ -43,7 +43,7 @@
                             <div class="card cart-total-card">
                                 <div class="card-body" id="totals">
                                     
-                                    @include('e-shop.includes.cart.totals')
+                                    
                                 </div>
 
 
@@ -100,7 +100,9 @@ $("body").on('click','a.cartItemQty',function(e){
      var $this = $( this );
      var type = $this.attr('data-type');
      var id = $this.attr('data-id');
-     addToCartFunction(type,id);
+     if($this.attr('data-disable') == 1){
+          addToCartFunction(type,id);
+     }
 
 
 });
