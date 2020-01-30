@@ -64,9 +64,13 @@
                         'admin.products.custom.fields.variations',
                         'admin.products.custom.fields.edit.variations',
                         'admin.products.variation.edit',
-                        'admin.products.edit.variations'
+                        'admin.products.edit.variations',
+                        'admin.products.list.brands'
                         ],'block') ?>;">
 
+                         <li class="<?= ActiveMenu(['admin.products.list.brands'],'active') ?>">
+                              <a href="{{ route('admin.products.list.brands') }}" class="">Brand</a>
+                        </li>
                                  
                                  <li class="<?= ActiveMenu(['admin.products.create.variations'],'active') ?>">
                                       <a href="{{ route('admin.products.create.variations') }}" class="">Add New Variations</a>

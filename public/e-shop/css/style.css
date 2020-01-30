@@ -1737,8 +1737,64 @@ ul {
     padding-top: 20px;
     border-top: 1px solid #d1d1d1;
 }
-
-
+.thank-you-block {
+    max-width: 600px;
+    margin: 0px auto;
+    padding: 30px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+    border: 4px solid #d1d1d1;
+    border-radius: 4px;
+}
+.thank-you-block .thankyou-header {
+    text-align: center;
+    display: block;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+.thank-you-block .order-info-head {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #d1d1d1;
+    display: block;
+    background: #f3f3f3;
+}
+.order-info-table {
+    width: 100%;
+    border: 1px solid #d9d8d8;
+    border-top: none;
+}
+.order-info-table tr td{
+    text-align: right;
+    font-weight: 600;
+    color: #333;
+}
+.order-info-table tr th, .order-info-table tr td {
+    padding: 14px 10px;
+    border-bottom: 1px solid #d9d8d8;
+}
+.order-info-table tr th {
+    font-size: 18px;
+    font-weight: 500;
+    color: #747474;
+}
+.order-info-head h3 {
+    font-size: 27px;
+    font-weight: 500;
+    color: #333;
+}
+.thank-you-sec {
+    padding: 60px 0px;
+    display: block;
+}
+#checkmark {
+    font-size: 55px;
+    margin: 20px 0px;
+    color: green;
+}
+.site-header__title {
+    color: #3b8000;
+    font-size: 46px;
+}
 /****************/
 
 @media (max-width: 400px) {

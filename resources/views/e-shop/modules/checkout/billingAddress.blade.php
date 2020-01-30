@@ -51,7 +51,9 @@
                                    <div class="form-group">
                                   <input type="text" id="address" class="form-control" name="address" autocomplete="false" 
                                   value="{{$address->address}}" 
-                                  placeholder="Enter your Address">
+                                  placeholder="Enter your Address"
+                                  autocomplete="false" 
+                                  >
                                   <span class="input-icon"><i class="fas fa-search-location"></i></span>
                                </div>
                             </div> 

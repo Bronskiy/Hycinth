@@ -18,6 +18,11 @@ public $include = 'e-shop.includes.checkout.';
  
 
 
+    public function __construct(Request $request)
+	{   $stripe = SripeAccount();
+        \Stripe\Stripe::setApiKey($stripe['sk']);
+       
+	}
 
 
 #===========================================================================================

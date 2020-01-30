@@ -23,12 +23,32 @@
        
         display: none;
     }
-    
+    .messagePOPUP {
+    position: fixed;
+    width: 100%;
+    top: 61%;
+    /* background: red; */
+    padding: 30px;
+    z-index: 999999999999999;
+    display: none;
+}
+
+.messagePOPUP div {
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 500px;
+    background: #eda208;
+    box-shadow: 0 0 8px #e4c2c2;
+    border: 2px solid #b17905;
+    color: #fff;
+    text-align: center;
+    font-size: 22px;
+}
 </style>
 </head>
 
-<body>
-
+<body data-redirect="{{\Request::fullUrl()}}">
+<div class="messagePOPUP"> </div>
  <div class="pre-loader custom-loading">
        <div class="pre-loader-inner">
       <div class="predot white"></div>
@@ -61,9 +81,10 @@
                              <span class="top-filter-icon"><i class="fas fa-user"></i></span> <p>Account</p>
                        </a>
                     </li>
+
                      <li><a href="javascript:void(0);" class="wishlist-btn">
                         <span class="top-filter-icon">
-                            <i class="fas fa-heart"></i><span class="notification-icon">2</span></span>
+                            <i class="fas fa-heart"></i><span class="notification-icon" id="myShopWishList">{{Auth::user()->myShopWishList->count()}}</span></span>
                              <p>Wishlist</p></a></li>
                      <li>
                        <a href="{{url(route('shop.cart'))}}" class="cart-btn">
@@ -184,6 +205,7 @@
     <script type="text/javascript" src="{{url('/e-shop/js/owl.carousel.min.js')}}"></script>
     <script type="text/javascript" src="{{url('/e-shop/js/custom.js')}}"></script>
     <script type="text/javascript" src="{{url('/e-shop/js/home/home.js')}}"></script>
+    <script type="text/javascript" src="{{url('/e-shop/js/products/wishlist.js')}}"></script>
  
 
     @yield('jscript')

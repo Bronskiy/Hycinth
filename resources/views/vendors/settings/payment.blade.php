@@ -17,7 +17,8 @@
   <label>Choose Global Payment Type</label>
   <div class="cstm-grp-input">
   <div class="custom-control custom-radio mb-1">
-    <input required type="radio" value="0" id="global" name="payment_type" {{ Auth::User()->payment_type ? Auth::User()->payment_type == '0' ? 'checked' : '' : 'checked'}} class="custom-control-input"/>
+    <input required type="radio" value="0" id="global" name="payment_type"  class="custom-control-input"
+    {{ Auth::User()->payment_type ? Auth::User()->payment_type == '0' ? 'checked' : '' : 'checked'}}/>
     <label class="custom-control-label" for="global">Global Payment Settings</label>
   </div>
 

@@ -23,6 +23,7 @@ class VerifyCsrfToken extends Middleware
         'admin/ajax/*',
         'vendors/ajax/*',
         'vendors/shop/*',
+        'shop/ajax/*',
         'ajax/*'
     ];
 }

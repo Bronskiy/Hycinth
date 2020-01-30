@@ -40,10 +40,10 @@ function addToCartFunction() {
                             $divPath.html(result.htm) ;
 
                                   $("body").find('.custom-loading').hide();
-                                   $this.find('#errorMessageBox').text(result.messages);
+                                   $this.find('#errorMessageBox').html(ErrorMsg('success',result.messages));
                               setTimeout(function() {
-                                  window.location.reload();
-                              }, 3000);
+                                  window.location.href=result.url;
+                              }, 1000);
                         }else if(parseInt(result.status) == 0){
                         	  $this.find('#errorMessageBox').text(result.messages);
                               $this.find('.cartButton').removeAttr('disabled');
@@ -64,6 +64,17 @@ function addToCartFunction() {
 
 
 
+
+
+ function ErrorMsg(type,message){
+
+      var txt  ='';
+          txt +='<div class="alert alert-'+type+'" role="alert">';
+          txt +=message;
+          txt +='</div>';
+
+          return txt;
+  }
 
 
 

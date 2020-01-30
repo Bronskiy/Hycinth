@@ -3,10 +3,25 @@
 namespace App\Models\Vendors;
 
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 
 class Eshop extends Model
 {
     
+   use Sluggable;
+    use SluggableScopeHelpers;
+
+    
+    public function sluggable()
+    {
+        return [
+
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
 
 
 

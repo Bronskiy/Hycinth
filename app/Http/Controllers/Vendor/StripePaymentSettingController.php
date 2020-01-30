@@ -23,20 +23,32 @@ public function index() {
 
 
 public function store(Request $request) {
- //    $this->validate($request, [
- //          'stripe_account' => 'required'
-	// ]);
+    $this->validate($request, [
+          'stripe_account' => 'required'
+	]);
 
-    if(!empty($request->category)) {
-		$category = $this->getData($request->category);
-     	$vendorCategory= VendorCategory::where(['category_id'=> $category->category_id, 'user_id' => Auth::User()->id])->first();
-	    $vendorCategory->stripe_account = trim($request->stripe_account);
-	    $vendorCategory->save();
-    } else {
-		$u = Auth::User();
-		$u->stripe_account = trim($request->stripe_account);
-		$u->save();
+
+    if($request->type == 1){
+
+        if(!empty($request->category)) {
+    		$category = $this->getData($request->category);
+         	$vendorCategory= VendorCategory::where(['category_id'=> $category->category_id, 'user_id' => Auth::User()->id])->first();
+    	    $vendorCategory->stripe_account = trim($request->stripe_account);
+    	    $vendorCategory->save();
+        } else {
+        		$u = Auth::User();
+        		$u->stripe_account = trim($request->stripe_account);
+        		$u->save();
+        }
+
+    }else{
+
+      $s= Auth::user()->shop;
+      $s->stripe_account_id = trim($request->stripe_account);
+      $s->save();
+
     }
+
     return redirect()->route('stripeSettings')->with('flash_message', 'Your Account Has Been Connected to Stripe.');
 }
 

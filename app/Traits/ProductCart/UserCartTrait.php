@@ -19,7 +19,7 @@ trait UserCartTrait{
 public function TransferCartItemToUserTable()
 {
     if(Auth::check() && Auth::user()->role == "user"){
-
+    
     	 foreach(Cart::getContent() as $item){
     	 	$this->saveCartItemIntoRecort($item);
     	 }
@@ -35,13 +35,18 @@ public function TransferCartItemToUserTable()
 
 public function saveCartItemIntoRecort($item)
 {
+
+	  $product = Product::where('id',$item->attributes->product_id)->first();
 	 
 	 $s= new ShopCartItems;
 	 $s->product_id = $item->attributes->product_id;
 	 $s->variant_id = $item->attributes->variant_id;
 	 $s->price = $item->price;
+	 $s->vendor_id = $product->user_id;
+	 $s->shop_id = $product->shop_id;
 	 $s->quantity = $item->quantity;
-	 $c->total = ($item->quantity * $item->price);
+	  $s->type="cart";
+	 $s->total = ($item->quantity * $item->price);
 	 $s->user_id = Auth::user()->id;
 	 if($s->save()){
 	 	Cart::remove($item->id);

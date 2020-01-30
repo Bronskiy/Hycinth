@@ -8,7 +8,7 @@
 
   <!-- fourth step content starts here -->
                     <fieldset class="step-content" >
-                        <form class="step-form-content"> 
+                        
                           <h2 class="step-content-title">Payment</h2>
                           <div class="row">
                            <div class="col-lg-8">
@@ -49,7 +49,7 @@
 
                             </div>
                         </div>
-                          </form>
+                          
                   </fieldset> 
  <!-- End -->  
 

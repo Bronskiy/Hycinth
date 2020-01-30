@@ -9,8 +9,12 @@ use App\Models\Vendors\DiscountDeal;
 use App\Models\EventOrder;
 use Session;
 use App\Traits\ShopCheckout\PaymentStepTrait;
+use App\Traits\ShopCheckout\TotalOrderCalulationTrait;
+use App\Traits\ShopCheckout\StripeMethodTrait;
 trait ShopCheckoutShippingTrait {
 use PaymentStepTrait;
+use TotalOrderCalulationTrait;
+use StripeMethodTrait;
 
 
 

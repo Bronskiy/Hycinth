@@ -34,8 +34,32 @@
       <input type="text" name="stripe_account" id="stripe_account" value="<?php echo $resp['stripe_user_id']; ?>" 
       class="form-control wdth" readonly>
 
+      <div class="form-group">
+        <label>Create Account for</label>
+        <ul>
+          <li>
+                <input type="radio" name="type" id="accountType1" value="1" checked>
+                <label for="accountType1">
+                  Business
+                </label>
+          </li>
+
+          @if(Auth::user()->shop->count() > 0)
+
+          <li>
+              <input type="radio" name="type" id="accountType2" value="2">
+               <label for="accountType2">
+                  E-Shop
+               </label>
+          </li>
+          @endif
+        </ul>
+
+      </div>
+
+      
       @if(!empty(Auth::User()->stripe_account))
-        <div class="form-group label-floating is-focused">
+        <div class="form-group label-floating is-focused" id="VendorCategories">
           <label class="control-label">Categories</label>
           <select class="form-control valid" name="category" id="category">
             <option value="">Select Category</option>
@@ -89,6 +113,14 @@
       <td>{{ $cate->stripe_account ? $cate->stripe_account : Auth::user()->stripe_account }}</td>
     </tr>
     @endforeach
+
+    @if(Auth::user()->shop->count() > 0)
+    <tr>
+      <th width="200">{{Auth::user()->shop->name}}</th>
+      <td>{{ Auth::user()->shop->stripe_account_id }}</td>
+    </tr>
+       
+    @endif
 
      <tr>
         <th width="200">Account Status</th><td>Active</td>

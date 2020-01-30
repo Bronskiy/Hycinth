@@ -42,7 +42,10 @@ $price = $product->productPrice();
                                         @php $price = $product->productPrice(); @endphp
                                           {!!$price['html']!!}
                                             <div class="product-links">
-                                                <a href=""><i class="fa fa-heart"></i></a>
+                                                <a href="javascript:void(0)" 
+                                                 class="wishlist"
+                                                 
+                                                 data-url="{{url(route('shop.wishlist.create',$product->id))}}"><i class="fa fa-heart"></i></a>
                                                 <a href="{{$url}}"><i class="fa fa-shopping-cart"></i></a>
                                             </div>
                                 </div>

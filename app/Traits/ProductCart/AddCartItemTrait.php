@@ -102,10 +102,14 @@ public function addCartItem($request,$product,$variant_id=0)
 {
 	 if(Auth::check() && Auth::user()->role == "user"){
               $status = $this->SaveToShopUserCartItemTable($request,$product,$variant_id);
-              return ['status' => $status,'messages' => 'Product is added to cart successfully!'];
+              return ['status' => $status,
+              'url' => url(route('shop.cart')),
+              'messages' => 'Product is added to cart successfully!'];
 	 }else{
            $status = $this->SaveToSessionCart($request,$product,$variant_id);
-           return ['status' => $status,'messages' => 'Product is added to cart successfully!'];
+           return ['status' => $status,
+            'url' => url(route('shop.cart')),
+           'messages' => 'Product is added to cart successfully!'];
 	 }
     return ['status' => 0,'messages' => 'Something Wrong!'];
 }
@@ -127,9 +131,12 @@ public function SaveToShopUserCartItemTable($request,$product,$variant_id)
 		 $s= $ShopCartItems->count() > 0 ? $ShopCartItems->first() : new ShopCartItems;
 		 $s->product_id = $product_id;
 		 $s->variant_id = $variant_id;
+		 $s->vendor_id = $product->user_id;
+		 $s->shop_id = $product->shop_id;
 		 $s->price = $price;
 		 $s->quantity = $quantity;
 		 $s->total = ($quantity * $price);
+		 $s->type="cart";
 		 $s->user_id = Auth::user()->id;
 		 $s->save();
 		 return 1;

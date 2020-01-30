@@ -151,7 +151,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function ShopProductCount()
     {
-        return $ShopCartItems = ShopCartItems::where('user_id',$this->id)->sum('quantity');
+        return $ShopCartItems = ShopCartItems::where('user_id',$this->id)
+                                             ->where('type','cart')
+                                             ->sum('quantity');
                                        
     }
 
@@ -159,7 +161,24 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function ShopProductCartItems()
     {
-        return $this->hasMany('App\Models\Shop\ShopCartItems');
+        return $this->hasMany('App\Models\Shop\ShopCartItems')
+                    ->where('type','cart');
+                                       
+    }
+
+     public function myShopWishList()
+    {
+        return $this->hasMany('App\Models\Shop\ShopCartItems')
+                    ->where('type','wishlist');
+                                       
+    }
+
+
+    public function ShopProductCartItemOfVendors()
+    {
+        return $this->hasMany('App\Models\Shop\ShopCartItems')
+                    ->where('type','cart')
+                    ->groupBy('vendor_id');
                                        
     }
 
@@ -167,21 +186,40 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getShopCartTotal()
     {
-          $items = ShopCartItems::where('user_id',$this->id)->get();
+          $items = ShopCartItems::where('user_id',$this->id)->where('type','cart')->get();
 
           foreach ($items as $key => $im) {
-                    $Product_id = $item->attributes->product_id;
+                   
                     $product = $im->product;
-                    $variation = \App\Models\Products\ProductAssignedVariation::find($item->attributes->variant_id);
-                    $price = $product->final_price;
-                    if($product->product_type == 1){
-                      $price = $variation->final_price;
-                    }
-                    
-                    $im->price = $price;
-                    $im->total = ($price * $im->quantity);
-                    $im->save();
+                    $variation = \App\Models\Products\ProductAssignedVariation::find($im->variant_id);
+                      $price = $product->final_price;
+                      if($product->product_type == 1){
+                        $price = $variation->final_price;
+                      }
+                     $im->vendor_id = $product->user_id;
+                     $im->shop_id = $product->shop_id;
+                     $im->price = $price;
+                     $im->total = ($price * $im->quantity);
+                     $im->save();
             
           }
+    }
+
+
+
+    public function createOrderFromCart($order)
+    {
+        $items = ShopCartItems::where('user_id',$this->id)->where('type','cart')->get();
+         foreach ($items as $key => $im) {
+                      
+                     $im->payment_status = 1;
+                     $im->type = 'order';
+                     $im->orderID = $order->orderID;
+                     $im->order_id = $order->id;
+                     $im->save();
+            
+          }
+          return 1;
+
     }
 }

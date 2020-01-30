@@ -64,6 +64,18 @@ Route::get('variations/{type}/ajax','Admin\Products\ProductVariationController@A
 
 
 
+#-----------------------------------------------------------------------------------
+#  Product Brands Routes
+#-----------------------------------------------------------------------------------
+
+Route::get('list/brands','Admin\Products\BrandController@index')->name('admin.products.list.brands');
+Route::get('list/create','Admin\Products\BrandController@create')->name('admin.products.create.brands');
+Route::post('list/store','Admin\Products\BrandController@store')->name('admin.products.create.brands');
+Route::get('list/brands/ajax','Admin\Products\BrandController@Ajax')->name('admin.products.brandsAjax');
+
+#-----------------------------------------------------------------------------------
+#  Product Brands Routes End
+#-----------------------------------------------------------------------------------
 
 
 

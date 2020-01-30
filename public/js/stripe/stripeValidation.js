@@ -15,7 +15,14 @@ $(document).ready(function(){
           required: true,
       },
       "category": {
-        required: true,
+        required: function(){
+               if($("body").find('#accountType1').is(':checked')){
+                return true;
+               }else{
+                return false;
+               }
+
+        },
       },
       valueToBeTested: {
           required: true,
@@ -34,5 +41,42 @@ $(document).ready(function(){
         return false;
       }
     });
+
+
+
+
+
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+$("body").on('change','input[name=type]',function(){
+   checkTypeAccount();
+});
+
+function checkTypeAccount() {
+  var $this = $("body").find('#VendorCategories');
+   if($("body").find('#accountType1').is(':checked')){
+     $this.show();
+   }else{
+     $this.hide();
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 });

@@ -7,8 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class ShopCartItems extends Model
 {
    
-
-
+ protected $fillable = [
+  'payment_status',
+  'type',
+  'orderID',
+  'order_id'
+];
 
 #========================================================================================================
 
@@ -28,8 +32,16 @@ class ShopCartItems extends Model
 	}
 
 
+   public function getOrderOfSingleVendor()
+   {
+   	    return $this->hasMany($this,'vendor_id','vendor_id');
+   }
+   
 
-
+    public function vendor()
+    {
+       return $this->belongsTo('App\User','vendor_id','id');
+    }
 
 
 

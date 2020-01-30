@@ -15,9 +15,9 @@ Route::group(['prefix' => 'checkout','middleware' => 'ShopCheckoutCheck'], funct
    Route::post('/billing-address','Shop\CheckoutController@postBillingAddress')->name('shop.checkout.billingAddress');
 
    Route::get('/payment','Shop\CheckoutController@payment')->name('shop.checkout.payment');
-   Route::post('/payment','Shop\CheckoutController@postPaymentStripe')->name('shop.checkout.payment');
+   Route::post('/stripe/payment','Shop\CheckoutController@postPaymentStripe')->name('shop.checkout.stripe.payment');
 
 
-
+   
 
 });
