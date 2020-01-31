@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use App\Models\Products\ProductAssignedVariation;
+use App\Models\Shop\ShopCartItems;
 class Product extends Model
 {
      use Sluggable;
@@ -146,7 +147,19 @@ class Product extends Model
 
 
 
+#==================================================================================================================
 
+  public function hasInWishlist()
+  {
+      
+      if(\Auth::check() && \Auth::user()->role == "user"){
+           $count = ShopCartItems::where('user_id',\Auth::user()->id)
+                                 ->where('product_id',$this->id)
+                                 ->where('type','wishlist');
+
+          return $count->count() > 0 ? 'active' : '';
+      }
+  }
 
 
 

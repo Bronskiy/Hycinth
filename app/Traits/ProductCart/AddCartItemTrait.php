@@ -12,10 +12,10 @@ use App\Models\Products\ProductImage;
 use App\Models\Products\ProductAssignedVariation;
 use App\Models\Shop\ShopCartItems;
 use Cart; 
+use App\Traits\ProductCart\Wishlist;
 trait AddCartItemTrait{
 
-
-
+use Wishlist;
 
 
 #===============================================================================================

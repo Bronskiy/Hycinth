@@ -44,8 +44,9 @@
                                           {!!$price['html']!!}
                                             <div class="product-links">
                                                   <a href="javascript:void(0)" 
-                                                     class="wishlist"
-                                                     data-url="{{url(route('shop.wishlist.create',$product->id))}}"><i class="fa fa-heart"
+                                                      class="wishlist {{$product->hasInWishlist()}}"
+                                                     data-url="{{url(route('shop.wishlist.create',$product->id))}}">
+                                                     <i class="fa fa-heart"
                                                      ></i></a>
                                                 <a href="{{$url}}"><i class="fa fa-shopping-cart"></i></a>
                                             </div>

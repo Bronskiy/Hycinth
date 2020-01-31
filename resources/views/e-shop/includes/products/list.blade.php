@@ -28,7 +28,7 @@ $url = $complete == 1 ? url(route('shop.product.detail.page',$product->slug)) : 
                        {!!$price['html']!!}
                       <div class="product-links">
                                               <a href="javascript:void(0)" 
-                                                 class="wishlist"
+                                                  class="wishlist {{$product->hasInWishlist()}}"
                                                  data-url="{{url(route('shop.wishlist.create',$product->id))}}"
                                                  ><i class="fa fa-heart"></i>
                                                </a>

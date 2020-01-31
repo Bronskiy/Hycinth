@@ -81,10 +81,13 @@
                              <span class="top-filter-icon"><i class="fas fa-user"></i></span> <p>Account</p>
                        </a>
                     </li>
-
-                     <li><a href="javascript:void(0);" class="wishlist-btn">
+                   
+                     <li><a href="{{url(route('shop.wishlist'))}}" class="wishlist-btn">
                         <span class="top-filter-icon">
-                            <i class="fas fa-heart"></i><span class="notification-icon" id="myShopWishList">{{Auth::user()->myShopWishList->count()}}</span></span>
+                            <i class="fas fa-heart"></i>
+                            <span class="notification-icon" id="myShopWishList">
+                              {{Auth::check() ? Auth::user()->myShopWishList->count() : 0}}</span>
+                          </span>
                              <p>Wishlist</p></a></li>
                      <li>
                        <a href="{{url(route('shop.cart'))}}" class="cart-btn">

@@ -134,52 +134,6 @@ public function listItemOfcart()
 
 
 
-#=======================================================================================================
-#   wishlist
-#=======================================================================================================
-
-
-
-public function wishlist(Request $request,$id)
-{
-  if(Auth::check() && Auth::user()->role == "user"){
-
-	   $user_id = Auth::user()->id;
-	   $list = ShopCartItems::where('user_id',$user_id)->where('type','wishlist')->where('product_id',$id);
-
-	   if($list->count() == 0){
-	   	$w = new ShopCartItems;
-	   	$w->product_id = $id;
-	   	$w->user_id = $user_id;
-	   	$w->type = "wishlist";
-	   	$w->save();
-	   }
-
-	   $status = [
-               'status' => 1,
-               'messages' => 'This Product is added to your Wishlist',
-               'myShopWishList' => Auth::user()->myShopWishList->count()
-	   ];
-
-   }else{
-
-   	   $status = [
-               'status' => 0,
-               'url' =>  url('/login?redirectLink='.$request->redirectLink)
-	   ];
-
-   }
-
-
-   return response()->json($status);
- 
-
-}
-
-
-
-
-
 
 
 

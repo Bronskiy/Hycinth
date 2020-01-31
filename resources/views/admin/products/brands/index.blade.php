@@ -30,8 +30,6 @@
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                  
-                 
                   <th>Name</th>
                   <th>Status</th>
                   <th width="120">Action</th>
@@ -54,33 +52,19 @@
     </section>
     
 <script type="text/javascript">
- 
- 
-$(function() { 
-        var i=1;
-    $('#example2').DataTable({
-         
-        processing: true,
-        serverSide: true,
-        ajax: '<?= $ajaxLink ?>',
-        columns: [
-            
-             { data: 'name', name: 'name' },
-            
-             { data: 'status', name: 'status' },
-             { data: 'action', name: 'action' },
-
-             
-
-             
-        ]
-       
+  $(function() {     
+    $('#example2').DataTable({         
+      processing: true,
+      serverSide: true,
+      ajax: '<?= $ajaxLink ?>',
+      columns: 
+        [              
+          { data: 'name', name: 'name' },              
+          { data: 'status', name: 'status' },
+          { data: 'action', name: 'action' },
+        ]         
     });
-
-
-});
- 
-
+  });
 </script>
      
 @endsection

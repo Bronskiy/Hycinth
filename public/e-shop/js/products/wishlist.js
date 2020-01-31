@@ -7,7 +7,7 @@ $("body").on('click','.wishlist',function(e){
 
     var $this = $( this );
     var $redirectLink = $("body").attr('data-redirect');
-    
+    var $messagePOPUP = $("body").find('#messagePOPUP');
 
     if(!$this.hasClass('active')){
      $.ajax({
@@ -25,7 +25,8 @@ $("body").on('click','.wishlist',function(e){
                 success: function (result) {
                         if(parseInt(result.status) == 1){
                             $this.addClass('active');
-
+                            $messagePOPUP.show();
+                            $messagePOPUP.html(messagePOPUP(result.messages));
                             $("body").find('#myShopWishList').text(result.myShopWishList);
                         }else{
                         	window.location.href = result.url;
@@ -47,7 +48,7 @@ $("body").on('click','.wishlist',function(e){
 
 
 function messagePOPUP(message) {
-	return '<div class="messagePOPUP">'+message+'</div>';
+	return '<div>'+message+'</div>';
 }
 
 
